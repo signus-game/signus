@@ -1170,13 +1170,25 @@ TListBox::TListBox(int ax, int ay, int aw, int aLns, char *aData[], int aCnt, in
 void TListBox::Draw()
 {
     int i, ofs, clr;
+    char helperBuffer[1024];
     
     for (i = Delta; (i < Cnt) && (i < Delta + ScrLn); i++) {
         ofs = y + (i - Delta) * 18;
         clr = (i == Current) ? 85 : 80;
         BarBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs + 1, w - 18, 16, clr);
         RectBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs, w - 18, 18, clr-2, clr+2);
-        PutStr(DrwViewBf, DrwViewBfSz, x + 20, ofs, Data[i], NormalFont, clrWhite, clrBlack);
+            
+        char *text = Data[i];
+        while (GetStrWidth(text, NormalFont) > w-20)
+        {
+            if (text == Data[i])
+            {
+                strcpy(helperBuffer, Data[i]);
+                text = helperBuffer;
+            }
+            text[strlen(text)-1] = 0;
+        }
+        PutStr(DrwViewBf, DrwViewBfSz, x + 20, ofs, text, NormalFont, clrWhite, clrBlack);
     }
     for (; i < Delta + ScrLn; i++) {
         ofs = y + (i - Delta) * 18;
