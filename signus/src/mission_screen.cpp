@@ -20,9 +20,6 @@
  */
 
 
-// FIXME -- add GPL header to all files !!!
-
-
 #include <string.h>
 #include "global.h"
 #include "mouse.h"
