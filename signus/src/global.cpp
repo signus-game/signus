@@ -228,124 +228,6 @@ void SaveINI()
 }
 
 
-
-static int ReadIntReg(HKEY key, char *name)
-{
-    DWORD size, value;
-    size = 4;
-    RegQueryValueEx(key, name, NULL, NULL, (LPBYTE) &value, &size);
-    return (int)value;
-}
-
-static void WriteIntReg(HKEY key, char *name, int valu)
-{
-    DWORD size, value;
-    size = 4; value = valu;
-    RegSetValueEx(key, name, 0, REG_DWORD, (CONST BYTE*) &value, 4);
-}
-
-
-
-bool LoadINI()
-{
-    HKEY key;
-    DWORD size, value;
-    
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\General",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        size = 300;
-        RegQueryValueEx(key, "Root_Dir", NULL, NULL, (LPBYTE) iniRootPath, &size);
-        size = 300;
-        RegQueryValueEx(key, "CD_Dir", NULL, NULL, (LPBYTE) iniCDPath, &size);
-        size = 4;
-        RegQueryValueEx(key, "Language", NULL, NULL, (LPBYTE) &value, &size);
-        iniLanguage[0] = value; iniLanguage[1] = 0;
-        RegCloseKey(key);
-    }
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Video",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        iniResolution = ReadIntReg(key, "Resolution");
-        iniBrightCorr = ReadIntReg(key, "Brightness");
-        iniTitledAnims = ReadIntReg(key, "Anims_Titled");
-        iniInterpolateAnims = ReadIntReg(key, "Anims_Interpolated");
-        RegCloseKey(key);
-    }
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Audio",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        ini16bit = ReadIntReg(key, "16bitSamples");
-        iniMixingMode = ReadIntReg(key, "DS_MixingMode");
-        iniMusicVol = ReadIntReg(key, "MusicVolume");
-        iniSoundVol = ReadIntReg(key, "SoundVolume");
-        iniSpeechVol = ReadIntReg(key, "SpeechVolume");
-        iniJukeboxRepeat = ReadIntReg(key, "Jukebox_Repeat");
-        iniJukeboxRandom = ReadIntReg(key, "Jukebox_RandomOrder");
-        iniJukeboxListSize = ReadIntReg(key, "Jukebox_PlayListSize");
-        iniJukeboxSave = ReadIntReg(key, "Jukebox_SaveChanges");
-        RegCloseKey(key);
-    }
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Interface",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        iniAnimDelay = ReadIntReg(key, "AnimDelay");
-        iniAnimDelay2 = ReadIntReg(key, "AnimDelay2");
-        iniIdleDelay = ReadIntReg(key, "IdleDelay");
-        iniScrollDelay = ReadIntReg(key, "ScrollDelay");
-        iniEnhancedGuiOn = ReadIntReg(key, "EnableAnimGui");
-        iniShowStatusbar = ReadIntReg(key, "UnitStatusBar");
-        iniShowMoveRange = ReadIntReg(key, "UnitMoveRng");
-        iniShowShootRange = ReadIntReg(key, "UnitShootRng");
-        iniShowVisibRange = ReadIntReg(key, "UnitVisibRng");
-        iniStopOnNewEnemy = ReadIntReg(key, "StopOnNewEnemy");
-        RegCloseKey(key);
-    }
-    return TRUE;
-}
-
-
-
-void SaveINI()
-{
-    HKEY key;
-    DWORD size, value;
-    
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Video",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        WriteIntReg(key, "Resolution", iniResolution);
-        WriteIntReg(key, "Brightness", iniBrightCorr);
-        WriteIntReg(key, "Anims_Titled", iniTitledAnims);
-        WriteIntReg(key, "Anims_Interpolated", iniInterpolateAnims);
-        RegCloseKey(key);
-    }
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Audio",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        WriteIntReg(key, "16bitSamples", ini16bit);
-        WriteIntReg(key, "DS_MixingMode", iniMixingMode);
-        WriteIntReg(key, "MusicVolume", iniMusicVol);
-        WriteIntReg(key, "SoundVolume", iniSoundVol);
-        WriteIntReg(key, "SpeechVolume", iniSpeechVol);
-        WriteIntReg(key, "Jukebox_Repeat", iniJukeboxRepeat);
-        WriteIntReg(key, "Jukebox_RandomOrder", iniJukeboxRandom);
-        WriteIntReg(key, "Jukebox_PlayListSize", iniJukeboxListSize);
-        WriteIntReg(key, "Jukebox_SaveChanges", iniJukeboxSave);
-        RegCloseKey(key);
-    }
-    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Valacirca\\Signus\\" VERSION "\\Interface",
-            0, KEY_ALL_ACCESS, &key) == ERROR_SUCCESS) {
-        WriteIntReg(key, "AnimDelay", iniAnimDelay);
-        WriteIntReg(key, "AnimDelay2", iniAnimDelay2);
-        WriteIntReg(key, "IdleDelay", iniIdleDelay);
-        WriteIntReg(key, "ScrollDelay", iniScrollDelay);
-        WriteIntReg(key, "EnableAnimGui", iniEnhancedGuiOn);
-        WriteIntReg(key, "UnitStatusBar", iniShowStatusbar);
-        WriteIntReg(key, "UnitMoveRng", iniShowMoveRange);
-        WriteIntReg(key, "UnitShootRng", iniShowShootRange);
-        WriteIntReg(key, "UnitVisibRng", iniShowVisibRange);
-        WriteIntReg(key, "StopOnNewEnemy", iniStopOnNewEnemy);
-        RegCloseKey(key);
-    }
-}
-
-
-
 void ApplyINI()
 {
     MouseSetRatio(iniMouseRatioX, iniMouseRatioY);
@@ -413,7 +295,8 @@ int CheckFiles()
 {   
     char textfile[30];
     snprintf(textfile, 30, "texts-%s.dat", iniLocale);
-    return (CheckFile("fonts.dat") && CheckFile("graphics.dat") &&
+    return (CheckFile("fonts.dat") && 
+            CheckFile("graphics.dat") && CheckFile("graphics-common.dat") &&
             CheckFile("missions.dat") && CheckFile(textfile) &&
             CheckFile("unitsnd.idx"));
 }
@@ -457,9 +340,8 @@ int InitGlobal()
     int rt = 1;
     TDataFile FontsDF("fonts.dat", dfOpenRead, NULL, '?', FontDataWrite, FontDataRead);
 
-    GraphicsDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
-    snprintf(filename, 1024, "graphics-%s.dat", iniLocale);
-    GraphicsI18nDF = new TDataFile(filename, dfOpenRead, NULL);
+    GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
+    GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
 
     NormalFont = (TFont *) FontsDF.get("normal");
     HugeFont = (TFont *) FontsDF.get("huge");
@@ -584,7 +466,11 @@ void Union2(int *x1, int *y1, int *w1, int *h1, int x2, int y2, int w2, int h2)
 
 const char *getSignusDataDir()
 {
-    return SIGNUS_DATA_DIR;
+    const char *datdir = getenv("SIGNUS_DATA_DIR");
+    if (datdir && strlen(datdir) > 0)
+        return datdir;
+    else
+        return SIGNUS_DATA_DIR;
 }
 
 const char *getSignusConfigDir()
@@ -606,7 +492,19 @@ FILE *fopensafe(const char *name, const char *mode)
 
     if (!f)
     {
-        snprintf(nm, 1024, "%s/%s", getSignusDataDir(), name);
+        snprintf(nm, 1024, "%s/nolang/%s", getSignusDataDir(), name);
+        f = fopen(nm, mode);
+    }
+    
+    if (!f)
+    {
+        snprintf(nm, 1024, "%s/%i/%s", getSignusDataDir(), iniLocale, name);
+        f = fopen(nm, mode);
+    }
+    
+    if (!f)
+    {
+        snprintf(nm, 1024, "%s/default/%s", getSignusDataDir(), name);
         f = fopen(nm, mode);
     }
 
