@@ -50,13 +50,14 @@ static MIDASsample MenuSnd, FlashSnd;
 extern int SwitchDisplayMode(int mode);
 
 
-static void DrawMN(byte *p1, byte *p2, int sel)
+static void DrawMN(byte *p1, byte *p2, void *bg, int sel)
 {
-//    PutBitmapNZ(0, 0, p1, 640, 150);
-    PutBitmapNZ(0, 150, ((sel == 0) ? p2 : p1) + 640 * 150, 640, 74);
-    PutBitmapNZ(0, 224, ((sel == 1) ? p2 : p1) + 640 * 224, 640, 80);
-    PutBitmapNZ(0, 304, ((sel == 2) ? p2 : p1) + 640 * 304, 640, 76);
-    PutBitmapNZ(0, 380, ((sel == 3) ? p2 : p1) + 640 * 380, 640, 100);
+    PutBitmap(0, 0, bg, 800, 140);
+    PutBitmapNZ(80, 100+0, p1, 640, 150);
+    PutBitmap(80, 250, ((sel == 0) ? p2 : p1) + 640 * 150, 640, 74);
+    PutBitmap(80, 324, ((sel == 1) ? p2 : p1) + 640 * 224, 640, 80);
+    PutBitmap(80, 404, ((sel == 2) ? p2 : p1) + 640 * 304, 640, 76);
+    PutBitmap(80, 480, ((sel == 3) ? p2 : p1) + 640 * 380, 640, 100);
 }
 
 
@@ -93,27 +94,28 @@ static void Flash()
 
 static int ProcessMenu(char *mask1, char *mask2)
 {
+    void *bg = GraphicsDF->get("mmnulogo");
     byte *pt1 = (byte*) GraphicsI18nDF->get(mask1);
     byte *pt2 = (byte*) GraphicsI18nDF->get(mask2);
     int oldsel, sel = 0;
     TEvent e;
 
-    MouseSetRect(0, 0, 640-1, 480/2-1);
-    MouseSetPos(0, 0);
 
-    DrawMN(pt1, pt2, sel);
+    DrawMN(pt1, pt2, bg, sel);
     while (TRUE) {
         GetEvent(&e);
         if (e.What == evMouseMove) {
             oldsel = sel;
-            sel = e.Mouse.Where.y / 60;
+            sel = (e.Mouse.Where.y - 290) / 60;
+            if (sel < 0) sel = 0;
+            if (sel > 3) sel = 3;
             if (sel != oldsel) {
                 PlaySample(MenuSnd, 8, 32, 128);
-                DrawMN(pt1, pt2, sel);
+                DrawMN(pt1, pt2, bg, sel);
             }
         }
         if (e.What == evMouseDown) {
-            FlashPos = 130 + 80 * sel;
+            FlashPos = 130 + 180 * sel;
             Flash1st = TRUE;
             Flash();
             break;
@@ -123,6 +125,7 @@ static int ProcessMenu(char *mask1, char *mask2)
     
     memfree(pt1);
     memfree(pt2);
+    memfree(bg);
     ClearScr();
     return sel;
 }
@@ -134,20 +137,15 @@ extern char ActualDifficulty;
 int DoMainMenu()
 {
     int rtval = -1;
-    char *pa = (char*) GraphicsDF->get("menupal");
+    char *pa = (char*) GraphicsDF->get("palette");
 
     PlayMusic("solution.s3m");
     
-    MouseHide();
     DoneInteract();
     ClearScr();
     SetPalette(pa);
     MenuSnd = LoadSample("menu", FALSE);
     FlashSnd = LoadSample("flash", FALSE);
-
-    void *bg = GraphicsI18nDF->get("mmnulogo");
-    PutBitmap(0, 0, bg, 1024, 140);
-    memfree(bg);
 
     while (rtval == -1) {
         rtval = ProcessMenu("mmnu0", "mmnu1");
@@ -169,7 +167,6 @@ int DoMainMenu()
     ClearScr();
     SetPalette(Palette);
     InitInteract();
-    MouseShow();
     memfree(pa);
     return rtval;
 }

@@ -34,6 +34,7 @@
 
 #include <SDL_timer.h>
 #include <math.h>
+#include <sys/stat.h>
 
 #ifdef __unix__
 extern "C" {
@@ -104,9 +105,14 @@ int iniTitledAnims, iniInterpolateAnims;
 
 #ifdef __unix__
 
+static bool dirExists(const char *filename)
+{
+    struct stat st;
+    return stat(filename, &st) == 0 && S_ISDIR(st.st_mode);
+}
+
 static const char *GetConfigFileName()
 {
-    // FIXME -- use $HOME/signusrc !!!
     char *home = getenv("HOME");
     if (!home) home = ".";
 
@@ -117,8 +123,15 @@ static const char *GetConfigFileName()
         char *home = getenv("HOME");
         if (!home) home = ".";
         strncpy(inifile, home, 1024);
-        strncat(inifile, "/.signusrc");
-        XXXXXXXXXX
+        strncat(inifile, "/.signus", 1024);
+        
+        struct stat statbuf;
+        if (!dirExists(inifile))
+        {
+            mkdir(inifile, 0700);
+        }
+
+        strncat(inifile, "/signus.ini", 1024);
     }
     
     return inifile;
@@ -126,9 +139,11 @@ static const char *GetConfigFileName()
 
 bool LoadINI()
 {
-    dictionary *dict;
+    dictionary *dict = NULL;
     
-    dict = iniparser_load((char*)GetConfigFileName());
+    const char *configname = GetConfigFileName();
+    if (fileExists(configname))
+        dict = iniparser_load((char*)configname);
     if (dict == NULL)
         dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
     if (dict == NULL)
