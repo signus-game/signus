@@ -65,14 +65,14 @@ static void drawPicture(int mission, byte *pal)
     char filename[1024];
     SDL_Surface *background, *name, *image;
 
-    snprintf(filename, 1024, "%s/screens/background.jpg", getSignusDataDir());
+    snprintf(filename, 1024, "%s/nolang/screens/background.jpg", getSignusDataDir());
     background = IMG_Load(filename);
 //    background = SDL_DisplayFormat(tmp);
     
-    snprintf(filename, 1024, "%s/screens/mis%i-image.jpg", getSignusDataDir(), mission);
+    snprintf(filename, 1024, "%s/nolang/screens/mis%i-image.jpg", getSignusDataDir(), mission);
     image = IMG_Load(filename);
 
-    snprintf(filename, 1024, "%s/screens-%s/mis%i-name.jpg", getSignusDataDir(), iniLocale, mission);
+    snprintf(filename, 1024, "%s/%s/screens/mis%i-name.jpg", getSignusDataDir(), iniLocale, mission);
     name = IMG_Load(filename);
     
     SDL_Rect srcRect, dstRect;

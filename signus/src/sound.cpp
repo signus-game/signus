@@ -272,9 +272,9 @@ MIDASsample LoadSample(char *name, int loop)
     if (pos == MAX_SAMPLES) return INVALID_SAMPLE;
 
     char filename[1024];
-    snprintf(filename, 1024, "%s/sfx/%s.ogg", getSignusDataDir(), name);
+    snprintf(filename, 1024, "%s/nolang/sfx/%s.ogg", getSignusDataDir(), name);
     if (!fileExists(filename))
-       snprintf(filename, 1024, "%s/speech-%s/%s.ogg", getSignusDataDir(), iniLocale, name);
+       snprintf(filename, 1024, "%s/%s/speech/%s.ogg", getSignusDataDir(), iniLocale, name);
         // FIXME -- 1) look into ~/.signus, too (not sure yet, maybe...)
     Samples[pos].sample = Mix_LoadWAV(filename); 
     if (Samples[pos].sample == NULL) return INVALID_SAMPLE;
