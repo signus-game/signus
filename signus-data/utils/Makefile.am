@@ -6,9 +6,9 @@ libsignusdata_a_SOURCES = datafile.cpp datafile.h fonts.cpp fonts.h
 noinst_PROGRAMS = makedat mk_rgb2pal fntmng
 
 makedat_SOURCES = makedat.cpp
-makedat_LDADD = libsignusdata.a -lpng
+makedat_LDADD = libsignusdata.a -lpng -lz
 
 mk_rgb2pal_SOURCES = mk_rgb2pal.c
 
 fntmng_SOURCES = fntmng.cpp
-fntmng_LDADD = libsignusdata.a -lpng
+fntmng_LDADD = libsignusdata.a -lpng -lz
