@@ -359,14 +359,16 @@ void TLoadSaveDialog::SortFiles(int l, int r)
 void TLoadSaveDialog::GetStamp(int num)
 {
     FILE *f;
+
+    if (!IsSave || (num != 0))
+        f = fopen(SFiles[num], "rb");
     
-    if (IsSave && (num == 0)) {
+    if (f == NULL || IsSave && (num == 0)) {
         void *buf = GraphicsDF->get("newsave");
         memcpy(Stamp, buf, STAMP_SZ);
         memfree(buf);
     }
     else {
-        f = fopen(SFiles[num], "rb");
         fseek(f, sizeof(TSavegameHdr), SEEK_SET);
         fread(Stamp, STAMP_SZ, 1, f);
         fclose(f);
