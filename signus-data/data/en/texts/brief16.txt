@@ -1,0 +1,24 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> The head office of commando Signus
+#> þ
+#> Several hours ago the air investigation service has noticed some sinister activity of the
+ Consortium in the area of Eutania. It is the attack on geologists that were practising a
+ scientific research for Toricon. The swoop happened in the area of Mid-Eutania in the
+ forbidden places, where the team of geologists with Prof. Lottenbert was engaged in the
+ research of ancient Arconian#001 City#001. In the present situation this area is under complete
+ control of Consortium. Toricon demands us to perform a return operation aimed at
+ regaining of the occupied area in the shortest term possible. Toricon is afraid that
+ Consortium could find new and much more destructive artefacts that were discovered until
+ now and use them to turn the course of the war in their favour.
+#> The action took place under the extreme conditions of dry desert and that is why you were
+ chosen - the specialised Signus commando.
+#> The main aim is to capture the city. But in any case it shouldn't be destroyed. Let me repeat
+ this IT MUSTN'T BE DESTROYED! The faith of whole world will depend on its existence.
+#> þ
+#> Robert Scott
+ #p.anamorf.320.184.
+#> PRIMARY AIM: Capture the city with minimal damages.
+#e
+#l b16_001#
+#e

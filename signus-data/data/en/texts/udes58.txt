@@ -1,0 +1,12 @@
+#> Dock is name for a joint port and ship repair dock which is used by marine of the
+ Signus corps. Each of the Docks have its controlling tower which also serves as a lighthouse.
+ Here is a residence of the officer - commander, who directly reports to the captain.
+#> Similarly to all buildings the Docks have its Seal and it is fully automated. This allows for
+ simultaneous repair of several ships. Docks are also equipped with a sophisticated radar
+ system which can identify enemy's units on a relatively long distance. Unfortunately
+ submarines cannot be identified by the radar system, that's why destroyers can be often
+ seen keeping guard over the port. Docks, similarly to other buildings, are not armed with
+ any weapon system and they must rely on protection of defence towers and mobile combat
+ units.
+#e
+#e

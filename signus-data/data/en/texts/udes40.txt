@@ -1,0 +1,15 @@
+#> Saturn is a heavy-weight bomber equipped with 6 sets of bombs for carpet bombing.
+ It does not have any weapons for air duels and its armour is quite thin.
+ This bomber belongs to the few weapons that are able to damage the war ship Kraken
+ considerably.
+#> Saturn's carpet bombs were able to change the course of a battle many times already.
+ These heavy machines have to operate under the protection of interceptors, because
+ although they are rather big, their resistance is low. These units do not have any weapon
+ systems for air duels so even the light-weight Ikaros is able to deal with these colossuses.
+ Another big disadvantage is small ammunition magazine which forces Saturns to return
+ back to the base for new ammunition after every hurl.
+#> The engagement of these weapons has met with strong antipathy of humane upheaval
+ Amaldon. However after the execution of its leaders there were no more serious protests
+ noticed.
+#e
+#e

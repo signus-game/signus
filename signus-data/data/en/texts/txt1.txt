@@ -1,0 +1,1 @@
+%s is ready to shoot at %s. Process?

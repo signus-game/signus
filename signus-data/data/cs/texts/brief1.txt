@@ -1,0 +1,30 @@
+#> şş
+ #p.toricon.282.183. şş
+#> Na¨¡ v˜zvˆdn‚ slu‘bˆ se poda©ilo zjistit, ‘e Konzorcium vyv¡j¡
+ nov˜, zna‡nˆ vylep¨en˜ typ tanku, jeho‘ prim rn¡m ur‡en¡m bude s
+ nejvˆt¨¡ pravdˆpodobnost¡ nasazen¡ v bojov˜ch £tvarech
+ podobn‚ho typu, jak˜m je komando Signus#002. Je nutno o tomto tanku
+ zjistit co nejv¡ce informac¡ a p©edat je vˆdeck‚ sekci.
+#> V ned vn‚ arm dn¡ akci se poda©ilo uko©istit jeden exempl ©
+ tanku, kter˜ byl vz pˆt¡ podroben pe‡liv‚mu zkoum n¡. P©esto jsou
+ st le na¨e vˆdomosti o projektu Perseus#001 Beta#001 p©¡li¨ kus‚.
+ Bylo rozhodnuto, ‘e je t©eba tank vyzkou¨et ve skute‡n‚  akci.
+ V‡era (23. 2.) byla p©i rutinn¡m leteck‚m pr–zkumu objevena tajn 
+ z kladna Konzorcia na z padn¡m pob©e‘¡ Arvishsk‚ provincie. Na
+ sn¡mc¡ch je z©etelnˆ vidˆt nˆkolik parkuj¡c¡ch Bet.
+ #p.brmap1.152.128.
+#> —kolem £dern‚ jednotky je vylodit se na pob©e‘¡ z padnˆ od
+ z kladny, dob˜t ji a zlomit p©¡padn˜ odpor vojsk Konzorcia. Podle
+ pr–zkumu nen¡ koncentrace sil v oblasti p©¡li¨ vysok . Pokud bude
+ v ¨ postup dostate‡nˆ rychl˜, d  se p©edpokl dat, ‘e se poda©¡
+ obsadit z kladnu d©¡ve, ne‘ ji Konzorcium stihne evakuovat.
+#> Dopravu na m¡sto operace zajist¡ transportn¡ loƒstvo ©adov‚
+ arm dy.
+ #p.anamorf.320.184.
+#> PRIMRN‹ C‹L: eliminovat nep© telsk‚ vojensk‚ s¡ly v oblasti
+#> SEKUNDRN‹ C‹L: obsadit konzorci ln¡ z kladnu a zajmout tanky
+ Perseus Beta
+#e
+#l br1_001#
+#l br1_002#
+#e

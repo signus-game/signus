@@ -1,0 +1,12 @@
+#> Messiah is a long-distance shooting gun on a train chassis. This gun is similar to the
+ Goliath's but it doesn't use any artefact technologies.
+#> The big advantage of this weapons is its long range and the destructiveness that
+ convinces even Goliash. The biggest weaknesses are the limitations that result from
+ Messiah's weight, which enables the transport only on a train chassis and limits its mobility
+ on railway tracks. Another big weakness of Messiah is the thin armour, that unables the
+ engagement of this machines to the front lines.
+#> "...in the name of Messiah the blood will be shed and in His name, the thorns of kings
+ and princes will crash down." - "Sibyl's divination" - found in the databases of colonising
+ ships.
+#e
+#e

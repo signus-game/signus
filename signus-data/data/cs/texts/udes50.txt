@@ -1,0 +1,18 @@
+#> Radary jsou koncipov ny podobnˆ jako
+ z kladny, pouze v men¨¡m mˆ©¡tku. V ka‘d‚m
+ radaru je ©¡d¡c¡ bu¤ka, kde s¡dl¡ v˜konn˜
+ ser‘ant-mechanik, kter˜ dohl¡‘¡ na chod
+ t‚to plnˆ automatizovan‚ jednotky. Kromˆ
+ centra obsahuj¡ radary tak‚ p©ij¡ma‡e,
+ kter‚ vyhodnocuj¡
+ £daje o pohybu nep© telsk˜ch vojsk v zorn‚m
+ poli radaru, d le vys¡la‡, kter˜ p©en ¨¡
+ v¨echny sv‚ informace na monitory spojeneck˜ch
+ jednotek, tak‘e jim umo‘n¡ vyu‘¡t momentu
+ p©ekvapen¡ a ude©it na protivn¡ka jako prvn¡.
+#> V¨echny tyto jednotky jsou vybaveny ochrann˜m
+ za©¡zen¡m zn m˜m jako "Pe‡eŸ".
+#> Radar je jedin  jednotka, kterou v naprosto
+ shodn‚ podobˆ vyu‘¡v  ka‘d  arm da.
+#e
+#e

@@ -1,0 +1,22 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> Action: Ternulon
+#> þ
+#> You have been chosen for this mission on the basis of your introductory psychological
+ tests... The resistance against the effects of sound frequencies on the human brain is
+ important. Against the artefact with code name Silence, to be exact. Several weeks ago, the
+ scientist have agreed on the fact, that this artefact is so significant for Toricon, that it will
+ be safer to continue the research in the Tankred lab. The corporation has sent a special
+ helicopter for Silence, however the pilot and his crew were captured during the refilling on
+ the northern coast of Lebaran. In the meantime, Silence is being kept in the base Sataran
+ on one of the Wenill islands - on Trmulon. Your task is to capture this island and get the
+ artefact from the enemy. If the Consortium tries to use the effects of this artefact, nothing
+ should happen. The frequencies that this artefact is able to transmit do not have sufficient
+ influence on certain individuals in order to control them.
+#> The navy supplied us with cruisers and troopships, so the indemnity of access to the island
+ is up to them. The rest is up to you.
+ #p.anamorf.320.184.
+#> PRIMARY AIM: Capture the island, where the base with the artefact is, and the other
+ islands around it.
+#e
+#e

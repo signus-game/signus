@@ -1,0 +1,7 @@
+#> It is possible to produce the army units in this building. Underground there are large stocks of
+ substitute parts and the prefabricated components, the weapon-systems are made of.
+#> The time (and the prize) necessary for its completing depends on the technical level of the unit.
+#> In case of finding the enemy factory it is more than advantageous to capture it immediately and
+ to use its capacity to support own commandos.
+#e
+#e

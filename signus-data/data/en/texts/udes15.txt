@@ -1,0 +1,13 @@
+#> Gargantua is artefact transporter. It is equipped with a storage space, which is consists of the
+ transport room (that is an area of strong magnetism in deed) and a small fully automated chemical
+ labs. It has thin armour plates and no weapons.
+#> It is impossible to use this colossus as a weapon, it - on the other hand - has to be kept out of
+ the rage of the enemy units because one shot even from a lighter gun is usually enough to get
+ through the thin armour. Then the chemical compounds, used to neutralize the artefact, will
+ explode and destroy all the units in its environs. Another big weakness of this unit is its low speed.
+ Although it has many defaults it is still the only conveyor that is able to transport the artefacts.
+#> The HQ report: "During the production of this conveyor Dr. Daenne, the chemists' team leader
+ has mysteriously disappeared. We have a serious suspicion that he was abducted by the agents of
+ Consortium."
+#e
+#e

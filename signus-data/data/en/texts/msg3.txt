@@ -1,0 +1,1 @@
+This kind of terrain is not accessable for the unit.

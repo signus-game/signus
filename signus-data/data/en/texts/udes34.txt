@@ -1,0 +1,11 @@
+#> Kraken is a war ship. It is equipped with a heavy-weight gun similar to the
+ construction of Goliash. But it is much more effective. Torpedoes and a heavy-weight
+ antiaircraft gun belong to its armament.
+#> This strongly armoured colossus is the most destructive unit of Singus formations
+ ever. Its biggest weakness is unsatisfactory flak, that enables an effective anti-aircraft
+ defence only with the support of destroyers. Another big disadvantage of Kraken is a bad
+ monitor system which is not able to locate the enemy submarines.
+#> "There are only two ways how to tumble Kraken down. The first one is to shoot it
+ down. And the second one are all the other ways." - quotation of a anonymous technician.
+#e
+#e

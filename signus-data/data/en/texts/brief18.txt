@@ -1,0 +1,22 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> The HQ of the surface units ten miles to the east from the Trufat fort
+#> Several hours ago, Consortium has tried to break through the northern continental
+ blockade. That is the reason why the promised reinforcements haven't arrived yet. In the
+ mean time, the enemy has gathered its surface units eight miles from its central fort -
+ Trufat. According to the latest reports, there are numerous columns with food coming from
+ northern Rotenalia to help Consortium. If they succeed to contact the units that are
+ defending the base, the fights may last at least for several months. While trying to get the
+ time needed to move the mentioned forces towards Trufat, the enemy has chosen conflict of
+ armies on an opened field. Toricon doesn't have any other choice but to accept this
+ challenge, because the gathered enemy units are intercepting us and we cannot move
+ inland.
+#> Your task is to decree this - let's say general - battle on our behalf. We cannot prevent the
+ arrival of the reinforcements to the fort, but if we loose in this on-coming battle, Toricon
+ can forget about investing Trufat for a long time, or forever...
+#> þ
+#> T. Roy
+ #p.anamorf.320.184.
+#> PRIMARY AIM: Liquidate the enemy units.
+#e
+#e

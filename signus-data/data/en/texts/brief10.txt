@@ -1,0 +1,22 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> Base Trix
+#> We have just succeeded to catch the SOS sent by the Toricon's base Oberun.
+#> The strike units of the Consortium have apparently undertaken a lightning speed operation
+ during which they succeeded to occupy the only access to Oberun - The Torvill Defile.
+ When they gained the control over the defile, another of their army units have gotten
+ through it. The recieved signal was very weak and it is supposed that the base will be
+ captured in any second...
+#> According to the oath, the help to the friendly base is our duty and that is why I am
+ ordering the attack the Trovill.
+#> It is necessary to pierce through the defile and lure part of the enemy units away from the
+ base and to eliminate the besiegers with our conjunctive forces. But there is one problem -
+ they will be expecting attack. The defile is very well equipped against the military attack.
+#> Prepare for presence of mines, shooting towers etc.
+#> þ
+#> P. Dextr
+ #p.anamorf.320.184.
+#> PRIMARY AIM: The occupation of Torvill Defile.
+#> SECONDARY AIM: Elimination of the enemy forces.
+#e
+#e

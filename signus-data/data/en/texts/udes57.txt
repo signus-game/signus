@@ -1,0 +1,13 @@
+#> Corporation Ghytu has a monopoly for production and operation of repair shops of
+ the Derken-Hamit type, which serves only to the ground units of Signus corps. This
+ corporation is considered strictly neutral and therefore it serves to Toricon as well as to
+ Consortium. There is an agreement about payments for using the repair service, which
+ prevent mass usage of the repair service offered by this corporation. The repair service
+ prices are confidential and they are communicated to the officers from captain above.
+#> Shooting on these bases is strictly forbidden to all units. Such order could be given
+ only by the officer in command - captain, from whose funds the losses of the Ghytu
+ corporation would be then recovered.
+#> The message from the chief commander: "The neutrality agreement does not prevent
+ these units from occupation!"
+#e
+#e

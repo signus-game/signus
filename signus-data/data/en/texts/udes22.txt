@@ -1,0 +1,12 @@
+#> Minotaurus is a defence tower armed with a long-distance shooting machine-gun that uses the
+ explosive ammunition. The armour is made of material similar to the material used on the middle-class
+ tanks Perseus Beta.
+#> This unit is used mainly to guard important teritories and scientific basis. It is a gun with
+ extraordinary long range and view which endanger the enemy surface units. The Achilles heel of
+ Minotaurus is its small resistance (considering it is a tower). On the contrary its main advantage is
+ the explosive ammunition which allows it to hit more units with only one shot.
+#> During the training we noticed some cases when one Minotaurus has stopped the whole enemy
+ army. But there were also cases when one helicopter has stopped the whole army of
+ Minotauruses.
+#e
+#e

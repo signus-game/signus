@@ -1,0 +1,8 @@
+#> Spectrum is a laser tower developed in virtue of the artefact technology. It has excellent plate-armour developed in the Corporation's secret laboratories.
+#> It has an excellent armature and very sensitive apparatus. And that is why it is easily destructible. Thanks to its short range it is almost unarmed against the enemy long-distance shooting weapons. That
+ is why we use Spectrum in big bases, together with
+#> Minotaurs, Horizons and others, functioning as a defence tower. It also appears to be advantageous to dislocate Spectres in the recess along the roads
+ where they slow down the motion of enemy units.
+#> The crews of this units are recruited from the Aweldan hussars that pilot the long-distance shooting towers Frectorin in the usual army.
+#e
+#e

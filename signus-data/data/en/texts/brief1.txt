@@ -1,0 +1,24 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> Our intelligence units found out that Consortium is trying to develop a new and considerably
+ better type of tank. It's aim will probably be to fight in the war units that are similar to the type of
+ Signus#002 commando. It is necessary to find out as much as possible about this tank and give the
+ information to the scientific section.
+#> The recent army action was successful. One specimen of the tank was captured and it was
+ immediately researched carefully. Nevertheless, our knowledge about the project Perseus#001 Beta#001 is
+ still not complete. There was a decision made that the tank needs to be tested in a real action.
+ Yesterday (23. 2.) during a routine air reconnaissance a secret base of Consortium was revealed
+ on the west cost of Arvish province. The pictures clearly show a pair of Betas parking nearby.
+ #p.brmap1.152.128.
+#> The task of the striking force is to disembark on the coast in the west from the base, to capture it
+ and to break the relevant resistance of the Consortium's army. According to the research the
+ concentration of forces is not too high in the territory. If you move fast enough, you will probably
+ occupy the base sooner than it will be evacuated by Consortium.
+#> The transport to the action territory is arranged by the transport navy of the army.
+ #p.anamorf.320.184.
+#> THE PRIMARY AIM : to eliminate the enemy army forces in the territory
+#> THE SECONDARY AIM : to occupy the base of Consortium and capture tanks Perseus Beta.
+#e
+#l br1_001#
+#l br1_002#
+#e

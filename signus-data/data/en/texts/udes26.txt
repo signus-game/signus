@@ -1,0 +1,11 @@
+#> Helios is a battle hovercraft equipped with mid-weight gun Beta 3 and heavy anti-
+ aircraft machine-gun with construction similar to Perseus Beta tanks.
+#> This unit is actually an analogy to mid-weight tank Perseus Beta. The biggest
+ advantage of Helios is its mobility in terrain that tanks would hardly get across. Another
+ big positive of this hovercraft are the anti-aircraft weapons, that enable to use Helios as a
+ part of an anti-aircraft flak.
+#> Picture of this war machine has got on the badge of Zimbowan legions (top units of
+ Eutania) shortly after it came into existence. One third of the soldiers in Zimbowan legions
+ comes from Signus units.
+#e
+#e

@@ -1,0 +1,24 @@
+#> V®echny z†kladny pouë°vanÇ jednotkami
+ Signus jsou sestrojeny po vzoru b†ze Mahakam.
+ Kaëd† tato z†kladna m† ©°d°c° st©edisko, kde
+ s°dl° vel°c° dñstojn°k - kapit†n a jeho
+ t©°álennò poradn° tòm, kterò bd° nad chodem
+ jinak plnà automatizovanÇ z†kladny. Jde o
+ dozor sp°®e jen sporadickò, neboü z†kladny
+ mohou pracovat naprosto samostatnà i bez
+ lidskÇ pomoci.
+#> Tàlem celÇ z†kladny je tzv. Hang†r,
+ kde se nach†z° áerpadla pohonòch hmot
+ pro bojovÇ stroje, d†vkovaáe st©el a
+ servisn° jednotky. V®echny tyto p©°stroje
+ jsou naprosto samostatnÇ a nepot©ebuj°
+ pomoc álovàka. Jsou nap†jeny ze sol†rn°ch
+ bateri°, um°stnànòch na vrcholu z†kladny.
+#> Z†kladny jsou podobnà jako radary, sklady
+ a vòrobny vybaveny za©°zen°m zvanòm Peáeü.
+ Toto za©°zen° kontroluje aby nedoch†zelo k
+ vpou®tàn° nep©†telskòch jednotek do objektñ,
+ bohuëel prñzkumn† vozidla typu Bumerang dok†ë°
+ tuto peáeü "rozlomit".
+#e
+#e

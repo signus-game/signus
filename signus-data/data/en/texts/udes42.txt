@@ -1,0 +1,14 @@
+#> Caesar is a conveyor plane. It is powered by two engines. It does not have any
+ weapons and it has mid-class armour. It has two collapsible engines, that enable to start
+ vertically.
+#> Originally, Caesar was drawn up as a heavy-weight bomber, but no more bombers
+ were needed after the creation of Saturns. That is why the planes were reconstructed and
+ are used for  airborne units of Signus commandos. The engagement of Caesars in direct
+ battles is limited by their low resistance. Therefore we recommend to use them only under
+ the protection of Ikaroses and Mystics.
+#> All the types of Caesar planes are under the tactical leadership of marine foot, and
+ therefore there were some problems with their engagement in the strategic aircraft
+ missions. In the mean time we can easily state, that there are no more problems among our
+ units. - the report from the Defence Division to the Highest Presidium.
+#e
+#e

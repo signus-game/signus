@@ -1,0 +1,3 @@
+%s je p©ipraven ke st©elbˆ na : %s. Vyst©elit?
+
+

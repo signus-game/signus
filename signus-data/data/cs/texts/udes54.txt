@@ -1,0 +1,13 @@
+#> Skladi¨tˆ obsahuje mimo© dn‚
+ mno‘stv¡ st©eliva (a surovin na jeho v˜robu)
+ a paliva. Je vyu‘¡v no k dopl¤ov n¡ Ceres– a
+ Gn¢m–, ale i ostatn¡ch jednotek.
+ Jde o budovu s nejmen¨¡ automatizac¡
+ a jako jedin  neobsahuje ‘ dn‚
+ centr ln¡ ©¡d¡c¡ st©edisko. V¨echny servisn¡
+ moduly jsou zcela sobˆsta‡n‚ a pracuj¡
+ nez visle na sobˆ, a tak p©i zaj¡m n¡ mus¡
+ pos dka Bumerangu obsadit a p©eprogramovat
+ v¨echna tato st©ediska.
+#e
+#e

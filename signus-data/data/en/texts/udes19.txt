@@ -1,0 +1,7 @@
+#> Iris is a service unit created similar to standard army vehicle - Betan 24. It is unarmed and it only has basic armour.
+#> In missions, where war machines were forced to operate far away from their bases, was a need of a vehicle that would be able to repair the damaged units so they could return to the heroic fight in the front line. During the creation of Iris,
+ big demands were put on its mobility. That has caused its low resistance, which unable it to operate together with the hit units.
+#> "Iris has been improved many times and today it almost does not remind us of its predecessor Betan 24. However they still have one thing in common - the effort to help their friends in the fight." - a promotion leaflet distributed among
+ the pilots of Iris vehicles.
+#e
+#e

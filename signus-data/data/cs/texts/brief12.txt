@@ -1,0 +1,31 @@
+#> şş
+ #p.toricon.282.183. şş
+#> Z kladna Rufion
+#> Kone‡nˆ jsme z¡skali zpr vy o poh©e¨ovan‚ p©epravn¡ lodi
+ Queen#001.
+#> Loƒ, kterou o‡ek v me u‘ p–l druh‚ho dne byla zajata
+ Konzorciem 15 mil od Retansk‚ho z livu a kr tce pot‚
+ i s nep© telsk˜m plavidlem potopena.
+#> Torikon ji‘ na na¨i ‘ dost vyslal pro artefakty, ulo‘en‚
+ v Rufionu, loƒ n hradn¡, nicm‚nˆ, vzhledem k urag nu © d¡c¡mu
+ na mo©i se ned  ur‡it, za jak dlouho Artemis doraz¡.
+#> Situace je o to hor¨¡, ‘e tˆsnˆ po zm¡nˆn‚m konfliktu rozjelo
+ Konzorcium akci p©i v˜chodn¡m pob©e‘¡ Konersk‚ho z livu...
+#> V sou‡asnosti se k n m bl¡‘¡ nˆkolik po‡etn˜ch vojensk˜ch
+ odd¡l–. C¡lem jejich £toku je pravdˆpodobnˆ z¡skat artefakty
+ do sv˜ch rukou.
+#> Rufion vyslal nouzov˜ sign l okoln¡m z kladn m - zat¡m n m
+ odpovˆƒ odeslal jen Ardenor, kter˜ n m sl¡bil pomoc. Na
+ nˆkolik okam‘ik– se n m poda©ilo spojit s veden¡m Toriconu,
+ podle nˆj se m me pokusit o nemo‘n‚ - ©e‡eno p©esnˆji: dostali
+ jsme rozkaz vy‡kat do p©¡chodu posil a pot‚ se s artefakty
+ p©esunout k p©¡stavu, kde pro n s bude p©ipravena loƒ.
+#> Ur‡itˆ nemus¡m p©ipom¡nat, ‘e bez pomocn˜ch jednotek, kter‚
+ n m budou kr˜t z da moc ¨anc¡ nem me, tak‘e doufejme, ‘e
+ p©ijdou v‡as...
+ #p.anamorf.320.184.
+#> PRIMRN‹ C‹L: udr‘et z kladnu do p©¡chodu posil a pot‚ prov‚st
+ transfer artefakt– ke kotv¡c¡ lodi.
+#e
+#l b12_001#
+#e

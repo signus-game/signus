@@ -1,0 +1,29 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> One of the important areas that are not under complete control of Toricon yet is island
+ Penytras. The curiosity of this island is the fact, that though it has relatively comfortable
+ climate, it is not inhabited by civilians. Consortium centres the research of artefact
+ technologies, testing of recently developed weapons and the training of the hit units on this
+ island.
+#> Gaining of Penytras would be a great acquisition for Toricon. Special attention is dedicated
+ to the laser tanks that are tested here in the present time which Toricon would like to add to
+ the equipment of own surface units. Considering the fact that Consortium has to face the
+ pressure in the areas of south-eastern Eutania#001, it is supposed that the most of the military
+ forces will be centred out of the island. The corporation has decided to use the opportunity
+ and to gain the control over Penytras.
+ #p.tactisit.352.280.
+#> From our spy on the Consortium's island we have received detailed map of the placement of
+ the shooting towers and another critical places. It is necessary to study this map carefully,
+ because the detail information will speed up the course of the operation. You will be
+ transported to the island by ships that are equipped with an antidetection shield, so
+ Penytras will not be able to call the reinforcements from the sea before we will be detected
+ by the coastal radars. The time we gain this way should be enough for the realization of the
+ mission.
+#> þ
+#> Paul Winters
+#> þ
+ #p.anamorf.320.184.
+#> PRIMARY AIM: Capture the island Penytras.
+#e
+#l b15_001#
+#e

@@ -1,0 +1,12 @@
+#> Olymp is a conveyor train. Its chassis is constructed to be able carry up to 130 tons of load
+ without slowing down its speed.
+#> During the development of this train all the other requirements became subordinated  to the
+ endeavour for creation of a transport unit beeing able to carry the biggest load possible. This has
+ influenced the speed of Olymp (it is only average) and the insufficient armour too. However it
+ turned up to be a very useful assistant. Especially in the missions where a big amount of heavy-weight
+ machines is needed to be transported to distant positions.
+#> The crew of the control centres in the trains is recruited from the members of the White Wolves
+ commandos known as the Suicide Commandos. These commandos assure that the trains wount
+ get captured by the enemy units.
+#e
+#e

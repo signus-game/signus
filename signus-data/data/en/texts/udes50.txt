@@ -1,0 +1,9 @@
+#> The radars are drawn up to be similar to the bases but in a smaller scale. In every radar there is a
+ operation cell where an executive sergeant-mechanic looks after the run of this fully automated
+ unit. Except of this centre the radars also include receivers that are taking the information over to
+ the monitors of allied units and allow us to use the moment of surprise and to attack the enemy
+ first.
+#> All the units are equipped with a protection attachment called Seal.
+#> Radar is the only unit that is used in every army in absolutely equal form.
+#e
+#e

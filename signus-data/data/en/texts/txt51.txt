@@ -1,0 +1,1 @@
+Units stop when new enemy appears.

@@ -1,0 +1,3 @@
+
+SUBDIRS = speech graphics texts
+

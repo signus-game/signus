@@ -1,0 +1,15 @@
+#> Welcome to the Tridi Vision news.
+#> According to our war reporters the situation is
+ subsequent: Toricon has finally recovered from the unexpected attack and is mobilising all
+ its power. It is trying to prevent the partly successful penetration of Consortium's units
+ onto its territory. After the burst of direct conflict Toricon has lost these territories: Sotona,
+ Lebrukon and Dalio.
+#> There are conflicts goin on right now in Rotenalia, where Toricon has eliminated the village
+ Amenur. However, niether of the sides is successful in the meantime. The same situation is
+ in Hedar, where Toricon succeeded to get back almost a half of its original territory.
+#> The at least apparent calm upholds in Lystonia, on the Penytras island belonging to
+ Consortium and islands Misteral in the mid-Eutania and Losaba.
+#> In the areas of Zones independent activities are performed by top units.
+#> See you soon with more Tridi Vision news.
+#e
+#e

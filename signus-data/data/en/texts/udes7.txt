@@ -1,0 +1,13 @@
+#> Hercules is a heavy-weight rocket-launcher equipped with a rocket holder Pluton. Pluton can
+ carry up to six missiles and is able to fire them up to two miles of distance.
+#> Faster and further development of this weapon was incited by many reports from higher officers
+ whose units have met the shooting towers Minotauruses. A gun with a bigger gauge
+ than this tower was requested. However this weapon is armoured insufficiently and it has a small
+ amount of missiles. This fact makes it useful only to fire from the rear and
+ with the support of Gnoms. The great advantage of Hercules are the fraction rockets that enable
+ to hit a larger area with only one shot.
+#> The report for the press: "The long-distance shooting rocket-launcher Hercules was on the order
+ of the commander tested in a completely uninhabited stone desert Hilbog. Any other news in the
+ media are spurious documents and should be of service to Consortium."
+#e
+#e

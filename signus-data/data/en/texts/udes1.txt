@@ -1,0 +1,12 @@
+#> Perseus Alfa is developed on the bases of the standard army tank RT 29. It is equipped with a
+ light-weight short-distance shooting recoilless gun. Its advantage is first of all its high mobility.
+#> According to its comparatively low shooting power it is only supposed to be used in larger
+ fighting forces. Thank to its high mobility it is possible to move the hit unions made of these units
+ easily to strategically very advantageous positions. It also seems to be quite advantageous to use
+ these tanks for the elimination of the enemy long-distance shooting weapons placed deep in the
+ rear.
+#> It is historically the first weapon prepared for the use of the Signus units. The constructors warn
+ of the defects especially in the thin armour. That is one of the reasons to suggest its partly
+ substitution with units of a different type.
+#e
+#e

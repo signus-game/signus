@@ -1,0 +1,7 @@
+#> Xenon is a tunneler. It is equipped with mine-layer and radar detector attached to the fully automated share on the front of the vehicle. Its armour is thin and it does not have any armament systems.
+#> The necessity of creation of this weapon bas been  proved during the defensive militant mission where the dominance of the Consortiumïs units did not allow us to use tank units, because the casualties would be too big.
+#> With the mass appearance of tunnelers,
+ it has become necessary to  have a unit that is able to liquidate  the enemy mines. So Xenon, originally determined for  defensive operations only, is being used in the offensive missions in the front lines also.
+#> The HQ report: "It is one of the units that should not be owned by Consortium yet. However, there is a strong suspicion that the materials about its construction were stolen by the agents of the Consortium."
+#e
+#e

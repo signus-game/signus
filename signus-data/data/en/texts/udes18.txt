@@ -1,0 +1,10 @@
+#> The conveyor of ammunition Gnome is a mobile chemical lab runed by a computer. It is
+ extremely effective and it is able to made and supply the ammunition for the fighting unit.
+#> It was really necessary to create mobile unit that is able to transport the ammunition to the units
+ in the war actions. Especially after the arrival of the missile-gun tanks to the Signus units. Gnomes
+ - same as their relatives Cereses can only operate in rear and under the protection of the allied
+ weapons - because the armour plates were neglected as a result of time absence.
+#> The HQ report:  "It is the most expensive surface unit of the army. It should be provided to
+ Signus commandos primarily."
+#e
+#e

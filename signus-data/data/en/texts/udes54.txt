@@ -1,0 +1,7 @@
+#> The stock includes enormous amount of ammunition (including materials for its production) and
+ fuel used to fill the Cereses, Gnomes and other units. It is a building with the lowest automation
+ and it is the only building that does not have any operating center. All the service modules are
+ absolutely independent. As a result of it the crew of Boomerang has to change the programs of all
+ these centers to capture it.
+#e
+#e

@@ -1,0 +1,4 @@
+MISSION %i, TURN %i  Finance: %i
+
+Toricon units destroyed: %i
+Consortium units destroyed: %i

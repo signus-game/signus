@@ -1,0 +1,6 @@
+#> Skiatron is a lightweight radar vehicle with no armament systems and its armour is rather thin. This vehicle uses the decoding radar system Atron, that has been developed  especially for the Signus units.
+#> This is not a war machine but a supporting vehicle. Because it has rather big range of sight, it is used with long-distance shooting weapons, such as Hercules and Goliath. It enables us to see the enemy on the shooting distance. However, same as
+ these long-distance shooting units, Skiatron has to operate in the rear under the protection of tanks and ack-ack guns.
+#> Skiatron was given his name after town Ski-Ata-Rona, where the biggest agent ever - James Astrand was born. He is the author of books "Mute true" and "Two noble words". Ski-Ata-Rona provides its agents to Consortium and Toricon in the present time.
+#e
+#e

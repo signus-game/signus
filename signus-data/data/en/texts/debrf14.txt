@@ -1,0 +1,11 @@
+#> We have been trying to keep the bridge until the arrival of the reinforcements, according to
+ the command. We were successful but with considerable casualties. We have started the
+ action against the base right after the arrival of the sonic tanks. Shortly after the
+ breakthrough of the defensive barrage, our units have penetrated to Taluon. In the present
+ time we are recreating the defensive barrage, because the sonic tanks are returning to
+ Tulos. At the moment the helicopter with Prof. Lottenbert#001 lands, everything will be ready.
+#> þ
+#> L. Burton
+#e
+#l b14_001#
+#e

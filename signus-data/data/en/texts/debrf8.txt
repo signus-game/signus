@@ -1,0 +1,10 @@
+#> The attack was realized accordingly to the order. After capturing the outside part of the
+ port, the special commandos have pierced through the access road to one of the ships. We
+ succeeded to prevent the detonation of the armament factory which should be quite useful
+ to Toricon.
+#> The mission was successful.
+#> þ
+#> Reports#001 on#001 situation#001
+#e
+#l br8_001#
+#e

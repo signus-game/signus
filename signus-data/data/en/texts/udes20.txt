@@ -1,0 +1,6 @@
+#> Horizon is a tower equipped with an anti-aircraft gun. This weapon has direct missiles and rather short range. It has no weapons to destroy any surface targets.
+#> These towers are used to protect the important bases and their task is to create an effective anti-aircraft flank together with Falangas and to unable the enemy blitz. The disadvantage of Horizon is its rather low resistance and
+ insufficient armour - compared with the heavier-weight weapons. Because it is the only weapon of its kind in Signus commandos, we recommend to protect it with heavy-weight long-distance shooting weapons from surface units.
+#> The HQ report: "During the tests of the fighting capacity of these units in the fight against helicopters, Horizons have appeared to be inadequate. That is why we recommend to use them  together with Falangas."
+#e
+#e

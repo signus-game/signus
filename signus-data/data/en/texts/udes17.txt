@@ -1,0 +1,10 @@
+#> Ceres - the conveyor of fuel - is equipped with huge fuel tanks with the multi-purpose fuel. This
+ unit is not armed at all and it only has some basic armour.
+#> This unit has been developed after it became completely imposible to send the war machines
+ back to the basis after each mission without leting the enemy capture back his lost positions. The
+ result of the hurry with which this unit has been constructed is its insufficient resistance. That is
+ why it has to operate in the rear and under the protection of the allied armies. It is dangerous to
+ remain close Ceres units because when it is destroyed, its explosion could seriously damage other
+ units.
+#e
+#e

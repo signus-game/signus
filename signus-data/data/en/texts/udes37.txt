@@ -1,0 +1,9 @@
+#> Barracuda is a submarine made on the basis of artefact technology. It is equipped
+ with a special torpedo-launcher. One of the biggest advantages of these submarines is their
+ monitoring system, which enables to see any enemy unit. The disadvantage of these
+ weapons is, that they are easily detectable by the Viking destroyers.
+#> There has appeared a problem with the overpressured rooms during the development
+ of these submarines. Fortunately we succeeded to solve it before there were any distinct
+ casualties.
+#e
+#e

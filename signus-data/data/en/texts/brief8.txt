@@ -1,0 +1,19 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> According to the tactics the defence division has chosen, the best defence is the attack. It is
+ necessary to capture the port Sotorat. Our knowledge about the significance of Sotorat for
+ the antagonist is following: not only military ships are harboured here, but also the
+ troopships that are importing weapons and ammunition to the coastal area. This fact made
+ us to draw a conclusion that there have to be huge reserves in Sotorat or a factory that
+ produce these weapons. If we eliminate Sotorat, Consortium looses one of its main sources.
+#> Of course it would be more advantageous for us to gain the control of Sotorat with as little
+ damages as possible, but the HQ supposes that in case of the breach of their defence the
+ units of Consortium have an order to detonate the whole port and to conduct the fights
+ from their ships only.
+#> The only possibility is to attack Sotorat from the continent. Your primary aim is to capture
+ the docks, after wining the access to the river. Do not eliminate enemy ships, but capture
+ them and use them to fight against the enemy.
+ #p.anamorf.320.184.
+#> PRIMARY AIM: Capture the port Sotorat
+#e
+#e

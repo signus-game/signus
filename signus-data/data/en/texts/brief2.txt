@@ -1,0 +1,19 @@
+#> þþ
+ #p.toricon.282.183. þþ
+#> A movement of the army units of Consortium was registered near our base Ardenor, where the
+ research of the artefact Taron is done. This area will be completely isolated in a couple of hours.
+#> (See Dr. Iceberg's report#001 for details)
+#> We were successful to find the cause of the sudden attack of Consortium: one hour ago the guards
+ have captured Doctor B. Lex when he was trying to escape to the offensive army. After a
+ consequential questioning B. Lex has told us about his connection to the enemy and about his
+ research on Taron for Consortium, which is interested in the artefact's influence on the human
+ psychic. New circumstances made the Toricon company to draw up an order which says that we
+ shall stop the offenders from getting the artefact and perform the prepared shift to make further
+ research IMMEDIATELY. It is necessary to loose the Consortium's attention and drift Taron into
+ our base Tankred at the North from Ardenor, where our position is stable. Doctor Iceberg will be
+ in the charge of the action.
+ #p.anamorf.320.184.
+#> THE PRIMARY AIM: to move the artefact Taron into the base Tankred.
+#e
+#l br2_001#
+#e

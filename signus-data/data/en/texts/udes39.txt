@@ -1,0 +1,12 @@
+#> Cobra is a light-weight assault bomber equipped with explosive bombs and a heavy-
+ weight machine-gun for air duels. Its armour is rather thin.
+#> The biggest advantage of these units is their easy manoeuvring together with their
+ speed which enables to move them in one moment to endangered places. Their disadvantage
+ is low resistance that enables their effective engagement only to bigger formations or
+ together with Satruns. During the air duels, Cobras have to rely on the support of Ikaroses.
+#> The HQ report: "The defamation that general Esencki died because he was not able to
+ control the machine during the testing flight are absolutely groundless and are lowing the
+ prestige of this man who should be an example for all of us. The circulators of this
+ defamation can expect the court-martial punishment."
+#e
+#e
