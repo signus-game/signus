@@ -166,6 +166,7 @@ void DrawPicture(void *src)
     }
     LFB_Unlock();
     LeaveTCS();
+    SDL_UpdateRect(screen, 0, 0, RES_X, RES_Y);
 }
 
 
