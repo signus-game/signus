@@ -1,12 +1,14 @@
 
-- predelat obrazovky na "Signus OpenSource edition (s logem "approved")
-             - loadovaci obrazovka,
-
+- prasi se mysi kurzor u okraju
+- PutStr neumi zpracovat viceradkovy text
+- zkonvertovat texty do utf-8, odstranit ty divny dvojznaky z briefingu
+- odstranit x86 asembler, nahradit C kodem ktery funguje vsude
+- nefunguje nacitaci obrazovka
+- zprovoznit prepinani jazyku
+- napsat manual a README
+- obrazky k jednotkam (nahrada "rotacek")
 - predelat intro obrazovku mise tak, aby v ni sla prehravat animacka??
   (pripadne jednotny vzhled s briefingovou?)
-
-- nefunguje nacitaci obrazovka
 - odstranit warningy a FIXME ve zdrojacich
 - prehravani puvodnich animacek i novych AVI (i flash.vvf v menu!!)
 -    minimalni set animacek: logo, menu (??)
-- obrazky k jednotkam (nahrada "rotacek")
