@@ -1,5 +1,5 @@
 
-gradir = $(datadir)/signus/en
+gradir = $(datadir)/signus/$(VERSION)/en
 
 gra_DATA = graphics.dat
 
@@ -12,7 +12,7 @@ clean-local:
 
 
 
-screendir = $(datadir)/signus/en/screens
+screendir = $(datadir)/signus/$(VERSION)/en/screens
 
 screen_DATA =        screens/mis1-name.jpg \
                      screens/mis2-name.jpg \

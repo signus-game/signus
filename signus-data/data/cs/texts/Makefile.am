@@ -1,5 +1,5 @@
 
-txtdir = $(datadir)/signus/cs
+txtdir = $(datadir)/signus/$(VERSION)/cs
 
 txt_DATA = texts.dat
 

@@ -1,5 +1,5 @@
 
-sfxdir = $(datadir)/signus/nolang/sfx
+sfxdir = $(datadir)/signus/$(VERSION)/nolang/sfx
 
 sfx_DATA = 0.ogg button.ogg click.ogg click2.ogg dalekde2.ogg dalekdel.ogg \
            dalekkan.ogg double.ogg expl_a0.ogg expl_a1.ogg expl_a2.ogg \

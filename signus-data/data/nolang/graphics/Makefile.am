@@ -1,5 +1,5 @@
 
-gradir = $(datadir)/signus/nolang
+gradir = $(datadir)/signus/$(VERSION)/nolang
 
 gra_DATA = graphics-common.dat
 
@@ -23,7 +23,7 @@ clean-local:
 	rm -f graphics-common.dat scr_rgb.tab pal_rgb.tab
 
 
-screendir = $(datadir)/signus/nolang/screens
+screendir = $(datadir)/signus/$(VERSION)/nolang/screens
 
 screen_DATA = screens/mis1-image.jpg \
               screens/mis2-image.jpg \
@@ -46,7 +46,7 @@ screen_DATA = screens/mis1-image.jpg \
               screens/mis19-image.jpg \
               screens/background.jpg
 
-unitdir = $(datadir)/signus/nolang/unit-images
+unitdir = $(datadir)/signus/$(VERSION)/nolang/unit-images
 
 unit_DATA = \
 			  unit-images/unit1.jpg \

@@ -1,5 +1,5 @@
 
-speechdir = $(datadir)/signus/cs/speech
+speechdir = $(datadir)/signus/$(VERSION)/cs/speech
 
 speech_DATA = failed.ogg increas.ogg mis10in.ogg mis11a.ogg mis11in.ogg \
               mis12a.ogg \

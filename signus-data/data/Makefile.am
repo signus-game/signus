@@ -1,8 +1,7 @@
 
 SUBDIRS = nolang en cs
 
-datdir = $(datadir)/signus
-dat_DATA = version-data
+datdir = $(datadir)/signus/$(VERSION)
 
 install-data-local:
 	rm -f $(datdir)/default

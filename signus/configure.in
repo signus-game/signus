@@ -103,7 +103,11 @@ esac
 
 GCC_FLAGS="-fno-rtti -fno-exceptions"
 
-CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)\\\"\""
+
+data_version=`echo $VERSION | sed -e 's,\([[0-9]]*\.[[0-9]]*\)\.[[0-9]]*,\1,g'`
+echo xxx $data_version xxx
+
+CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)/$data_version\\\"\""
 
 
 AC_SUBST(LIBS)
