@@ -1,5 +1,6 @@
 
-INCLUDES = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src 
+INCLUDES = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
+		   -I$(top_srcdir)/sdlimage
 
 X86_FILES = \
            engdraw_x86.asm \

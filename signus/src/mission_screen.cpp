@@ -27,7 +27,7 @@
 #include "events.h"
 #include "mission_screen.h"
 
-#include <SDL/SDL_image.h>
+#include "miniSDL_image.h"
 
 #define PRECISION      5
 #define VALUES         (1<<PRECISION)
