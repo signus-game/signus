@@ -293,11 +293,9 @@ int CheckFile(char *name)
 
 int CheckFiles()
 {   
-    char textfile[30];
-    snprintf(textfile, 30, "texts-%s.dat", iniLocale);
     return (CheckFile("fonts.dat") && 
             CheckFile("graphics.dat") && CheckFile("graphics-common.dat") &&
-            CheckFile("missions.dat") && CheckFile(textfile) &&
+            CheckFile("missions.dat") && CheckFile("texts.dat") &&
             CheckFile("unitsnd.idx"));
 }
 
@@ -314,8 +312,6 @@ int DoMemoryCheck()
 
 int InitGlobal()
 {
-    char filename[1024];
-
 #ifdef DEBUG
     dbgOutput = fopen("debug.nfo", "wt");
     {   
@@ -334,8 +330,7 @@ int InitGlobal()
     if (!CheckFiles()) return FALSE;
     if (!DoMemoryCheck()) return FALSE;
 
-    snprintf(filename, 1024, "texts-%s.dat", iniLocale);
-    TextsDF = new TDataFile(filename, dfOpenRead);
+    TextsDF = new TDataFile("texts.dat", dfOpenRead);
    
     int rt = 1;
     TDataFile FontsDF("fonts.dat", dfOpenRead, NULL, '?', FontDataWrite, FontDataRead);
@@ -498,7 +493,7 @@ FILE *fopensafe(const char *name, const char *mode)
     
     if (!f)
     {
-        snprintf(nm, 1024, "%s/%i/%s", getSignusDataDir(), iniLocale, name);
+        snprintf(nm, 1024, "%s/%s/%s", getSignusDataDir(), iniLocale, name);
         f = fopen(nm, mode);
     }
     

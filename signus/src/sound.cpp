@@ -152,7 +152,7 @@ int PlayMusic(char *name)
     if (IsMusicPlaying()) StopMusic();
     WaitCursor(TRUE);
     
-    snprintf(filnm, 1024, "%s/music/%s", getSignusDataDir(), name);
+    snprintf(filnm, 1024, "%s/nolang/music/%s", getSignusDataDir(), name);
     if ((f = fopen(filnm, "rb")) != NULL) {
         fclose(f);
         PlayedModule = Mix_LoadMUS(filnm);
