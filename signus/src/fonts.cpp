@@ -38,7 +38,7 @@ void PutStr(void *tar, int tarwidth, int xpoz, int ypoz,
 
     SDL_Color clr = { 0xFF, 0xFF, 0xFF, 0 };
     SDL_Color black = { 0, 0, 0, 0 };
-    SDL_Surface *text = TTF_RenderText_Shaded(f, s, clr, black);
+    SDL_Surface *text = TTF_RenderUTF8_Shaded(f, s, clr, black);
 
     if (text == NULL)
     {
