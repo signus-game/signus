@@ -327,13 +327,15 @@ int InitGlobal()
     GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
 
     char fontfile[1024];
-    snprintf(fontfile, 1024, "%s/nolang/nimbus_sans.pfb", getSignusDataDir());
+    char fontfileTiny[1024];
+    snprintf(fontfile, 1024, "%s/nolang/FreeSans.ttf", getSignusDataDir());
+    snprintf(fontfileTiny, 1024, "%s/nolang/nimbus_sans.pfb", getSignusDataDir());
     TTF_Init();
     NormalFont = TTF_OpenFont(fontfile, 12);
     TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
     HugeFont = TTF_OpenFont(fontfile, 20);
     TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
-    TinyFont = TTF_OpenFont(fontfile, 10);
+    TinyFont = TTF_OpenFont(fontfileTiny, 10);
     TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
     
     rt = (int)NormalFont & (int)NormalFont & (int)TinyFont;
