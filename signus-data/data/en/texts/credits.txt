@@ -17,7 +17,7 @@
 *P R O G R A M M I N G
 
  Vaclav Slavik
- (game engine, animation player, Windows and Linux code)
+ (game engine, animation player, Unix port)
 
  Marek Wunsch
  (mission editor, briefings, missions 7,10 & 14 AI)
