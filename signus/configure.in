@@ -46,7 +46,7 @@ AC_PATH_PROG(NASM, nasm, [])
 if test x$NASM = x ; then
     AC_MSG_ERROR([NASM is needed to compile assembly parts of Signus.])
 fi
-NASMFLAGS="-f elf -I\$(srcdir)"
+NASMFLAGS="-f elf"
 dnl FIXME - nasm 0.98.34 can understand -On flag (gcc-like optimalization),
 dnl         use it if we detect new enough version of nasm
 
