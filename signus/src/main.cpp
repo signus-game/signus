@@ -63,7 +63,9 @@ static void finiObjects()
     remove(b);
     
     if (SDL_inited)
+    {
         SDL_Quit();
+    }
 }
 
 // Initializer:
@@ -110,25 +112,6 @@ static void signus_thread(void *)
     signus_thread_is_running = FALSE;
     finiObjects();
 }
-
-
-#ifdef __win32__ // FIXME -not needed for anything, I believe
-static int TCS_counter = 0;
-
-void EnterTCS()
-{
-    if (TCS_counter++ == 0) {
-        SetThreadPriority((void*)signus_thread_id, THREAD_PRIORITY_TIME_CRITICAL);
-    }
-}
-
-void LeaveTCS()
-{
-    if (--TCS_counter == 0) {
-        SetThreadPriority((void*)signus_thread_id, THREAD_PRIORITY_HIGHEST);
-    }
-}
-#endif
 
 
 

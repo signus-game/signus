@@ -83,6 +83,12 @@ AC_MSG_CHECKING([for SDL_mixer >= 1.2.5])
     AC_MSG_ERROR([SDL_mixer >= 1.2.5 is required by Signus.])
   ])
 
+AC_CHECK_HEADER([SDL/SDL_ttf.h],[],
+                [AC_MSG_ERROR([SDL_ttf is required by Signus.])])
+
+AC_CHECK_LIB(SDL_ttf, TTF_RenderUTF8_Shaded, [], 
+      [AC_MSG_ERROR([SDL_ttf is required by Signus.])])
+
 
 dnl FIXME - make it possible to compile signus w/o NASM
 dnl FIXME - check for version-data file and contained version

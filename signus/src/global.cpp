@@ -283,8 +283,7 @@ int CheckFile(char *name)
 
 int CheckFiles()
 {   
-    return (CheckFile("fonts.dat") && 
-            CheckFile("graphics.dat") && CheckFile("graphics-common.dat") &&
+    return (CheckFile("graphics.dat") && CheckFile("graphics-common.dat") &&
             CheckFile("missions.dat") && CheckFile("texts.dat") &&
             CheckFile("unitsnd.idx"));
 }
@@ -323,22 +322,22 @@ int InitGlobal()
     TextsDF = new TDataFile("texts.dat", dfOpenRead);
    
     int rt = 1;
-    TDataFile FontsDF("fonts.dat", dfOpenRead, NULL, '?', FontDataWrite, FontDataRead);
 
     GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
     GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
 
-    NormalFont = (TFont *) FontsDF.get("normal");
-    HugeFont = (TFont *) FontsDF.get("huge");
-    TinyFont = (TFont *) FontsDF.get("tiny");
+    char fontfile[1024];
+    snprintf(fontfile, 1024, "%s/nolang/nimbus_sans.pfb", getSignusDataDir());
+    TTF_Init();
+    NormalFont = TTF_OpenFont(fontfile, 12);
+    TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
+    HugeFont = TTF_OpenFont(fontfile, 20);
+    TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
+    TinyFont = TTF_OpenFont(fontfile, 10);
+    TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
     
     rt = (int)NormalFont & (int)NormalFont & (int)TinyFont;
     if (rt == 0) return 0;
-    else {
-        lockfont(NormalFont);
-        lockfont(HugeFont);
-        lockfont(TinyFont);
-    }
     
     MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
     lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
@@ -381,12 +380,10 @@ int DoneGlobal()
     memfree(TimerWatchBkg); memfree(TimerWatchBuf);
     DisposeArray(MessageFrames, 3);
     memfree(ProgressBuf);
-    unlockfont(HugeFont);
-    unlockfont(NormalFont);
-    unlockfont(TinyFont);
-    freefont(NormalFont);
-    freefont(HugeFont);
-    freefont(TinyFont);
+    TTF_CloseFont(NormalFont);
+    TTF_CloseFont(HugeFont);
+    TTF_CloseFont(TinyFont);
+    TTF_Quit();
     delete GraphicsDF;
     delete GraphicsI18nDF;
     delete TextsDF;
