@@ -59,7 +59,7 @@ static void finiObjects()
     allow_mouse = FALSE;
     if (signus_inited) DoneSignus();
     signus_inited = FALSE;
-    sprintf(b, "%s/staw.stt", getSignusConfigDir());
+    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
     remove(b);
     
     if (SDL_inited)

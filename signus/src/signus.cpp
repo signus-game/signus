@@ -876,7 +876,7 @@ void CrashSave()
     char b[100];
     FILE *f;
     
-    sprintf(b, "%s/staw.stt", getSignusConfigDir());
+    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
     f = fopen(b, "wb");
     SaveGameState(f);
     fclose(f);
@@ -887,7 +887,7 @@ int CrashLoad()
     char b[100];
     FILE *f;
     
-    sprintf(b, "%s/staw.stt", getSignusConfigDir());
+    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
     f = fopen(b, "rb");
     if (f == NULL) return FALSE;
     LoadGameState(f);
