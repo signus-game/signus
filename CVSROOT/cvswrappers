@@ -31,3 +31,4 @@
 *.mem -k 'b'
 *.mis -k 'b'
 *.s3m -k 'b'
+*.iss -k 'b'
