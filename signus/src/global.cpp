@@ -36,11 +36,9 @@
 #include <math.h>
 #include <sys/stat.h>
 
-#ifdef __unix__
 extern "C" {
 #include "iniparser.h"
 }
-#endif
 
 
 #define MIN_MEM_NEEDED     (1024 * 1024 * 12)
@@ -103,7 +101,6 @@ int iniTitledAnims, iniInterpolateAnims;
 
 
 
-#ifdef __unix__
 
 static bool dirExists(const char *filename)
 {
@@ -231,7 +228,6 @@ void SaveINI()
 }
 
 
-#else
 
 static int ReadIntReg(HKEY key, char *name)
 {
@@ -348,8 +344,6 @@ void SaveINI()
     }
 }
 
-#endif
-
 
 
 void ApplyINI()
@@ -408,11 +402,7 @@ int CheckFile(char *name)
     FILE *f = fopensafe(name, "rb");
     
     if (f == NULL) {
-#ifdef __unix__
         fprintf(stderr, "Cannot find data file '%s'!\n", name);
-#else
-#error TODO
-#endif
         return FALSE;
     }
     fclose(f);
@@ -594,13 +584,7 @@ void Union2(int *x1, int *y1, int *w1, int *h1, int x2, int y2, int w2, int h2)
 
 const char *getSignusDataDir()
 {
-#if defined(__unix__)
     return SIGNUS_DATA_DIR;
-#elif defined(__win32__)
-#error TODO
-#else
-#error TODO
-#endif
 }
 
 const char *getSignusConfigDir()
@@ -614,13 +598,11 @@ FILE *fopensafe(const char *name, const char *mode)
     FILE *f = NULL;
     char nm[1024];
 
-#ifdef __unix__
     if (getenv("HOME"))
     {
         snprintf(nm, 1024, "%s/.signus/%s", getenv("HOME"), name);
         f = fopen(nm, mode);
     }
-#endif
 
     if (!f)
     {

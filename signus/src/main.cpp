@@ -30,9 +30,7 @@
 #include "units.h"
 #include <stdarg.h>
 
-#ifdef __unix__
 #include <unistd.h>
-#endif
 
 
 #define CAPTION "Signus: The Artefact Wars"
@@ -151,15 +149,9 @@ int main(int argc, char *argv[])
     if (!flagDebug && !flagServer)
     {
         // execute server
-#ifdef __unix__
         execlp("signus-crashguard", "signus-crashguard", argv[0], NULL);
         // ...if execution of the wrapper fails, continue as if --from-crashguard
         // was given...
-#endif
-#ifdef __win32__
-        WinExec("sgcrash.exe", SW_HIDE);
-        return 1;
-#endif        
     }
 #endif
 

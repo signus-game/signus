@@ -845,11 +845,7 @@ int InitSignus()
     MouseInit();
     if (!InitSound()) {
         DoneVideo();
-#ifdef __unix__
         fprintf(stderr, "Error: Sound initialization failed.\n");
-#else
-        MessageBox(NULL, "Sound initialization failed.", "CRITICAL ERROR", MB_OK | MB_ICONERROR);
-#endif
         return FALSE;
     }
     InitInteract();
