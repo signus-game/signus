@@ -20,7 +20,7 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
 
-MAKEDAT='$(top_builddir)/utils/makedat'
+MAKEDAT='MAKEDAT_PALETTE="$(srcdir)/palette.col" $(top_builddir)/utils/makedat'
 AC_SUBST(MAKEDAT)
 MK_RGB2PAL='$(top_builddir)/utils/mk_rgb2pal'
 AC_SUBST(MK_RGB2PAL)

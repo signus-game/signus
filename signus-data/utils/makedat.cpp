@@ -8,6 +8,7 @@ Tento program slou‘¡ k vytv ©en¡ .DAT soubor–
 */
 
 
+#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/stat.h>
@@ -52,9 +53,47 @@ typedef struct {
 
 
 
+unsigned char palette[768];
+bool palette_loaded = false;
+
+
+inline unsigned clr_dist(int r1,int g1,int b1,
+                         int r2,int g2,int b2)
+{
+    return (r1-r2)*(r1-r2) + (g1-g2)*(g1-g2) + (b1-b2)*(b1-b2);
+}
+
+unsigned char findNearestColor(
+        unsigned char r, unsigned char g, unsigned char b)
+{
+    unsigned best = 1;
+    unsigned bestdist = clr_dist(r,g,b,palette[3],palette[4],palette[5]);
+    for (unsigned i = 2; i < 256; i++)
+    {
+        unsigned dist = clr_dist(r,g,b,
+                                 palette[3*i+0],palette[3*i+1],palette[3*i+2]);
+        if (dist < bestdist)
+        {
+            bestdist = dist;
+            best = i;
+        }
+    }
+    return best;
+}
 
 bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
 {
+    if (!palette_loaded)
+    {
+        FILE *pf = fopen(getenv("MAKEDAT_PALETTE"), "rb");
+        assert(pf != NULL);
+        fseek(pf, 8, SEEK_SET);
+        fread(palette, 768, 1, pf);
+        fclose(pf);
+        palette_loaded=true;
+    }
+
+    
     /* Taken (& modified) from wxWindows code, credits go to 
        Robert Roebling... */
     
@@ -66,6 +105,7 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
     int bit_depth,color_type,interlace_type;  
     unsigned x, y;
     unsigned char *buffer = NULL;
+    unsigned char *buffer2 = NULL;
     
     png_ptr = png_create_read_struct( PNG_LIBPNG_VER_STRING,
         (voidp) NULL,
@@ -90,18 +130,21 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
     png_read_info( png_ptr, info_ptr );
     png_get_IHDR( png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, (int*) NULL, (int*) NULL );
 
-    if (color_type != PNG_COLOR_TYPE_PALETTE)
-        goto error_nolines;
+    assert( color_type == PNG_COLOR_TYPE_PALETTE );
+    
+    if (color_type == PNG_COLOR_TYPE_PALETTE) 
+        png_set_palette_to_rgb(png_ptr);
 
     png_set_strip_16( png_ptr );
     png_set_packing( png_ptr );
-//    if (png_get_valid( png_ptr, info_ptr, PNG_INFO_tRNS))
-//        png_set_expand( png_ptr );
+    if (png_get_valid( png_ptr, info_ptr, PNG_INFO_tRNS))
+        png_set_expand( png_ptr );
     png_set_filler( png_ptr, 0xff, PNG_FILLER_AFTER );
 
 
     /* Create the image: */
-    buffer = (unsigned char *)malloc(width * height);
+    buffer = (unsigned char *)malloc(width * height * 4);
+    buffer2 = (unsigned char *)malloc(width * height);
 
     lines = (unsigned char **)malloc( (size_t)(height * sizeof(unsigned char *)) );
     if (lines == NULL)
@@ -109,7 +152,7 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
 
     for (i = 0; i < height; i++)
     {
-        lines[i] = buffer + width * i;
+        lines[i] = buffer + 4 * width * i;
     }
 
         png_read_image( png_ptr, lines );
@@ -118,9 +161,18 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
 
         free( lines );
 
+    for (i = 0; i < width * height; i++)
+    {
+        if (buffer[4*i+3] < 128)
+            buffer2[i] = 0;
+        else
+            buffer2[i] = 
+                findNearestColor(buffer[4*i+0],buffer[4*i+1],buffer[4*i+2]);
+    }
+        
     _w = width;
     _h = height;
-    _buffer = (void*)buffer;
+    _buffer = (void*)buffer2;
     return true;
 
  error_nolines:
@@ -128,7 +180,9 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
 
  error:
     if ( buffer )
-        delete buffer;
+        free(buffer);
+    if ( buffer2 )
+        free(buffer2);
 
     if ( lines )
         free( lines );
@@ -412,3 +466,4 @@ int main(int argc, char *argv[])
 		cout << endl << "Done..." << endl;
     }
 }
+
