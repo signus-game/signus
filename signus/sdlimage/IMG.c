@@ -28,7 +28,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include <SDL/SDL_image.h>
+#include "miniSDL_image.h"
 
 #define ARRAYSIZE(a) (sizeof(a) / sizeof((a)[0]))
 
