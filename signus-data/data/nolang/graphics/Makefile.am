@@ -1,9 +1,9 @@
 
 gradir = $(datadir)/signus/nolang
 
-gra_DATA = graphics.dat
+gra_DATA = graphics-common.dat
 
-graphics.dat: scr_rgb.tab
+graphics-common.dat: scr_rgb.tab
 	rm -f $@
 	$(MAKEDAT) $@ $(srcdir)/*.{col,tab} ./*.tab
 	$(MAKEDAT) $@ /mark $(srcdir)/bitmaps/*
@@ -17,7 +17,7 @@ scr_rgb.tab: $(srcdir)/scrpal.col
 	$(MK_RGB2PAL) $< $@
 
 clean-local:
-	rm -f graphics.dat scr_rgb.tab
+	rm -f graphics-common.dat scr_rgb.tab
 
 
 screendir = $(datadir)/signus/nolang/screens
