@@ -1,5 +1,5 @@
 
-misdir = $(datadir)/signus
+misdir = $(datadir)/signus/nolang
 
 mis_DATA = missions.dat
 

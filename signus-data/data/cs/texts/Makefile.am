@@ -1,11 +1,11 @@
 
-txtdir = $(datadir)/signus
+txtdir = $(datadir)/signus/cs
 
-txt_DATA = texts-cs.dat
+txt_DATA = texts.dat
 
-texts-cs.dat:
+texts.dat:
 	$(MAKEDAT) $@ $(srcdir)/*.txt
 
 
 clean-local:
-	rm -f texts-cs.dat
+	rm -f texts.dat

@@ -1,5 +1,5 @@
 
-fntdir = $(datadir)/signus
+fntdir = $(datadir)/signus/nolang
 
 fnt_DATA = fonts.dat
 

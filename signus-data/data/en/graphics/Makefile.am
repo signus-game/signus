@@ -1,18 +1,18 @@
 
-gradir = $(datadir)/signus
+gradir = $(datadir)/signus/en
 
-gra_DATA = graphics-en.dat
+gra_DATA = graphics.dat
 
-graphics-en.dat:
+graphics.dat:
 	rm -f $@
 	$(MAKEDAT) $@ $(srcdir)/bitmaps/*
 
 clean-local:
-	rm -f graphics-en.dat
+	rm -f graphics.dat
 
 
 
-screendir = $(datadir)/signus/screens-en
+screendir = $(datadir)/signus/en/screens
 
 screen_DATA =        screens/mis1-name.jpg \
                      screens/mis2-name.jpg \

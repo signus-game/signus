@@ -1,5 +1,5 @@
 
-musdir = $(datadir)/signus/music
+musdir = $(datadir)/signus/nolang/music
 
 mus_DATA = artephact_war.s3m \
            belligerent_bacteria.s3m \
