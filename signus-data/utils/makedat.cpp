@@ -399,7 +399,11 @@ int main(int argc, char *argv[])
 			DataF = new TDataFile(argv[1], dfCreate);
 
 		for (int i = start; i < argc; i++)
+        {
+            if (strcmp(argv[i]+strlen(argv[i])-4, "/CVS") == 0)
+                continue;
 			AddFile("", "", argv[i]);
+        }
 #if 0
 		for (int i = start; i < argc; i++)
 			AddItem("", "", argv[i]);
