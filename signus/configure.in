@@ -1,0 +1,86 @@
+dnl Process this file with autoconf to produce a configure script.
+
+AC_REVISION($Revision$)
+AC_PREREQ(2.52)
+
+AC_INIT([signus], [1.96.0], [vaclav.slavik@matfyz.cz])
+
+AC_CONFIG_SRCDIR([signus.iss])
+AC_CONFIG_AUX_DIR([admin])
+
+AC_CANONICAL_SYSTEM
+
+dnl cross-compiling support: we're cross compiling if the build system is
+dnl different from the target one (assume host and target be always the same)
+if test "$build" != "$host" ; then
+    CC=$host_alias-gcc
+    CXX=$host_alias-c++
+    AR=$host_alias-ar
+    RANLIB=$host_alias-ranlib
+    DLLTOOL=$host_alias-dlltool
+    RESCOMP=$host_alias-windres
+    LD=$host_alias-ld
+    NM=$host_alias-nm
+    STRIP=$host_alias-strip
+fi
+
+AM_INIT_AUTOMAKE
+
+AC_ARG_ENABLE(debug, [  --enable-debug          Enable debugging information],
+              USE_DEBUG="$enableval", USE_DEBUG="no")
+
+dnl Checks for programs.
+AC_PROG_AWK
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_RANLIB
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_CXXCPP
+
+
+AC_ARG_VAR(NASM, Path to nasm executable)
+AC_PATH_PROG(NASM, nasm, [])
+if test x$NASM = x ; then
+    AC_MSG_ERROR([NASM is needed to compile assembly parts of Signus.])
+fi
+NASMFLAGS="-f elf -I\$(srcdir)"
+dnl FIXME - nasm 0.98.34 can understand -On flag (gcc-like optimalization),
+dnl         use it if we detect new enough version of nasm
+
+AM_PATH_SDL(1.2.0, [], [AC_MSG_ERROR([SDL is required by Signus.])])
+
+
+dnl FIXME - check for SDL_image
+dnl FIXME - check for libjpeg
+dnl FIXME - make it possible to compile signus w/o NASM
+dnl FIXME - check for version-data file and contained version
+
+case "$USE_DEBUG" in
+yes)	DEBUG_FLAGS="-g -O0 -Wall"
+        NASMFLAGS="$NASMFLAGS -g"
+    ;;    
+*)	DEBUG_FLAGS="-O3"
+    ;;
+esac
+
+GCC_FLAGS="-fno-rtti -fno-exceptions"
+
+CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)\\\"\""
+
+
+AC_SUBST(LIBS)
+AC_SUBST(LDFLAGS)
+AC_SUBST(CXXFLAGS)
+AC_SUBST(NASMFLAGS)
+AC_SUBST(RESCOMP)
+
+AM_CONFIG_HEADER([config.h])
+
+AC_OUTPUT([
+         Makefile
+         src/Makefile
+         iniparser/Makefile
+         sdlimage/Makefile
+         ])
+

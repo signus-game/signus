@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+   <TITLE> Installation instructions</TITLE>
+   <META NAME="GENERATOR" CONTENT="DOC++ 3.4.8">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<TABLE BORDER=0><TR>
+<TD VALIGN=TOP><H2> <A HREF="#DOC.DOCU">Installation instructions</A></H2></TD></H2></TD></TR></TABLE>
+<A NAME="DOC.DOCU"></A>
+<BLOCKQUOTE>
+Follow these steps to compile the library:
+
+<P><B>1.</B> Edit the Makefile to indicate the C compiler you want to
+use, the options to provide to compile ANSI C, and possibly the
+options to pass to the <I>ar</I> program on your machine to build a
+library (.a) from a set of object (.o) files.
+
+<P>Defaults are set for the gcc compiler and the standard ar library
+builder.
+
+<P><B>2.</B> Type 'make', that should do it.
+
+<P>
+To use the library in your programs, add the following line on top
+of your module:
+
+<P><PRE>
+	#include&nbsp;&quot;iniparser.h&quot;
+	</PRE>
+
+<P>And link your program with the iniparser library by adding
+-liniparser.a to the compile line.
+
+<P>See the file test/initest.c for an example.</BLOCKQUOTE>
+<DL><DT><DD></DL><P><P><I><A HREF="index.html">Alphabetic index</A></I></P><HR>
+<BR>
+This page was generated with the help of <A HREF="http://docpp.sourceforge.net">DOC++</A>.
+</BODY>
+</HTML>

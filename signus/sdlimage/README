@@ -1,0 +1,6 @@
+
+This is a mini version of SDL_image for use in Signus.
+No modifications were made except that only the JPEG loader is available
+and all other files removed.
+
+                         Vaclav Slavik

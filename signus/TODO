@@ -1,0 +1,20 @@
+
+- odstranit ten kretenizmus od Zimy: omezeny pocet savu
+
+- predelat obrazovky na "Signus OpenSource edition (s logem "approved")
+             - loadovaci obrazovka, main menu
+
+- nove CREDITS
+
+- predelat intro obrazovku mise tak, aby v ni sla prehravat animacka??
+  (pripadne jednotny vzhled s briefingovou?)
+
+- predelat VSECHNO na 800x600
+- blbne hudba
+- jukebox -- neumi dlouha jmena
+- load & save
+- nefunguje nacitaci obrazovka
+- odstranit warningy a FIXME ve zdrojacich
+- prehravani puvodnich animacek i novych AVI (i flash.vvf v menu!!)
+-    minimalni set animacek: logo, menu (??)
+- obrazky k jednotkam (nahrada "rotacek")

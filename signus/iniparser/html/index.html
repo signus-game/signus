@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+   <TITLE> iniParser Reference Manual</TITLE>
+   <META NAME="GENERATOR" CONTENT="DOC++ 3.4.8">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<TABLE BORDER=0><TR>
+<TD VALIGN=TOP><H2> <A HREF="#DOC.DOCU">iniParser Reference Manual</A></H2></TD></H2></TD></TR></TABLE>
+
+<TABLE>
+<TR><TD VALIGN=TOP>
+<IMG ALT="o" BORDER=0 SRC=icon1.gif><A NAME="Reference Manual"></A>
+<A HREF=ReferenceManual.html><B>Reference Manual</B></A></TD><TD><BR>
+</TD></TR><TR><TD VALIGN=TOP>
+<IMG ALT="o" BORDER=0 SRC=icon1.gif><A NAME="Installation instructions"></A>
+<A HREF=Installationinstructions.html><B>Installation instructions</B></A></TD><TD><BR>
+</TD></TR>
+</TABLE>
+<A NAME="DOC.DOCU"></A>
+<BLOCKQUOTE>
+<CENTER>
+<FONT SIZE="+2"><B>Welcome to iniParser</B></FONT>
+</CENTER>
+
+<P>iniParser is a simple C library offering ini file parsing services.
+The library is pretty small (less than 1500 lines of C) and robust, and
+does not depend on any other external library to compile. It is written
+in ANSI C and should compile anywhere without difficulty.
+
+<P><B>What is an ini file?</B>
+
+<P>An ini file is an ASCII file describing simple parameters
+(character strings, integers, floating-point values or booleans)
+in an explicit format, easy to use and modify for users.
+
+<P>An ini file is segmented into Sections, declared by the following
+syntax:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;[Section&nbsp;Name]
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>i.e. the section name enclosed in square brackets, alone on a
+line. Sections names are allowed to contain any character but
+square brackets or linefeeds. Slashes (/) are also reserved for
+hierarchical sections (see below).
+
+<P>In any section are zero or more variables, declared with the
+following syntax:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;Key&nbsp;=&nbsp;value&nbsp;;&nbsp;comment
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>The key is any string (possibly containing blanks). The value is
+any character on the right side of the equal sign. Values can be
+given enclosed with quotes. If no quotes are present, the value is
+understood as containing all characters between the first and the
+last non-blank characters. The following declarations are
+identical:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;=&nbsp;&quot;this&nbsp;is&nbsp;a&nbsp;long&nbsp;string&nbsp;value&quot;&nbsp;;&nbsp;comment
+&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;=&nbsp;this&nbsp;is&nbsp;a&nbsp;long&nbsp;string&nbsp;value&nbsp;;&nbsp;comment
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>The semicolon and comment at the end of the line are optional. If
+there is a comment, it starts from the first character after the
+semicolon up to the end of the line.
+
+<P>Comments in an ini file are:
+<UL>
+<LI> Lines starting with a hash sign
+<LI> Blank lines (only blanks or tabs)
+<LI> Comments given on value lines after the semicolon (if
+present)
+</UL>
+
+<P>
+<B>Using the parser</B>
+
+<P>Comments are discarded by the parser. Then sections are
+identified, and in each section a new entry is created for every
+keyword found. The keywords are stored with the following syntax:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;[Section]
+&nbsp;&nbsp;&nbsp;&nbsp;Keyword&nbsp;=&nbsp;value&nbsp;;&nbsp;comment
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>is converted to the following key pair:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;(&quot;section:keyword&quot;,&nbsp;&quot;value&quot;)
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>This means that if you want to retrieve the value that was stored
+in the section called <TT>Pizza</TT>, in the keyword <TT>Cheese</TT>,
+you would make a request to the dictionary for
+<TT>"pizza:cheese"</TT>. All section and keyword names are converted
+to lowercase before storage in the structure. The value side is
+conserved as it has been parsed, though.
+
+<P>Section names are also stored in the structure. They are stored
+using as key the section name, and a NULL associated value. They
+can be queried through <TT>iniparser_find_entry()</TT>.
+
+<P>To launch the parser, simply use the function called
+<TT>iniparser_load()</TT>, which takes an input file name and returns
+a newly allocated <EM>dictionary</EM> structure. This latter object
+should remain opaque to the user and only accessed through the
+following accessor functions:
+
+<P><UL>
+<LI> <TT>iniparser_getstr</TT>
+<LI> <TT>iniparser_getint</TT>
+<LI> <TT>iniparser_getdouble</TT>
+<LI> <TT>iniparser_getboolean</TT>
+</UL>
+
+<P>Finally, discard this structure using <TT>iniparser_freedict()</TT>.
+
+<P>All values parsed from the ini file are stored as strings. The
+getint, getdouble and getboolean accessors are just converting
+these strings to the requested type on the fly, but you could
+basically perform this conversion by yourself after having called
+the getstr accessor.
+
+<P>Notice that the <TT>iniparser_getboolean</TT> function will return an
+integer (0 or 1), trying to make sense of what was found in the file.
+Strings starting with "y", "Y", "t", "T" or "1" are considered true
+values (return 1), strings starting with "n", "N", "f", "F", "0" are
+considered false (return 0). This allows flexible handling of boolean
+answers.
+
+<P>If you want to add extra information into the structure that was not
+present in the ini file, you can use <TT>iniparser_setstr</TT> to insert a
+string.
+
+<P><B>A word about the implementation</B>
+
+<P>The <EM>dictionary</EM> structure is a pretty simple dictionary
+implementation which might find some uses in other applications.
+If you are curious, look into the source.
+
+<P><B>Hierarchical ini files</B>
+
+<P>ini files are nice to present informations to the user in a
+readable format, but lack a very useful feature: the possibility
+of organizing data in a hierarchical (tree-like) fashion. The
+following convention can be used to make ini files obtain this
+second dimension:
+
+<P>A section depends on another section if it contains its name as a
+prefix, separated by slashes (/). For example: we have 2 main
+sections in the ini file. The first one is called <TT>Pizza</TT> and
+has two child subsections called <TT>Cheese</TT> and <TT>Ham</TT>. The
+second main section in the ini file is called <TT>Wine</TT> and has
+two child subsections called <TT>Year</TT> and <TT>Grape</TT>. As a
+tree, this could appear as:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;Pizza
+&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;Cheese
+&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;Ham
+&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;Wine
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---&nbsp;Year
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---&nbsp;Grape
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>In an ini file, that would be converted to:
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;[Pizza]
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Pizza/Cheese]
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;=&nbsp;Gorgonzola&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;Origin&nbsp;=&nbsp;Italy&nbsp;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Pizza/Ham]
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;=&nbsp;Parma&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;Origin&nbsp;=&nbsp;Italy&nbsp;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Wine]
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Wine/Year]
+&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;=&nbsp;1998&nbsp;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Wine/Grape]
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;=&nbsp;Cabernet&nbsp;Sauvignon&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;Origin&nbsp;=&nbsp;Chile&nbsp;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>This proposal is actually more related to the way people write
+ini files, more than the parser presented here. But it is
+certainly a useful way of making tree-like data declarations
+without going through painful formats like XML.
+
+<P>Accessing the above tree would give something like (error checking
+removed for clarity sake):
+
+<P><PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;*&nbsp;d&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;=&nbsp;iniparser_load(&quot;example.ini&quot;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;cheese&nbsp;name&nbsp;is&nbsp;%s\n&quot;,&nbsp;iniparser_getstr(d,&nbsp;&quot;pizza/cheese:name&quot;));
+&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;grape&nbsp;name&nbsp;is&nbsp;%s\n&quot;,&nbsp;&nbsp;iniparser_getstr(d,&nbsp;&quot;wine/grape:name&quot;));
+
+&nbsp;&nbsp;&nbsp;&nbsp;iniparser_freedict(d);
+&nbsp;&nbsp;&nbsp;&nbsp;</PRE>
+
+<P>The whole ini file above is represented in the dictionary as the
+following list of pairs:
+
+<P><PRE>
+	key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value
+	
+	&quot;pizza&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;pizza/cheese&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;pizza/cheese:name&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Gorgonzola&quot;
+	&quot;pizza/cheese:origin&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Italy&quot;
+	&quot;pizza/ham&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;pizza/ham:name&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Parma&quot;
+	&quot;pizza/ham:origin&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Italy&quot;
+	&quot;wine&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;wine/year&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;wine/year:value&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;1998&quot;
+	&quot;wine/grape&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL
+	&quot;wine/grape:name&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Cabernet&nbsp;Sauvignon&quot;
+	&quot;wine/grape:origin&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Chile&quot;
+	</PRE>
+
+<P></BLOCKQUOTE>
+<DL><DT><DD></DL><P><P><I><A HREF="index.html">Alphabetic index</A></I></P><HR>
+<BR>
+This page was generated with the help of <A HREF="http://docpp.sourceforge.net">DOC++</A>.
+</BODY>
+</HTML>

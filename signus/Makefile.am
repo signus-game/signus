@@ -1,0 +1,3 @@
+
+SUBDIRS = iniparser sdlimage src
+

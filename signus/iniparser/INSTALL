@@ -1,0 +1,24 @@
+
+iniParser installation instructions
+-----------------------------------
+
+1. Modify the Makefile to suit your environment.
+2. Type 'make' to make the library.
+3. Type 'make tests' to make the test program.
+4. Type 'initest' to launch the test program. You should see
+   the following output:
+
+Pizza:
+Ham:       [1]
+Mushrooms: [1]
+Capres:    [0]
+Cheese:    [0]
+Wine:
+grape:     [Cabernet Sauvignon]
+year:      [1989]
+country:   [Spain]
+alcohol:   [12.5]
+
+Enjoy!
+N. Devillard
+Fri Aug 25 17:52:26 CEST 2000
