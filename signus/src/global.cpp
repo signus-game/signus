@@ -117,17 +117,7 @@ static const char *GetConfigFileName()
     
     if (*inifile == 0)
     {
-        char *home = getenv("HOME");
-        if (!home) home = ".";
-        strncpy(inifile, home, 1024);
-        strncat(inifile, "/.signus", 1024);
-        
-        struct stat statbuf;
-        if (!dirExists(inifile))
-        {
-            mkdir(inifile, 0700);
-        }
-
+        strncpy(inifile, getSignusConfigDir(), 1024);
         strncat(inifile, "/signus.ini", 1024);
     }
     
@@ -470,7 +460,26 @@ const char *getSignusDataDir()
 
 const char *getSignusConfigDir()
 {
-  return "."; // FIXME -- use ~/.signus !!!
+    char *home = getenv("HOME");
+    if (!home) home = ".";
+
+    static char inidir[1024] = "";
+    
+    if (*inidir == 0)
+    {
+        char *home = getenv("HOME");
+        if (!home) home = ".";
+        strncpy(inidir, home, 1024);
+        strncat(inidir, "/.signus", 1024);
+        
+        struct stat statbuf;
+        if (!dirExists(inidir))
+        {
+            mkdir(inidir, 0700);
+        }
+    }
+
+    return inidir;
 }
 
 
