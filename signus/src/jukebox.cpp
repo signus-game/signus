@@ -41,6 +41,15 @@ int JukeboxOn = FALSE, PlayingSuspended = FALSE;
 
 
 
+static const char *getJukeboxInifile()
+{
+    static char name[1024] = "";
+    if (name[0] == 0)
+    {
+        snprintf(name, 1024, "%s/jukebox.ini", getSignusConfigDir());
+    }
+    return name;
+}
 
 
 int str_compare(const void *op1, const void *op2)
@@ -52,20 +61,17 @@ int str_compare(const void *op1, const void *op2)
 
 // vyhledavaci procedura (najde vsechny skladby v music.dat + adresari \music
 
-char **GatherFiles(int *Count)
+void doGatherFiles(const char *dirname, char ***List, int *Count)
 {
 	TDataIndex *di;
     DIR *dir;
 	struct dirent *fi;
-	char **l = NULL;
+	char **l = *List;
 	
-	*Count = 0;
-
 	// Gather modules from directory signus/music:
 
-    // FIXME: look into ~/.signus/music !!!!!!
-    dir = opendir(SIGNUS_DATA_DIR "/music");
-    if (dir == NULL) return l;
+    dir = opendir(dirname);
+    if (dir == NULL) return;
 
     fi = readdir(dir);
 	while (fi) {
@@ -79,7 +85,19 @@ char **GatherFiles(int *Count)
         fi = readdir(dir);
 	}
 	closedir(dir);
-	
+	*List = l;
+}
+
+char **GatherFiles(int *Count)
+{
+	*Count = 0;
+	char **l = NULL;
+
+    doGatherFiles(SIGNUS_DATA_DIR "/nolang/music", &l, Count);
+    char dirname[1024];
+    snprintf(dirname, 1024, "%s/music", getSignusConfigDir());
+    doGatherFiles(dirname, &l, Count);
+
     qsort(l, *Count, sizeof(char *), str_compare);
 	return l;
 }
@@ -100,7 +118,7 @@ void LoadPlayList()
     }
 	else 
     {
-		if ((f = fopen("jukebox.ini", "rt")) == NULL) { // FIXME
+		if ((f = fopen(getJukeboxInifile(), "rt")) == NULL) {
 			PlayList = GatherFiles(&PlayCount);
 			iniJukeboxListSize = 0;
 			SaveINI();
@@ -122,7 +140,7 @@ void SavePlayList()
 {
 	FILE *f;
 	
-	if ((f = fopen("jukebox.ini", "wt")) == NULL) return; // FIXME
+	if ((f = fopen(getJukeboxInifile(), "wt")) == NULL) return;
 	iniJukeboxListSize = PlayCount;
 	SaveINI();
 	for (int i = 0; i < PlayCount; i++) fprintf(f, "%s\n", PlayList[i]);
@@ -165,8 +183,15 @@ void JukeboxNext()
 	
 	if (PlayingSuspended || (!JukeboxOn) || (PlayCount == 0)) return;
 	StopMusic();
-	if (iniJukeboxRandom) CurrentPlayed = rand() * PlayCount / RAND_MAX;
-	else CurrentPlayed++;
+	if (iniJukeboxRandom)
+    { 
+        int r = rand();
+        CurrentPlayed = int((double(r) / RAND_MAX) * PlayCount);
+    }
+	else
+    {
+        CurrentPlayed++;
+    }
 	if (CurrentPlayed >= PlayCount) {
 		if (iniJukeboxRepeat)	CurrentPlayed = 0;
 		else {PlayingSuspended = TRUE; CurrentPlayed = 0; return;}
@@ -309,7 +334,7 @@ void JukeboxSetup()
 
 	dlg->Exec();
 	if (iniJukeboxSave) SavePlayList();
-	else remove("jukebox.ini"); // FIXME
+	else remove(getJukeboxInifile());
 	SaveINI();
 	delete dlg;
 	PlayingSuspended = FALSE;
