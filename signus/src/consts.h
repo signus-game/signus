@@ -115,7 +115,6 @@
 #define TXT_SELL             69
 #define TXT_BUY              70
 #define TXT_RESET            71
-#define TXT_NOMORESAVES      72
 #define TXT_SAVEMISSION      73
 #define TXT_UNITSTOMIS       74
 #define TXT_AVAILABLEUNITS   75

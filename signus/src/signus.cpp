@@ -433,9 +433,7 @@ void DoMenu()
                 if (PromtBox(SigText[TXT_CONFIRM_QUIT], cmYes | cmNo) == cmYes)  {
                     SignusTerminated = TRUE, TerminationStatus = 666;
                     if (PromtBox(SigText[TXT_SAVEMISSION], cmYes | cmNo) == cmYes) {                    
-                        AlwaysSave = TRUE;
                         SaveGame();
-                        AlwaysSave = FALSE;
                     }
                 }
                 break;
@@ -766,9 +764,7 @@ void HandleEvent(TEvent *e)
                 if (PromtBox(SigText[TXT_CONFIRM_QUIT], cmYes | cmNo) == cmYes) {                    
                     SignusTerminated = TRUE, TerminationStatus = 666;
                     if (PromtBox(SigText[TXT_SAVEMISSION], cmYes | cmNo) == cmYes) {                    
-                        AlwaysSave = TRUE;
                         SaveGame();
-                        AlwaysSave = FALSE;
                     }
                 }
                 break;
@@ -967,7 +963,6 @@ void TurnEnd()
     WC_On = FALSE; PutBitmap(RES_X-268, RES_Y+2-((iniResolution == SVGA_640x480) ? 18 : 22), WorkingControl[0], 8, 8);
 
     ActualTurn++;
-    if (ActualTurn % 10 == 0) SavesRemaining++;
 
     ComputeVisib();
     RedrawMap();
@@ -1015,7 +1010,6 @@ int RunSignus(int from_save)
         Clear_PSmp();
         HideHelpers();
         InitArtificialIntelligence(ActualMission);
-        Setup_SR(ActualMission);
         ShowHelpers();
         SaySpeech(name, 2000);
     }

@@ -41,28 +41,6 @@
 #include "loadsave.h"
 
 
-int SavesRemaining = 4;
-int AlwaysSave = FALSE;
-    // po?et savù, kter? hr?? mùRe uloRit do konce mise...
-
-static int SR_e[20] = {0,  6,  7,  8, 10, 10,  6, 10, 11, 11, 11, 13, 14, 16, 16, 18, 17, 19, 20, 20};
-static int SR_n[20] = {0,  4,  5,  6,  8,  8,  4,  8,  9,  9,  9, 11, 12, 14, 14, 16, 15, 17, 18, 18};
-static int SR_h[20] = {0,  3,  4,  4,  6,  6,  3,  6,  7,  7,  7,  9, 10, 12, 12, 14, 13, 15, 16, 16};
-
-void Setup_SR(int mis)
-{
-    switch (ActualDifficulty) {
-        case 'e' : SavesRemaining = SR_e[mis]; break;
-        case 'n' : SavesRemaining = SR_n[mis]; break;
-        case 'h' : SavesRemaining = SR_h[mis]; break;
-    }
-}
-
-
-
-
-
-
 ///// Struktury a promnene:
 
 #define STAMP_SZ  ((504 / 2) * (420 / 2))
@@ -114,8 +92,15 @@ int SaveGameState(FILE *f)
     fwrite(&MoneyBadlife, 4, 1, f);
     // autofire.h:
     SaveAutofire(f);
+
     // loadsave.h:
-    fwrite(&SavesRemaining, 4, 1, f);
+
+    // NB: this used to save SavesRemaining value, but we no longer have
+    //     such stupid misfeature in the code. We still write out 4bytes
+    //     of worthless data, though, to keep compatibility with original
+    //     Signus saved game states:
+    int SavesRemainingFakeValue = 100;
+    fwrite(&SavesRemainingFakeValue, 4, 1, f);
        
     SaveArtificialIntelligence(f);
 
@@ -166,8 +151,14 @@ int LoadGameState(FILE *f)
     fread(&MoneyBadlife, 4, 1, f);
     // autofire.h:
     LoadAutofire(f);
+    
     // loadsave.h:
-    fread(&SavesRemaining, 4, 1, f);
+    // NB: this used to save SavesRemaining value, but we no longer have
+    //     such stupid misfeature in the code. We still write out 4bytes
+    //     of worthless data, though, to keep compatibility with original
+    //     Signus saved game states:
+    int SavesRemainingFakeValue;
+    fread(&SavesRemainingFakeValue, 4, 1, f);
 
     LoadArtificialIntelligence(f);
     
@@ -236,8 +227,6 @@ void LSD_Focus(TListBox *l)
 
 
 
-static char LS_TextBuf[8];
-
 TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2, VIEW_Y_POS + (VIEW_SY-416)/2, 500, 416, "dlgloads")
 {    
     Stamp = memalloc(STAMP_SZ);
@@ -251,8 +240,6 @@ TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2
         Insert(m_Stamp);
         Insert(new TButton(55, 240, IsSave ? SigText[TXT_SAVE_GAME] : SigText[TXT_LOAD_GAME], cmOk, TRUE));
         if (IsSave) {
-            sprintf(LS_TextBuf, "%i", SavesRemaining);
-            if (!AlwaysSave) Insert(new TStaticText(14, 240, 40, 40, LS_TextBuf, TRUE));
             Insert(new TButton(55, 280, SigText[TXT_DELETE], cmDelete));
             Insert(new TButton(55, 320, SigText[TXT_CANCEL], cmCancel));
         }
@@ -489,11 +476,6 @@ int SaveGame()
     FILE *f;
     int rtn = FALSE;    
 
-    if ((!AlwaysSave) && (SavesRemaining < 1)) {
-        PromtBox(SigText[TXT_NOMORESAVES], cmOk);
-        return FALSE;
-    }
-
     dlg = new TLoadSaveDialog(TRUE/*is save*/);
 
     if (dlg->Exec() == cmOk) {
@@ -501,7 +483,6 @@ int SaveGame()
         strcpy(hdr.Name, dlg->GetSelectedName());
         hdr.Time = time(NULL);
         if ((f = fopen(dlg->GetSelectedFile(), "wb")) != NULL) {
-            SavesRemaining--;
             fwrite(&hdr, sizeof(hdr), 1, f);
             MsgBox(SigText[TXT_SAVING]);
             SG_PutStamp(f);

@@ -36,11 +36,6 @@ extern int LoadGame();
     // nacte misi, inicializuje engine a vraci uspech
 
 
-// veci kolem omezeni savu:
-extern int SavesRemaining, AlwaysSave;
-extern void Setup_SR(int mis);
-
-
 extern int SaveGameState(FILE *f);
 extern int LoadGameState(FILE *f);
     // provadi prime I/O daneho savu
