@@ -86,4 +86,4 @@ signus_LDADD = $(SDL_LIBS) \
                -L../sdlimage -lminiSDLimage -ljpeg
 
 .asm.o:
-	$(NASM) $(NASMFLAGS) -o $@ $<
+	$(NASM) $(NASMFLAGS) $(INCLUDES) -o $@ $<
