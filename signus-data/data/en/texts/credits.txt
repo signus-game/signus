@@ -1,0 +1,144 @@
+
+ ----------------------------------------------------
+*Signus: The Artefact Wars
+ ----------------------------------------------------
+
+ http://signus.sourceforge.net
+ 
+ Designed and developed by
+*Valacirca
+
+ Copyright (C) 1997, 1998, 2002
+ Vaclav Slavik, Richard Wunsch, Marek Wunsch, Marek Makal
+
+
+
+
+*P R O G R A M M I N G
+
+ Vaclav Slavik
+ (game engine, animation player, Windows and Linux code)
+
+ Marek Wunsch
+ (mission editor, briefings, missions 7,10 & 14 AI)
+
+ Richard Wunsch
+ (artificial intelligence, missions AI)
+
+
+
+*S T R A T E G Y   S Y S T E M
+
+ Richard Wunsch
+
+
+
+*L A N D S C A P E S   D E S I G N   &   E D I T I N G
+
+ Marek Wunsch
+
+
+*M I S S I O N S   S C E N A R I O S
+
+ Marek Wunsch
+
+ Richard Wunsch
+
+
+ 
+*3 D   A R T
+
+ Marek Makal
+ (chief 3D artist, units design, animations)
+ 
+ Petr Kral
+ (units design) 
+ 
+ Tomas Roubicek
+ (textures & images, animations)
+ 
+ Vaclav Slavik
+ (animations)
+
+
+ 
+*2 D   A R T
+
+ Vaclav Slavik
+ (terrain, sprites, "Signus" logo)
+ 
+ Jitka Tuckova
+ ("Valacirca" logo)
+
+
+
+*T E X T S
+
+ Hana Balounova
+ (story, briefings)
+ 
+ Stanislav Stygler
+ (units description)
+
+
+
+*M U S I C
+ 
+ Ladislav Mravec
+
+
+
+*S O U N D   E F F E C T S
+
+ Ivan Horak
+ 
+ 
+ 
+*A N I M A T I O N S   S O U N D   T R A C K
+
+ Ivan Horak
+ 
+ 
+ 
+ 
+ 
+*S P E C I A L   T H A N K S   T O :
+
+ Mrs. Klasnova & Mr. Zenisek for their help with English translation
+ Pavel Bicak
+ Lukas Jirka
+ Katerina Makalova
+ 
+
+
+
+ * * *
+
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License version 2 as
+ published by the Free Software Foundation.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+
+ * * *
+
+
+ This software is based in part on the work of the Independent JPEG Group.
+ 
+ Simple DirectMedia Layer library is used by Signus
+ http://www.libsdl.org
+ 
+ Sound engine uses Ogg Vorbis
+ http://www.xiph.org
+
+
+END
