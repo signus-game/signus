@@ -1,15 +1,11 @@
 # Makefile.am for the SDL sample mixer library and players
 
-lib_LTLIBRARIES = libSDL_mixer.la
+noinst_LIBRARIES = libsignusSDL_mixer.a
 
 SUBDIRS = @MUSIC_SUBDIRS@
-DIST_SUBDIRS = mikmod timidity native_midi native_midi_gpl
+DIST_SUBDIRS = mikmod
 
-libSDL_mixerincludedir = $(includedir)/SDL
-libSDL_mixerinclude_HEADERS =	\
-	SDL_mixer.h
-
-libSDL_mixer_la_SOURCES =	\
+libsignusSDL_mixer_a_SOURCES =	\
 	load_aiff.c		\
 	load_aiff.h		\
 	load_voc.c		\
@@ -30,49 +26,11 @@ libSDL_mixer_la_SOURCES =	\
 	effects_internal.h
 
 if USE_MIKMOD
-MIKMOD_LIB = mikmod/libmikmod.la
+MIKMOD_LIB = mikmod/libmikmod.a
 else
 MIKMOD_LIB =
-endif
-if USE_TIMIDITY
-TIMIDITY_LIB = timidity/libtimidity.la
-else
-TIMIDITY_LIB =
-endif
-if USE_NATIVE_MIDI
-if USE_NATIVE_MIDI_GPL
-NATIVE_MIDI_LIB = native_midi_gpl/libnativemidi_gpl.la
-else
-NATIVE_MIDI_LIB = native_midi/libnativemidi.la
-endif
-else
-NATIVE_MIDI_LIB =
 endif
 
 EXTRA_DIST =			\
 	CHANGES			\
-	VisualC.zip		\
-	PBProjects.tar.gz	\
-	MPWmake.sea.bin		\
-	CWProjects.sea.bin	\
-	SDL_mixer.spec		\
-	SDL_mixer.spec.in	\
-	autogen.sh
-
-libSDL_mixer_la_LDFLAGS = 		\
-	-release $(LT_RELEASE)	\
-	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
-libSDL_mixer_la_LIBADD = $(MIKMOD_LIB) $(TIMIDITY_LIB) $(NATIVE_MIDI_LIB)
-
-bin_PROGRAMS = playwave playmus
-
-playwave_LDADD = libSDL_mixer.la
-playmus_LDADD = libSDL_mixer.la
-
-# Rule to build tar-gzipped distribution package
-$(PACKAGE)-$(VERSION).tar.gz: distcheck
-
-# Rule to build RPM distribution package
-rpm: $(PACKAGE)-$(VERSION).tar.gz
-	rpm -ta $(PACKAGE)-$(VERSION).tar.gz
-
+	autogen.sh README.Signus

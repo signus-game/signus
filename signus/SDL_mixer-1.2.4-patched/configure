@@ -34,16 +34,6 @@ ac_help="$ac_help
 ac_help="$ac_help
   --enable-music-mod      enable MOD music via mikmod [default=yes]"
 ac_help="$ac_help
-  --enable-music-midi     enable MIDI music via timidity [default=yes]"
-ac_help="$ac_help
-  --enable-music-timidity-midi  enable timidity MIDI output [default=yes]"
-ac_help="$ac_help
-  --enable-music-native-midi  enable native MIDI music output [default=yes]"
-ac_help="$ac_help
-  --enable-music-native-midi-gpl  enable native MIDI on UNIX using GPL code [default=no]"
-ac_help="$ac_help
-  --enable-music-ogg      enable Ogg Vorbis music [default=yes]"
-ac_help="$ac_help
   --enable-music-mp3      enable MP3 music via smpeg [default=yes]"
 ac_help="$ac_help
   --with-smpeg-prefix=PFX   Prefix where SMPEG is 
@@ -625,7 +615,7 @@ else { echo "configure: error: can not run $ac_config_sub" 1>&2; exit 1; }
 fi
 
 echo $ac_n "checking host system type""... $ac_c" 1>&6
-echo "configure:629: checking host system type" >&5
+echo "configure:619: checking host system type" >&5
 
 host_alias=$host
 case "$host_alias" in
@@ -646,7 +636,7 @@ host_os=`echo $host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
 echo "$ac_t""$host" 1>&6
 
 echo $ac_n "checking target system type""... $ac_c" 1>&6
-echo "configure:650: checking target system type" >&5
+echo "configure:640: checking target system type" >&5
 
 target_alias=$target
 case "$target_alias" in
@@ -676,7 +666,7 @@ echo "$ac_t""$target" 1>&6
 # SVR4 /usr/ucb/install, which tries to use the nonexistent group "staff"
 # ./install, which can be erroneously created by make from ./install.sh.
 echo $ac_n "checking for a BSD compatible install""... $ac_c" 1>&6
-echo "configure:680: checking for a BSD compatible install" >&5
+echo "configure:670: checking for a BSD compatible install" >&5
 if test -z "$INSTALL"; then
 if eval "test \"`echo '$''{'ac_cv_path_install'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -729,7 +719,7 @@ test -z "$INSTALL_SCRIPT" && INSTALL_SCRIPT='${INSTALL_PROGRAM}'
 test -z "$INSTALL_DATA" && INSTALL_DATA='${INSTALL} -m 644'
 
 echo $ac_n "checking whether build environment is sane""... $ac_c" 1>&6
-echo "configure:733: checking whether build environment is sane" >&5
+echo "configure:723: checking whether build environment is sane" >&5
 # Just in case
 sleep 1
 echo timestamp > conftestfile
@@ -786,7 +776,7 @@ test "$program_suffix" != NONE &&
 test "$program_transform_name" = "" && program_transform_name="s,x,x,"
 
 echo $ac_n "checking whether ${MAKE-make} sets \${MAKE}""... $ac_c" 1>&6
-echo "configure:790: checking whether ${MAKE-make} sets \${MAKE}" >&5
+echo "configure:780: checking whether ${MAKE-make} sets \${MAKE}" >&5
 set dummy ${MAKE-make}; ac_make=`echo "$2" | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_prog_make_${ac_make}_set'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -832,7 +822,7 @@ EOF
 
 missing_dir=`cd $ac_aux_dir && pwd`
 echo $ac_n "checking for working aclocal""... $ac_c" 1>&6
-echo "configure:836: checking for working aclocal" >&5
+echo "configure:826: checking for working aclocal" >&5
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
@@ -845,7 +835,7 @@ else
 fi
 
 echo $ac_n "checking for working autoconf""... $ac_c" 1>&6
-echo "configure:849: checking for working autoconf" >&5
+echo "configure:839: checking for working autoconf" >&5
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
@@ -858,7 +848,7 @@ else
 fi
 
 echo $ac_n "checking for working automake""... $ac_c" 1>&6
-echo "configure:862: checking for working automake" >&5
+echo "configure:852: checking for working automake" >&5
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
@@ -871,7 +861,7 @@ else
 fi
 
 echo $ac_n "checking for working autoheader""... $ac_c" 1>&6
-echo "configure:875: checking for working autoheader" >&5
+echo "configure:865: checking for working autoheader" >&5
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
@@ -884,7 +874,7 @@ else
 fi
 
 echo $ac_n "checking for working makeinfo""... $ac_c" 1>&6
-echo "configure:888: checking for working makeinfo" >&5
+echo "configure:878: checking for working makeinfo" >&5
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
@@ -900,7 +890,7 @@ fi
 
 
 echo $ac_n "checking whether ${MAKE-make} sets \${MAKE}""... $ac_c" 1>&6
-echo "configure:904: checking whether ${MAKE-make} sets \${MAKE}" >&5
+echo "configure:894: checking whether ${MAKE-make} sets \${MAKE}" >&5
 set dummy ${MAKE-make}; ac_make=`echo "$2" | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_prog_make_${ac_make}_set'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -929,7 +919,7 @@ fi
 # Extract the first word of "gcc", so it can be a program name with args.
 set dummy gcc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:933: checking for $ac_word" >&5
+echo "configure:923: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -959,7 +949,7 @@ if test -z "$CC"; then
   # Extract the first word of "cc", so it can be a program name with args.
 set dummy cc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:963: checking for $ac_word" >&5
+echo "configure:953: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1010,7 +1000,7 @@ fi
       # Extract the first word of "cl", so it can be a program name with args.
 set dummy cl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1014: checking for $ac_word" >&5
+echo "configure:1004: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1042,7 +1032,7 @@ fi
 fi
 
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:1046: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+echo "configure:1036: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
 
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -1053,12 +1043,12 @@ cross_compiling=$ac_cv_prog_cc_cross
 
 cat > conftest.$ac_ext << EOF
 
-#line 1057 "configure"
+#line 1047 "configure"
 #include "confdefs.h"
 
 main(){return(0);}
 EOF
-if { (eval echo configure:1062: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1052: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cc_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -1084,12 +1074,12 @@ if test $ac_cv_prog_cc_works = no; then
   { echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&2; exit 1; }
 fi
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:1088: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:1078: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cc_cross" 1>&6
 cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
-echo "configure:1093: checking whether we are using GNU C" >&5
+echo "configure:1083: checking whether we are using GNU C" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1098,7 +1088,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1102: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1092: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
@@ -1117,7 +1107,7 @@ ac_test_CFLAGS="${CFLAGS+set}"
 ac_save_CFLAGS="$CFLAGS"
 CFLAGS=
 echo $ac_n "checking whether ${CC-cc} accepts -g""... $ac_c" 1>&6
-echo "configure:1121: checking whether ${CC-cc} accepts -g" >&5
+echo "configure:1111: checking whether ${CC-cc} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cc_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1219,7 +1209,7 @@ else
 fi
 
 echo $ac_n "checking build system type""... $ac_c" 1>&6
-echo "configure:1223: checking build system type" >&5
+echo "configure:1213: checking build system type" >&5
 
 build_alias=$build
 case "$build_alias" in
@@ -1239,7 +1229,7 @@ echo "$ac_t""$build" 1>&6
 # Extract the first word of "ranlib", so it can be a program name with args.
 set dummy ranlib; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1243: checking for $ac_word" >&5
+echo "configure:1233: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_RANLIB'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1278,7 +1268,7 @@ ac_prog=ld
 if test "$ac_cv_prog_gcc" = yes; then
   # Check if gcc -print-prog-name=ld gives a path.
   echo $ac_n "checking for ld used by GCC""... $ac_c" 1>&6
-echo "configure:1282: checking for ld used by GCC" >&5
+echo "configure:1272: checking for ld used by GCC" >&5
   ac_prog=`($CC -print-prog-name=ld) 2>&5`
   case "$ac_prog" in
     # Accept absolute paths.
@@ -1302,10 +1292,10 @@ echo "configure:1282: checking for ld used by GCC" >&5
   esac
 elif test "$with_gnu_ld" = yes; then
   echo $ac_n "checking for GNU ld""... $ac_c" 1>&6
-echo "configure:1306: checking for GNU ld" >&5
+echo "configure:1296: checking for GNU ld" >&5
 else
   echo $ac_n "checking for non-GNU ld""... $ac_c" 1>&6
-echo "configure:1309: checking for non-GNU ld" >&5
+echo "configure:1299: checking for non-GNU ld" >&5
 fi
 if eval "test \"`echo '$''{'ac_cv_path_LD'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -1340,7 +1330,7 @@ else
 fi
 test -z "$LD" && { echo "configure: error: no acceptable ld found in \$PATH" 1>&2; exit 1; }
 echo $ac_n "checking if the linker ($LD) is GNU ld""... $ac_c" 1>&6
-echo "configure:1344: checking if the linker ($LD) is GNU ld" >&5
+echo "configure:1334: checking if the linker ($LD) is GNU ld" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gnu_ld'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1356,7 +1346,7 @@ echo "$ac_t""$ac_cv_prog_gnu_ld" 1>&6
 
 
 echo $ac_n "checking for BSD-compatible nm""... $ac_c" 1>&6
-echo "configure:1360: checking for BSD-compatible nm" >&5
+echo "configure:1350: checking for BSD-compatible nm" >&5
 if eval "test \"`echo '$''{'ac_cv_path_NM'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1392,7 +1382,7 @@ NM="$ac_cv_path_NM"
 echo "$ac_t""$NM" 1>&6
 
 echo $ac_n "checking whether ln -s works""... $ac_c" 1>&6
-echo "configure:1396: checking whether ln -s works" >&5
+echo "configure:1386: checking whether ln -s works" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_LN_S'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1447,8 +1437,8 @@ test x"$silent" = xyes && libtool_flags="$libtool_flags --silent"
 case "$lt_target" in
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 1451 "configure"' > conftest.$ac_ext
-  if { (eval echo configure:1452: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+  echo '#line 1441 "configure"' > conftest.$ac_ext
+  if { (eval echo configure:1442: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
     case "`/usr/bin/file conftest.o`" in
     *32-bit*)
       LD="${LD-ld} -32"
@@ -1469,19 +1459,19 @@ case "$lt_target" in
   SAVE_CFLAGS="$CFLAGS"
   CFLAGS="$CFLAGS -belf"
   echo $ac_n "checking whether the C compiler needs -belf""... $ac_c" 1>&6
-echo "configure:1473: checking whether the C compiler needs -belf" >&5
+echo "configure:1463: checking whether the C compiler needs -belf" >&5
 if eval "test \"`echo '$''{'lt_cv_cc_needs_belf'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
   cat > conftest.$ac_ext <<EOF
-#line 1478 "configure"
+#line 1468 "configure"
 #include "confdefs.h"
 
 int main() {
 
 ; return 0; }
 EOF
-if { (eval echo configure:1485: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1475: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   rm -rf conftest*
   lt_cv_cc_needs_belf=yes
 else
@@ -1504,7 +1494,7 @@ echo "$ac_t""$lt_cv_cc_needs_belf" 1>&6
   # Extract the first word of "${ac_tool_prefix}dlltool", so it can be a program name with args.
 set dummy ${ac_tool_prefix}dlltool; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1508: checking for $ac_word" >&5
+echo "configure:1498: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_DLLTOOL'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1536,7 +1526,7 @@ if test -n "$ac_tool_prefix"; then
   # Extract the first word of "dlltool", so it can be a program name with args.
 set dummy dlltool; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1540: checking for $ac_word" >&5
+echo "configure:1530: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_DLLTOOL'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1571,7 +1561,7 @@ fi
   # Extract the first word of "${ac_tool_prefix}as", so it can be a program name with args.
 set dummy ${ac_tool_prefix}as; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1575: checking for $ac_word" >&5
+echo "configure:1565: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_AS'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1603,7 +1593,7 @@ if test -n "$ac_tool_prefix"; then
   # Extract the first word of "as", so it can be a program name with args.
 set dummy as; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1607: checking for $ac_word" >&5
+echo "configure:1597: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_AS'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1638,7 +1628,7 @@ fi
   # Extract the first word of "${ac_tool_prefix}objdump", so it can be a program name with args.
 set dummy ${ac_tool_prefix}objdump; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1642: checking for $ac_word" >&5
+echo "configure:1632: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_OBJDUMP'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1670,7 +1660,7 @@ if test -n "$ac_tool_prefix"; then
   # Extract the first word of "objdump", so it can be a program name with args.
 set dummy objdump; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1674: checking for $ac_word" >&5
+echo "configure:1664: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_OBJDUMP'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1797,7 +1787,7 @@ exec 5>>./config.log
 # SVR4 /usr/ucb/install, which tries to use the nonexistent group "staff"
 # ./install, which can be erroneously created by make from ./install.sh.
 echo $ac_n "checking for a BSD compatible install""... $ac_c" 1>&6
-echo "configure:1801: checking for a BSD compatible install" >&5
+echo "configure:1791: checking for a BSD compatible install" >&5
 if test -z "$INSTALL"; then
 if eval "test \"`echo '$''{'ac_cv_path_install'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -1919,7 +1909,7 @@ fi
   # Extract the first word of "sdl-config", so it can be a program name with args.
 set dummy sdl-config; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1923: checking for $ac_word" >&5
+echo "configure:1913: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_SDL_CONFIG'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1954,7 +1944,7 @@ fi
 
   min_sdl_version=$SDL_VERSION
   echo $ac_n "checking for SDL - version >= $min_sdl_version""... $ac_c" 1>&6
-echo "configure:1958: checking for SDL - version >= $min_sdl_version" >&5
+echo "configure:1948: checking for SDL - version >= $min_sdl_version" >&5
   no_sdl=""
   if test "$SDL_CONFIG" = "no" ; then
     no_sdl=yes
@@ -1978,7 +1968,7 @@ echo "configure:1958: checking for SDL - version >= $min_sdl_version" >&5
   echo $ac_n "cross compiling; assumed OK... $ac_c"
 else
   cat > conftest.$ac_ext <<EOF
-#line 1982 "configure"
+#line 1972 "configure"
 #include "confdefs.h"
 
 #include <stdio.h>
@@ -2039,7 +2029,7 @@ int main (int argc, char *argv[])
 
 
 EOF
-if { (eval echo configure:2043: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+if { (eval echo configure:2033: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
 then
   :
 else
@@ -2073,7 +2063,7 @@ fi
           CFLAGS="$CFLAGS $SDL_CFLAGS"
           LIBS="$LIBS $SDL_LIBS"
           cat > conftest.$ac_ext <<EOF
-#line 2077 "configure"
+#line 2067 "configure"
 #include "confdefs.h"
 
 #include <stdio.h>
@@ -2088,7 +2078,7 @@ int main() {
  return 0; 
 ; return 0; }
 EOF
-if { (eval echo configure:2092: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:2082: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   rm -rf conftest*
    echo "*** The test program compiled, but did not run. This usually means"
           echo "*** that the run-time linker is not finding SDL or finding the wrong"
@@ -2162,113 +2152,37 @@ if test x$enable_music_mod = xyes; then
     CFLAGS="$CFLAGS -DMOD_MUSIC -I\$(top_srcdir)/mikmod"
     MUSIC_SUBDIRS="$MUSIC_SUBDIRS mikmod"
 fi
-# Check whether --enable-music-midi or --disable-music-midi was given.
-if test "${enable_music_midi+set}" = set; then
-  enableval="$enable_music_midi"
-  :
-else
-  enable_music_midi=yes
-fi
 
-if test x$enable_music_midi = xyes; then
-    CFLAGS="$CFLAGS -DMID_MUSIC"
-    # Check whether --enable-music-timidity-midi or --disable-music-timidity-midi was given.
-if test "${enable_music_timidity_midi+set}" = set; then
-  enableval="$enable_music_timidity_midi"
-  :
-else
-  enable_music_timidity_midi=yes
-fi
-
-    if test x$enable_music_timidity_midi = xyes; then
-        CFLAGS="$CFLAGS -DUSE_TIMIDITY_MIDI -I\$(top_srcdir)/timidity"
-        MUSIC_SUBDIRS="$MUSIC_SUBDIRS timidity"
-    fi
-    # Check whether --enable-music-native-midi or --disable-music-native-midi was given.
-if test "${enable_music_native_midi+set}" = set; then
-  enableval="$enable_music_native_midi"
-  :
-else
-  enable_music_native_midi=yes
-fi
-
-    if test x$enable_music_native_midi = xyes; then
-        use_music_native_midi=no
-        case "$target" in
-            *-*-cygwin* | *-*-mingw32*)
-                use_music_native_midi=yes
-                LIBS="$LIBS -lwinmm"
-                ;;
-            *-*-darwin*)
-                use_music_native_midi=yes
-                LIBS="$LIBS -framework QuickTime"
-                ;;
-        esac
-        if test x$use_music_native_midi = xyes; then
-            CFLAGS="$CFLAGS -DUSE_NATIVE_MIDI -I\$(top_srcdir)/native_midi"
-            MUSIC_SUBDIRS="$MUSIC_SUBDIRS native_midi"
-        fi
-    fi
-    # Check whether --enable-music-native-midi-gpl or --disable-music-native-midi-gpl was given.
-if test "${enable_music_native_midi_gpl+set}" = set; then
-  enableval="$enable_music_native_midi_gpl"
-  :
-else
-  enable_music_native_midi_gpl=no
-fi
-
-    if test x$enable_music_native_midi_gpl = xyes; then
-        use_music_native_midi_gpl=no
-        case "$target" in
-            *-*-linux* | *-*-freebsd*)
-                use_music_native_midi_gpl=yes
-                ;;
-        esac
-        if test x$use_music_native_midi_gpl = xyes; then
-            CFLAGS="$CFLAGS -DUSE_NATIVE_MIDI -I\$(top_srcdir)/native_midi"
-            MUSIC_SUBDIRS="$MUSIC_SUBDIRS native_midi_gpl"
-        fi
-    fi
-fi
-# Check whether --enable-music-ogg or --disable-music-ogg was given.
-if test "${enable_music_ogg+set}" = set; then
-  enableval="$enable_music_ogg"
-  :
-else
-  enable_music_ogg=yes
-fi
-
-if test x$enable_music_ogg = xyes; then
-    echo $ac_n "checking for Ogg Vorbis headers and libraries""... $ac_c" 1>&6
-echo "configure:2244: checking for Ogg Vorbis headers and libraries" >&5
-    have_vorbis=no
-    cat > conftest.$ac_ext <<EOF
-#line 2247 "configure"
+echo $ac_n "checking for Ogg Vorbis headers and libraries""... $ac_c" 1>&6
+echo "configure:2158: checking for Ogg Vorbis headers and libraries" >&5
+  have_vorbis=no
+  cat > conftest.$ac_ext <<EOF
+#line 2161 "configure"
 #include "confdefs.h"
 
-     #include <vorbis/vorbisfile.h>
-    
+  #include <vorbis/vorbisfile.h>
+
 int main() {
 
-    
+
 ; return 0; }
 EOF
-if { (eval echo configure:2257: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+if { (eval echo configure:2171: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
   rm -rf conftest*
   
-    have_vorbis=yes
-    
+have_vorbis=yes
+
 else
   echo "configure: failed program was:" >&5
   cat conftest.$ac_ext >&5
 fi
 rm -f conftest*
-    echo "$ac_t""$have_vorbis" 1>&6
-    if test x$have_vorbis = xyes; then
-        CFLAGS="$CFLAGS -DOGG_MUSIC"
-        LIBS="$LIBS -lvorbisfile -lvorbis -logg"
-    fi
+echo "$ac_t""$have_vorbis" 1>&6
+if test x$have_vorbis = xyes; then
+    CFLAGS="$CFLAGS -DOGG_MUSIC"
+    LIBS="$LIBS -lvorbisfile -lvorbis -logg"
 fi
+
 # Check whether --enable-music-mp3 or --disable-music-mp3 was given.
 if test "${enable_music_mp3+set}" = set; then
   enableval="$enable_music_mp3"
@@ -2320,7 +2234,7 @@ fi
   # Extract the first word of "smpeg-config", so it can be a program name with args.
 set dummy smpeg-config; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:2324: checking for $ac_word" >&5
+echo "configure:2238: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_SMPEG_CONFIG'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -2355,7 +2269,7 @@ fi
 
   min_smpeg_version=$SMPEG_VERSION
   echo $ac_n "checking for SMPEG - version >= $min_smpeg_version""... $ac_c" 1>&6
-echo "configure:2359: checking for SMPEG - version >= $min_smpeg_version" >&5
+echo "configure:2273: checking for SMPEG - version >= $min_smpeg_version" >&5
   no_smpeg=""
   if test "$SMPEG_CONFIG" = "no" ; then
     no_smpeg=yes
@@ -2379,7 +2293,7 @@ echo "configure:2359: checking for SMPEG - version >= $min_smpeg_version" >&5
   echo $ac_n "cross compiling; assumed OK... $ac_c"
 else
   cat > conftest.$ac_ext <<EOF
-#line 2383 "configure"
+#line 2297 "configure"
 #include "confdefs.h"
 
 #include <stdio.h>
@@ -2446,7 +2360,7 @@ the file\n");
 
 
 EOF
-if { (eval echo configure:2450: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+if { (eval echo configure:2364: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
 then
   :
 else
@@ -2483,7 +2397,7 @@ the"
           CFLAGS="$CFLAGS $SMPEG_CFLAGS $SDL_CFLAGS"
           LIBS="$LIBS $SMPEG_LIBS $SDL_LIBS"
           cat > conftest.$ac_ext <<EOF
-#line 2487 "configure"
+#line 2401 "configure"
 #include "confdefs.h"
 
 #include <stdio.h>
@@ -2493,7 +2407,7 @@ int main() {
  return 0; 
 ; return 0; }
 EOF
-if { (eval echo configure:2497: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:2411: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   rm -rf conftest*
    echo "*** The test program compiled, but did not run. This 
 usually means"
@@ -2698,10 +2612,6 @@ ac_given_INSTALL="$INSTALL"
 trap 'rm -fr `echo "
 Makefile
 mikmod/Makefile
-timidity/Makefile
-native_midi/Makefile
-native_midi_gpl/Makefile
-SDL_mixer.spec
 " | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
@@ -2834,10 +2744,6 @@ cat >> $CONFIG_STATUS <<EOF
 
 CONFIG_FILES=\${CONFIG_FILES-"Makefile
 mikmod/Makefile
-timidity/Makefile
-native_midi/Makefile
-native_midi_gpl/Makefile
-SDL_mixer.spec
 "}
 EOF
 cat >> $CONFIG_STATUS <<\EOF

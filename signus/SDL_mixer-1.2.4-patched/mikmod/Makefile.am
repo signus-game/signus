@@ -1,7 +1,7 @@
 
-noinst_LTLIBRARIES = libmikmod.la
+noinst_LIBRARIES = libsignusmikmod.a
 
-libmikmod_la_SOURCES =		\
+libsignusmikmod_a_SOURCES =		\
 	drv_nos.c		\
 	drv_sdl.c		\
 	load_it.c		\

@@ -1,0 +1,10 @@
+
+This is a patched version of SDL_mixer for use in Signus. This is temporary solution,
+this directory will go away when SDL_mixer 1.2.5 is released.
+
+Modifications that were made are:
+  - added ability to load Ogg Vorbis files as samples
+  - removed all MIDI code because Signus doesn't use it
+  - removed various huge project files that Signus doesn't need (yet?)
+
+                         Vaclav Slavik
