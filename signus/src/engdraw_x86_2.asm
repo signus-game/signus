@@ -1,7 +1,7 @@
 ; 
 ;   This file is part of Signus: The Artefact Wars (http://signus.sf.net)
 ; 
-;   Copyright (C) 1997, 1998, 2002
+;   Copyright (C) 1997, 1998, 2002, 2003
 ;   Vaclav Slavik, Richard Wunsch, Marek Wunsch
 ; 
 ;   This program is free software; you can redistribute it and/or modify
