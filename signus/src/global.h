@@ -32,6 +32,8 @@
 
 #include "config.h"
 
+#include <SDL.h>
+
 #include "system.h"
 #include "fonts.h"
 #include "datafile.h"
@@ -159,7 +161,8 @@ extern char *MsgText[MSG_COUNT];
 #define TICKS_PER_SEC  1000 / 55
 extern volatile int TimerValue;
 
-extern char *Palette;     // aktualni barevna paleta
+extern char *Palette;     // current color palette
+extern SDL_Color PaletteSDL[256]; // same thing, another representation
 
 
 /////////////////////////////////////////

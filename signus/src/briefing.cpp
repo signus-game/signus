@@ -1,7 +1,7 @@
 /*
  *  This file is part of Signus: The Artefact Wars (http://signus.sf.net)
  *
- *  Copyright (C) 1997, 1998, 2002, 2003
+ *  Copyright (C) 1997, 1998, 2002, 2003, 2004
  *  Vaclav Slavik, Richard Wunsch, Marek Wunsch
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #include "fonts.h"
 #include "mouse.h"
 
+#include <assert.h>
 #include <SDL_timer.h>
 
 // Fces:
@@ -166,6 +167,7 @@ void BriefGo(char *MissionName)
 
   DrawOnScreen(1);
   FadeIn(Palette, 0);
+  
   int BriefEvent; 
     // -7: Exit, -4: Up, -3: Down, -2: PgUp, -1: PgDown, 1..n: Odkazy HT
     do {
@@ -195,19 +197,15 @@ void BriefInit(char *FileName)
     int LinkNum = 0;
     int LinkCnt;
     
-    char *Character;
-    char *Word;
+    char Character;
+    char Word[MaxNumOfCharsInWord];
     char *Brief;
-    char *StrLinkNum;
+    char StrLinkNum[4];
     
     Ofset = 0;
     LastLink = 0;
     WordCnt = 0;
     LastPic = 0;
-    
-    Word = (char*)memalloc(32);
-    StrLinkNum = (char*)memalloc(4);
-    Character = (char*)memalloc(1);
 
     //nacte briefing ze souboru
     Brief = (char*) TextsDF->get(FileName);
@@ -219,41 +217,38 @@ void BriefInit(char *FileName)
     
     // vytvori seznam slov (priradi zacatky odstavcu a odkazy)
     do {
-    *Character = Brief[CharCnt]; CharCnt++;
+    Character = Brief[CharCnt]; CharCnt++;
 
         // eliminuje ENTER
-        if (*Character == 10) {         
-      *Character = Brief[CharCnt]; CharCnt++;
-      if (*Character == 13) {
-        *Character = Brief[CharCnt]; CharCnt++;
-      }
+        while (Character == 10 || Character == 13) { 
+          Character = Brief[CharCnt]; CharCnt++;
         }
         
         // zjisti specialni znak
-        if (*Character == '#') {            
-      *Character = Brief[CharCnt]; CharCnt++;
+        if (Character == '#') {            
+      Character = Brief[CharCnt]; CharCnt++;
       
-          if (*Character == '>') {  // new article
-        *Character = Brief[CharCnt]; CharCnt++;
+          if (Character == '>') {  // new article
+        Character = Brief[CharCnt]; CharCnt++;
           Type = 1;
           } else
           
           
-          if (*Character == 'e') {  // end of text
-        *Character = Brief[CharCnt]; CharCnt++;
+          if (Character == 'e') {  // end of text
+        Character = Brief[CharCnt]; CharCnt++;
             Exit = 1;
           } else
           
-          if (*Character == '0') {  // link file
-        *Character = Brief[CharCnt]; CharCnt++;
-          if (*Character == '0') {
-           *Character = Brief[CharCnt]; CharCnt++;
-               StrLinkNum[0] = *Character;
+          if (Character == '0') {  // link file
+        Character = Brief[CharCnt]; CharCnt++;
+          if (Character == '0') {
+           Character = Brief[CharCnt]; CharCnt++;
+               StrLinkNum[0] = Character;
                StrLinkNum[1] = '\0';
           } else {
-             StrLinkNum[0] = *Character;
-           *Character = Brief[CharCnt]; CharCnt++;
-               StrLinkNum[1] = *Character;
+             StrLinkNum[0] = Character;
+           Character = Brief[CharCnt]; CharCnt++;
+               StrLinkNum[1] = Character;
                StrLinkNum[2] = '\0';
           }
             LinkNum = (int)atol(StrLinkNum);
@@ -261,12 +256,12 @@ void BriefInit(char *FileName)
             
             Links[WordCnt] = (int)LinkNum;
           
-        *Character = Brief[CharCnt]; CharCnt++;
+        Character = Brief[CharCnt]; CharCnt++;
           }
         }
         
         // dalsi slovo
-        if ((*Character == ' ') || (Exit != 0)) {
+        if ((Character == ' ') || (Exit != 0)) {
           // ulozeni jednoho slova
           Word[WordCharCnt] = ' ';
           Word[WordCharCnt+1] = '\0';
@@ -277,13 +272,15 @@ void BriefInit(char *FileName)
           WordsTypes[WordCnt+1] = Type; Type = 0;
           
             WordCnt++;
-      *Character = Brief[CharCnt]; CharCnt++;
+            assert( WordCnt <= MaxNumOfWords );
+      Character = Brief[CharCnt]; CharCnt++;
         }
 //      NEXTWORD:
         
         // nacpe dalsi znak do aktualniho slova
-        Word[WordCharCnt] = *Character;
+        Word[WordCharCnt] = Character;
         WordCharCnt++;
+        assert( WordCharCnt <= MaxNumOfCharsInWord );
         
   } while (Exit == 0);
   
@@ -301,35 +298,33 @@ void BriefInit(char *FileName)
   WordCharCnt = 0;
   LinkCnt = 1;
   Exit = 0;
-  
+
+  CharCnt--;
     do {
-    *Character = Brief[CharCnt]; CharCnt++;
+    Character = Brief[CharCnt]; CharCnt++;
 
         // eliminuje ENTER
-        if (*Character == 10) {         
-      *Character = Brief[CharCnt]; CharCnt++;
-      if (*Character == 13) {
-        *Character = Brief[CharCnt]; CharCnt++;
-      }
+        while (Character == 10 || Character == 13)  {
+          Character = Brief[CharCnt]; CharCnt++;
         }
         
         // zjisti specialni znak
-        if (*Character == '#') {            
-      *Character = Brief[CharCnt]; CharCnt++;
+        if (Character == '#') {            
+      Character = Brief[CharCnt]; CharCnt++;
       
-          if (*Character == 'e') {
-        *Character = Brief[CharCnt]; CharCnt++;
+          if (Character == 'e') {
+        Character = Brief[CharCnt]; CharCnt++;
             Exit = 1;
             
           } else
-          if (*Character == 'l') {
-        *Character = Brief[CharCnt]; CharCnt++; // nacetl mezeru
+          if (Character == 'l') {
+        Character = Brief[CharCnt]; CharCnt++; // nacetl mezeru
         do {
-            *Character = Brief[CharCnt]; CharCnt++;
+            Character = Brief[CharCnt]; CharCnt++;
               // nacpe dalsi znak do link-fajl-nejmu
-            Word[WordCharCnt] = *Character;
+            Word[WordCharCnt] = Character;
             WordCharCnt++;
-        } while (*Character != '#');
+        } while (Character != '#');
           // ulozeni jednoho slova
           Word[WordCharCnt-1] = '\0';
           LinksFiles[LinkCnt] = (char*)memalloc(strlen(Word)+1);
@@ -355,25 +350,25 @@ void BriefInit(char *FileName)
       Words[i][0] = '\0';
     
     int dummy = strlen(Words[i])-2;
-    if (Words [i] [dummy] == ' ')
+    if (dummy >= 0 && Words [i][dummy] == ' ')
       Words [i] [dummy+1] = '\0';
       
     
     if (Words[i][0] == '#') {
         WordsChCnt = 1;
-      *Character = Words[i][WordsChCnt]; WordsChCnt++;
+      Character = Words[i][WordsChCnt]; WordsChCnt++;
     
-        if (*Character == 'p') {  // picture
+        if (Character == 'p') {  // picture
             LastPic++;
           
-        *Character = Words[i][WordsChCnt]; WordsChCnt++;
+        Character = Words[i][WordsChCnt]; WordsChCnt++;
         
               // ulozeni jmena obrazku
         do {
-          *Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = *Character;
+          Character = Words[i][WordsChCnt]; WordsChCnt++;
+            Word[WordCharCnt] = Character;
             WordCharCnt++;
-        } while (*Character != '.');
+        } while (Character != '.');
         
           Word[WordCharCnt-1] = '\0';
           PicFiles[LastPic] = (char*)memalloc(strlen(Word)+1);
@@ -382,20 +377,20 @@ void BriefInit(char *FileName)
           
               // ulozeni rozmeru X
         do {
-          *Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = *Character;
+          Character = Words[i][WordsChCnt]; WordsChCnt++;
+            Word[WordCharCnt] = Character;
             WordCharCnt++;
-        } while (*Character != '.');
+        } while (Character != '.');
         
           Word[WordCharCnt-1] = '\0';
             PicSize[LastPic].x = (int)atol(Word);
           WordCharCnt = 0;
               // ulozeni rozmeru Y
         do {
-          *Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = *Character;
+          Character = Words[i][WordsChCnt]; WordsChCnt++;
+            Word[WordCharCnt] = Character;
             WordCharCnt++;
-        } while (*Character != '.');
+        } while (Character != '.');
           Word[WordCharCnt-1] = '\0';
             PicSize[LastPic].y = (int)atol(Word);
           WordCharCnt = 0;
@@ -470,9 +465,6 @@ void BriefInit(char *FileName)
   BigDrawBuffer = memalloc(SizeOfBigBuf);
   memset(BigDrawBuffer, 0, SizeOfBigBuf);
   memfree(Brief);
-    memfree(Word);
-    memfree(StrLinkNum);
-    memfree(Character);
 }
 
 
@@ -704,7 +696,7 @@ void DrawOnScreen(int DrawBackground)
         }
       if (Links[LocalWordCnt] == 0) 
         PutStr (BigDrawBuffer, LinePixels, PixLineCnt, PixColCnt,
-                Words[LocalWordCnt], NormalFont, clrWhite, clrBlack);    
+                Words[LocalWordCnt], NormalFont, clrWhite, clrBlack);
       else {
         PutStr (BigDrawBuffer, LinePixels, PixLineCnt, PixColCnt,
                 Words[LocalWordCnt], NormalFont, clrRed, clrBlack);    

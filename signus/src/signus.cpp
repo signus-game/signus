@@ -834,6 +834,12 @@ int InitSignus()
             return FALSE;
         }
         Palette = (char *) GraphicsDF->get("palette");
+        memset(PaletteSDL, 0, sizeof(PaletteSDL));
+        for (unsigned i = 0; i < 256; i++) {
+            PaletteSDL[i].r = Palette[i*3+0] << 2;
+            PaletteSDL[i].g = Palette[i*3+1] << 2;
+            PaletteSDL[i].b = Palette[i*3+2] << 2;
+        }
         lockmem(Palette, 768);
         SetPalette(Palette);
     }

@@ -248,6 +248,7 @@ byte DarkingTable[256], GrayingTable[256];
 volatile int TimerValue = 0;
 
 char *Palette;                            // aktualni barevna paleta
+SDL_Color PaletteSDL[256];
 
 
 

@@ -27,6 +27,7 @@
 
 // consts:
 #define MaxNumOfWords 1500
+#define MaxNumOfCharsInWord 256
 #define MaxNumOfLines 150
 #define MaxNumOfLinks 100
 #define MaxNumOfPics  20
