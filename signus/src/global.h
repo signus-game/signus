@@ -113,7 +113,7 @@ extern int iniResolution;
 
 extern int iniBrightCorr;
 
-extern int iniMusicVol, iniSoundVol, iniSpeechVol, ini16bit, iniMixingMode;
+extern int iniMusicVol, iniSoundVol, iniSpeechVol;
 
 extern int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
                  iniShowVisibRange, iniStopOnNewEnemy;

@@ -87,7 +87,7 @@ char iniLocale[200];
 int iniIdleDelay;
 int iniScrollDelay, iniAnimDelay, iniAnimDelay2;
 
-int iniMusicVol, iniSoundVol, iniSpeechVol, ini16bit, iniMixingMode;
+int iniMusicVol, iniSoundVol, iniSpeechVol;
         
 int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
     iniShowVisibRange, iniStopOnNewEnemy;
@@ -107,7 +107,21 @@ int iniTitledAnims, iniInterpolateAnims;
 static const char *GetConfigFileName()
 {
     // FIXME -- use $HOME/signusrc !!!
-    return "signus.ini";
+    char *home = getenv("HOME");
+    if (!home) home = ".";
+
+    static char inifile[1024] = "";
+    
+    if (*inifile == 0)
+    {
+        char *home = getenv("HOME");
+        if (!home) home = ".";
+        strncpy(inifile, home, 1024);
+        strncat(inifile, "/.signusrc");
+        XXXXXXXXXX
+    }
+    
+    return inifile;
 }
 
 bool LoadINI()
@@ -116,7 +130,7 @@ bool LoadINI()
     
     dict = iniparser_load((char*)GetConfigFileName());
     if (dict == NULL)
-        dict = iniparser_load(SIGNUS_DATA_DIR "/signusrc.default");    
+        dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
     if (dict == NULL)
     {
         fprintf(stderr, "Fatal error: cannot read configuration file.\n"
@@ -134,8 +148,6 @@ bool LoadINI()
     iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
     iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
 
-    ini16bit = iniparser_getint(dict, "audio:16bit_samples", -1);
-    iniMixingMode = iniparser_getint(dict, "audio:ds_mixing_mode", -1);
     iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
     iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
     iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
@@ -168,15 +180,12 @@ void SaveINI()
     FILE *f = fopen(GetConfigFileName(), "wt");
 
     fprintf(f, "\n[video]\n"
-               "resolution             = %i ;\n"
                "brightness             = %i ;\n"
                "anims_titled           = %i ;\n"
                "anims_interpolated     = %i ;\n",
-               iniResolution, iniBrightCorr, iniTitledAnims, iniInterpolateAnims);
+               iniBrightCorr, iniTitledAnims, iniInterpolateAnims);
 
     fprintf(f, "\n[audio]\n"
-               "16bit_samples          = %i ;\n"
-               "ds_mixing_mode         = %i ;\n"
                "music_volume           = %i ;\n"
                "sound_volume           = %i ;\n"
                "speech_volume          = %i ;\n"
@@ -184,7 +193,7 @@ void SaveINI()
                "jukebox_random_order   = %i ;\n"
                "jukebox_play_list_size = %i ;\n"
                "jukebox_save_changes   = %i ;\n",
-               ini16bit, iniMixingMode, iniMusicVol, iniSoundVol, iniSpeechVol,
+               iniMusicVol, iniSoundVol, iniSpeechVol,
                iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize,
                iniJukeboxSave);
 
@@ -431,7 +440,7 @@ int InitGlobal()
     fprintf(dbgOutput, 
             "Free memory (on start): %ikB\n",   GetFreeMem() / 1024);
 #endif
-
+   
     if (!LoadINI()) return FALSE;
 
     if (!CheckFiles()) return FALSE;
