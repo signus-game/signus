@@ -88,7 +88,7 @@ am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
 
-SUBDIRS = nolang en cs de
+SUBDIRS = nolang en cs
 
 datdir = $(datadir)/signus
 dat_DATA = version-data

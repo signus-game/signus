@@ -45,9 +45,5 @@ AC_OUTPUT([
          data/cs/speech/Makefile
          data/cs/graphics/Makefile
          data/cs/texts/Makefile
-         data/de/Makefile
-         data/de/speech/Makefile
-         data/de/graphics/Makefile
-         data/de/texts/Makefile
          data/version-data
          ])
