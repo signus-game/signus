@@ -9,40 +9,40 @@
 *Valacirca
 
  Copyright (C) 1997, 1998, 2002, 2003
- Vaclav Slavik, Richard Wunsch, Marek Wunsch, Marek Makal
+ Václav Slavík, Richard Wünsch, Marek Wünsch, Marek Makal
 
 
 
 
 *P R O G R A M M I N G
 
- Vaclav Slavik
+ Václav Slavík
  (game engine, animation player, Unix port)
 
- Marek Wunsch
+ Marek Wünsch
  (mission editor, briefings, missions 7,10 & 14 AI)
 
- Richard Wunsch
+ Richard Wünsch
  (artificial intelligence, missions AI)
 
 
 
 *S T R A T E G Y   S Y S T E M
 
- Richard Wunsch
+ Richard Wünsch
 
 
 
 *L A N D S C A P E S   D E S I G N   &   E D I T I N G
 
- Marek Wunsch
+ Marek Wünsch
 
 
 *M I S S I O N S   S C E N A R I O S
 
- Marek Wunsch
+ Marek Wünsch
 
- Richard Wunsch
+ Richard Wünsch
 
 
  
@@ -51,33 +51,33 @@
  Marek Makal
  (chief 3D artist, units design, animations)
  
- Petr Kral
+ Petr Král
  (units design) 
  
- Tomas Roubicek
+ Tomáš Roubíček
  (textures & images, animations)
  
- Vaclav Slavik
+ Václav Slavík
  (animations)
 
 
  
 *2 D   A R T
 
- Vaclav Slavik
+ Václav Slavík
  (terrain, sprites, "Signus" logo)
  
- Jitka Tuckova
+ Jitka Tučková
  ("Valacirca" logo)
 
 
 
 *T E X T S
 
- Hana Balounova
+ Hana Balounová
  (story, briefings)
  
- Stanislav Stygler
+ Stanislav Štygler
  (units description)
 
 
@@ -90,13 +90,13 @@
 
 *S O U N D   E F F E C T S
 
- Ivan Horak
+ Ivan Horák
  
  
  
 *A N I M A T I O N S   S O U N D   T R A C K
 
- Ivan Horak
+ Ivan Horák
  
  
  
@@ -104,10 +104,10 @@
  
 *S P E C I A L   T H A N K S   T O :
 
- Mrs. Klasnova & Mr. Zenisek for their help with English translation
- Pavel Bicak
- Lukas Jirka
- Katerina Makalova
+ Mrs. Klasnová & Mr. Ženíšek for their help with English translation
+ Pavel Bičák
+ Lukáš Jirka
+ Kateřina Makalová
  
 
 
