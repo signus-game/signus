@@ -1,17 +1,14 @@
 
-- odstranit ten kretenizmus od Zimy: omezeny pocet savu
+- AUTHORS (i pro data)
 
 - predelat obrazovky na "Signus OpenSource edition (s logem "approved")
              - loadovaci obrazovka,
-
-- nove CREDITS
 
 - predelat intro obrazovku mise tak, aby v ni sla prehravat animacka??
   (pripadne jednotny vzhled s briefingovou?)
 
 - blbne hudba
 - jukebox -- neumi dlouha jmena
-- load & save
 - nefunguje nacitaci obrazovka
 - odstranit warningy a FIXME ve zdrojacich
 - prehravani puvodnich animacek i novych AVI (i flash.vvf v menu!!)

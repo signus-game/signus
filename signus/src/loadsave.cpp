@@ -27,6 +27,7 @@
 #include "headers.h"
 #include <time.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 #include "system.h"
 #include "global.h"
@@ -255,6 +256,16 @@ TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2
 }
 
 
+extern bool dirExists(const char *filename);
+static const char *getSavesDir()
+{
+    static char savesDir[1024] = "";
+    strncpy(savesDir, getSignusConfigDir(), 1024);
+    strncat(savesDir, "/saved_games", 1024);
+    if (!dirExists(savesDir))
+        mkdir(savesDir, 0700);
+    return savesDir;
+}
 
 void TLoadSaveDialog::SearchFiles()
 {
@@ -263,27 +274,31 @@ void TLoadSaveDialog::SearchFiles()
     int i, j;
     TSavegameHdr hdr;
     FILE *f;
-    char buf[20];
+    char buf[1024];
     
     SCount = IsSave; /*0,1*/
     for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
 
+    const char *dirname = getSavesDir();
     // searching for savefiles...:
-    dir = opendir("."); // FIXME -- save them in ~/.signus/saved_games
+    dir = opendir(dirname);
+
     fi = readdir(dir);
     while (fi) {
-        if (strncmp(fi->d_name, "savegame", 8) != 0) continue;
-        if ((f = fopen(fi->d_name, "rb")) != NULL) {
-            fread(&hdr, sizeof(hdr), 1, f);
-            if (strcmp(hdr.Magic, "SIGNUS SAVE") == 0) {
-                SNames[SCount] = (char*) memalloc(strlen(hdr.Name) + 1);
-                strcpy(SNames[SCount], hdr.Name);
-                SFiles[SCount] = (char*) memalloc(13);
-                strcpy(SFiles[SCount], fi->d_name);
-                STimes[SCount] = 0xFFFFFFFF - hdr.Time;
-                SCount++;
+        if (strncmp(fi->d_name, "savegame", 8) == 0)
+        {
+            snprintf(buf, 1024, "%s/%s", dirname, fi->d_name);
+            if ((f = fopen(buf, "rb")) != NULL)
+            {
+                fread(&hdr, sizeof(hdr), 1, f);
+                if (strcmp(hdr.Magic, "SIGNUS SAVE") == 0) {
+                    SNames[SCount] = strdup(hdr.Name);
+                    SFiles[SCount] = strdup(buf);
+                    STimes[SCount] = 0xFFFFFFFF - hdr.Time;
+                    SCount++;
+                }
+                fclose(f);
             }
-            fclose(f);
         }
         fi = readdir(dir);
     }
@@ -292,13 +307,12 @@ void TLoadSaveDialog::SearchFiles()
     if (IsSave) { // udela jmeno pro new save:
         int rc;    
         for (i = 0; i < 1000; i++) {
-            sprintf(buf, "savegame.%03i", i);
+            sprintf(buf, "%s/savegame.%03i", dirname, i);
             rc = TRUE;
             for (j = 1; j < SCount; j++)
-                if (strcasecmp(buf, SFiles[j]) == 0) {rc = FALSE; break;}
+                if (strcmp(buf, SFiles[j]) == 0) {rc = FALSE; break;}
             if (rc) {
-                SFiles[0] = (char*) memalloc(13);
-                strcpy(SFiles[0], buf);
+                SFiles[0] = (char*) strdup(buf);
                 SNames[0] = (char*) memalloc(strlen(SigText[TXT_NEW]) + 1);
                 strcpy(SNames[0], SigText[TXT_NEW]);
                 STimes[0] = 0;

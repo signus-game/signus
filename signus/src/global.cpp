@@ -102,7 +102,7 @@ int iniTitledAnims, iniInterpolateAnims;
 
 
 
-static bool dirExists(const char *filename)
+bool dirExists(const char *filename)
 {
     struct stat st;
     return stat(filename, &st) == 0 && S_ISDIR(st.st_mode);
@@ -472,7 +472,6 @@ const char *getSignusConfigDir()
         strncpy(inidir, home, 1024);
         strncat(inidir, "/.signus", 1024);
         
-        struct stat statbuf;
         if (!dirExists(inidir))
         {
             mkdir(inidir, 0700);
