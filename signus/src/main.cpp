@@ -22,7 +22,6 @@
 
 
 #include "headers.h"
-#include "resource.h"
 #include "events.h"
 #include "graphio.h"
 #include "engtimer.h"
