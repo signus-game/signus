@@ -5,7 +5,7 @@ AC_PREREQ(2.52)
 
 AC_INIT([signus], [1.96.0], [vaclav.slavik@matfyz.cz])
 
-AC_CONFIG_SRCDIR([signus.iss])
+AC_CONFIG_SRCDIR([signus.spec])
 AC_CONFIG_AUX_DIR([admin])
 
 AC_CANONICAL_SYSTEM
@@ -66,8 +66,24 @@ AC_MSG_CHECKING(for Vorbis)
 AC_CHECK_LIB(jpeg, jpeg_set_colorspace, [], 
       [AC_MSG_ERROR([libjpeg is required by Signus.])])
 
+AC_MSG_CHECKING([for SDL_mixer >= 1.2.5])
+  AC_TRY_COMPILE([
+  #include <SDL/SDL_mixer.h>
+  #if !( \
+       (MIX_MAJOR_VERSION > 1) || \
+       (MIX_MAJOR_VERSION == 1 && MIX_MINOR_VERSION > 2) || \
+       (MIX_MAJOR_VERSION == 1 && MIX_MINOR_VERSION == 2 && \
+          MIX_PATCHLEVEL >= 5))
+      #error "SDL_mixer too old!"
+  #endif
+  ], [], 
+  [AC_MSG_RESULT([yes])],
+  [
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([SDL_mixer >= 1.2.5 is required by Signus.])
+  ])
 
-dnl FIXME - check for libjpeg
+
 dnl FIXME - make it possible to compile signus w/o NASM
 dnl FIXME - check for version-data file and contained version
 
@@ -89,8 +105,6 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
 AC_SUBST(NASMFLAGS)
 AC_SUBST(RESCOMP)
-
-AC_CONFIG_SUBDIRS(SDL_mixer-1.2.4-patched)
 
 AM_CONFIG_HEADER([config.h])
 
