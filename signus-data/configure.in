@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)
 AC_PREREQ(2.52)
 
-AC_INIT([signus-data], [1.96], [vaclav.slavik@matfyz.cz])
+AC_INIT([signus-data], [1.96], [vslavik@fastmail.fm])
 
 AC_CONFIG_SRCDIR([utils/makedat.cpp])
 AC_CONFIG_AUX_DIR([admin])

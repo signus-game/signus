@@ -13,7 +13,7 @@ Summary:       Strategy game Signus: The Artefact Wars
 License:       GPL
 Group:         Games/Strategy
 URL:           http://signus.sourceforge.net
-Packager:      Vaclav Slavik <vaclav.slavik@matfyz.cz>
+Packager:      Vaclav Slavik <vslavik@fastmail.fm>
 BuildRoot:     /var/tmp/%{name}-%{version}-root
 
 Requires:      SDL

@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)
 AC_PREREQ(2.52)
 
-AC_INIT([signus], [1.96.0], [vaclav.slavik@matfyz.cz])
+AC_INIT([signus], [1.96.0], [vslavik@fastmail.fm])
 
 AC_CONFIG_SRCDIR([signus.spec])
 AC_CONFIG_AUX_DIR([admin])
