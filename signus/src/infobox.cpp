@@ -35,6 +35,7 @@ implementace Infoboxu jednotky (TUnit::DetailedInfo()...)
 #include "anims.h"
 #include "sound.h"
 
+#include "miniSDL_image.h"
 
     
 
@@ -196,7 +197,19 @@ TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) : TDialog(ax, ay, 620, 460,
         e.Mouse.Buttons = mbBottomButton | mbLeftButton | mbRightButton;
         PutEvent(&e);
     }
-    DLG_backimg[0] = 0; // to disable redrawing
+    
+    //DLG_backimg[0] = 0; // to disable redrawing
+    
+    char filename[1024];
+    SDL_Surface *image;
+    snprintf(filename, 1024,
+             "%s/nolang/unit-images/unit%i.jpg",
+             getSignusDataDir(), unit->GetType());
+    image = IMG_Load(filename);
+    byte *pall = (byte*)memalloc(256 * 192);
+    paletizeSurface(pall, image, "pal_rgb");
+    SDL_FreeSurface(image);
+    Insert(new TBitmap(22, 22, FALSE, pall, 256, 192));
 }
 
 

@@ -578,3 +578,33 @@ void FadeOut(char *paldat, int dlay)
     signus_suspended = FALSE;
 }
 
+
+
+
+#define PRECISION      5
+#define VALUES         (1<<PRECISION)
+#define STEP           (1<<(8-PRECISION))
+
+
+void paletizeSurface(byte *output, SDL_Surface *surf, char *tableName)
+{
+    byte *table = (byte*) GraphicsDF->get(tableName);
+    byte *Pout, *Pin;
+    int x, y;
+    int delta = surf->pitch - surf->w*3;
+    byte r,g,b;
+  
+    for (Pout = output, Pin = (byte*)surf->pixels, y = surf->h; y > 0; 
+         y--, Pin += delta)
+    {
+        for (x = surf->w; x > 0; x--)
+        {
+            r = *(Pin++)/STEP;
+            g = *(Pin++)/STEP;
+            b = *(Pin++)/STEP;
+            *(Pout++) = table[r*VALUES*VALUES + g*VALUES + b];
+        }
+    }
+    
+    free(table);
+}

@@ -121,4 +121,7 @@ extern void FadeOut(char *paldat, int dlay);
 extern void FadeIn(char *paldat, int dlay);
 
 
+// converts RGB SDL surface into 8bit palettized image array
+extern void paletizeSurface(byte *output, SDL_Surface *surf, char *tableName);
+
 #endif
