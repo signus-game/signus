@@ -50,8 +50,21 @@ dnl         use it if we detect new enough version of nasm
 
 AM_PATH_SDL(1.2.0, [], [AC_MSG_ERROR([SDL is required by Signus.])])
 
+XIPH_PATH_OGG([], [AC_MSG_ERROR([Ogg Vorbis is required by Signus.])])
+AC_MSG_CHECKING(for Vorbis)
+  AC_TRY_COMPILE([
+  #include <vorbis/vorbisfile.h>
+  ], [], 
+  [AC_MSG_RESULT([yes])],
+  [
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([Ogg Vorbis is required by Signus.])
+  ])
 
-dnl FIXME - check for SDL_image
+AC_CHECK_LIB(jpeg, jpeg_set_colorspace, [], 
+      [AC_MSG_ERROR([libjpeg is required by Signus.])])
+
+
 dnl FIXME - check for libjpeg
 dnl FIXME - make it possible to compile signus w/o NASM
 dnl FIXME - check for version-data file and contained version
@@ -74,6 +87,8 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
 AC_SUBST(NASMFLAGS)
 AC_SUBST(RESCOMP)
+
+AC_CONFIG_SUBDIRS(SDL_mixer-1.2.4-patched)
 
 AM_CONFIG_HEADER([config.h])
 

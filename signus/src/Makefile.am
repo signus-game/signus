@@ -1,5 +1,6 @@
 
-INCLUDES = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src
+INCLUDES = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
+           -I$(top_srcdir)/SDL_mixer-1.2.4-patched
 
 X86_FILES = \
            engdraw_x86.asm \
@@ -80,7 +81,9 @@ AI_FILES = \
 bin_PROGRAMS = signus
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES)
 signus_LDADD = $(SDL_LIBS) \
-               -lSDL_mixer \
+               -L../SDL_mixer-1.2.4-patched -lsignusSDL_mixer \
+               -L../SDL_mixer-1.2.4-patched/mikmod -lsignusmikmod \
+               -lvorbisfile -lvorbis -logg \
                -L../iniparser -liniparser \
                -L../sdlimage -lminiSDLimage -ljpeg
 
