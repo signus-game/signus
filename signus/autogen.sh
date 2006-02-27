@@ -1,9 +1,9 @@
 #!/bin/sh
 
-aclocal-1.6 -I admin
+aclocal -I admin
 autoconf
 autoheader
-automake-1.6 -a -c --foreign
+automake -a -c --foreign
 
 
 #libtoolize -c -f
