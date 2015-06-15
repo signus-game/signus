@@ -339,8 +339,7 @@ int InitGlobal()
     TinyFont = TTF_OpenFont(fontfileTiny, 10);
     TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
     
-    rt = (int)NormalFont & (int)NormalFont & (int)TinyFont;
-    if (rt == 0) return 0;
+    if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) return 0;
     
     MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
     lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
