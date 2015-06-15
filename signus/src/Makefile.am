@@ -1,15 +1,6 @@
 
-INCLUDES = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
+AM_CPPFLAGS = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
 		   -I$(top_srcdir)/sdlimage
-
-X86_FILES = \
-           engdraw_x86.asm \
-           graydark_x86.asm
-
-GENERIC_FILES = \
-           graydark_g.c \
-           engdraw_g_1.cpp \
-           engdraw_g_2.cpp
 
 ENGINE_FILES = \
            etables.cpp \
@@ -51,7 +42,9 @@ ENGINE_FILES = \
            graphio.cpp \
            main.cpp \
            mission_screen.cpp \
-           $(GENERIC_FILES)
+           graydark_g.c \
+           engdraw_g_1.cpp \
+           engdraw_g_2.cpp
 
 AI_FILES = \
            ai/ai.cpp \

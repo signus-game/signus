@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)
 AC_PREREQ(2.52)
 
-AC_INIT([signus], [1.96.0], [vslavik@fastmail.fm])
+AC_INIT([signus], [1.96.0], [zarevucky.jiri@gmail.com])
 
 AC_CONFIG_SRCDIR([signus.spec])
 AC_CONFIG_AUX_DIR([admin])
@@ -24,7 +24,7 @@ if test "$build" != "$host" ; then
     STRIP=$host_alias-strip
 fi
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([subdir-objects])
 
 AM_MAINTAINER_MODE
 
@@ -39,16 +39,6 @@ AC_PROG_RANLIB
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
-
-
-AC_ARG_VAR(NASM, Path to nasm executable)
-AC_PATH_PROG(NASM, nasm, [])
-if test x$NASM = x ; then
-    AC_MSG_ERROR([NASM is needed to compile assembly parts of Signus.])
-fi
-NASMFLAGS="-f elf"
-dnl FIXME - nasm 0.98.34 can understand -On flag (gcc-like optimalization),
-dnl         use it if we detect new enough version of nasm
 
 AM_PATH_SDL(1.2.0, [], [AC_MSG_ERROR([SDL is required by Signus.])])
 
