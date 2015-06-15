@@ -229,7 +229,7 @@ extern void ScrollTo(int x, int y);
 extern void ScrollRel(int rx, int ry);
 
 extern int RedrawMapLocks;
-inline void RedrawMap() {if (!RedrawMapLocks) ScrollTo(MapPos.x, MapPos.y);};
+inline void RedrawMap() {if (!RedrawMapLocks) ScrollTo(MapPos.x, MapPos.y);}
 
 
 // Funkce sprazene s malou mapickou vpravo nahore:

@@ -23,8 +23,6 @@
 // Zobrazovani dojezdu a dostrelu na mape
 
 
-#include "headers.h"
-
 #include "showrngs.h"
 #include "engine.h"
 #include "units.h"
@@ -135,7 +133,6 @@ static int candraw(int i)
 
 void DrawRangesOnField(int x, int y, int drawx, int drawy)
 {
-	int l, r, u, d;
 	int i;
 	int clr;
 	TRngItem *it;

@@ -27,7 +27,6 @@ implementace Infoboxu jednotky (TUnit::DetailedInfo()...)
 */
 
 
-#include "headers.h"
 
 #include "units.h"
 #include "ui_toolkit.h"
@@ -216,8 +215,8 @@ TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) : TDialog(ax, ay, 620, 460,
 
 int TInfoDialog::SpecialHandle(TEvent *e, int Cmd)
 {
-    if ((e->What == evMouseDown) &&
-        (e->Mouse.Buttons == mbBottomButton | mbLeftButton | mbRightButton)) {
+    if ((e->What == evMouseDown) /* FIXME &&
+        (e->Mouse.Buttons == mbBottomButton | mbLeftButton | mbRightButton)*/) {
         RunAnimation();
         return -1;
     }

@@ -26,7 +26,6 @@
 //
 
 
-#include "headers.h"
 
 #include <SDL_timer.h>
 
@@ -83,7 +82,7 @@ int DoneInteract()
 ///////////////////////////// IKONA //////////////////////////////////
 
 
-TIcon::TIcon(int ax, int ay, int aw, int ah, char *iconid, char sh)
+TIcon::TIcon(int ax, int ay, int aw, int ah, const char *iconid, char sh)
 {   
     x = ax, y = ay, w = aw, h = ah;
     Shortcut = sh;
@@ -439,7 +438,7 @@ void *DrwViewBf;
 int DrwViewBfSz;
 char DLG_backimg[9];
     
-TDialog::TDialog(int ax, int ay, int aw, int ah, char *backimg)
+TDialog::TDialog(int ax, int ay, int aw, int ah, const char *backimg)
 {
     x = ax, y = ay;
     w = (aw / 4) * 4, h = (ah / 4) * 4;

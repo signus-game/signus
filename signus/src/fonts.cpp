@@ -24,13 +24,13 @@
 // Implementace proporcialnich textovych fontu 
 //
 
-#include "headers.h"
+
 #include "graphio.h"
 #include "global.h"
 #include "fonts.h"
 
 void PutStr(void *tar, int tarwidth, int xpoz, int ypoz,
-            char *s, TFont *f, byte clr1, byte clr2)
+            const char *s, TFont *f, byte clr1, byte clr2)
 {
     if (s == NULL || *s == 0)
         return;
@@ -62,7 +62,7 @@ void PutStr(void *tar, int tarwidth, int xpoz, int ypoz,
     //SDL_SetColors(surf, pal->colors, 0, pal->ncolors);
     SDL_SetColors(surf, PaletteSDL, 0, 256);
     
-    SDL_Rect dest_rect = { xpoz, ypoz, 0, 0 };
+    SDL_Rect dest_rect = { (Sint16)xpoz, (Sint16)ypoz, 0, 0 };
     SDL_BlitSurface(text, NULL, surf, &dest_rect);
     
     SDL_FreeSurface(text);

@@ -27,7 +27,7 @@ animace ohnu, davani novych terenu, ...
 
 */
 
-#include "headers.h"
+
 #include "fields.h"
 #include "explode.h"
 #include "weapons.h"

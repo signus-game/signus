@@ -93,7 +93,7 @@ extern void SetVolume(int effects, int speech, int music);
 
 // hudba: -------
 
-extern int PlayMusic(char *name);
+extern int PlayMusic(const char *name);
         // prehraje hudbu daneho jmena. Nejprve zkousi v music.dat, potom
         // to jmeno jakozto soubor...
 extern void StopMusic();
@@ -107,7 +107,7 @@ extern int IsMusicPlaying();
 // samply: ------
 
 
-extern MIDASsample LoadSample(char *name, int loop);
+extern MIDASsample LoadSample(const char *name, int loop);
         // nacte sample (pokud uz je v pameti, jenom zvysi citac
         // pouzivanosti
 
@@ -131,7 +131,7 @@ extern void FadeInSample(MIDASsamplePlayHandle sample, unsigned volume);
 
 // speech: --------
 
-extern void SaySpeech(char *name, int priority);
+extern void SaySpeech(const char *name, int priority);
         // rekne to ten urcity sample 
 
         

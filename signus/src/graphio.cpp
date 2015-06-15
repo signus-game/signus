@@ -525,7 +525,7 @@ void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byt
 
 
 
-void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, char *text)
+void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text)
 {
     int part = (int)((double)w * value);
 
@@ -586,7 +586,7 @@ void FadeOut(char *paldat, int dlay)
 #define STEP           (1<<(8-PRECISION))
 
 
-void paletizeSurface(byte *output, SDL_Surface *surf, char *tableName)
+void paletizeSurface(byte *output, SDL_Surface *surf, const char *tableName)
 {
     byte *table = (byte*) GraphicsDF->get(tableName);
     byte *Pout, *Pin;

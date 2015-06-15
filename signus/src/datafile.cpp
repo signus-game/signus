@@ -23,8 +23,7 @@
 // Modul datovych souboru
 //
 
-
-#include "headers.h"
+#include <cstring>
 
 #include "datafile.h"
 #include "system.h"
@@ -71,7 +70,7 @@ void *StdDataRead(FILE *f)
 
 
 
-TDataFile::TDataFile(char *name, int flags, char *aprefix, char areplac,
+TDataFile::TDataFile(const char *name, int flags, const char *aprefix, char areplac,
 			               TDataWriteFce wfce, TDataReadFce rfce)
 {
 	writefce = wfce;
@@ -111,7 +110,7 @@ TDataFile::TDataFile(char *name, int flags, char *aprefix, char areplac,
 
 
 			
-int TDataFile::put(char *name, void *ptr, size_t size)
+int TDataFile::put(const char *name, void *ptr, size_t size)
 {
 	int indx = -1;
 
@@ -123,7 +122,7 @@ int TDataFile::put(char *name, void *ptr, size_t size)
 		
 	// nahrazeni stare polozky (musi mit stejnou velikost):
 	if ((indx != -1)) {
-		int oldsize = index[indx].size;
+		size_t oldsize = index[indx].size;
 		changed = 1;
 		fseek(resf, index[indx].offset, SEEK_SET);
 		index[indx].size = writefce(resf, ptr, size);
@@ -148,7 +147,7 @@ int TDataFile::put(char *name, void *ptr, size_t size)
 
 
 
-int TDataFile::lookfor(char *name, int lo, int hi)
+int TDataFile::lookfor(const char *name, int lo, int hi)
 {
 	int pos = (hi + lo) / 2;
 	int res = strcmp(name, index[pos].name);
@@ -165,7 +164,7 @@ int TDataFile::lookfor(char *name, int lo, int hi)
 
 
 
-void *TDataFile::get(char *name)
+void *TDataFile::get(const char *name)
 {
 	void *ptr = NULL;
 	char nm[9];

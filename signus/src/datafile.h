@@ -78,11 +78,11 @@ class TDataFile {
 			char readreplacer;
 
 		public:
-			TDataFile(char *name, int flags, char *aprefix = NULL, char areplac = '?',
+			TDataFile(const char *name, int flags, const char *aprefix = NULL, char areplac = '?',
 			          TDataWriteFce wfce = StdDataWrite, TDataReadFce rfce = StdDataRead);
-			int put(char *name, void *ptr, size_t size);
-			void *get(char *name);
-			int lookfor(char *name, int lo, int hi);
+			int put(const char *name, void *ptr, size_t size);
+			void *get(const char *name);
+			int lookfor(const char *name, int lo, int hi);
 			int getcount() {return count;}
 			TDataIndex *getinfo(int pos) {return &(index[pos]);}
 			void sortindex(int bywhat);

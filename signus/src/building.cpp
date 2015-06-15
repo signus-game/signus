@@ -26,8 +26,6 @@ Implementace BUDOV
 
 */
 
-#include "headers.h"
-
 #include <SDL_timer.h>
 
 #include "building.h"
@@ -185,7 +183,7 @@ TSprite *TBuilding::GetStatusBar()
 void TBuilding::GetUnitInfo()
 {
     char cbuf[30];
-    int i, clr;
+    int clr;
 
     TObject::GetUnitInfo(); 
     PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
@@ -524,7 +522,7 @@ void TArtefactHouse::Draw()
     lastdrawid[ID] = DrawingID;
     
     TField *f = GetField(X, Y);
-    TSprite *s, *sst;
+    TSprite *s;
     int rrx = GetRelX(X), rry = GetRelY(Y);
     int drawx = 28 * (rrx - rry) + LittleX + 28;
     int drawy = 14 * (rrx + rry - (f->Height)) + LittleY + 14;
@@ -670,16 +668,24 @@ int TBase::UnloadUnit(TUnit *u)
 void TBase::DoInventory()
 {
     int rt, uurt;
-    TUnit *u;
     TTransBox *tb;
     
     SelectField(0, 0);
-    if (Capacity == TCAPACITY_BIG)
-        tb = new TTransBox(472, 202, Inventory, LoadedUnits, (byte*)BmpBigInventory);
-    else if (Capacity == TCAPACITY_SMALL)
-        tb = new TTransBox(128, 202, Inventory, LoadedUnits, (byte*)BmpSmallInventory);
-    else if (Capacity == TCAPACITY_MEDIUM)
-        tb = new TTransBox(248, 202, Inventory, LoadedUnits, (byte*)BmpMediumInventory);
+    
+	switch (Capacity) {
+	case TCAPACITY_BIG:
+		tb = new TTransBox(472, 202, Inventory, LoadedUnits, (byte*)BmpBigInventory);
+		break;
+	case TCAPACITY_SMALL:
+		tb = new TTransBox(128, 202, Inventory, LoadedUnits, (byte*)BmpSmallInventory);
+		break;
+	case TCAPACITY_MEDIUM:
+		tb = new TTransBox(248, 202, Inventory, LoadedUnits, (byte*)BmpMediumInventory);
+		break;
+	default:
+		abort();
+	}
+
     tb->Show();
     while (TRUE) {      
         rt = tb->Handle();
@@ -713,7 +719,7 @@ int TBase::InfoEvent(TEvent *e)
 {
     int rt = TBuilding::InfoEvent(e);
     
-    if (!rt & IconTransport->Handle(e)) {
+    if (!rt && IconTransport->Handle(e)) {
         DoInventory();
         return TRUE;
     }
@@ -895,7 +901,7 @@ int TFactory::InfoEvent(TEvent *e)
 {
     int rt = TBuilding::InfoEvent(e);
     
-    if (!rt & IconTransport->Handle(e)) {
+    if (!rt && IconTransport->Handle(e)) {
         DoProducing();
         return TRUE;
     }
@@ -1025,7 +1031,7 @@ void TFactory::Select()
 
 void TFactory::TurnReset()
 {
-    TObject *obj;
+    TObject *obj = NULL;
     
     TBuilding::TurnReset();
     if (CurrentJob != 0) {
@@ -1389,7 +1395,6 @@ void TRepairBay::TurnReset()
 int TRepairBay::GetLoadingPoint(int *x, int *y, TUnit *u)
 {
     int t, i, j, best = 0xFFFF;
-    TField *f;
     
     if (u->X != -1) {
         if ((u->ID < BADLIFE) && (this->ID >= BADLIFE)) return FALSE;
@@ -1407,7 +1412,6 @@ int TRepairBay::GetLoadingPoint(int *x, int *y, TUnit *u)
     else {
         for (i = -1; i <= 3; i++)
             for (j = -1; j <= 3; j++) {
-                f = GetField(X + i, Y + j);
                 if (u->CanGoOnField(X + i, Y + j)) {
                     *x = X+ i, *y = Y + j;
                     best = 0;
@@ -1549,7 +1553,7 @@ inline int freefy(int id, int x, int y, int delka)
 
 TPoint TDocks::GetLoadingPoint(TUnit *u)
 {
-    int ok, delka;
+    int delka;
     TPoint p;
     
     switch (u->Type) {
@@ -1617,7 +1621,6 @@ int TDocks::LoadUnit(TUnit *u)
 
 int TDocks::UnloadUnit(TUnit *u)
 {
-    TField *f = GetField(X + 2, Y + 6);
     TPoint p;
     
     if (u->TimeUnits == 0) return -2;

@@ -434,8 +434,8 @@ extern int UnitActionType;
 extern int SelectCrossLock;
     // Indik. zda se ma zobrazovat kriz na zamerene jednotce
     // (promnene udava pocet zamku to zakazujicich)
-inline void LockSelectCross() {SelectCrossLock++;};
-inline void UnlockSelectCross() {SelectCrossLock--;};
+inline void LockSelectCross() {SelectCrossLock++;}
+inline void UnlockSelectCross() {SelectCrossLock--;}
 
 extern int StatusbarLock; 
         // zamyka zobraz ukazatele stavu

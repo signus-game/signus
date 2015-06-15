@@ -22,8 +22,6 @@
 
 // Tabulky pro ENGINE a UNITS atd.
 
-#include "headers.h"
-
 #include "etables.h"
 
 

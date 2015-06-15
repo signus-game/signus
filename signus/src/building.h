@@ -41,7 +41,7 @@ class TBuilding : public TObject {
 					// priznak urcuje, jestli je prave ted budova
 					// opravovana (v kazdem kole 50 HP)
 			
-			TBuilding() : TObject() {};
+			TBuilding() : TObject() {}
 			void Init(int x, int y, int party, FILE *f = NULL);
 			void WriteInitReq(FILE *f);
 			void Read(FILE *f);
@@ -301,9 +301,9 @@ class TDocks : public TBase {
 
 extern int MoneyGoodlife, MoneyBadlife;
 		// penize...
-inline int GetMoney(int unitID) {return ((unitID  < BADLIFE) ? MoneyGoodlife : MoneyBadlife);};
+inline int GetMoney(int unitID) {return ((unitID  < BADLIFE) ? MoneyGoodlife : MoneyBadlife);}
 		// vraci pocet penez strany, kam patri ta dana jednotka
-inline void SetMoney(int unitID, int value) {((unitID  < BADLIFE) ? MoneyGoodlife : MoneyBadlife) = value;};
+inline void SetMoney(int unitID, int value) {((unitID  < BADLIFE) ? MoneyGoodlife : MoneyBadlife) = value;}
 		// nastavi prasule
 
 #endif

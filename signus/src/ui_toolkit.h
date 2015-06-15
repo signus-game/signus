@@ -48,7 +48,7 @@ class TIcon {
             int x, y, w, h;
             char Shortcut;
         
-            TIcon(int ax, int ay, int aw, int ah, char *iconid, char sh = 0);
+            TIcon(int ax, int ay, int aw, int ah, const char *iconid, char sh = 0);
             void Draw(int isdown = FALSE);
             int Handle(TEvent *e);
             ~TIcon() {DisposeArray(IconPic, 2);};
@@ -139,7 +139,7 @@ class TDialog {
             TView *Subviews[MAX_DLGVIEWS];
             int SubviewsCnt;
             
-            TDialog(int ax, int ay, int aw, int ah, char *backimg);
+            TDialog(int ax, int ay, int aw, int ah, const char *backimg);
             void PaintRect(int ay, int ah);
                     // kresli cast dialogu na obrazovku - volit. meze y1, y2
             void Draw();

@@ -22,7 +22,6 @@
 
 // Graficky IZO-3D engine
 
-#include "headers.h"
 
 #include "engine.h"
 #include "graphio.h"
@@ -323,7 +322,7 @@ void DoneBitmaps()
 
 unsigned MissionWrite(FILE *fi, void *ptr, size_t size)
 {
-    int i, j, k;
+    int i, j;
     TField *f;
     byte TL1[1024], TL2[1024];
 
@@ -373,7 +372,6 @@ static char MR_missionpicture[20];
 void *MissionRead(FILE *fi)
 {
     int i, j, k;
-    TField *f;
     byte TableL1[1024], TableL2[1024];
     
     StartLoading(MR_missionpicture);
@@ -629,7 +627,6 @@ void PaintUnitsBelow(int x, int y)
 
 void GenerateUnitsList()
 {
-    TField *f;
     TPoint a, b;
     int i;
 
@@ -784,7 +781,7 @@ void ScrollTo(int x, int y)
 
 void ScrollRel(int rx, int ry)
 {
-    int i, j;
+    int i;
     TPoint a, b;
 
     MapPos.x += rx;

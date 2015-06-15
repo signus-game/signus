@@ -26,8 +26,6 @@
 
 
 
-#include "headers.h"
-
 #include <SDL_timer.h>
 
 #include "units.h"
@@ -155,7 +153,7 @@ void AddExplode1x1(int x, int y, int typ, int xofs, int yofs)
         BoomBuf[BoomBufPos].lity = yofs;
         BoomBuf[BoomBufPos].sprite = Explosions1x1[expnum][i];
         if (i != 0) {
-            BoomBuf[BoomBufPos].sound = NULL;
+            BoomBuf[BoomBufPos].sound = 0;
             BoomBuf[BoomBufPos].start = 0;  
         }
     }
@@ -186,7 +184,7 @@ void AddExplode3x3(int x, int y, int typ, int xofs, int yofs, int mega)
         BoomBuf[BoomBufPos].lity = yofs;
         BoomBuf[BoomBufPos].sprite = Explosions3x3[expnum][i];
         if (i != 0) {
-            BoomBuf[BoomBufPos].sound = NULL;
+            BoomBuf[BoomBufPos].sound = 0;
             BoomBuf[BoomBufPos].start = 0;  
         }
     }
@@ -225,7 +223,7 @@ void DoExplosion()
     int troska;
 
     TField *f;
-    int tr, rrx, rry, cx, cy;
+    int tr, rrx, rry;
     
     if (BoomBufSize == 0) return;
 
@@ -281,7 +279,7 @@ void DoExplosion()
             b = BoomBuf + i;            
             if (b->time == time) {
                 DrawSprite(b->x, b->y, b->sprite);
-                if (b->sound != NULL) PlaySample(b->sound, 100+time, EffectsVolume, GetFieldPanning(b->fx, b->fy));
+                if (b->sound != 0) PlaySample(b->sound, 100+time, EffectsVolume, GetFieldPanning(b->fx, b->fy));
 
                 // kratery + odstraneni jednotek znicenych:
                 {

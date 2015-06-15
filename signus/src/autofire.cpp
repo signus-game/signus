@@ -20,16 +20,13 @@
  */
 
 
-
-#include "headers.h"
+#include <cassert>
 
 #include "autofire.h"
 #include "units.h"
 #include "visiblty.h"
 #include "sound.h"
 #include "mouse.h"
-
-
 
 
 static word *AF_Map = NULL;
@@ -663,7 +660,11 @@ static int UnitCanShoot(TUnit *u)
     if ((u->Type >= unIkaros) && (u->Type <= unRex)) {
         if (((TAircraft*)u)->FlyLevel == 0) return FALSE;
     }
-    for (i = 0; i < u->WeaponsCnt; i++)
+    
+    int cnt = u->WeaponsCnt;
+    assert(cnt <= 4);
+    
+    for (i = 0; i < cnt; i++)
         if ((u->Weapons[i]->Ammo > 0) &&
             (u->Weapons[i]->TimeLost <= u->TimeUnits)) return TRUE;
     
@@ -678,7 +679,10 @@ static int PossibleAttack(TUnit *u, int x, int y)
     if ((AF_from == GOODLIFE) && (GetField(x, y)->Visib != 2)) return FALSE;
     if ((AF_from == BADLIFE) && (GetBadlifeVisib(x, y) != 2)) return FALSE;
     
-    for (int i = 0; i < u->WeaponsCnt; i++)
+    int cnt = u->WeaponsCnt;
+    assert(cnt <= 4);
+    
+    for (int i = 0; i < cnt; i++)
         if ((u->Weapons[i]->Ammo > 0) &&
             (u->Weapons[i]->TimeLost <= u->TimeUnits) &&
             (u->Weapons[i]->IsInRange(u, u->X, u->Y, x, y))) return TRUE;
@@ -690,7 +694,10 @@ static int GetUnitMaxRange(TUnit *u)
 {
     int mr = 0;
     
-    for (int i = 0; i < u->WeaponsCnt; i++) {
+    int cnt = u->WeaponsCnt;
+    assert(cnt <= 4);
+    
+    for (int i = 0; i < cnt; i++) {
         if (u->Weapons[i]->MaxRange > mr)
             mr = u->Weapons[i]->MaxRange;
     }
@@ -750,7 +757,7 @@ void RemoveFromAutofire(int ID)
 
 void ResetAutofire(int party)
 {
-    int i, j, k, m;
+    int i, k, m;
     TUnit *u;
     
     AF_Reseted = TRUE;
@@ -804,8 +811,8 @@ int ChooseAttack(TUnit *u, TUnit *unit)
 
 int CanAutofireOn(TUnit *unit)
 {
-    int i, ca, oldcw;
-    TUnit *u, *su;
+    int i, ca;
+    TUnit *u;
     
     if (!AF_Reseted) return FALSE;
     if (!AF_Map[unit->X + MapSizeX * unit->Y]) return FALSE;
@@ -872,7 +879,6 @@ int ConfirmAF(TUnit *u, TUnit *t)
 {
     char b[200];
     int cm;
-    static int last_cm = 0;
 
     if (ConAF_always) return TRUE;
     if (ConAF_table[u->ID]) return FALSE;
@@ -893,7 +899,6 @@ int ConfirmAF(TUnit *u, TUnit *t)
     MouseHide();
     if (cm == cmAlways) ConAF_always = TRUE;
     if (cm == cmNo) ConAF_table[u->ID] = TRUE;
-    last_cm = cm;
     ConAF_unit = t;
     ConAF_used = TRUE;
     return (cm != cmNo);

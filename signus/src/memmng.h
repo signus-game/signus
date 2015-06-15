@@ -47,7 +47,7 @@
 // Fce pro nacteni pole z .DAT a jeho uvolneni z pameti:
 //
 
-extern void LoadArray(void *array[], int count, TDataFile *df, char *index, byte mask[] = NULL);
+extern void LoadArray(void *array[], int count, TDataFile *df, const char *index, byte mask[] = NULL);
 extern void DisposeArray(void *array[], int count);
 
 #endif

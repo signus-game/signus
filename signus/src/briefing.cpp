@@ -27,7 +27,6 @@
 
 
 
-#include "headers.h"
 
 #include "briefing.h"
 #include "global.h"
@@ -36,7 +35,7 @@
 #include "fonts.h"
 #include "mouse.h"
 
-#include <assert.h>
+#include <cassert>
 #include <SDL_timer.h>
 
 // Fces:
@@ -414,7 +413,6 @@ void BriefInit(char *FileName)
   int LineLength = 0;
   int LineWordCnt = 0;
   int LastWordLength;
-  int FirstInArt = 0;
   
   NumOfArticles = 0;
   NumOfLines = -1;
@@ -427,7 +425,6 @@ void BriefInit(char *FileName)
         LineLength = GetStrWidth("  ", NormalFont);
         LineWordCnt = 0;
         NumOfArticles++;
-        FirstInArt = 1;
     }
     
     LastWordLength = GetStrWidth(Words[i], NormalFont);
@@ -443,7 +440,6 @@ void BriefInit(char *FileName)
         WordsTypes[i] = 2;
             LineSpace[NumOfLines] = (double)(LinePixels-LineLength)/(double)(LineWordCnt-1);
         
-        FirstInArt = 0;
         LineLength = 0;
         LineWordCnt = 0;
         NumOfLines++;
@@ -585,6 +581,8 @@ int BriefGetEvent()
               return -1;
             case kbBack :
               return -8;
+	    default:
+		return 0;
     }
     }
     return 0;

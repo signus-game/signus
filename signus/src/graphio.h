@@ -103,7 +103,7 @@ extern void CopyFromBmp(void *src, int srcwidth, int x, int y, void *tar, int w,
 // Kresleni do bitmapy:
 extern void BarBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr);
 extern void BarBmpSwap(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2);
-extern void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, char *text);
+extern void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text);
 extern void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2);
 
 
@@ -122,6 +122,6 @@ extern void FadeIn(char *paldat, int dlay);
 
 
 // converts RGB SDL surface into 8bit palettized image array
-extern void paletizeSurface(byte *output, SDL_Surface *surf, char *tableName);
+extern void paletizeSurface(byte *output, SDL_Surface *surf, const char *tableName);
 
 #endif

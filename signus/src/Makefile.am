@@ -1,6 +1,6 @@
 
-AM_CPPFLAGS = -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
-		   -I$(top_srcdir)/sdlimage
+AM_CPPFLAGS = -ansi -pedantic -Wall -Werror -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
+		   -I$(top_srcdir)/sdlimage 
 
 ENGINE_FILES = \
            etables.cpp \
