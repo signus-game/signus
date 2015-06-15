@@ -7,7 +7,9 @@ X86_FILES = \
            graydark_x86.asm
 
 GENERIC_FILES = \
-           graydark_g.c
+           graydark_g.c \
+           engdraw_g_1.cpp \
+           engdraw_g_2.cpp
 
 ENGINE_FILES = \
            etables.cpp \
@@ -49,7 +51,7 @@ ENGINE_FILES = \
            graphio.cpp \
            main.cpp \
            mission_screen.cpp \
-           $(X86_FILES)
+           $(GENERIC_FILES)
 
 AI_FILES = \
            ai/ai.cpp \
