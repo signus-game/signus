@@ -30,7 +30,6 @@
 //
 
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -259,7 +258,6 @@ TPoint MinePlaces7 [] = { 62,63, 63,65, 67,63, 74,65,
 void InitAI7 ()
 {
     int i,j;
-    TBase *Base;
     TField *f;
     TUnit *u;
     
@@ -476,10 +474,7 @@ void SaveArtificialIntelligence7 (FILE *f)
 
 int ArtificialIntelligence7 ()
 {
-    int i, j, r, st, x, y, id;
-    char buf [40];
-    TBase *Base;
-    TField *f;
+    int i, st, id;
 
     Message (SigText[TXT_AI_ANALYSE]);
     

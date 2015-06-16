@@ -21,8 +21,6 @@
 
 // Rozhrani mezi Signusem a MikModem - zvuky a hudba
 
-#include "headers.h"
-
 #include <malloc.h>
 #include <math.h>
 #include "global.h"
@@ -84,11 +82,6 @@ int DoneSound()
 }
 
 
-
-
-
-static int snd_music_channels = 0;
-
 void OpenChannels(int music, int sfx)
 {
     if (MIDAS_disabled) return;
@@ -142,10 +135,8 @@ static int MusicJustStarted = FALSE;
 int PlayMusic(const char *name)
 {
 	// FIXME
-    char filnm[0124];
+    char filnm[1024];
     FILE *f;
-    int size, pos;
-    void *ptr;
 
     if (MIDAS_disabled) return TRUE;
 
@@ -221,12 +212,13 @@ typedef struct {
 
 static TSampleRecord Samples[MAX_SAMPLES];
 
-
-struct {
+typedef struct {
     int                   priority;
     int                   volume;
     MIDASsamplePlayHandle handle;
-} PSmp[EFFECT_CHANNELS];
+} TChannel;
+
+TChannel PSmp[EFFECT_CHANNELS];
 
 
 void Clear_PSmp()
@@ -428,7 +420,7 @@ void SaySpeech(const char *name, int priority)
         StopSample(speech_handle);
         FreeSample(speech_sample);
         speech_handle_used = 0;
-        speech_handle = NULL;
+        speech_handle = 0;
         strcpy(old_speech, "???");
     }
     if ((speech_handle_used) && (speech_priority > priority)) return;

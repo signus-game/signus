@@ -30,7 +30,6 @@ Trasportni jednotky - Uran, Gargantua, Oasa, ...
 
 #define CROSS_REFERENCE_TO_SHIPS
 
-#include "headers.h"
 #include "utrans.h"
 #include "untables.h"
 #include "transbox.h"
@@ -63,7 +62,7 @@ void TTransporter::Setup()
 {
 	TUnit::Setup();
 	LoadedUnits = 0;
-	for (int i = 0; i < MAX_TCAPACITY; i++) Inventory[i] = NULL;
+	for (int i = 0; i < MAX_TCAPACITY; i++) Inventory[i] = 0;
 }
 
 
@@ -92,7 +91,6 @@ int TTransporter::GetTotalWeight()
 int TTransporter::GetLoadingPoint(int *x, int *y, TUnit *u)
 {
 	int t, i, j, best = 0xFFFF;
-	TField *f;
 	
 	if (u->X != -1) {
 		if ((u->ID < BADLIFE) && (this->ID >= BADLIFE)) return FALSE;
@@ -110,7 +108,6 @@ int TTransporter::GetLoadingPoint(int *x, int *y, TUnit *u)
 	else {
 		for (i = -1; i <= 1; i++)
 			for (j = -1; j <= 1; j++) {
-				f = GetField(X + i, Y + j);
 				if (u->CanGoOnField(X + i, Y + j)) {
 					*x = X+ i, *y = Y + j;
 					best = 0;
@@ -180,7 +177,6 @@ int TTransporter::UnloadUnit(TUnit *u)
 void TTransporter::DoInventory()
 {
 	int rt, uurt;
-	TUnit *u;
 	TTransBox *tb;
 	
 	SelectField(0, 0);
@@ -190,6 +186,8 @@ void TTransporter::DoInventory()
 		tb = new TTransBox(128, 202, Inventory, LoadedUnits, (byte*)BmpSmallInventory);
 	else if (Capacity == TCAPACITY_MEDIUM)
 		tb = new TTransBox(248, 202, Inventory, LoadedUnits, (byte*)BmpMediumInventory);
+	else
+		abort();
 	
 	tb->Show();
 	while (TRUE) {		
@@ -224,7 +222,7 @@ int TTransporter::InfoEvent(TEvent *e)
 {
 	int rt = TUnit::InfoEvent(e);
 	
-	if (!rt & IconTransport->Handle(e)) {
+	if (!rt && IconTransport->Handle(e)) {
 		DoInventory();
 		return TRUE;
 	}
@@ -269,8 +267,6 @@ void TTransporter::Read(FILE *f)
 
 void TTransporter::Write(FILE *f)
 {
-	int id;
-	
 	TUnit::Write(f);
 	fwrite(&LoadedUnits, 4, 1, f);
 	for (int i = 0; i < LoadedUnits; i++)

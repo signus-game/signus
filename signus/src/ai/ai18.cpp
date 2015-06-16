@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -143,12 +142,7 @@ TPoint MinePlaces18 [] = {
 
 void InitAI18 ()
 {
-    int i,j;
-    TBase *Base;
-    TAirport *Airport;
-    TField *f;
-    TUnit *u;
-    TPoint p;
+    int i;
 
     AttackFieldPos = 0;
     DUPos = 0;
@@ -295,11 +289,7 @@ void SaveArtificialIntelligence18 (FILE *f)
 
 int ArtificialIntelligence18 ()
 {
-    int i, j, k, r, st, x, y, id, h, hmax;
-    TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
+    int i, st;
 
     Message (SigText[TXT_AI_ANALYSE]);
 

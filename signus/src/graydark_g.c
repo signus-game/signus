@@ -24,13 +24,17 @@ extern unsigned char DarkingTable[256], GrayingTable[256];
 void DoDarking(void *buf, int size)
 {
     unsigned char *ptr = (unsigned char*)buf;
-    for (; size; size--)
-        *(ptr++) = DarkingTable[*ptr];
+    for (; size; size--) {
+        *ptr = DarkingTable[*ptr];
+        ptr++;
+    }
 }
 
 void DoGraying(void *buf, int size)
 {
     unsigned char *ptr = (unsigned char*)buf;
-    for (; size; size--)
-        *(ptr++) = GrayingTable[*ptr];
+    for (; size; size--) {
+        *ptr = GrayingTable[*ptr];
+        ptr++;
+    }
 }

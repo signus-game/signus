@@ -29,8 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
-
 #include "aiair.h"
 #include "untables.h"
 
@@ -385,14 +383,18 @@ int TAirArmy::ProblemJednotky (int Unit)
 
 int TAirArmy::PJIkaros (int UnID)
 {
-    int i,j,h,t, weapon, tta, r, st;
-    TField *f;
+    int i,h,t, weapon, tta, st;
     struct {
         TObject *Target;
         int Index;
         TPoint AttackPoint;
         TPoint cil;
     } AkceUUUP,AkceUUP,AkceUP;
+    AkceUUUP.Target = NULL;
+    AkceUUUP.Index = 0;
+    AkceUUUP.AttackPoint = TPoint();
+    AkceUUUP.cil = TPoint();
+    AkceUUP = AkceUP = AkceUUUP;
     TPoint AkceP;
     TUnit *Unit;
     
@@ -412,8 +414,8 @@ int TAirArmy::PJIkaros (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {
@@ -793,14 +795,18 @@ int TAirArmy::PJIkaros (int UnID)
 
 int TAirArmy::PJKobra (int UnID)
 {
-    int i,j,h,t, weapon, tta, r, st;
-    TField *f;
+    int i,h,t, weapon, tta, st;
     struct {
         TObject *Target;
         int Index;
         TPoint AttackPoint;
         TPoint cil;
     } AkceUUUP,AkceUUP,AkceUP;
+    AkceUUUP.Target = NULL;
+    AkceUUUP.Index = 0;
+    AkceUUUP.AttackPoint = TPoint();
+    AkceUUUP.cil = TPoint();
+    AkceUUP = AkceUP = AkceUUUP;
     TPoint AkceP;
     TUnit *Unit;
     
@@ -820,8 +826,8 @@ int TAirArmy::PJKobra (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {
@@ -1220,8 +1226,8 @@ int TAirArmy::PJSaturn (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {
@@ -1416,14 +1422,19 @@ int TAirArmy::PJSaturn (int UnID)
 
 int TAirArmy::PJMystik (int UnID)
 {
-    int i,j,h,t, weapon, tta, r, st;
-    TField *f;
+    int i,h,t, weapon, tta, st;
     struct {
         TObject *Target;
         int Index;
         TPoint AttackPoint;
         TPoint cil;
     } AkceUUUP,AkceUUP,AkceUP;
+    AkceUUUP.Target = NULL;
+    AkceUUUP.Index = 0;
+    AkceUUUP.AttackPoint = TPoint();
+    AkceUUUP.cil = TPoint();
+    AkceUUP = AkceUP = AkceUUUP;
+    
     TPoint AkceP;
     TUnit *Unit;
     
@@ -1443,9 +1454,9 @@ int TAirArmy::PJMystik (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unHeliport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unHeliport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {
@@ -1829,14 +1840,19 @@ int TAirArmy::PJMystik (int UnID)
 
 int TAirArmy::PJRex (int UnID)
 {
-    int i,j,h,t, weapon, tta, r, st;
-    TField *f;
+    int i,h,t, weapon, tta, st;
     struct {
         TObject *Target;
         int Index;
         TPoint AttackPoint;
         TPoint cil;
     } AkceUUUP,AkceUUP,AkceUP;
+    AkceUUUP.Target = NULL;
+    AkceUUUP.Index = 0;
+    AkceUUUP.AttackPoint = TPoint();
+    AkceUUUP.cil = TPoint();
+    AkceUUP = AkceUP = AkceUUUP;
+    
     TPoint AkceP;
     TUnit *Unit;
     
@@ -1856,9 +1872,9 @@ int TAirArmy::PJRex (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unHeliport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unHeliport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {
@@ -2247,7 +2263,7 @@ int TAirArmy::PJProton (int UnID)
     double h, hmax;
     TPoint start, cil;
     TProton *Unit;
-    TObject *Fuelovnik;
+    TObject *Fuelovnik = NULL;
     double ra, bestra = MaxInt;
 
     
@@ -2257,8 +2273,8 @@ int TAirArmy::PJProton (int UnID)
     // Vybereme nejblizsi letiste
     for (i = BADLIFE; i < UNITS_TOP; i++) {
         UnlockDraw (FALSE); ProcessMapAnim (); LockDraw ();
-        if (Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport
-        || Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna) {
+        if ((Units [i] != NULL && Units [i] -> Type - BADLIFE == unAirport)
+        || (Units [i] != NULL && Units [i] -> Type - BADLIFE == unLaguna)) {
             ra = sqrt ((Units [i] -> X - Unit -> X)*(Units [i] -> X - Unit -> X)
             + (Units [i] -> Y - Unit -> Y)*(Units [i] -> Y - Unit -> Y));
             if (ra < bestra) {

@@ -19,7 +19,6 @@
  *
  */
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -295,7 +294,6 @@ TPoint DeniedPlaces4 [] = {11,49, 12,49, 13,49, 14,49, 13,50, 13,51,
 void InitAI4 ()
 {
     int i,j;
-    TBase *Base;
     TField *f;
     TUnit *u;
 
@@ -703,10 +701,7 @@ void SaveArtificialIntelligence4 (FILE *f)
 
 int ArtificialIntelligence4 ()
 {
-    int i, j, r, st, x, y, id;
-    char buf [40];
-    TBase *Base;
-    TField *f;
+    int i, st, id;
 
     Message (SigText[TXT_AI_ANALYSE]);
     
@@ -2106,7 +2101,7 @@ int ArtificialIntelligence4 ()
 
 int AssignResult4 ()
 {
-    int i, t, j = 0;
+    int i, t = 0, j = 0;
     double d = 0;
     
     for (i = 0; i < BADLIFE; i++)

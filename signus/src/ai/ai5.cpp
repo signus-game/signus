@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -464,11 +463,8 @@ void SaveArtificialIntelligence5 (FILE *f)
 
 int ArtificialIntelligence5 ()
 {
-    int i, j, k, r, st, x, y, id;
+    int i, j, k, st, id;
     TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
 
     Message (SigText[TXT_AI_ANALYSE]);
 

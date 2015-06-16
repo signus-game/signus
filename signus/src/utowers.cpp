@@ -24,8 +24,6 @@
 // Obranne veze:
 
 
-
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include "utowers.h"
@@ -300,7 +298,7 @@ int TThor::InfoEvent(TEvent *e)
     TIcon *i;
     if (IsOverground) i = IconThorIn; else i = IconThorOut;
     
-    if (!rt & i->Handle(e)) {     
+    if (!rt && i->Handle(e)) {     
         GoOverground(!IsOverground);
         ShowUnitInfo();
         return TRUE;

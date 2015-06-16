@@ -24,7 +24,6 @@
 // Tento modul vytvari dialogy pro load/save a provadi i vlastni akci
 //
 
-#include "headers.h"
 #include <time.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -358,21 +357,20 @@ void TLoadSaveDialog::SortFiles(int l, int r)
 
 void TLoadSaveDialog::GetStamp(int num)
 {
-    FILE *f;
 
-    if (!IsSave || (num != 0))
-        f = fopen(SFiles[num], "rb");
+    if (!IsSave || (num != 0)) {
+        FILE *f = fopen(SFiles[num], "rb");
+	if (f != NULL) {
+		fseek(f, sizeof(TSavegameHdr), SEEK_SET);
+		fread(Stamp, STAMP_SZ, 1, f);
+		fclose(f);
+		return;
+	}
+    }
     
-    if (f == NULL || IsSave && (num == 0)) {
-        void *buf = GraphicsDF->get("newsave");
-        memcpy(Stamp, buf, STAMP_SZ);
-        memfree(buf);
-    }
-    else {
-        fseek(f, sizeof(TSavegameHdr), SEEK_SET);
-        fread(Stamp, STAMP_SZ, 1, f);
-        fclose(f);
-    }
+    void *buf = GraphicsDF->get("newsave");
+    memcpy(Stamp, buf, STAMP_SZ);
+    memfree(buf);
 }
 
 

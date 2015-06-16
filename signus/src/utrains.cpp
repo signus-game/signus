@@ -29,8 +29,6 @@ Vlakove jednotky...
 */
 
 
-#include "headers.h"
-
 #include "units.h"
 #include "utrains.h"
 #include "untables.h"
@@ -331,7 +329,7 @@ void TGanymedes::Write(FILE *f)
 void TGanymedes::GetUnitInfo()
 {
     char cbuf[30];
-    int i, clr;
+    int i;
 
     TTrainSupportUnit::GetUnitInfo();   
 

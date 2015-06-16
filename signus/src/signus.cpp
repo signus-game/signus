@@ -27,8 +27,6 @@
 //
 //
 
-
-#include "headers.h"
 #include <time.h>
 #include <SDL_timer.h>
 
@@ -771,7 +769,8 @@ void HandleEvent(TEvent *e)
         
             default :
                 switch (e->Key.CharCode) {
-                    case SHORTCUT_STATUSBAR : case SHORTCUT_STATUSBAR+32 :
+			// FIXME
+                    case SHORTCUT_STATUSBAR :/* case SHORTCUT_STATUSBAR+32 :*/
                         iniShowStatusbar = !iniShowStatusbar;
                         RedrawMap();
                         break;
@@ -790,7 +789,8 @@ void HandleEvent(TEvent *e)
                         if (!SetUnitCursor(uatOccupy)) if (!SetUnitCursor(uatLoadIn)) 
                         SetUnitCursor(uatSupport);
                         break;
-                    case SHORTCUT_NEXTUNIT2 : case SHORTCUT_NEXTUNIT2+32 : 
+			// FIXME
+                    case SHORTCUT_NEXTUNIT2 : /*case SHORTCUT_NEXTUNIT2+32 :*/ 
                         SelectNextUnit(TRUE);
                         break;
                 }

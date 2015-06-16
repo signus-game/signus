@@ -24,8 +24,6 @@
 // Globalni definice, deklarace a funkce pro Signus
 
 
-#include "headers.h"
-
 #include "global.h"
 #include "events.h"
 #include "graphio.h"
@@ -110,7 +108,7 @@ bool dirExists(const char *filename)
 
 static const char *GetConfigFileName()
 {
-    char *home = getenv("HOME");
+    const char *home = getenv("HOME");
     if (!home) home = ".";
 
     static char inifile[1024] = "";
@@ -258,9 +256,10 @@ SDL_Color PaletteSDL[256];
 
 int RollDice()
 {
-    double r;
-    
-    r = double ((rand () + 1)) / (RAND_MAX + 1);
+    double r = double(rand ()) / RAND_MAX;
+    if (r == 0) {
+        r = 1.0 / RAND_MAX;
+    }
     r = log (r) / log (CRollDice);
     return int (-r);
 
@@ -270,7 +269,7 @@ int RollDice()
 
 // Zkontroluje pritomnost souboru:
 
-int CheckFile(char *name)
+int CheckFile(const char *name)
 {
     FILE *f = fopensafe(name, "rb");
     
@@ -321,8 +320,6 @@ int InitGlobal()
     if (!DoMemoryCheck()) return FALSE;
 
     TextsDF = new TDataFile("texts.dat", dfOpenRead);
-   
-    int rt = 1;
 
     GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
     GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
@@ -459,14 +456,14 @@ const char *getSignusDataDir()
 
 const char *getSignusConfigDir()
 {
-    char *home = getenv("HOME");
+    const char *home = getenv("HOME");
     if (!home) home = ".";
 
     static char inidir[1024] = "";
     
     if (*inidir == 0)
     {
-        char *home = getenv("HOME");
+        const char *home = getenv("HOME");
         if (!home) home = ".";
         strncpy(inidir, home, 1024);
         strncat(inidir, "/.signus", 1024);
@@ -635,7 +632,7 @@ void ProgressSet(int value)
 void *MessageBuf;
 
 
-void Message(char *msg)
+void Message(const char *msg)
 {
     if (*msg == 0) {
         memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);

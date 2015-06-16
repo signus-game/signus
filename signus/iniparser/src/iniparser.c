@@ -39,9 +39,9 @@
 /* Private: add an entry to the dictionary */
 static void iniparser_add_entry(
 	dictionary * d,
-	char * sec,
-	char * key,
-	char * val)
+	const char * sec,
+	const char * key,
+	const char * val)
 {
 	char		longkey[2*ASCIILINESZ+1];
 
@@ -150,7 +150,7 @@ void iniparser_dump_lua(dictionary * d, FILE * f)
 /*--------------------------------------------------------------------------*/
 
 
-char * iniparser_getstr(dictionary * d, char * key)
+const char * iniparser_getstr(dictionary * d, const char * key)
 {
 	return dictionary_get(d, key);
 }
@@ -174,9 +174,9 @@ char * iniparser_getstr(dictionary * d, char * key)
 /*--------------------------------------------------------------------------*/
 
 
-int iniparser_getint(dictionary * d, char * key, int notfound)
+int iniparser_getint(dictionary * d, const char * key, int notfound)
 {
-	char	*	str ;
+	const char	*	str ;
 
 	str = iniparser_getstr(d, key);
 	if (str==NULL) return notfound ;
@@ -201,9 +201,9 @@ int iniparser_getint(dictionary * d, char * key, int notfound)
 /*--------------------------------------------------------------------------*/
 
 
-double iniparser_getdouble(dictionary * d, char * key, double notfound)
+double iniparser_getdouble(dictionary * d, const char * key, double notfound)
 {
-	char	*	str ;
+	const char	*	str ;
 
 	str = iniparser_getstr(d, key);
 	if (str==NULL) return notfound ;
@@ -251,9 +251,9 @@ double iniparser_getdouble(dictionary * d, char * key, double notfound)
 /*--------------------------------------------------------------------------*/
 
 
-int iniparser_getboolean(dictionary * d, char * key, int notfound)
+int iniparser_getboolean(dictionary * d, const char * key, int notfound)
 {
-	char	*	c ;
+	const char	*	c ;
 	int			ret ;
 
 	c = iniparser_getstr(d, key);
@@ -286,7 +286,7 @@ int iniparser_getboolean(dictionary * d, char * key, int notfound)
 
 int iniparser_find_entry(
 	dictionary	*	ini,
-	char		*	entry
+	const char		*	entry
 )
 {
 	int			i ;
@@ -326,8 +326,8 @@ int iniparser_find_entry(
 
 int iniparser_setstr(
 	dictionary	*	ini,
-	char		*	entry,
-	char		*	val
+	const char		*	entry,
+	const char		*	val
 )
 {
 	dictionary_set(ini, entry, val);
@@ -352,7 +352,7 @@ int iniparser_setstr(
  */
 /*--------------------------------------------------------------------------*/
 
-dictionary * iniparser_load(char * ininame)
+dictionary * iniparser_load(const char * ininame)
 {
 	dictionary	*	d ;
 	char		lin[ASCIILINESZ+1];

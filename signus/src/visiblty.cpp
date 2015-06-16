@@ -25,8 +25,6 @@
 //
 
 
-#include "headers.h"
-
 #include <math.h>
 #include "units.h"
 #include "visiblty.h"

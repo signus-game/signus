@@ -22,7 +22,6 @@
 
 // Zpracovani JUKEBOXU
 
-#include "headers.h"
 
 #include "jukebox.h"
 #include <dirent.h>
@@ -63,7 +62,6 @@ int str_compare(const void *op1, const void *op2)
 
 void doGatherFiles(const char *dirname, char ***List, int *Count)
 {
-	TDataIndex *di;
     DIR *dir;
 	struct dirent *fi;
 	char **l = *List;

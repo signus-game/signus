@@ -30,8 +30,6 @@
 //
 
 
-
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -184,7 +182,7 @@ void TArmy::Save (FILE *f)
 
 void TArmy::Insert (int Unit)
 {
-  int i, j, t;
+  int j, t;
 
     if (Unit < 0 || Unit >= UNITS_TOP) {
 #ifdef DEBUG
@@ -314,12 +312,9 @@ TPoint TArmy::BestPlace (TPoint start, int UnID, int Time)
 {
     TUnit *Unit;
     TPoint a, besta;
-    int r, i, x, y, t;
+    int r, x, y, t;
     TPoint OldPos;
     double st, bestst;
-    int rx, ry, drawx, drawy, ak;
-    TField *f;
-    char str[5];
 
     if (UnID < 0 || UnID >= UNITS_TOP) {
 #ifdef DEBUG
@@ -1279,7 +1274,7 @@ void TArmy::DeleteGL (int index)
 
 int TArmy::DeleteKilled ()
 {
-    int i,j,t=0;
+    int i;
 
     for (i = 0; i < nofBadLife; i++) {
         if (DrawLocks == 1) {
@@ -1396,7 +1391,6 @@ void TArmy::CountDangerous ()
 double TArmy::PointStatus (int moverID, TPoint pozice)
 {
     int i, weapon, r, x, y, max;
-    TPoint ap;
     double st, ohr;
     TField *f;
     TUnit *mover;
@@ -1730,7 +1724,7 @@ void TArmy::DisplaceGL ()
 
 void TArmy::Place ()
 {
-    int j, r;
+    int j;
     TField *f;
     TPoint p;
 
@@ -1763,7 +1757,7 @@ void TArmy::Place ()
 
 void TArmy::PlaceGL ()
 {
-    int j, r;
+    int j;
     TField *f;
     TPoint p;
 

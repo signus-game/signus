@@ -207,7 +207,7 @@ extern void *MessageBuf;
 // zobrazi nahore zpravu s danym kodem a prehraje prslusny text
 extern void Message(int msg);
 // zobrazi pouze text, bez zvuku:
-extern void Message(char *msg);
+extern void Message(const char *msg);
 
 
 // ukazatel prubehu nejake operace:

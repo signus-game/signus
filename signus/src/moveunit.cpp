@@ -25,8 +25,6 @@
 //
 
 
-#include "headers.h"
-
 #include <SDL_timer.h>
 
 #include "moveunit.h"

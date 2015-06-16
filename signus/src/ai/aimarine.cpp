@@ -29,8 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
-
 #include "aimarine.h"
 #include "untables.h"
 
@@ -371,23 +369,25 @@ int TMarine::ProblemJednotky (int Unit)
 
 int TMarine::PJShip (int UnID)
 {
-    int i,j,h,t, weapon, tta, r, st, VBcounter;
-    TField *f;
+    int i,j,h,t, weapon, tta, VBcounter;
     struct {
         TObject *Target;
         int Index;
         TPoint AttackPoint;
         TPoint cil;
     } AkceUUUP,AkceUUP,AkceUP;
+    AkceUUUP.Target = NULL;
+    AkceUUUP.Index = 0;
+    AkceUUUP.AttackPoint = TPoint();
+    AkceUUUP.cil = TPoint();
+    AkceUUP = AkceUP = AkceUUUP;
+    
     TPoint AkceP;
     TUnit *Unit;
     
     double hUUUP,hUUP,hUP,hP;
     int Akce, shot, TargetHps;
     TPoint start, cil, AttackPos;
-    
-    double ra, bestra = MaxInt;
-    TAirport *Airport = NULL;
     
     Unit = (TUnit *)Units [UnID];
     start.x = Unit -> X, start.y = Unit -> Y;

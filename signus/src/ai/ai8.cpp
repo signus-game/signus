@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -211,11 +210,8 @@ int Factory8List3 [] = {unBumerang, unPerseusAlfa, unPerseusBeta,
 void InitAI8 ()
 {
     int i,j;
-    TBase *Base;
-    TAirport *Airport;
     TField *f;
     TUnit *u;
-    TPoint p;
 
     AttackFieldPos = 0;
     DUPos = 0;
@@ -391,11 +387,8 @@ void SaveArtificialIntelligence8 (FILE *f)
 
 int ArtificialIntelligence8 ()
 {
-    int i, j, k, r, st, x, y, id, h, hmax;
+    int i, j, k, st, id;
     TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
 
     Message (SigText[TXT_AI_ANALYSE]);
 

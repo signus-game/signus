@@ -29,8 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
-
 #include "aitowers.h"
 #include "utowers.h"
 
@@ -52,7 +50,7 @@ TTowers::TTowers (FILE *f) : TArmy (f)
 
 int TTowers::DeleteKilled ()
 {
-        int i,j,t=0;
+        int i;
 
         for (i = 0; i < nofBadLife; i++) {
                 if (DrawLocks == 1) {
@@ -126,8 +124,7 @@ int TTowers::MakeTurn ()
 
 int TTowers::ProblemJednotky (int Unit)
 {
-        int i, ix, shot, weapon;
-        TObject *Target;
+        int i, weapon;
         double hmax;
 
         if (Unit < 0 || Unit >= UNITS_TOP) {
@@ -148,8 +145,6 @@ int TTowers::ProblemJednotky (int Unit)
         UnlockDraw ();
         // HORIZONT - nutno vyzkouset
         if (Units [Unit] -> Type % BADLIFE == unHorizont) {
-                Target = NULL;
-
                 do {
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
@@ -164,14 +159,11 @@ int TTowers::ProblemJednotky (int Unit)
                                 IsInRange (Units [Unit], Units [Unit]   -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
-                                        Target = Units [GL[i]];
-                                        ix = i;
                                 }
                         }
 
                         if (hmax > 0) {  // Nasel jsem cil a de se strilet
                                 Units [Unit] -> Select ();
-                                shot = Units [Unit] -> Attack (Target -> X, Target -> Y);
                                 if (DeleteKilled () == FALSE) {
                                         RedrawMap ();
                                         LockDraw (); // Konec hry
@@ -193,7 +185,6 @@ int TTowers::ProblemJednotky (int Unit)
 
         // THOR - komplet
         if (Units [Unit] -> Type % BADLIFE == unThor) {
-                Target = NULL;
                 do {
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
@@ -208,8 +199,6 @@ int TTowers::ProblemJednotky (int Unit)
                                 , Units [Unit] -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
-                                        Target = Units [GL[i]];
-                                        ix = i;
                                 }
                         }
 
@@ -224,7 +213,6 @@ int TTowers::ProblemJednotky (int Unit)
                         if (hmax > 0) { // Tady se bude strilet!!!
                                 if (((TThor *)Units [Unit]) -> IsOverground) {  // je-li venku - pal!
                                 Units [Unit] -> Select ();
-                                shot = ((TThor *)Units [Unit]) -> Attack (Target -> X, Target -> Y);
                                         if (DeleteKilled () == FALSE) {
                                                 LockDraw ();
                                                 return FALSE;
@@ -249,8 +237,6 @@ int TTowers::ProblemJednotky (int Unit)
         if ((Units [Unit] -> Type % BADLIFE == unPagoda)
         || (Units [Unit] -> Type % BADLIFE == unMinotaurus)
         || (Units [Unit] -> Type % BADLIFE == unSpektrum)) {
-                Target = NULL;
-
                 do {
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
@@ -266,14 +252,11 @@ int TTowers::ProblemJednotky (int Unit)
                                 , Units [Unit] -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
-                                        Target = Units [GL[i]];
-                                        ix = i;
                                 }
                         }
 
                         if (hmax > 0) {  // Nasel jsem cil a de se strilet
                                 Units [Unit] -> Select ();
-                                shot = ((TUnit *)Units [Unit]) -> Attack (Target -> X, Target -> Y);
                                 if (DeleteKilled () == FALSE) {
                                         RedrawMap ();
                                         LockDraw ();

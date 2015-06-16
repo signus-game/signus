@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "mouse.h"
 #include "ai.h"
 #include "aiglobal.h"
@@ -167,12 +166,7 @@ TPoint S1Start, S2Start;
 
 void InitAI6 ()
 {
-    int i,j;
-    TBase *Base;
-    TAirport *Airport;
-    TField *f;
-    TUnit *u;
-    TPoint p;
+    int i;
 
     AttackFieldPos = 0;
     DUPos = 0;
@@ -375,9 +369,7 @@ void SaveArtificialIntelligence6 (FILE *f)
 
 int ArtificialIntelligence6 ()
 {
-    int i, j, r, st, x, y, id, h, hmax;
-    char buf [40];
-    TBase *Base;
+    int i, j, st, x, y, h, hmax;
     TField *f;
     TPoint p;
 

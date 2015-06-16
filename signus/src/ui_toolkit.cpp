@@ -193,9 +193,10 @@ int TIconPanel::Handle(TEvent *e)
         if (e->Key.KeyCode == SHORTCUT_RESERVE2) return 10;
         if (e->Key.KeyCode == SHORTCUT_RESERVE3) return 2;
         switch (e->Key.CharCode) {
-            case SHORTCUT_NEXTUNIT : case SHORTCUT_NEXTUNIT+32 : return 1;
-            case SHORTCUT_ENDTURN : case SHORTCUT_ENDTURN+32 : return 3;
-            case SHORTCUT_CENTER : case SHORTCUT_CENTER+32 : return 4;
+		// FIXME
+            case SHORTCUT_NEXTUNIT : /*case SHORTCUT_NEXTUNIT+32 :*/ return 1;
+            case SHORTCUT_ENDTURN : /*case SHORTCUT_ENDTURN+32 :*/ return 3;
+            case SHORTCUT_CENTER : /*case SHORTCUT_CENTER+32 :*/ return 4;
         }
     }
     return 0;
@@ -709,7 +710,7 @@ void TStaticText::Draw()
 ////////////////////// TStaticText2:
 
 
-TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, char *aTxt)
+TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, const char *aTxt)
              : TStaticText(ax, ay, aw, ah, aTxt) 
 {
     Text = aTxt; BigFnt = FALSE; 
@@ -718,7 +719,7 @@ TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, char *aTxt)
     
     char *Character;
     char *Word;
-    char *Brief;
+    const char *Brief;
     
     Brief = Text; // !!!!!!!!!!!!!!!
 
@@ -788,7 +789,6 @@ TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, char *aTxt)
   int LineLength = 0;
   int LineWordCnt = 0;
   int LastWordLength;
-  int FirstInArt = 0;
   
   NumOfArticles = 0;
   NumOfLines = -1;
@@ -801,7 +801,6 @@ TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, char *aTxt)
         LineLength = GetStrWidth("  ", NormalFont);
         LineWordCnt = 0;
         NumOfArticles++;
-        FirstInArt = 1;
     }
     
     LastWordLength = GetStrWidth(Words[i], NormalFont);
@@ -818,7 +817,6 @@ TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, char *aTxt)
         if (LineWordCnt > 1)
             LineSpace[NumOfLines] = (double)(ISizeX-LineLength)/(double)(LineWordCnt-1);
         
-        FirstInArt = 0;
         LineLength = 0;
         LineWordCnt = 0;
         NumOfLines++;
@@ -912,7 +910,7 @@ TAnimText::TAnimText(int ax, int ay, int aw, int ah, char *aTxt, TView *aAfter)
 
 void TAnimText::Draw()
 {
-    char buf[4096];
+    uint8_t buf[4096];
     int ln;
     
     if (Ended) {
@@ -929,16 +927,17 @@ void TAnimText::Draw()
     else CopyBmp(DrwViewBf, DrwViewBfSz, x, y, OldBmp, w, h);
     memcpy(buf, Text, Phase);
     if (Line == OldLine) {
+	    // FIXME: magic constants
         buf[Phase] = 219;
         buf[Phase+1] = 0;
-        PutStr(DrwViewBf, DrwViewBfSz, x, y, buf, NormalFont, clrWhite, clrBlack);
+        PutStr(DrwViewBf, DrwViewBfSz, x, y, (const char*)buf, NormalFont, clrWhite, clrBlack);
     }
     else {
         buf[Phase] = 0;
-        PutStr(DrwViewBf, DrwViewBfSz, x, y, buf, NormalFont, clrWhite, clrBlack);
+	PutStr(DrwViewBf, DrwViewBfSz, x, y, (const char*)buf, NormalFont, clrWhite, clrBlack);
         for (ln = 0; ln < 12; ln++) buf[ln] = 219;
         buf[ln] = 0;
-        PutStr(DrwViewBf, DrwViewBfSz, x, y + (Line-1)*16, buf, NormalFont, clrWhite, clrWhite);
+	PutStr(DrwViewBf, DrwViewBfSz, x, y + (Line-1)*16, (const char*)buf, NormalFont, clrWhite, clrWhite);
     }
 }
 
@@ -1328,7 +1327,7 @@ int TSingleInput::HandleEvent(TEvent *e)
             if (i != 0) Buf[i-1] = 0;
         }
         else if (e->Key.KeyCode == kbEnter) {}
-        else if ((e->Key.CharCode >= 32) && (strlen(Buf) < MaxChars)) {
+        else if ((e->Key.CharCode >= 32) && ((int)strlen(Buf) < MaxChars)) {
             PlaySample(TypeOnSnd2, 8, EffectsVolume, 128);
             if (Modified) {
                 i = strlen(Buf);
@@ -1359,7 +1358,7 @@ int TSingleInput::HandleEvent(TEvent *e)
 
 /////////////////////////////// GLOBAL FCES /////////////////////////
 
-int PromtBox(char *text, int buttons)
+int PromtBox(const char *text, int buttons)
 {
     TDialog *dlg;
     int rtn, ax, as;
@@ -1398,7 +1397,7 @@ int PromtBox(char *text, int buttons)
 
 
 
-int InputBox(char *promt, char *buf, int maxchars)
+int InputBox(const char *promt, char *buf, int maxchars)
 {
     TDialog *dlg;
     int rt;

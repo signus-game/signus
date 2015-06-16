@@ -24,8 +24,6 @@
 // Pozemni jednotky:
 
 
-
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include "uground.h"
@@ -566,7 +564,7 @@ void TGnom::Write(FILE *f)
 void TGnom::GetUnitInfo()
 {
     char cbuf[30];
-    int i, clr;
+    int i;
 
     TGroundSupportUnit::GetUnitInfo();  
 
@@ -756,7 +754,7 @@ int TSatan::InfoEvent(TEvent *e)
 {
     int rt = TGroundUnit::InfoEvent(e);
     
-    if (!rt & IconSatan->Handle(e)) {
+    if (!rt && IconSatan->Handle(e)) {
         GlobalDestruction();
         return TRUE;
     }
@@ -867,7 +865,7 @@ void TGargantua::GetUnitInfo()
 
 void TGargantua::Explode()
 {
-    int i, j, k;
+    int i, j;
     
     Center();
     DrawFieldSafe2(X, Y);
@@ -977,13 +975,13 @@ int TXenon::InfoEvent(TEvent *e)
     int rt = TGroundUnit::InfoEvent(e);
     
     if (GetMineAt(X, Y) == -1) {
-        if (!rt & IconXenon->Handle(e)) {
+        if (!rt && IconXenon->Handle(e)) {
             PlaceMine();
             return TRUE;
         }
     }
     else {
-        if (!rt & IconXenon2->Handle(e)) {
+        if (!rt && IconXenon2->Handle(e)) {
             UnplaceMine();
             ShowUnitInfo();
             return TRUE;

@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -176,11 +175,8 @@ static void Message2 ()
 void InitAI12 ()
 {
     int i,j;
-    TBase *Base;
     TAirport *Airport;
-    TField *f;
     TUnit *u;
-    TPoint p;
     
 
     LockDraw ();        
@@ -382,11 +378,8 @@ void SaveArtificialIntelligence12 (FILE *f)
 
 int ArtificialIntelligence12 ()
 {
-    int i, j, k, r, st, x, y, id, h, hmax;
+    int i, j, k, st, id;
     TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
 
     Message (SigText[TXT_AI_ANALYSE]);
 

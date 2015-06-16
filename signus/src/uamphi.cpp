@@ -24,8 +24,6 @@
 // Obojzivelne jednotky:
 
 
-
-#include "headers.h"
 #include "uamphi.h"
 #include "untables.h"
 

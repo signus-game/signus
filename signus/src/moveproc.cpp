@@ -264,12 +264,11 @@ void TXenon::PrepareFieldTime(int x, int y)
 
 void TAircraft::PrepareFieldTime(int x, int y)
 {
-	word ft, ter;
+	word ft;
 	TField *f = GetField(x, y);
 	int i;
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-	ter = f->Terrain;
 	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
 	if (((x != X) || (y != Y)) && (GetAircraftAt(x, y) != NULL)) ft = 0xFF;
 	for (i = 0; i < 9; i++)	FieldTimeTbl[i][tbofs] = ft;
@@ -290,7 +289,7 @@ static word ShipFieldTime(int x, int y, int ID, int Ctr = FALSE)
 {
 	word ft, ter;
 	TField *f = GetField(x, y);
-	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+//	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
 	if ((x < 0) || (y < 0) || (x >= MapSizeX) || (y >= MapSizeY)) return 0xFF;
 	ter = f->Terrain;

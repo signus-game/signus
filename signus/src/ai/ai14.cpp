@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -164,12 +163,7 @@ TPoint MBPlaces14 [] = {23,154, 22,154, 21,154, 20,154, 19,154,
 
 void InitAI14 ()
 {
-    int i,j;
-    TBase *Base;
-    TAirport *Airport;
-    TField *f;
-    TUnit *u;
-    TPoint p;
+    int i;
 
     LockDraw ();        
 
@@ -320,11 +314,8 @@ void SaveArtificialIntelligence14 (FILE *f)
 
 int ArtificialIntelligence14 ()
 {
-    int i, j, k, r, st, x, y, id, h, hmax;
+    int i, j, k, st, id;
     TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
 
     Message (SigText[TXT_AI_ANALYSE]);
 

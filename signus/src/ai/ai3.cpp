@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -162,7 +161,6 @@ int Factory3List [] = {unBumerang, unPerseusAlfa, unPerseusBeta, unOlymp,
 void InitAI3 ()
 {
     int i,j;
-    TBase *Base;
     TField *f;
     TUnit *u;
 
@@ -303,10 +301,7 @@ void SaveArtificialIntelligence3 (FILE *f)
 
 int ArtificialIntelligence3 ()
 {
-    int i, j, r, st, x, y;
-    char buf [40];
-    TBase *Base;
-    TField *f;
+    int i, j, r, st;
     
     Message (SigText[TXT_AI_ANALYSE]);
 

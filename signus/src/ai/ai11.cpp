@@ -29,7 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
 #include "ai.h"
 #include "aiglobal.h"
 #include "aitowers.h"
@@ -275,11 +274,8 @@ static void Message1 ()
 void InitAI11 ()
 {
     int i,j;
-    TBase *Base;
-    TAirport *Airport;
     TField *f;
     TUnit *u;
-    TPoint p;
 
     LockDraw ();        
 
@@ -599,11 +595,8 @@ void SaveArtificialIntelligence11 (FILE *f)
 
 int ArtificialIntelligence11 ()
 {
-    int i, j, k, r, st, x, y, id, h, hmax;
+    int i, j, k, st, id;
     TPoint p;
-    char buf [40];
-    TBase *Base;
-    TField *f;
 
     Message (SigText[TXT_AI_ANALYSE]);
 
@@ -1335,7 +1328,6 @@ int ArtificialIntelligence11 ()
 int AssignResult11 ()
 {
     int i, t = 0;
-    int d;
 
     Base1 = GetField (B1X, B1Y) -> Unit;
     if (Base1 == NO_UNIT || Units [Base1] -> Type % BADLIFE != unBase) 

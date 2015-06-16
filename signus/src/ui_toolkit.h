@@ -184,10 +184,10 @@ class TButton : public TView {
 // Text:
 class TStaticText : public TView {
         public:
-            char *Text;                   // vlastni text
+            const char *Text;                   // vlastni text
             int BigFnt;                   // pouz. font Huge ?
             
-            TStaticText(int ax, int ay, int aw, int ah, char *aTxt, int aBigFnt = FALSE) 
+            TStaticText(int ax, int ay, int aw, int ah, const char *aTxt, int aBigFnt = FALSE) 
               : TView(ax, ay, aw, ah) {Text = aTxt; BigFnt = aBigFnt;};
             void Draw();
     };
@@ -209,7 +209,7 @@ class TStaticText2 : public TStaticText {
       int WordsTypes[MaxNumOfWords]; // 1: Prvni slovo v odstavci
       
         public:
-            TStaticText2(int ax, int ay, int aw, int ah, char *aTxt);
+            TStaticText2(int ax, int ay, int aw, int ah, const char *aTxt);
 //           : TStaticText(int ax, int ay, int aw, int ah, char *aTxt, int aBigFnt = FALSE) {};
             virtual void Draw();
     };
@@ -341,7 +341,7 @@ class TSingleInput : public TView {
 
 
 
-extern int PromtBox(char *text, int buttons);
+extern int PromtBox(const char *text, int buttons);
             // vypise text a ceka na odezvu. pod textem se objevi tlacitka
             // podle toho, jaky je parametr buttons: hodnoty:
             // cmOk | cmCancel
@@ -349,7 +349,7 @@ extern int PromtBox(char *text, int buttons);
             // cmYes | cmNo | cmAlways
             // cmOk
             
-extern int InputBox(char *promt, char *buf, int maxchars);
+extern int InputBox(const char *promt, char *buf, int maxchars);
             // nabidne vlozit text a pod nim tlacika OK a Cancel
 
 

@@ -25,8 +25,6 @@
 //
 
 
-#include "headers.h"
-
 #include "mouse.h"
 #include "graphio.h"
 #include "system.h"
@@ -175,10 +173,10 @@ void MouseUnfreeze()
 
 void MouseSetRect(int x1, int y1, int x2, int y2)
 {
+#if 0
     TRect r;
 
     r.x1 = x1, r.y1 = y1, r.x2 = x2, r.y2 = y2;
-#if 0
     ClipCursor(&r); /// FIXME -- SDL cannot clip mouse cursor, do it ourselves!
 #endif
 }

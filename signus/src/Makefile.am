@@ -1,6 +1,8 @@
 
 AM_CPPFLAGS = -ansi -pedantic -Wall -Werror -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
-		   -I$(top_srcdir)/sdlimage 
+		   -I$(top_srcdir)/sdlimage -fsanitize=address -fstack-protector -fsanitize=undefined
+
+AM_LDFLAGS = -fsanitize=address -fstack-protector -fsanitize=undefined
 
 ENGINE_FILES = \
            etables.cpp \

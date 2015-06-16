@@ -20,8 +20,6 @@
  */
 
 
-
-#include "headers.h"
 #include "events.h"
 #include "graphio.h"
 #include "engtimer.h"
@@ -124,10 +122,10 @@ extern int InitGlobal();
 
 int main(int argc, char *argv[])
 {
+#if 0 // FIXME
     bool flagDebug = argc > 1 && strcmp(argv[1], "--debug") == 0;
     bool flagServer = argc > 1 && strcmp(argv[1], "--from-crashguard") == 0;
 
-#if 0 // FIXME
     if (!flagDebug && !flagServer)
     {
         // execute server

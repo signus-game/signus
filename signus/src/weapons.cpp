@@ -25,7 +25,6 @@
 //
 
 
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include <math.h>
@@ -563,7 +562,6 @@ void TLaser::AnimDraw(int x, int y, int h)
 {
     int bx = x / 28, by = y / 28;
     int lx = x % 28, ly = y % 28;
-    TField *f = GetField(bx, by);
     int rrx = GetRelX(bx), rry = GetRelY(by);
     int drawx = 28 * (rrx - rry) + 28 + (lx - ly);
     int drawy = 14 * (rrx + rry) + 14 + ((lx + ly) / 2 - 14) - h;

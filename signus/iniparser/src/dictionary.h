@@ -61,7 +61,7 @@ typedef struct _dictionary_ {
  */
 /*--------------------------------------------------------------------------*/
  
-unsigned dictionary_hash(char * key);
+unsigned dictionary_hash(const char * key);
 
 
 /*-------------------------------------------------------------------------*/
@@ -111,7 +111,7 @@ void dictionary_del(dictionary * vd);
   should not try to free it or modify it.
  */
 /*--------------------------------------------------------------------------*/
-char * dictionary_get(dictionary * vd, char * key);
+const char * dictionary_get(dictionary * vd, const char * key);
 
 /*-------------------------------------------------------------------------*/
 /**
@@ -127,7 +127,7 @@ char * dictionary_get(dictionary * vd, char * key);
   and returns the first char of the found string.
  */
 /*--------------------------------------------------------------------------*/
-char dictionary_getchar(dictionary * d, char * key, char def) ;
+char dictionary_getchar(dictionary * d, const char * key, char def) ;
 
 /*-------------------------------------------------------------------------*/
 /**
@@ -144,7 +144,7 @@ char dictionary_getchar(dictionary * d, char * key, char def) ;
   in the dictionary, the default is returned.
  */
 /*--------------------------------------------------------------------------*/
-int dictionary_getint(dictionary * d, char * key, int def);
+int dictionary_getint(dictionary * d, const char * key, int def);
 
 
 /*-------------------------------------------------------------------------*/
@@ -162,7 +162,7 @@ int dictionary_getint(dictionary * d, char * key, int def);
   in the dictionary, the default is returned.
  */
 /*--------------------------------------------------------------------------*/
-double dictionary_getdouble(dictionary * d, char * key, double def);
+double dictionary_getdouble(dictionary * d, const char * key, double def);
 
 
 
@@ -186,7 +186,7 @@ double dictionary_getdouble(dictionary * d, char * key, double def);
  */
 /*--------------------------------------------------------------------------*/
 
-void dictionary_set(dictionary * vd, char * key, char * val);
+void dictionary_set(dictionary * vd, const char * key, const char * val);
 
 
 /*-------------------------------------------------------------------------*/
@@ -205,7 +205,7 @@ void dictionary_set(dictionary * vd, char * key, char * val);
 /*--------------------------------------------------------------------------*/
  
  
-void dictionary_setint(dictionary * d, char * key, int val);
+void dictionary_setint(dictionary * d, const char * key, int val);
 
 
 
@@ -225,7 +225,7 @@ void dictionary_setint(dictionary * d, char * key, int val);
 /*--------------------------------------------------------------------------*/
  
  
-void dictionary_setdouble(dictionary * d, char * key, double val);
+void dictionary_setdouble(dictionary * d, const char * key, double val);
 
 
 

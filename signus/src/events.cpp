@@ -25,8 +25,6 @@
 //
 
 
-#include "headers.h"
-
 #include <SDL.h>
 #include "events.h"
 #include "graphio.h"
@@ -45,7 +43,7 @@ void SaveScreenshot()
     FILE *f;
     char jm[400];
     int i;
-    char *home = getenv("HOME");
+    const char *home = getenv("HOME");
 
     for (i = 0; i < 10000; i++) {
         if (home)

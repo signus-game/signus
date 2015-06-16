@@ -29,8 +29,6 @@
 // Programmed by Richard Wunsch
 //
 
-#include "headers.h"
-
 #include "aiground.h"
 #include "untables.h"
 
@@ -74,8 +72,8 @@ void TGroundArmy::InsertUnits () {
         for (int i = 0; i < UNITS_TOP; i++) {
                 if (Units [i] == NULL) continue;
                 // pozemni bojova BL
-                if ( (((TUnit *) Units [i]) -> Type <= unIris + BADLIFE) 
-                && (((TUnit *) Units [i]) -> Type > BADLIFE) 
+                if ( ((((TUnit *) Units [i]) -> Type <= unIris + BADLIFE) 
+                && (((TUnit *) Units [i]) -> Type > BADLIFE)) 
                 || (((TUnit *)Units [i]) -> Type == unRex + BADLIFE)
                 
                 || (((TUnit *)Units [i]) -> Type >= unNeptun + BADLIFE 
@@ -402,7 +400,7 @@ int TGroundArmy::ProblemJednotky (int Unit)
 
 int TGroundArmy::PJGroundFight (int UnID)
 {
-        int i,j,h,t, weapon, tta, r;
+        int i,j,h,t, weapon, tta;
         TField *f;
         struct {
                 TObject *Target;
@@ -410,6 +408,13 @@ int TGroundArmy::PJGroundFight (int UnID)
                 TPoint AttackPoint;
                 TPoint cil;
         } AkceUUUP,AkceUUP,AkceUP;
+	AkceUUUP.Target = NULL;
+	AkceUUUP.Index = 0;
+	AkceUUUP.AttackPoint = TPoint();
+	AkceUUUP.cil = TPoint();
+	AkceUUP = AkceUP = AkceUUUP;
+	
+	
         TPoint AkceP, p;
         TUnit *Unit;
         
@@ -1289,7 +1294,7 @@ int TGroundArmy::PJRex (int UnID)
         TRex *Unit;
         int i, j, t, mint, bestCeres;
         double r, minr;
-        TPoint bestplace;
+        TPoint bestplace = TPoint();
         
         Unit = (TRex *)Units [UnID];
         Unit -> Select ();
@@ -1439,7 +1444,7 @@ int TGroundArmy::PJMedea (int UnID)
 {
         TMedea *Unit;
         int i, t, bestt, tn, ts, te, tw, hp, ha;
-        TPoint bp, BuildPlace, start, cil;
+        TPoint bp, BuildPlace = TPoint(), start, cil;
         TField *f;
         
         Unit = (TMedea *)Units [UnID];
@@ -1587,7 +1592,6 @@ int TGroundArmy::PJIris (int UnID)
         double h, hmax;
         TPoint start, cil;
         TIris *Unit;
-        int maxammo, ammo, an;
         
         Unit = (TIris *)Units [UnID];
         Unit -> Select ();
@@ -1742,7 +1746,6 @@ int TGroundArmy::PJGanymedes (int UnID)
         double h, hmax;
         TPoint start, cil;
         TGanymedes *Unit;
-        int maxammo, ammo, an;
         
         Unit = (TGanymedes *)Units [UnID];
         Unit -> Select ();
@@ -1900,10 +1903,8 @@ int TGroundArmy::PJGanymedes (int UnID)
 
 double TGroundArmy::SatanPS (int moverID, TPoint pozice)
 {
-        int i, weapon, r, x, y, max;
-        TPoint ap;
-        double st, ohr;
-        TField *f;
+        int i, r;
+        double st;
         TSatan *mover;
         
         if (moverID < 0 || moverID >= UNITS_TOP) {
@@ -1975,12 +1976,9 @@ TPoint TGroundArmy::SatanBP (TPoint start, int UnID, int Time)
 {
         TSatan *Unit;
         TPoint a, besta;
-        int r, i, x, y, t;
+        int r, x, y, t;
         TPoint OldPos;
         double st, bestst;
-        int rx, ry, drawx, drawy, ak;
-        TField *f;
-        char str[5];
 
         if (UnID < 0 || UnID >= UNITS_TOP) {
 #ifdef DEBUG            

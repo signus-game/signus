@@ -24,7 +24,6 @@
 // Modifikace jednotek, kter? v dan? misi pojedou do akce...
 //
 
-#include "headers.h"
 #include "global.h"
 #include "ui_toolkit.h"
 #include "units.h"
@@ -68,7 +67,6 @@ void MU_UpdateList()
 {
     int i;
     unit_muinfo *inf;
-    TUnit *u;
     
     for (i = 0; i < GOODLIFE_TOP; i++)
     {
@@ -76,7 +74,7 @@ void MU_UpdateList()
             ((Units[i]->Type < unHorizont) || 
                   ((Units[i]->Type >= unNeptun) && (Units[i]->Type <= unSatan)))) 
         {
-            u = (TUnit *) u;
+            TUnit *u = static_cast<TUnit*>(Units[i]);
             units_cnt++;
             units_info = (unit_muinfo*) memrealloc(units_info, sizeof(unit_muinfo) * units_cnt);
             inf = units_info + units_cnt-1;

@@ -29,9 +29,8 @@
 // Programmed by Richard Wunsch
 //
 
+#include <cassert>
 
-
-#include "headers.h"
 #include "aiglobal.h"
 #include "aitowers.h"
 #include "aiground.h"
@@ -78,13 +77,16 @@ void IntegrityTest () {
 		if (Units [i] == NULL) continue;
 		
 		if (Units [i] -> Type < unRadar) {
-			for (j = ((TUnit *)Units [i]) -> WeaponsCnt; j < 4; j++) {
+			int wcnt = ((TUnit *)Units [i]) -> WeaponsCnt;
+			assert(wcnt <= 4);
+			
+			for (j = wcnt; j < 4; j++) {
 				if (((TUnit *)Units [i]) -> Weapons [j] != NULL) {
 					AIError ();
 				}
 			}
 			
-			for (j = 0; j < ((TUnit *)Units [i]) -> WeaponsCnt; j++) {
+			for (j = 0; j < wcnt; j++) {
 				if (((TUnit *)Units [i]) -> Weapons [j] -> TimeLost < 0) {
 					AIError ();
 				}
@@ -100,8 +102,6 @@ void IntegrityTest () {
 
 void InitArtificialIntelligence (int mission)
 {
-	int i,j;
-
   
   switch (mission) {
   	case 1 :
@@ -466,10 +466,6 @@ void AnalyseLandscape ()
 	int i, r, mr, ar, x, y, xx, yy;
 	int mtu, ttm, tta;
 	TUnit *Unit;
-	int rx, ry, drawx, drawy, a;
-	char str[1];
-	TField *f;
-	word *dummap;
 	int VisFactor;
 	
 	// Init ProgressBar

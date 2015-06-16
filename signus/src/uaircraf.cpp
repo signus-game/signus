@@ -29,7 +29,6 @@ UAIRCRAF : osetreni letadel (aircrafts...)
 */
 
 
-#include "headers.h"
 #include <SDL_timer.h>
 
 
@@ -662,13 +661,13 @@ int TRex::InfoEvent(TEvent *e)
 	int rt = TAircraft::InfoEvent(e);
 	
 	if (FlyLevel == 0) {
-		if (!rt & IconTakeoff->Handle(e)) {
+		if (!rt && IconTakeoff->Handle(e)) {
 			if (!TakeOff()) Message(MSG_OUT_OF_TIME);
 			return TRUE;
 		}
 	}
 	else {
-		if (!rt & IconLand->Handle(e)) {
+		if (!rt && IconLand->Handle(e)) {
 			if (!Land()) {
 				if (TimeUnits < utRX_LAND) Message(MSG_OUT_OF_TIME);
 				else Message(MSG_CANNOT_LAND);
@@ -719,7 +718,7 @@ void TCaesar::Setup()
 	WeaponsCnt = 0;
 	Velocity = utCA_VEL;
 	LoadedUnits = 0;
-	for (int i = 0; i < 6; i++) Inventory[i] = NULL;
+	for (int i = 0; i < 6; i++) Inventory[i] = 0;
 }
 
 void TCaesar::IncLevel(int alevel)
@@ -845,17 +844,17 @@ int TCaesar::InfoEvent(TEvent *e)
 	int rt = TAircraft::InfoEvent(e);
 	
 	if (FlyLevel == 0) {
-		if (!rt & IconTakeoff->Handle(e)) {
+		if (!rt && IconTakeoff->Handle(e)) {
 			if (!TakeOff()) Message(MSG_OUT_OF_TIME);
 			return TRUE;
 		}
-		else if (!rt & IconTransport->Handle(e)) {
+		else if (!rt && IconTransport->Handle(e)) {
 			DoInventory();
 			return TRUE;
 		}
 	}
 	else {
-		if (!rt & IconLand->Handle(e)) {
+		if (!rt && IconLand->Handle(e)) {
 			if (!Land()) Message(MSG_CANNOT_LAND);
 			return TRUE;
 		}
@@ -891,8 +890,6 @@ void TCaesar::Read(FILE *f)
 
 void TCaesar::Write(FILE *f)
 {
-	int id;
-	
 	TAircraft::Write(f);
 	fwrite(&LoadedUnits, 4, 1, f);
 	for (int i = 0; i < LoadedUnits; i++)
@@ -937,7 +934,6 @@ int TCaesar::GetTotalWeight()
 int TCaesar::GetLoadingPoint(int *x, int *y, TUnit *u)
 {
 	int t, i, j, best = 0xFFFF;
-	TField *f;
 	
 	if (u->X != -1) {
 		if ((u->ID < BADLIFE) && (this->ID >= BADLIFE)) return FALSE;
@@ -955,7 +951,6 @@ int TCaesar::GetLoadingPoint(int *x, int *y, TUnit *u)
 	else {
 		for (i = -1; i <= 1; i++)
 			for (j = -1; j <= 1; j++) {
-				f = GetField(X + i, Y + j);
 				if (u->CanGoOnField(X + i, Y + j)) {
 					*x = X+ i, *y = Y + j;
 					best = 0;
@@ -1015,7 +1010,6 @@ int TCaesar::UnloadUnit(TUnit *u)
 void TCaesar::DoInventory()
 {
 	int rt, uurt;
-	TUnit *u;
 	TTransBox *tb;
 	
 	SelectField(0, 0);
@@ -1323,10 +1317,12 @@ int TSaturn::InfoEvent(TEvent *e)
 {
 	int rt = TAircraft::InfoEvent(e);
 	
-	if (!rt && ((e->What == evMouseDown) && 
+	// FIXME: magic constants
+	
+	if (!rt && (((e->What == evMouseDown) && 
 	   (IsInRect(e->Mouse.Where.x - UINFO_X, e->Mouse.Where.y - UINFO_Y,
 	             2, 147, 2+59, 147+59))) ||
-	   ((e->What == evKeyDown) && (e->Key.KeyCode == kbEnter))) {
+	   ((e->What == evKeyDown) && (e->Key.KeyCode == kbEnter)))) {
 		if (IsBombing) EndBombing();
 		else StartBombing();
 		Select();
@@ -1400,8 +1396,6 @@ void TProton::GetCursor(int x, int y, int *cursor, int *selbold)
 
 void TProton::Action(int x, int y)
 {
-	TField *f = GetField(x, y);
-
 	TAircraft::Action(x, y);
 	
 	switch (UnitActionType) {
@@ -1415,7 +1409,6 @@ void TProton::Action(int x, int y)
 
 void TProton::DoSupport(int x, int y)
 {
-	TField *f = GetField(x, y);
 	int t, i, j, dx = 0, dy = 0, best = 0xFFFF;
 	TUnit *u = GetAircraftAt(x, y);
 	

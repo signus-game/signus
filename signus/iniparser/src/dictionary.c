@@ -26,11 +26,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifdef _ECLIPSE_
-#include "xmemory.h"
-#endif
-
-
 
 /* The following defines a maximum value size for integers and doubles. */
 #define MAXVALSZ	1024
@@ -74,7 +69,7 @@ static void * mem_double(void * ptr, int size)
  */
 /*--------------------------------------------------------------------------*/
 
-unsigned dictionary_hash(char * key)
+unsigned dictionary_hash(const char * key)
 {
 	int			len ;
 	unsigned	hash ;
@@ -171,7 +166,7 @@ void dictionary_del(dictionary * d)
   should not try to free it or modify it.
  */
 /*--------------------------------------------------------------------------*/
-char * dictionary_get(dictionary * d, char * key)
+const char * dictionary_get(dictionary * d, const char * key)
 {
 	unsigned	hash ;
 	int			i ;
@@ -201,7 +196,7 @@ char * dictionary_get(dictionary * d, char * key)
   and returns the first char of the found string.
  */
 /*--------------------------------------------------------------------------*/
-char dictionary_getchar(dictionary * d, char * key, char def)
+char dictionary_getchar(dictionary * d, const char * key, char def)
 {
 	char * v ;
 
@@ -228,9 +223,9 @@ char dictionary_getchar(dictionary * d, char * key, char def)
   in the dictionary, the default is returned.
  */
 /*--------------------------------------------------------------------------*/
-int dictionary_getint(dictionary * d, char * key, int def)
+int dictionary_getint(dictionary * d, const char * key, int def)
 {
-	char * v ;
+	const char * v ;
 
 	if ((v=dictionary_get(d,key))==NULL) {
 		return def ;
@@ -254,9 +249,9 @@ int dictionary_getint(dictionary * d, char * key, int def)
   in the dictionary, the default is returned.
  */
 /*--------------------------------------------------------------------------*/
-double dictionary_getdouble(dictionary * d, char * key, double def)
+double dictionary_getdouble(dictionary * d, const char * key, double def)
 {
-	char * v ;
+	const char * v ;
 
 	if ((v=dictionary_get(d,key))==NULL) {
 		return def ;
@@ -293,7 +288,7 @@ double dictionary_getdouble(dictionary * d, char * key, double def)
  */
 /*--------------------------------------------------------------------------*/
 
-void dictionary_set(dictionary * d, char * key, char * val)
+void dictionary_set(dictionary * d, const char * key, const char * val)
 {
 	int			i ;
 	unsigned	hash ;
@@ -364,7 +359,7 @@ void dictionary_set(dictionary * d, char * key, char * val)
 /*--------------------------------------------------------------------------*/
 
 
-void dictionary_setint(dictionary * d, char * key, int val)
+void dictionary_setint(dictionary * d, const char * key, int val)
 {
 	char	sval[MAXVALSZ];
 	sprintf(sval, "%d", val);
@@ -388,7 +383,7 @@ void dictionary_setint(dictionary * d, char * key, int val)
 /*--------------------------------------------------------------------------*/
 
 
-void dictionary_setdouble(dictionary * d, char * key, double val)
+void dictionary_setdouble(dictionary * d, const char * key, double val)
 {
 	char	sval[MAXVALSZ];
 	sprintf(sval, "%g", val);

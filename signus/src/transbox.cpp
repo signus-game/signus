@@ -26,7 +26,6 @@ TRASPORT_BOX     - panel, ktery zobrazuje obsah trasporteru
 
 */
 
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include "transbox.h"

@@ -28,7 +28,6 @@ USHIPS.CPP - lode a lodicky
 
 */
 
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include "uships.h"

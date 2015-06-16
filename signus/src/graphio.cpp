@@ -24,8 +24,6 @@
 // Modul grafickeho rozhrani
 //
 
-#include "headers.h"
-
 #include "global.h"
 #include "graphio.h"
 #include "system.h"
@@ -312,10 +310,12 @@ void GetBitmap(int x, int y, void *data, int w, int h)
     if (SomeoneDrawing()) return;
     EnterTCS();
     MouseFreeze(x, y, w, h);
-    vid = (byte*) LFB_Lock(); vid += x + LFB_Pitch * y;
+    vid = (byte*) LFB_Lock();
+    vid += x + LFB_Pitch * y;
     for (ay = h; ay != 0; ay--) {
         memcpy(aptr, vid, w);
-        aptr += w, vid += LFB_Pitch;
+        aptr += w;
+        vid += LFB_Pitch;
     }
     LFB_Unlock();
     MouseUnfreeze();

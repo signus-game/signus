@@ -25,7 +25,6 @@
 //
 
 
-#include "headers.h"
 #include <SDL_timer.h>
 
 #include <math.h>
@@ -530,6 +529,7 @@ void TObject::GetCursor(int x, int y, int *cursor, int *selbold)
 void TObject::GetFieldInfo(int x, int y, char *buf)
 {
     TField *f = GetField(x, y);
+    // FIXME: sprintf()
     char b[100];
 
     if ((f->Unit != NO_UNIT) && (f->Visib == 2)) {
@@ -541,7 +541,7 @@ void TObject::GetFieldInfo(int x, int y, char *buf)
     else sprintf(buf, "%s", Units[f->Unit]->GetName());
                 
     }
-    else sprintf(buf, "");
+    else strcpy(buf, "");
 }
 
 
@@ -639,8 +639,6 @@ extern void AI_DeleteUnit(int ID);
 
 void RemoveUnit(int ID)
 {
-    int X = Units[ID]->X, Y = Units[ID]->Y;
-
     RemoveFromAutofire(ID);
     AI_DeleteUnit(ID);
     delete Units[ID];   Units[ID] = NULL;
@@ -890,7 +888,6 @@ void TUnit::AfterSetup()
 {
     TObject::AfterSetup();
     Fuel = MaxFuel;
-    char d[80];
 }
 
 
@@ -949,7 +946,8 @@ int TUnit::CanGoOnField(int x, int y)
     GetTerrMove(&mt1, &mt2);
     if (mt2[f->Terrain2] == 0xFF) return FALSE;
     if ((mt1[f->Terrain] == 0xFF) && (mt2[f->Terrain2] == 0)) return FALSE;
-    if (GetMineAt(x, y) == ID & BADLIFE) return FALSE;
+    // FIXME: is this correct?
+    if (GetMineAt(x, y) == ID && BADLIFE) return FALSE;
     return TRUE;
 }
 
@@ -1145,7 +1143,7 @@ void TUnit::GetFieldInfo(int x, int y, char *buf)
                             100 * Units[f->Unit]->HitPoints / Units[f->Unit]->MaxHitPoints);
                     sprintf(buf, "%s - %s", Units[f->Unit]->GetName(), b);
                 }
-                else sprintf(buf, "");
+                else strcpy(buf, "");
                 break;
         case uatAttackAir : case uatAttackAirG : 
                 if (!Weapons[CurWpn]->IsInRange(this, X, Y, x, y)) {
@@ -1159,7 +1157,7 @@ void TUnit::GetFieldInfo(int x, int y, char *buf)
                             100 * GetAircraftAt(x, y)->HitPoints / GetAircraftAt(x, y)->MaxHitPoints);
                     sprintf(buf, "%s - %s", GetAircraftAt(x, y)->GetName(), b);
                 }
-                else sprintf(buf, "");
+                else strcpy(buf, "");
                 break;
         case uatMove : case uatMoveAir : 
                 if ((ttm = TimeToMove(x, y)) >= 0)
@@ -1750,8 +1748,6 @@ void TSupportUnit::GetCursor(int x, int y, int *cursor, int *selbold)
 
 void TSupportUnit::Action(int x, int y)
 {
-    TField *f = GetField(x, y);
-
     TUnit::Action(x, y);
     
     switch (UnitActionType) {
@@ -2144,7 +2140,6 @@ inline void DelPropag(int order)
 void Propagation(int x, int y, double time, byte direc)
 {
     int tblofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
-    int tim = time;
 
     if (FieldTimeTbl[0][tblofs] != 0xFF) AddPropag(x  , y-1, time, 0);
     if (FieldTimeTbl[1][tblofs] != 0xFF) AddPropag(x-1, y-1, time, 1);
@@ -2269,7 +2264,6 @@ inline void AddFarPropag(int x, int y, double time, int direc)
 void FarPropagation(int x, int y, double time, byte direc)
 {
     int tblofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
-    int tim = time;
 
     if (FieldTimeTbl[0][tblofs] != 0xFF) AddFarPropag(x  , y-1, time, 0);
     if (FieldTimeTbl[1][tblofs] != 0xFF) AddFarPropag(x-1, y-1, time, 1);
@@ -2622,7 +2616,7 @@ void ReadUnits(FILE *f)
 
 void WriteUnits(FILE *f)
 {
-    int i, j, dummy;
+    int i, dummy;
     TObject *o;
         
     // zapsani jednotek:
