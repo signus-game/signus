@@ -71,12 +71,17 @@ typedef struct {
         unsigned short y;
 
         // Promnene pro praci s pozadim za kurzorem:
-        int bx, by, sx, sy, fx, fy;
-        int bx2, by2, sx2, sy2, fx2, fy2;
-        int back;
-        void *backbuf;
+//        int bx, by, sx, sy, fx, fy;
+//        int bx2, by2, sx2, sy2, fx2, fy2;
+//        int back;
+//        void *backbuf;
         // Buffer pro pripad castecneho prekryti kurzoru:
-        void *cachebuf;
+//        void *cachebuf;
+	
+	int back_x, back_y;
+	
+	void *back_buf;
+	
 } TMouseCBD;
 
 extern TMouseCBD Mouse;

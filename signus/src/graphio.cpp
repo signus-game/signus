@@ -91,7 +91,7 @@ SDL_Surface *GetScreenSurface()
 }
 
 
-//////////////////// funkce Singusu:
+//////////////////// funkce Signusu:
 
 #include "system.h"
 
