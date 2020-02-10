@@ -32,7 +32,7 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
     unsigned char *buffer = NULL;
     
     png_ptr = png_create_read_struct( PNG_LIBPNG_VER_STRING,
-        (voidp) NULL,
+        NULL,
         (png_error_ptr) NULL,
         (png_error_ptr) NULL );
 

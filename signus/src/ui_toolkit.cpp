@@ -568,7 +568,8 @@ void TDialog::FadeDlg(int In)
                     PutBitmap(x + x1, y + y2+i, ((byte*)DrwBuf) + w * (h-8+i) + x1, x2-x1+1, 1);
                 }
                 x1 -= 8, x2 += 8;
-                if (x1 < 0) x1 = 0; if (x2 > w - 8) x2 = w - 8;
+                if (x1 < 0) x1 = 0;
+		if (x2 > w - 8) x2 = w - 8;
                 GetEvent(NULL);
                 SDL_Delay(4);
             }

@@ -258,9 +258,11 @@ TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2
 extern bool dirExists(const char *filename);
 static const char *getSavesDir()
 {
-    static char savesDir[1024] = "";
-    strncpy(savesDir, getSignusConfigDir(), 1024);
-    strncat(savesDir, "/saved_games", 1024);
+    static char savesDir[PATH_MAX] = "";
+    strncpy(savesDir, getSignusConfigDir(), sizeof(savesDir));
+    savesDir[PATH_MAX - 1] = '\0';
+    strncat(savesDir, "/saved_games", sizeof(savesDir) - strlen(savesDir) - 1);
+    savesDir[PATH_MAX - 1] = '\0';
     if (!dirExists(savesDir))
         mkdir(savesDir, 0700);
     return savesDir;
@@ -273,7 +275,7 @@ void TLoadSaveDialog::SearchFiles()
     int i, j;
     TSavegameHdr hdr;
     FILE *f;
-    char buf[1024];
+    char buf[PATH_MAX];
     
     SCount = IsSave; /*0,1*/
     for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
@@ -286,7 +288,7 @@ void TLoadSaveDialog::SearchFiles()
     while (fi) {
         if (strncmp(fi->d_name, "savegame", 8) == 0)
         {
-            snprintf(buf, 1024, "%s/%s", dirname, fi->d_name);
+            snprintf(buf, PATH_MAX, "%s/%s", dirname, fi->d_name);
             if ((f = fopen(buf, "rb")) != NULL)
             {
                 fread(&hdr, sizeof(hdr), 1, f);
@@ -306,7 +308,7 @@ void TLoadSaveDialog::SearchFiles()
     if (IsSave) { // udela jmeno pro new save:
         int rc;    
         for (i = 0; i < 1000; i++) {
-            sprintf(buf, "%s/savegame.%03i", dirname, i);
+            snprintf(buf, PATH_MAX, "%s/savegame.%03i", dirname, i);
             rc = TRUE;
             for (j = 1; j < SCount; j++)
                 if (strcmp(buf, SFiles[j]) == 0) {rc = FALSE; break;}

@@ -1175,12 +1175,18 @@ int TAirport::UnloadUnit(TUnit *u)
             ((a->ID >= BADLIFE) && (ID < BADLIFE))) return -1;
         HideHelpers();
         a->Select();
-                     a->Move(X-2, Y+2  ); a = GetAircraftAt(X-1, Y+2);
-        if (a != NULL) a->Move(X-3, Y+2  ); a = GetAircraftAt(X-1, Y+2);
-        if (a != NULL) a->Move(X-4, Y+2  ); a = GetAircraftAt(X-1, Y+2);
+        a->Move(X-2, Y+2  );
+	a = GetAircraftAt(X-1, Y+2);
+        if (a != NULL)
+		a->Move(X-3, Y+2);
+	a = GetAircraftAt(X-1, Y+2);
+        if (a != NULL)
+		a->Move(X-4, Y+2);
+	a = GetAircraftAt(X-1, Y+2);
         this->Select();
         ShowHelpers();
-        if (a != NULL) return -1;
+        if (a != NULL)
+		return -1;
     }
 
     u->X = X-1, u->Y = Y+2;
@@ -1317,12 +1323,18 @@ int THeliport::UnloadUnit(TUnit *u)
             ((a->ID >= BADLIFE) && (ID < BADLIFE))) return -1;
         HideHelpers();
         a->Select();
-                     a->Move(X+3, Y+0  ); a = GetAircraftAt(X+3, Y+1);
-        if (a != NULL) a->Move(X+3, Y-1  ); a = GetAircraftAt(X+3, Y+1);
-        if (a != NULL) a->Move(X+3, Y+2  ); a = GetAircraftAt(X+3, Y+1);
+        a->Move(X+3, Y+0);
+	a = GetAircraftAt(X+3, Y+1);
+        if (a != NULL)
+		a->Move(X+3, Y-1);
+	a = GetAircraftAt(X+3, Y+1);
+        if (a != NULL)
+		a->Move(X+3, Y+2);
+	a = GetAircraftAt(X+3, Y+1);
         this->Select();
         ShowHelpers();
-        if (a != NULL) return -1;
+        if (a != NULL)
+		return -1;
     }
 
     u->X = X+3, u->Y = Y+1;

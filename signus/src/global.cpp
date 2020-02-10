@@ -33,6 +33,7 @@
 #include <SDL_timer.h>
 #include <math.h>
 #include <sys/stat.h>
+#include <limits.h>
 
 extern "C" {
 #include "iniparser.h"
@@ -111,12 +112,14 @@ static const char *GetConfigFileName()
     const char *home = getenv("HOME");
     if (!home) home = ".";
 
-    static char inifile[1024] = "";
+    static char inifile[PATH_MAX] = "";
     
     if (*inifile == 0)
     {
-        strncpy(inifile, getSignusConfigDir(), 1024);
-        strncat(inifile, "/signus.ini", 1024);
+        strncpy(inifile, getSignusConfigDir(), PATH_MAX);
+	inifile[PATH_MAX-1] = '\0';
+        strncat(inifile, "/signus.ini", PATH_MAX - strlen(inifile) - 1);
+	inifile[PATH_MAX-1] = '\0';
     }
     
     return inifile;
@@ -459,14 +462,16 @@ const char *getSignusConfigDir()
     const char *home = getenv("HOME");
     if (!home) home = ".";
 
-    static char inidir[1024] = "";
+    static char inidir[PATH_MAX] = "";
     
     if (*inidir == 0)
     {
         const char *home = getenv("HOME");
         if (!home) home = ".";
-        strncpy(inidir, home, 1024);
-        strncat(inidir, "/.signus", 1024);
+        strncpy(inidir, home, PATH_MAX);
+	inidir[PATH_MAX-1] = '\0';
+        strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
+	inidir[PATH_MAX-1] = '\0';
         
         if (!dirExists(inidir))
         {
@@ -773,7 +778,7 @@ void DoneLoading()
 static void DisplayWatch(int x, int y, int value)
 {
     int h, m, s;
-    char b[9];
+    char b[16];
     
     s = value % 60; value /= 60;
     m = value % 60; value /= 60;

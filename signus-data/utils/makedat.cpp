@@ -108,7 +108,7 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
     unsigned char *buffer2 = NULL;
     
     png_ptr = png_create_read_struct( PNG_LIBPNG_VER_STRING,
-        (voidp) NULL,
+        NULL,
         (png_error_ptr) NULL,
         (png_error_ptr) NULL );
 
@@ -253,7 +253,7 @@ unsigned GetFileSize(FILE *f)
 }
 
 
-void AddFile(char *prefix, char *dir, char *name)
+void AddFile(const char *prefix, const char *dir, const char *name)
 {
 	void *buf;
 	unsigned bufsize;

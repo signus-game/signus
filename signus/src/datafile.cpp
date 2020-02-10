@@ -167,10 +167,12 @@ int TDataFile::lookfor(const char *name, int lo, int hi)
 void *TDataFile::get(const char *name)
 {
 	void *ptr = NULL;
-	char nm[9];
+	char nm[32];
 	
-	strcpy(nm, readprefix);
-	strcat(nm, name);
+	strncpy(nm, readprefix, sizeof(nm) - 1);
+	nm[sizeof(nm)-1] = '\0';
+	strncat(nm, name, sizeof(nm) - strlen(nm) - 1);
+	nm[sizeof(nm)-1] = '\0';
 	if (nm[0] == '?') nm[0] = readreplacer;
 	
 	int i = lookfor(nm, 0, count-1);

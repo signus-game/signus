@@ -71,18 +71,25 @@ void TToweredTrainUnit::PrepareFieldTime(int x, int y)
 		FieldTimeTbl[7][tbofs] = 0xFF;
 	}
 	else { //terA
-		for (i = 0; i < 8; i++) FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
 		switch (f->Terrain2) {
 		case 71+1 :
-				FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft; break;
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
 		case 71+2 :
-				FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft; break;
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
 		case 71+16 :
-				FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft; break;
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
 		case 71+19 :
-				FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft; break;
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
 		default:
-				for (i = 0; i < 8; i++)	FieldTimeTbl[i][tbofs] = ft; break;
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
 		}
 	}
 }
@@ -124,18 +131,25 @@ void TOlymp::PrepareFieldTime(int x, int y)
 		FieldTimeTbl[7][tbofs] = 0xFF;
 	}
 	else { //terA
-		for (i = 0; i < 8; i++) FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
 		switch (f->Terrain2) {
 		case 71+1 :
-				FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft; break;
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
 		case 71+2 :
-				FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft; break;
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
 		case 71+16 :
-				FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft; break;
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
 		case 71+19 :
-				FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft; break;
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
 		default:
-				for (i = 0; i < 8; i++)	FieldTimeTbl[i][tbofs] = ft; break;
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
 		}
 	}
 }
@@ -177,18 +191,25 @@ void TTrainSupportUnit::PrepareFieldTime(int x, int y)
 		FieldTimeTbl[7][tbofs] = 0xFF;
 	}
 	else { //terA
-		for (i = 0; i < 8; i++) FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
 		switch (f->Terrain2) {
 		case 71+1 :
-				FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft; break;
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
 		case 71+2 :
-				FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft; break;
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
 		case 71+16 :
-				FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft; break;
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
 		case 71+19 :
-				FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft; break;
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
 		default:
-				for (i = 0; i < 8; i++)	FieldTimeTbl[i][tbofs] = ft; break;
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
 		}
 	}
 }

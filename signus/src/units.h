@@ -524,8 +524,10 @@ extern char *WpnNames[WPNNM_COUNT];
 // Inliny:
 inline char *TObject::GetName()
 {
-    if (ID < BADLIFE) return UnitsNames[Type];
-    else return UnitsNames[Type-BADLIFE];
+	if (Type < BADLIFE)
+		return UnitsNames[Type];
+	else
+		return UnitsNames[Type-BADLIFE];
 }
 inline char *TObject::GetDescript()
 {
