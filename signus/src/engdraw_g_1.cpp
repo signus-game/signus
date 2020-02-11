@@ -35,21 +35,26 @@ inline void _rep_movsd(uintptr_t& edi, uintptr_t& esi, int& ecx)
 inline void _stosb(uintptr_t& edi, uint32_t value)
 {
 	__builtin_memset((void*)edi, value & 0xff, 1);
+	edi++;
 }
 
 inline void _stosw(uintptr_t& edi, uint32_t value)
 {
 	__builtin_memset((void*)edi, value & 0xff, 2);
+	edi += 2;
 }
 
 inline void _stosd(uintptr_t& edi, uint32_t value)
 {
 	__builtin_memset((void*)edi, value & 0xff, 4);
+	edi += 4;
 }
 
 inline void _rep_stosd(uintptr_t& edi, uint32_t value, int& ecx)
 {
 	__builtin_memset((void*)edi, value & 0xff, 4*ecx);
+	edi += ecx * 4;
+	ecx = 0;
 }
 
 extern uint8_t DarkingTable[];
