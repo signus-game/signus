@@ -342,7 +342,7 @@ void TBomb::AnimStart(int fromx, int fromy, int tox, int toy)
 void TBomb::AnimStop(int fromx, int fromy, int tox, int toy)
 {
     for (int i = 0; i < 6; i++)
-        AddExplode1x1(tox, toy, 0, 20 - 40 * rand()/RAND_MAX, 20 - 40 * rand()/RAND_MAX);
+        AddExplode1x1(tox, toy, 0, 20 - 40 * frand(), 20 - 40 * frand());
     IncExplodeTime(+3);
     TheShooter->ShowShootAt(tox, toy, 1);
 }
@@ -847,7 +847,7 @@ void TRocket::AnimDraw(int x, int y, int h)
             }
             i = RChvostSz - 1;
             RChvost[i][0] = olddrawx, RChvost[i][1] = olddrawy;
-            RChvostSp[i] = SpriteRocket[8 + 3 * rand() / RAND_MAX];
+            RChvostSp[i] = SpriteRocket[8 + rand() % 3];
         }
         RChvostPh = !RChvostPh;
 

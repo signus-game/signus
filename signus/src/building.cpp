@@ -281,7 +281,7 @@ void TBuilding::Explode()
                 GetField(X+i, Y+j)->Unit = ID;
                 for (k = 0; k < 2; k++)
                     AddExplode1x1(X+i, Y+j, 0, 
-                            10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+                            10 - 20 * frand(), 10 - 20 * frand());
             }
     }
     else this->RemoveFromWorld();

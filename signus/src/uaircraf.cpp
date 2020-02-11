@@ -372,9 +372,9 @@ void TAircraft::Explode()
 		{
 			for (int i = 0; i < 6; i++) {
 				AddExplode1x1(X, Y, 0, 
-						40 - 80 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX -14 * (Alt-1));
+						40 - 80 * frand(), 20 - 40 * frand() -14 * (Alt-1));
 				AddExplode3x3(X, Y, 0, 
-						60 - 120 * rand() / RAND_MAX, 30 - 60 * rand() / RAND_MAX -14 * (Alt-1));
+						60 - 120 * frand(), 30 - 60 * frand() -14 * (Alt-1));
 			}
 		}
 	}
@@ -1242,7 +1242,7 @@ void TSaturn::GoOnField()
 			for (i = X-2; i <= X+2; i++)
 				for (j = Y-2; j <= Y+2; j++) {
 					WeaponAttack(i, j, wpnExplos, BombAN, utSA_BANB);
-					AddExplode3x3(i, j, 0, 10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+					AddExplode3x3(i, j, 0, 10 - 20 * frand(), 10 - 20 * frand());
 				}
 			IncExplodeTime(+3);
 		}

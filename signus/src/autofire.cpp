@@ -845,8 +845,8 @@ static TPoint GetRozptyl(int x, int y, TUnit *u)
     TPoint p;
     int i, cs;
     
-    if ((100 * rand() / RAND_MAX) > RozptylTable[u->Level]) {
-        cs = 1 + 8 * rand() / RAND_MAX;
+    if ((100 * frand()) > RozptylTable[u->Level]) {
+        cs = 1 + rand() % 8;
         p = CartezianSnail(cs);
         if (!u->Weapons[u->CurWpn]->IsInRange(u, u->X, u->Y, x+p.x, y+p.y)) {
             p.x = p.y = 0;

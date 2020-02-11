@@ -747,8 +747,7 @@ void TObject::Explode()
         AddExplode1x1(X, Y);
         if (rand() % 20 == 0) { // bonus - vetsi boom
             for (int i = 0; i < 6; i++)
-                AddExplode1x1(X, Y, 0, 
-                        20 - 40 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+                AddExplode1x1(X, Y, 0, 20 - 40 * frand(), 10 - 20 * frand());
         }
     }
     else this->RemoveFromWorld();
@@ -1704,8 +1703,7 @@ void TSupportUnit::Explode()
     
     if (drw) {
         for (i = 0; i < 6; i++)
-            AddExplode1x1(X, Y, 0, 
-                    20 - 40 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+            AddExplode1x1(X, Y, 0, 20 - 40 * frand(), 10 - 20 * frand());
         IncExplodeTime(+2);
         AddExplode1x1(X, Y);
     }

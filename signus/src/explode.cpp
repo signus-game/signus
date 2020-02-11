@@ -137,7 +137,7 @@ void AddExplode1x1(int x, int y, int typ, int xofs, int yofs)
     int i;
     int expnum;
     if (typ) expnum = typ;
-    else expnum = EXPL_1x1_RND * rand() / RAND_MAX;
+    else expnum = rand() % EXPL_1x1_RND;
 
     BoomBufSize += EXPL_PHASES;
     BoomBuf[BoomBufPos].sound = ExplosionA_Sound[expnum];
@@ -168,7 +168,7 @@ void AddExplode3x3(int x, int y, int typ, int xofs, int yofs, int mega)
     int i;
     int expnum;
     if (typ) expnum = typ;
-    else expnum = EXPL_3x3_RND * rand() / RAND_MAX;
+    else expnum = EXPL_3x3_RND * frand();
     
     BoomBufSize += EXPL_PHASES;
     BoomBuf[BoomBufPos].sound = ExplosionB_Sound[expnum];

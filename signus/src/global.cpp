@@ -34,6 +34,7 @@
 #include <math.h>
 #include <sys/stat.h>
 #include <limits.h>
+#include <cstdlib>
 
 extern "C" {
 #include "iniparser.h"
@@ -259,7 +260,7 @@ SDL_Color PaletteSDL[256];
 
 int RollDice()
 {
-    double r = double(rand ()) / RAND_MAX;
+    double r = frand();
     if (r == 0) {
         r = 1.0 / RAND_MAX;
     }
@@ -871,8 +872,9 @@ TPoint CartezianSnail (int i)
     return pos;
 }
 
-
-
+double frand(void) {
+	return double(rand()) / RAND_MAX;
+}
 
 
 #ifdef DEBUG

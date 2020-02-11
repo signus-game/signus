@@ -776,7 +776,7 @@ void TSatan::Explode()
             for (i = X - 3; i <= X + 3; i++) 
                 for (j = Y - 3; j <= Y + 3; j++) 
                     AddExplode3x3(i, j, 0, 
-                        20 - 40 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX, TRUE);
+                        20 - 40 * frand(), 20 - 40 * frand(), TRUE);
             IncExplodeTime(+2);
         }
     }
@@ -875,7 +875,7 @@ void TGargantua::Explode()
         for (i = X - 5; i <= X + 5; i++) 
             for (j = Y - 5; j <= Y + 5; j++) 
                     AddExplode3x3(i, j, 0, 
-                        20 - 40 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX, TRUE);
+                        20 - 40 * frand(), 20 - 40 * frand(), TRUE);
     }
     IncExplodeTime(+3);
     MegaDestruction = TRUE;

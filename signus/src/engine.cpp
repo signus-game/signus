@@ -1571,7 +1571,7 @@ int ProcessMapAnim()
     if (TimerValue < LastAnimTick + ANIM_SPD) return FALSE;
 
     if (WC_On && (--WC_Period <= 0)) {
-        WC_Period = 1 * rand() / RAND_MAX;
+        WC_Period = rand() % 2;
         if (WC_Phase == 1) WC_Phase = 2; else WC_Phase = 1;
         PutBitmap(RES_X-268, RES_Y+2-((iniResolution == SVGA_640x480) ? 18 : 22), WorkingControl[WC_Phase], 8, 8);
     }

@@ -183,8 +183,7 @@ void JukeboxNext()
 	StopMusic();
 	if (iniJukeboxRandom)
     { 
-        int r = rand();
-        CurrentPlayed = int((double(r) / RAND_MAX) * PlayCount);
+        CurrentPlayed = rand() % PlayCount;
     }
 	else
     {
