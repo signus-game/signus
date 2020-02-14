@@ -44,9 +44,7 @@ ENGINE_FILES = \
            graphio.cpp \
            main.cpp \
            mission_screen.cpp \
-           graydark_g.c \
-           engdraw_g_1.cpp \
-           engdraw_g_2.cpp
+           graydark_g.c
 
 AI_FILES = \
            ai/ai.cpp \
