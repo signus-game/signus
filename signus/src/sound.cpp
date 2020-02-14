@@ -115,6 +115,7 @@ void SetVolume(int effects, int speech, int music)
     EffectsVolume = effects;
     SpeechVolume = speech;
     MusicVolume = music;
+    Mix_VolumeMusic(MusicVolume * MIX_MAX_VOLUME / 64);
     if (MusicOn && (music == 0)) StopMusic();
     MusicOn = MusicVolume > 0;
      // FIXME __ update music channel volume here
