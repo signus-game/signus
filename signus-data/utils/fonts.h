@@ -9,7 +9,7 @@
 #ifndef _FONTS_H
 #define _FONTS_H
 
-#include <stdio.h>
+#include "stream.h"
 
 typedef unsigned char byte;
 
@@ -37,8 +37,8 @@ typedef struct {
 // Zakladni funkce:
 // (pouz: FontDataXXXX() jsou parametry inicializace TDataFile)
 
-extern unsigned FontDataWrite(FILE *f, void *ptr, size_t size);
-extern void *FontDataRead(FILE *f);
+unsigned FontDataWrite(WriteStream &stream, void *ptr, size_t size);
+void *FontDataRead(ReadStream &stream);
 
 extern void freefont(TFont *font);
 extern void lockfont(TFont *font);

@@ -70,4 +70,7 @@ extern void AnalyseLandscape ();
 
 extern void IntegrityTest ();
 
+void loadAttackedFields(ReadStream &stream, int format);
+void saveAttackedFields(WriteStream &stream);
+
 #endif

@@ -44,43 +44,34 @@ int MoneyGoodlife = 0, MoneyBadlife = 0;
 //////////////////////////// TBuilding /////////////////////////////////////
 
 
-void TBuilding::Init(int x, int y, int party, FILE *f)
-{
-    TObject::Init(x, y, party, f);
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
+void TBuilding::Init(int x, int y, int party, ReadStream *stream) {
+	TObject::Init(x, y, party, stream);
+	RepairingNow = FALSE;
+
+	if (stream) {
+		int moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
 }
 
-
-
-void TBuilding::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&moreinfo, 4, 1, f);
+void TBuilding::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(TRUE);
 }
 
-
-
-void TBuilding::Read(FILE *f)
-{
-    TObject::Read(f);
-    fread(&RepairingNow, 4, 1, f);
-    fread(&MoneyIndex, 4, 1, f);
+void TBuilding::Read(ReadStream &stream) {
+	TObject::Read(stream);
+	RepairingNow = stream.readSint32LE();
+	MoneyIndex = stream.readSint32LE();
 }
 
-void TBuilding::Write(FILE *f)
-{
-    TObject::Write(f);
-    fwrite(&RepairingNow, 4, 1, f);
-    fwrite(&MoneyIndex, 4, 1, f);
+void TBuilding::Write(WriteStream &stream) {
+	TObject::Write(stream);
+	stream.writeSint32LE(RepairingNow);
+	stream.writeSint32LE(MoneyIndex);
 }
-
-
 
 void TBuilding::PlaceGround(int place)
 {
@@ -298,37 +289,31 @@ void TBuilding::Explode()
 
 //////// TMutableBuilding:
 
-void TMutableBuilding::Init(int x, int y, int party, FILE *f)
-{
-    Mutation = 0;
-    TObject::Init(x, y, party, f); // schvalne!!!
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&Mutation, 4, 1, f);
-        PlaceGround(FALSE);
-        Setup(); // znovu - update!!!
-        AfterSetup();
-        PlaceGround(TRUE);
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
-    else {
-        Mutation = 0;
-    }
+void TMutableBuilding::Init(int x, int y, int party, ReadStream *stream) {
+	Mutation = 0;
+	TObject::Init(x, y, party, stream); // Intentional!!!
+	RepairingNow = FALSE;
+
+	if (stream) {
+		int moreinfo;
+
+		Mutation = stream->readSint32LE();
+		PlaceGround(FALSE);
+		Setup(); // once more - update!!!
+		AfterSetup();
+		PlaceGround(TRUE);
+		moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
 }
 
-
-
-void TMutableBuilding::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&Mutation, 4, 1, f);
-    fwrite(&moreinfo, 4, 1, f);
+void TMutableBuilding::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(Mutation);
+	stream.writeSint32LE(TRUE);
 }
-
-
 
 TSprite *TMutableBuilding::GetSprite()
 {
@@ -574,17 +559,20 @@ void TBase::Setup()
 
 
 
-void TBase::Init(int x, int y, int party, FILE *f)
-{
-    TBuilding::Init(x, y, party, f);
-    if (IconTransport == NULL) 
-        IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-    if ((Capacity == TCAPACITY_BIG) && (BmpBigInventory == NULL))
-        BmpBigInventory = GraphicsDF->get("tranbox0");
-    else if ((Capacity == TCAPACITY_SMALL) && (BmpSmallInventory == NULL))
-        BmpSmallInventory = GraphicsDF->get("tranbox1");
-    else if ((Capacity == TCAPACITY_MEDIUM) && (BmpMediumInventory == NULL))
-        BmpMediumInventory = GraphicsDF->get("tranbox2");
+void TBase::Init(int x, int y, int party, ReadStream *stream) {
+	TBuilding::Init(x, y, party, stream);
+
+	if (IconTransport == NULL) {
+		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
+	}
+
+	if ((Capacity == TCAPACITY_BIG) && !BmpBigInventory) {
+		BmpBigInventory = GraphicsDF->get("tranbox0");
+	} else if ((Capacity == TCAPACITY_SMALL) && !BmpSmallInventory) {
+		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	} else if ((Capacity == TCAPACITY_MEDIUM) && !BmpMediumInventory) {
+		BmpMediumInventory = GraphicsDF->get("tranbox2");
+	}
 }
 
 
@@ -756,31 +744,23 @@ void TBase::GetUnitInfo()
 
 
 
-void TBase::Read(FILE *f)
-{
-    int id;
-    
-    TBuilding::Read(f);
-    fread(&LoadedUnits, 4, 1, f);
-    for (int i = 0; i < LoadedUnits; i++) {
-        id = 0; fread(&id, 4, 1, f);
-        Inventory[i] = id;
-    }
+void TBase::Read(ReadStream &stream) {
+	TBuilding::Read(stream);
+	LoadedUnits = stream.readSint32LE();
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		Inventory[i] = stream.readSint32LE();
+	}
 }
 
-void TBase::Write(FILE *f)
-{
-    int id;
-    
-    TBuilding::Write(f);
-    fwrite(&LoadedUnits, 4, 1, f);
-    for (int i = 0; i < LoadedUnits; i++) {
-        id = 0; id = Inventory[i];
-        fwrite(&id, 4, 1, f);
-    }
+void TBase::Write(WriteStream &stream) {
+	TBuilding::Write(stream);
+	stream.writeSint32LE(LoadedUnits);
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		stream.writeSint32LE(Inventory[i]);
+	}
 }
-
-
 
 void TBase::ChangeParty()
 {
@@ -1068,20 +1048,18 @@ int TFactory::ProduceUnit(int untype)
 
 
 
-void TFactory::Read(FILE *f)
-{
-    TBuilding::Read(f);
-    fread(&CurrentJob, 4, 1, f);
-    fread(&CurrentPhase, 4, 1, f);
-    fread(&CurrentNeed, 4, 1, f);
+void TFactory::Read(ReadStream &stream) {
+	TBuilding::Read(stream);
+	CurrentJob = stream.readSint32LE();
+	CurrentPhase = stream.readSint32LE();
+	CurrentNeed = stream.readSint32LE();
 }
 
-void TFactory::Write(FILE *f)
-{
-    TBuilding::Write(f);
-    fwrite(&CurrentJob, 4, 1, f);
-    fwrite(&CurrentPhase, 4, 1, f);
-    fwrite(&CurrentNeed, 4, 1, f);
+void TFactory::Write(WriteStream &stream) {
+	TBuilding::Write(stream);
+	stream.writeSint32LE(CurrentJob);
+	stream.writeSint32LE(CurrentPhase);
+	stream.writeSint32LE(CurrentNeed);
 }
 
 
@@ -1651,40 +1629,39 @@ int TDocks::UnloadUnit(TUnit *u)
 
 
 
-void TDocks::Init(int x, int y, int party, FILE *f)
-{
-    TObject::Init(x, y, party, f); // schvalne!!!
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&Orient, 4, 1, f);
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
-    else {
-        Orient = 1;
-    }
-    if (IconTransport == NULL) 
-        IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-    if ((Capacity == TCAPACITY_BIG) && (BmpBigInventory == NULL))
-        BmpBigInventory = GraphicsDF->get("tranbox0");
-    else if ((Capacity == TCAPACITY_SMALL) && (BmpSmallInventory == NULL))
-        BmpSmallInventory = GraphicsDF->get("tranbox1");
-    else if ((Capacity == TCAPACITY_MEDIUM) && (BmpMediumInventory == NULL))
-        BmpMediumInventory = GraphicsDF->get("tranbox2");
+void TDocks::Init(int x, int y, int party, ReadStream *stream) {
+	TObject::Init(x, y, party, stream); // Intentional!!!
+	RepairingNow = FALSE;
+	Orient = 1;
+
+	if (stream) {
+		int moreinfo;
+
+		Orient = stream->readSint32LE();
+		moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
+
+	if (IconTransport == NULL) {
+		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
+	}
+
+	if ((Capacity == TCAPACITY_BIG) && !BmpBigInventory) {
+		BmpBigInventory = GraphicsDF->get("tranbox0");
+	} else if ((Capacity == TCAPACITY_SMALL) && !BmpSmallInventory) {
+		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	} else if ((Capacity == TCAPACITY_MEDIUM) && !BmpMediumInventory) {
+		BmpMediumInventory = GraphicsDF->get("tranbox2");
+	}
 }
 
-
-
-void TDocks::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&Orient, 4, 1, f);
-    fwrite(&moreinfo, 4, 1, f);
+void TDocks::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(Orient);
+	stream.writeSint32LE(TRUE);
 }
-
-
 
 TSprite *TDocks::GetSprite()
 {

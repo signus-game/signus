@@ -34,6 +34,7 @@
 #include "engine.h"
 #include "ui_toolkit.h"
 #include "sound.h"
+#include "stream.h"
 
 #include "etables.h"
 
@@ -74,13 +75,13 @@ class TObject {
             TAI_Info AI_Info;                     // ...
 
             TObject() {};
-            virtual void Init(int x, int y, int party, FILE *f = NULL);
+            virtual void Init(int x, int y, int party, ReadStream *stream = NULL);
                     // Init() je skutecny konstruktor, proto se musi! volat po k.!
 
-            virtual void Read(FILE *f);
-            virtual void Write(FILE *f);
+            virtual void Read(ReadStream &stream);
+            virtual void Write(WriteStream &stream);
                     // cteni a zapis aktualnich hodnot jednotky
-            virtual void WriteInitReq(FILE *f) {};
+            virtual void WriteInitReq(WriteStream &stream) {};
                     // zapis hodnot ctenych primo v konstruktoru
                     // (vola se vzdy! tesne pred Write()...)
             virtual int GetType() = 0;
@@ -236,12 +237,12 @@ class TUnit : public TObject {
             int Velocity;                         // real-live sviznost pohybu
             
             TUnit() : TObject() {};
-            void Init(int x, int y, int party, FILE *f = NULL);
+            void Init(int x, int y, int party, ReadStream *stream = NULL);
             void Setup();
             void AfterSetup();      
-            void Read(FILE *f);
-            void Write(FILE *f);
-            void WriteInitReq(FILE *f);
+            void Read(ReadStream &stream);
+            void Write(WriteStream &stream);
+            void WriteInitReq(WriteStream &stream);
             void GetCursor(int x, int y, int *cursor, int *selbold);
             void Action(int x, int y);
             unsigned GetSupportedActions();
@@ -296,11 +297,11 @@ class TToweredUnit : public TUnit {
             int WpnOrient;
         
             TToweredUnit() : TUnit() {};
-            void Init(int x, int y, int party, FILE *f);
+            void Init(int x, int y, int party, ReadStream *stream);
             void Draw();
             void GetDrawRect(TRect *r);
-            void Read(FILE *f);
-            void Write(FILE *f);
+            void Read(ReadStream &stream);
+            void Write(WriteStream &stream);
             void WpnRotate(int x, int y);
             void Rotate(int angle);
             void WpnRot(int ang);
@@ -343,9 +344,9 @@ class TSupportUnit : public TUnit {
 extern int InitUnits();
 extern int DoneUnits();
 
-extern void ReadUnits(FILE *f);
+extern void ReadUnits(ReadStream &stream);
         // Nacte ze souboru seznam jednotek
-extern void WriteUnits(FILE *f);
+extern void WriteUnits(WriteStream &stream);
         // Zapise do souboru stav jednotek
         
 extern void UpdateUnitsMem(int UnType);

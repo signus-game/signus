@@ -400,48 +400,39 @@ void InitAI15 ()
 
 
 
-void LoadArtificialIntelligence15 (FILE *f)
-{
+void LoadArtificialIntelligence15(ReadStream &stream, int format) {
+	DoneArtificialIntelligence15 ();
 
-    DoneArtificialIntelligence15 ();
+	MBPlaces = MBPlaces15;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = MBPlaces15;  
-    DeniedPlaces = NULL;
-
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Marine1 = new TMarine (f);
-    Marine2 = new TMarine (f);
-    AirArmy1 = new TAirArmy (f);
-    AirArmy2 = new TAirArmy (f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Marine1 = new TMarine(stream);
+	Marine2 = new TMarine(stream);
+	AirArmy1 = new TAirArmy(stream);
+	AirArmy2 = new TAirArmy(stream);
 }
 
+void SaveArtificialIntelligence15(WriteStream &stream) {
+	saveAttackedFields(stream);
 
-
-void SaveArtificialIntelligence15 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    Marine1 -> Save (f);
-    Marine2 -> Save (f);
-    AirArmy1 -> Save (f);
-    AirArmy2 -> Save (f);
-    DUPos = 0;
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Marine1->Save(stream);
+	Marine2->Save(stream);
+	AirArmy1->Save(stream);
+	AirArmy2->Save(stream);
+	DUPos = 0;
 }
-
 
 int ArtificialIntelligence15 ()
 {

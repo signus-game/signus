@@ -29,7 +29,7 @@
 class TMarine : public TArmy {
 	public:
 		TMarine ();	
-		TMarine (FILE *f);
+		TMarine (ReadStream &stream);
 		
 		virtual void InsertUnits ();
 		virtual int ProblemJednotky (int Unit);

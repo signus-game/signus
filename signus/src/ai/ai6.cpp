@@ -128,34 +128,38 @@
 #include "loadsave.h"
 #include "anims.h"
 
-void InvasionAnimation()
-{
-    FILE *f = fopen("mission6.tmp", "wb");
+void InvasionAnimation() {
+	File f("mission6.tmp", File::WRITE | File::TRUNCATE);
 
-    if (f == NULL) return;
-    SaveGameState(f);
-    fclose(f);
-    MouseShow();
-    ShowHelpers(); 
-    DoneArtificialIntelligence();
-    DoneEngine();
-    
+	if (!f.isOpen()) {
+		return;
+	}
+
+	SaveGameState(f);
+	f.close();
+	MouseShow();
+	ShowHelpers();
+	DoneArtificialIntelligence();
+	DoneEngine();
+
 #if 0  // FIXME
-    PlayAnimation("mis6x");          
+	PlayAnimation("mis6x");
 #endif
-    
-    f = fopen("mission6.tmp", "rb");
-    if (f == NULL) return;
-    LoadGameState(f);
-    fclose(f);
-    remove("mission6.tmp");
 
-    MouseHide();
-    HideHelpers(); 
-    SaySpeech ("mis6a", 2005);
+	f.open("mission6.tmp", File::READ);
+
+	if (!f.isOpen()) {
+		return;
+	}
+
+	LoadGameState(f);
+	f.close();
+	remove("mission6.tmp");
+
+	MouseHide();
+	HideHelpers();
+	SaySpeech("mis6a", 2005);
 }
-
-
 
 TPoint MinePlaces6 [] = {65,52, 60,53, 55,48, 53,51, 48,53,
                                                 -1,-1};
@@ -302,70 +306,65 @@ void InitAI6 ()
 
 
 
-void LoadArtificialIntelligence6 (FILE *f)
-{
+void LoadArtificialIntelligence6(ReadStream &stream, int format) {
+	DoneArtificialIntelligence6();
 
-    DoneArtificialIntelligence6 ();
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = NULL;    
-    DeniedPlaces = NULL;
+	Saturn1 = stream.readSint32LE();
+	Saturn2 = stream.readSint32LE();
+	Caesar1 = stream.readSint32LE();
+	Caesar2 = stream.readSint32LE();
+	Caesar3 = stream.readSint32LE();
+	Caesar4 = stream.readSint32LE();
+	Caesar5 = stream.readSint32LE();
 
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
+	SaturnState = stream.readSint32LE();
+	S1Start.x = stream.readSint32LE();
+	S1Start.y = stream.readSint32LE();
+	S2Start.x = stream.readSint32LE();
+	S2Start.y = stream.readSint32LE();
+	StartInvasion = stream.readSint32LE();
 
-    fread (&Saturn1, sizeof (int), 1, f);
-    fread (&Saturn2, sizeof (int), 1, f);
-    fread (&Caesar1, sizeof (int), 1, f);
-    fread (&Caesar2, sizeof (int), 1, f);
-    fread (&Caesar3, sizeof (int), 1, f);
-    fread (&Caesar4, sizeof (int), 1, f);
-    fread (&Caesar5, sizeof (int), 1, f);
-    
-    fread (&SaturnState, sizeof (int), 1, f);
-    fread (&S1Start, sizeof (TPoint), 1, f);
-    fread (&S2Start, sizeof (TPoint), 1, f);
-    fread (&StartInvasion, sizeof (int), 1, f);
-    
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
 }
 
+void SaveArtificialIntelligence6(WriteStream &stream) {
+	saveAttackedFields(stream);
 
+	stream.writeSint32LE(Saturn1);
+	stream.writeSint32LE(Saturn2);
+	stream.writeSint32LE(Caesar1);
+	stream.writeSint32LE(Caesar2);
+	stream.writeSint32LE(Caesar3);
+	stream.writeSint32LE(Caesar4);
+	stream.writeSint32LE(Caesar5);
 
-void SaveArtificialIntelligence6 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
+	stream.writeSint32LE(SaturnState);
+	stream.writeSint32LE(S1Start.x);
+	stream.writeSint32LE(S1Start.y);
+	stream.writeSint32LE(S2Start.x);
+	stream.writeSint32LE(S2Start.y);
+	stream.writeSint32LE(StartInvasion);
 
-    fwrite (&Saturn1, sizeof (int), 1, f);
-    fwrite (&Saturn2, sizeof (int), 1, f);
-    fwrite (&Caesar1, sizeof (int), 1, f);
-    fwrite (&Caesar2, sizeof (int), 1, f);
-    fwrite (&Caesar3, sizeof (int), 1, f);
-    fwrite (&Caesar4, sizeof (int), 1, f);
-    fwrite (&Caesar5, sizeof (int), 1, f);
-
-    fwrite (&SaturnState, sizeof (int), 1, f);
-    fwrite (&S1Start, sizeof (TPoint), 1, f);
-    fwrite (&S2Start, sizeof (TPoint), 1, f);
-    fwrite (&StartInvasion, sizeof (int), 1, f);
-    
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    DUPos = 0;
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	DUPos = 0;
 }
-
 
 int ArtificialIntelligence6 ()
 {

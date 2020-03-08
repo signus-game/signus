@@ -52,22 +52,36 @@ void ShowAutofireDebug(int x, int y, int drawx, int drawy)
 
 
 
-void SaveAutofire(FILE *f)
-{
-    fwrite(&AF_Reseted, 4, 1, f);
-    fwrite(&AF_from, 4, 1, f);
-    fwrite(&AF_to, 4, 1, f);
-    fwrite(AF_Map, MapSizeX * MapSizeY * sizeof(word), 1, f);
-    fwrite(AF_Units, UNITS_TOP * 4, 1, f);
+void SaveAutofire(WriteStream &stream) {
+	int i;
+
+	stream.writeSint32LE(AF_Reseted);
+	stream.writeSint32LE(AF_from);
+	stream.writeSint32LE(AF_to);
+
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		stream.writeUint16LE(AF_Map[i]);
+	}
+
+	for (i = 0; i < UNITS_TOP; i++) {
+		stream.writeSint32LE(AF_Units[i]);
+	}
 }
 
-void LoadAutofire(FILE *f)
-{
-    fread(&AF_Reseted, 4, 1, f);
-    fread(&AF_from, 4, 1, f);
-    fread(&AF_to, 4, 1, f);
-    fread(AF_Map, MapSizeX * MapSizeY * sizeof(word), 1, f);
-    fread(AF_Units, UNITS_TOP * 4, 1, f);
+void LoadAutofire(ReadStream &stream) {
+	int i;
+
+	AF_Reseted = stream.readSint32LE();
+	AF_from = stream.readSint32LE();
+	AF_to = stream.readSint32LE();
+
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		AF_Map[i] = stream.readUint16LE();
+	}
+
+	for (i = 0; i < UNITS_TOP; i++) {
+		AF_Units[i] = stream.readSint32LE();
+	}
 }
 
 

@@ -69,9 +69,9 @@ TAircraft *GetAircraftAt(int x, int y)
 //////////////// P5edek - TAircraft //////////////////////////////////
 
 
-void TAircraft::Init(int x, int y, int party, FILE *f)
+void TAircraft::Init(int x, int y, int party, ReadStream *stream)
 {
-	TUnit::Init(x, y, party, f);
+	TUnit::Init(x, y, party, stream);
 	LittleAlt = 0;
 }
 
@@ -243,16 +243,14 @@ void TAircraft::ShowShootAt(int x, int y, int phase)
 
 
 
-void TAircraft::Read(FILE *f)
-{
-	TUnit::Read(f);
-	fread(&FlyLevel, 4, 1, f);
+void TAircraft::Read(ReadStream &stream) {
+	TUnit::Read(stream);
+	FlyLevel = stream.readSint32LE();
 }
 
-void TAircraft::Write(FILE *f)
-{
-	TUnit::Write(f);
-	fwrite(&FlyLevel, 4, 1, f);
+void TAircraft::Write(WriteStream &stream) {
+	TUnit::Write(stream);
+	stream.writeSint32LE(FlyLevel);
 }
 
 
@@ -468,9 +466,9 @@ unsigned TMystik::GetSupportedActions()
 
 // Rex:
 
-void TRex::Init(int x, int y, int party, FILE *f)
-{
-	TAircraft::Init(x, y, party, f);
+void TRex::Init(int x, int y, int party, ReadStream *stream) {
+	TAircraft::Init(x, y, party, stream);
+
 	if (IconLand == NULL) {
 		IconLand = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icland%i", 13);
 		IconTakeoff = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "ictakof%i", 13);
@@ -688,17 +686,22 @@ int TRex::InfoEvent(TEvent *e)
 
 // Caesar:
 
-void TCaesar::Init(int x, int y, int party, FILE *f)
+void TCaesar::Init(int x, int y, int party, ReadStream *stream)
 {
-	TAircraft::Init(x, y, party, f);
+	TAircraft::Init(x, y, party, stream);
+
 	if (IconLand == NULL) {
 		IconLand = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icland%i", 13);
 		IconTakeoff = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "ictakof%i", 13);
 	}
-	if (IconTransport == NULL) 
+
+	if (IconTransport == NULL) {
 		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-	if (BmpSmallInventory == NULL)
+	}
+
+	if (BmpSmallInventory == NULL) {
 		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	}
 }
 
 
@@ -876,24 +879,22 @@ void TCaesar::Action(int x, int y)
 
 
 
-void TCaesar::Read(FILE *f)
-{
-	int id;
-	
-	TAircraft::Read(f);
-	fread(&LoadedUnits, 4, 1, f);
+void TCaesar::Read(ReadStream &stream) {
+	TAircraft::Read(stream);
+	LoadedUnits = stream.readSint32LE();
+
 	for (int i = 0; i < LoadedUnits; i++) {
-		id = 0; fread(&id, 4, 1, f);
-		Inventory[i] = id;
+		Inventory[i] = stream.readSint32LE();
 	}
 }
 
-void TCaesar::Write(FILE *f)
-{
-	TAircraft::Write(f);
-	fwrite(&LoadedUnits, 4, 1, f);
-	for (int i = 0; i < LoadedUnits; i++)
-		fwrite(&(Inventory[i]), 4, 1, f);
+void TCaesar::Write(WriteStream &stream) {
+	TAircraft::Write(stream);
+	stream.writeSint32LE(LoadedUnits);
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		stream.writeSint32LE(Inventory[i]);
+	}
 }
 
 
@@ -1211,20 +1212,18 @@ unsigned TSaturn::GetSupportedActions()
 
 
 
-void TSaturn::Read(FILE *f)
-{
-	TAircraft::Read(f);
-	fread(&IsBombing, 4, 1, f);
-	fread(&Bombs, 4, 1, f);
-	fread(&BombAN, 4, 1, f);
+void TSaturn::Read(ReadStream &stream) {
+	TAircraft::Read(stream);
+	IsBombing = stream.readSint32LE();
+	Bombs = stream.readSint32LE();
+	BombAN = stream.readSint32LE();
 }
 
-void TSaturn::Write(FILE *f)
-{
-	TAircraft::Write(f);
-	fwrite(&IsBombing, 4, 1, f);
-	fwrite(&Bombs, 4, 1, f);
-	fwrite(&BombAN, 4, 1, f);
+void TSaturn::Write(WriteStream &stream) {
+	TAircraft::Write(stream);
+	stream.writeSint32LE(IsBombing);
+	stream.writeSint32LE(Bombs);
+	stream.writeSint32LE(BombAN);
 }
 
 

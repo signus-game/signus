@@ -44,6 +44,7 @@ ENGINE_FILES = \
            graphio.cpp \
            main.cpp \
            mission_screen.cpp \
+	   stream.cpp \
            graydark_g.c
 
 AI_FILES = \

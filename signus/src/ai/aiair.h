@@ -39,7 +39,7 @@
 class TAirArmy : public TArmy {
 	public:
 		TAirArmy ();	
-		TAirArmy (FILE *f);
+		TAirArmy (ReadStream &stream);
 		
 		virtual void InsertUnits ();
 		virtual int ProblemJednotky (int Unit);

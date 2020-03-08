@@ -302,8 +302,8 @@ void InitAI4 ()
 
     MoneyGoodlife = 2500;
     MoneyBadlife = 0;
-    MBPlaces = *(&MBPlaces4);
-    DeniedPlaces = *(&DeniedPlaces4);
+    MBPlaces = MBPlaces4;
+    DeniedPlaces = DeniedPlaces4;
 
     ActivationTurn1 = 1;
     ActivationTurn2 = 1;
@@ -576,128 +576,119 @@ void InitAI4 ()
 
 
 
-void LoadArtificialIntelligence4 (FILE *f)
-{
+void LoadArtificialIntelligence4(ReadStream &stream, int format) {
+	DoneArtificialIntelligence4();
 
-    DoneArtificialIntelligence4 ();
+	MBPlaces = MBPlaces4;
+	DeniedPlaces = DeniedPlaces4;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = *(&MBPlaces4);
-    DeniedPlaces = *(&DeniedPlaces4);
+	Uran4 = stream.readSint32LE();
+	Uran5 = stream.readSint32LE();
+	Uran6 = stream.readSint32LE();
+	Uran8 = stream.readSint32LE();
+	Uran11 = stream.readSint32LE();
+	Uran12 = stream.readSint32LE();
+	Uran13 = stream.readSint32LE();
+	Uran14 = stream.readSint32LE();
+	Olymp9 = stream.readSint32LE();
+	Mohykan1 = stream.readSint32LE();
+	Mohykan2 = stream.readSint32LE();
+	ActivationTurn1 = stream.readSint32LE();
+	ActivationTurn2 = stream.readSint32LE();
+	ActivationTurn3 = stream.readSint32LE();
+	ActivationTurn4 = stream.readSint32LE();
+	ActivationTurn5 = stream.readSint32LE();
+	ActivationTurn6 = stream.readSint32LE();
+	ActivationTurn7 = stream.readSint32LE();
+	ActivationTurn8 = stream.readSint32LE();
+	ActivationTurn9 = stream.readSint32LE();
+	ActivationTurn10 = stream.readSint32LE();
+	ActivationTurn11 = stream.readSint32LE();
+	ActivationTurn12 = stream.readSint32LE();
+	ActivationTurn13 = stream.readSint32LE();
+	ActivationTurn14 = stream.readSint32LE();
+	UnloadUran4 = stream.readSint32LE();
+	UnloadUran5 = stream.readSint32LE();
+	UnloadUran6 = stream.readSint32LE();
+	UnloadUran8 = stream.readSint32LE();
+	UnloadUran11 = stream.readSint32LE();
+	UnloadUran12 = stream.readSint32LE();
+	UnloadUran13 = stream.readSint32LE();
+	UnloadUran14 = stream.readSint32LE();
 
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-        
-    MBPlaces = *(&MBPlaces4);
-    fread (&Uran4, sizeof (int), 1, f);
-    fread (&Uran5, sizeof (int), 1, f);
-    fread (&Uran6, sizeof (int), 1, f);
-    fread (&Uran8, sizeof (int), 1, f);
-    fread (&Uran11, sizeof (int), 1, f);
-    fread (&Uran12, sizeof (int), 1, f);
-    fread (&Uran13, sizeof (int), 1, f);
-    fread (&Uran14, sizeof (int), 1, f);
-    fread (&Olymp9, sizeof (int), 1, f);
-    fread (&Mohykan1, sizeof (int), 1, f);
-    fread (&Mohykan2, sizeof (int), 1, f);
-    fread (&ActivationTurn1, sizeof (int), 1, f);
-    fread (&ActivationTurn2, sizeof (int), 1, f);
-    fread (&ActivationTurn3, sizeof (int), 1, f);
-    fread (&ActivationTurn4, sizeof (int), 1, f);
-    fread (&ActivationTurn5, sizeof (int), 1, f);
-    fread (&ActivationTurn6, sizeof (int), 1, f);
-    fread (&ActivationTurn7, sizeof (int), 1, f);
-    fread (&ActivationTurn8, sizeof (int), 1, f);
-    fread (&ActivationTurn9, sizeof (int), 1, f);
-    fread (&ActivationTurn10, sizeof (int), 1, f);
-    fread (&ActivationTurn11, sizeof (int), 1, f);
-    fread (&ActivationTurn12, sizeof (int), 1, f);
-    fread (&ActivationTurn13, sizeof (int), 1, f);
-    fread (&ActivationTurn14, sizeof (int), 1, f);
-    fread (&UnloadUran4, sizeof (int), 1, f);
-    fread (&UnloadUran5, sizeof (int), 1, f);
-    fread (&UnloadUran6, sizeof (int), 1, f);
-    fread (&UnloadUran8, sizeof (int), 1, f);
-    fread (&UnloadUran11, sizeof (int), 1, f);
-    fread (&UnloadUran12, sizeof (int), 1, f);
-    fread (&UnloadUran13, sizeof (int), 1, f);
-    fread (&UnloadUran14, sizeof (int), 1, f);
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
-    Army7 = new TGroundArmy (f);
-    Army8 = new TGroundArmy (f);
-    Army9 = new TGroundArmy (f);
-    Army10 = new TGroundArmy (f);
-    Army11 = new TGroundArmy (f);
-    Army12 = new TGroundArmy (f);
-    Army13 = new TGroundArmy (f);
-    Army14 = new TGroundArmy (f);   
-    
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
+	Army7 = new TGroundArmy(stream);
+	Army8 = new TGroundArmy(stream);
+	Army9 = new TGroundArmy(stream);
+	Army10 = new TGroundArmy(stream);
+	Army11 = new TGroundArmy(stream);
+	Army12 = new TGroundArmy(stream);
+	Army13 = new TGroundArmy(stream);
+	Army14 = new TGroundArmy(stream);
 }
 
+void SaveArtificialIntelligence4(WriteStream &stream) {
+	saveAttackedFields(stream);
 
+	stream.writeSint32LE(Uran4);
+	stream.writeSint32LE(Uran5);
+	stream.writeSint32LE(Uran6);
+	stream.writeSint32LE(Uran8);
+	stream.writeSint32LE(Uran11);
+	stream.writeSint32LE(Uran12);
+	stream.writeSint32LE(Uran13);
+	stream.writeSint32LE(Uran14);
+	stream.writeSint32LE(Olymp9);
+	stream.writeSint32LE(Mohykan1);
+	stream.writeSint32LE(Mohykan2);
+	stream.writeSint32LE(ActivationTurn1);
+	stream.writeSint32LE(ActivationTurn2);
+	stream.writeSint32LE(ActivationTurn3);
+	stream.writeSint32LE(ActivationTurn4);
+	stream.writeSint32LE(ActivationTurn5);
+	stream.writeSint32LE(ActivationTurn6);
+	stream.writeSint32LE(ActivationTurn7);
+	stream.writeSint32LE(ActivationTurn8);
+	stream.writeSint32LE(ActivationTurn9);
+	stream.writeSint32LE(ActivationTurn10);
+	stream.writeSint32LE(ActivationTurn11);
+	stream.writeSint32LE(ActivationTurn12);
+	stream.writeSint32LE(ActivationTurn13);
+	stream.writeSint32LE(ActivationTurn14);
+	stream.writeSint32LE(UnloadUran4);
+	stream.writeSint32LE(UnloadUran5);
+	stream.writeSint32LE(UnloadUran6);
+	stream.writeSint32LE(UnloadUran8);
+	stream.writeSint32LE(UnloadUran11);
+	stream.writeSint32LE(UnloadUran12);
+	stream.writeSint32LE(UnloadUran13);
+	stream.writeSint32LE(UnloadUran14);
 
-void SaveArtificialIntelligence4 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    fwrite (&Uran4, sizeof (int), 1, f);
-    fwrite (&Uran5, sizeof (int), 1, f);
-    fwrite (&Uran6, sizeof (int), 1, f);
-    fwrite (&Uran8, sizeof (int), 1, f);
-    fwrite (&Uran11, sizeof (int), 1, f);
-    fwrite (&Uran12, sizeof (int), 1, f);
-    fwrite (&Uran13, sizeof (int), 1, f);
-    fwrite (&Uran14, sizeof (int), 1, f);
-    fwrite (&Olymp9, sizeof (int), 1, f);
-    fwrite (&Mohykan1, sizeof (int), 1, f);
-    fwrite (&Mohykan2, sizeof (int), 1, f);
-    fwrite (&ActivationTurn1, sizeof (int), 1, f);
-    fwrite (&ActivationTurn2, sizeof (int), 1, f);
-    fwrite (&ActivationTurn3, sizeof (int), 1, f);
-    fwrite (&ActivationTurn4, sizeof (int), 1, f);
-    fwrite (&ActivationTurn5, sizeof (int), 1, f);
-    fwrite (&ActivationTurn6, sizeof (int), 1, f);
-    fwrite (&ActivationTurn7, sizeof (int), 1, f);
-    fwrite (&ActivationTurn8, sizeof (int), 1, f);
-    fwrite (&ActivationTurn9, sizeof (int), 1, f);
-    fwrite (&ActivationTurn10, sizeof (int), 1, f);
-    fwrite (&ActivationTurn11, sizeof (int), 1, f);
-    fwrite (&ActivationTurn12, sizeof (int), 1, f);
-    fwrite (&ActivationTurn13, sizeof (int), 1, f);
-    fwrite (&ActivationTurn14, sizeof (int), 1, f); 
-    fwrite (&UnloadUran4, sizeof (int), 1, f);
-    fwrite (&UnloadUran5, sizeof (int), 1, f);
-    fwrite (&UnloadUran6, sizeof (int), 1, f);
-    fwrite (&UnloadUran8, sizeof (int), 1, f);
-    fwrite (&UnloadUran11, sizeof (int), 1, f);
-    fwrite (&UnloadUran12, sizeof (int), 1, f);
-    fwrite (&UnloadUran13, sizeof (int), 1, f);
-    fwrite (&UnloadUran14, sizeof (int), 1, f);
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    Army7 -> Save (f);
-    Army8 -> Save (f);
-    Army9 -> Save (f);
-    Army10 -> Save (f);
-    Army11 -> Save (f);
-    Army12 -> Save (f);
-    Army13 -> Save (f);
-    Army14 -> Save (f);
-    DUPos = 0; 
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	Army7->Save(stream);
+	Army8->Save(stream);
+	Army9->Save(stream);
+	Army10->Save(stream);
+	Army11->Save(stream);
+	Army12->Save(stream);
+	Army13->Save(stream);
+	Army14->Save(stream);
+	DUPos = 0;
 }
-
 
 int ArtificialIntelligence4 ()
 {

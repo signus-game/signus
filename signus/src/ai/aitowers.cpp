@@ -43,7 +43,7 @@ TTowers::TTowers () : TArmy ()
 
 
 
-TTowers::TTowers (FILE *f) : TArmy (f)
+TTowers::TTowers (ReadStream &stream) : TArmy (stream)
 {
 
 }

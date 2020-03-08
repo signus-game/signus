@@ -75,7 +75,7 @@ inline int IsInRect(int x, int y, TRect r) {return IsInRect(x, y, r.x1, r.y1, r.
 // zaokrouhli cislo:
 int roundnum(double d);
 
-extern FILE *fopensafe(const char *name, const char *mode);
+void multipath_fopen(File &f, const char *name, unsigned mode);
   // Otevre soubor, umisteny bud na disku nebo na CD
 
 extern bool fileExists(const char *name);

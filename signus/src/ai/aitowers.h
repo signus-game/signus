@@ -39,7 +39,7 @@
 class TTowers : public TArmy {
 	public:
 		TTowers ();	
-		TTowers (FILE *f);
+		TTowers (ReadStream &stream);
 		
 		virtual int ProblemJednotky(int Unit);
 		virtual int MakeTurn ();

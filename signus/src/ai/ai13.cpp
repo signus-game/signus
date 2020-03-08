@@ -331,58 +331,49 @@ void InitAI13 ()
 
 
 
-void LoadArtificialIntelligence13 (FILE *f)
-{
+void LoadArtificialIntelligence13(ReadStream &stream, int format) {
+	DoneArtificialIntelligence13 ();
 
-    DoneArtificialIntelligence13 ();
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = NULL;    
-    DeniedPlaces = NULL;
-
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
-    Marine1 = new TMarine (f);
-    Marine2 = new TMarine (f);
-    Marine3 = new TMarine (f);
-    Marine4 = new TMarine (f);
-    AirArmy5 = new TAirArmy (f);        
-    AirArmy6 = new TAirArmy (f);        
-    AirArmy7 = new TAirArmy (f);        
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
+	Marine1 = new TMarine(stream);
+	Marine2 = new TMarine(stream);
+	Marine3 = new TMarine(stream);
+	Marine4 = new TMarine(stream);
+	AirArmy5 = new TAirArmy(stream);
+	AirArmy6 = new TAirArmy(stream);
+	AirArmy7 = new TAirArmy(stream);
 }
 
+void SaveArtificialIntelligence13(WriteStream &stream) {
+	saveAttackedFields(stream);
 
-
-void SaveArtificialIntelligence13 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    Marine1 -> Save (f);
-    Marine2 -> Save (f);
-    Marine3 -> Save (f);
-    Marine4 -> Save (f);
-    AirArmy5 -> Save (f);
-    AirArmy6 -> Save (f);
-    AirArmy7 -> Save (f);
-    DUPos = 0;
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	Marine1->Save(stream);
+	Marine2->Save(stream);
+	Marine3->Save(stream);
+	Marine4->Save(stream);
+	AirArmy5->Save(stream);
+	AirArmy6->Save(stream);
+	AirArmy7->Save(stream);
+	DUPos = 0;
 }
-
 
 int ArtificialIntelligence13 ()
 {

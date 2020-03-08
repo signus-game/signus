@@ -23,6 +23,7 @@ Tento program slou‘¡ k vytv ©en¡ .DAT soubor–
 using namespace std;
 #define TRUE 1
 #define FALSE 0
+#define NHDF_BLOCKSIZE (256*1024)
 
 time_t ourtime()
 {
@@ -51,10 +52,67 @@ typedef struct {
 			byte Visib     : 2;  // viditelnost 00-nic, 01-¨edˆ, 11-plnˆ
 } TField;
 
+typedef MemoryWriteStream *(*convfunc_t)(const char *filename);
+
+struct ConvMap {
+	const char *ext, *name;
+	convfunc_t conv;
+};
 
 
 unsigned char palette[768];
 bool palette_loaded = false;
+
+MemoryWriteStream *slurp_file(const char *filename, long offset, size_t size) {
+	File fr(filename, File::READ);
+	MemoryWriteStream *ret;
+
+	if (!fr.isOpen()) {
+		return NULL;
+	}
+
+	if (!size) {
+		size = fr.size() - offset;
+	}
+
+	ret = new MemoryWriteStream(size);
+	fr.seek(offset, SEEK_SET);
+	ret->copy(fr, size);
+	return ret;
+}
+
+MemoryWriteStream *convert_palette(const char *filename) {
+	File fr(filename, File::READ);
+	MemoryWriteStream *ret;
+	size_t i, size = 768;
+
+	if (!fr.isOpen()) {
+		return NULL;
+	}
+
+	ret = new MemoryWriteStream(size);
+	fr.seek(8, SEEK_SET);
+
+	for (i = 0; i < size; i++) {
+		ret->writeUint8(fr.readUint8() >> 2);
+	}
+
+	return ret;
+}
+
+MemoryWriteStream *convert_cel(const char *filename) {
+	return slurp_file(filename, 800, 0);
+}
+
+MemoryWriteStream *convert_text(const char *filename) {
+	MemoryWriteStream *ret = slurp_file(filename, 0, 0);
+
+	if (ret) {
+		ret->writeUint8('\0');
+	}
+
+	return ret;
+}
 
 
 inline unsigned clr_dist(int r1,int g1,int b1,
@@ -83,15 +141,14 @@ unsigned char findNearestColor(
 
 bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
 {
-    if (!palette_loaded)
-    {
-        FILE *pf = fopen(getenv("MAKEDAT_PALETTE"), "rb");
-        assert(pf != NULL);
-        fseek(pf, 8, SEEK_SET);
-        fread(palette, 768, 1, pf);
-        fclose(pf);
-        palette_loaded=true;
-    }
+	if (!palette_loaded) {
+		File pf(getenv("MAKEDAT_PALETTE"), File::READ);
+
+		assert(pf.isOpen());
+		pf.seek(8, SEEK_SET);
+		pf.read(palette, 768);
+		palette_loaded = true;
+	}
 
     
     /* Taken (& modified) from wxWindows code, credits go to 
@@ -202,9 +259,121 @@ bool LoadPNG(FILE *fp, void*& _buffer, int& _w, int& _h)
     return false;
 }
 
+bool LoadPNG(const char *filename, void*& _buffer, int& _w, int& _h) {
+	FILE *fr;
+	bool ret;
 
+	fr = fopen(filename, "r");
 
+	if (!fr) {
+		return false;
+	}
 
+	ret = LoadPNG(fr, _buffer, _w, _h);
+	fclose(fr);
+	return ret;
+}
+
+MemoryWriteStream *convert_png(const char *filename) {
+	void *buf;
+	int width, height;
+	MemoryWriteStream *ret;
+
+	if (!LoadPNG(filename, buf, width, height)) {
+		return NULL;
+	}
+
+	try {
+		ret = new MemoryWriteStream(width * height);
+	} catch (...) {
+		free(buf);
+		throw;
+	}
+
+	ret->write(buf, width * height);
+	free(buf);
+	return ret;
+}
+
+MemoryWriteStream *convert_sprite(const char *filename) {
+	char *hsname, *ptr, text[64];
+	void *buf;
+	int i, width = 0, height = 0;
+	size_t len;
+	MemoryWriteStream *ret;
+	File hsfile;
+
+	len = strlen(filename);
+	hsname = new char[len + 8];
+	strcpy(hsname, filename);
+	ptr = strrchr(hsname, '.');
+
+	if (!ptr) {
+		ptr = hsname + len;
+	}
+
+	strcpy(ptr, ".hotspot");
+
+	if (!hsfile.open(hsname, File::READ)) {
+		delete[] hsname;
+		return NULL;
+	}
+
+	delete[] hsname;
+	hsfile.readLine(text, 64);
+	hsfile.close();
+	sscanf(text, "%d %d", &width, &height);
+	ret = new MemoryWriteStream;
+	ret->writeSint32LE(width);
+	ret->writeSint32LE(height);
+
+	if (!LoadPNG(filename, buf, width, height)) {
+		delete ret;
+		return NULL;
+	}
+
+	if (width >= 256 || height >= 256) {
+		cerr << "  SPRITE IS TOO LARGE (" << width << "x" << height << ")" << endl;
+		delete ret;
+		free(buf);
+		return NULL;
+	}
+
+	ret->writeSint32LE(width);
+	ret->writeSint32LE(height);
+	ret->write(buf, width * height);
+	free(buf);
+	return ret;
+}
+
+MemoryWriteStream *convert_tile(const char *filename) {
+	unsigned char *ptr;
+	void *buf;
+	int i, width, height;
+	MemoryWriteStream *ret;
+
+	if (!LoadPNG(filename, buf, width, height)) {
+		return NULL;
+	}
+
+	try {
+		ret = new MemoryWriteStream(width * height);
+	} catch (...) {
+		free(buf);
+		throw;
+	}
+
+	ptr = (unsigned char*)buf;
+
+	for (i = 0; i < width * height; i++) {
+		if (ptr[i] != ptr[0]) {
+			ret->writeUint8(ptr[i]);
+		}
+	}
+
+	free(buf);
+	return ret;
+}
 
 
 
@@ -216,180 +385,127 @@ time_t TCO = ourtime();
 int temporary = 0;
 
 int use_nhdf = FALSE;
-FILE *nhdf = NULL;
+File nhdf;
 
+ConvMap conv_func_list[] = {
+	{"col", "[palette]", convert_palette},
+	{"png", "[image]", convert_png},
+	{"cel", "[image]", convert_cel},
+	{"spr.png", "[sprite]", convert_sprite},
+	{"tile.png", "[tile]", convert_tile},
+	{"txt", "[text]", convert_text},
+	{NULL, NULL, NULL}
+};
 
-unsigned NohdrDataWrite(FILE *f, void *ptr, size_t size)
-{
-	void *buf = malloc(256*1024);
-	size_t sz = size;
-	
-	
-	while (sz > 0) {
-		if (sz > 256*1024) {
-            fread(buf, 256*1024, 1, nhdf);
-			fwrite(buf, 256*1024, 1, f);
-			sz -= 256*1024;
-		}
-		else {
-			fread(buf, sz, 1, nhdf);
-			fwrite(buf, sz, 1, f);
-			sz = 0;
-		}
-	}
-	free(buf);
-	return (size);
+unsigned NohdrDataWrite(WriteStream &stream, void *ptr, size_t size) {
+	return stream.copy(nhdf, size);
 }
 
-
-
-unsigned GetFileSize(FILE *f)
-{
-   long pos = ftell(f); 
-   fseek(f, 0, SEEK_END);
-   long pos2 = ftell(f);
-   fseek(f, pos, SEEK_SET);
-   return (unsigned)pos2;
-}
-
-
-void AddFile(const char *prefix, const char *dir, const char *name)
-{
-	void *buf;
-	unsigned bufsize;
-	char jm[1024];
+void AddFile(const char *prefix, const char *dir, const char *name) {
+	void *buf = NULL;
+	size_t bufsize;
+	char jm[PATH_MAX];
 	char resnm[1024];
-	FILE *fi;
 	int i;
-	unsigned short words[4];
-	
+	MemoryWriteStream *stream = NULL;
+
 	strcpy(jm, dir);
 	strcat(jm, name);
   	
-	fi = fopen(jm, "rb");
-
-    unsigned filesize = GetFileSize(fi);
-
 	char noext[256];
-    char *basename = strrchr(jm, '/');
-    if (basename) basename++;
-    else basename = jm;    
+	char *basename = strrchr(jm, '/');
+
+	if (basename) {
+		basename++;
+	} else {
+		basename = jm;
+	}
+
 	strcpy(noext, basename);
-	char *exten = strstr(noext, ".") + 1;
-	*(exten - 1) = 0;
+	char *exten = strstr(noext, ".");
+
+	if (exten) {
+		*exten++ = '\0';
+	} else {
+		exten = noext + strlen(noext);
+	}
 
 	strcpy(resnm, prefix);
 	strcat(resnm, noext);
 	//strlwr(resnm);
 	cout << "adding " << resnm << " ";
-	if (strcmp(exten, "col") == 0) {  	
-		cout << "[palette]";
-		fseek(fi, 8, SEEK_SET);
-		bufsize = 768;
-		buf = malloc(bufsize);
-		fread(buf, bufsize, 1, fi);
-		for (int i = 0; i < 768; i++)
-			((unsigned char*)buf)[i] >>= 2;
-	}
-	else if (strcmp(exten, "png") == 0) {
-		cout << "[image]";
-        int w, h;
-        LoadPNG(fi, buf, w, h);
-		bufsize = w*h;
-	}
-	else if (strcmp(exten, "cel") == 0) {
-		cout << "[image]";
-		fseek(fi, 800, SEEK_SET);
-		bufsize = filesize - 800;
-		buf = malloc(bufsize);
-		fread(buf, bufsize, 1, fi);
-	}
-	else if (strcmp(exten, "spr.png") == 0) {
-		cout << "[sprite]";
-        int w, h;
-        if (!LoadPNG(fi, buf, w, h))
-           cerr << "   ERROR LOADING PNG!!! " << jm <<  endl;
-		bufsize = w*h;
-        
-        byte *buf2 = (byte*)malloc(bufsize+16);
-        memcpy(buf2+16, buf, bufsize);
-        free(buf);
-        buf = buf2;
-        bufsize += 16;
-        
-        char hotspot[1024];
-        int dx, dy;
-        strcpy(hotspot, jm);
-        strcpy(hotspot + strlen(jm)-4, ".hotspot");
-        FILE *hsf = fopen(hotspot, "rt");
-        fscanf(hsf, "%i %i", &dx, &dy);
-        fclose(hsf); 
-        
-        memcpy(buf2, &dx, 4);
-        memcpy(buf2+4, &dy, 4);
-        memcpy(buf2+8, &w, 4);
-        memcpy(buf2+12, &h, 4);
 
-		if ((w >= 256) || (h >= 256)) 
-			cerr << "  SPRITE IS TOO LARGE (" << words[0] << "x" << words[1] << ")\7" << endl;
-	}
-	else if (strcmp(exten, "tile.png") == 0) {
-		cout << "[tile]";
-        void *_buf2;
-        int w, h, z;
-        if (!LoadPNG(fi, _buf2, w, h))
-           cerr << "   ERROR LOADING PNG!!! " << jm << endl;
-        byte *buf2 = (byte*)_buf2;
-        byte key = buf2[0];
-        bufsize = 0;
-        for (z = 0; z < w*h; z++)
-            if (buf2[z] != key) bufsize++;
-        buf = malloc(bufsize);        
-        byte *buf3 = (byte*)buf;
-        for (z = 0; z < w*h; z++)
-            if (buf2[z] != key) *(buf3++) = buf2[z];      
-        
-        free(buf2);
-	}
-	else if (strcmp(exten, "fnt") == 0) {
+	if (!strcmp(exten, "fnt") && !temporary) {
+		TFont *font;
+		File fr(jm, File::READ);
+
 		cout << "[font table]";
-		bufsize = filesize;
-		buf = (void *) FontDataRead(fi);
+
+		if (!fr.isOpen()) {
+			cerr << "Cannot open file " << jm << endl;
+			return;
+		}
+
+		font = (TFont*)FontDataRead(fr);
+
+		if (!(DataF->put(resnm, font, 1))) {
+			cout << "  SIZE CHANGED!";
+		}
+
+		freefont(font);
+		cout << endl;
+		return;
 	}
-	else if (strcmp(exten, "txt") == 0) {
-		cout << "[text]";
-		bufsize = filesize+1;
-		buf = malloc(bufsize);
-		fread(buf, bufsize-1, 1, fi);
-		((byte*)buf)[bufsize-1] = 0;
+
+	for (i = 0; conv_func_list[i].ext; i++) {
+		if (!strcmp(conv_func_list[i].ext, exten)) {
+			break;
+		}
 	}
-	else {
+
+	if (conv_func_list[i].ext) {
+		cout << conv_func_list[i].name;
+		stream = conv_func_list[i].conv(jm);
+	} else {
 		cout << "[unknown data]";
-		bufsize = filesize;
+
 		if (use_nhdf) {
-			nhdf = fi;
-		}
-		else {
-			buf = malloc(bufsize);
-			fread(buf, bufsize, 1, fi);
+			nhdf.open(jm, File::READ);
+			bufsize = nhdf.size();
+		} else {
+			stream = slurp_file(jm, 0, 0);
 		}
 	}
+
+	if (!stream && (!use_nhdf || !nhdf.isOpen())) {
+		cerr << "Cannot read file " << jm << endl;
+		return;
+	}
+
+	if (!use_nhdf) {
+		buf = stream->dataPtr();
+		bufsize = stream->size();
+	}
+
 	if (temporary) {
-		char bbb[200];
-		FILE *fff;
-		
-		sprintf(bbb, "/tmp/signus-data-temp_%s", resnm);
-		fff = fopen(bbb, "wb");
-		fwrite(&bufsize, 4, 1, fff);
-		fwrite(buf, bufsize, 1, fff);
-		fclose(fff);
+		File fw;
+
+		sprintf(jm, "/tmp/signus-data-temp_%s", resnm);
+
+		if (!fw.open(jm, File::WRITE | File::TRUNCATE)) {
+			cerr << "Cannot write into file " << jm << endl;
+			delete stream;
+			return;
+		}
+
+		fw.writeUint32LE(bufsize);
+		fw.write(buf, bufsize);
+	} else if (!DataF->put(resnm, buf, bufsize)) {
+		cout << "  SIZE CHANGED!";
 	}
-	else {
-		if (!(DataF -> put(resnm, buf, bufsize))) cout << "  SIZE CHANGED!";
-	}
-	if (!use_nhdf) free(buf);
+
+	delete stream;
 	cout << endl;
-	fclose(fi);
 }
 
 
@@ -452,12 +568,11 @@ int main(int argc, char *argv[])
 		else
 			DataF = new TDataFile(argv[1], dfCreate);
 
-		for (int i = start; i < argc; i++)
-        {
-            if (strcmp(argv[i]+strlen(argv[i])-4, "/CVS") == 0)
-                continue;
+		for (int i = start; i < argc; i++) {
+			if (strcmp(argv[i]+strlen(argv[i])-4, "/CVS") == 0)
+				continue;
 			AddFile("", "", argv[i]);
-        }
+		}
 #if 0
 		for (int i = start; i < argc; i++)
 			AddItem("", "", argv[i]);

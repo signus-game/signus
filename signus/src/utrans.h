@@ -54,11 +54,11 @@ class TTransporter : public TUnit {
 					// celkova hmotnost pojmutelnych jednotek
 
 			TTransporter(int capac) : TUnit() {Capacity = capac;};
-			void Init(int x, int y, int party, FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream);
 			void Setup();
 			unsigned GetAvailableActions();
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			void RemoveFromWorld();
 			int InfoEvent(TEvent *e);
 			void Action(int x, int y);
@@ -140,8 +140,8 @@ class TOlymp : public TTransporter {
 			void Setup();
 			void IncLevel(int alevel);
 			void PrepareFieldTime(int x, int y);
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			void Rotate(int angle);
 			TSprite *GetSprite();
 	};

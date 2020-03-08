@@ -103,80 +103,99 @@ TArmy::TArmy ()
 
 
 
-TArmy::TArmy (FILE *f)
-{
+TArmy::TArmy(ReadStream &stream) {
+	int i;
 
-  BL = (int *) memalloc (BADLIFE * sizeof (int));
-  GL = (int *) memalloc (BADLIFE * sizeof (int));
-  PoziceUtoku = (TPoint *) memalloc (BADLIFE * sizeof (TPoint));
-  DangerArray = (double *) memalloc (BADLIFE * sizeof (double));
+	BL = (int *) memalloc (BADLIFE * sizeof (int));
+	GL = (int *) memalloc (BADLIFE * sizeof (int));
+	PoziceUtoku = (TPoint *) memalloc (BADLIFE * sizeof (TPoint));
+	DangerArray = (double *) memalloc (BADLIFE * sizeof (double));
 
-  fread (&velikost, sizeof (int), 1, f);
-  fread (&ActionRadius, sizeof (TRect), 1, f);
-  fread (&Status, sizeof (int), 1, f);
+	velikost = stream.readSint32LE();
+	ActionRadius.x1 = stream.readSint32LE();
+	ActionRadius.y1 = stream.readSint32LE();
+	ActionRadius.x2 = stream.readSint32LE();
+	ActionRadius.y2 = stream.readSint32LE();
+	Status = stream.readSint32LE();
 
-  fread (&nofGoodLife, sizeof (int), 1, f);
-  fread (GL, nofGoodLife * sizeof (int), 1, f);
+	nofGoodLife = stream.readSint32LE();
 
-  fread (&nofBadLife, sizeof (int), 1, f);
-    fread (BL, nofBadLife * sizeof (int), 1, f);
+	for (i = 0; i < nofGoodLife; i++) {
+		GL[i] = stream.readSint32LE();
+	}
 
-  fread (&WayPoint, sizeof (TPoint), 1, f);
-  fread (&RadarPos, sizeof (TPoint), 1, f);
+	nofBadLife = stream.readSint32LE();
 
-  fread (&CDestroy, sizeof (double), 1, f);
-    fread (&CBanzai, sizeof (double), 1, f);
-    fread (&CTogether, sizeof (double), 1, f);
-    fread (&CToThem, sizeof (double), 1, f);
-    fread (&CToThemMin, sizeof (double), 1, f);
-    fread (&CLazy, sizeof (double), 1, f);
-    fread (&CDist, sizeof (double), 1, f);
-    fread (&CPropexDist, sizeof (double), 1, f);
-    fread (&CDanger, sizeof (double), 1, f);
-    fread (&CContact, sizeof (double), 1, f);
-    fread (&CCapture, sizeof (double), 1, f);
-    fread (&CToWayPoint, sizeof (double), 1, f);
-    fread (&CFuel, sizeof (double), 1, f);
+	for (i = 0; i < nofBadLife; i++) {
+		BL[i] = stream.readSint32LE();
+	}
 
+	WayPoint.x = stream.readSint32LE();
+	WayPoint.y = stream.readSint32LE();
+	RadarPos.x = stream.readSint32LE();
+	RadarPos.y = stream.readSint32LE();
 
-  ProbHitTable = NULL;
-  Attackers = NULL;
-  Targets = NULL;
+	CDestroy = stream.readDoubleX86();
+	CBanzai = stream.readDoubleX86();
+	CTogether = stream.readDoubleX86();
+	CToThem = stream.readDoubleX86();
+	CToThemMin = stream.readDoubleX86();
+	CLazy = stream.readDoubleX86();
+	CDist = stream.readDoubleX86();
+	CPropexDist = stream.readDoubleX86();
+	CDanger = stream.readDoubleX86();
+	CContact = stream.readDoubleX86();
+	CCapture = stream.readDoubleX86();
+	CToWayPoint = stream.readDoubleX86();
+	CFuel = stream.readDoubleX86();
 
+	ProbHitTable = NULL;
+	Attackers = NULL;
+	Targets = NULL;
 }
 
+void TArmy::Save (WriteStream &stream) {
+	int i;
 
+	DeleteKilled2 ();
+	DeleteKilled ();
+	stream.writeSint32LE(velikost);
+	stream.writeSint32LE(ActionRadius.x1);
+	stream.writeSint32LE(ActionRadius.y1);
+	stream.writeSint32LE(ActionRadius.x2);
+	stream.writeSint32LE(ActionRadius.y2);
+	stream.writeSint32LE(Status);
 
-void TArmy::Save (FILE *f)
-{
-    DeleteKilled2 ();
-    DeleteKilled ();
-    fwrite (&velikost, sizeof (int), 1, f);
-  fwrite (&ActionRadius, sizeof (TRect), 1, f);
-  fwrite (&Status, sizeof (int), 1, f);
+	stream.writeSint32LE(nofGoodLife);
 
-    fwrite (&nofGoodLife, sizeof (int), 1, f);
-    fwrite (GL, nofGoodLife * sizeof (int), 1, f);
+	for (i = 0; i < nofGoodLife; i++) {
+		stream.writeSint32LE(GL[i]);
+	}
 
-    fwrite (&nofBadLife, sizeof (int), 1, f);
-    fwrite (BL, nofBadLife * sizeof (int), 1, f);
+	stream.writeSint32LE(nofBadLife);
 
-    fwrite (&WayPoint, sizeof (TPoint), 1, f);
-    fwrite (&RadarPos, sizeof (TPoint), 1, f);
+	for (i = 0; i < nofBadLife; i++) {
+		stream.writeSint32LE(BL[i]);
+	}
 
-  fwrite (&CDestroy, sizeof (double), 1, f);
-    fwrite (&CBanzai, sizeof (double), 1, f);
-    fwrite (&CTogether, sizeof (double), 1, f);
-    fwrite (&CToThem, sizeof (double), 1, f);
-    fwrite (&CToThemMin, sizeof (double), 1, f);
-    fwrite (&CLazy, sizeof (double), 1, f);
-    fwrite (&CDist, sizeof (double), 1, f);
-    fwrite (&CPropexDist, sizeof (double), 1, f);
-    fwrite (&CDanger, sizeof (double), 1, f);
-    fwrite (&CContact, sizeof (double), 1, f);
-    fwrite (&CCapture, sizeof (double), 1, f);
-    fwrite (&CToWayPoint, sizeof (double), 1, f);
-    fwrite (&CFuel, sizeof (double), 1, f);
+	stream.writeSint32LE(WayPoint.x);
+	stream.writeSint32LE(WayPoint.y);
+	stream.writeSint32LE(RadarPos.x);
+	stream.writeSint32LE(RadarPos.y);
+
+	stream.writeDoubleX86(CDestroy);
+	stream.writeDoubleX86(CBanzai);
+	stream.writeDoubleX86(CTogether);
+	stream.writeDoubleX86(CToThem);
+	stream.writeDoubleX86(CToThemMin);
+	stream.writeDoubleX86(CLazy);
+	stream.writeDoubleX86(CDist);
+	stream.writeDoubleX86(CPropexDist);
+	stream.writeDoubleX86(CDanger);
+	stream.writeDoubleX86(CContact);
+	stream.writeDoubleX86(CCapture);
+	stream.writeDoubleX86(CToWayPoint);
+	stream.writeDoubleX86(CFuel);
 }
 
 

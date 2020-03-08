@@ -261,20 +261,16 @@ int TWeapon::CanShootThrough(int x, int y)
 
 
 
-void TWeapon::Read(FILE *f)
-{
-    fread(&AttackNum, 4, 1, f);
-    fread(&BonusNum, 4, 1, f);
-    fread(&Ammo, 4, 1, f);
+void TWeapon::Read(ReadStream &stream) {
+	AttackNum = stream.readSint32LE();
+	BonusNum = stream.readSint32LE();
+	Ammo = stream.readSint32LE();
 }
 
-
-
-void TWeapon::Write(FILE *f)
-{
-    fwrite(&AttackNum, 4, 1, f);
-    fwrite(&BonusNum, 4, 1, f);
-    fwrite(&Ammo, 4, 1, f);
+void TWeapon::Write(WriteStream &stream) {
+	stream.writeSint32LE(AttackNum);
+	stream.writeSint32LE(BonusNum);
+	stream.writeSint32LE(Ammo);
 }
 
 
@@ -348,19 +344,16 @@ void TBomb::AnimStop(int fromx, int fromy, int tox, int toy)
 }
 
 
-void TBomb::Read(FILE *f)
-{
-    TWeapon::Read(f);
-    fread(&AttackNum2, 4, 1, f);
-    fread(&BonusNum2, 4, 1, f);
+void TBomb::Read(ReadStream &stream) {
+	TWeapon::Read(stream);
+	AttackNum2 = stream.readSint32LE();
+	BonusNum2 = stream.readSint32LE();
 }
 
-
-void TBomb::Write(FILE *f)
-{
-    TWeapon::Write(f);
-    fwrite(&AttackNum2, 4, 1, f);
-    fwrite(&BonusNum2, 4, 1, f);
+void TBomb::Write(WriteStream &stream) {
+	TWeapon::Write(stream);
+	stream.writeSint32LE(AttackNum2);
+	stream.writeSint32LE(BonusNum2);
 }
 
 
@@ -704,20 +697,16 @@ int TBalisticWeapon::GetAmplitude(int path_length)
 }
 
 
-void TBalisticWeapon::Read(FILE *f)
-{
-    TWeapon::Read(f);
-    fread(&AttackNum2, 4, 1, f);
-    fread(&BonusNum2, 4, 1, f);
+void TBalisticWeapon::Read(ReadStream &stream) {
+	TWeapon::Read(stream);
+	AttackNum2 = stream.readSint32LE();
+	BonusNum2 = stream.readSint32LE();
 }
 
-
-
-void TBalisticWeapon::Write(FILE *f)
-{
-    TWeapon::Write(f);
-    fwrite(&AttackNum2, 4, 1, f);
-    fwrite(&BonusNum2, 4, 1, f);
+void TBalisticWeapon::Write(WriteStream &stream) {
+	TWeapon::Write(stream);
+	stream.writeSint32LE(AttackNum2);
+	stream.writeSint32LE(BonusNum2);
 }
 
 

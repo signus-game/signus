@@ -105,44 +105,50 @@ char **GatherFiles(int *Count)
 ////////////////////////////////////////////////////////
 // nacitani/ukladani seznamu skladeb:
 
-void LoadPlayList()
-{	
-	FILE *f;
+void LoadPlayList() {
+	File stream;
 	char buffer[1024];
 
-	if (iniJukeboxListSize == 0)
-    {
-        PlayList = GatherFiles(&PlayCount);
-    }
-	else 
-    {
-		if ((f = fopen(getJukeboxInifile(), "rt")) == NULL) {
+	if (iniJukeboxListSize == 0) {
+		PlayList = GatherFiles(&PlayCount);
+	} else {
+		if (!stream.open(getJukeboxInifile(), File::READ)) {
 			PlayList = GatherFiles(&PlayCount);
 			iniJukeboxListSize = 0;
 			SaveINI();
 		}
+
 		PlayCount = iniJukeboxListSize;
 		PlayList = (char**) memalloc(PlayCount * sizeof(char*));
+
 		for (int i = 0; i < PlayCount; i++) {
-            fgets(buffer, 1024, f);
-            size_t len = strlen(buffer);
-            if (buffer[len] == '\n') { buffer[len] = 0; len--; }
+			stream.readLine(buffer, 1024);
+			size_t len = strlen(buffer);
+
+			if (buffer[len-1] == '\n') {
+				buffer[--len] = 0;
+			}
+
 			PlayList[i] = (char*) memalloc(1 + len);
 			strcpy(PlayList[i], buffer);
 		}
-		fclose(f);
 	}
 }
 
-void SavePlayList()
-{
-	FILE *f;
+void SavePlayList() {
+	File stream;
 	
-	if ((f = fopen(getJukeboxInifile(), "wt")) == NULL) return;
+	if (!stream.open(getJukeboxInifile(), File::WRITE | File::TRUNCATE)) {
+		return;
+	}
+
 	iniJukeboxListSize = PlayCount;
 	SaveINI();
-	for (int i = 0; i < PlayCount; i++) fprintf(f, "%s\n", PlayList[i]);
-	fclose(f);
+
+	for (int i = 0; i < PlayCount; i++) {
+		stream.write(PlayList[i], strlen(PlayList[i]));
+		stream.write("\r\n", 2);
+	}
 }
 
 

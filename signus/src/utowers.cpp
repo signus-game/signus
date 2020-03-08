@@ -181,32 +181,31 @@ void TThor::IncLevel(int alevel)
 
 
 
-void TThor::Init(int x, int y, int party, FILE *f)
-{
-    TTower::Init(x, y, party, f);
-    if (!IsOverground) ActualSprite = 8;
-    if (IconThorOut == NULL) {
-        IconThorOut = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthora%i", 13);
-        IconThorIn = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthorb%i", 13);
-    }
+void TThor::Init(int x, int y, int party, ReadStream *stream) {
+	TTower::Init(x, y, party, stream);
+
+	if (!IsOverground) {
+		ActualSprite = 8;
+	}
+
+	if (IconThorOut == NULL) {
+		IconThorOut = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthora%i", 13);
+		IconThorIn = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthorb%i", 13);
+	}
 }
 
 
 
-void TThor::Read(FILE *f)
-{
-    TTower::Read(f);
-    
-    fread(&IsOverground, 4, 1, f);
-    fread(&TotalRockets, 4, 1, f);
+void TThor::Read(ReadStream &stream) {
+	TTower::Read(stream);
+	IsOverground = stream.readSint32LE();
+	TotalRockets = stream.readSint32LE();
 }
 
-void TThor::Write(FILE *f)
-{
-    TTower::Write(f);
-    
-    fwrite(&IsOverground, 4, 1, f);
-    fwrite(&TotalRockets, 4, 1, f);
+void TThor::Write(WriteStream &stream) {
+	TTower::Write(stream);
+	stream.writeSint32LE(IsOverground);
+	stream.writeSint32LE(TotalRockets);
 }
 
 

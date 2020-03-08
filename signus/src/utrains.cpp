@@ -48,18 +48,14 @@ void TToweredTrainUnit::Setup()
 
 
 
-void TToweredTrainUnit::Write(FILE *f)
-{
-    TToweredUnit::Write(f);
-    fwrite(&SpriteOrient, 4, 1, f);
+void TToweredTrainUnit::Write(WriteStream &stream) {
+	TToweredUnit::Write(stream);
+	stream.writeSint32LE(SpriteOrient);
 }
 
-
-
-void TToweredTrainUnit::Read(FILE *f)
-{
-    TToweredUnit::Read(f);
-    fread(&SpriteOrient, 4, 1, f);
+void TToweredTrainUnit::Read(ReadStream &stream) {
+	TToweredUnit::Read(stream);
+	SpriteOrient = stream.readSint32LE();
 }
 
 
@@ -164,18 +160,14 @@ void TTrainSupportUnit::Setup()
 
 
 
-void TTrainSupportUnit::Write(FILE *f)
-{
-    TSupportUnit::Write(f);
-    fwrite(&SpriteOrient, 4, 1, f);
+void TTrainSupportUnit::Write(WriteStream &stream) {
+	TSupportUnit::Write(stream);
+	stream.writeSint32LE(SpriteOrient);
 }
 
-
-
-void TTrainSupportUnit::Read(FILE *f)
-{
-    TSupportUnit::Read(f);
-    fread(&SpriteOrient, 4, 1, f);
+void TTrainSupportUnit::Read(ReadStream &stream) {
+	TSupportUnit::Read(stream);
+	SpriteOrient = stream.readSint32LE();
 }
 
 
@@ -306,22 +298,22 @@ void TGanymedes::AfterSetup()
 
 
 
-void TGanymedes::Read(FILE *f)
-{
-    TTrainSupportUnit::Read(f);
-    for (int i = 0; i < 4; i++) {
-        fread(&Ammo[i], 4, 1, f);
-        fread(&MaxAmmo[i], 4, 1, f);
-    }
+void TGanymedes::Read(ReadStream &stream) {
+	TTrainSupportUnit::Read(stream);
+
+	for (int i = 0; i < 4; i++) {
+		Ammo[i] = stream.readSint32LE();
+		MaxAmmo[i] = stream.readSint32LE();
+	}
 }
 
-void TGanymedes::Write(FILE *f)
-{
-    TTrainSupportUnit::Write(f);
-    for (int i = 0; i < 4; i++) {
-        fwrite(&Ammo[i], 4, 1, f);
-        fwrite(&MaxAmmo[i], 4, 1, f);
-    }
+void TGanymedes::Write(WriteStream &stream) {
+	TTrainSupportUnit::Write(stream);
+
+	for (int i = 0; i < 4; i++) {
+		stream.writeSint32LE(Ammo[i]);
+		stream.writeSint32LE(MaxAmmo[i]);
+	}
 }
 
 

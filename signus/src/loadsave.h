@@ -28,7 +28,9 @@
 #ifndef _LOADSAVE_H
 #define _LOADSAVE_H
 
+#include "stream.h"
 
+#define DEFAULT_SAVEGAME_FORMAT 1
 
 extern int SaveGame();
     // ulozi misi a vraci uspech
@@ -36,8 +38,8 @@ extern int LoadGame();
     // nacte misi, inicializuje engine a vraci uspech
 
 
-extern int SaveGameState(FILE *f);
-extern int LoadGameState(FILE *f);
+int SaveGameState(WriteStream &stream);
+int LoadGameState(ReadStream &stream, int format = DEFAULT_SAVEGAME_FORMAT);
     // provadi prime I/O daneho savu
 
 

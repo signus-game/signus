@@ -541,22 +541,22 @@ void TGnom::AfterSetup()
 
 
 
-void TGnom::Read(FILE *f)
-{
-    TGroundSupportUnit::Read(f);
-    for (int i = 0; i < 4; i++) {
-        fread(&Ammo[i], 4, 1, f);
-        fread(&MaxAmmo[i], 4, 1, f);
-    }
+void TGnom::Read(ReadStream &stream) {
+	TGroundSupportUnit::Read(stream);
+
+	for (int i = 0; i < 4; i++) {
+		Ammo[i] = stream.readSint32LE();
+		MaxAmmo[i] = stream.readSint32LE();
+	}
 }
 
-void TGnom::Write(FILE *f)
-{
-    TGroundSupportUnit::Write(f);
-    for (int i = 0; i < 4; i++) {
-        fwrite(&Ammo[i], 4, 1, f);
-        fwrite(&MaxAmmo[i], 4, 1, f);
-    }
+void TGnom::Write(WriteStream &stream) {
+	TGroundSupportUnit::Write(stream);
+
+	for (int i = 0; i < 4; i++) {
+		stream.writeSint32LE(Ammo[i]);
+		stream.writeSint32LE(MaxAmmo[i]);
+	}
 }
 
 
@@ -674,11 +674,12 @@ int TIris::WillSupport(TUnit *Unit)
 
 // Satan:
 
-void TSatan::Init(int x, int y, int party, FILE *f)
-{
-    TGroundUnit::Init(x, y, party, f);
-    if (IconSatan == NULL) 
-        IconSatan = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icsatan%i", 13);
+void TSatan::Init(int x, int y, int party, ReadStream *stream) {
+	TGroundUnit::Init(x, y, party, stream);
+
+	if (IconSatan == NULL) {
+		IconSatan = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icsatan%i", 13);
+	}
 }
 
 
@@ -800,24 +801,22 @@ void TSatan::Explode()
 
 
 
-void TSatan::Read(FILE *f)
-{
-    TGroundUnit::Read(f);
+void TSatan::Read(ReadStream &stream) {
+	TGroundUnit::Read(stream);
 
-    fread(&DestruAtN1, 4, 1, f);
-    fread(&DestruBoN1, 4, 1, f);
-    fread(&DestruAtN2, 4, 1, f);
-    fread(&DestruBoN2, 4, 1, f);
+	DestruAtN1 = stream.readSint32LE();
+	DestruBoN1 = stream.readSint32LE();
+	DestruAtN2 = stream.readSint32LE();
+	DestruBoN1 = stream.readSint32LE();
 }
 
-void TSatan::Write(FILE *f)
-{
-    TGroundUnit::Write(f);
+void TSatan::Write(WriteStream &stream) {
+	TGroundUnit::Write(stream);
 
-    fwrite(&DestruAtN1, 4, 1, f);
-    fwrite(&DestruBoN1, 4, 1, f);
-    fwrite(&DestruAtN2, 4, 1, f);
-    fwrite(&DestruBoN2, 4, 1, f);
+	stream.writeSint32LE(DestruAtN1);
+	stream.writeSint32LE(DestruBoN1);
+	stream.writeSint32LE(DestruAtN2);
+	stream.writeSint32LE(DestruBoN2);
 }
 
 
@@ -898,13 +897,13 @@ void TGargantua::Explode()
 
 // Xenon - miner
 
-void TXenon::Init(int x, int y, int party, FILE *f)
-{
-    TGroundUnit::Init(x, y, party, f);
-    if (IconXenon == NULL) {
-        IconXenon = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenon%i", 13);
-        IconXenon2 = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenob%i", 13);
-    }
+void TXenon::Init(int x, int y, int party, ReadStream *stream) {
+	TGroundUnit::Init(x, y, party, stream);
+
+	if (IconXenon == NULL) {
+		IconXenon = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenon%i", 13);
+		IconXenon2 = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenob%i", 13);
+	}
 }
 
 
@@ -1006,16 +1005,14 @@ void TXenon::GoOnMine()
 
 
 
-void TXenon::Read(FILE *f)
-{
-    TGroundUnit::Read(f);
-    fread(&Mines, 4, 1, f);
+void TXenon::Read(ReadStream &stream) {
+	TGroundUnit::Read(stream);
+	Mines = stream.readSint32LE();
 }
 
-void TXenon::Write(FILE *f)
-{
-    TGroundUnit::Write(f);
-    fwrite(&Mines, 4, 1, f);
+void TXenon::Write(WriteStream &stream) {
+	TGroundUnit::Write(stream);
+	stream.writeSint32LE(Mines);
 }
 
 

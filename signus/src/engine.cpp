@@ -173,58 +173,63 @@ void GetSpriteRect(TRect *r, TSprite *s, int x, int y, int lx, int ly)
 
 
 
-int InitEngine(int mission, FILE *fptr)
-{
-    void *ptr;
-    char s[20];
+int InitEngine(int mission, ReadStream *stream) {
+	void *ptr;
+	char s[20];
     
-    EngineInited = FALSE;
-    WaitCursor(TRUE);
-    if (fptr == NULL) {
-        sprintf(s, "mis%i%c", mission, ActualDifficulty);
-        ActualMission = mission;
-    }
-    else {s[0] = 0; ActualMission = 0;}
-    SelPos.x = SelPos.y = 0xFF;
-    MapBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
-    FullBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
-    lockmem(MapBuf, VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
-    lockmem(FullBuf, VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
-    LocalBufX = memalloc(VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
-  lockmem(LocalBufX, VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
-    LocalBufY = memalloc(VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
-    lockmem(LocalBufY, VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
+	EngineInited = FALSE;
+	WaitCursor(TRUE);
 
-    if (!InitUnits()) return 0;
-    
-    SetTables();
-    InitMap(s, fptr);
+	if (!stream) {
+		sprintf(s, "mis%i%c", mission, ActualDifficulty);
+		ActualMission = mission;
+	} else {
+		s[0] = 0;
+		ActualMission = 0;
+	}
 
-    {
-        char p[768]  = {0};
-        char buf[20];
-        sprintf(buf, "%imainscr", iniResolution - 0x100);
-        ptr = GraphicsDF->get(buf);       
-        PulsarProcess = FALSE;
-        SetPalette(p);
-        MouseHide();
-        DrawPicture(ptr); 
-        MouseShow();
-        memfree(ptr);
-    }
+	SelPos.x = SelPos.y = 0xFF;
+	MapBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
+	FullBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
+	lockmem(MapBuf, VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
+	lockmem(FullBuf, VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
+	LocalBufX = memalloc(VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
+	lockmem(LocalBufX, VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
+	LocalBufY = memalloc(VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
+	lockmem(LocalBufY, VIEW_PIXSZ_X/2 * VIEW_PIXSZ_Y/2);
+
+	if (!InitUnits()) {
+		return 0;
+	}
     
-  UpdateLitMap(TRUE);
-  ScrollTo((MapSizeX - VIEW_SIZE_X) / 2, (MapSizeY - VIEW_SIZE_Y) / 2);
-  SelectedUnit->Select();
+	SetTables();
+	InitMap(s, stream);
+
+	{
+		char p[768]  = {0};
+		char buf[20];
+
+		sprintf(buf, "%imainscr", iniResolution - 0x100);
+		ptr = GraphicsDF->get(buf);
+		PulsarProcess = FALSE;
+		SetPalette(p);
+		MouseHide();
+		DrawPicture(ptr);
+		MouseShow();
+		memfree(ptr);
+	}
+    
+	UpdateLitMap(TRUE);
+	ScrollTo((MapSizeX - VIEW_SIZE_X) / 2, (MapSizeY - VIEW_SIZE_Y) / 2);
+	SelectedUnit->Select();
         
-    InitPalTimer();
-    WaitCursor(FALSE);
+	InitPalTimer();
+	WaitCursor(FALSE);
 #ifdef DEBUG
-    fprintf(dbgOutput, "InitEngine() done\n  locked memory: %i bytes", dbgMemLocked);
+	fprintf(dbgOutput, "InitEngine() done\n  locked memory: %i bytes", dbgMemLocked);
 #endif
-    EngineInited = TRUE;
-    return ((MapBuf != NULL) &&
-            ((LocalBufX != NULL) && (LocalBufY != NULL)));
+	EngineInited = TRUE;
+	return (MapBuf != NULL) && (LocalBufX != NULL) && (LocalBufY != NULL);
 }
 
 
@@ -318,41 +323,57 @@ void DoneBitmaps()
 
 ///////////////////////////// MISSION LOADING ///////////////////////////
 
+unsigned MissionWrite(WriteStream &stream, void *ptr, size_t size) {
+	int i, j;
+	TField *f;
+	byte TL1[1024], TL2[1024];
+	uint8_t tmp;
 
+	stream.writeSint32LE(MapSizeX);
+	stream.writeSint32LE(MapSizeY);
 
-unsigned MissionWrite(FILE *fi, void *ptr, size_t size)
-{
-    int i, j;
-    TField *f;
-    byte TL1[1024], TL2[1024];
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		stream.writeUint16LE(Map[i].Terrain);
+		stream.writeUint16LE(Map[i].Terrain2);
+		stream.writeUint16LE(Map[i].Unit);
+		tmp = Map[i].Height | (Map[i].IsAnim << 3) |
+			(Map[i].Visib << 4) | (Map[i].OnScreen << 6) |
+			(Map[i].HasHelper << 7);
+		stream.writeUint8(tmp);
+	}
 
-    fwrite(&MapSizeX, 4, 1, fi); 
-    fwrite(&MapSizeY, 4, 1, fi); 
-    fwrite(Map, MapSizeX * MapSizeY * sizeof(TField), 1, fi);
-  {
-    // Tabulky pouzitych terenu:
-    memset(TL1, 0, sizeof(TL1));
-    memset(TL2, 0, sizeof(TL1));
-    TL1[0] = 1; TL1[104] = 1; TL1[124] = 1; TL1[144] = 1; TL1[164] = 1;
-    TL1[184] = 1; TL1[192] = 1; TL1[200] = 1; TL1[208] = 1; TL1[216] = 1;
-    TL1[224] = 1; TL1[240] = 1; TL1[248] = 1;
-    for (i = 0; i < MapSizeX; i++)
-        for (j = 0; j < MapSizeY; j++) {
-          f = GetField(i, j);
-          TL1[f->Terrain] = 1;
-        TL2[f->Terrain2] = 1;
-        }
-    fwrite(&TL1, sizeof(TL1), 1, fi);
-        fwrite(&TL2, sizeof(TL2), 1, fi);
-  }
+	// Terrain preload list
+	memset(TL1, 0, sizeof(TL1));
+	memset(TL2, 0, sizeof(TL1));
 
-    WriteUnits(fi);
-    
-    fwrite(&ActualTurn, sizeof(ActualTurn), 1, fi);
-  
-  return 0;
+	TL1[tofsL1A] = 1;
+	TL1[tofsL1B] = 1;
+	TL1[tofsL1C] = 1;
+	TL1[tofsL1D] = 1;
+	TL1[tofsL1E] = 1;
+	TL1[tofsL1F] = 1;
+	TL1[tofsL1G] = 1;
+	TL1[tofsL1H] = 1;
+	TL1[tofsL1I] = 1;
+	TL1[tofsL1J] = 1;
+	TL1[tofsL1K] = 1;
+	TL1[tofsL1L] = 1;
+	TL1[tofsL1M] = 1;
+
+	for (i = 0; i < MapSizeX; i++) {
+		for (j = 0; j < MapSizeY; j++) {
+			f = GetField(i, j);
+			TL1[f->Terrain] = 1;
+			TL2[f->Terrain2] = 1;
+		}
+	}
+
+	stream.write(TL1, 1024);
+	stream.write(TL2, 1024);
+	WriteUnits(stream);
+	stream.writeSint32LE(ActualTurn);
+	return 0;
 }
-
 
 
 // doplni do tabulky k nacitani vzdy pouz. tereny:
@@ -369,100 +390,98 @@ void AddAllTimeTerrains(byte *TL1, byte *TL2)
 
 static char MR_missionpicture[20];
 
-void *MissionRead(FILE *fi)
-{
-    int i, j, k;
-    byte TableL1[1024], TableL2[1024];
-    
-    StartLoading(MR_missionpicture);
-    
-    fread(&MapSizeX, 4, 1, fi); 
-    fread(&MapSizeY, 4, 1, fi); 
+void *MissionRead(ReadStream &stream) {
+	int i, x, y;
+	uint8_t tmp;
+	byte TableL1[1024], TableL2[1024];
 
-  Map = (TField *) memalloc(MapSizeX * MapSizeY * sizeof(TField));
-  lockmem(Map, MapSizeX * MapSizeY * sizeof(TField));
-    
-    fread(Map, MapSizeX * MapSizeY * sizeof(TField), 1, fi);
-    UpdateLoading();
-    for (i = 0; i < MapSizeX; i++)
-        for (j = 0; j < MapSizeY; j++) {
-            k = MapSizeX * j + i;
-            Map[k].OnScreen = Map[k].HasHelper = 0;
-            if (Map[k].Terrain2 == 285 /*mine*/) {
-                Map[k].Terrain2 = 0;
-                MinePlace(i, j, BADLIFE);
-            }
-            if (Map[k].Terrain2 == 286 /*another mine*/) {
-                Map[k].Terrain2 = 0;
-                MinePlace(i, j, GOODLIFE);
-            }
-            Map[k].Unit = NO_UNIT;
-        }
-    UpdateLoading();
-    fread(&TableL1, sizeof(TableL1), 1, fi);
-    UpdateLoading();
-    fread(&TableL2, sizeof(TableL2), 1, fi);
-    UpdateLoading();
-    AddAllTimeTerrains(TableL1, TableL2);
-    InitBitmaps(TableL1, TableL2);
-    UpdateLoading();
-  SetupMap();
+	StartLoading(MR_missionpicture);
 
-    ReadUnits(fi);
-    
-    fread(&ActualTurn, sizeof(ActualTurn), 1, fi);
-  UpdateLoading();
+	MapSizeX = stream.readSint32LE();
+	MapSizeY = stream.readSint32LE();
 
-  LMapSizeX = ((MapSizeX > LITMAP_SIZE) ? MapSizeX : LITMAP_SIZE/*-2*/) + 2;
-  LMapSizeY = ((MapSizeY > LITMAP_SIZE) ? MapSizeY : LITMAP_SIZE/*-2*/) + 2;
-  LitMapBuf = memalloc(LMapSizeX * LMapSizeY);
-  LitMapTrans = memalloc(LMapSizeX * LMapSizeY);
-  memset(LitMapBuf, 0, LMapSizeX * LMapSizeY);
-  for (i = 0; i < MapSizeX+2; i++) {
-        ((byte*)LitMapBuf)[i] = clrWhite;
-        ((byte*)LitMapBuf)[i + (MapSizeY+1) * LMapSizeX] = clrWhite;
-    }
-  for (i = 0; i < MapSizeY+2; i++) {
-        ((byte*)LitMapBuf)[i * LMapSizeX] = clrWhite;
-        ((byte*)LitMapBuf)[MapSizeX+1 + i * LMapSizeX] = clrWhite;
-    }
-      
-  DoneLoading();
-  TurnTime = MissionTime = 0;
-    return (void*)&Map;
+	Map = (TField*)memalloc(MapSizeX * MapSizeY * sizeof(TField));
+	lockmem(Map, MapSizeX * MapSizeY * sizeof(TField));
+
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		Map[i].Terrain = stream.readUint16LE();
+		Map[i].Terrain2 = stream.readUint16LE();
+		Map[i].Unit = stream.readUint16LE();
+		tmp = stream.readUint8();
+		Map[i].Height = tmp & 0x7;
+		Map[i].IsAnim = (tmp >> 3) & 0x1;
+		Map[i].Visib = (tmp >> 4) & 0x3;
+		Map[i].OnScreen = Map[i].HasHelper = 0;
+
+		x = i % MapSizeX;
+		y = i / MapSizeX;
+
+		if (Map[i].Terrain2 == 285 /*mine*/) {
+			Map[i].Terrain2 = 0;
+			MinePlace(x, y, BADLIFE);
+		}
+
+		if (Map[i].Terrain2 == 286 /*another mine*/) {
+			Map[i].Terrain2 = 0;
+			MinePlace(x, y, GOODLIFE);
+		}
+
+		Map[i].Unit = NO_UNIT;
+	}
+
+	UpdateLoading();
+	stream.read(TableL1, 1024);
+	UpdateLoading();
+	stream.read(TableL2, 1024);
+	UpdateLoading();
+	AddAllTimeTerrains(TableL1, TableL2);
+	InitBitmaps(TableL1, TableL2);
+	UpdateLoading();
+	SetupMap();
+
+	ReadUnits(stream);
+    
+	ActualTurn = stream.readSint32LE();
+	UpdateLoading();
+
+	LMapSizeX = ((MapSizeX > LITMAP_SIZE) ? MapSizeX : LITMAP_SIZE/*-2*/) + 2;
+	LMapSizeY = ((MapSizeY > LITMAP_SIZE) ? MapSizeY : LITMAP_SIZE/*-2*/) + 2;
+	LitMapBuf = memalloc(LMapSizeX * LMapSizeY);
+	LitMapTrans = memalloc(LMapSizeX * LMapSizeY);
+	memset(LitMapBuf, 0, LMapSizeX * LMapSizeY);
+
+	for (i = 0; i < MapSizeX+2; i++) {
+		((byte*)LitMapBuf)[i] = clrWhite;
+		((byte*)LitMapBuf)[i + (MapSizeY+1) * LMapSizeX] = clrWhite;
+	}
+
+	for (i = 0; i < MapSizeY+2; i++) {
+		((byte*)LitMapBuf)[i * LMapSizeX] = clrWhite;
+		((byte*)LitMapBuf)[MapSizeX+1 + i * LMapSizeX] = clrWhite;
+	}
+
+	DoneLoading();
+	TurnTime = MissionTime = 0;
+	return (void*)Map;
 }
 
-
-
-
-void InitMap(char *misname, FILE *fptr)
-{
-    if (fptr == NULL) {
-        TDataFile MissionDF("missions.dat", dfOpenRead, NULL, '?', MissionWrite, MissionRead);
-        sprintf(MR_missionpicture, "mis%i", ActualMission);
-        MissionDF.get(misname);
-    }
-    else {
-        strcpy(MR_missionpicture, "mis1");
-        MissionRead(fptr);      
-    }
+void InitMap(char *misname, ReadStream *stream) {
+	if (!stream) {
+		TDataFile MissionDF("missions.dat", dfOpenRead, NULL, '?',
+			MissionWrite, MissionRead);
+		sprintf(MR_missionpicture, "mis%i", ActualMission);
+		MissionDF.get(misname);
+	} else {
+		strcpy(MR_missionpicture, "mis1");
+		MissionRead(*stream);
+	}
 }
 
-void StoreMap(FILE *fptr)
-{
-//  MsgBox(SigText[TXT_SAVING]);
-    MissionWrite(fptr, NULL/*dummy*/, 0/*dummy*/);
-//  MsgBox(NULL);
+void StoreMap(WriteStream &stream) {
+//	MsgBox(SigText[TXT_SAVING]);
+	MissionWrite(stream, NULL/*dummy*/, 0/*dummy*/);
+//	MsgBox(NULL);
 }
-
-
-
-
-
-
-
-
-
 
 
 

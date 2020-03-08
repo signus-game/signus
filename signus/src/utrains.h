@@ -44,8 +44,8 @@ class TToweredTrainUnit : public TToweredUnit {
 			void MakeTrack() {};
 			void Setup();
 			void PrepareFieldTime(int x, int y);
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			void Rotate(int angle);
 			TSprite *GetSprite();
 			void Draw();
@@ -61,8 +61,8 @@ class TTrainSupportUnit : public TSupportUnit {
 			void MakeTrack() {};
 			void Setup();
 			void PrepareFieldTime(int x, int y);
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			void Rotate(int angle);
 			TSprite *GetSprite();
 	};	
@@ -110,8 +110,8 @@ class TGanymedes : public TTrainSupportUnit {
 			void Setup();
 			int GetWeight() {return WGT_HEAVY;};
 			void AfterSetup();
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			void SupportUnit(TUnit *Unit);
 			int WillSupport(TUnit *Unit);
 			void GetUnitInfo();

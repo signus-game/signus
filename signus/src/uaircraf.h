@@ -48,13 +48,13 @@ class TAircraft : public TUnit {
 					// pro animace sestupu a startu apod.
 		
 			TAircraft() : TUnit() {};
-			void Init(int x, int y, int party, FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream);
 			void GetTerrMove(int **terr, int **terr2);
 			void TurnReset();
 			void PlaceGround(int place);
 			int DoVisib();
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			void Draw();
 			int PaintUnitInMove(int bx, int by);
 			void GetDrawRect(TRect *r);
@@ -116,7 +116,7 @@ class TRex : public TAircraft {
 			int APhase;
 		
 			TRex() : TAircraft() {};
-			void Init(int x, int y, int party, FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream);
 			int GetType() {return unRex;};
 			void Setup();
 			void IncLevel(int alevel);
@@ -153,15 +153,15 @@ class TCaesar : public TAircraft {
 					// celkova hmotnost pojmutelnych jednotek
 
 			TCaesar() : TAircraft() {Capacity = 6;};
-			void Init(int x, int y, int party, FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream);
 			int GetType() {return unCaesar;};
 			void Setup();
 			void IncLevel(int alevel);
 			int GetWeight() {return WGT_MEDIUM + GetTotalWeight();};
 			unsigned GetSupportedActions();
 			unsigned GetAvailableActions();
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			void RemoveFromWorld();
 			void GetUnitInfo();
 			int InfoEvent(TEvent *e);
@@ -237,8 +237,8 @@ class TSaturn : public TAircraft {
 			int MoveFarSUB(int x, int y);
 			void GetUnitInfo();
 			int InfoEvent(TEvent *e);
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 
 			int StartBombing();
 			int EndBombing();

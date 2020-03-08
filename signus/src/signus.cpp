@@ -28,6 +28,7 @@
 //
 
 #include <time.h>
+#include <climits>
 #include <SDL_timer.h>
 
 #include "mission_screen.h"
@@ -873,28 +874,26 @@ extern int WC_On;
 extern void *WorkingControl[3];
 
 
-void CrashSave()
-{
-    char b[100];
-    FILE *f;
-    
-    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
-    f = fopen(b, "wb");
-    SaveGameState(f);
-    fclose(f);
+void CrashSave() {
+	char b[PATH_MAX];
+	File stream;
+
+	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
+	stream.open(b, File::WRITE | File::TRUNCATE);
+	SaveGameState(stream);
 }
 
-int CrashLoad()
-{
-    char b[100];
-    FILE *f;
-    
-    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
-    f = fopen(b, "rb");
-    if (f == NULL) return FALSE;
-    LoadGameState(f);
-    fclose(f);
-    return TRUE;
+int CrashLoad() {
+	File stream;
+	char b[PATH_MAX];
+
+	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
+	if (!stream.open(b, File::READ)) {
+		return FALSE;
+	}
+
+	LoadGameState(stream);
+	return TRUE;
 }
 
 

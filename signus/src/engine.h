@@ -36,6 +36,7 @@
 #include "system.h"
 #include "graphio.h"
 #include "events.h"
+#include "stream.h"
 
 
 
@@ -150,7 +151,7 @@ extern int TerrOfssBeg[1024], TerrOfssEnd[1024];
 extern int PulsarValue, PulsarDirection;
 
 // Inicializace enginu a jeho casti:
-extern int InitEngine(int mission, FILE *fptr = NULL);
+extern int InitEngine(int mission, ReadStream *stream = NULL);
    // ma varianty: bud z DF podle misname nebo ze souboru
 extern int DoneEngine();
 extern void InitBitmaps(int MaskL1[], int MaskL2[]);
@@ -215,11 +216,11 @@ extern int AirCursorOn;
 ////////////////// Manipulace s mapou:
 
 // Nacte/zapise mapu mise:
-extern void InitMap(char *misname, FILE *fptr);
-extern void StoreMap(FILE *fptr);
+void InitMap(char *misname, ReadStream *stream);
+void StoreMap(WriteStream &stream);
 // Fce pro cteni a zapis misi do dataku:
-extern unsigned MissionWrite(FILE *fi, void *ptr, size_t size);
-extern void *MissionRead(FILE *fi);
+unsigned MissionWrite(WriteStream &stream, void *ptr, size_t size);
+void *MissionRead(ReadStream &stream);
 
 
 

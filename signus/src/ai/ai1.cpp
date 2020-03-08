@@ -208,41 +208,28 @@ void InitAI1 ()
 }
 
 
-void LoadArtificialIntelligence1 (FILE *f)
-{
+void LoadArtificialIntelligence1(ReadStream &stream, int format) {
+	DoneArtificialIntelligence1();
 
-    DoneArtificialIntelligence1 ();
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = NULL;
-    DeniedPlaces = NULL;
-    
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);  
-
-    DUPos = 0;
-    
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
 }
 
-
-
-void SaveArtificialIntelligence1 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    DUPos = 0;
-    
+void SaveArtificialIntelligence1(WriteStream &stream) {
+	saveAttackedFields(stream);
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	DUPos = 0;
 }
-
-
 
 int ArtificialIntelligence1 ()
 {

@@ -271,7 +271,7 @@ void InitArtificialIntelligence (int mission)
 
 
 
-void LoadArtificialIntelligence (FILE *f)
+void LoadArtificialIntelligence(ReadStream &stream, int format)
 {
 	switch (ActualMission) {
   	case 1 :
@@ -281,7 +281,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence1;
   		AssignResult = AssignResult1;
   		GetManufacturableUnits = NULL;
-  		LoadArtificialIntelligence1 (f);
+		LoadArtificialIntelligence1(stream, format);
   		break;
   	case 2 :
   		ArtificialIntelligence = ArtificialIntelligence2;
@@ -290,7 +290,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence2;
   		AssignResult = AssignResult2;
   		GetManufacturableUnits = NULL;
-  		LoadArtificialIntelligence2 (f);  		
+		LoadArtificialIntelligence2(stream, format);
   		break;
   	case 3 :
   		ArtificialIntelligence = ArtificialIntelligence3;
@@ -299,7 +299,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence3;
   		AssignResult = AssignResult3;
   		GetManufacturableUnits = GetManufacturableUnits3;
-  		LoadArtificialIntelligence3 (f);  		
+		LoadArtificialIntelligence3(stream, format);
   		break;
    	case 4 :
   		ArtificialIntelligence = ArtificialIntelligence4;
@@ -308,7 +308,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence4;
   		AssignResult = AssignResult4;
   		GetManufacturableUnits = GetManufacturableUnits4;
-  		LoadArtificialIntelligence4 (f);  		
+		LoadArtificialIntelligence4(stream, format);
   		break;
    	case 5 :
   		ArtificialIntelligence = ArtificialIntelligence5;
@@ -317,7 +317,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence5;
   		AssignResult = AssignResult5;
   		GetManufacturableUnits = GetManufacturableUnits5;
-  		LoadArtificialIntelligence5 (f);  		
+		LoadArtificialIntelligence5(stream, format);
   		break;
    	case 6 :
   		ArtificialIntelligence = ArtificialIntelligence6;
@@ -326,7 +326,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence6;
   		AssignResult = AssignResult6;
   		GetManufacturableUnits = GetManufacturableUnits6;
-  		LoadArtificialIntelligence6 (f);  		
+		LoadArtificialIntelligence6(stream, format);
   		break; 
    	case 7 :
   		ArtificialIntelligence = ArtificialIntelligence7;
@@ -335,7 +335,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence7;
   		AssignResult = AssignResult7;
   		GetManufacturableUnits = GetManufacturableUnits7;
-  		LoadArtificialIntelligence7 (f);  		
+		LoadArtificialIntelligence7(stream, format);
   		break;
    	case 8 :
   		ArtificialIntelligence = ArtificialIntelligence8;
@@ -344,7 +344,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence8;
   		AssignResult = AssignResult8;
   		GetManufacturableUnits = GetManufacturableUnits8;
-  		LoadArtificialIntelligence8 (f);  		
+		LoadArtificialIntelligence8(stream, format);
   		break;
    	case 9 :
   		ArtificialIntelligence = ArtificialIntelligence9;
@@ -353,7 +353,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence9;
   		AssignResult = AssignResult9;
   		GetManufacturableUnits = GetManufacturableUnits9;
-  		LoadArtificialIntelligence9 (f);  		
+		LoadArtificialIntelligence9(stream, format);
   		break;
    	case 10 :
   		ArtificialIntelligence = ArtificialIntelligence10;
@@ -362,7 +362,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence10;
   		AssignResult = AssignResult10;
   		GetManufacturableUnits = GetManufacturableUnits10;
-  		LoadArtificialIntelligence10 (f);  		
+		LoadArtificialIntelligence10(stream, format);
   		break; 
    	case 11 :
   		ArtificialIntelligence = ArtificialIntelligence11;
@@ -371,7 +371,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence11;
   		AssignResult = AssignResult11;
   		GetManufacturableUnits = GetManufacturableUnits11;
-  		LoadArtificialIntelligence11 (f);  		
+		LoadArtificialIntelligence11(stream, format);
   		break;
    	case 12 :
   		ArtificialIntelligence = ArtificialIntelligence12;
@@ -380,7 +380,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence12;
   		AssignResult = AssignResult12;
   		GetManufacturableUnits = GetManufacturableUnits12;
-  		LoadArtificialIntelligence12 (f);  		
+		LoadArtificialIntelligence12(stream, format);
   		break;
    	case 13 :
   		ArtificialIntelligence = ArtificialIntelligence13;
@@ -389,7 +389,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence13;
   		AssignResult = AssignResult13;
   		GetManufacturableUnits = GetManufacturableUnits13;
-  		LoadArtificialIntelligence13 (f);  		
+		LoadArtificialIntelligence13(stream, format);
   		break;
    	case 14 :
   		ArtificialIntelligence = ArtificialIntelligence14;
@@ -398,7 +398,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence14;
   		AssignResult = AssignResult14;
   		GetManufacturableUnits = GetManufacturableUnits14;
-  		LoadArtificialIntelligence14 (f);  		
+		LoadArtificialIntelligence14(stream, format);
   		break;
    	case 15 :
   		ArtificialIntelligence = ArtificialIntelligence15;
@@ -407,7 +407,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence15;
   		AssignResult = AssignResult15;
   		GetManufacturableUnits = GetManufacturableUnits15;
-  		LoadArtificialIntelligence15 (f);  		
+		LoadArtificialIntelligence15(stream, format);
   		break;
    	case 16 :
   		ArtificialIntelligence = ArtificialIntelligence16;
@@ -416,7 +416,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence16;
   		AssignResult = AssignResult16;
   		GetManufacturableUnits = GetManufacturableUnits16;
-  		LoadArtificialIntelligence16 (f);  		
+		LoadArtificialIntelligence16(stream, format);
   		break;
    	case 17 :
   		ArtificialIntelligence = ArtificialIntelligence17;
@@ -425,7 +425,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence17;
   		AssignResult = AssignResult17;
   		GetManufacturableUnits = GetManufacturableUnits17;
-  		LoadArtificialIntelligence17 (f);  		
+		LoadArtificialIntelligence17(stream, format);
   		break;
    	case 18 :
   		ArtificialIntelligence = ArtificialIntelligence18;
@@ -434,7 +434,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence18;
   		AssignResult = AssignResult18;
   		GetManufacturableUnits = GetManufacturableUnits18;
-  		LoadArtificialIntelligence18 (f);  		
+		LoadArtificialIntelligence18(stream, format);
   		break;
    	case 19 :
   		ArtificialIntelligence = ArtificialIntelligence19;
@@ -443,7 +443,7 @@ void LoadArtificialIntelligence (FILE *f)
   		DoneArtificialIntelligence = DoneArtificialIntelligence19;
   		AssignResult = AssignResult19;
   		GetManufacturableUnits = GetManufacturableUnits19;
-  		LoadArtificialIntelligence19 (f);  		
+		LoadArtificialIntelligence19(stream, format);
   		break;
 		
 	}
@@ -455,7 +455,7 @@ int  (*ArtificialIntelligence) () = NULL;
 int  (*AssignResult) () = NULL;
 int *(*GetManufacturableUnits) (int FactoryID) = NULL;
 void (*InitAI) () = NULL;
-void (*SaveArtificialIntelligence) (FILE *f) = NULL;
+void (*SaveArtificialIntelligence) (WriteStream &stream) = NULL;
 void (*DoneArtificialIntelligence) () = NULL; 
 
 
@@ -1231,3 +1231,31 @@ void AnalyseLandscape ()
 	Message ("");
 }
 
+void loadAttackedFields(ReadStream &stream, int format) {
+	int i;
+
+	AttackFieldPos = stream.readSint32LE();
+
+	for (i = 0; i < AttackFieldPos + 1; i++) {
+		AttackedField[i].x = stream.readUint8();
+		AttackedField[i].y = stream.readUint8();
+
+		if (format < 1) {
+			stream.readUint16LE();	// struct padding
+		}
+
+		AttackedField[i].Unit = stream.readSint32LE();
+	}
+}
+
+void saveAttackedFields(WriteStream &stream) {
+	int i;
+
+	stream.writeSint32LE(AttackFieldPos);
+
+	for (i = 0; i < AttackFieldPos + 1; i++) {
+		stream.writeUint8(AttackedField[i].x);
+		stream.writeUint8(AttackedField[i].y);
+		stream.writeSint32LE(AttackedField[i].Unit);
+	}
+}

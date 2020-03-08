@@ -273,16 +273,17 @@ int RollDice()
 
 // Zkontroluje pritomnost souboru:
 
-int CheckFile(const char *name)
-{
-    FILE *f = fopensafe(name, "rb");
-    
-    if (f == NULL) {
-        fprintf(stderr, "Cannot find data file '%s'!\n", name);
-        return FALSE;
-    }
-    fclose(f);
-    return TRUE;
+int CheckFile(const char *name) {
+	File tmp;
+
+	multipath_fopen(tmp, name, File::READ);
+
+	if (!tmp.isOpen()) {
+		fprintf(stderr, "Cannot find data file '%s'!\n", name);
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 int CheckFiles()
@@ -483,39 +484,37 @@ const char *getSignusConfigDir()
     return inidir;
 }
 
+void multipath_fopen(File &f, const char *name, unsigned mode) {
+	char *tmp, buf[PATH_MAX + 1] = {0};
 
-FILE *fopensafe(const char *name, const char *mode)
-{
-    FILE *f = NULL;
-    char nm[1024];
+	f.close();
 
-    if (getenv("HOME"))
-    {
-        snprintf(nm, 1024, "%s/.signus/%s", getenv("HOME"), name);
-        f = fopen(nm, mode);
-    }
+	tmp = getenv("HOME");
 
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/nolang/%s", getSignusDataDir(), name);
-        f = fopen(nm, mode);
-    }
-    
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/%s/%s", getSignusDataDir(), iniLocale, name);
-        f = fopen(nm, mode);
-    }
-    
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/default/%s", getSignusDataDir(), name);
-        f = fopen(nm, mode);
-    }
+	if (tmp) {
+		snprintf(buf, PATH_MAX, "%s/.signus/%s", getenv("HOME"), name);
 
-    return f;
+		if (f.open(buf, mode)) {
+			return;
+		}
+	}
+
+	snprintf(buf, PATH_MAX, "%s/nolang/%s", getSignusDataDir(), name);
+
+	if (f.open(buf, mode)) {
+		return;
+	}
+
+	snprintf(buf, PATH_MAX, "%s/%s/%s", getSignusDataDir(), iniLocale,
+		name);
+
+	if (f.open(buf, mode)) {
+		return;
+	}
+
+	snprintf(buf, PATH_MAX, "%s/default/%s", getSignusDataDir(), name);
+	f.open(buf, mode);
 }
-
 
 bool fileExists(const char *name)
 {

@@ -298,50 +298,41 @@ void InitAI10 ()
 
 
 
-void LoadArtificialIntelligence10 (FILE *f)
-{
-    DoneArtificialIntelligence10 ();
+void LoadArtificialIntelligence10(ReadStream &stream, int format) {
+	DoneArtificialIntelligence10 ();
 
-    MBPlaces = NULL;    
-    DeniedPlaces = NULL;
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-    
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
-    Army7 = new TGroundArmy (f);
-    Army8 = new TGroundArmy (f);
-    AirArmy1 = new TAirArmy (f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
+	Army7 = new TGroundArmy(stream);
+	Army8 = new TGroundArmy(stream);
+	AirArmy1 = new TAirArmy(stream);
 }
 
+void SaveArtificialIntelligence10(WriteStream &stream) {
+	saveAttackedFields(stream);
 
-
-void SaveArtificialIntelligence10 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);
-    Army4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    Army7 -> Save (f);
-    Army8 -> Save (f);
-    AirArmy1 -> Save (f);
-    DUPos = 0;
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	Army7->Save(stream);
+	Army8->Save(stream);
+	AirArmy1->Save(stream);
+	DUPos = 0;
 }
-
-
 
 int ArtificialIntelligence10 ()
 {
