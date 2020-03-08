@@ -401,12 +401,12 @@ unsigned NohdrDataWrite(WriteStream &stream, void *ptr, size_t size) {
 	return stream.copy(nhdf, size);
 }
 
-void AddFile(const char *prefix, const char *dir, const char *name) {
+int AddFile(const char *prefix, const char *dir, const char *name) {
 	void *buf = NULL;
 	size_t bufsize;
 	char jm[PATH_MAX];
 	char resnm[1024];
-	int i;
+	int i, ret = 1;
 	MemoryWriteStream *stream = NULL;
 
 	strcpy(jm, dir);
@@ -443,18 +443,19 @@ void AddFile(const char *prefix, const char *dir, const char *name) {
 
 		if (!fr.isOpen()) {
 			cerr << "Cannot open file " << jm << endl;
-			return;
+			return 0;
 		}
 
 		font = (TFont*)FontDataRead(fr);
 
 		if (!(DataF->put(resnm, font, 1))) {
 			cout << "  SIZE CHANGED!";
+			ret = 0;
 		}
 
 		freefont(font);
 		cout << endl;
-		return;
+		return ret;
 	}
 
 	for (i = 0; conv_func_list[i].ext; i++) {
@@ -479,7 +480,7 @@ void AddFile(const char *prefix, const char *dir, const char *name) {
 
 	if (!stream && (!use_nhdf || !nhdf.isOpen())) {
 		cerr << "Cannot read file " << jm << endl;
-		return;
+		return 0;
 	}
 
 	if (!use_nhdf) {
@@ -495,17 +496,23 @@ void AddFile(const char *prefix, const char *dir, const char *name) {
 		if (!fw.open(jm, File::WRITE | File::TRUNCATE)) {
 			cerr << "Cannot write into file " << jm << endl;
 			delete stream;
-			return;
+			return 0;
 		}
 
 		fw.writeUint32LE(bufsize);
-		fw.write(buf, bufsize);
+
+		if (fw.write(buf, bufsize) != bufsize) {
+			cerr << "Cannot write into file " << jm << endl;
+			ret = 0;
+		}
 	} else if (!DataF->put(resnm, buf, bufsize)) {
 		cout << "  SIZE CHANGED!";
+		ret = 0;
 	}
 
 	delete stream;
 	cout << endl;
+	return ret;
 }
 
 
@@ -571,7 +578,10 @@ int main(int argc, char *argv[])
 		for (int i = start; i < argc; i++) {
 			if (strcmp(argv[i]+strlen(argv[i])-4, "/CVS") == 0)
 				continue;
-			AddFile("", "", argv[i]);
+			if (!AddFile("", "", argv[i])) {
+				delete DataF;
+				return 1;
+			}
 		}
 #if 0
 		for (int i = start; i < argc; i++)
