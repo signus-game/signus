@@ -1,19 +1,19 @@
-#> Thor je raketov  vˆ‘ vyzbrojen  jedn¡m
- vrha‡em raket podobn‚ho typu jak˜m jsou
- vybaveny tˆ‘k‚ raketomety Herkules. Konstrukt‚©i
- vyvinuli u t‚to zbranˆ nov˜ obrann˜ mechanismus,
- kter˜ j¡ umo‘¤uje zasunout se do krytu.
-#> Tato jednotka se ©ad¡ k technicky
- nejdokonalej¨¡m v–bec - m  dalek˜ dost©el, st©¡l¡
- rychle a vid¡ daleko. Jej¡ rakety jsou
- schopny £‡innˆ zas hnout do boj– a‘ na
- vzd lenost 1,5 m¡le. Thor je
- velice ni‡iv  zbra¤ av¨ak za svou s¡lu
- musel zaplatit panc‚©ov n¡m, a tak nen¡-li
- skryt je velice zraniteln˜.
-#> Zpr va z velitelstv¡: "...a proto
- rozkazujeme naj¡t a potrestat vandaly,
- kte©¡ na raketovou vˆ‘ Thor napsali
- P¨tros".
+#> Thor je raketovÃ¡ vÄ›Å¾ vyzbrojenÃ¡ jednÃ­m
+ vrhaÄem raket podobnÃ©ho typu jakÃ½m jsou
+ vybaveny tÄ›Å¾kÃ© raketomety Herkules. KonstruktÃ©Å™i
+ vyvinuli u tÃ©to zbranÄ› novÃ½ obrannÃ½ mechanismus,
+ kterÃ½ jÃ­ umoÅ¾Åˆuje zasunout se do krytu.
+#> Tato jednotka se Å™adÃ­ k technicky
+ nejdokonalejÅ¡Ã­m vÅ¯bec - mÃ¡ dalekÃ½ dostÅ™el, stÅ™Ã­lÃ­
+ rychle a vidÃ­ daleko. JejÃ­ rakety jsou
+ schopny ÃºÄinnÄ› zasÃ¡hnout do bojÅ¯ aÅ¾ na
+ vzdÃ¡lenost 1,5 mÃ­le. Thor je
+ velice niÄivÃ¡ zbraÅˆ avÅ¡ak za svou sÃ­lu
+ musel zaplatit pancÃ©Å™ovÃ¡nÃ­m, a tak nenÃ­-li
+ skryt je velice zranitelnÃ½.
+#> ZprÃ¡va z velitelstvÃ­: "...a proto
+ rozkazujeme najÃ­t a potrestat vandaly,
+ kteÅ™Ã­ na raketovou vÄ›Å¾ Thor napsali
+ PÅ¡tros".
 #e
 #e

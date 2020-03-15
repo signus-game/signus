@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> â– â– 
+ #p.toricon.282.183. â– â– 
 #> The Batix base
 #> Resulting situation: the units of Consortium succeeded to spread their soldiers around Batix and
  we are expecting the attack in any minute. The latest and recently tested weapons are stored in
@@ -12,7 +12,7 @@
  destroyed.
 #> There is nothing else I can tell you about this matter. Nobody knows anything, nobody says
  anything.
-#>þ
+#>â– 
 #> Ted Bronx
  #p.anamorf.320.184.
 #> PRIMARY AIM: To hold the Batix base until the arrival of reinforcements.

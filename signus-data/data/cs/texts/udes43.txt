@@ -1,20 +1,20 @@
-#> Proton je tankovac¡ letadlo. Jako ‘ dn  z
- podp–rn˜ch jednotek nen¡ ani Proton vyzbrojen
- zbranˆmi. Nen¡ ani panc‚©ov n. M  dva motory
- podobn‚ho typu jako tˆ‘k‚ bombard‚ry Saturny.
-#> Tyto stroje nebyly navr‘eny a ani sestrojeny
- za £‡elem p©¡m‚ho nasazen¡ do bojov˜ch akc¡.
- Tomu odpov¡d  i jejich pomˆrnˆ mal  odolnost,
- kter  znemo‘¤uje p©echod Proton– p©es flakovou
- obranu nep©¡tele. Ve vzdu¨n˜ch souboj¡ch se
- podobnˆ jako Saturny a Ceasary mus¡ spolehnout
- na podporu sv˜ch st¡hac¡ch koleg–. S nasazen¡m
- tˆchto stroj– se po‡¡t  a‘ ve vˆt¨¡ch leteck˜ch
- bitv ch, kde hroz¡ v˜razn  p©esila nep© telsk˜ch
- £tvar–.
-#> P©esto, ‘e Protony existuj¡ ji‘ pomˆrnˆ
- dlouhou dobu a jsou u‘¡v ny i bˆ‘nou arm dou,
- do v˜zbroje jednotek Signus se dostaly teprve
- ned vno, a to hlavnˆ d¡ky sv‚ zranitelnosti.
+#> Proton je tankovacÃ­ letadlo. Jako Å¾Ã¡dnÃ¡ z
+ podpÅ¯rnÃ½ch jednotek nenÃ­ ani Proton vyzbrojen
+ zbranÄ›mi. NenÃ­ ani pancÃ©Å™ovÃ¡n. MÃ¡ dva motory
+ podobnÃ©ho typu jako tÄ›Å¾kÃ© bombardÃ©ry Saturny.
+#> Tyto stroje nebyly navrÅ¾eny a ani sestrojeny
+ za ÃºÄelem pÅ™Ã­mÃ©ho nasazenÃ­ do bojovÃ½ch akcÃ­.
+ Tomu odpovÃ­dÃ¡ i jejich pomÄ›rnÄ› malÃ¡ odolnost,
+ kterÃ¡ znemoÅ¾Åˆuje pÅ™echod ProtonÅ¯ pÅ™es flakovou
+ obranu nepÅ™Ã­tele. Ve vzduÅ¡nÃ½ch soubojÃ­ch se
+ podobnÄ› jako Saturny a Ceasary musÃ­ spolehnout
+ na podporu svÃ½ch stÃ­hacÃ­ch kolegÅ¯. S nasazenÃ­m
+ tÄ›chto strojÅ¯ se poÄÃ­tÃ¡ aÅ¾ ve vÄ›tÅ¡Ã­ch leteckÃ½ch
+ bitvÃ¡ch, kde hrozÃ­ vÃ½raznÃ¡ pÅ™esila nepÅ™Ã¡telskÃ½ch
+ ÃºtvarÅ¯.
+#> PÅ™esto, Å¾e Protony existujÃ­ jiÅ¾ pomÄ›rnÄ›
+ dlouhou dobu a jsou uÅ¾Ã­vÃ¡ny i bÄ›Å¾nou armÃ¡dou,
+ do vÃ½zbroje jednotek Signus se dostaly teprve
+ nedÃ¡vno, a to hlavnÄ› dÃ­ky svÃ© zranitelnosti.
 #e
 #e

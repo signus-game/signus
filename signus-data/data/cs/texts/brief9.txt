@@ -1,32 +1,32 @@
-#> şş
- #p.toricon.282.183. şş
-#> Dobrovolnˆ jste se nab¡dli k proveden¡ akce, je‘ je pro
- Toricon ‘ivotnˆ d–le‘it , ale £‡ast na n¡ znamen  t‚mˆ© jistou
+#> â– â– 
+ #p.toricon.282.183. â– â– 
+#> DobrovolnÄ› jste se nabÃ­dli k provedenÃ­ akce, jeÅ¾ je pro
+ Toricon Å¾ivotnÄ› dÅ¯leÅ¾itÃ¡, ale ÃºÄast na nÃ­ znamenÃ¡ tÃ©mÄ›Å™ jistou
  smrt...
-#> Divize pro v˜zkum objevila artefakt#001 (nyn¡ v dr‘en¡
- Konzorcia), jeho‘ ni‡iv  s¡la, pokud
- ji ovl d  odborn¡k, je schopna vyru¨it £‡inky na¨ich zbran¡,
- a to i tˆch, kter‚ Toricon vyvinul na z kladˆ  artefaktov˜ch
- technologi¡. Pr vˆ prob¡h  transfer tohoto artefaktu ze Sotony
- do pevnosti Trufat ve st©edu Lystonie. Proto‘e dob˜t tuto
- pevnost rozhodnˆ nen¡ v na¨ich sil ch, alespo¤ v dohledn‚
- dobˆ, mus¡ se p©epad odd¡lu doprov zej¡c¡ho artefakt
- uskute‡nit nejpozdˆji po p©ekro‡en¡ ledov‚ho p su sotonsk‚
+#> Divize pro vÃ½zkum objevila artefakt#001 (nynÃ­ v drÅ¾enÃ­
+ Konzorcia), jehoÅ¾ niÄivÃ¡ sÃ­la, pokud
+ ji ovlÃ¡dÃ¡ odbornÃ­k, je schopna vyruÅ¡it ÃºÄinky naÅ¡ich zbranÃ­,
+ a to i tÄ›ch, kterÃ© Toricon vyvinul na zÃ¡kladÄ›  artefaktovÃ½ch
+ technologiÃ­. PrÃ¡vÄ› probÃ­hÃ¡ transfer tohoto artefaktu ze Sotony
+ do pevnosti Trufat ve stÅ™edu Lystonie. ProtoÅ¾e dobÃ½t tuto
+ pevnost rozhodnÄ› nenÃ­ v naÅ¡ich silÃ¡ch, alespoÅˆ v dohlednÃ©
+ dobÄ›, musÃ­ se pÅ™epad oddÃ­lu doprovÃ¡zejÃ­cÃ­ho artefakt
+ uskuteÄnit nejpozdÄ›ji po pÅ™ekroÄenÃ­ ledovÃ©ho pÃ¡su sotonskÃ©
  hranice.
-#> Podle vyslan˜ch hl¡dek je kolona velmi dob©e ozbrojen , ale
- na¨e ¨ance z¡skat artefakt jsou nesrovnatelnˆ vˆt¨¡ ne‘
- p©ed hradbami Trufatu.
-#> Va¨¡m jedin˜m £kolem je dostat artefakt z nep©¡telov˜ch rukou
- a to i za cenu jeho zni‡en¡. V˜buch artefaktu znamen  konec
- ve¨ker‚ho ‘ivota v okruhu nˆkolika des¡tek metr–, proto je
- i ve va¨em z jmu prov‚st akci co nej£spˆ¨nˆji.
-#> Pokud p©i sv‚m kon n¡ zem©ete, pak s vˆdom¡m, ‘e pro dobrou
- vˆc.
-#> ş
+#> Podle vyslanÃ½ch hlÃ­dek je kolona velmi dobÅ™e ozbrojenÃ¡, ale
+ naÅ¡e Å¡ance zÃ­skat artefakt jsou nesrovnatelnÄ› vÄ›tÅ¡Ã­ neÅ¾
+ pÅ™ed hradbami Trufatu.
+#> VaÅ¡Ã­m jedinÃ½m Ãºkolem je dostat artefakt z nepÅ™Ã­telovÃ½ch rukou
+ a to i za cenu jeho zniÄenÃ­. VÃ½buch artefaktu znamenÃ¡ konec
+ veÅ¡kerÃ©ho Å¾ivota v okruhu nÄ›kolika desÃ­tek metrÅ¯, proto je
+ i ve vaÅ¡em zÃ¡jmu provÃ©st akci co nejÃºspÄ›Å¡nÄ›ji.
+#> Pokud pÅ™i svÃ©m konÃ¡nÃ­ zemÅ™ete, pak s vÄ›domÃ­m, Å¾e pro dobrou
+ vÄ›c.
+#> â– 
 #> P. Creg
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: Zabr nit transferu artefaktu do pevnosti Trufat
-#> SEKUNDRN‹ C‹L: V p©¡padˆ nutnosti likvidace artefaktu
+#> PRIMÃRNÃ CÃL: ZabrÃ¡nit transferu artefaktu do pevnosti Trufat
+#> SEKUNDÃRNÃ CÃL: V pÅ™Ã­padÄ› nutnosti likvidace artefaktu
 #e
 #l br9_001#
 #e

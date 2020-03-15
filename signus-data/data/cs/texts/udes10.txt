@@ -1,22 +1,22 @@
-#> Patriot je lehk‚ mobiln¡ dalekonosn‚ dˆlo
- vyu‘¡vaj¡c¡ explosivn¡ munici stejn‚ho kalibru
- jako st©ednˆ tˆ‘k‚ tanky (Perseus Beta). M 
- omezen‚ panc‚©ov n¡ a ‘ dn‚ zbranˆ kr tk‚ho dost©elu.
-#> Tato zbra¤ je ur‡en  k ost©elov n¡
- nep© telsk˜ch jednotek z vlastn¡ho t˜lu, k ‡emu‘
- je vybavena dalekonosn˜m kan¢nem um¡stnˆn˜m
- na podvozku Patriot 3K. Av¨ak za svou pohyblivost
- mus¡ Patriot platit nedostate‡nou
- odolnost¡.
-#> Patriot je jedna z m la jednotek Signusu,
- kterou vyu‘¡v  i bˆ‘n  arm da (i kdy‘ pod n zvem
- KH-12C). Nejslavnˆj¨¡m zast ncem "k h ‡ek"
- je gener l Esencki (jeden z otc– my¨lenky
- jednotek Signus), kter˜ p©i taktick‚m cvi‡en¡
- Toriconu pomoc¡ druh‚ho a ‡tvrt‚ho obrnˆn‚ho
- pluku 3. divize tvo©en‚ho hlavnˆ "k h ‡kami"
- udr‘el brod p©es ©eku Astru proti t©em tankov˜m
- diviz¡m gener la Westna.
+#> Patriot je lehkÃ© mobilnÃ­ dalekonosnÃ© dÄ›lo
+ vyuÅ¾Ã­vajÃ­cÃ­ explosivnÃ­ munici stejnÃ©ho kalibru
+ jako stÅ™ednÄ› tÄ›Å¾kÃ© tanky (Perseus Beta). MÃ¡
+ omezenÃ© pancÃ©Å™ovÃ¡nÃ­ a Å¾Ã¡dnÃ© zbranÄ› krÃ¡tkÃ©ho dostÅ™elu.
+#> Tato zbraÅˆ je urÄenÃ¡ k ostÅ™elovÃ¡nÃ­
+ nepÅ™Ã¡telskÃ½ch jednotek z vlastnÃ­ho tÃ½lu, k ÄemuÅ¾
+ je vybavena dalekonosnÃ½m kanÃ³nem umÃ­stnÄ›nÃ½m
+ na podvozku Patriot 3K. AvÅ¡ak za svou pohyblivost
+ musÃ­ Patriot platit nedostateÄnou
+ odolnostÃ­.
+#> Patriot je jedna z mÃ¡la jednotek Signusu,
+ kterou vyuÅ¾Ã­vÃ¡ i bÄ›Å¾nÃ¡ armÃ¡da (i kdyÅ¾ pod nÃ¡zvem
+ KH-12C). NejslavnÄ›jÅ¡Ã­m zastÃ¡ncem "kÃ¡hÃ¡Äek"
+ je generÃ¡l Esencki (jeden z otcÅ¯ myÅ¡lenky
+ jednotek Signus), kterÃ½ pÅ™i taktickÃ©m cviÄenÃ­
+ Toriconu pomocÃ­ druhÃ©ho a ÄtvrtÃ©ho obrnÄ›nÃ©ho
+ pluku 3. divize tvoÅ™enÃ©ho hlavnÄ› "kÃ¡hÃ¡Äkami"
+ udrÅ¾el brod pÅ™es Å™eku Astru proti tÅ™em tankovÃ½m
+ divizÃ­m generÃ¡la Westna.
 
 #e
 #e

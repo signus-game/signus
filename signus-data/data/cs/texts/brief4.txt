@@ -1,24 +1,24 @@
-#> şş
- #p.toricon.282.183. şş
-#> Z kladna Batix
-#> Situace je n sleduj¡c¡: jednotk m Konzorcia se poda©ilo
- rozvinout sv‚ voj ky kolem Batixu a ka‘dou chvilkou o‡ek v me
- zah jen¡ £toku. V Batixu m me ulo‘eny nejnovˆj¨¡, teprve
- ned vno testovan‚ zbranˆ a krom toho slou‘¡me jako z sob rna
- bˆ‘n‚ munice a arzen lu pro p©epadov‚ jednotky Toriconu.
-#> Vzhledem k t‚to skute‡nosti si nem–‘eme dovolit kapitulaci.
- Va¨¡m £kolem je udr‘et pevnost a‘ do p©¡chodu posil. Pokud
- zklamete, z¡sk  Konzorcium proti Toriconu dal¨¡, a to silnˆj¨¡
- zbranˆ, ne‘ m  doposud.
-#> Bohu‘el v¨ak tyto zbranˆ nesm¡me p©i obranˆ pou‘¡t, neboŸ
- Toricon vy‘aduje jejich utajen¡. V p©¡padˆ na¨¡ por ‘ky mus¡
- b˜t zni‡eny a s nimi v¨echny z znamy o testov n¡.
-#> V¡c v m o t‚to z le‘itosti ne©eknu. Kdo nic nev¡, nic nepov¡...
-#> ş
+#> â– â– 
+ #p.toricon.282.183. â– â– 
+#> ZÃ¡kladna Batix
+#> Situace je nÃ¡sledujÃ­cÃ­: jednotkÃ¡m Konzorcia se podaÅ™ilo
+ rozvinout svÃ© vojÃ¡ky kolem Batixu a kaÅ¾dou chvilkou oÄekÃ¡vÃ¡me
+ zahÃ¡jenÃ­ Ãºtoku. V Batixu mÃ¡me uloÅ¾eny nejnovÄ›jÅ¡Ã­, teprve
+ nedÃ¡vno testovanÃ© zbranÄ› a krom toho slouÅ¾Ã­me jako zÃ¡sobÃ¡rna
+ bÄ›Å¾nÃ© munice a arzenÃ¡lu pro pÅ™epadovÃ© jednotky Toriconu.
+#> Vzhledem k tÃ©to skuteÄnosti si nemÅ¯Å¾eme dovolit kapitulaci.
+ VaÅ¡Ã­m Ãºkolem je udrÅ¾et pevnost aÅ¾ do pÅ™Ã­chodu posil. Pokud
+ zklamete, zÃ­skÃ¡ Konzorcium proti Toriconu dalÅ¡Ã­, a to silnÄ›jÅ¡Ã­
+ zbranÄ›, neÅ¾ mÃ¡ doposud.
+#> BohuÅ¾el vÅ¡ak tyto zbranÄ› nesmÃ­me pÅ™i obranÄ› pouÅ¾Ã­t, neboÅ¥
+ Toricon vyÅ¾aduje jejich utajenÃ­. V pÅ™Ã­padÄ› naÅ¡Ã­ porÃ¡Å¾ky musÃ­
+ bÃ½t zniÄeny a s nimi vÅ¡echny zÃ¡znamy o testovÃ¡nÃ­.
+#> VÃ­c vÃ¡m o tÃ©to zÃ¡leÅ¾itosti neÅ™eknu. Kdo nic nevÃ­, nic nepovÃ­...
+#> â– 
 #> Ted Bronx
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: Udr‘et z kladnu Batix do p©¡chodu posil
-#> SEKUNDRN‹ C‹L: V p©¡padˆ p©¡m‚ hrozby dobyt¡ Batixu Konzorciem
- odp lit muni‡n¡ sklady.
+#> PRIMÃRNÃ CÃL: UdrÅ¾et zÃ¡kladnu Batix do pÅ™Ã­chodu posil
+#> SEKUNDÃRNÃ CÃL: V pÅ™Ã­padÄ› pÅ™Ã­mÃ© hrozby dobytÃ­ Batixu Konzorciem
+ odpÃ¡lit muniÄnÃ­ sklady.
 #e
 #e

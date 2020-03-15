@@ -1,17 +1,17 @@
-#> Podle rozkazu jsme se sna‘ili udr‘et pevnost co nejd‚le.
- V dobˆ, kdy se o‡ek van  loƒ do Tankredu bl¡‘ila k p©¡stavu,
- jsme ze z kladny Ardenor zachytili nouzov˜ sign l, z nˆho‘
- vyplynulo, ‘e sl¡ben‚ posily nedoraz¡. Pod tlakem tˆchto
- okolnost¡ jsem byl nucen zavelet k £stupu mu‘stva
- i s artefakty k p©¡stavu.
-#> Se zna‡n˜mi ztr tami se n m poda©ilo nalodit na v le‡nou loƒ
- Artemis a nyn¡ smˆ©uje zbyl  hrstka z n s do Tankredu.
-#> Rufion padl do rukou nep© tel. Ardenor, proti nˆmu‘ Konzorcium
- zah jilo £tok je¨tˆ p©ed oblehnut¡m Rufionu tak‚ nem  ‘ dnou
- ¨anci.
-#> Nicm‚nˆ, hlavn¡ c¡l t‚to mise - nalodˆn¡ artefakt–, byl
- splnˆn...
-#> þ
+#> Podle rozkazu jsme se snaÅ¾ili udrÅ¾et pevnost co nejdÃ©le.
+ V dobÄ›, kdy se oÄekÃ¡vanÃ¡ loÄ do Tankredu blÃ­Å¾ila k pÅ™Ã­stavu,
+ jsme ze zÃ¡kladny Ardenor zachytili nouzovÃ½ signÃ¡l, z nÄ›hoÅ¾
+ vyplynulo, Å¾e slÃ­benÃ© posily nedorazÃ­. Pod tlakem tÄ›chto
+ okolnostÃ­ jsem byl nucen zavelet k Ãºstupu muÅ¾stva
+ i s artefakty k pÅ™Ã­stavu.
+#> Se znaÄnÃ½mi ztrÃ¡tami se nÃ¡m podaÅ™ilo nalodit na vÃ¡leÄnou loÄ
+ Artemis a nynÃ­ smÄ›Å™uje zbylÃ¡ hrstka z nÃ¡s do Tankredu.
+#> Rufion padl do rukou nepÅ™Ã¡tel. Ardenor, proti nÄ›muÅ¾ Konzorcium
+ zahÃ¡jilo Ãºtok jeÅ¡tÄ› pÅ™ed oblehnutÃ­m Rufionu takÃ© nemÃ¡ Å¾Ã¡dnou
+ Å¡anci.
+#> NicmÃ©nÄ›, hlavnÃ­ cÃ­l tÃ©to mise - nalodÄ›nÃ­ artefaktÅ¯, byl
+ splnÄ›n...
+#> â– 
 #> J. Daltom
 #e
 #e

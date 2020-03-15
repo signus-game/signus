@@ -1,17 +1,17 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Po £spà®nÇm odraëen° jednotek Konsorcia prob°h† stahov†n°
- nep©†tel z okol° Batixu. Podle oáek†v†n° se navrac°
+#> ‚ñ†‚ñ†
+ #p.toricon.282.183. ‚ñ†‚ñ†
+#> Po √∫spƒõ≈°n√©m odra≈æen√≠ jednotek Konsorcia prob√≠h√° stahov√°n√≠
+ nep≈ô√°tel z okol√≠ Batixu. Podle oƒçek√°v√°n√≠ se navrac√≠
  k Tortugalu.
-#> Toricon je toho n†zoru, ëe existence jakÇkoliv z†kladny mimo
- vliv Toriconu v okol° Batixu je nep©°pustn†. Podle veden° je
- nanejvò® vhodnÇ vyuë°t p©esily na®ich jednotek a napadnout
+#> Toricon je toho n√°zoru, ≈æe existence jak√©koliv z√°kladny mimo
+ vliv Toriconu v okol√≠ Batixu je nep≈ô√≠pustn√°. Podle veden√≠ je
+ nanejv√Ω≈° vhodn√© vyu≈æ√≠t p≈ôesily na≈°ich jednotek a napadnout
  Tortugal.
-#> Nav°c jsme se od na®eho zdroje dozvàdàli o artefaktech, kterÇ
- by Konzorciu mohli p©inÇst moc ohroëuj°c° pozice Toriconu.
- Proto je nezbytnà nutnÇ Tortugal dobòt a z°skat ve®kerÇ
- artefakty váetnà dokumentñ o prob°haj°c°m vòzkumu.
+#> Nav√≠c jsme se od na≈°eho zdroje dozvƒõdƒõli o artefaktech, kter√©
+ by Konzorciu mohli p≈ôin√©st moc ohro≈æuj√≠c√≠ pozice Toriconu.
+ Proto je nezbytnƒõ nutn√© Tortugal dob√Ωt a z√≠skat ve≈°ker√©
+ artefakty vƒçetnƒõ dokument≈Ø o prob√≠haj√≠c√≠m v√Ωzkumu.
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Dobòt z†kladnu Tortugal
+#> PRIM√ÅRN√ç C√çL: Dob√Ωt z√°kladnu Tortugal
 #e
 #e

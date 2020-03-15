@@ -1,21 +1,21 @@
-#> Monopol na provozov n¡ a v˜robu opraven typu
- Derken-Hamit, kter‚ jako jedin‚ vyhovuj¡
- v¨em pozemn¡m jednotk m arm d Signus, m 
- korporace Ghytu. Tato spole‡nost je obˆmi
- stranami uzn v na jako naprosto neutr ln¡,
- a proto je mo‘no jej¡ servisy naj¡t i u
- Toriconu i u Konzorcia. P©i vyu‘¡v n¡ tˆchto
- opraven plat¡ dohoda o zaplacen¡ pr ce,
- kter  neumo‘¤uje masov‚ vyu‘¡v n¡
- slu‘eb poskytovan˜ch touto spole‡nost¡.
- Ceny oprav jsou tajn‚ a jsou zdˆlov ny
- pouze d–stojn¡k–m od kapit na v˜¨.
- Ost©elov n¡ tˆchto b z¡ je p©¡snˆ
- zak z no v¨em jednotk m, rozkaz k tomu
- m–‘e d t pouze vel¡c¡ d–stojn¡k - kapit n,
- z jeho‘ fondu pak budou hrazeny ztr ty
+#> Monopol na provozovÃ¡nÃ­ a vÃ½robu opraven typu
+ Derken-Hamit, kterÃ© jako jedinÃ© vyhovujÃ­
+ vÅ¡em pozemnÃ­m jednotkÃ¡m armÃ¡d Signus, mÃ¡
+ korporace Ghytu. Tato spoleÄnost je obÄ›mi
+ stranami uznÃ¡vÃ¡na jako naprosto neutrÃ¡lnÃ­,
+ a proto je moÅ¾no jejÃ­ servisy najÃ­t i u
+ Toriconu i u Konzorcia. PÅ™i vyuÅ¾Ã­vÃ¡nÃ­ tÄ›chto
+ opraven platÃ­ dohoda o zaplacenÃ­ prÃ¡ce,
+ kterÃ¡ neumoÅ¾Åˆuje masovÃ© vyuÅ¾Ã­vÃ¡nÃ­
+ sluÅ¾eb poskytovanÃ½ch touto spoleÄnostÃ­.
+ Ceny oprav jsou tajnÃ© a jsou zdÄ›lovÃ¡ny
+ pouze dÅ¯stojnÃ­kÅ¯m od kapitÃ¡na vÃ½Å¡.
+ OstÅ™elovÃ¡nÃ­ tÄ›chto bÃ¡zÃ­ je pÅ™Ã­snÄ›
+ zakÃ¡zÃ¡no vÅ¡em jednotkÃ¡m, rozkaz k tomu
+ mÅ¯Å¾e dÃ¡t pouze velÃ­cÃ­ dÅ¯stojnÃ­k - kapitÃ¡n,
+ z jehoÅ¾ fondu pak budou hrazeny ztrÃ¡ty
  korporace Ghytu.
-#> Zpr va z velitelstv¡: "Smlouva o neutralitˆ
- neznemo‘¤uje zaj¡m n¡ tˆchto jednotek!"
+#> ZprÃ¡va z velitelstvÃ­: "Smlouva o neutralitÄ›
+ neznemoÅ¾Åˆuje zajÃ­mÃ¡nÃ­ tÄ›chto jednotek!"
 #e
 #e

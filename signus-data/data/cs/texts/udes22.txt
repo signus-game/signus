@@ -1,19 +1,19 @@
-#> Minotaurus je obrann  vˆ‘ vyzbrojen 
- dalekonosn˜m kan¢nem pou‘¡vaj¡c¡ explozivn¡
- munici. Jej¡ panc¡© je vyroben z podobn‚ho
- materi lu jako u st©ednˆ tˆ‘k˜ch tank– -
+#> Minotaurus je obrannÃ¡ vÄ›Å¾ vyzbrojenÃ¡
+ dalekonosnÃ½m kanÃ³nem pouÅ¾Ã­vajÃ­cÃ­ explozivnÃ­
+ munici. JejÃ­ pancÃ­Å™ je vyroben z podobnÃ©ho
+ materiÃ¡lu jako u stÅ™ednÄ› tÄ›Å¾kÃ½ch tankÅ¯ -
  Perseus Beta.
-#> Tato jednotka je vyu‘¡v na hlavnˆ na st©e‘en¡
- d–le‘it˜ch z kladen a vˆdeck˜ch b z¡. Je to
- zbra¤ s mimo© dnˆ dalek˜m dost©elem a dohledem,
- co‘ z n¡ dˆl  jednu z nejob vanˆj¨¡ch pozemn¡ch
- jednotek. Achilovou patou Minotaura je jeho (na vˆ‘e)
- mal  odolnost. Naopak jeho hlavn¡ p©ednost¡
- je explosivn¡ munice, kter  umo‘nuje zas hnout
- jednou st©elou v¡ce jednotek.
-#> P©i cvi‡en¡ch byly zaznamen ny p©¡pady, kdy
- jeden Minotaurus zastavil celou nep© telskou
- arm du. Byly v¨ak tak‚ zaznamen ny p©¡pady, kdy
- jedna helikopt‚ra zastavila celou arm du Minotaur–.
+#> Tato jednotka je vyuÅ¾Ã­vÃ¡na hlavnÄ› na stÅ™eÅ¾enÃ­
+ dÅ¯leÅ¾itÃ½ch zÃ¡kladen a vÄ›deckÃ½ch bÃ¡zÃ­. Je to
+ zbraÅˆ s mimoÅ™Ã¡dnÄ› dalekÃ½m dostÅ™elem a dohledem,
+ coÅ¾ z nÃ­ dÄ›lÃ¡ jednu z nejobÃ¡vanÄ›jÅ¡Ã­ch pozemnÃ­ch
+ jednotek. Achilovou patou Minotaura je jeho (na vÄ›Å¾e)
+ malÃ¡ odolnost. Naopak jeho hlavnÃ­ pÅ™ednostÃ­
+ je explosivnÃ­ munice, kterÃ¡ umoÅ¾nuje zasÃ¡hnout
+ jednou stÅ™elou vÃ­ce jednotek.
+#> PÅ™i cviÄenÃ­ch byly zaznamenÃ¡ny pÅ™Ã­pady, kdy
+ jeden Minotaurus zastavil celou nepÅ™Ã¡telskou
+ armÃ¡du. Byly vÅ¡ak takÃ© zaznamenÃ¡ny pÅ™Ã­pady, kdy
+ jedna helikoptÃ©ra zastavila celou armÃ¡du MinotaurÅ¯.
 #e
 #e

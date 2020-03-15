@@ -1,28 +1,28 @@
-#> şş
- #p.toricon.282.183. şş
-#> Na¨¡ v˜zvˆdn‚ slu‘bˆ se poda©ilo zjistit, ‘e Konzorcium vyv¡j¡
- nov˜, zna‡nˆ vylep¨en˜ typ tanku, jeho‘ prim rn¡m ur‡en¡m bude s
- nejvˆt¨¡ pravdˆpodobnost¡ nasazen¡ v bojov˜ch £tvarech
- podobn‚ho typu, jak˜m je komando Signus#002. Je nutno o tomto tanku
- zjistit co nejv¡ce informac¡ a p©edat je vˆdeck‚ sekci.
-#> V ned vn‚ arm dn¡ akci se poda©ilo uko©istit jeden exempl ©
- tanku, kter˜ byl vz pˆt¡ podroben pe‡liv‚mu zkoum n¡. P©esto jsou
- st le na¨e vˆdomosti o projektu Perseus#001 Beta#001 p©¡li¨ kus‚.
- Bylo rozhodnuto, ‘e je t©eba tank vyzkou¨et ve skute‡n‚  akci.
- V‡era (23. 2.) byla p©i rutinn¡m leteck‚m pr–zkumu objevena tajn 
- z kladna Konzorcia na z padn¡m pob©e‘¡ Arvishsk‚ provincie. Na
- sn¡mc¡ch je z©etelnˆ vidˆt nˆkolik parkuj¡c¡ch Bet.
+#> â– â– 
+ #p.toricon.282.183. â– â– 
+#> NaÅ¡Ã­ vÃ½zvÄ›dnÃ© sluÅ¾bÄ› se podaÅ™ilo zjistit, Å¾e Konzorcium vyvÃ­jÃ­
+ novÃ½, znaÄnÄ› vylepÅ¡enÃ½ typ tanku, jehoÅ¾ primÃ¡rnÃ­m urÄenÃ­m bude s
+ nejvÄ›tÅ¡Ã­ pravdÄ›podobnostÃ­ nasazenÃ­ v bojovÃ½ch Ãºtvarech
+ podobnÃ©ho typu, jakÃ½m je komando Signus#002. Je nutno o tomto tanku
+ zjistit co nejvÃ­ce informacÃ­ a pÅ™edat je vÄ›deckÃ© sekci.
+#> V nedÃ¡vnÃ© armÃ¡dnÃ­ akci se podaÅ™ilo ukoÅ™istit jeden exemplÃ¡Å™
+ tanku, kterÃ½ byl vzÃ¡pÄ›tÃ­ podroben peÄlivÃ©mu zkoumÃ¡nÃ­. PÅ™esto jsou
+ stÃ¡le naÅ¡e vÄ›domosti o projektu Perseus#001 Beta#001 pÅ™Ã­liÅ¡ kusÃ©.
+ Bylo rozhodnuto, Å¾e je tÅ™eba tank vyzkouÅ¡et ve skuteÄnÃ©  akci.
+ VÄera (23. 2.) byla pÅ™i rutinnÃ­m leteckÃ©m prÅ¯zkumu objevena tajnÃ¡
+ zÃ¡kladna Konzorcia na zÃ¡padnÃ­m pobÅ™eÅ¾Ã­ ArvishskÃ© provincie. Na
+ snÃ­mcÃ­ch je zÅ™etelnÄ› vidÄ›t nÄ›kolik parkujÃ­cÃ­ch Bet.
  #p.brmap1.152.128.
-#> —kolem £dern‚ jednotky je vylodit se na pob©e‘¡ z padnˆ od
- z kladny, dob˜t ji a zlomit p©¡padn˜ odpor vojsk Konzorcia. Podle
- pr–zkumu nen¡ koncentrace sil v oblasti p©¡li¨ vysok . Pokud bude
- v ¨ postup dostate‡nˆ rychl˜, d  se p©edpokl dat, ‘e se poda©¡
- obsadit z kladnu d©¡ve, ne‘ ji Konzorcium stihne evakuovat.
-#> Dopravu na m¡sto operace zajist¡ transportn¡ loƒstvo ©adov‚
- arm dy.
+#> Ãškolem ÃºdernÃ© jednotky je vylodit se na pobÅ™eÅ¾Ã­ zÃ¡padnÄ› od
+ zÃ¡kladny, dobÃ½t ji a zlomit pÅ™Ã­padnÃ½ odpor vojsk Konzorcia. Podle
+ prÅ¯zkumu nenÃ­ koncentrace sil v oblasti pÅ™Ã­liÅ¡ vysokÃ¡. Pokud bude
+ vÃ¡Å¡ postup dostateÄnÄ› rychlÃ½, dÃ¡ se pÅ™edpoklÃ¡dat, Å¾e se podaÅ™Ã­
+ obsadit zÃ¡kladnu dÅ™Ã­ve, neÅ¾ ji Konzorcium stihne evakuovat.
+#> Dopravu na mÃ­sto operace zajistÃ­ transportnÃ­ loÄstvo Å™adovÃ©
+ armÃ¡dy.
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: eliminovat nep© telsk‚ vojensk‚ s¡ly v oblasti
-#> SEKUNDRN‹ C‹L: obsadit konzorci ln¡ z kladnu a zajmout tanky
+#> PRIMÃRNÃ CÃL: eliminovat nepÅ™Ã¡telskÃ© vojenskÃ© sÃ­ly v oblasti
+#> SEKUNDÃRNÃ CÃL: obsadit konzorciÃ¡lnÃ­ zÃ¡kladnu a zajmout tanky
  Perseus Beta
 #e
 #l br1_001#

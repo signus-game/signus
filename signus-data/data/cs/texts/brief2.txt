@@ -1,24 +1,24 @@
-#> şş
- #p.toricon.282.183. şş
-#> Byl zaznamen n pohyb vojensk˜ch jednotek Konzorcia v bl¡zkosti
- na¨¡ z kladny Ardenor, na n¡‘ je prov dˆn v˜zkum artefaktu
- Taron. Do nˆkolika hodin
- bude b ze zcela od©¡znuta od okol¡.
-#> (Podrobnosti viz. zpr va#001 dr.#001 Iceberga#001)
-#> Poda©ilo se zjistit p©¡‡inu nenad l‚ho £toku Konzorcia: p©ed
- hodinou hl¡dka zadr‘ela doktora B. Lexe p©i pokusu o p©ebˆhnut¡
- k obl‚haj¡c¡mu vojsku. Po d–sledn‚m v˜slechu B. Lex vypovˆdˆl o
- sv‚m spojen¡ s nep©¡telem a sv‚m v˜zkumu Taronu pro Konzorcium,
- kter‚ se zaj¡m  o vliv artefaktu na lidskou psychiku.
-#> Nov‚ okolnosti vedly spole‡nost Toricon k vyd n¡
- rozkazu, podle nˆho‘ m me za ka‘dou cenu zabr nit £to‡n¡k–m
- v z¡sk n¡ artefaktu, a tedy prov‚st p©ipravovan˜ p©esun
- za £‡elem dal¨¡ho v˜zkumu OKAM’IT‰. Je t©eba odpoutat
- pozornost Konzorcia a p©epravit Taron do na¨¡ z kladny Tankred
- na sever od  Ardenoru, kde m me pevnou pozici. Cel  akce bude
- prob¡hat pod veden¡m doktora Iceberga.
+#> â– â– 
+ #p.toricon.282.183. â– â– 
+#> Byl zaznamenÃ¡n pohyb vojenskÃ½ch jednotek Konzorcia v blÃ­zkosti
+ naÅ¡Ã­ zÃ¡kladny Ardenor, na nÃ­Å¾ je provÃ¡dÄ›n vÃ½zkum artefaktu
+ Taron. Do nÄ›kolika hodin
+ bude bÃ¡ze zcela odÅ™Ã­znuta od okolÃ­.
+#> (Podrobnosti viz. zprÃ¡va#001 dr.#001 Iceberga#001)
+#> PodaÅ™ilo se zjistit pÅ™Ã­Äinu nenadÃ¡lÃ©ho Ãºtoku Konzorcia: pÅ™ed
+ hodinou hlÃ­dka zadrÅ¾ela doktora B. Lexe pÅ™i pokusu o pÅ™ebÄ›hnutÃ­
+ k oblÃ©hajÃ­cÃ­mu vojsku. Po dÅ¯slednÃ©m vÃ½slechu B. Lex vypovÄ›dÄ›l o
+ svÃ©m spojenÃ­ s nepÅ™Ã­telem a svÃ©m vÃ½zkumu Taronu pro Konzorcium,
+ kterÃ© se zajÃ­mÃ¡ o vliv artefaktu na lidskou psychiku.
+#> NovÃ© okolnosti vedly spoleÄnost Toricon k vydÃ¡nÃ­
+ rozkazu, podle nÄ›hoÅ¾ mÃ¡me za kaÅ¾dou cenu zabrÃ¡nit ÃºtoÄnÃ­kÅ¯m
+ v zÃ­skÃ¡nÃ­ artefaktu, a tedy provÃ©st pÅ™ipravovanÃ½ pÅ™esun
+ za ÃºÄelem dalÅ¡Ã­ho vÃ½zkumu OKAMÅ½ITÄš. Je tÅ™eba odpoutat
+ pozornost Konzorcia a pÅ™epravit Taron do naÅ¡Ã­ zÃ¡kladny Tankred
+ na sever od  Ardenoru, kde mÃ¡me pevnou pozici. CelÃ¡ akce bude
+ probÃ­hat pod vedenÃ­m doktora Iceberga.
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: dopravit artefakt Taron do z kladny v Tankredu
+#> PRIMÃRNÃ CÃL: dopravit artefakt Taron do zÃ¡kladny v Tankredu
 #e
 #l br2_001#
 #e

@@ -1,23 +1,23 @@
 #> Artefakt PEGAS
  #p.anamorf.320.184.
-#> V‡era se n m kone‡nˆ poda©ilo odhalit v˜jime‡nost artefaktu,
- kter˜ byl nalezen nˆkolik mil od Sanukoru. Ji‘ d©¡ve jsme
- v bl¡zkosti Pegasu m¡vali zvl ¨tn¡ pocity lehkosti, ale teprve
- nyn¡ jsme schopni tyto zvl ¨tn¡ £kazy vyu‘¡t v mnohem vˆt¨¡
- m¡©e.
-#> Profesor R. Generson provedl nˆkolik pokus– s vyst©elen˜mi
- n boji pod vlivem Pegasu. Po v˜po‡tu odchylky letu od p©¡m‚
- dr hy byl potvrzen n ¨ p©edpoklad. Odchylka nulov , to
- znamen , ‘e Pegas m  nesporn˜ vliv na gravitaci a t¡m
- setrva‡nost pohybu st©ely.
-#> Stejn‚ v˜sledky jsme z¡skali p©i testov n¡ zbran¡ tˆ‘¨¡ho
+#> VÄera se nÃ¡m koneÄnÄ› podaÅ™ilo odhalit vÃ½jimeÄnost artefaktu,
+ kterÃ½ byl nalezen nÄ›kolik mil od Sanukoru. JiÅ¾ dÅ™Ã­ve jsme
+ v blÃ­zkosti Pegasu mÃ­vali zvlÃ¡Å¡tnÃ­ pocity lehkosti, ale teprve
+ nynÃ­ jsme schopni tyto zvlÃ¡Å¡tnÃ­ Ãºkazy vyuÅ¾Ã­t v mnohem vÄ›tÅ¡Ã­
+ mÃ­Å™e.
+#> Profesor R. Generson provedl nÄ›kolik pokusÅ¯ s vystÅ™elenÃ½mi
+ nÃ¡boji pod vlivem Pegasu. Po vÃ½poÄtu odchylky letu od pÅ™Ã­mÃ©
+ drÃ¡hy byl potvrzen nÃ¡Å¡ pÅ™edpoklad. Odchylka nulovÃ¡, to
+ znamenÃ¡, Å¾e Pegas mÃ¡ nespornÃ½ vliv na gravitaci a tÃ­m
+ setrvaÄnost pohybu stÅ™ely.
+#> StejnÃ© vÃ½sledky jsme zÃ­skali pÅ™i testovÃ¡nÃ­ zbranÃ­ tÄ›Å¾Å¡Ã­ho
  kalibru.
-#> Veden¡ Konzorcia se sna‘¡ o vyu‘it¡ Pegasu ve vojensk˜ch
-akc¡ch jako odst©elov n¡ torikonsk˜ch z kladen p©es velik‚
-vzd lenosti.
-#> V tomto smˆtu jsme v¨ak je¨tˆ dostate‡nˆ nepokro‡ili. V˜zkum
-prob¡h  d l, pod veden¡m prof. Genersona.
-#> þ
+#> VedenÃ­ Konzorcia se snaÅ¾Ã­ o vyuÅ¾itÃ­ Pegasu ve vojenskÃ½ch
+akcÃ­ch jako odstÅ™elovÃ¡nÃ­ torikonskÃ½ch zÃ¡kladen pÅ™es velikÃ©
+vzdÃ¡lenosti.
+#> V tomto smÄ›tu jsme vÅ¡ak jeÅ¡tÄ› dostateÄnÄ› nepokroÄili. VÃ½zkum
+probÃ­hÃ¡ dÃ¡l, pod vedenÃ­m prof. Genersona.
+#> â– 
 #> Prof. Jeff Aleckard
 #e
 #e

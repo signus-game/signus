@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> â– â– 
+ #p.toricon.282.183. â– â– 
 #> Base Trix
 #> We have just succeeded to catch the SOS sent by the Toricon's base Oberun.
 #> The strike units of the Consortium have apparently undertaken a lightning speed operation
@@ -13,7 +13,7 @@
  base and to eliminate the besiegers with our conjunctive forces. But there is one problem -
  they will be expecting attack. The defile is very well equipped against the military attack.
 #> Prepare for presence of mines, shooting towers etc.
-#> þ
+#> â– 
 #> P. Dextr
  #p.anamorf.320.184.
 #> PRIMARY AIM: The occupation of Torvill Defile.

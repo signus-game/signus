@@ -3,7 +3,7 @@
  Commander P. Creg has decided to attack directly the vehicle with artefact. The following
  explosion brought death to both sides.
 #> The mission was successful.
-#> þ
+#> â– 
 #> Roy Orbison
 #e
 #e

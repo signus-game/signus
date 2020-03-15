@@ -1,24 +1,24 @@
-#> V¨echny z kladny pou‘¡van‚ jednotkami
- Signus jsou sestrojeny po vzoru b ze Mahakam.
- Ka‘d  tato z kladna m  ©¡d¡c¡ st©edisko, kde
- s¡dl¡ vel¡c¡ d–stojn¡k - kapit n a jeho
- t©¡‡lenn˜ poradn¡ t˜m, kter˜ bd¡ nad chodem
- jinak plnˆ automatizovan‚ z kladny. Jde o
- dozor sp¡¨e jen sporadick˜, neboŸ z kladny
- mohou pracovat naprosto samostatnˆ i bez
- lidsk‚ pomoci.
-#> Tˆlem cel‚ z kladny je tzv. Hang r,
- kde se nach z¡ ‡erpadla pohon˜ch hmot
- pro bojov‚ stroje, d vkova‡e st©el a
- servisn¡ jednotky. V¨echny tyto p©¡stroje
- jsou naprosto samostatn‚ a nepot©ebuj¡
- pomoc ‡lovˆka. Jsou nap jeny ze sol rn¡ch
- bateri¡, um¡stnˆn˜ch na vrcholu z kladny.
-#> Z kladny jsou podobnˆ jako radary, sklady
- a v˜robny vybaveny za©¡zen¡m zvan˜m Pe‡eŸ.
- Toto za©¡zen¡ kontroluje aby nedoch zelo k
- vpou¨tˆn¡ nep© telsk˜ch jednotek do objekt–,
- bohu‘el pr–zkumn  vozidla typu Bumerang dok ‘¡
- tuto pe‡eŸ "rozlomit".
+#> VÅ¡echny zÃ¡kladny pouÅ¾Ã­vanÃ© jednotkami
+ Signus jsou sestrojeny po vzoru bÃ¡ze Mahakam.
+ KaÅ¾dÃ¡ tato zÃ¡kladna mÃ¡ Å™Ã­dÃ­cÃ­ stÅ™edisko, kde
+ sÃ­dlÃ­ velÃ­cÃ­ dÅ¯stojnÃ­k - kapitÃ¡n a jeho
+ tÅ™Ã­ÄlennÃ½ poradnÃ­ tÃ½m, kterÃ½ bdÃ­ nad chodem
+ jinak plnÄ› automatizovanÃ© zÃ¡kladny. Jde o
+ dozor spÃ­Å¡e jen sporadickÃ½, neboÅ¥ zÃ¡kladny
+ mohou pracovat naprosto samostatnÄ› i bez
+ lidskÃ© pomoci.
+#> TÄ›lem celÃ© zÃ¡kladny je tzv. HangÃ¡r,
+ kde se nachÃ¡zÃ­ Äerpadla pohonÃ½ch hmot
+ pro bojovÃ© stroje, dÃ¡vkovaÄe stÅ™el a
+ servisnÃ­ jednotky. VÅ¡echny tyto pÅ™Ã­stroje
+ jsou naprosto samostatnÃ© a nepotÅ™ebujÃ­
+ pomoc ÄlovÄ›ka. Jsou napÃ¡jeny ze solÃ¡rnÃ­ch
+ bateriÃ­, umÃ­stnÄ›nÃ½ch na vrcholu zÃ¡kladny.
+#> ZÃ¡kladny jsou podobnÄ› jako radary, sklady
+ a vÃ½robny vybaveny zaÅ™Ã­zenÃ­m zvanÃ½m PeÄeÅ¥.
+ Toto zaÅ™Ã­zenÃ­ kontroluje aby nedochÃ¡zelo k
+ vpouÅ¡tÄ›nÃ­ nepÅ™Ã¡telskÃ½ch jednotek do objektÅ¯,
+ bohuÅ¾el prÅ¯zkumnÃ¡ vozidla typu Bumerang dokÃ¡Å¾Ã­
+ tuto peÄeÅ¥ "rozlomit".
 #e
 #e

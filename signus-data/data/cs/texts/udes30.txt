@@ -1,20 +1,20 @@
-#> GanymÇdes je podpñrnò vlak, jak†si
- kombinace Cerese, Gn¢ma a Irise na kolej°ch.
- Nem† ë†dnÇ zbranà a je jen slabà
- pancÇ©ov†n.
-#> KonstruktÇ©i tÇto vysoce explozivn° jednotky
- varuj°, ëe pokud dojde k zniáen° GanymÇda
+#> Ganym√©des je podp≈Ørn√Ω vlak, jak√°si
+ kombinace Cerese, Gn√≥ma a Irise na kolej√≠ch.
+ Nem√° ≈æ√°dn√© zbranƒõ a je jen slabƒõ
+ panc√©≈ôov√°n.
+#> Konstrukt√©≈ôi t√©to vysoce explozivn√≠ jednotky
+ varuj√≠, ≈æe pokud dojde k zniƒçen√≠ Ganym√©da
  je nutno obnovit koleje, proto se
- nedoporuáuje nasazen° tohoto vlaku
- v p©°m°ch bojovòch akc°ch. GanymÇdes
- samoz©ejmà mñëe podporovat i nevlakovÇ
- jednotky. Jako nejnebezpeánàj®° se
- jev° ost©elov†n° GanymÇdñ ze vzduchu,
- a proto se doporuáuje udrëovat tyto
+ nedoporuƒçuje nasazen√≠ tohoto vlaku
+ v p≈ô√≠m√≠ch bojov√Ωch akc√≠ch. Ganym√©des
+ samoz≈ôejmƒõ m≈Ø≈æe podporovat i nevlakov√©
+ jednotky. Jako nejnebezpeƒçnƒõj≈°√≠ se
+ jev√≠ ost≈ôelov√°n√≠ Ganym√©d≈Ø ze vzduchu,
+ a proto se doporuƒçuje udr≈æovat tyto
  vlaky pod flakovou ochranou Falang.
-#> O nezbytnosti tàchto strojñ se
- vedly dlouhÇ spory mezi obrannou
- diviz° a nejvy®®°m Prezidiem. Nakonec
- si v®ak Ian Zening prosadil svou.
+#> O nezbytnosti tƒõchto stroj≈Ø se
+ vedly dlouh√© spory mezi obrannou
+ diviz√≠ a nejvy≈°≈°√≠m Prezidiem. Nakonec
+ si v≈°ak Ian Zening prosadil svou.
 #e
 #e

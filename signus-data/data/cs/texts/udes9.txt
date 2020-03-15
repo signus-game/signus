@@ -1,23 +1,23 @@
-#> Goli ¨ je tˆ‘k‚ mobiln¡ dalekonosn‚ dˆlo
- pou‘¡vaj¡c¡ vysoce explosivn¡ munici na
- principu artefaktov‚ technologie. Podvozek
- a dˆlo byly vytvo©eny ze speci ln¡ch slitin
- tak, aby byly schopny vydr‘et vysok‚ teploty,
- kter˜ch je dosahov no bˆhem v˜st©elu.
-#> Pro vyu‘it¡ Goli ¨e v boji plat¡ t‚mˆ© stejn 
- omezen¡ jako pro tˆ‘k˜ raketomet Herkules.
- Nelze je pou‘¡t do prvn¡ linie mus¡ b˜t pod
- ochranou tank– a protiletadlov˜ch zbran¡.
- Velkou v˜hodou Goli ¨e oproti jeho star¨¡mu
- kolegovi Herkulovi je jeho z sobn¡k st©eliva,
- kter˜ umo‘¤uje i d‚le trvaj¡c¡ st©elbu
- bez podpory transport‚r– st©eliva - Gn¢m–.
-#> "...a proto bychom r di vyj d©ili podˆkov n¡
- na¨im vˆdc–m a technik–m, kte©¡ svou p¡l¡ a
- hou‘evnast¡ dos hli tohoto skvˆl‚ho v˜sledku
- a stvo©ili stroj ve kter‚m se snoub¡ vzne¨enost
- na¨ich p©edch–dc– na Arkonisu a vynal‚zavost
- lidsk‚ho ducha!" - v˜¤atek z podˆkov n¡ Ian
- Zeninga vˆdc–m
+#> GoliÃ¡Å¡ je tÄ›Å¾kÃ© mobilnÃ­ dalekonosnÃ© dÄ›lo
+ pouÅ¾Ã­vajÃ­cÃ­ vysoce explosivnÃ­ munici na
+ principu artefaktovÃ© technologie. Podvozek
+ a dÄ›lo byly vytvoÅ™eny ze speciÃ¡lnÃ­ch slitin
+ tak, aby byly schopny vydrÅ¾et vysokÃ© teploty,
+ kterÃ½ch je dosahovÃ¡no bÄ›hem vÃ½stÅ™elu.
+#> Pro vyuÅ¾itÃ­ GoliÃ¡Å¡e v boji platÃ­ tÃ©mÄ›Å™ stejnÃ¡
+ omezenÃ­ jako pro tÄ›Å¾kÃ½ raketomet Herkules.
+ Nelze je pouÅ¾Ã­t do prvnÃ­ linie musÃ­ bÃ½t pod
+ ochranou tankÅ¯ a protiletadlovÃ½ch zbranÃ­.
+ Velkou vÃ½hodou GoliÃ¡Å¡e oproti jeho starÅ¡Ã­mu
+ kolegovi Herkulovi je jeho zÃ¡sobnÃ­k stÅ™eliva,
+ kterÃ½ umoÅ¾Åˆuje i dÃ©le trvajÃ­cÃ­ stÅ™elbu
+ bez podpory transportÃ©rÅ¯ stÅ™eliva - GnÃ³mÅ¯.
+#> "...a proto bychom rÃ¡di vyjÃ¡dÅ™ili podÄ›kovÃ¡nÃ­
+ naÅ¡im vÄ›dcÅ¯m a technikÅ¯m, kteÅ™Ã­ svou pÃ­lÃ­ a
+ houÅ¾evnastÃ­ dosÃ¡hli tohoto skvÄ›lÃ©ho vÃ½sledku
+ a stvoÅ™ili stroj ve kterÃ©m se snoubÃ­ vzneÅ¡enost
+ naÅ¡ich pÅ™edchÅ¯dcÅ¯ na Arkonisu a vynalÃ©zavost
+ lidskÃ©ho ducha!" - vÃ½Åˆatek z podÄ›kovÃ¡nÃ­ Ian
+ Zeninga vÄ›dcÅ¯m
 #e
 #e

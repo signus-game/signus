@@ -1,20 +1,20 @@
-#> Iris je servisn¡ jednotka vytvo©en  podle
- vzoru standardn¡ho arm dn¡ho vozidla
- Betan 24. Nen¡ vyzbrojen a m  jen
- nejz kladnˆj¨¡ panc‚©ov n¡.
-#> V mis¡ch kde byly bojov‚ stroje nuceny operovat
- ve velk˜ch vzd lenostech od vlastn¡ch
- z kladen vznikla pot©eba vozidla schopn‚ho
- opravit po¨kozen‚ jednotky tak, aby se mohly vr tit
- do hrdinn‚ho boje v p©edn¡ch lini¡ch. P©i
- tvorbˆ Irise byly kladeny velk‚ n roky na
+#> Iris je servisnÃ­ jednotka vytvoÅ™enÃ¡ podle
+ vzoru standardnÃ­ho armÃ¡dnÃ­ho vozidla
+ Betan 24. NenÃ­ vyzbrojen a mÃ¡ jen
+ nejzÃ¡kladnÄ›jÅ¡Ã­ pancÃ©Å™ovÃ¡nÃ­.
+#> V misÃ­ch kde byly bojovÃ© stroje nuceny operovat
+ ve velkÃ½ch vzdÃ¡lenostech od vlastnÃ­ch
+ zÃ¡kladen vznikla potÅ™eba vozidla schopnÃ©ho
+ opravit poÅ¡kozenÃ© jednotky tak, aby se mohly vrÃ¡tit
+ do hrdinnÃ©ho boje v pÅ™ednÃ­ch liniÃ­ch. PÅ™i
+ tvorbÄ› Irise byly kladeny velkÃ© nÃ¡roky na
  jeho pohyblivost. To se podepsalo na jeho
- mal‚ odolnosti, kter  mu neumo‘¤uje operovat
- spole‡nˆ s bojov˜mi jednotkami.
-#> "Iris prodˆlal mnoho £prav a dnes ji‘ t‚mˆ©
- ni‡¡m nep©ipom¡n  sv‚ho p©edch–dce Betan 24,
- av¨ak jedno jim z–stalo spole‡n‚ - snaha
- pomoci sv˜m p© tel–m v boji." - Propaga‡n¡
- let k roz¨i©ovan˜ mezi piloty voz– Iris.
+ malÃ© odolnosti, kterÃ¡ mu neumoÅ¾Åˆuje operovat
+ spoleÄnÄ› s bojovÃ½mi jednotkami.
+#> "Iris prodÄ›lal mnoho Ãºprav a dnes jiÅ¾ tÃ©mÄ›Å™
+ niÄÃ­m nepÅ™ipomÃ­nÃ¡ svÃ©ho pÅ™edchÅ¯dce Betan 24,
+ avÅ¡ak jedno jim zÅ¯stalo spoleÄnÃ© - snaha
+ pomoci svÃ½m pÅ™Ã¡telÅ¯m v boji." - PropagaÄnÃ­
+ letÃ¡k rozÅ¡iÅ™ovanÃ½ mezi piloty vozÅ¯ Iris.
 #e
 #e

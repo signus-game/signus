@@ -1,21 +1,21 @@
-#> Doky je kryc¡ n zev pro p©¡stav
- a opravnu lod¡ z rove¤, u‘¡vanou n mo©n¡mi
- silami jednotek Signus. Ka‘d˜ z "Dok–"
- je vybaven ©¡d¡c¡ vˆ‘¡, kter  pln¡ rovnou
- i funkci maj ku. Zde s¡dl¡ d–stojn¡k-velitel,
- kter˜ se p©¡mo zodpov¡d  kapit novi.
- Jako v¨echny budovy jsou i Doky vybaveny
- Pe‡et¡ a jsou plnˆ automatizovan‚. To jim
- umo‘¤uje opravovat i nˆkolik lod¡ z rove¤.
- Tyto budovy maj¡ slu¨n˜ radarov˜ syst‚m,
- kter˜m mohou zahl‚dnout nep© telsk‚
- jednotky na pomˆrnˆ velkou vzd lenost
- bohu‘el jim v¨ak neomo‘¤uje pozorov n¡
- nep© telsk˜ch ponorek, a proto jsou u
- tˆchto p©¡stav– ‡asto vidˆt hl¡dkuj¡c¡
- torp‚doborce. Doky jako v¨echny ostatn¡ budovy nejsou
- vyzbrojeny ‘ dn˜mi zbra¤ov˜mi syst‚mu a
- mus¡ se proto spol‚hat na ochranu obran˜ch
- vˆ‘¡ a mobiln¡ch bojov˜ch jednotek.
+#> Doky je krycÃ­ nÃ¡zev pro pÅ™Ã­stav
+ a opravnu lodÃ­ zÃ¡roveÅˆ, uÅ¾Ã­vanou nÃ¡moÅ™nÃ­mi
+ silami jednotek Signus. KaÅ¾dÃ½ z "DokÅ¯"
+ je vybaven Å™Ã­dÃ­cÃ­ vÄ›Å¾Ã­, kterÃ¡ plnÃ­ rovnou
+ i funkci majÃ¡ku. Zde sÃ­dlÃ­ dÅ¯stojnÃ­k-velitel,
+ kterÃ½ se pÅ™Ã­mo zodpovÃ­dÃ¡ kapitÃ¡novi.
+ Jako vÅ¡echny budovy jsou i Doky vybaveny
+ PeÄetÃ­ a jsou plnÄ› automatizovanÃ©. To jim
+ umoÅ¾Åˆuje opravovat i nÄ›kolik lodÃ­ zÃ¡roveÅˆ.
+ Tyto budovy majÃ­ sluÅ¡nÃ½ radarovÃ½ systÃ©m,
+ kterÃ½m mohou zahlÃ©dnout nepÅ™Ã¡telskÃ©
+ jednotky na pomÄ›rnÄ› velkou vzdÃ¡lenost
+ bohuÅ¾el jim vÅ¡ak neomoÅ¾Åˆuje pozorovÃ¡nÃ­
+ nepÅ™Ã¡telskÃ½ch ponorek, a proto jsou u
+ tÄ›chto pÅ™Ã­stavÅ¯ Äasto vidÄ›t hlÃ­dkujÃ­cÃ­
+ torpÃ©doborce. Doky jako vÅ¡echny ostatnÃ­ budovy nejsou
+ vyzbrojeny Å¾Ã¡dnÃ½mi zbraÅˆovÃ½mi systÃ©mu a
+ musÃ­ se proto spolÃ©hat na ochranu obranÃ½ch
+ vÄ›Å¾Ã­ a mobilnÃ­ch bojovÃ½ch jednotek.
 #e
 #e

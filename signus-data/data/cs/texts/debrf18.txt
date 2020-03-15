@@ -1,11 +1,11 @@
-#> Dle rozkazu jsme se st©etli s nep©¡telem v gener ln¡ bitvˆ.
- Ztr ty na obou stran ch dos hly obrovsk‚ho po‡tu, ale Toriconu
- se p©eci jen poda©ilo zv¡tˆzit a postoupit smˆrem k trufatsk‚
+#> Dle rozkazu jsme se stÅ™etli s nepÅ™Ã­telem v generÃ¡lnÃ­ bitvÄ›.
+ ZtrÃ¡ty na obou stranÃ¡ch dosÃ¡hly obrovskÃ©ho poÄtu, ale Toriconu
+ se pÅ™eci jen podaÅ™ilo zvÃ­tÄ›zit a postoupit smÄ›rem k trufatskÃ©
  pevnosti.
-#> þ
+#> â– 
 #> T. Roy
-#> þ
-#> V le‡n‚#001 zpr vy#001
+#> â– 
+#> VÃ¡leÄnÃ©#001 zprÃ¡vy#001
 #e
 #l b17_001#
 #e

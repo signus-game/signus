@@ -1,21 +1,21 @@
-#> Flint je dˆlov˜ ‡lun. Je vyzbrojen˜
- st©ednˆ tˆ‘k˜m z kluzov˜m kan¢nem
- podobn‚ho typu jak˜m jsou vyzbrojeny
+#> Flint je dÄ›lovÃ½ Älun. Je vyzbrojenÃ½
+ stÅ™ednÄ› tÄ›Å¾kÃ½m zÃ¡kluzovÃ½m kanÃ³nem
+ podobnÃ©ho typu jakÃ½m jsou vyzbrojeny
  tanky Perseus Beta.
-#> Jedn  se jednotku podp–rn‚ st©elby,
- kter  m–‘e ‡ ste‡nˆ nahradit st©ednˆ
- tˆ‘k‚ tanky v ter‚nech kam se Bety
- nedostanou. Jde o jednu z nejslab¨¡ch
- bojov˜ch jednotek n mo©nictva v £tvarech
- zvan˜ch Signus - proto je jejich nasazen¡
- v n mo©n¡ch bitv ch mo‘n‚ jen  ve vˆt¨¡ch
- bojov˜ch £tvarech a za podpory tˆ‘¨¡ch
- v le‡n˜ch lod¡.
-#> Tyto dˆlov‚ ‡luny p©evzaly jednotky
- Signus od £tvar– n mo©n¡ pˆchoty. Jm‚no
- Flint z¡skaly po plukovn¡kovi, kter˜
- zahynul, kdy‘ se sv˜mi ‡luny br nil
- p©ekro‡en¡ mostu t©em nep© telsk˜m
- prapor–m.
+#> JednÃ¡ se jednotku podpÅ¯rnÃ© stÅ™elby,
+ kterÃ¡ mÅ¯Å¾e ÄÃ¡steÄnÄ› nahradit stÅ™ednÄ›
+ tÄ›Å¾kÃ© tanky v terÃ©nech kam se Bety
+ nedostanou. Jde o jednu z nejslabÅ¡Ã­ch
+ bojovÃ½ch jednotek nÃ¡moÅ™nictva v Ãºtvarech
+ zvanÃ½ch Signus - proto je jejich nasazenÃ­
+ v nÃ¡moÅ™nÃ­ch bitvÃ¡ch moÅ¾nÃ© jen  ve vÄ›tÅ¡Ã­ch
+ bojovÃ½ch Ãºtvarech a za podpory tÄ›Å¾Å¡Ã­ch
+ vÃ¡leÄnÃ½ch lodÃ­.
+#> Tyto dÄ›lovÃ© Äluny pÅ™evzaly jednotky
+ Signus od ÃºtvarÅ¯ nÃ¡moÅ™nÃ­ pÄ›choty. JmÃ©no
+ Flint zÃ­skaly po plukovnÃ­kovi, kterÃ½
+ zahynul, kdyÅ¾ se svÃ½mi Äluny brÃ¡nil
+ pÅ™ekroÄenÃ­ mostu tÅ™em nepÅ™Ã¡telskÃ½m
+ praporÅ¯m.
 #e
 #e

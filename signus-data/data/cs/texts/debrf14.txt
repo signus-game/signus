@@ -1,12 +1,12 @@
-#> Dle zadan˜ch instrukc¡ jsme se sna‘ili udr‘et most a‘ do
- p©¡chodu posil, co‘ se n m se zna‡n˜mi ztr tami poda©ilo. Po
- p©¡jezdu sonick˜ch tank– jsme zah jili podtup k z kladnˆ.
- Kr tce po prolomen¡ obrann‚ clony na¨e jednotky pronikly do
- Taluonu. V sou‡asn‚ dobˆ prob¡h  znovuvytv ©en¡ obrann‚ clony,
- neboŸ sonick‚ tanky se vrac¡ zpˆt do Tulosu. V okam‘iku, kdy v
- Taluonu p©istane vrtuln¡k s prof. Lottenbertem#001, ji‘ bude v¨e
- p©ipraveno.
-#> þ
+#> Dle zadanÃ½ch instrukcÃ­ jsme se snaÅ¾ili udrÅ¾et most aÅ¾ do
+ pÅ™Ã­chodu posil, coÅ¾ se nÃ¡m se znaÄnÃ½mi ztrÃ¡tami podaÅ™ilo. Po
+ pÅ™Ã­jezdu sonickÃ½ch tankÅ¯ jsme zahÃ¡jili podtup k zÃ¡kladnÄ›.
+ KrÃ¡tce po prolomenÃ­ obrannÃ© clony naÅ¡e jednotky pronikly do
+ Taluonu. V souÄasnÃ© dobÄ› probÃ­hÃ¡ znovuvytvÃ¡Å™enÃ­ obrannÃ© clony,
+ neboÅ¥ sonickÃ© tanky se vracÃ­ zpÄ›t do Tulosu. V okamÅ¾iku, kdy v
+ Taluonu pÅ™istane vrtulnÃ­k s prof. Lottenbertem#001, jiÅ¾ bude vÅ¡e
+ pÅ™ipraveno.
+#> â– 
 #> L. Burton
 #e
 #l b14_001#

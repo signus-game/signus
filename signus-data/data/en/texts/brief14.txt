@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> â– â– 
+ #p.toricon.282.183. â– â– 
 #> We have been trying to capture the base Taluon for two days already. However it is still
  resistant to our attacks. We have informed Toricon about the present situation and found
  out the only possible solution...
@@ -13,7 +13,7 @@
  too close. We have to keep the bridge under our control at any prize, or we will loose the
  opportunity to use the sonic tanks in the following breaching of the defensive barrage of
  Taluon. We know it and they know it too. So get ready for the worst...
-#> þ
+#> â– 
 #> L. Burton
  #p.anamorf.320.184.
 #> PRIMARY AIM : Keep the Tubar bridge under control until the arrival of the sonic tanks

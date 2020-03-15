@@ -1,18 +1,18 @@
-#> Mohyk n je standardn¡ bojov˜ vlak. Je
- vyzbrojen st©ednˆ tˆ‘k˜m kan¢nem AGON a
- protiletadlov˜m kulometem r ‘e 38mm. Je
- pomˆrnˆ slu¨nˆ obrnˆn a m  vysokou odolnost.
-#> Nejvˆt¨¡ s¡la t‚to jednotky je jej¡
- v¨estranost. Je rychl , odoln , m–‘e £to‡it
- jak na pozemn¡ c¡le, tak na leteck‚ svazy.
- Konstrukt‚©i ho navrhli jako podp–rnou
- jednotku do prvn¡ linie, kde se smˆle vyrovn 
- tank–m. Jedinou jeho slabost¡ je (jako u
- v¨ech vlak–) pohyblivost omezen  tratˆmi.
- Nejvˆt¨¡m nep©¡telem tˆchto zbran¡ jsou
- min‚ry, kter‚ dok ‘¡ ochromit p r
- minami cel‚ svazy Mohyk n–. Proto se doporu‡uje
- pou‘¡vat tyto jednotky ve spolupr ci s
+#> MohykÃ¡n je standardnÃ­ bojovÃ½ vlak. Je
+ vyzbrojen stÅ™ednÄ› tÄ›Å¾kÃ½m kanÃ³nem AGON a
+ protiletadlovÃ½m kulometem rÃ¡Å¾e 38mm. Je
+ pomÄ›rnÄ› sluÅ¡nÄ› obrnÄ›n a mÃ¡ vysokou odolnost.
+#> NejvÄ›tÅ¡Ã­ sÃ­la tÃ©to jednotky je jejÃ­
+ vÅ¡estranost. Je rychlÃ¡, odolnÃ¡, mÅ¯Å¾e ÃºtoÄit
+ jak na pozemnÃ­ cÃ­le, tak na leteckÃ© svazy.
+ KonstruktÃ©Å™i ho navrhli jako podpÅ¯rnou
+ jednotku do prvnÃ­ linie, kde se smÄ›le vyrovnÃ¡
+ tankÅ¯m. Jedinou jeho slabostÃ­ je (jako u
+ vÅ¡ech vlakÅ¯) pohyblivost omezenÃ¡ tratÄ›mi.
+ NejvÄ›tÅ¡Ã­m nepÅ™Ã­telem tÄ›chto zbranÃ­ jsou
+ minÃ©ry, kterÃ© dokÃ¡Å¾Ã­ ochromit pÃ¡r
+ minami celÃ© svazy MohykÃ¡nÅ¯. Proto se doporuÄuje
+ pouÅ¾Ã­vat tyto jednotky ve spoluprÃ¡ci s
  Xenony.
 #e
 #e

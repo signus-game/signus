@@ -1,12 +1,12 @@
-#> V pr–bˆhu bitvy o Batix dorazily
- posily ze z kladny Tetron, kam jsme kr tce p©ed zah jen¡m £toku
- Konzorcia vyslali nouzov˜ sign l. S nimi se n m poda©ilo
- £to‡¡c¡ jednotky odrazit a v sou‡asnosti prob¡h  odkl¡zen¡
- padl˜ch a o¨et©ov n¡ ranˆn˜ch. Tot‚‘ se dle hl¡dek dˆje u nep© tel,
- kte©¡ se pomalu obrac¡ k n vratu do Tortugalu, odkud
- p©i¨li.
-#> P©i n vratu do z kladny jsem na¨el den¡k#001 jednoho#001 z#001 padl˜ch.#001
- D  se z nˆj lecos vy‡¡st o psychice mu‘stva.
+#> V prÅ¯bÄ›hu bitvy o Batix dorazily
+ posily ze zÃ¡kladny Tetron, kam jsme krÃ¡tce pÅ™ed zahÃ¡jenÃ­m Ãºtoku
+ Konzorcia vyslali nouzovÃ½ signÃ¡l. S nimi se nÃ¡m podaÅ™ilo
+ ÃºtoÄÃ­cÃ­ jednotky odrazit a v souÄasnosti probÃ­hÃ¡ odklÃ­zenÃ­
+ padlÃ½ch a oÅ¡etÅ™ovÃ¡nÃ­ ranÄ›nÃ½ch. TotÃ©Å¾ se dle hlÃ­dek dÄ›je u nepÅ™Ã¡tel,
+ kteÅ™Ã­ se pomalu obracÃ­ k nÃ¡vratu do Tortugalu, odkud
+ pÅ™iÅ¡li.
+#> PÅ™i nÃ¡vratu do zÃ¡kladny jsem naÅ¡el denÃ­k#001 jednoho#001 z#001 padlÃ½ch.#001
+ DÃ¡ se z nÄ›j lecos vyÄÃ­st o psychice muÅ¾stva.
 #e
 #l br4_001#
 #e

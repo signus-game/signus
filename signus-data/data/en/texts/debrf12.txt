@@ -8,7 +8,7 @@
  Rufion was captured by the enemy. Ardenor, against which Consortium has started an
  attack before the invest of Rufion, is also without any chance.
 #> However, the main aim of this mission - the shipping of artefact was fulfilled...
-#> þ
+#> â– 
 #> J. Daltom
 #e
 #e

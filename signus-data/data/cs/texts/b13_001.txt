@@ -1,23 +1,23 @@
-#> Podivn‚ £kazy, kter‚ se vyskytuj¡ t‚mˆ© dennˆ na v¨ech
- kontinentech Arconisu, vyvolali ve svˆtˆ nezrozmanitˆj¨¡
- reakce. Co se dˆje, co znamenaj¡ zd nlivˆ ne¨kodn‚ p ry
- vystupuj¡c¡ ze zemˆ, ‡ast  zemˆt©esen¡, gigantick‚ vlny
- schopn  rozdrtit i velk‚ tankery jako pap¡rov‚ loƒky?
-#> Vˆdci se uzamkli do sv˜ch kabinet–, spole‡nosti zrytˆ ml‡¡...
-#> Vydˆ¨en¡ lid‚ se chytaj¡ jak‚hokoliv vysvˆtlen¡. Sta©¡ lid‚ se
- upom¡naj¡ na povˆsti, kter‚ t‚mˆ© smazal ‡as, m˜ty, dle nich‘
- na Arconisu p©ed p©¡chodem lidstva s¡dlilo prastar‚ bo‘stvo.
- Bylo v¨ak p©¡li¨ py¨n‚, aby se s lidmi dohodlo o rozdˆlen¡
- zemˆ, a proto do¨lo k dlouh‚, ni‡iv‚ v lce, po n¡‘ se bo‘stvo
- muselo st hnout. Schovalo se do nedostupn˜ch hlubin Arconisu
- a usnulo vˆ‡n˜m sp nkem. Znamen  snad vzdouvaj¡c¡ se zemˆ
- a ony p ry dech probouzej¡c¡ho bo‘stva, kter‚ se nyn¡ probouz¡
- k pomstˆ?
-#> Hovo©¡ se o konci svˆta, obzvl ¨tˆ mnoho p©¡znivc– m  v¨ak
- teorie, ‘e ot©esy vyvol v  kdysi pora‘en  civilizace Arco¤an–,
- kter  po st©etu s lidmi z–st vala skryta, u‡ila se porozumˆt
- jedn n¡ lidsk‚ rasy, se kterou se kdysi marnˆ sna‘ila nav zat
- kontakt a pr vˆ teƒ se na sebe sna‘¡ upozornit.
-#> Pro‡, to zat¡m nikdo netu¨¡...
+#> PodivnÃ© Ãºkazy, kterÃ© se vyskytujÃ­ tÃ©mÄ›Å™ dennÄ› na vÅ¡ech
+ kontinentech Arconisu, vyvolali ve svÄ›tÄ› nezrozmanitÄ›jÅ¡Ã­
+ reakce. Co se dÄ›je, co znamenajÃ­ zdÃ¡nlivÄ› neÅ¡kodnÃ© pÃ¡ry
+ vystupujÃ­cÃ­ ze zemÄ›, ÄastÃ¡ zemÄ›tÅ™esenÃ­, gigantickÃ© vlny
+ schopnÃ¡ rozdrtit i velkÃ© tankery jako papÃ­rovÃ© loÄky?
+#> VÄ›dci se uzamkli do svÃ½ch kabinetÅ¯, spoleÄnosti zrytÄ› mlÄÃ­...
+#> VydÄ›Å¡enÃ­ lidÃ© se chytajÃ­ jakÃ©hokoliv vysvÄ›tlenÃ­. StaÅ™Ã­ lidÃ© se
+ upomÃ­najÃ­ na povÄ›sti, kterÃ© tÃ©mÄ›Å™ smazal Äas, mÃ½ty, dle nichÅ¾
+ na Arconisu pÅ™ed pÅ™Ã­chodem lidstva sÃ­dlilo prastarÃ© boÅ¾stvo.
+ Bylo vÅ¡ak pÅ™Ã­liÅ¡ pyÅ¡nÃ©, aby se s lidmi dohodlo o rozdÄ›lenÃ­
+ zemÄ›, a proto doÅ¡lo k dlouhÃ©, niÄivÃ© vÃ¡lce, po nÃ­Å¾ se boÅ¾stvo
+ muselo stÃ¡hnout. Schovalo se do nedostupnÃ½ch hlubin Arconisu
+ a usnulo vÄ›ÄnÃ½m spÃ¡nkem. ZnamenÃ¡ snad vzdouvajÃ­cÃ­ se zemÄ›
+ a ony pÃ¡ry dech probouzejÃ­cÃ­ho boÅ¾stva, kterÃ© se nynÃ­ probouzÃ­
+ k pomstÄ›?
+#> HovoÅ™Ã­ se o konci svÄ›ta, obzvlÃ¡Å¡tÄ› mnoho pÅ™Ã­znivcÅ¯ mÃ¡ vÅ¡ak
+ teorie, Å¾e otÅ™esy vyvolÃ¡vÃ¡ kdysi poraÅ¾enÃ¡ civilizace ArcoÅˆanÅ¯,
+ kterÃ¡ po stÅ™etu s lidmi zÅ¯stÃ¡vala skryta, uÄila se porozumÄ›t
+ jednÃ¡nÃ­ lidskÃ© rasy, se kterou se kdysi marnÄ› snaÅ¾ila navÃ¡zat
+ kontakt a prÃ¡vÄ› teÄ se na sebe snaÅ¾Ã­ upozornit.
+#> ProÄ, to zatÃ­m nikdo netuÅ¡Ã­...
 #e
 #e

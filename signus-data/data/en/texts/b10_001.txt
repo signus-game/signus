@@ -1,14 +1,12 @@
-#> V¡t me v s opˆt u nejnovˆj¨¡ch zpr v spole‡nosti Tridi Vision.
-#> Bˆhem dne¨n¡ho dne byla na £zem¡ Esconu, Misteral, Lebrukonu,
- st©edn¡ Eutanie a jihu Losaba zaznamen na kr tkodob 
- zemˆt©esen¡. Nejni‡ivˆj¨¡ £‡inky mˆla na Misteralu, m¡sto
- ¨esti ostrov– zb˜v  jen pˆt. V ostatn¡ch posti‘en˜ch oblastech
- na¨tˆst¡ k ‘ dn˜m  ztr t m na ‘ivotech nedo¨lo. Doprovodn˜m
- £kazem t‚to pohromy byly oblaky p ry nejr–znˆj¨¡ho zabarven¡
- vystupuj¡c¡ ze zemˆ. V sou‡asn‚ dobˆ prob¡haj¡ v ¨niv‚ dohady
- vˆdc– v¨ech svˆtad¡l– o p–vodu tohoto zemˆt©esen¡, kter‚ bylo
- naposledy zaznamen no je¨tˆ v dob ch, kdy lid‚ za‡¡nali
- osidlovat Arkonis.
-#> Nashledanou u dal¨¡ch zpr v spole‡nosti Tridivision...
+#> Welcome to Tridi Vision latest news.
+#> Short earthquakes were felt today in the areas of Escon, Misteral,
+ Lebrukon, central Eutania and south Losabo. Misteral suffered the
+ most damage, one of the six islands sunk completely. Fortunately,
+ there were no casualties in the other impacted areas. The disaster
+ was followed by mists of various colors rising out of the earth.
+ Scientists from all continents are currently hotly debating the
+ cause of this earthquake, which was last recorded in the age when
+ humans only started colonizing Arkonis.
+#> See you soon with more Tridi Vision news...
 #e
 #e

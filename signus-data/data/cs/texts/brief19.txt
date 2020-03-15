@@ -1,24 +1,24 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Posledn°m ohniskem odporu Konzorcia je centr†ln° pevnost na
- jihu Lystonie - Trufat. Jen na v†s je p©ekonat posledn° krñáek
- k nastolen° m°ru. Na s°le va®eho odhodl†n°, vñle a samoz©ejmà
- - schopnostech. V uplynulòch tòdnech shrom†ëdil nep©°tel svÇ
- zbòvaj°c° s°ly, kteròch nen° m†lo, v Trufatu. D°ky
- neoáek†vatelnòm okolnostem jsme ztratili vòhodu p©esily
- - pomàrnà velk† á†st vojenskòch jednotek byla narychlo
- odvol†na do Dalia, Lebrukonu, a dal®°ch oblast° aby
- definitivnà vy©e®ila ot†zku ëold†ckòch band. Odd°l Signusu
- doprov†zej°c° skupinu vàdcñ v eutanskÇ z¢nà takÇ nedoraz°.
- Zm°nàn† skupina je dokonce povaëov†na za nezvàstnou#001.
-#> Na®tàst° se nep©edpokl†d†, ëe by Konzorcium mohlo nàjak
- vòznamnà zmànit svou dosavadn° situaci ve svñj prospàch.
- Toriconu jde v tÇto akci hlavnà o áas - áas dàl°c° Arconis od
- koneánÇho m°ru...
-#> ˛
+#> ‚ñ†‚ñ†
+ #p.toricon.282.183. ‚ñ†‚ñ†
+#> Posledn√≠m ohniskem odporu Konzorcia je centr√°ln√≠ pevnost na
+ jihu Lystonie - Trufat. Jen na v√°s je p≈ôekonat posledn√≠ kr≈Øƒçek
+ k nastolen√≠ m√≠ru. Na s√≠le va≈°eho odhodl√°n√≠, v≈Øle a samoz≈ôejmƒõ
+ - schopnostech. V uplynul√Ωch t√Ωdnech shrom√°≈ædil nep≈ô√≠tel sv√©
+ zb√Ωvaj√≠c√≠ s√≠ly, kter√Ωch nen√≠ m√°lo, v Trufatu. D√≠ky
+ neoƒçek√°vateln√Ωm okolnostem jsme ztratili v√Ωhodu p≈ôesily
+ - pomƒõrnƒõ velk√° ƒç√°st vojensk√Ωch jednotek byla narychlo
+ odvol√°na do Dalia, Lebrukonu, a dal≈°√≠ch oblast√≠ aby
+ definitivnƒõ vy≈ôe≈°ila ot√°zku ≈æold√°ck√Ωch band. Odd√≠l Signusu
+ doprov√°zej√≠c√≠ skupinu vƒõdc≈Ø v eutansk√© z√≥nƒõ tak√© nedoraz√≠.
+ Zm√≠nƒõn√° skupina je dokonce pova≈æov√°na za nezvƒõstnou#001.
+#> Na≈°tƒõst√≠ se nep≈ôedpokl√°d√°, ≈æe by Konzorcium mohlo nƒõjak
+ v√Ωznamnƒõ zmƒõnit svou dosavadn√≠ situaci ve sv≈Øj prospƒõch.
+ Toriconu jde v t√©to akci hlavnƒõ o ƒças - ƒças dƒõl√≠c√≠ Arconis od
+ koneƒçn√©ho m√≠ru...
+#> ‚ñ†
 #> T. Roy
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: dobòt Trufat a zajmout veden° Konzorcia
+#> PRIM√ÅRN√ç C√çL: dob√Ωt Trufat a zajmout veden√≠ Konzorcia
 #e
 #l b19_001#
 #e

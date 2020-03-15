@@ -1,23 +1,23 @@
-#> Horizont je protiletadlov  vˆ‘ vyzbrojen 
- jedn¡m kan¢nem na ni‡en¡ vzdu¨n˜ch c¡l–.
- Je to zbra¤ p©¡m‚ st©elby s pomˆrnˆ mal˜m
- dost©elem. Nem  ‘ dn‚ zbranˆ na ni‡en¡
- pozemn¡ch c¡l–.
-#> Tyto vˆ‘e jsou nasazeny na ochranu
- d–le‘itˆj¨¡ch z kladen, kde maj¡ za
- £kol spole‡nˆ s Falangami vytvo©it
- £‡inn˜ protiletadlov˜ flak, kter˜ by
- znemo‘nil nep© telsk˜m vzdu¨n˜m sil m
- £tok. Nev˜hodou Horizontu je jeho pomˆrnˆ
- mal  odolnost a nedostate‡n‚ panc‚©ov n¡
- proti tˆ‘¨¡m zbran¡m. Jeliko‘ se jedn 
- o jedinou zbra¤ sv‚ho druhu v jednotk ch,
- Signus doporu‡uje se kr˜t ji tˆ‘¨¡mi
- dalekonosn˜mi zbranˆmi proti £toku pozemn¡ch
+#> Horizont je protiletadlovÃ¡ vÄ›Å¾ vyzbrojenÃ¡
+ jednÃ­m kanÃ³nem na niÄenÃ­ vzduÅ¡nÃ½ch cÃ­lÅ¯.
+ Je to zbraÅˆ pÅ™Ã­mÃ© stÅ™elby s pomÄ›rnÄ› malÃ½m
+ dostÅ™elem. NemÃ¡ Å¾Ã¡dnÃ© zbranÄ› na niÄenÃ­
+ pozemnÃ­ch cÃ­lÅ¯.
+#> Tyto vÄ›Å¾e jsou nasazeny na ochranu
+ dÅ¯leÅ¾itÄ›jÅ¡Ã­ch zÃ¡kladen, kde majÃ­ za
+ Ãºkol spoleÄnÄ› s Falangami vytvoÅ™it
+ ÃºÄinnÃ½ protiletadlovÃ½ flak, kterÃ½ by
+ znemoÅ¾nil nepÅ™Ã¡telskÃ½m vzduÅ¡nÃ½m silÃ¡m
+ Ãºtok. NevÃ½hodou Horizontu je jeho pomÄ›rnÄ›
+ malÃ¡ odolnost a nedostateÄnÃ© pancÃ©Å™ovÃ¡nÃ­
+ proti tÄ›Å¾Å¡Ã­m zbranÃ­m. JelikoÅ¾ se jednÃ¡
+ o jedinou zbraÅˆ svÃ©ho druhu v jednotkÃ¡ch,
+ Signus doporuÄuje se krÃ½t ji tÄ›Å¾Å¡Ã­mi
+ dalekonosnÃ½mi zbranÄ›mi proti Ãºtoku pozemnÃ­ch
  jednotek.
-#> Zpr va z velitelstv¡: "P©i testov n¡ bojeschopnosti
- tˆchto jednotek v boji s helikopt‚rami se
- uk zali nedosta‡uj¡c¡mi, a proto doporu‡ujeme
- u‘¡vat je ve spolupr ci s Falangami."
+#> ZprÃ¡va z velitelstvÃ­: "PÅ™i testovÃ¡nÃ­ bojeschopnosti
+ tÄ›chto jednotek v boji s helikoptÃ©rami se
+ ukÃ¡zali nedostaÄujÃ­cÃ­mi, a proto doporuÄujeme
+ uÅ¾Ã­vat je ve spoluprÃ¡ci s Falangami."
 #e
 #e

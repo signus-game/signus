@@ -1,23 +1,23 @@
-#> Saturn je tˆ‘k˜ bombard‚r vyzbrojen˜
- ¨esti sadami kobercov˜ch bomb. Nem  ‘ dn‚
- zbranˆ na boj ve vzduchu a je jen slabˆ
- panc‚©ov n.
-#> Tento bombard‚r pat©¡ mezi tˆch nemnoho
- zbran¡, kter‚ dok ‘¡ znatelnˆ po¨kodit
- bitevn¡ loƒ - Krakena. Kobercov‚ bomby
- Saturna ji‘ nejednou zmˆnily pr–bˆh bitvy.
- Tyto tˆ‘k‚ stroje v¨ak mus¡ operovat pod
- ochranou st¡ha‡–, neboŸ p©es svou velikost
- nejsou p©¡li¨ odoln‚ a nemaj¡ ‘ dn‚ zbranˆ
- na leteck˜ souboj, tak‘e i lehk˜ Ikaros si
- snadno porad¡ s tˆmito kolosy. Dal¨¡ nev˜hodou
- je mal˜ z sobn¡k, kter˜ je nut¡ po ka‘d‚m
- vrhu se vracet zp tky na z kladnu pro nov‚
- st©elivo.
-#> Nasazen¡ tˆchto zbran¡ se p©ekvapivˆ
- setkalo s odporem humanistick‚ho hnut¡
- Amaldon. Av¨ak po popravˆ jeho ‡eln¡ch
- p©edstavitel– ‘ dn‚ v ‘nˆj¨¡ protesty
- ji‘ nebyly zaznamen ny.
+#> Saturn je tÄ›Å¾kÃ½ bombardÃ©r vyzbrojenÃ½
+ Å¡esti sadami kobercovÃ½ch bomb. NemÃ¡ Å¾Ã¡dnÃ©
+ zbranÄ› na boj ve vzduchu a je jen slabÄ›
+ pancÃ©Å™ovÃ¡n.
+#> Tento bombardÃ©r patÅ™Ã­ mezi tÄ›ch nemnoho
+ zbranÃ­, kterÃ© dokÃ¡Å¾Ã­ znatelnÄ› poÅ¡kodit
+ bitevnÃ­ loÄ - Krakena. KobercovÃ© bomby
+ Saturna jiÅ¾ nejednou zmÄ›nily prÅ¯bÄ›h bitvy.
+ Tyto tÄ›Å¾kÃ© stroje vÅ¡ak musÃ­ operovat pod
+ ochranou stÃ­haÄÅ¯, neboÅ¥ pÅ™es svou velikost
+ nejsou pÅ™Ã­liÅ¡ odolnÃ© a nemajÃ­ Å¾Ã¡dnÃ© zbranÄ›
+ na leteckÃ½ souboj, takÅ¾e i lehkÃ½ Ikaros si
+ snadno poradÃ­ s tÄ›mito kolosy. DalÅ¡Ã­ nevÃ½hodou
+ je malÃ½ zÃ¡sobnÃ­k, kterÃ½ je nutÃ­ po kaÅ¾dÃ©m
+ vrhu se vracet zpÃ¡tky na zÃ¡kladnu pro novÃ©
+ stÅ™elivo.
+#> NasazenÃ­ tÄ›chto zbranÃ­ se pÅ™ekvapivÄ›
+ setkalo s odporem humanistickÃ©ho hnutÃ­
+ Amaldon. AvÅ¡ak po popravÄ› jeho ÄelnÃ­ch
+ pÅ™edstavitelÅ¯ Å¾Ã¡dnÃ© vÃ¡Å¾nÄ›jÅ¡Ã­ protesty
+ jiÅ¾ nebyly zaznamenÃ¡ny.
 #e
 #e

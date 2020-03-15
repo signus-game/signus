@@ -1,22 +1,22 @@
-#>Perseus Alfa je odvozen od standardn¡ho
- arm dn¡ho tanku RT 29. Je vybaven lehk˜m
- bezz kluzov˜m kanonem s kr tk˜m dost©elem.
- Jeho p©ednost¡ je p©edev¨¡m vysok 
+#>Perseus Alfa je odvozen od standardnÃ­ho
+ armÃ¡dnÃ­ho tanku RT 29. Je vybaven lehkÃ½m
+ bezzÃ¡kluzovÃ½m kanonem s krÃ¡tkÃ½m dostÅ™elem.
+ Jeho pÅ™ednostÃ­ je pÅ™edevÅ¡Ã­m vysokÃ¡
  pohyblivost.
-#> Vzhledem k jeho pomˆrnˆ mal‚ palebn‚ s¡le
- se p©edpokl d  nasazen¡ jen ve vˆt¨¡ch
- bojov˜ch formac¡ch. D¡ky jeho vysok‚ mobilitˆ
- je mo‘n‚ £dern‚ svazy tvo©en‚ tˆmito jednotkami
- snadno p©esunout na strategicky
- velmi v˜hodn‚ pozice. Jako v˜hodn‚ se tak‚
- ukazuje nasadit tyto tanky p©i likvidaci
- nep© telsk˜ch dalekonosn˜ch zbran¡ um¡stˆn˜ch
- hluboko v t˜lu.
-#> Historicky se jedn  o prvn¡ zbra¤ p©ipravenou
- pro pou‘it¡ v jednotk ch Signus. Konstrukt‚©i
- upozor¤uj¡ na nedostatky zejm‚na v slab‚m
- panc‚©ov n¡. Proto, a z nˆkolika dal¨¡ch d–vod–, se
- p©edpokl d  jejich ‡ ste‡n‚ nahrazen¡ jednotkami
- jin‚ho typu.
+#> Vzhledem k jeho pomÄ›rnÄ› malÃ© palebnÃ© sÃ­le
+ se pÅ™edpoklÃ¡dÃ¡ nasazenÃ­ jen ve vÄ›tÅ¡Ã­ch
+ bojovÃ½ch formacÃ­ch. DÃ­ky jeho vysokÃ© mobilitÄ›
+ je moÅ¾nÃ© ÃºdernÃ© svazy tvoÅ™enÃ© tÄ›mito jednotkami
+ snadno pÅ™esunout na strategicky
+ velmi vÃ½hodnÃ© pozice. Jako vÃ½hodnÃ© se takÃ©
+ ukazuje nasadit tyto tanky pÅ™i likvidaci
+ nepÅ™Ã¡telskÃ½ch dalekonosnÃ½ch zbranÃ­ umÃ­stÄ›nÃ½ch
+ hluboko v tÃ½lu.
+#> Historicky se jednÃ¡ o prvnÃ­ zbraÅˆ pÅ™ipravenou
+ pro pouÅ¾itÃ­ v jednotkÃ¡ch Signus. KonstruktÃ©Å™i
+ upozorÅˆujÃ­ na nedostatky zejmÃ©na v slabÃ©m
+ pancÃ©Å™ovÃ¡nÃ­. Proto, a z nÄ›kolika dalÅ¡Ã­ch dÅ¯vodÅ¯, se
+ pÅ™edpoklÃ¡dÃ¡ jejich ÄÃ¡steÄnÃ© nahrazenÃ­ jednotkami
+ jinÃ©ho typu.
 #e
 #e

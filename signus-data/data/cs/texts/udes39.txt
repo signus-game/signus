@@ -1,23 +1,23 @@
-#> Kobra je lehkò £toánò bombardÇr
- vyzbrojenò explozivn°mi bombami a
- tàëkòm kulometem pro boj ve vzduchu.
- Je lehce pancÇ©ov†n.
-#> Nejvàt®°m kladem tàchto jednotek je
- jejich snadn† manÇvrovatelnost, coë
- umoë§uje spoleánà s jejich rychlost° je
- p©esouvat na moment†ln° m°sta ohroëen°.
- Nevòhodou tàchto jednotek je mal† odolnost,
- kter† umoë§uje jejich efektivn° vyuëit°
- jen ve vàt®°ch formac°ch ái spoleánà s
- jejich vàt®°mi sourozenci Saturny. Ve vzdu®nòch
- souboj°ch se Kobry mus° spolehnout na podporu
- Ikarosñ a Mystikñ.
-#> Zpr†va z velitelstv°:"Povàsti o tom, ëe
- gener†l Esencki se zabil, kdyë nezvl†dl p©i
- testovac°m letu tento stroj, jsou naprosto
- nepodloëenÇ a sniëuj° prestië tohoto velkÇho
- muëe, jeë by n†m v®em màl bòt p©°kladem.
- õi©itelÇ takovòchto pomluv se mohou dostat
- p©ed poln° soud."
+#> Kobra je lehk√Ω √∫toƒçn√Ω bombard√©r
+ vyzbrojen√Ω explozivn√≠mi bombami a
+ tƒõ≈æk√Ωm kulometem pro boj ve vzduchu.
+ Je lehce panc√©≈ôov√°n.
+#> Nejvƒõt≈°√≠m kladem tƒõchto jednotek je
+ jejich snadn√° man√©vrovatelnost, co≈æ
+ umo≈æ≈àuje spoleƒçnƒõ s jejich rychlost√≠ je
+ p≈ôesouvat na moment√°ln√≠ m√≠sta ohro≈æen√≠.
+ Nev√Ωhodou tƒõchto jednotek je mal√° odolnost,
+ kter√° umo≈æ≈àuje jejich efektivn√≠ vyu≈æit√≠
+ jen ve vƒõt≈°√≠ch formac√≠ch ƒçi spoleƒçnƒõ s
+ jejich vƒõt≈°√≠mi sourozenci Saturny. Ve vzdu≈°n√Ωch
+ souboj√≠ch se Kobry mus√≠ spolehnout na podporu
+ Ikaros≈Ø a Mystik≈Ø.
+#> Zpr√°va z velitelstv√≠:"Povƒõsti o tom, ≈æe
+ gener√°l Esencki se zabil, kdy≈æ nezvl√°dl p≈ôi
+ testovac√≠m letu tento stroj, jsou naprosto
+ nepodlo≈æen√© a sni≈æuj√≠ presti≈æ tohoto velk√©ho
+ mu≈æe, je≈æ by n√°m v≈°em mƒõl b√Ωt p≈ô√≠kladem.
+ ≈†i≈ôitel√© takov√Ωchto pomluv se mohou dostat
+ p≈ôed poln√≠ soud."
 #e
 #e

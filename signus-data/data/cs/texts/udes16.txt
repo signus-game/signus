@@ -1,20 +1,20 @@
-#> MÇdea je ëenijn° jednotka. Tento stroj
- nem† ë†dnÇ zbra§ovÇ systÇmy a je jen
- lehce pancÇ©ov†n. AutomatickÇ systÇmy
- tàchto vozidel jsou ©°zeny ze spojeneckòch
- z†kladen.
-#> Nejvàt®° silou tàchto na d†lku ©°zenòch
- strojñ je jejich schopnost tvo©it a
- opravovat mosty a ëeleznián°
- tratà. P©i tvorbà tÇto jednotky byl kladen
- velkò dñraz na £sporu m°sta na materi†l. Z tohoto
- dñvodu je MÇdea podobnà jako Gn¢m plnà automatickou
- tov†rnou na kolech ©°zenou ze z†kladny.
- Jej° velkou slabinou je nedostateánÇ pancÇ©ov†n°
- a mal† odolnost, kterÇ j° áin° velmi zranitelnou
- ost©elovaái.
-#> "Aë p©ijdem pol°b°me Smrt a ©eknem -
- Ty jsi na®e matka!"... Heslo jednotek
+#> M√©dea je ≈æenijn√≠ jednotka. Tento stroj
+ nem√° ≈æ√°dn√© zbra≈àov√© syst√©my a je jen
+ lehce panc√©≈ôov√°n. Automatick√© syst√©my
+ tƒõchto vozidel jsou ≈ô√≠zeny ze spojeneck√Ωch
+ z√°kladen.
+#> Nejvƒõt≈°√≠ silou tƒõchto na d√°lku ≈ô√≠zen√Ωch
+ stroj≈Ø je jejich schopnost tvo≈ôit a
+ opravovat mosty a ≈æelezniƒçn√≠
+ tratƒõ. P≈ôi tvorbƒõ t√©to jednotky byl kladen
+ velk√Ω d≈Øraz na √∫sporu m√≠sta na materi√°l. Z tohoto
+ d≈Øvodu je M√©dea podobnƒõ jako Gn√≥m plnƒõ automatickou
+ tov√°rnou na kolech ≈ô√≠zenou ze z√°kladny.
+ Jej√≠ velkou slabinou je nedostateƒçn√© panc√©≈ôov√°n√≠
+ a mal√° odolnost, kter√© j√≠ ƒçin√≠ velmi zranitelnou
+ ost≈ôelovaƒçi.
+#> "A≈æ p≈ôijdem pol√≠b√≠me Smrt a ≈ôeknem -
+ Ty jsi na≈°e matka!"... Heslo jednotek
  Signus.
 #e
 #e

@@ -1,22 +1,22 @@
-#> şş
- #p.toricon.282.183. şş
-#> Z kladna Kentaur
-#> V sou‡asn‚ situaci pro n s znamen  v˜skyt jak˜chkoliv z kladen
- v okol¡ Kentauru potenci ln¡ nebezpe‡¡. Proto veden¡ spole‡nosti
- Toricon rozhodlo, ‘e bude bezpe‡nˆj¨¡, kdy‘ se tyto z kladny
- dostanou pod na¨i kontrolu.
-#> Jedn  se o  Arten  na  severov˜chod odsud a Sanukor le‘¡c¡
- z padn¡m smˆrem. Podle na¨ich zpravodaj– jsou obˆ z kladny
- dr‘eny jednotkami Konzorcia, proto je nutno tuto akci vy©¡dit
- bleskovˆ, aby n s nemohli p©ekvapit posily z bl¡zk˜ch z kladen.
-#> Prvn¡m na seznamu bude Arten. Je se Sanukorem spojen ‘eleznic¡,
- ‡eho‘ bychom mohli vyu‘¡t pro nasazen¡ novˆ vyvinut‚ho vojensk‚ho vlaku
- Olymp#001. Tento vlak sestroj¡me ze sou‡ stek z artensk˜ch d¡len a vyu‘ijeme
- k rychlej¨¡ p©epravˆ komand Signus a pot©ebn‚ho arzen lu.
-#> Podstatn‚ je dob˜t Arten a napadnout Sanukor d©¡v, ne‘ se dozv¡ o na¨em
- p©¡chodu.
+#> â– â– 
+ #p.toricon.282.183. â– â– 
+#> ZÃ¡kladna Kentaur
+#> V souÄasnÃ© situaci pro nÃ¡s znamenÃ¡ vÃ½skyt jakÃ½chkoliv zÃ¡kladen
+ v okolÃ­ Kentauru potenciÃ¡lnÃ­ nebezpeÄÃ­. Proto vedenÃ­ spoleÄnosti
+ Toricon rozhodlo, Å¾e bude bezpeÄnÄ›jÅ¡Ã­, kdyÅ¾ se tyto zÃ¡kladny
+ dostanou pod naÅ¡i kontrolu.
+#> JednÃ¡ se o  Arten  na  severovÃ½chod odsud a Sanukor leÅ¾Ã­cÃ­
+ zÃ¡padnÃ­m smÄ›rem. Podle naÅ¡ich zpravodajÅ¯ jsou obÄ› zÃ¡kladny
+ drÅ¾eny jednotkami Konzorcia, proto je nutno tuto akci vyÅ™Ã­dit
+ bleskovÄ›, aby nÃ¡s nemohli pÅ™ekvapit posily z blÃ­zkÃ½ch zÃ¡kladen.
+#> PrvnÃ­m na seznamu bude Arten. Je se Sanukorem spojen Å¾eleznicÃ­,
+ ÄehoÅ¾ bychom mohli vyuÅ¾Ã­t pro nasazenÃ­ novÄ› vyvinutÃ©ho vojenskÃ©ho vlaku
+ Olymp#001. Tento vlak sestrojÃ­me ze souÄÃ¡stek z artenskÃ½ch dÃ­len a vyuÅ¾ijeme
+ k rychlejÅ¡Ã­ pÅ™epravÄ› komand Signus a potÅ™ebnÃ©ho arzenÃ¡lu.
+#> PodstatnÃ© je dobÃ½t Arten a napadnout Sanukor dÅ™Ã­v, neÅ¾ se dozvÃ­ o naÅ¡em
+ pÅ™Ã­chodu.
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: Dob˜t z kladny Arten a Sanukor
+#> PRIMÃRNÃ CÃL: DobÃ½t zÃ¡kladny Arten a Sanukor
 #e
 #l udes27#
 #e

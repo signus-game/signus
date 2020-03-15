@@ -1,18 +1,18 @@
-#> Radary jsou koncipov ny podobnˆ jako
- z kladny, pouze v men¨¡m mˆ©¡tku. V ka‘d‚m
- radaru je ©¡d¡c¡ bu¤ka, kde s¡dl¡ v˜konn˜
- ser‘ant-mechanik, kter˜ dohl¡‘¡ na chod
- t‚to plnˆ automatizovan‚ jednotky. Kromˆ
- centra obsahuj¡ radary tak‚ p©ij¡ma‡e,
- kter‚ vyhodnocuj¡
- £daje o pohybu nep© telsk˜ch vojsk v zorn‚m
- poli radaru, d le vys¡la‡, kter˜ p©en ¨¡
- v¨echny sv‚ informace na monitory spojeneck˜ch
- jednotek, tak‘e jim umo‘n¡ vyu‘¡t momentu
- p©ekvapen¡ a ude©it na protivn¡ka jako prvn¡.
-#> V¨echny tyto jednotky jsou vybaveny ochrann˜m
- za©¡zen¡m zn m˜m jako "Pe‡eŸ".
-#> Radar je jedin  jednotka, kterou v naprosto
- shodn‚ podobˆ vyu‘¡v  ka‘d  arm da.
+#> Radary jsou koncipovÃ¡ny podobnÄ› jako
+ zÃ¡kladny, pouze v menÅ¡Ã­m mÄ›Å™Ã­tku. V kaÅ¾dÃ©m
+ radaru je Å™Ã­dÃ­cÃ­ buÅˆka, kde sÃ­dlÃ­ vÃ½konnÃ½
+ serÅ¾ant-mechanik, kterÃ½ dohlÃ­Å¾Ã­ na chod
+ tÃ©to plnÄ› automatizovanÃ© jednotky. KromÄ›
+ centra obsahujÃ­ radary takÃ© pÅ™ijÃ­maÄe,
+ kterÃ© vyhodnocujÃ­
+ Ãºdaje o pohybu nepÅ™Ã¡telskÃ½ch vojsk v zornÃ©m
+ poli radaru, dÃ¡le vysÃ­laÄ, kterÃ½ pÅ™enÃ¡Å¡Ã­
+ vÅ¡echny svÃ© informace na monitory spojeneckÃ½ch
+ jednotek, takÅ¾e jim umoÅ¾nÃ­ vyuÅ¾Ã­t momentu
+ pÅ™ekvapenÃ­ a udeÅ™it na protivnÃ­ka jako prvnÃ­.
+#> VÅ¡echny tyto jednotky jsou vybaveny ochrannÃ½m
+ zaÅ™Ã­zenÃ­m znÃ¡mÃ½m jako "PeÄeÅ¥".
+#> Radar je jedinÃ¡ jednotka, kterou v naprosto
+ shodnÃ© podobÄ› vyuÅ¾Ã­vÃ¡ kaÅ¾dÃ¡ armÃ¡da.
 #e
 #e

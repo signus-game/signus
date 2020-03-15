@@ -1,23 +1,23 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Obrann† divize zvolila taktiku, dle n°ë je nejlep®° obranou
- £tok. Je t©eba zas†hnout Konzorcium v m°stà, odkud pramen°
- jeho s°la - dobòt hedarskò p©°stav Sotorat. Na®e znalosti
- ohlednà vòznamu Sotoratu pro protivn°ka jsou n†sleduj°c°: kotv°
- zde lodà nejen v†leánÇ, ale i p©epravn°, kterÇ dov†ëej° do
- pob©eën°ch oblast° zbranà, munici, atd. Z toho jsme vyvodili
- z†vàr, ëe v tomtÇë m°stà mus° bòt buÉ ohromnÇ z†soby, nebo
- p©°mo tov†rna na jejich vòrobu. Pokud zlikvidujeme Sotorat,
- p©ijde Konzorcium o jeden z hlavn°ch zdrojñ. Samoz©ejmà by
- bylo vòhodnàj®° z°skat Sotorat pod svou kontrolu s co
- nejmen®°mi ®kodami, ale veden° p©edpokl†d†, ëe v p©°padà
- prñlomu tamàj®° obrany maj° jednotky Konzorcia rozkaz odp†lit
- celò p©°stav a dal®° boje vÇst pouze z lod°.
-#> Jedinou moënost° Sotorat napadnout je £tok z pevniny. Va®°m
- prvotn°m c°lem potÇ, co dobudete p©°stupovou cestu k ©ece, jsou
- doky. Ne jejich likvidace, ale obsazen° a vyuëit° zde kotv°c°ch
- plavidel v boji s nep©°telem. Dokud nepadne...
+#> ‚ñ†‚ñ†
+ #p.toricon.282.183. ‚ñ†‚ñ†
+#> Obrann√° divize zvolila taktiku, dle n√≠≈æ je nejlep≈°√≠ obranou
+ √∫tok. Je t≈ôeba zas√°hnout Konzorcium v m√≠stƒõ, odkud pramen√≠
+ jeho s√≠la - dob√Ωt hedarsk√Ω p≈ô√≠stav Sotorat. Na≈°e znalosti
+ ohlednƒõ v√Ωznamu Sotoratu pro protivn√≠ka jsou n√°sleduj√≠c√≠: kotv√≠
+ zde lodƒõ nejen v√°leƒçn√©, ale i p≈ôepravn√≠, kter√© dov√°≈æej√≠ do
+ pob≈ôe≈æn√≠ch oblast√≠ zbranƒõ, munici, atd. Z toho jsme vyvodili
+ z√°vƒõr, ≈æe v tomt√©≈æ m√≠stƒõ mus√≠ b√Ωt buƒè ohromn√© z√°soby, nebo
+ p≈ô√≠mo tov√°rna na jejich v√Ωrobu. Pokud zlikvidujeme Sotorat,
+ p≈ôijde Konzorcium o jeden z hlavn√≠ch zdroj≈Ø. Samoz≈ôejmƒõ by
+ bylo v√Ωhodnƒõj≈°√≠ z√≠skat Sotorat pod svou kontrolu s co
+ nejmen≈°√≠mi ≈°kodami, ale veden√≠ p≈ôedpokl√°d√°, ≈æe v p≈ô√≠padƒõ
+ pr≈Ølomu tamƒõj≈°√≠ obrany maj√≠ jednotky Konzorcia rozkaz odp√°lit
+ cel√Ω p≈ô√≠stav a dal≈°√≠ boje v√©st pouze z lod√≠.
+#> Jedinou mo≈ænost√≠ Sotorat napadnout je √∫tok z pevniny. Va≈°√≠m
+ prvotn√≠m c√≠lem pot√©, co dobudete p≈ô√≠stupovou cestu k ≈ôece, jsou
+ doky. Ne jejich likvidace, ale obsazen√≠ a vyu≈æit√≠ zde kotv√≠c√≠ch
+ plavidel v boji s nep≈ô√≠telem. Dokud nepadne...
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Dobyt° p©°stavu Sotorat
+#> PRIM√ÅRN√ç C√çL: Dobyt√≠ p≈ô√≠stavu Sotorat
 #e
 #e

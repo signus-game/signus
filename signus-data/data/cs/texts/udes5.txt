@@ -1,20 +1,20 @@
-#> Agni je lehk˜ laserov˜ tank podobn‚ho
- konstruk‡n¡ho typu jako jsou sonick‚ tanky
- Dirrac. Je vyzbrojen laserov˜m dˆlem a
- podobnˆ jako "soniky" m  i tato zbra¤ pomˆrnˆ
- siln˜ panc¡©.
-#> Vyu‘it¡ Agniho je t‚mˆ© stejn‚ jako u
- Dirrac–, jedin˜ podstatnˆj¨¡ rozd¡l mezi
- tˆmito zbranˆmi je o nˆco vˆt¨¡ odolnost
- Agniho. Asi nejvˆt¨¡ slabinou t‚to zbranˆ
- je jej¡ bezbranost proti leteck˜m £tok–m,
- kter  t‚mˆ© vylu‡uje samostatnˆ nasazen¡ bez
- podpory protileck˜ch zbran¡.
-#> "...a p©ijde P n ohnˆ a plamenem zachv t¡
- Va¨e tˆla i du¨e a po‘ene V s a nesmiluje
- se nad ni‘ dn˜m z V s, a‘ budete ronit
- ohniv‚ slzy a prosit o odpu¨tˆn¡" 11. ver¨
- Eposu Klihi na - popisuj¡c¡ konec svˆta
- nevˆ©¡c¡ch.
+#> Agni je lehkÃ½ laserovÃ½ tank podobnÃ©ho
+ konstrukÄnÃ­ho typu jako jsou sonickÃ© tanky
+ Dirrac. Je vyzbrojen laserovÃ½m dÄ›lem a
+ podobnÄ› jako "soniky" mÃ¡ i tato zbraÅˆ pomÄ›rnÄ›
+ silnÃ½ pancÃ­Å™.
+#> VyuÅ¾itÃ­ Agniho je tÃ©mÄ›Å™ stejnÃ© jako u
+ DirracÅ¯, jedinÃ½ podstatnÄ›jÅ¡Ã­ rozdÃ­l mezi
+ tÄ›mito zbranÄ›mi je o nÄ›co vÄ›tÅ¡Ã­ odolnost
+ Agniho. Asi nejvÄ›tÅ¡Ã­ slabinou tÃ©to zbranÄ›
+ je jejÃ­ bezbranost proti leteckÃ½m ÃºtokÅ¯m,
+ kterÃ¡ tÃ©mÄ›Å™ vyluÄuje samostatnÄ› nasazenÃ­ bez
+ podpory protileckÃ½ch zbranÃ­.
+#> "...a pÅ™ijde PÃ¡n ohnÄ› a plamenem zachvÃ¡tÃ­
+ VaÅ¡e tÄ›la i duÅ¡e a poÅ¾ene VÃ¡s a nesmiluje
+ se nad niÅ¾Ã¡dnÃ½m z VÃ¡s, aÅ¾ budete ronit
+ ohnivÃ© slzy a prosit o odpuÅ¡tÄ›nÃ­" 11. verÅ¡
+ Eposu KlihiÃ¡na - popisujÃ­cÃ­ konec svÄ›ta
+ nevÄ›Å™Ã­cÃ­ch.
 #e
 #e

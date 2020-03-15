@@ -1,20 +1,20 @@
-#> Spektrum je laserov  vˆ‘ vyvinut  na
- z kladˆ artefaktov‚ technologie. M 
- vynikaj¡c¡ panc¡© vyvinut˜ v tajn˜ch
- laborato©¡ch Spole‡nosti.
-#> Pod svou v˜bornou zbroj¡ obsahuje tato vˆ‘
- velice citliv  za©¡zen¡, a je tedy snadno
- zni‡iteln . D¡ky sv‚mu mal‚mu dost©elu
- je t‚mˆ© bezbrann  proti dalekonosn˜m
- zbran¡m nep©¡tele. Nach z¡ proto uplatnˆn¡
- ve velk˜ch z kladn ch, kde spole‡nˆ s Minotaury,
- Horizonty a jin˜mi pln¡ funkci obrann‚ vˆ‘e.
- V˜hodn˜m se t‚‘ ukazuje rozm¡stnˆn¡ Spekter
- na £stupov˜ch cest ch, kde brzd¡ pohyb
- nep© telsk˜ch jednotek.
-#> Pos dky do tˆchto jednotek se rekrutuj¡
- z ©ad Aweldansk˜ch husar–, kte©¡ v bˆ‘n‚
- arm dˆ pilotuj¡ dalekonosn‚ vˆ‘e Frektory.
+#> Spektrum je laserovÃ¡ vÄ›Å¾ vyvinutÃ¡ na
+ zÃ¡kladÄ› artefaktovÃ© technologie. MÃ¡
+ vynikajÃ­cÃ­ pancÃ­Å™ vyvinutÃ½ v tajnÃ½ch
+ laboratoÅ™Ã­ch SpoleÄnosti.
+#> Pod svou vÃ½bornou zbrojÃ­ obsahuje tato vÄ›Å¾
+ velice citlivÃ¡ zaÅ™Ã­zenÃ­, a je tedy snadno
+ zniÄitelnÃ¡. DÃ­ky svÃ©mu malÃ©mu dostÅ™elu
+ je tÃ©mÄ›Å™ bezbrannÃ¡ proti dalekonosnÃ½m
+ zbranÃ­m nepÅ™Ã­tele. NachÃ¡zÃ­ proto uplatnÄ›nÃ­
+ ve velkÃ½ch zÃ¡kladnÃ¡ch, kde spoleÄnÄ› s Minotaury,
+ Horizonty a jinÃ½mi plnÃ­ funkci obrannÃ© vÄ›Å¾e.
+ VÃ½hodnÃ½m se tÃ©Å¾ ukazuje rozmÃ­stnÄ›nÃ­ Spekter
+ na ÃºstupovÃ½ch cestÃ¡ch, kde brzdÃ­ pohyb
+ nepÅ™Ã¡telskÃ½ch jednotek.
+#> PosÃ¡dky do tÄ›chto jednotek se rekrutujÃ­
+ z Å™ad AweldanskÃ½ch husarÅ¯, kteÅ™Ã­ v bÄ›Å¾nÃ©
+ armÃ¡dÄ› pilotujÃ­ dalekonosnÃ© vÄ›Å¾e Frektory.
 #e
 #e
 

@@ -1,7 +1,7 @@
 
-         ����������������������������������������������������������Ŀ
-         �               Chyba p�i inicializaci my�i.               �
-         ����������������������������������������������������������Ĵ
-         �     Zkontrolujte, zde je v pam�ti p��slu�n� ovlada�.     �
-         ������������������������������������������������������������
+         ┌──────────────────────────────────────────────────────────┐
+         │               Chyba při inicializaci myši.               │
+         ├──────────────────────────────────────────────────────────┤
+         │     Zkontrolujte, zde je v paměti příslušný ovladač.     │
+         └──────────────────────────────────────────────────────────┘
 

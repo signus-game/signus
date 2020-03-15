@@ -1,26 +1,26 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Uë druhò den se pokou®°me dobòt z†kladnu Taluon, ale doposud
- na®im £tokñm £spà®nà odol†v†. Informovali jsme o souáasnÇ
- situaci Toricon a dohodli se na jedinÇm moënÇm ©e®n°...
-#> T°m ©e®en°m jsou sonickÇ tanky, kterÇ m† v drëen° toriconsk†
- z†kladna Tulos nàkolik mil odsud.
-#> Nejrychlej®° a z†rove§ jedinou vhodnou cestou pro dopravu
- tankñ na dost©el nep©†telskÇ z†kladny je Tubarskò most. Tento
- p©°stup k Taluonu m†me zat°m pod kontrolou, d† se v®ak
- p©edpokl†dat, ëe protivn°k jië odhadl n†® p©°®t° krok a kaëdòm
- okamëikem zah†j° soust©edànò £tok s c°lem dobòt nebo zniáit
- most. Va®°m £kolem je udrëet taluonskÇ jednotky v dostateánÇ
- vzd†lenosti od mostu a pokud by se snad dostali p©°li® bl°zko,
- znemoënit jakÇkoliv snahy o vyhozen° Tubaru do povàt©°. Most
- mus°me udrëet pod na®° kontrolou za kaëdou cenu, jinak
- p©ijdeme o moënost vyuëit° sonickòch tankñ a t°m prolomen°
- obranòch clon Taluonu. V°me to my, v° to oni.., proto se
- p©ipravte na nejhor®°...
-#> ˛
+#> ‚ñ†‚ñ†
+ #p.toricon.282.183. ‚ñ†‚ñ†
+#> U≈æ druh√Ω den se pokou≈°√≠me dob√Ωt z√°kladnu Taluon, ale doposud
+ na≈°im √∫tok≈Øm √∫spƒõ≈°nƒõ odol√°v√°. Informovali jsme o souƒçasn√©
+ situaci Toricon a dohodli se na jedin√©m mo≈æn√©m ≈ôe≈°n√≠...
+#> T√≠m ≈ôe≈°en√≠m jsou sonick√© tanky, kter√© m√° v dr≈æen√≠ toriconsk√°
+ z√°kladna Tulos nƒõkolik mil odsud.
+#> Nejrychlej≈°√≠ a z√°rove≈à jedinou vhodnou cestou pro dopravu
+ tank≈Ø na dost≈ôel nep≈ô√°telsk√© z√°kladny je Tubarsk√Ω most. Tento
+ p≈ô√≠stup k Taluonu m√°me zat√≠m pod kontrolou, d√° se v≈°ak
+ p≈ôedpokl√°dat, ≈æe protivn√≠k ji≈æ odhadl n√°≈° p≈ô√≠≈°t√≠ krok a ka≈æd√Ωm
+ okam≈æikem zah√°j√≠ soust≈ôedƒõn√Ω √∫tok s c√≠lem dob√Ωt nebo zniƒçit
+ most. Va≈°√≠m √∫kolem je udr≈æet taluonsk√© jednotky v dostateƒçn√©
+ vzd√°lenosti od mostu a pokud by se snad dostali p≈ô√≠li≈° bl√≠zko,
+ znemo≈ænit jak√©koliv snahy o vyhozen√≠ Tubaru do povƒõt≈ô√≠. Most
+ mus√≠me udr≈æet pod na≈°√≠ kontrolou za ka≈ædou cenu, jinak
+ p≈ôijdeme o mo≈ænost vyu≈æit√≠ sonick√Ωch tank≈Ø a t√≠m prolomen√≠
+ obran√Ωch clon Taluonu. V√≠me to my, v√≠ to oni.., proto se
+ p≈ôipravte na nejhor≈°√≠...
+#> ‚ñ†
 #> L. Burton
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Udrëet Tubarskò most pod svou kontrolou doç
- p©°jezdu sonickòch tankñ, dobòt z†kladnu Konzorcia - Taluon
+#> PRIM√ÅRN√ç C√çL: Udr≈æet Tubarsk√Ω most pod svou kontrolou doƒ∫
+ p≈ô√≠jezdu sonick√Ωch tank≈Ø, dob√Ωt z√°kladnu Konzorcia - Taluon
 #e
 #e

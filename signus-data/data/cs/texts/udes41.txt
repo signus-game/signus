@@ -1,22 +1,22 @@
-#> Mystik je st°hac° bombardÇr sestrojenò
- na z†kladà poznatkñ pñvodn° Arko§anskÇ
- technologie. Je vyzbrojen nosiáem raket
- vzduch-vzduch a tàëkòm kulometem. D†le
- m† pak ve vòzbroji je®tà nosiá raket vzduch-
- zemà.
-#> Jedn† se o pravdàpodobnà nejsilnàj®°
- leteckou bojovou jednotku vñbec. Piloti
- si Mystika pochvaluj° pro jeho snadnou
- ovladatelnost a rychlost kteròmi p©evy®uje
- i st°hac° Ikarosy, coë ho áin° velice nebezpeánòm
- protivn°kem ve vzduchu. Je takÇ velice £áinnò
- v boji proti pozemn°m jednotk†m, jeho
- rakety jsou velice nebezpeánÇ a on s†m se
- vàt®inou stihne st†hnout mimo dost©el
- nep©†telskÇho flaku.
-#> P©estoëe tento stroj nen° prvn°, kterò byl
- vytvo©en pomoc° poznatkñ Arko§anskÇ technologie,
- je prvn° o nàmë se, d°ky jeho kvalit†m, hovo©°
- jako o stroji artefaktovÇ generace.
+#> Mystik je st√≠hac√≠ bombard√©r sestrojen√Ω
+ na z√°kladƒõ poznatk≈Ø p≈Øvodn√≠ Arko≈àansk√©
+ technologie. Je vyzbrojen nosiƒçem raket
+ vzduch-vzduch a tƒõ≈æk√Ωm kulometem. D√°le
+ m√° pak ve v√Ωzbroji je≈°tƒõ nosiƒç raket vzduch-
+ zemƒõ.
+#> Jedn√° se o pravdƒõpodobnƒõ nejsilnƒõj≈°√≠
+ leteckou bojovou jednotku v≈Øbec. Piloti
+ si Mystika pochvaluj√≠ pro jeho snadnou
+ ovladatelnost a rychlost kter√Ωmi p≈ôevy≈°uje
+ i st√≠hac√≠ Ikarosy, co≈æ ho ƒçin√≠ velice nebezpeƒçn√Ωm
+ protivn√≠kem ve vzduchu. Je tak√© velice √∫ƒçinn√Ω
+ v boji proti pozemn√≠m jednotk√°m, jeho
+ rakety jsou velice nebezpeƒçn√© a on s√°m se
+ vƒõt≈°inou stihne st√°hnout mimo dost≈ôel
+ nep≈ô√°telsk√©ho flaku.
+#> P≈ôesto≈æe tento stroj nen√≠ prvn√≠, kter√Ω byl
+ vytvo≈ôen pomoc√≠ poznatk≈Ø Arko≈àansk√© technologie,
+ je prvn√≠ o nƒõm≈æ se, d√≠ky jeho kvalit√°m, hovo≈ô√≠
+ jako o stroji artefaktov√© generace.
 #e
 #e
