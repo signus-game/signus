@@ -20,6 +20,7 @@
  */
 
 
+#include <clocale>
 #include "events.h"
 #include "graphio.h"
 #include "engtimer.h"
@@ -120,8 +121,10 @@ static void signus_thread(void *)
 
 extern int InitGlobal();
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+	// Honor system locale
+	setlocale(LC_ALL, "");
+
 #if 0 // FIXME
     bool flagDebug = argc > 1 && strcmp(argv[1], "--debug") == 0;
     bool flagServer = argc > 1 && strcmp(argv[1], "--from-crashguard") == 0;
@@ -135,15 +138,13 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    if (!InitGlobal()) return FALSE;
-    
-    if (!doInit()) return FALSE;
+	if (!InitGlobal()) return FALSE;
 
-    signus_thread_is_running = TRUE;
-    signus_thread(NULL);
-    
-    return 0;
+	if (!doInit()) return FALSE;
+
+	signus_thread_is_running = TRUE;
+	signus_thread(NULL);
+
+	return 0;
 }
-
-
 

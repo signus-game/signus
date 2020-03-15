@@ -24,6 +24,7 @@
 // Globalni definice, deklarace a funkce pro Signus
 
 
+#include <string>
 #include "global.h"
 #include "events.h"
 #include "graphio.h"
@@ -35,12 +36,14 @@
 #include <sys/stat.h>
 #include <limits.h>
 #include <cstdlib>
+#include <clocale>
 
 extern "C" {
 #include "iniparser.h"
 }
 
 
+#define DEFAULT_LANG "en"
 #define MIN_MEM_NEEDED     (1024 * 1024 * 12)
         // minim. pamet potrebna pro signus
 
@@ -101,6 +104,57 @@ int iniTitledAnims, iniInterpolateAnims;
 
 
 
+void detect_language(void) {
+	std::string lang, path = getSignusDataDir();
+	const char *env;
+	size_t pos, baselen;
+	File testfile;
+
+	env = setlocale(LC_MESSAGES, NULL);
+
+	if (!env) {
+		strcpy(iniLocale, DEFAULT_LANG);
+		return;
+	}
+
+	if (path[path.length() - 1] != '/') {
+		path += '/';
+	}
+
+	lang = env;
+
+	if (lang.length() >= 200) {
+		lang.erase(200);
+	}
+
+	pos = lang.find('.');
+	baselen = path.length();
+
+	if (pos != std::string::npos) {
+		lang.erase(pos);
+	}
+
+	while (1) {
+		path += lang;
+		path += "/texts.dat";
+
+		if (testfile.open(path.c_str(), File::READ)) {
+			strcpy(iniLocale, lang.c_str());
+			return;
+		}
+
+		path.erase(baselen);
+		pos = lang.rfind('_');
+
+		if (pos == std::string::npos) {
+			break;
+		}
+
+		lang.erase(pos);
+	}
+
+	strcpy(iniLocale, DEFAULT_LANG);
+}
 
 bool dirExists(const char *filename)
 {
@@ -126,56 +180,58 @@ static const char *GetConfigFileName()
     return inifile;
 }
 
-bool LoadINI()
-{
-    dictionary *dict = NULL;
-    
-    const char *configname = GetConfigFileName();
-    if (fileExists(configname))
-        dict = iniparser_load((char*)configname);
-    if (dict == NULL)
-        dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
-    if (dict == NULL)
-    {
-        fprintf(stderr, "Fatal error: cannot read configuration file.\n"
-                        "Please reinstall Signus.\n");
-        return FALSE;
-    }
-    
-    // FIXME -- use locales!!!
-    strcpy(iniLanguage, "e");
-    
-    //iniResolution = iniparser_getint(dict, "video:resolution", -1);
-    iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
-    
-    iniBrightCorr = iniparser_getint(dict, "video:brightness", -1);
-    iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
-    iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
+bool LoadINI() {
+	dictionary *dict = NULL;
+	const char *configname = GetConfigFileName();
 
-    iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
-    iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
-    iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
-    iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", -1);
-    iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", -1);
-    iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", -1);
-    iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", -1);
+	if (fileExists(configname)) {
+		dict = iniparser_load((char*)configname);
+	}
 
-    iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", -1);
-    iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", -1);
-    iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", -1);
-    iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", -1);
-    iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", -1);
-    iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", -1);
-    iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", -1);
-    iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", -1);
-    iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", -1);
-    iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", -1);
+	if (dict == NULL) {
+		dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
+	}
 
-    iniparser_freedict(dict);
-    
-    strcpy(iniLocale, "en"); // FIXME FIXME FIXME !
-    
-    return true;
+	if (dict == NULL) {
+		fprintf(stderr, "Fatal error: cannot read configuration file.\n"
+			"Please reinstall Signus.\n");
+		return FALSE;
+	}
+
+	//iniResolution = iniparser_getint(dict, "video:resolution", -1);
+	iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
+
+	iniBrightCorr = iniparser_getint(dict, "video:brightness", -1);
+	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
+	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
+
+	iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
+	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
+	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
+	iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", -1);
+	iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", -1);
+	iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", -1);
+	iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", -1);
+
+	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", -1);
+	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", -1);
+	iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", -1);
+	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", -1);
+	iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", -1);
+	iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", -1);
+	iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", -1);
+	iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", -1);
+	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", -1);
+	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", -1);
+
+	iniparser_freedict(dict);
+
+	// FIXME -- delete iniLanguage, only used to decide whether to use
+	// subtitles in (missing) animations
+	strcpy(iniLanguage, "e");
+	detect_language();
+
+	return true;
 }
 
 
