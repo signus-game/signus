@@ -827,17 +827,21 @@ int TCaesar::TakeOff()
 
 
 
-void TCaesar::GetUnitInfo()
-{
+void TCaesar::GetUnitInfo() {
 	TAircraft::GetUnitInfo();
+
 	if (FlyLevel == 0) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0], 59, 59);
-		CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0],
+			59, 59);
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0],
+			102, 23);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59,
+			59);
 	}
-	else
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59, 59);
-	PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-	           ((double)GetTotalWeight() / Capacity), "");
+
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)GetTotalWeight() / Capacity), "");
 }
 
 
@@ -1297,17 +1301,22 @@ int TSaturn::EndBombing()
 
 
 
-void TSaturn::GetUnitInfo()
-{
+void TSaturn::GetUnitInfo() {
 	char cbuf[80];
 
 	TAircraft::GetUnitInfo();
-	PutStr(UInfoBuf, UINFO_SX, 2, 78, SigText[TXT_BOMBS_LEFT], NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 78, SigText[TXT_BOMBS_LEFT],
+		NormalFont, clrWhite, clrBlack);
 
 	sprintf(cbuf, "%i / %i", Bombs, utSA_BAMMO);
-	PercentBar(UInfoBuf, UINFO_SX, 54, 80, 52, 13, clrLightBlue2, clrSeaBlue, (double)Bombs / utSA_BAMMO, cbuf);
-	if (IsBombing) CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[1], 59, 59);	
-	else CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[0], 59, 59);	
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 80, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)Bombs / utSA_BAMMO, cbuf);
+
+	if (IsBombing) {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[1], 59, 59);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[0], 59, 59);
+	}
 }
 
 

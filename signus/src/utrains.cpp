@@ -318,18 +318,20 @@ void TGanymedes::Write(WriteStream &stream) {
 
 
 
-void TGanymedes::GetUnitInfo()
-{
-    char cbuf[30];
-    int i;
+void TGanymedes::GetUnitInfo() {
+	char cbuf[30];
+	int i;
 
-    TTrainSupportUnit::GetUnitInfo();   
+	TTrainSupportUnit::GetUnitInfo();
 
-    for (i = 0; i <4; i++) {
-        sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);
-        PercentBar(UInfoBuf, UINFO_SX, 34, 80+i*20, 72, 13, clrLightBlue2, clrSeaBlue, (double)Ammo[i] / MaxAmmo[i], cbuf);
-        CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 80+i*20, BmpAmmoIcons[i], 30, 13);
-    }
+	for (i = 0; i <4; i++) {
+		sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 34, 80+i*20, 72, 13,
+			clrLightBlue2, clrSeaBlue,
+			(double)Ammo[i] / MaxAmmo[i], cbuf);
+		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 80+i*20, BmpAmmoIcons[i], 30,
+			13);
+	}
 }
 
 

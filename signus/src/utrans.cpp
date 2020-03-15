@@ -246,12 +246,11 @@ void TTransporter::Action(int x, int y)
 
 
 
-void TTransporter::GetUnitInfo()
-{
+void TTransporter::GetUnitInfo() {
 	TUnit::GetUnitInfo();
 	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
-	PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-	           ((double)GetTotalWeight() / Capacity), "");
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)GetTotalWeight() / Capacity), "");
 }
 
 

@@ -38,15 +38,22 @@ static int AF_Reseted = FALSE;
 
 #ifdef DEBUG
     
-void ShowAutofireDebug(int x, int y, int drawx, int drawy)
-{
-    char b[20];
-    if (!AF_Reseted) return;
-    if (!AF_Map[x + MapSizeX * y]) return;
-    sprintf(b, "%i", AF_Map[x + MapSizeX * y]);
-    PutStr(MapBuf, VIEW_PIXSZ_X, drawx+20, drawy+5, b, NormalFont, 2, 1);
+void ShowAutofireDebug(int x, int y, int drawx, int drawy) {
+	char b[20];
+
+	if (!AF_Reseted) {
+		return;
+	}
+
+	if (!AF_Map[x + MapSizeX * y]) {
+		return;
+	}
+
+	sprintf(b, "%i", AF_Map[x + MapSizeX * y]);
+	PutStr(MapBuf, VIEW_PIXSZ_X, VIEW_PIXSZ_Y, drawx+20, drawy+5, b,
+		NormalFont, 2, 1);
 }
-    
+
 #endif
 
 

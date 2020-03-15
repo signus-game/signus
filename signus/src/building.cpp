@@ -171,27 +171,34 @@ TSprite *TBuilding::GetStatusBar()
 
 
 
-void TBuilding::GetUnitInfo()
-{
-    char cbuf[30];
-    int clr;
+void TBuilding::GetUnitInfo() {
+	char cbuf[30];
+	int clr;
 
-    TObject::GetUnitInfo(); 
-    PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
+	TObject::GetUnitInfo();
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
+		clrLightBlue, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
+		NormalFont, clrWhite, clrBlack);
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 26, SigText[TXT_STATE], NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
+	clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 28, 52, 13, clr,
+		clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
 
-    sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
-    clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 28, 52, 13, clr, clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
-    
-    sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
-    PutStr(UInfoBuf, UINFO_SX, 2, 60, cbuf, NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 60, cbuf, NormalFont, clrWhite,
+		clrBlack);
 
-    if (HitPoints < MaxHitPoints) {
-        if (RepairingNow) CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[1], 16, 52);    
-        else CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[0], 16, 52); 
-    }       
+	if (HitPoints < MaxHitPoints) {
+		if (RepairingNow) {
+			CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[1], 16,
+				52);
+		} else {
+			CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[0], 16,
+				52);
+		}
+	}
 }
 
 
@@ -734,12 +741,11 @@ void TBase::Action(int x, int y)
 
 
 
-void TBase::GetUnitInfo()
-{
-    TBuilding::GetUnitInfo();
-    CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);  
-    PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-               ((double)LoadedUnits / Capacity), "");
+void TBase::GetUnitInfo() {
+	TBuilding::GetUnitInfo();
+	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)LoadedUnits / Capacity), "");
 }
 
 
@@ -910,84 +916,132 @@ void TFactory::Action(int x, int y)
 
 extern void *ListBoxSprite[6]; // z InterActu :-) ...
 
-void TFactory::DoProducing()
-{
-    char b[40];
-    void *bmp = NULL;
-    void *bmp2 = memalloc(296 * 431);
-    TEvent e;
-    int i, top, cnt, scrsz;
-    int px, py;
-    int *list = GetManufacturableUnits(ID);
-    
-    for (cnt = 0; list[cnt] != 0; cnt++) {}
-    top = 0;
-    scrsz = (cnt < 8) ? cnt : 7;
-    
-    px = RES_X-421, py = RES_Y-453-8;
-    if (iniResolution == SVGA_640x480) py += 8;
-    GetBitmap32(px, py, bmp2, 296, 431);
+void TFactory::DoProducing() {
+	char b[40];
+	void *bmp = NULL;
+	void *bmp2 = memalloc(296 * 431);
+	TEvent e;
+	int i, top, cnt, scrsz;
+	int px, py;
+	int *list = GetManufacturableUnits(ID);
+
+	for (cnt = 0; list[cnt]; cnt++);
+
+	top = 0;
+	scrsz = (cnt < 8) ? cnt : 7;
+
+	px = RES_X-421;
+	py = RES_Y-453-8;
+
+	if (iniResolution == SVGA_640x480) {
+		py += 8;
+	}
+
+	GetBitmap32(px, py, bmp2, 296, 431);
+
 draw_it_now:
-    if (bmp) memfree(bmp);
-    bmp = GraphicsDF->get("factory");
-    PutStr(bmp, 296, 74, 8, SigText[TXT_FACTORY_TYPE], NormalFont, clrWhite, clrBlack);
-    PutStr(bmp, 296, 180, 8, SigText[TXT_FACTORY_COST], NormalFont, clrWhite, clrBlack);
-    PutStr(bmp, 296, 240, 8, SigText[TXT_FACTORY_TURNS], NormalFont, clrWhite, clrBlack);
-    for (i = 0; i < scrsz; i++) {
-        CopyBmp(bmp, 296, 12, 20 + i * 58, UnitsTransIcons[list[top+i]], 56, 56);   
-        PutStr(bmp, 296, 74, 40 + i * 58, UnitsNames[list[top+i]], NormalFont, clrWhite, clrBlack);
-        sprintf(b, SigText[TXT_CREDITS], TabUnitsCost[list[top+i]]);
-        if (MoneyGoodlife < TabUnitsCost[list[top+i]])
-            PutStr(bmp, 296, 180, 40 + i * 58, b, NormalFont, clrRed, clrBlack);
-        else
-            PutStr(bmp, 296, 180, 40 + i * 58, b, NormalFont, clrWhite, clrBlack);
-        sprintf(b, "%i", TabUnitsProducTime[list[top+i]]);
-        PutStr(bmp, 296, 260, 40 + i * 58, b, NormalFont, clrWhite, clrBlack);
-    }
-    if (top != 0)
-        CopyBmp(bmp, 296, 140, 10, ListBoxSprite[0], 18, 18);
-    if (top < cnt-7)
-        CopyBmp(bmp, 296, 140, 405, ListBoxSprite[2], 18, 18);
-    PutBitmap32(px, py, bmp, 296, 431);
+	if (bmp) {
+		memfree(bmp);
+	}
 
-    for (;;) {
-        GetEvent(&e);
-        if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbRightButton)) break;
-        if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbLeftButton)) {
-            e.Mouse.Where.x -= px, e.Mouse.Where.y -= py;
-            if (!IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 0, 0, 296, 431)) break;
-            if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 10, 140+18, 10+18)) {
-                if (top > 0) {top--; goto draw_it_now;}
-            }
-            if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 405, 140+18, 405+18)) {
-                if (top < cnt-7) {top++; goto draw_it_now;}
-            }
-            i = top + (e.Mouse.Where.y - 20) / 58;
-            ProduceUnit(list[i]);
-            break;
-        }
-    }
+	bmp = GraphicsDF->get("factory");
+	PutStr(bmp, 296, 431, 74, 8, SigText[TXT_FACTORY_TYPE], NormalFont,
+		clrWhite, clrBlack);
+	PutStr(bmp, 296, 431, 180, 8, SigText[TXT_FACTORY_COST], NormalFont,
+		clrWhite, clrBlack);
+	PutStr(bmp, 296, 431, 240, 8, SigText[TXT_FACTORY_TURNS], NormalFont,
+		clrWhite, clrBlack);
 
-    PutBitmap32(px, py, bmp2, 296, 431);
-    memfree(bmp); memfree(bmp2);
-    this->Select();
+	for (i = 0; i < scrsz; i++) {
+		CopyBmp(bmp, 296, 12, 20 + i * 58, UnitsTransIcons[list[top+i]],
+			56, 56);
+		PutStr(bmp, 296, 431, 74, 40 + i * 58, UnitsNames[list[top+i]],
+			NormalFont, clrWhite, clrBlack);
+		sprintf(b, SigText[TXT_CREDITS], TabUnitsCost[list[top+i]]);
+
+		if (MoneyGoodlife < TabUnitsCost[list[top+i]]) {
+			PutStr(bmp, 296, 431, 180, 40 + i * 58, b, NormalFont,
+				clrRed, clrBlack);
+		} else {
+			PutStr(bmp, 296, 431, 180, 40 + i * 58, b, NormalFont,
+				clrWhite, clrBlack);
+		}
+
+		sprintf(b, "%i", TabUnitsProducTime[list[top+i]]);
+		PutStr(bmp, 296, 431, 260, 40 + i * 58, b, NormalFont,
+			clrWhite, clrBlack);
+	}
+
+	if (top != 0) {
+		CopyBmp(bmp, 296, 140, 10, ListBoxSprite[0], 18, 18);
+	}
+
+	if (top < cnt-7) {
+		CopyBmp(bmp, 296, 140, 405, ListBoxSprite[2], 18, 18);
+	}
+
+	PutBitmap32(px, py, bmp, 296, 431);
+
+	for (;;) {
+		GetEvent(&e);
+
+		if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbRightButton)) {
+			break;
+		}
+
+		if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbLeftButton)) {
+			e.Mouse.Where.x -= px;
+			e.Mouse.Where.y -= py;
+
+			if (!IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 0, 0, 296, 431)) {
+				break;
+			}
+
+			if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 10, 140+18, 10+18)) {
+				if (top > 0) {
+					top--;
+					goto draw_it_now;
+				}
+			}
+
+			if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 405, 140+18, 405+18)) {
+				if (top < cnt-7) {
+					top++;
+					goto draw_it_now;
+				}
+			}
+
+			i = top + (e.Mouse.Where.y - 20) / 58;
+			ProduceUnit(list[i]);
+			break;
+		}
+	}
+
+	PutBitmap32(px, py, bmp2, 296, 431);
+	memfree(bmp);
+	memfree(bmp2);
+	this->Select();
 }
 
 
 
-void TFactory::GetUnitInfo()
-{
-    char cbuf[80];
-    
-    TBuilding::GetUnitInfo();
-    CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);  
-    sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
-    PutStr(UInfoBuf, UINFO_SX, 2, 60, cbuf, NormalFont, clrWhite, clrBlack);
-    if (CurrentJob != 0) {
-        CopyBmp(UInfoBuf, UINFO_SX, 3, 140, UnitsTransIcons[CurrentJob], 56, 56);
-        sprintf(cbuf, "%i %%", 100 * CurrentPhase / CurrentNeed);
-        PercentBar(UInfoBuf, UINFO_SX, 62, 140, 45, 12, clrLightBlue2, clrSeaBlue, ((double)CurrentPhase) / CurrentNeed, cbuf);
-    }
+void TFactory::GetUnitInfo() {
+	char cbuf[80];
+
+	TBuilding::GetUnitInfo();
+	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+	sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 60, cbuf, NormalFont, clrWhite,
+		clrBlack);
+
+	if (CurrentJob != 0) {
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 140, UnitsTransIcons[CurrentJob],
+			56, 56);
+		sprintf(cbuf, "%i %%", 100 * CurrentPhase / CurrentNeed);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 62, 140, 45, 12,
+			clrLightBlue2, clrSeaBlue,
+			((double)CurrentPhase) / CurrentNeed, cbuf);
+	}
 }
 
 

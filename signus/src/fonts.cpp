@@ -29,42 +29,65 @@
 #include "global.h"
 #include "fonts.h"
 
-void PutStr(void *tar, int tarwidth, int xpoz, int ypoz,
-            const char *s, TFont *f, byte clr1, byte clr2)
-{
-    if (s == NULL || *s == 0)
-        return;
+void PutStr(void *tar, int width, int height, int xpoz, int ypoz,
+	const char *s, TFont *f, byte clr1, byte clr2) {
+	if (!s || !*s) {
+		return;
+	}
 
-    // FIXME: is this noticeably slow?
+	// FIXME: is this noticeably slow?
+	SDL_Color clr = {PaletteSDL[clr1].r, PaletteSDL[clr1].g,
+		PaletteSDL[clr1].b, 0};
+	SDL_Color black = {PaletteSDL[clr2].r, PaletteSDL[clr2].g,
+		PaletteSDL[clr2].b, 0};
+	SDL_Rect dest_rect = {(Sint16)xpoz, (Sint16)ypoz, 0, 0};
+	SDL_Surface *text, *dest;
+	int i, lineheight = GetStrHeight(s, f);
+	char *line, *buf = strdup(s);
 
-    SDL_Color clr = 
-        { PaletteSDL[clr1].r, PaletteSDL[clr1].g, PaletteSDL[clr1].b, 0 };
-    SDL_Color black = 
-        { PaletteSDL[clr2].r, PaletteSDL[clr2].g, PaletteSDL[clr2].b, 0 };
-    SDL_Surface *text = TTF_RenderUTF8_Shaded(f, s, clr, black);
+	if (!buf) {
+		fprintf(stderr, "failed to render '%s':\n", s);
+		return;
+	}
 
-    if (text == NULL)
-    {
-        fprintf(stderr, "failed to render '%s':\n", s);
-        fprintf(stderr, "%s\n", SDL_GetError());
-        return;
-    }
+	line = buf;
+	dest = SDL_CreateRGBSurfaceFrom(tar, width, height, 8/*depth*/,
+		width /*pitch*/, 0, 0, 0, 0);
+	SDL_SetColors(dest, PaletteSDL, 0, 256);
 
-    SDL_SetColorKey(text, SDL_SRCCOLORKEY, 0);
-    
-    SDL_Surface *surf = 
-        SDL_CreateRGBSurfaceFrom(tar, tarwidth, ypoz+text->h,
-                                 8/*depth*/,
-                                 tarwidth /*pitch*/,
-                                 0,0,0,0);
+	for (line = buf, i = 0; *line; line += i) {
+		for (i = 0; line[i] && line[i] != '\n'; i++) {
+			if (line[i] == '\r') {
+				line[i] = ' ';
+			}
+		}
 
-    //SDL_Palette *pal = GetScreenSurface()->format->palette;
-    //SDL_SetColors(surf, pal->colors, 0, pal->ncolors);
-    SDL_SetColors(surf, PaletteSDL, 0, 256);
-    
-    SDL_Rect dest_rect = { (Sint16)xpoz, (Sint16)ypoz, 0, 0 };
-    SDL_BlitSurface(text, NULL, surf, &dest_rect);
-    
-    SDL_FreeSurface(text);
-    SDL_FreeSurface(surf);
+		if (line[i]) {
+			if (!i) {
+				i++;
+				dest_rect.y += lineheight;
+				continue;
+			}
+
+			line[i++] = '\0';
+		}
+
+		text = TTF_RenderUTF8_Shaded(f, line, clr, black);
+
+		if (!text) {
+			fprintf(stderr, "failed to render '%s':\n", s);
+			fprintf(stderr, "%s\n", SDL_GetError());
+			SDL_FreeSurface(dest);
+			free(buf);
+			return;
+		}
+
+		SDL_SetColorKey(text, SDL_SRCCOLORKEY, 0);
+		SDL_BlitSurface(text, NULL, dest, &dest_rect);
+		SDL_FreeSurface(text);
+		dest_rect.y += lineheight;
+	}
+
+	SDL_FreeSurface(dest);
+	free(buf);
 }

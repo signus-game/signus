@@ -264,39 +264,43 @@ int DoneEngine()
 int MisLoads[1024];
 #endif
 
-void InitBitmaps(byte MaskL1[], byte MaskL2[])
-{
-    LoadArray(BmpTerr1, 1024, GraphicsDF, "tr1n%i", MaskL1);
-    LoadArray(BmpTerr2, 1024, GraphicsDF, "tr2n%i", MaskL2);
-    LoadArray(BmpTerr1D, 1024, GraphicsDF, "tr1d%i", MaskL1);
-    LoadArray(BmpTerr2D, 1024, GraphicsDF, "tr2d%i", MaskL2);
-    LoadArray(BmpSel, 13, GraphicsDF, "tersel%i");
-    LoadArray(BmpSelBold, 13, GraphicsDF, "terslb%i");
-    LoadArray((void**) AirCursors, 2, GraphicsDF, "airsel%i");
-    LoadArray(WorkingControl, 3, GraphicsDF, "working%i");
-    MineSprite = (TSprite*) GraphicsDF->get("sprmine");
+void InitBitmaps(byte MaskL1[], byte MaskL2[]) {
+	LoadArray(BmpTerr1, 1024, GraphicsDF, "tr1n%i", MaskL1);
+	LoadArray(BmpTerr2, 1024, GraphicsDF, "tr2n%i", MaskL2);
+	LoadArray(BmpTerr1D, 1024, GraphicsDF, "tr1d%i", MaskL1);
+	LoadArray(BmpTerr2D, 1024, GraphicsDF, "tr2d%i", MaskL2);
+	LoadArray(BmpSel, 13, GraphicsDF, "tersel%i");
+	LoadArray(BmpSelBold, 13, GraphicsDF, "terslb%i");
+	LoadArray((void**) AirCursors, 2, GraphicsDF, "airsel%i");
+	LoadArray(WorkingControl, 3, GraphicsDF, "working%i");
+	MineSprite = (TSprite*) GraphicsDF->get("sprmine");
+
 #ifdef DEBUG
-  {
-    char ds[50];
-    TSprite *s;
-    
-    for (int i = 0; i < 1024; i++) MisLoads[i] = FALSE;
-    for (i = 0; i < 1024; i++) {
-            if (BmpTerr2[i] == NULL) {
-                MisLoads[i] = TRUE;
-                BmpTerr2[i] = GraphicsDF->get("sprite");
-                BmpTerr2D[i] = GraphicsDF->get("sprite");
-                s = (TSprite*)BmpTerr2[i];
-                sprintf(ds,"%i", i);
-                PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                s = (TSprite*)BmpTerr2D[i];
-                if (s) {
-                    sprintf(ds,"%i", i);
-                    PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                }
-            }
-    }
-  }
+	char ds[50];
+	TSprite *s;
+
+	for (int i = 0; i < 1024; i++) {
+		MisLoads[i] = FALSE;
+	}
+
+	for (i = 0; i < 1024; i++) {
+		if (BmpTerr2[i] == NULL) {
+			MisLoads[i] = TRUE;
+			BmpTerr2[i] = GraphicsDF->get("sprite");
+			BmpTerr2D[i] = GraphicsDF->get("sprite");
+			s = (TSprite*)BmpTerr2[i];
+			sprintf(ds,"%i", i);
+			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,
+				clrWhite, clrBlack);
+			s = (TSprite*)BmpTerr2D[i];
+
+			if (s) {
+				sprintf(ds,"%i", i);
+				PutStr(s->data, s->w, s->h, 0, 0, ds,
+					NormalFont, clrWhite, clrBlack);
+			}
+		}
+	}
 #endif
 }
 

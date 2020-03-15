@@ -353,46 +353,54 @@ int AttackField(int x, int y, int WpnType, int AtN, int BoN)
 extern int MisLoads[1024];
 #endif
 
-void PlaceL2(int x, int y, int terrain2, int anim)
-{
-    char b[20];
-    
-    GetField(x, y)->Terrain2 = terrain2;
-    GetField(x, y)->IsAnim = anim;
+void PlaceL2(int x, int y, int terrain2, int anim) {
+	char b[20];
+
+	GetField(x, y)->Terrain2 = terrain2;
+	GetField(x, y)->IsAnim = anim;
+
 #ifdef DEBUG
-    if (MisLoads[terrain2]) {
-        if (BmpTerr2[terrain2]) memfree(BmpTerr2[terrain2]); 
-        if (BmpTerr2D[terrain2]) memfree(BmpTerr2D[terrain2]);
-        MisLoads[terrain2] = FALSE;
-    }
+	if (MisLoads[terrain2]) {
+		if (BmpTerr2[terrain2]) {
+			memfree(BmpTerr2[terrain2]);
+		}
+
+		if (BmpTerr2D[terrain2]) {
+			memfree(BmpTerr2D[terrain2]);
+		}
+
+		MisLoads[terrain2] = FALSE;
+	}
 #endif
 
-    if (BmpTerr2[terrain2] == NULL) {
-        sprintf(b, "tr2n%i", terrain2);
-        BmpTerr2[terrain2] = GraphicsDF->get(b);
-        sprintf(b, "tr2d%i", terrain2);
-        BmpTerr2D[terrain2] = GraphicsDF->get(b);
-    }
+	if (BmpTerr2[terrain2] == NULL) {
+		sprintf(b, "tr2n%i", terrain2);
+		BmpTerr2[terrain2] = GraphicsDF->get(b);
+		sprintf(b, "tr2d%i", terrain2);
+		BmpTerr2D[terrain2] = GraphicsDF->get(b);
+	}
+
 #ifdef DEBUG
-    {
-            int i = terrain2;
-            TSprite *s;
-            char ds[20];
-            
-            if (BmpTerr2[i] == NULL) {
-                MisLoads[i] = FALSE;
-                BmpTerr2[i] = GraphicsDF->get("sprite");
-                BmpTerr2D[i] = GraphicsDF->get("sprite");
-                s = (TSprite*)BmpTerr2[i];
-                sprintf(ds,"%i", i);
-                PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                s = (TSprite*)BmpTerr2D[i];
-                if (s) {
-                    sprintf(ds,"%i", i);
-                    PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                }
-            }
-    }
+	int i = terrain2;
+	TSprite *s;
+	char ds[20];
+
+	if (BmpTerr2[i] == NULL) {
+		MisLoads[i] = FALSE;
+		BmpTerr2[i] = GraphicsDF->get("sprite");
+		BmpTerr2D[i] = GraphicsDF->get("sprite");
+		s = (TSprite*)BmpTerr2[i];
+		sprintf(ds,"%i", i);
+		PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont, clrWhite,
+			clrBlack);
+		s = (TSprite*)BmpTerr2D[i];
+
+		if (s) {
+			sprintf(ds,"%i", i);
+			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,
+				clrWhite, clrBlack);
+		}
+	}
 #endif
 }
 

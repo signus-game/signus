@@ -144,102 +144,133 @@ void AnimateCursor()
 
 
 // Nic se nedeje => skrolovani citlive na pozici kurzoru:
-void IdleEvent()
-{
-    int ScX = 0, ScY = 0;
-    static int Scrolled;
+void IdleEvent() {
+	int ScX = 0, ScY = 0;
+	static int Scrolled;
 
-    ProcessMapAnim();
+	ProcessMapAnim();
 
-    // Obhospodareni skrolovani:
-    if (Mouse.x < 8) ScX = -1;
-    else if (Mouse.x > RES_X-8) ScX = 1;
-    if (Mouse.y < 8) ScY = -1;
-    else if (Mouse.y > RES_Y-8) ScY = 1;
-    if ((ScX != 0) || (ScY != 0)) {
-        if (GetShiftState()) {
-            ScX *= VIEW_SIZE_X/2, ScY *= VIEW_SIZE_Y/2;
-            ScrollTo(MapPos.x + ScX + ScY, MapPos.y - ScX + ScY);
-            SDL_Delay(iniScrollDelay);
-            Scrolled = FALSE;
-        }
-        else {
-            ScrollRel(ScX, ScY);
-            SDL_Delay(iniScrollDelay);
-            Scrolled = TRUE;
-        }
-    }
-    else if (Scrolled) {
-        Scrolled = FALSE;
-        UpdateLitMap();
-        MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
-        DrawLitMap();
-        MouseUnfreeze();
-    }
-    
+	// Obhospodareni skrolovani:
+	if (Mouse.x < 8) {
+		ScX = -1;
+	} else if (Mouse.x > RES_X-8) {
+		ScX = 1;
+	}
 
-    // Jukebox:
-    if (TimerValue % (20 * 5) == 0) {
-        if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-    }
-    
-    if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
-        AnimateCursor();
-        MainIcons->Update();
-    }
-    
-    // Idle texty u kurzoru mysi:
-    if ((SelPos.x != 0xFF) && (TimerValue - LastEvent >= iniIdleDelay)) {
-        TEvent e;
-        void *buf, *buf2;
-        int bufszx, bufszy;
-        int xp, yp;
-        int OMX, OMY;
-        char itext[100];
-        
-        SelectedUnit->GetFieldInfo(SelPos.x, SelPos.y, itext);
-        if (*itext != 0) {
-            bufszx = GetStrWidth(itext, NormalFont) + 4;
-            bufszy = GetStrHeight(itext, NormalFont);
-            buf = memalloc(bufszx * bufszy);
-            buf2 = memalloc(bufszx * bufszy);
-            xp = 18; yp = Mouse.y - bufszy / 2;
-            if (xp + Mouse.x + bufszx < VIEW_X_POS + VIEW_SX) xp += Mouse.x;
-            else xp = Mouse.x - bufszx - xp;
-            if (Mouse.ActCur == mcurArrow) {
-                yp += 10;
-                if (xp < Mouse.x) xp += 18;
-            }
+	if (Mouse.y < 8) {
+		ScY = -1;
+	} else if (Mouse.y > RES_Y-8) {
+		ScY = 1;
+	}
 
-            GetBitmap(xp, yp, buf, bufszx, bufszy);
-            memcpy(buf2, buf, bufszx * bufszy);
-            DoDarking(buf, bufszx * bufszy);
-            PutStr(buf, bufszx, 2, 0, itext, NormalFont, clrWhite, clrBlack);
-            PutBitmap(xp, yp, buf, bufszx, bufszy);
-            OMX = Mouse.x, OMY = Mouse.y;
-            do {
-                GetEvent(&e);
-                if (TimerValue % (20 * 5) == 0) { // jukebox
-                    if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-                }
-                if (ProcessMapAnim()) PutBitmap(xp, yp, buf, bufszx, bufszy);
-                UpdateWatch();
-                if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) AnimateCursor();
-            } while (
-              (e.What == evNothing) ||
-              ((e.What == evMouseMove) && 
-               IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
-            PutEvent(&e);
-            LastEvent = TimerValue;
-            PutBitmap(xp, yp, buf2, bufszx, bufszy);
-            memfree(buf);
-            memfree(buf2);
-        }
-    }
-    
-    // idle helpy u ikonek:
-    if (TimerValue - LastEvent >= 2*iniIdleDelay)   if (MainIcons->Help()) LastEvent = TimerValue;
-    UpdateWatch();
+	if ((ScX != 0) || (ScY != 0)) {
+		if (GetShiftState()) {
+			ScX *= VIEW_SIZE_X/2, ScY *= VIEW_SIZE_Y/2;
+			ScrollTo(MapPos.x + ScX + ScY, MapPos.y - ScX + ScY);
+			SDL_Delay(iniScrollDelay);
+			Scrolled = FALSE;
+		} else {
+			ScrollRel(ScX, ScY);
+			SDL_Delay(iniScrollDelay);
+			Scrolled = TRUE;
+		}
+	} else if (Scrolled) {
+		Scrolled = FALSE;
+		UpdateLitMap();
+		MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
+		DrawLitMap();
+		MouseUnfreeze();
+	}
+
+	// Jukebox:
+	if (TimerValue % (20 * 5) == 0) {
+		if (MusicOn && (!IsMusicPlaying())) {
+			JukeboxNext();
+		}
+	}
+
+	if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
+		AnimateCursor();
+		MainIcons->Update();
+	}
+
+	// Idle texty u kurzoru mysi:
+	if ((SelPos.x != 0xFF) && (TimerValue - LastEvent >= iniIdleDelay)) {
+		TEvent e;
+		void *buf, *buf2;
+		int bufszx, bufszy;
+		int xp, yp;
+		int OMX, OMY;
+		char itext[100];
+
+		SelectedUnit->GetFieldInfo(SelPos.x, SelPos.y, itext);
+
+		if (*itext != 0) {
+			bufszx = GetStrWidth(itext, NormalFont) + 4;
+			bufszy = GetStrHeight(itext, NormalFont);
+			buf = memalloc(bufszx * bufszy);
+			buf2 = memalloc(bufszx * bufszy);
+			xp = 18; yp = Mouse.y - bufszy / 2;
+
+			if (xp + Mouse.x + bufszx < VIEW_X_POS + VIEW_SX) {
+				xp += Mouse.x;
+			} else {
+				xp = Mouse.x - bufszx - xp;
+			}
+
+			if (Mouse.ActCur == mcurArrow) {
+				yp += 10;
+
+				if (xp < Mouse.x) {
+					xp += 18;
+				}
+			}
+
+			GetBitmap(xp, yp, buf, bufszx, bufszy);
+			memcpy(buf2, buf, bufszx * bufszy);
+			DoDarking(buf, bufszx * bufszy);
+			PutStr(buf, bufszx, bufszy, 2, 0, itext, NormalFont,
+				clrWhite, clrBlack);
+			PutBitmap(xp, yp, buf, bufszx, bufszy);
+			OMX = Mouse.x;
+			OMY = Mouse.y;
+
+			do {
+				GetEvent(&e);
+
+				if (TimerValue % (20 * 5) == 0) { // jukebox
+					if (MusicOn && (!IsMusicPlaying())) {
+						JukeboxNext();
+					}
+				}
+
+				if (ProcessMapAnim()) {
+					PutBitmap(xp, yp, buf, bufszx, bufszy);
+				}
+
+				UpdateWatch();
+
+				if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
+					AnimateCursor();
+				}
+			} while ((e.What == evNothing) ||
+				((e.What == evMouseMove) &&
+				IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
+
+			PutEvent(&e);
+			LastEvent = TimerValue;
+			PutBitmap(xp, yp, buf2, bufszx, bufszy);
+			memfree(buf);
+			memfree(buf2);
+		}
+	}
+
+	// idle helpy u ikonek:
+	if ((TimerValue - LastEvent >= 2*iniIdleDelay) && (MainIcons->Help())) {
+		LastEvent = TimerValue;
+	}
+
+	UpdateWatch();
 }
 
 

@@ -241,48 +241,55 @@ void TIconPanel::LightsOff()
 
 
 
-int TIconPanel::Help()
-{
-    TEvent e;
-    void *buf, *buf2;
-    int bufszx, bufszy;
-    int xp, yp;
-    int OMX, OMY;
-    char *itext;
-        
-    if (!IsInRect(Mouse.x - ICPN_RX, Mouse.y - ICPN_RY,
-                  0, 0, ICPN_SX-1, ICPN_SY-1)) return FALSE;
-                  
-    itext = HelpStrs[Mask[(Mouse.x - ICPN_RX) + ICPN_SX * (Mouse.y - ICPN_RY)]];
-    bufszx = GetStrWidth(itext, NormalFont) + 4;
-    bufszy = GetStrHeight(itext, NormalFont);
-    buf = memalloc(bufszx * bufszy);
-    buf2 = memalloc(bufszx * bufszy);
-    yp = Mouse.y - bufszy / 2 + 10;
-    xp = Mouse.x - bufszx;
+int TIconPanel::Help() {
+	TEvent e;
+	void *buf, *buf2;
+	int bufszx, bufszy;
+	int xp, yp;
+	int OMX, OMY;
+	char *itext;
 
-    GetBitmap(xp, yp, buf, bufszx, bufszy);
-    memcpy(buf2, buf, bufszx * bufszy);
-    DoDarking(buf, bufszx * bufszy);
-    PutStr(buf, bufszx, 2, 0, itext, NormalFont, clrWhite, clrBlack);
-    PutBitmap(xp, yp, buf, bufszx, bufszy);
-    OMX = Mouse.x, OMY = Mouse.y;
-    do {
-        GetEvent(&e);
-        if (TimerValue % (20 * 5) == 0) { // jukebox
-            if (MusicOn && (!IsMusicPlaying())) JukeboxNext();          
-        }
-        if (ProcessMapAnim()) PutBitmap(xp, yp, buf, bufszx, bufszy);
-    } while (
-      (e.What == evNothing) ||
-      ((e.What == evMouseMove) && 
-       IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
-    PutEvent(&e);
-    PutBitmap(xp, yp, buf2, bufszx, bufszy);
-    memfree(buf);
-    memfree(buf2);
-               
-    return TRUE;
+	if (!IsInRect(Mouse.x - ICPN_RX, Mouse.y - ICPN_RY,
+		0, 0, ICPN_SX-1, ICPN_SY-1)) {
+		return FALSE;
+	}
+
+	itext = HelpStrs[Mask[(Mouse.x - ICPN_RX) + ICPN_SX * (Mouse.y - ICPN_RY)]];
+	bufszx = GetStrWidth(itext, NormalFont) + 4;
+	bufszy = GetStrHeight(itext, NormalFont);
+	buf = memalloc(bufszx * bufszy);
+	buf2 = memalloc(bufszx * bufszy);
+	yp = Mouse.y - bufszy / 2 + 10;
+	xp = Mouse.x - bufszx;
+
+	GetBitmap(xp, yp, buf, bufszx, bufszy);
+	memcpy(buf2, buf, bufszx * bufszy);
+	DoDarking(buf, bufszx * bufszy);
+	PutStr(buf, bufszx, bufszy, 2, 0, itext, NormalFont, clrWhite,
+		clrBlack);
+	PutBitmap(xp, yp, buf, bufszx, bufszy);
+	OMX = Mouse.x, OMY = Mouse.y;
+
+	do {
+		GetEvent(&e);
+
+		if (TimerValue % (20 * 5) == 0) { // jukebox
+			if (MusicOn && (!IsMusicPlaying())) {
+				JukeboxNext();
+			}
+		}
+
+		if (ProcessMapAnim()) {
+			PutBitmap(xp, yp, buf, bufszx, bufszy);
+		}
+	} while ((e.What == evNothing) || ((e.What == evMouseMove) &&
+		IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
+
+	PutEvent(&e);
+	PutBitmap(xp, yp, buf2, bufszx, bufszy);
+	memfree(buf);
+	memfree(buf2);
+	return TRUE;
 }
 
 
@@ -436,7 +443,7 @@ TMenu::~TMenu()
 
 
 void *DrwViewBf;
-int DrwViewBfSz;
+int DrwViewBfSzX, DrwViewBfSzY;
 char DLG_backimg[9];
     
 TDialog::TDialog(int ax, int ay, int aw, int ah, const char *backimg)
@@ -461,15 +468,22 @@ void TDialog::PaintRect(int ay, int ah)
 
 
 
-void TDialog::Draw()
-{
-    if (DLG_backimg[0] != 0) {
-        if (DrwBuf) memfree(DrwBuf);
-        DrwBuf = GraphicsDF->get(DLG_backimg);
-    }
-    DrwViewBf = DrwBuf;
-    DrwViewBfSz = w;
-    for (int i = 0; i < SubviewsCnt; i++)   Subviews[i]->Draw();
+void TDialog::Draw() {
+	if (DLG_backimg[0] != 0) {
+		if (DrwBuf) {
+			memfree(DrwBuf);
+		}
+
+		DrwBuf = GraphicsDF->get(DLG_backimg);
+	}
+
+	DrwViewBf = DrwBuf;
+	DrwViewBfSzX = w;
+	DrwViewBfSzY = h;
+
+	for (int i = 0; i < SubviewsCnt; i++) {
+		Subviews[i]->Draw();
+	}
 }
 
 
@@ -523,7 +537,7 @@ int TDialog::Exec()
     }
     if (e.What != evNothing) {
             DrwViewBf = DrwBuf;
-            DrwViewBfSz = w;
+            DrwViewBfSzX = w;
         e.Mouse.Where.x -= x, e.Mouse.Where.y -= y;
         for (i = 0; i < SubviewsCnt; i++) {
             v = Subviews[i];
@@ -656,13 +670,18 @@ TButton::TButton(int ax, int ay, char *txt, int aCmd, int aIsDef, char *aBmp)
 
 
 
-void TButton::Draw()
-{
-    int ax = x + (128 - GetStrWidth(Text, NormalFont)) / 2 + Position /*on-off*/;
-    int ay = y + (32 - GetStrHeight(Text, NormalFont)) / 2 + Position;
-    CopyBmpNZ(DrwViewBf, DrwViewBfSz, x, y, ButtonSprite[Position], 128, 32);
-    if (Bmp) CopyBmpNZ(DrwViewBf, DrwViewBfSz, x, y, Bmp, 128, 32);
-    PutStr(DrwViewBf, DrwViewBfSz, ax, ay, Text, NormalFont, clrWhite, clrBlack);
+void TButton::Draw() {
+	/*on-off*/
+	int ax = x + (128 - GetStrWidth(Text, NormalFont)) / 2 + Position;
+	int ay = y + (32 - GetStrHeight(Text, NormalFont)) / 2 + Position;
+
+	CopyBmpNZ(DrwViewBf, DrwViewBfSzX, x, y, ButtonSprite[Position], 128, 32);
+
+	if (Bmp) {
+		CopyBmpNZ(DrwViewBf, DrwViewBfSzX, x, y, Bmp, 128, 32);
+	}
+
+	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, ax, ay, Text, NormalFont, clrWhite, clrBlack);
 }
 
 
@@ -696,10 +715,9 @@ int TButton::HandleEvent(TEvent *e)
 
 ////////////////////// TStaticText:
 
-void TStaticText::Draw()
-{
-    PutStr(DrwViewBf, DrwViewBfSz, x, y, Text, 
-           BigFnt ? HugeFont : NormalFont, clrWhite, clrBlack);
+void TStaticText::Draw() {
+	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x, y, Text,
+		BigFnt ? HugeFont : NormalFont, clrWhite, clrBlack);
 }
 
 
@@ -839,57 +857,61 @@ TStaticText2::TStaticText2(int ax, int ay, int aw, int ah, const char *aTxt)
 }
 
 
-void TStaticText2::Draw()
-{
+void TStaticText2::Draw() {
+	int i;
+	int WordLineCnt;
+	int LocalWordCnt = 0;
+	int PixColCnt = 0;
+	int ArtCnt = -1; // Citac odstavcu
+	double PixLineCnt;
 
-    int i;
-    int WordLineCnt;
-    int LocalWordCnt = 0;
-    int PixColCnt = 0;
-    int ArtCnt = -1; // Citac odstavcu
-    
-    double PixLineCnt;
-    
-  for (i = 0; i <= NumOfLines; i++) {
-    WordLineCnt = -1;
-    PixLineCnt = 0;
-    
-    do {
-      WordLineCnt++;
-        LocalWordCnt++;
-        
-      if (WordsTypes[LocalWordCnt] == 1) {
-            if (LocalWordCnt != 1) i++;
-            ArtCnt++;
-        PixLineCnt = GetStrWidth("  ", NormalFont);
-        if (LocalWordCnt != 1) PixColCnt += ArticleSpace*2;
-        WordLineCnt = 0;
-        }
-        PutStr (BigDrawBuffer, ISizeX, PixLineCnt, /*10,*/ PixColCnt,
-                Words[LocalWordCnt], NormalFont, clrWhite, clrBlack);    
-            
-        PixLineCnt += (double)GetStrWidth(Words[LocalWordCnt], NormalFont);
-        PixLineCnt += LineSpace[i];
-        
-        if (WordsTypes[LocalWordCnt] == 3) goto LastWord;
-                
-    } while (WordsTypes[LocalWordCnt] != 2);
-    PixColCnt += 16;
-    
-  }
+	for (i = 0; i <= NumOfLines; i++) {
+		WordLineCnt = -1;
+		PixLineCnt = 0;
 
-  LastWord:
+		do {
+			WordLineCnt++;
+			LocalWordCnt++;
 
+			if (WordsTypes[LocalWordCnt] == 1) {
+				if (LocalWordCnt != 1) {
+					i++;
+				}
 
+				ArtCnt++;
+				PixLineCnt = GetStrWidth("  ", NormalFont);
 
-  CopyBmpNZ(DrwViewBf, DrwViewBfSz, IPosX, IPosY, BigDrawBuffer, ISizeX, ISizeY);
-    
+				if (LocalWordCnt != 1) {
+					PixColCnt += ArticleSpace * 2;
+				}
 
-// Tohle bude v destruktoru
-  memfree(BigDrawBuffer);
-    for (i = 0; i < WordCnt; i++) memfree(Words[i]);
+				WordLineCnt = 0;
+			}
 
+			PutStr(BigDrawBuffer, ISizeX, ISizeY, PixLineCnt,
+				/*10,*/ PixColCnt, Words[LocalWordCnt],
+				NormalFont, clrWhite, clrBlack);
+			PixLineCnt += (double)GetStrWidth(Words[LocalWordCnt],
+				NormalFont);
+			PixLineCnt += LineSpace[i];
 
+			if (WordsTypes[LocalWordCnt] == 3) {
+				goto LastWord;
+			}
+		} while (WordsTypes[LocalWordCnt] != 2);
+
+		PixColCnt += 16;
+	}
+
+LastWord:
+	CopyBmpNZ(DrwViewBf, DrwViewBfSzX, IPosX, IPosY, BigDrawBuffer, ISizeX, ISizeY);
+
+	// Tohle bude v destruktoru
+	memfree(BigDrawBuffer);
+
+	for (i = 0; i < WordCnt; i++) {
+		memfree(Words[i]);
+	}
 }
 
 
@@ -909,37 +931,52 @@ TAnimText::TAnimText(int ax, int ay, int aw, int ah, char *aTxt, TView *aAfter)
 
 
 
-void TAnimText::Draw()
-{
-    uint8_t buf[4096];
-    int ln;
-    
-    if (Ended) {
-        if (OldBmp != NULL) 
-            CopyBmp(DrwViewBf, DrwViewBfSz, x, y, OldBmp, w, h);
-        TStaticText::Draw(); 
-        return;
-    }
-    if (Phase == 0) return;
-    if (OldBmp == NULL) {
-        OldBmp = memalloc(w * h);
-        CopyFromBmp(DrwViewBf, DrwViewBfSz, x, y, OldBmp, w, h);
-    }
-    else CopyBmp(DrwViewBf, DrwViewBfSz, x, y, OldBmp, w, h);
-    memcpy(buf, Text, Phase);
-    if (Line == OldLine) {
-	    // FIXME: magic constants
-        buf[Phase] = 219;
-        buf[Phase+1] = 0;
-        PutStr(DrwViewBf, DrwViewBfSz, x, y, (const char*)buf, NormalFont, clrWhite, clrBlack);
-    }
-    else {
-        buf[Phase] = 0;
-	PutStr(DrwViewBf, DrwViewBfSz, x, y, (const char*)buf, NormalFont, clrWhite, clrBlack);
-        for (ln = 0; ln < 12; ln++) buf[ln] = 219;
-        buf[ln] = 0;
-	PutStr(DrwViewBf, DrwViewBfSz, x, y + (Line-1)*16, (const char*)buf, NormalFont, clrWhite, clrWhite);
-    }
+void TAnimText::Draw() {
+	uint8_t buf[4096];
+	int ln;
+
+	if (Ended) {
+		if (OldBmp != NULL) {
+			CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, OldBmp, w, h);
+		}
+
+		TStaticText::Draw();
+		return;
+	}
+
+	if (Phase == 0) {
+		return;
+	}
+
+	if (OldBmp == NULL) {
+		OldBmp = memalloc(w * h);
+		CopyFromBmp(DrwViewBf, DrwViewBfSzX, x, y, OldBmp, w, h);
+	} else {
+		CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, OldBmp, w, h);
+	}
+
+	memcpy(buf, Text, Phase);
+
+	if (Line == OldLine) {
+		// FIXME: magic constants
+		buf[Phase] = 219;
+		buf[Phase+1] = 0;
+		PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x, y,
+			(const char*)buf, NormalFont, clrWhite, clrBlack);
+	} else {
+		buf[Phase] = 0;
+		PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x, y,
+			(const char*)buf, NormalFont, clrWhite, clrBlack);
+
+		for (ln = 0; ln < 12; ln++) {
+			buf[ln] = 219;
+		}
+
+		buf[ln] = 0;
+		PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x,
+			y + (Line-1)*16, (const char*)buf, NormalFont,
+			clrWhite, clrWhite);
+	}
 }
 
 
@@ -994,14 +1031,14 @@ void TBarGauge::Draw()
     
     if (Back == NULL) {
         Back = memalloc(w * h);
-        CopyFromBmp(DrwViewBf, DrwViewBfSz, x, y, Back, w, h);
+        CopyFromBmp(DrwViewBf, DrwViewBfSzX, x, y, Back, w, h);
     }
-    CopyBmp(DrwViewBf, DrwViewBfSz, x, y, Back, w, h);
-    RectBmp(DrwViewBf, DrwViewBfSz, x, y, w, h, 54, 62);
+    CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, Back, w, h);
+    RectBmp(DrwViewBf, DrwViewBfSzX, x, y, w, h, 54, 62);
     blocks = ((*Value) * (w-4)) / (MaxVal * 3);
     if (*Value == 0) return;
     for (i = 0; i <= blocks; i++)
-        BarBmp(DrwViewBf, DrwViewBfSz, x+2 + i * 3, y+2, 2, h-4, 58);
+        BarBmp(DrwViewBf, DrwViewBfSzX, x+2 + i * 3, y+2, 2, h-4, 58);
 }
 
 
@@ -1048,11 +1085,17 @@ TCheckBox::TCheckBox(int ax, int ay, int aw, char *aText, int *aValue) :
 
 
 
-void TCheckBox::Draw()
-{
-    if (*Value) CopyBmp(DrwViewBf, DrwViewBfSz, x, y, CheckBoxSprite[1], 16, 16);
-    else CopyBmp(DrwViewBf, DrwViewBfSz, x, y, CheckBoxSprite[0], 16, 16);
-    PutStr(DrwViewBf, DrwViewBfSz, x + 20, y, Text, NormalFont, clrWhite, clrBlack);
+void TCheckBox::Draw() {
+	if (*Value) {
+		CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, CheckBoxSprite[1], 16,
+			16);
+	} else {
+		CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, CheckBoxSprite[0], 16,
+			16);
+	}
+
+	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x + 20, y, Text,
+		NormalFont, clrWhite, clrBlack);
 }
 
 
@@ -1087,15 +1130,19 @@ TRadioButtons::TRadioButtons(int ax, int ay, int aw, char **aitems, int acnt, in
 
 
 
-void TRadioButtons::Draw()
-{
-    for (int i = 0; i < Cnt; i++) {
-        if (*Selected == i)
-            CopyBmpNZ(DrwViewBf, DrwViewBfSz, x, y + i*16, RadioButtonSprite[1], 16, 16);
-        else
-            CopyBmpNZ(DrwViewBf, DrwViewBfSz, x, y + i*16, RadioButtonSprite[0], 16, 16);
-        PutStr(DrwViewBf, DrwViewBfSz, x + 20, y + i*16, Items[i], NormalFont, clrWhite, clrBlack);
-    }
+void TRadioButtons::Draw() {
+	for (int i = 0; i < Cnt; i++) {
+		if (*Selected == i) {
+			CopyBmpNZ(DrwViewBf, DrwViewBfSzX, x, y + i*16,
+				RadioButtonSprite[1], 16, 16);
+		} else {
+			CopyBmpNZ(DrwViewBf, DrwViewBfSzX, x, y + i*16,
+				RadioButtonSprite[0], 16, 16);
+		}
+
+		PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x + 20, y + i*16,
+			Items[i], NormalFont, clrWhite, clrBlack);
+	}
 }
 
 
@@ -1132,11 +1179,11 @@ TBitmap::TBitmap(int ax, int ay, int aframe, void *aPic, int aSx, int aSy, int a
 void TBitmap::Draw()
 {
     if (frame) {
-        RectBmp(DrwViewBf, DrwViewBfSz, x, y, w, h, 54, 62);
-        CopyBmp(DrwViewBf, DrwViewBfSz, x+2, y+2, Pic, sx, sy);
+        RectBmp(DrwViewBf, DrwViewBfSzX, x, y, w, h, 54, 62);
+        CopyBmp(DrwViewBf, DrwViewBfSzX, x+2, y+2, Pic, sx, sy);
     }
     else 
-        CopyBmp(DrwViewBf, DrwViewBfSz, x, y, Pic, sx, sy);
+        CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, Pic, sx, sy);
 }
 
 
@@ -1166,45 +1213,54 @@ TListBox::TListBox(int ax, int ay, int aw, int aLns, char *aData[], int aCnt, in
 
 
 
-void TListBox::Draw()
-{
-    int i, ofs, clr;
-    char helperBuffer[1024];
-    
-    for (i = Delta; (i < Cnt) && (i < Delta + ScrLn); i++) {
-        ofs = y + (i - Delta) * 18;
-        clr = (i == Current) ? 85 : 80;
-        BarBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs + 1, w - 18, 16, clr);
-        RectBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs, w - 18, 18, clr-2, clr+2);
-            
-        char *text = Data[i];
-        while (GetStrWidth(text, NormalFont) > w-20)
-        {
-            if (text == Data[i])
-            {
-                strcpy(helperBuffer, Data[i]);
-                text = helperBuffer;
-            }
-            text[strlen(text)-1] = 0;
-        }
-        PutStr(DrwViewBf, DrwViewBfSz, x + 20, ofs, text, NormalFont, clrWhite, clrBlack);
-    }
-    for (; i < Delta + ScrLn; i++) {
-        ofs = y + (i - Delta) * 18;
-        clr = 80;
-        BarBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs + 1, w - 18, 16, clr);
-        RectBmp(DrwViewBf, DrwViewBfSz, x + 18, ofs, w - 18, 18, clr-2, clr+2);
-    }
-    RectBmp(DrwViewBf, DrwViewBfSz, x, y, w, h, 54, 62);
+void TListBox::Draw() {
+	int i, ofs, clr;
+	char helperBuffer[1024];
 
-    CopyBmp(DrwViewBf, DrwViewBfSz, x, y, ListBoxSprite[UpArrow], 18, 18);
-    CopyBmp(DrwViewBf, DrwViewBfSz, x, y + h - 18, ListBoxSprite[DownArrow], 18, 18);
-    RectBmp(DrwViewBf, DrwViewBfSz, x, y + 18, 18, h - 2 * 18, 54, 62);
-    BarBmp(DrwViewBf, DrwViewBfSz, x + 1, y + 19, 16, h - 2 * 19, 20);
-    if (ScrLn < Cnt)
-        CopyBmp(DrwViewBf, DrwViewBfSz, x + 1, y + 19 +
-                (((ScrLn - 2) * 18 - 2-16) * Delta / (Cnt-ScrLn)),
-                ListBoxSprite[PosArrow], 16, 16);
+	for (i = Delta; (i < Cnt) && (i < Delta + ScrLn); i++) {
+		ofs = y + (i - Delta) * 18;
+		clr = (i == Current) ? 85 : 80;
+		BarBmp(DrwViewBf, DrwViewBfSzX, x + 18, ofs + 1, w - 18, 16,
+			clr);
+		RectBmp(DrwViewBf, DrwViewBfSzX, x + 18, ofs, w - 18, 18,
+			clr-2, clr+2);
+
+		char *text = Data[i];
+
+		while (GetStrWidth(text, NormalFont) > w-20) {
+			if (text == Data[i]) {
+				strcpy(helperBuffer, Data[i]);
+				text = helperBuffer;
+			}
+
+			text[strlen(text)-1] = 0;
+		}
+
+		PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x + 20, ofs,
+			text, NormalFont, clrWhite, clrBlack);
+	}
+
+	for (; i < Delta + ScrLn; i++) {
+		ofs = y + (i - Delta) * 18;
+		clr = 80;
+		BarBmp(DrwViewBf, DrwViewBfSzX, x + 18, ofs + 1, w - 18, 16,
+			clr);
+		RectBmp(DrwViewBf, DrwViewBfSzX, x + 18, ofs, w - 18, 18,
+			clr-2, clr+2);
+	}
+
+	RectBmp(DrwViewBf, DrwViewBfSzX, x, y, w, h, 54, 62);
+	CopyBmp(DrwViewBf, DrwViewBfSzX, x, y, ListBoxSprite[UpArrow], 18, 18);
+	CopyBmp(DrwViewBf, DrwViewBfSzX, x, y + h - 18,
+		ListBoxSprite[DownArrow], 18, 18);
+	RectBmp(DrwViewBf, DrwViewBfSzX, x, y + 18, 18, h - 2 * 18, 54, 62);
+	BarBmp(DrwViewBf, DrwViewBfSzX, x + 1, y + 19, 16, h - 2 * 19, 20);
+
+	if (ScrLn < Cnt) {
+		CopyBmp(DrwViewBf, DrwViewBfSzX, x + 1,
+			y + 19 + (((ScrLn - 3) * 18) * Delta / (Cnt-ScrLn)),
+			ListBoxSprite[PosArrow], 16, 16);
+	}
 }
 
 
@@ -1308,12 +1364,14 @@ TSingleInput::TSingleInput(int ax, int ay, char *aBuf, int aMC, int aMP)
 
 
 
-void TSingleInput::Draw()
-{
-    BarBmp(DrwViewBf, DrwViewBfSz, x, y, w, h, 85);
-    RectBmp(DrwViewBf, DrwViewBfSz, x, y, w, h, 87, 83);
-    PutStr(DrwViewBf, DrwViewBfSz, x+5, y+5, Buf, NormalFont, clrWhite, clrBlack);
-    PutStr(DrwViewBf, DrwViewBfSz, x+5+GetStrWidth(Buf, NormalFont), y+5, "-", NormalFont, clrLightBlue, clrWhite);
+void TSingleInput::Draw() {
+	BarBmp(DrwViewBf, DrwViewBfSzX, x, y, w, h, 85);
+	RectBmp(DrwViewBf, DrwViewBfSzX, x, y, w, h, 87, 83);
+	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY, x+5, y+5, Buf,
+		NormalFont, clrWhite, clrBlack);
+	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY,
+		x+5+GetStrWidth(Buf, NormalFont), y+5, "-",
+		NormalFont, clrLightBlue, clrWhite);
 }
 
 

@@ -176,39 +176,43 @@ class TInfoDialog : public TDialog {
 
 extern char DLG_backimg[9];
 
-TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) : TDialog(ax, ay, 620, 460, "dlginfo")
-{
-    unit = u;
-    pic = bmp = NULL;
-    
-    Insert(new TButton(15, 409, SigText[TXT_OK], cmOk, TRUE));
-    Insert(new TStaticText(300, 20, 380, 40, unit->GetName(), TRUE));
-    Insert(new TStaticText2(294, 60, 308, 380, unit->GetDescript()));
-    Insert(new TStaticText(20, 287, 100, 20, SigText[TXT_EXPERIENCE]));
-    if (IsUnitAT(unit))
-        Insert(new TBitmap(70, 238, FALSE, GraphicsDF->get("artetech"), 160, 17));
-    PercentBar(DrwBuf, w, 122, 288, 160-29, 16, 55, 51, GetUnitExper(unit), "");
-    if (u->Type < unRadar)
-        Insert(new TBitmap(253, 288, FALSE, LevelBmps[((TUnit*)u)->Level], 29, 16, FALSE));
-    {
-        TEvent e;
-        e.What = evMouseDown;
-        e.Mouse.Buttons = mbBottomButton | mbLeftButton | mbRightButton;
-        PutEvent(&e);
-    }
-    
-    //DLG_backimg[0] = 0; // to disable redrawing
-    
-    char filename[1024];
-    SDL_Surface *image;
-    snprintf(filename, 1024,
-             "%s/nolang/unit-images/unit%i.jpg",
-             getSignusDataDir(), unit->GetType());
-    image = IMG_Load(filename);
-    byte *pall = (byte*)memalloc(256 * 192);
-    paletizeSurface(pall, image, "pal_rgb");
-    SDL_FreeSurface(image);
-    Insert(new TBitmap(22, 22, FALSE, pall, 256, 192));
+TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) :
+	TDialog(ax, ay, 620, 460, "dlginfo") {
+	unit = u;
+	pic = bmp = NULL;
+
+	Insert(new TButton(15, 409, SigText[TXT_OK], cmOk, TRUE));
+	Insert(new TStaticText(300, 20, 380, 40, unit->GetName(), TRUE));
+	Insert(new TStaticText2(294, 60, 308, 380, unit->GetDescript()));
+	Insert(new TStaticText(20, 287, 100, 20, SigText[TXT_EXPERIENCE]));
+
+	if (IsUnitAT(unit)) {
+		Insert(new TBitmap(70, 238, FALSE, GraphicsDF->get("artetech"), 160, 17));
+	}
+
+	PercentBar(DrwBuf, w, h, 122, 288, 160-29, 16, 55, 51,
+		GetUnitExper(unit), "");
+
+	if (u->Type < unRadar) {
+		Insert(new TBitmap(253, 288, FALSE,
+			LevelBmps[((TUnit*)u)->Level], 29, 16, FALSE));
+	}
+
+	TEvent e;
+	e.What = evMouseDown;
+	e.Mouse.Buttons = mbBottomButton | mbLeftButton | mbRightButton;
+	PutEvent(&e);
+	//DLG_backimg[0] = 0; // to disable redrawing
+
+	char filename[1024];
+	SDL_Surface *image;
+	snprintf(filename, 1024, "%s/nolang/unit-images/unit%i.jpg",
+		getSignusDataDir(), unit->GetType());
+	image = IMG_Load(filename);
+	byte *pall = (byte*)memalloc(256 * 192);
+	paletizeSurface(pall, image, "pal_rgb");
+	SDL_FreeSurface(image);
+	Insert(new TBitmap(22, 22, FALSE, pall, 256, 192));
 }
 
 

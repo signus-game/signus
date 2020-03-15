@@ -525,13 +525,14 @@ void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byt
 
 
 
-void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text)
-{
-    int part = (int)((double)w * value);
+void PercentBar(void *tar, int width, int height, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text) {
+	int part = (int)((double)w * value);
 
-    BarBmp(tar, tarwidth, x, y, w, h, clr2);
-    BarBmp(tar, tarwidth, x+1, y+1, part-2, h-2, clr1);
-    PutStr(tar, tarwidth, x+1 + (w - GetStrWidth(text, TinyFont))/2, y + (h - GetStrHeight(text, TinyFont))/2, text, TinyFont, clrWhite, clrBlack);
+	BarBmp(tar, width, x, y, w, h, clr2);
+	BarBmp(tar, width, x+1, y+1, part-2, h-2, clr1);
+	PutStr(tar, width, height, x+1 + (w - GetStrWidth(text, TinyFont))/2,
+		y + (h - GetStrHeight(text, TinyFont))/2, text, TinyFont,
+		clrWhite, clrBlack);
 }
 
 

@@ -693,24 +693,27 @@ void ProgressSet(int value)
 void *MessageBuf;
 
 
-void Message(const char *msg)
-{
-    if (*msg == 0) {
-        memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);
-        PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-    }
-    else {
-        memset(MessageBuf, clrWhite, MSGBUF_SX * MSGBUF_SY);
-        PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-        SDL_Delay(50);
+void Message(const char *msg) {
+	if (*msg == 0) {
+		memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);
+		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
+			MSGBUF_SY);
+	} else {
+		memset(MessageBuf, clrWhite, MSGBUF_SX * MSGBUF_SY);
+		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
+			MSGBUF_SY);
+		SDL_Delay(50);
 
-        for (int i = 0; i < 3; i++) {
-            memcpy(MessageBuf, MessageFrames[i], MSGBUF_SX * MSGBUF_SY);
-            PutStr(MessageBuf, MSGBUF_SX, 2, 1, msg, NormalFont, clrWhite, clrBlack);
-            PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-            SDL_Delay(50);
-        }
-    }
+		for (int i = 0; i < 3; i++) {
+			memcpy(MessageBuf, MessageFrames[i],
+				MSGBUF_SX * MSGBUF_SY);
+			PutStr(MessageBuf, MSGBUF_SX, MSGBUF_SY, 2, 1, msg,
+				NormalFont, clrWhite, clrBlack);
+			PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf,
+				MSGBUF_SX, MSGBUF_SY);
+			SDL_Delay(50);
+		}
+	}
 }
 
 
@@ -738,27 +741,29 @@ void Message(int msg)
 
 void *MsgBoxBuf = NULL;
 
-void MsgBox(char *str)
-{
-    if (str == NULL) {
-        if (MsgBoxBuf == NULL) return;
-        PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX, MSGBOX_SY);
-        memfree(MsgBoxBuf);
-        MsgBoxBuf = NULL;
-    }
-    else {
-        void *dummy;
-    
-        MsgBoxBuf = memalloc(MSGBOX_SX * MSGBOX_SY);
-        GetBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX, MSGBOX_SY);
-        
-        dummy = GraphicsDF->get("msgbox");
-        PutStr(dummy, MSGBOX_SX,
-               (MSGBOX_SX - GetStrWidth(str, HugeFont)) / 2, (MSGBOX_SY - GetStrHeight(str, HugeFont)) / 2,
-               str, HugeFont, clrWhite, clrBlack);
-        PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, dummy, MSGBOX_SX, MSGBOX_SY);   
-        memfree(dummy);
-    }
+void MsgBox(char *str) {
+	if (str == NULL) {
+		if (MsgBoxBuf == NULL) return;
+		PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX,
+			MSGBOX_SY);
+		memfree(MsgBoxBuf);
+		MsgBoxBuf = NULL;
+	} else {
+		void *dummy;
+
+		MsgBoxBuf = memalloc(MSGBOX_SX * MSGBOX_SY);
+		GetBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX,
+			MSGBOX_SY);
+
+		dummy = GraphicsDF->get("msgbox");
+		PutStr(dummy, MSGBOX_SX, MSGBOX_SY,
+		       (MSGBOX_SX - GetStrWidth(str, HugeFont)) / 2,
+		       (MSGBOX_SY - GetStrHeight(str, HugeFont)) / 2,
+		       str, HugeFont, clrWhite, clrBlack);
+		PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, dummy, MSGBOX_SX,
+			MSGBOX_SY);
+		memfree(dummy);
+	}
 }
 
 
@@ -831,19 +836,18 @@ void DoneLoading()
 
 ///////////////////////////// ukazatel casu //////////////////////////////
 
-static void DisplayWatch(int x, int y, int value)
-{
-    int h, m, s;
-    char b[16];
-    
-    s = value % 60; value /= 60;
-    m = value % 60; value /= 60;
-    h = value % 24;
-    sprintf(b, "%02i:%02i:%02i", h, m, s);
-    
-    memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
-    PutStr(TimerWatchBuf, 50, 2, 3, b, TinyFont, clrWhite, clrBlack);
-    PutBitmap(x, y, TimerWatchBuf, 50, 14);
+static void DisplayWatch(int x, int y, int value) {
+	int h, m, s;
+	char b[16];
+
+	s = value % 60; value /= 60;
+	m = value % 60; value /= 60;
+	h = value % 24;
+	sprintf(b, "%02i:%02i:%02i", h, m, s);
+
+	memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
+	PutStr(TimerWatchBuf, 50, 14, 2, 3, b, TinyFont, clrWhite, clrBlack);
+	PutBitmap(x, y, TimerWatchBuf, 50, 14);
 }
 
 
@@ -851,15 +855,14 @@ static void DisplayWatch(int x, int y, int value)
 
 extern TPoint SelPos;
 
-static void DisplayWatchField(int x, int y)
-{
-    char b[9];
-    
-    sprintf(b, "%03i:%03i", SelPos.x, SelPos.y);
-    
-    memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
-    PutStr(TimerWatchBuf, 50, 2, 3, b, TinyFont, clrWhite, clrBlack);
-    PutBitmap(x, y, TimerWatchBuf, 50, 14);
+static void DisplayWatchField(int x, int y) {
+	char b[9];
+
+	sprintf(b, "%03i:%03i", SelPos.x, SelPos.y);
+
+	memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
+	PutStr(TimerWatchBuf, 50, 14, 2, 3, b, TinyFont, clrWhite, clrBlack);
+	PutBitmap(x, y, TimerWatchBuf, 50, 14);
 }
 
 #endif

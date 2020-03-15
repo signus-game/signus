@@ -1085,44 +1085,57 @@ TSprite *TUnit::GetStatusBar()
 
 
 
-void TUnit::GetUnitInfo()
-{
-    char cbuf[30];
-    int i, clr;
+void TUnit::GetUnitInfo() {
+	char cbuf[30];
+	int i, clr;
 
-    TObject::GetUnitInfo(); 
-    CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
-    PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
+	TObject::GetUnitInfo();
+	CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
+		clrLightBlue, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
+		NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 42, SigText[TXT_TIME],
+		NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_FUEL],
+		NormalFont, clrWhite, clrBlack);
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 26, SigText[TXT_STATE], NormalFont, clrWhite, clrBlack);
-    PutStr(UInfoBuf, UINFO_SX, 2, 42, SigText[TXT_TIME], NormalFont, clrWhite, clrBlack);
-    PutStr(UInfoBuf, UINFO_SX, 2, 58, SigText[TXT_FUEL], NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
+	clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 28, 52, 13, clr,
+		clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 44, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
+	sprintf(cbuf, "%i %%", 100 * Fuel / MaxFuel);
+	clr = (100 * Fuel < 20 * MaxFuel) ? clrRed : 157;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 60, 52, 13, clr, 164,
+		(double)Fuel / MaxFuel, cbuf);
 
-    sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
-    clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 28, 52, 13, clr, clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	if (clr == clrRed) {
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_FUEL],
+			NormalFont, clrRed, clrBlack);
+	}
 
-    sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
-    PercentBar(UInfoBuf, UINFO_SX, 54, 44, 52, 13, clrLightBlue2, clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
+	for (i = 0; i < WeaponsCnt; i++) {
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
+			((i == CurWpn) && (WeaponsCnt != 1)) ?
+			WpnInfoBkg[1] : WpnInfoBkg[0], 102, 23);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 5, 86 + i * 26,
+			Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
+		sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 60, 88 + i * 26, 41,
+			13, clrLightBlue2, clrSeaBlue,
+			(double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
+	}
 
-    sprintf(cbuf, "%i %%", 100 * Fuel / MaxFuel);
-    clr = (100 * Fuel < 20 * MaxFuel) ? clrRed : 157;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 60, 52, 13, clr, 164, (double)Fuel / MaxFuel, cbuf);
-    if (clr == clrRed) PutStr(UInfoBuf, UINFO_SX, 2, 58, SigText[TXT_FUEL], NormalFont, clrRed, clrBlack);
-
-    for (i = 0; i < WeaponsCnt; i++) {
-        CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
-                ((i == CurWpn) && (WeaponsCnt != 1)) ? WpnInfoBkg[1] : WpnInfoBkg[0], 
-                102, 23);
-        PutStr(UInfoBuf, UINFO_SX, 5, 86 + i * 26, Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
-        sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
-        PercentBar(UInfoBuf, UINFO_SX, 60, 88 + i * 26, 41, 13, clrLightBlue2, clrSeaBlue, (double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
-    }
-    if (CurWpn != -1) {
-        CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188, BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-        sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-        PutStr(UInfoBuf, UINFO_SX, 35, 188, cbuf, NormalFont, clrWhite, clrBlack);     
-    }
+	if (CurWpn != -1) {
+		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188,
+			BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
+		sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY,35, 188, cbuf, NormalFont,
+			clrWhite, clrBlack);
+	}
 }
 
 
@@ -2710,74 +2723,105 @@ int GetSpriteTblSize(int un)
     return i;
 }
 
-void UpdateUnitsMem(int UnType)
-{
-    int i = UnType, j;
-    char ds[29];
-    
-        // Uvolneni spritu z pameti pri zmizeni posledni jednotky typu:
-        if ((UnitsCounts[i] == 0) && (UnitsSprites[i] != NULL)) {
-            DisposeArray((void **)UnitsSprites[i], GetSpriteTblSize(i));
-            memfree(UnitsSprites[i]);
-            UnitsSprites[i] = NULL;
-            if (i < BADLIFE)
-                for (j = 0; j < 16; j++) FreeSample(UnitsSoundSamples[i][j]);
-            else
-                for (j = 0; j < 16; j++) FreeSample(UnitsSoundSamples[i-BADLIFE][j]);
-            if (i < BADLIFE) {
-                memfree(UnitsDescripts[i]); UnitsDescripts[i] = NULL;
-                if (UnitsPictures[i] != NULL) {
-                    memfree(UnitsPictures[i]); UnitsPictures[i] = NULL;
-                }
-            }
-        }
+void UpdateUnitsMem(int UnType) {
+	int i = UnType, j;
+	char ds[29];
 
-        // Nacteni nove jednotky - nacte jmena, popisy, alokuje potrebne tabulky
-        else if ((UnitsCounts[i] != 0) && (UnitsSprites[i] == NULL)) {
-            UnitsSprites[i] = (TSprite**) memalloc(256 * sizeof(TSprite*));
-            if (i < BADLIFE) sprintf(ds, "un%i_%%i", i);
-            else sprintf(ds, "un%i_%%i", i - BADLIFE + 128);
-            LoadArray((void**)UnitsSprites[i], 256, GraphicsDF, ds);
+	// Uvolneni spritu z pameti pri zmizeni posledni jednotky typu:
+	if ((UnitsCounts[i] == 0) && (UnitsSprites[i] != NULL)) {
+		DisposeArray((void **)UnitsSprites[i], GetSpriteTblSize(i));
+		memfree(UnitsSprites[i]);
+		UnitsSprites[i] = NULL;
+
+		if (i < BADLIFE) {
+			for (j = 0; j < 16; j++) {
+				FreeSample(UnitsSoundSamples[i][j]);
+			}
+		} else {
+			for (j = 0; j < 16; j++) {
+				FreeSample(UnitsSoundSamples[i-BADLIFE][j]);
+			}
+		}
+
+		if (i < BADLIFE) {
+			memfree(UnitsDescripts[i]);
+			UnitsDescripts[i] = NULL;
+
+			if (UnitsPictures[i] != NULL) {
+				memfree(UnitsPictures[i]);
+				UnitsPictures[i] = NULL;
+			}
+		}
+	// Nacteni nove jednotky - nacte jmena, popisy, alokuje potrebne tabulky
+	} else if ((UnitsCounts[i] != 0) && (UnitsSprites[i] == NULL)) {
+		UnitsSprites[i] = (TSprite**)memalloc(256 * sizeof(TSprite*));
+
+		if (i < BADLIFE) {
+			sprintf(ds, "un%i_%%i", i);
+		} else {
+			sprintf(ds, "un%i_%%i", i - BADLIFE + 128);
+		}
+
+		LoadArray((void**)UnitsSprites[i], 256, GraphicsDF, ds);
+
 #ifdef DEBUG
-            if (UnitsSprites[i][0] == NULL) {
-                UnitsSprites[i][0] = (TSprite*) memalloc(SpriteUniversal->w * SpriteUniversal->h + 16);
-                if (i < BADLIFE)
-                    memcpy(UnitsSprites[i][0], SpriteUniversal, SpriteUniversal->w * SpriteUniversal->h + 16);
-                else
-                    memcpy(UnitsSprites[i][0], SpriteUniversalBad, SpriteUniversalBad->w * SpriteUniversalBad->h + 16);
-                TSprite *s = UnitsSprites[i][0];
-                sprintf(ds,"%i", i);
-                PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                for (int j = 1; j < 48; j++) {
-                    UnitsSprites[i][j] = (TSprite*) memalloc(s->w * s->h + 16);
-                    memcpy(UnitsSprites[i][j], s, s->w * s->h + 16);
-                    sprintf(ds,"%i", j);
-                    PutStr(UnitsSprites[i][j]->data, UnitsSprites[i][j]->w, 10, 10, ds, NormalFont, clrWhite, clrBlack);
-                }                   
-                PutStr(s->data, s->w, 10, 10, "0", NormalFont, clrWhite, clrBlack);
-            }
+		if (UnitsSprites[i][0] == NULL) {
+			UnitsSprites[i][0] = (TSprite*)memalloc(SpriteUniversal->w * SpriteUniversal->h + 16);
+
+			if (i < BADLIFE) {
+				memcpy(UnitsSprites[i][0], SpriteUniversal, SpriteUniversal->w * SpriteUniversal->h + 16);
+			} else {
+				memcpy(UnitsSprites[i][0], SpriteUniversalBad, SpriteUniversalBad->w * SpriteUniversalBad->h + 16);
+			}
+
+			TSprite *s = UnitsSprites[i][0];
+			sprintf(ds,"%i", i);
+			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,
+				clrWhite, clrBlack);
+
+			for (int j = 1; j < 48; j++) {
+				UnitsSprites[i][j] = (TSprite*)memalloc(s->w * s->h + 16);
+				memcpy(UnitsSprites[i][j], s, s->w * s->h + 16);
+				sprintf(ds,"%i", j);
+				PutStr(UnitsSprites[i][j]->data,
+					UnitsSprites[i][j]->w,
+					UnitsSprites[i][j]->h, 10, 10, ds,
+					NormalFont, clrWhite, clrBlack);
+			}
+
+			PutStr(s->data, s->w, s->h, 10, 10, "0", NormalFont,
+				clrWhite, clrBlack);
+		}
 #endif
-            OptiSpriteTbls(i);
-    
-            if (i < BADLIFE) {
-                for (j = 0; j < 2; j++) 
-                    UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], TRUE);
-                for (j = 2; j < 16; j++) 
-                    UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], FALSE);
-                sprintf(ds, "udes%i", i);
-                UnitsDescripts[i] = (char *) TextsDF->get(ds);
-                if (iniResolution != SVGA_640x480) {
-                    sprintf(ds, "un%ilit", i);
-                    UnitsPictures[i] = (char *) GraphicsDF->get(ds);
-                }
-            }
-            else {
-                for (j = 0; j < 2; j++) 
-                    UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], TRUE);
-                for (j = 2; j < 16; j++) 
-                    UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], FALSE);
-            }
-        }
+
+		OptiSpriteTbls(i);
+
+		if (i < BADLIFE) {
+			for (j = 0; j < 2; j++) {
+				UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], TRUE);
+			}
+
+			for (j = 2; j < 16; j++) {
+				UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], FALSE);
+			}
+
+			sprintf(ds, "udes%i", i);
+			UnitsDescripts[i] = (char *) TextsDF->get(ds);
+
+			if (iniResolution != SVGA_640x480) {
+				sprintf(ds, "un%ilit", i);
+				UnitsPictures[i] = (char*)GraphicsDF->get(ds);
+			}
+		} else {
+			for (j = 0; j < 2; j++) {
+				UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], TRUE);
+			}
+
+			for (j = 2; j < 16; j++) {
+				UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], FALSE);
+			}
+		}
+	}
 }
 
 

@@ -156,7 +156,8 @@ class TDialog {
             virtual ~TDialog();
     };
     
-extern void *DrwViewBf; extern int DrwViewBfSz;
+extern void *DrwViewBf;
+extern int DrwViewBfSz, DrwViewBfSzY;
     // to je k bufferu na kresleni dialogu, smi to pouzivat jenom
     // potomci TView...
     

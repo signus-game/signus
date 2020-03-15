@@ -146,7 +146,7 @@ static void draw_titles()
         titles_act++;
         *bx = 0;
         memset(adr, 0, 12800);
-        PutStr(adr, 640, 
+        PutStr(adr, LFB_Pitch, 50,
           (640 - GetStrWidth(titles_buf, NormalFont)) / 2, 0, titles_buf, NormalFont, 255, 0);
     }
     if (++titles_cnt == TIT_FREQ) titles_cnt = 0;
