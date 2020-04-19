@@ -27,6 +27,10 @@
 
 // ENGINE fce zavisle na rozliseni
 
+#include "engine.h"
+#include "etables.h"
+#include "showrngs.h"
+#include "eng800.h"
 
 #define TILE_TYPE_COUNT 13
 

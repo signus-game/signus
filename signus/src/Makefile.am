@@ -4,10 +4,11 @@ AM_CPPFLAGS = -ansi -pedantic -Wall -Werror -I. -I$(srcdir)/ai -I$(top_srcdir)/i
 
 AM_LDFLAGS = -fsanitize=address -fstack-protector -fsanitize=undefined
 
-EXTRA_DIST = eng800.cpp etab_ai.cpp etab_drw.cpp etab_mov.cpp moveproc.cpp
-
 ENGINE_FILES = \
            etables.cpp \
+           etab_ai.cpp \
+           etab_drw.cpp \
+           etab_mov.cpp \
            memmng.cpp \
            anims.cpp \
            autofire.cpp \
@@ -16,6 +17,7 @@ ENGINE_FILES = \
            showrngs.cpp \
            datafile.cpp \
            engine.cpp \
+           eng800.cpp \
            explode.cpp \
            fields.cpp \
            fonts.cpp \
@@ -78,12 +80,13 @@ AI_FILES = \
 
 header_files = ai/aiair.h ai/aiglobal.h ai/aiground.h ai/ai.h ai/aimarine.h \
 	ai/aitowers.h anims.h autofire.h briefing.h building.h consts.h \
-	datafile.h engine.h engtimer.h etables.h events.h explode.h fields.h \
-	fonts.h global.h graphio.h iounreg.h jukebox.h keycodes.h loadsave.h \
-	mainmenu.h memmng.h mission_screen.h mouse.h moveunit.h resource.h \
-	samples.h shortcut.h showrngs.h sound.h stream.h system.h transbox.h \
-	uaircraf.h uamphi.h uground.h ui_toolkit.h unit_id.h units.h unmodif.h \
-	untables.h uships.h utowers.h utrains.h utrans.h visiblty.h weapons.h
+	datafile.h eng800.h engine.h engtimer.h etables.h events.h explode.h \
+	fields.h fonts.h global.h graphio.h iounreg.h jukebox.h keycodes.h \
+	loadsave.h mainmenu.h memmng.h mission_screen.h mouse.h moveunit.h \
+	resource.h samples.h shortcut.h showrngs.h sound.h stream.h system.h \
+	transbox.h uaircraf.h uamphi.h uground.h ui_toolkit.h unit_id.h \
+	units.h unmodif.h untables.h uships.h utowers.h utrains.h utrans.h \
+	visiblty.h weapons.h
 
 bin_PROGRAMS = signus
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
