@@ -800,6 +800,7 @@ void StartLoading(char *picname)
 
     ptr = GraphicsI18nDF->get("load");
     PutBitmap32(RES_X/2-240, RES_Y-80, ptr, 400, 50);
+    memfree(ptr);
     LoadPhase = 0;
     UpdateLoading();
 }
