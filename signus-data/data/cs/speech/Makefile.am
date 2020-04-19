@@ -1,7 +1,7 @@
 
 speechdir = $(datadir)/signus/$(VERSION)/cs/speech
 
-speech_DATA = failed.ogg increas.ogg mis10in.ogg mis11a.ogg mis11in.ogg \
+dist_speech_DATA = failed.ogg increas.ogg mis10in.ogg mis11a.ogg mis11in.ogg \
               mis12a.ogg \
               mis12b.ogg mis12in.ogg mis13in.ogg mis14in.ogg mis15a.ogg \
               mis15in.ogg \

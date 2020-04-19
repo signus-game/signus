@@ -1,7 +1,7 @@
 
 SUBDIRS = iniparser sdlimage src
 
-EXTRA_DIST = etc/default_signus.ini
+EXTRA_DIST = signus.spec etc/default_signus.ini
 
 pkgdatadir = $(datadir)/signus/$(DATA_VERSION)
 
