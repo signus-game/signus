@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Letadlová loď Imperi, 15 mil od lebrukonského pobřeží
 #> K Toriconu dolehly zprávy, podle kterých Konzorcium mobilizuje
  síly v oblastech východního Lebrukonu za účelem obsazení
@@ -18,7 +18,7 @@
  bombardéry, a jakmile bude potvrzena hrozba nepřátelské
  expanze do toriconských oblastí, zahájíte z vydobytých letišť
  útok na základny nacházející se na území východního Lebrukonu.
-#> ■
+#> 
 #> F. Lambert
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: dobýt pobřežní letiště a zahájit útok na

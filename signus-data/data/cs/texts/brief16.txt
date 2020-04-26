@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Centrála komanda Signus
-#> ■
+#> 
 #> Před několika hodinami zaznamenala letecká výzvědná služba
  nenadálou aktivitu Konzorcia v oblasti Eutanie. Jde o napadení
  skupiny geologů provádějící pro Toricon vědecký výzkum.
@@ -20,7 +20,7 @@
 #> Hlavním cílem je dobýt Město#001, ale v žádném případě nesmí,
  opakuji, nesmí dojít k jeho zničení. Na jeho existenci může
  záviset osud světa.
-#> ■
+#> 
 #> Robert Scott
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: dobýt Město s minimálními škodami

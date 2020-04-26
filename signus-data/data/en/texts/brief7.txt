@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Kytan Base
-#> ■
+#> 
 #> The primary aim of this mission is to eliminate the enemy base Setrix south-west from our
  position.
 #> During this mission we count on the use of a still existing connection between the forts - the
@@ -12,9 +12,9 @@
  According to the news, the Consortium's units are moving with lightning speed and the
  liquidation of Setrix affords the opportunity to stop the attackers from penetration to other
  areas of Toricon. At least for a certain period of time.
-#> ■
+#> 
 #> Kirk Ljubenir
-#> ■
+#> 
 #> News#001 about#001 the#001 development#001 of#001 the#001 military#001 situation#001
  #p.anamorf.320.184.
 #> PRIMARY AIM: Eliminate the Setrix base

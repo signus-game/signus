@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Přístav Luton, západní Sotona
-#> ■
+#> 
 #> V nejbližších okamžicích vás čeká pravděpodobně nejdůležitější
  akce tohoto válečného konfliktu a vašeho života vůbec. Toricon
  se chystá k ofenzívě, která může rozhodnout konečný průběh
@@ -21,7 +21,7 @@
  Několik mil od pobřeží se táhne krátký pás menších vojenských
  základen. Také ty je třeba dobýt, neboť se počítá s jejich
  využitím pro příští chvíle.
-#> ■
+#> 
 #> Tim Coony
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: obsadit pobřežní pás severozápadní Lystonie

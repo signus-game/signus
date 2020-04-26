@@ -11,6 +11,6 @@
 #> Unfortunately, our lab is not equipped enough to do such kind of research. The HQ of the
  research section have released a command to transport Lord to the fort Trufat, which is, at
  the same time, being our scientific base.
-#> ■
+#> 
 #e
 #e

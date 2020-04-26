@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Základna Trix
 #> Právě se nám podařilo zachytit nouzový signál vyslaný
  toriconskou základnou Oberun.
@@ -16,7 +16,7 @@
  zlikvidovat. Má to však jeden háček: budou na nás připraveni.
  Průmyk je velmi dobře vybaven proti vojenskému  útoku.
 #> Počítejte s přítomností min, palebných věží?, apod...
-#> ■
+#> 
 #> P. Dextr
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Obsazení Torvillského průsmyku

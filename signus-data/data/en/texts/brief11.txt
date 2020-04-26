@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> The aircraft carrier Imperi, 15 miles away from the coast of Lebrukon
 #> Toricon  obtained message that Consortium is supposed to mobilize the forces in the areas
  of eastern Lebrukon to capture the forbidden territory of Lebaran. According to our bases
@@ -14,7 +14,7 @@
  bombers could land. Immediately after the confirmation of the threat of the enemy
  expansion to the Toricon's areas, we will start to attack from the captured airports. Attack
  the bases in the area of eastern Lebrukon.
-#> ■
+#> 
 #> F. Lambert.
  #p.anamorf.320.184.
 #> PRIMARY AIM: Capture the coastal airports and start the attack on the enemy positions in the eastern Lebaran.

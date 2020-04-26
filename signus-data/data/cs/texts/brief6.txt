@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Naším nynějším cílem je otestování nově vyvinuté zbraně
  s krycím názvem Goliáš.
 #> Jedná se o dělo s abnormálním dostřelem i ničivostí, vytvořené
@@ -11,7 +11,7 @@
  v naprosté tajnosti - tzn. případná likvidace svědků apod.
  Pokud by se důsledky použití Goliáše dostaly k veřejnosti,
  znamenaly by pro Toricon velké nepříjemnosti.
-#> ■
+#> 
 #> Kleon Nemotard
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Otestovat dělo Goliáš

@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Dobrovolně jste se nabídli k provedení akce, jež je pro
  Toricon životně důležitá, ale účast na ní znamená téměř jistou
  smrt...
@@ -22,7 +22,7 @@
  i ve vašem zájmu provést akci co nejúspěšněji.
 #> Pokud při svém konání zemřete, pak s vědomím, že pro dobrou
  věc.
-#> ■
+#> 
 #> P. Creg
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Zabránit transferu artefaktu do pevnosti Trufat

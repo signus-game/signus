@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Základna Batix
 #> Situace je následující: jednotkám Konzorcia se podařilo
  rozvinout své vojáky kolem Batixu a každou chvilkou očekáváme
@@ -14,7 +14,7 @@
  Toricon vyžaduje jejich utajení. V případě naší porážky musí
  být zničeny a s nimi všechny záznamy o testování.
 #> Víc vám o této záležitosti neřeknu. Kdo nic neví, nic nepoví...
-#> ■
+#> 
 #> Ted Bronx
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Udržet základnu Batix do příchodu posil

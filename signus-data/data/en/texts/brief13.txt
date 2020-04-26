@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Action: Ternulon
-#> ■
+#> 
 #> You have been chosen for this mission on the basis of your introductory psychological
  tests... The resistance against the effects of sound frequencies on the human brain is
  important. Against the artefact with code name Silence, to be exact. Several weeks ago, the

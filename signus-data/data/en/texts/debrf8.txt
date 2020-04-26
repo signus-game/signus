@@ -3,7 +3,7 @@
  succeeded to prevent the detonation of the armament factory which should be quite useful
  to Toricon.
 #> The mission was successful.
-#> ■
+#> 
 #> Reports#001 on#001 situation#001
 #e
 #l br8_001#

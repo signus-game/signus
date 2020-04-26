@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Jedna z posledních významějších oblastí, které dosud
  nepodléhají kontrole Toriconu, je ostrov Penytras. Zvláštností
  tohoto ostrova je fakt, že přes poměrně příjemné klimatické
@@ -22,7 +22,7 @@
  antidetekčním štítem, takže Penytras bude mít šanci přivolat
  posily z moře až v okamžiku, kdy nás zaměří pobřežní radary.
 #> Čas, který tak získáme by nám měl postačit k provedení akce.
-#> ■
+#> 
 #> Paul Winters
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: dobýt a obsadit ostrov Penytras

@@ -3,7 +3,7 @@
  cestou k jedné z lodí. Podařilo se nám zabránit odpálení
  zbrojní továrny, což může být Toriconu nemálo prospěšné.
 #> Mise proběhla úspěšně.
-#> ■
+#> 
 #> Zprávy#001 o#001
  válečné#001 situaci#001
 #e

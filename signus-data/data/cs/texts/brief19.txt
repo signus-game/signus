@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Posledním ohniskem odporu Konzorcia je centrální pevnost na
  jihu Lystonie - Trufat. Jen na vás je překonat poslední krůček
  k nastolení míru. Na síle vašeho odhodlání, vůle a samozřejmě
@@ -15,7 +15,7 @@
  významně změnit svou dosavadní situaci ve svůj prospěch.
  Toriconu jde v této akci hlavně o čas - čas dělící Arconis od
  konečného míru...
-#> ■
+#> 
 #> T. Roy
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: dobýt Trufat a zajmout vedení Konzorcia

@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Velitelství pozemních sil - deset mil východně od pevnosti
  Trufat
 #> Před několika hodinami se Konzorcium pokusilo prolomit
@@ -20,7 +20,7 @@
  nedokážeme, ale pokud v nadcházející bitvě prohrajeme, může se
  Toricon rozloučit s plány na obléhání Trufatu ještě na dlouhou
  dobu, ne-li vůbec...
-#> ■
+#> 
 #> T. Roy
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: zlikvidovat nepřátelské jednotky

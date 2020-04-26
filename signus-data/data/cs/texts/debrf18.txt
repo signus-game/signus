@@ -2,9 +2,9 @@
  Ztráty na obou stranách dosáhly obrovského počtu, ale Toriconu
  se přeci jen podařilo zvítězit a postoupit směrem k trufatské
  pevnosti.
-#> ■
+#> 
 #> T. Roy
-#> ■
+#> 
 #> Válečné#001 zprávy#001
 #e
 #l b17_001#

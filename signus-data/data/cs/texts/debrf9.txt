@@ -4,7 +4,7 @@
  vozidlo s artefaktem. Následná exploze přinesla smrt oběma
  stranám.
 #> Mise byla úspěšná...
-#> ■
+#> 
 #> Roy Orbison
 #e
 #e

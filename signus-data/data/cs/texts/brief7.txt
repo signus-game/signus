@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Základna Kytan
-#> ■
+#> 
 #> Primárním cílem této mise je likvidace nepřátelské základny
  Setrix, ležící jihozápadně od nás.
 #> Při této akci se počítá s využitím dosud existujícího spojení
@@ -14,9 +14,9 @@
  rychlostí a likvidace Setrixu skýtá příležitost zarazit
  útočníky v průniku do dalších toriconských oblastí.
 #> Alespoň na určitý čas...
-#> ■
+#> 
 #> Kirk Ljubenir
-#> ■
+#> 
 #> Zprávy#001 o#001 vývoji#001 vojenské#001 situace#001
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Likvidace základny Setrix

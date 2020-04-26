@@ -1,7 +1,7 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> The head office of commando Signus
-#> ■
+#> 
 #> Several hours ago the air investigation service has noticed some sinister activity of the
  Consortium in the area of Eutania. It is the attack on geologists that were practising a
  scientific research for Toricon. The swoop happened in the area of Mid-Eutania in the
@@ -15,7 +15,7 @@
  chosen - the specialised Signus commando.
 #> The main aim is to capture the city. But in any case it shouldn't be destroyed. Let me repeat
  this IT MUSTN'T BE DESTROYED! The faith of whole world will depend on its existence.
-#> ■
+#> 
 #> Robert Scott
  #p.anamorf.320.184.
 #> PRIMARY AIM: Capture the city with minimal damages.

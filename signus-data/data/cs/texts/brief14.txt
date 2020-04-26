@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> Už druhý den se pokoušíme dobýt základnu Taluon, ale doposud
  našim útokům úspěšně odolává. Informovali jsme o současné
  situaci Toricon a dohodli se na jediném možném řešní...
@@ -17,7 +17,7 @@
  přijdeme o možnost využití sonických tanků a tím prolomení
  obraných clon Taluonu. Víme to my, ví to oni.., proto se
  připravte na nejhorší...
-#> ■
+#> 
 #> L. Burton
  #p.anamorf.320.184.
 #> PRIMÁRNÍ CÍL: Udržet Tubarský most pod svou kontrolou doĺ

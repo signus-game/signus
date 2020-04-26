@@ -1,5 +1,5 @@
-#> ■■
- #p.toricon.282.183. ■■
+#> 
+ #p.toricon.282.183. 
 #> The HQ of the surface units ten miles to the east from the Trufat fort
 #> Several hours ago, Consortium has tried to break through the northern continental
  blockade. That is the reason why the promised reinforcements haven't arrived yet. In the
@@ -14,7 +14,7 @@
 #> Your task is to decree this - let's say general - battle on our behalf. We cannot prevent the
  arrival of the reinforcements to the fort, but if we loose in this on-coming battle, Toricon
  can forget about investing Trufat for a long time, or forever...
-#> ■
+#> 
 #> T. Roy
  #p.anamorf.320.184.
 #> PRIMARY AIM: Liquidate the enemy units.
