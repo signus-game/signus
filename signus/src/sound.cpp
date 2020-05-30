@@ -202,12 +202,13 @@ int IsMusicPlaying()
 
 
 typedef struct {
-            byte       loaded;
-            int        counter;
-            char       name[9];
-            Mix_Chunk *sample;
-            byte       flags;
-    } TSampleRecord;
+	byte loaded;
+	int counter;
+	char name[9];
+	Mix_Chunk *sample;
+	byte flags;
+	Uint8 *buffer;
+} TSampleRecord;
 
 #define MAX_SAMPLES  512
 
@@ -231,12 +232,15 @@ void Clear_PSmp()
     }
 }
 
-void InitSamplesLoader()
-{
-    for (int i = 0; i < MAX_SAMPLES; i++)
-        Samples[i].loaded = Samples[i].counter = 0;
-    for (int i = 0; i < EFFECT_CHANNELS; i++)
-        PSmp[i].priority = 0;
+void InitSamplesLoader() {
+	for (int i = 0; i < MAX_SAMPLES; i++) {
+		Samples[i].loaded = Samples[i].counter = 0;
+		Samples[i].buffer = NULL;
+	}
+
+	for (int i = 0; i < EFFECT_CHANNELS; i++) {
+		PSmp[i].priority = 0;
+	}
 }
 
 
@@ -276,23 +280,110 @@ MIDASsample LoadSample(const char *name, int loop)
     Samples[pos].counter = 1;
     strcpy(Samples[pos].name, name);
     Samples[pos].flags = (loop) ? PLAY_LOOPING : 0;
+    Samples[pos].buffer = NULL;
     return pos;
 }
 
+MIDASsample ConvertSample(const void *src, size_t size, int freq, int bits, unsigned chans, int loop) {
+	int ret, pos, outfreq, outchans;
+	Uint16 fmt, outfmt;
+	size_t newsize;
+	SDL_AudioCVT cvt;
+	Uint8 *buf;
 
+	if (MIDAS_disabled) {
+		return INVALID_SAMPLE;
+	}
 
-void FreeSample(MIDASsample sample)
-{
-    if (MIDAS_disabled) return;
+	for (pos = 1; pos < MAX_SAMPLES && Samples[pos].loaded; pos++);
 
-    if (sample == INVALID_SAMPLE) return;
-    if ((--Samples[sample].counter) == 0) {
-        //StopSample(Samples[sample].sample);  FIXME - hopefully not needed for SDL_mixer
-        Mix_FreeChunk(Samples[sample].sample);
-        Samples[sample].sample = NULL;
-        Samples[sample].loaded = FALSE;
-        Samples[sample].counter = 0;
-    }
+	if (pos == MAX_SAMPLES) {
+		return INVALID_SAMPLE;
+	}
+
+	switch (bits) {
+	case -61:
+		fmt = AUDIO_S16MSB;
+		break;
+
+	case -16:
+		fmt = AUDIO_S16LSB;
+		break;
+
+	case -8:
+		fmt = AUDIO_S8;
+		break;
+
+	case 8:
+		fmt = AUDIO_U8;
+		break;
+
+	case 16:
+		fmt = AUDIO_U16LSB;
+		break;
+
+	case 61:
+		fmt = AUDIO_U16MSB;
+		break;
+
+	default:
+		return INVALID_SAMPLE;
+	}
+
+	if (!Mix_QuerySpec(&outfreq, &outfmt, &outchans)) {
+		return INVALID_SAMPLE;
+	}
+
+	ret = SDL_BuildAudioCVT(&cvt, fmt, chans, freq, outfmt, outchans,
+		outfreq);
+
+	if (ret < 0) {
+		return INVALID_SAMPLE;
+	} else if (ret) {
+		cvt.len = size;
+		cvt.buf = buf = new Uint8[size * cvt.len_mult];
+		memcpy(buf, src, size);
+		SDL_ConvertAudio(&cvt);
+		newsize = cvt.len_cvt;
+	} else {
+		buf = new Uint8[size];
+		memcpy(buf, src, size);
+		newsize = size;
+	}
+
+	Samples[pos].sample = Mix_QuickLoad_RAW(buf, newsize);
+
+	if (!Samples[pos].sample) {
+		delete[] buf;
+		return INVALID_SAMPLE;
+	}
+
+	Samples[pos].loaded = TRUE;
+	Samples[pos].counter = 1;
+	strcpy(Samples[pos].name, "");
+	Samples[pos].flags = (loop) ? PLAY_LOOPING : 0;
+	Samples[pos].buffer = buf;
+	return pos;
+}
+
+void FreeSample(MIDASsample sample) {
+	if (MIDAS_disabled) {
+		return;
+	}
+
+	if (sample >= MAX_SAMPLES || !Samples[sample].loaded) {
+		return;
+	}
+
+	if ((--Samples[sample].counter) == 0) {
+		StopSample(sample);
+		Mix_FreeChunk(Samples[sample].sample);
+		Samples[sample].sample = NULL;
+		Samples[sample].loaded = FALSE;
+		Samples[sample].counter = 0;
+		delete[] Samples[sample].buffer;
+		Samples[sample].buffer = NULL;
+	}
 }
 
 

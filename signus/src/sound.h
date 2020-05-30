@@ -110,6 +110,7 @@ extern int IsMusicPlaying();
 extern MIDASsample LoadSample(const char *name, int loop);
         // nacte sample (pokud uz je v pameti, jenom zvysi citac
         // pouzivanosti
+MIDASsample ConvertSample(const void *buf, size_t size, int freq, int bits, unsigned chans, int loop);
 
 extern void FreeSample(MIDASsample sample);
         // uvolni z pameti sample (nebo snizi citac)

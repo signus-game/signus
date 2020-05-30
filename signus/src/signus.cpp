@@ -1039,9 +1039,8 @@ int RunSignus(int from_save)
         sprintf(name, "brief%i", ActualMission);
         BriefGo(name);
         sprintf(name, "mis%iin", ActualMission);
-#if 0 // FIXME
         PlayAnimation(name);
-#endif
+        SetPalette(Palette);
         if (!InitEngine(ActualMission)) return FALSE;
         Clear_PSmp();
         HideHelpers();
@@ -1126,11 +1125,11 @@ int RunSignus(int from_save)
         }
         
         if (ActualMission == 6) {   // zacina valka
-            //PlayAnimation("war_on");   FIXME
+            PlayAnimation("war_on");
         }
         
         if (ActualMission == 19) {  // konec hry
-            //PlayAnimation("outro");   FIXME
+            PlayAnimation("outro");
             return FALSE;
         }
         
@@ -1176,62 +1175,69 @@ void DoneSignus()
 // Hlavni procedura:
 
 
-void signus_main()
-{   
-    {
-        int result = 0;
-        int crash = CrashLoad();
-        
-        if (!crash) {
-#if 0 // FIXME
-            PlayAnimation("present2");
-            PlayAnimation("present1");
-            PlayAnimation("present3");
-            PlayAnimation("intro");
-#endif
-        }
-        while (result != 3) {
-            if (crash) result = 666;
-            else result = DoMainMenu();
-            switch (result) {               
-                case 0 : {
-                                 //PlayAnimation("intro2"); FIXME
-                                 ActualMission = 1;
-                                 if (getenv("HELLMASTER"))
-                                   sscanf(getenv("HELLMASTER"), "%i", &ActualMission);
-                                 for (;;) {
-                                    if (!RunSignus(FALSE)) break;
-                                 };
-                                 break;
-                                 }
-                case 1 : ActualMission = -1;
-                                 if (LoadGame()) {
-                                     int fs = TRUE;
-                                     for (;;) {
-                                        if (!RunSignus(fs)) break;
-                                        fs = FALSE;
-                                     }
-                                 }
-                                 break;
-                case 666 :     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
-                                {
-                                TEvent e;
-                                int fs = TRUE;
+void signus_main() {
+	int result = 0;
+	int crash = CrashLoad();
+	int fs = TRUE;
+	TEvent e;
 
-                                crash = FALSE;
-                                e.What = evKeyDown;
-                                e.Key.CharCode = SHORTCUT_ENDTURN; //->causes AI running
-                                PutEvent(&e);
-                                for (;;) {
-                                    if (!RunSignus(fs)) break;
-                                    fs = FALSE;
-                                }
-                                break;
-                                }
-                case 2 : ShowCredits();
-                                 break;
-                case 3 : break;
-            }
-        }
-    }
+	if (!crash) {
+		PlayAnimation("present2");
+		PlayAnimation("present1");
+		PlayAnimation("present3");
+		PlayAnimation("intro");
+	}
+
+	while (result != 3) {
+		if (crash) {
+			result = 666;
+		} else {
+			result = DoMainMenu();
+		}
+
+		switch (result) {
+		case 0:
+			PlayAnimation("intro2");
+			ActualMission = 1;
+			if (getenv("HELLMASTER")) {
+				sscanf(getenv("HELLMASTER"), "%i", &ActualMission);
+			}
+
+			while (RunSignus(FALSE));
+			break;
+
+		case 1: ActualMission = -1;
+			if (!LoadGame()) {
+				break;
+			}
+
+			fs = TRUE;
+
+			while (RunSignus(fs)) {
+				fs = FALSE;
+			}
+
+			break;
+
+		case 666:     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
+			fs = TRUE;
+			crash = FALSE;
+			e.What = evKeyDown;
+			e.Key.CharCode = SHORTCUT_ENDTURN; //->causes AI running
+			PutEvent(&e);
+
+			while (RunSignus(fs)) {
+			    fs = FALSE;
+			}
+
+			break;
+
+		case 2:
+			ShowCredits();
+			break;
+
+		case 3:
+			break;
+		}
+	}
 }

@@ -19,356 +19,933 @@
  *
  */
 
-
-
-//
-// Modul pro prehravani animaci - vyuziva VVFLIB, je tu jenom pro
-// pohodlnost - proste se zavola jedna fce a ta se postara o vsechno
-//
-
-
-#if 0 // FIXME
-
+#include <cstdio>
+#include <cstring>
+#include <cmath>
+#include <SDL_timer.h>
 #include "global.h"
 #include "graphio.h"
 #include "events.h"
-#include "ui_toolkit.h"
+#include "mouse.h"
 #include "sound.h"
 #include "anims.h"
-#include "vvflib.h"
 #include "engtimer.h"
 
+MemoryReadStream *decompress(ReadStream &stream) {
+	size_t bufsize, pos, size;
+	uint8_t *buf;
+	unsigned tmp, bitmask, i, j;
+	int offset;
+	MemoryReadStream *ret;
 
+	bufsize = stream.readUint32LE();
+	buf = new uint8_t[bufsize];
+	pos = 0;
 
-FILE *GetAnimFile(char *name)
-{
-    TDataIndex *index;
-    int i;
-    TDataFile *a;
-    FILE *f;
+	while (1) {
+		// Bitmask encoding write/copy operations
+		bitmask = stream.readUint8();
 
+		if (stream.eos()) {
+			break;
+		}
 
-//#ifdef DEBUG
-    {
-        char nam[30];
+		for (i = 0; i < 8; i++) {
+			tmp = stream.readUint8();
 
-        strcpy(nam, "DATAA/");
-        strcat(nam, name);
-        strcat(nam, ".VVF");
-        f = fopensafe(nam, "rb");
-        if (f != NULL) return f;
-    }
-//#endif
+			if (stream.eos() || pos >= bufsize) {
+				break;
+			}
 
-    a = new TDataFile("anims.dat", dfOpenRead);
-    i = a->lookfor(name, 0, a->getcount() - 1);
-    if (i == -1) return NULL;
-    {
-        int ofs;
-        
-        index = a->getinfo(i);
-        ofs = index->offset;
-        delete a;
-        f = fopensafe("anims.dat", "rb");
-        fseek(f, ofs, SEEK_SET);
-    }
-    return f;
+			// Simple byte write to output
+			if (bitmask & (1 << i)) {
+				buf[pos++] = tmp;
+				continue;
+			}
+
+			// Handle copy operation
+			size = stream.readUint8();
+
+			if (stream.eos()) {
+				break;
+			}
+
+			// Offset is shifted by 18 bytes and points to a moving
+			// 4KB window
+			tmp |= (size & 0xf0) << 4;
+			offset = (pos & ~0xfff) | ((tmp + 18) & 0xfff);
+			size = 3 + (size & 0xf);
+
+			if (pos + size > bufsize) {
+				delete[] buf;
+				fprintf(stderr, "Decompression buffer overflow\n");
+				return NULL;
+			}
+
+			if ((size_t)offset >= pos) {
+				offset -= 0x1000;
+			}
+
+			// Negative offset stands for a block of 0x20
+			if (offset < 0) {
+				tmp = min(size, (size_t)-offset);
+				memset(buf + pos, 0x20, tmp);
+				offset = 0;
+				size -= tmp;
+				pos += tmp;
+			}
+
+			for (j = 0; j < size; j++) {
+				buf[pos++] = buf[offset++];
+			}
+		}
+	}
+
+	if (pos != bufsize) {
+		delete[] buf;
+		fprintf(stderr, "Decompressed size mismatch: %lu != %lu\n",
+			pos, bufsize);
+		return NULL;
+	}
+
+	ret = new MemoryReadStream(buf, bufsize);
+	delete[] buf;
+	return ret;
 }
 
+VVFStream::VVFStream(SeekableReadStream *stream) : _file(stream),
+	_palette(NULL), _videobuf(NULL), _audiobuf(NULL), _frame_map(NULL),
+	_stream_count(0), _block_count(0), _bundle_count(0), _playtime(0),
+	_frames(0), _width(0), _height(0), _audiosize(0), _audiofreq(0),
+	_audiochans(0), _audio_stream(-1), _video_stream(-1), _curstream(-1),
+	_frametime(0), _startpos(0), _curblock(0), _curchunk(0), _curframe(0),
+	_block_frames(0), _block_chunks(NULL), _block_sizes(NULL) {
 
+	char buf[256];
+	size_t size;
+	unsigned bitmask, depth, i, *streamtypes;
 
+	if (!_file) {
+		return;
+	}
 
+	size = _file->read(buf, 23);
+	buf[size] = '\0';
 
+	if (strcmp(buf, "Valacirca Video Format")) {
+		fprintf(stderr, "VVFStream(): Invalid file format\n");
+		_file = NULL;
+		return;
+	}
 
+	_file->seek(261, SEEK_CUR);
+	_stream_count = _file->readUint32LE();
+	_block_count = _file->readUint32LE();
+	_bundle_count = _file->readUint32LE();
+	_playtime = _file->readUint32LE();
+	_frames = _file->readUint32LE();
+	_file->seek(212, SEEK_CUR);
 
+	if (_file->eos()) {
+		fprintf(stderr, "VVFStream(): Premature end of file\n");
+		_file = NULL;
+		return;
+	}
 
-////////////////////////////////////////////////
+	if (_stream_count < 1) {
+		fprintf(stderr, "VVFStream(): No streams found\n");
+		_file = NULL;
+		return;
+	}
 
+	if (_bundle_count < 1) {
+		fprintf(stderr, "VVFStream(): No stream bundle found\n");
+		_file = NULL;
+		return;
+	}
 
-// Prehravani doprovodnych animaci:
+	streamtypes = new unsigned[_stream_count];
 
+	for (i = 0; i < _stream_count; i++) {
+		streamtypes[i] = _file->readUint32LE();
+		_file->readUint32LE();
+	}
 
-static int sig_SelectMutation(TMutationHeader *Muts, int Cnt)
-{
-    int lngmod, titmod;
+	_file->seek(64, SEEK_CUR);
+	bitmask = _file->readUint32LE();
+	// Bitmask may have 36 bytes in total but only 3 bits are actually
+	// used by Signus video files.
+	_file->seek(32, SEEK_CUR);
+	_width = _file->readUint32LE();
+	_height = _file->readUint32LE();
+	depth = _file->readUint8();
 
-    lngmod = 0;
-    if (iniTitledAnims) titmod = 1; else titmod = 0;
-    return lngmod + titmod;
+	if (depth != 8) {
+		fprintf(stderr, "VVFStream(): Unsupported video bit depth %u\n",
+			depth);
+		delete[] streamtypes;
+		_file = NULL;
+		return;
+	}
+
+	// TODO: Allow bundle selection
+	_file->seek(256 * _bundle_count - 109, SEEK_CUR);
+
+	if (_file->eos()) {
+		fprintf(stderr, "VVFStream(): Premature end of file\n");
+		delete[] streamtypes;
+		_file = NULL;
+		return;
+	}
+
+	_startpos = _file->pos();
+
+	// Select streams from bundle
+	for (i = 0; i < _stream_count; i++) {
+		if (!(bitmask & (1 << i))) {
+			continue;
+		}
+
+		if (streamtypes[i] == VVF_AUDIO) {
+			if (_audio_stream >= 0) {
+				fprintf(stderr,
+					"VVFStream(): Audio stream conflict\n");
+				delete[] streamtypes;
+				_file = NULL;
+				return;
+			}
+
+			_audio_stream = i;
+		}
+
+		if (streamtypes[i] == VVF_VIDEO) {
+			if (_video_stream >= 0) {
+				fprintf(stderr,
+					"VVFStream(): Video stream conflict\n");
+				delete[] streamtypes;
+				_file = NULL;
+				return;
+			}
+
+			_video_stream = i;
+		}
+	}
+
+	delete[] streamtypes;
+
+	if (_video_stream < 0) {
+		fprintf(stderr, "VVFStream(): No video stream selected\n");
+		_file = NULL;
+		return;
+	}
+
+	if (_audio_stream > _video_stream) {
+		fprintf(stderr, "VVFStream(): Wrong stream order\n");
+		_file = NULL;
+		return;
+	}
+
+	if (!_width || !_height) {
+		fprintf(stderr, "VVFStream(): Invalid video resolution\n");
+		_file = NULL;
+		return;
+	}
+
+	_videobuf = new uint8_t[_width * _height];
+	_palette = new uint8_t[768];
+	_block_chunks = new unsigned[_stream_count];
+	_block_sizes = new unsigned[_stream_count];
+	memset(_videobuf, 0, _width * _height * sizeof(uint8_t));
+	memset(_palette, 0, 768 * sizeof(uint8_t));
+	memset(_block_chunks, 0, _stream_count * sizeof(unsigned));
+	memset(_block_sizes, 0, _stream_count * sizeof(unsigned));
+
+	if (!init_block()) {
+		_file = NULL;
+		return;
+	}
 }
 
-
-
-
-#define TIT_FREQ    (3*10) /*2 sec*/
-
-static char *titles_ptr = NULL, *titles_act = NULL;
-static int titles_cnt = 0;
-static char titles_buf[300];
-
-static void sig_Subtitles(int ID, int Size, byte *Data, int Stream)
-{
-    titles_ptr = (char*) memalloc(strlen((char*)Data) + 1);
-    titles_act = titles_ptr + 1;
-    titles_cnt = 0;
-    strcpy(titles_ptr, (char*) Data);
+VVFStream::~VVFStream(void) {
+	clear();
 }
 
+unsigned VVFStream::init_block(void) {
+	MemoryReadStream *header;
+	size_t header_size;
+	unsigned i, opcode, size;
+	int streamid;
 
-extern void ClearScr();
-extern void *LFB_Lock();
-extern void LFB_Unlock();
-extern int SwitchDisplayMode(int mode);
+	if (!_file) {
+		return 0;
+	}
 
-extern byte *VideoLFB;
-extern unsigned LFB_Pitch;
-extern LPDIRECTDRAW2                  lpDD2;          // DirectDraw2 interface
-extern LPDIRECTDRAWSURFACE2           lpDDSPrimary3;  // DirectSurface3 interface
+	_block_frames = _file->readUint32LE();
+	_file->readUint32LE();	// block play time, ignore
+	header_size = _file->readUint32LE();
 
+	for (i = 0; i < _stream_count; i++) {
+		_block_chunks[i] = _file->readUint16LE();
+	}
 
+	_file->seek(512 - 2 * _stream_count, SEEK_CUR);
 
+	for (i = 0; i < _stream_count; i++) {
+		_block_sizes[i] = _file->readUint32LE();
+	}
 
-static void draw_titles()
-{
-    char *bx;
-    byte *adr = ((byte*)VideoLFB) + 430 * 640;
+	_file->seek(1524 - 4 * _stream_count, SEEK_CUR);
+	header = _file->readStream(header_size);
 
-    if (iniLanguage[0] == 'c') return;
-    if (titles_cnt == 0) {
-        for (bx = titles_buf; (*titles_act != '*') && (*titles_act != '#'); titles_act++, bx++) 
-            {*bx = *titles_act;}
-        if (*titles_act == '#') { // end
-            memset(adr, 0, 12800);
-            memfree(titles_ptr);
-            titles_ptr = NULL;
-            return;
-        }
-        titles_act++;
-        *bx = 0;
-        memset(adr, 0, 12800);
-        PutStr(adr, LFB_Pitch, 50,
-          (640 - GetStrWidth(titles_buf, NormalFont)) / 2, 0, titles_buf, NormalFont, 255, 0);
-    }
-    if (++titles_cnt == TIT_FREQ) titles_cnt = 0;
+	if (_file->eos()) {
+		delete header;
+		fprintf(stderr, "init_block(): Premature end of file\n");
+		return 0;
+	}
+
+	delete[] _frame_map;
+	_frame_map = NULL;
+
+	if (!_block_frames) {
+		delete header;
+		fprintf(stderr, "init_block(): No frames in block\n");
+		return 0;
+	}
+
+	_frame_map = new uint8_t[_block_frames];
+	memset(_frame_map, 0, _block_frames * sizeof(uint8_t));
+	i = 0;
+
+	while (1) {
+		opcode = header->readUint16LE();
+		size = header->readUint8();
+
+		if (header->eos()) {
+			delete header;
+			fprintf(stderr, "init_block(): Invalid block header format\n");
+			return 0;
+		}
+
+		// End of header marker
+		if (opcode == 0x100) {
+			break;
+		}
+
+		if (i >= _block_frames) {
+			delete header;
+			fprintf(stderr, "init_block(): Frame map overflow\n");
+			return 0;
+		}
+
+		switch (opcode) {
+		case 0:
+			i++;
+			break;
+
+		case 0x200:
+			if (size != 2) {
+				delete header;
+				fprintf(stderr, "init_block(): Frametime argument size mismatch: %u != 2\n", size);
+				return 0;
+			}
+
+			_frametime = header->readUint16LE();
+			break;
+
+		case 0x300:
+			if (size != 3) {
+				delete header;
+				fprintf(stderr, "init_block(): Frame chunk ID argument size mismatch: %u != 3\n", size);
+				return 0;
+			}
+
+			streamid = header->readUint8();
+			// Chunk ID, ignore. Chunk reordering not supported.
+			header->readUint16LE();
+
+			// Mark frames which update video buffer
+			// Non-video streams will be processed all at once
+			// in the first frame. Dirty but simpler.
+			if (streamid == _video_stream) {
+				_frame_map[i] = 1;
+			}
+
+			break;
+
+		default:
+			delete header;
+			fprintf(stderr, "init_block(): Unknown opcode %u\n",
+				opcode);
+			return 0;
+		}
+	}
+
+	delete header;
+	_curstream = 0;
+	_curchunk = 0;
+	_curframe = 0;
+	memset(_videobuf, 0, _width * _height * sizeof(uint8_t));
+	return 1;
 }
 
+// Frame type 0x10
+unsigned VVFStream::decode_raw(SeekableReadStream &stream) {
+	unsigned size;
 
+	size = stream.read(_videobuf, _width * _height);
 
+	if (size != _width * _height) {
+		fprintf(stderr, "decode_raw(): Premature end of video chunk\n");
+		return 0;
+	}
 
-
-static int svga_StartPlaying(TMutationHeader *Mut)
-{
-    if (Mut->AudioChannels) OpenChannels(0, Mut->AudioChannels);
-    return 1;
+	return 1;
 }
 
+// Frame type 0xf
+unsigned VVFStream::decode_rle(SeekableReadStream &stream) {
+	size_t pos = 0;
+	unsigned i, x, y, runs;
+	int size;
+	uint8_t tmp;
 
+	for (y = 0; y < _height; y++) {
+		runs = stream.readUint8();
 
-static int svga_StopPlaying(TMutationHeader *Mut)
-{
-    if (Mut->AudioChannels) CloseChannels();
-    if (titles_ptr) {
-        memfree(titles_ptr);
-        titles_ptr = NULL;
-    }
-    return 1;
+		for (x = 0, i = 0; i < runs; i++) {
+			size = stream.readSint8();
+
+			if (x + abs(size) > _width) {
+				fprintf(stderr, "decode_rle(): Scanline overflow %u\n", x+abs(size));
+				return 0;
+			}
+
+			if (size >= 0) {
+				tmp = stream.readUint8();
+				memset(_videobuf + pos, tmp, size);
+			} else {
+				size = -size;
+				stream.read(_videobuf + pos, size);
+			}
+
+			pos += size;
+			x += size;
+		}
+
+		if (stream.eos()) {
+			fprintf(stderr, "decode_rle(): Premature end of video chunk\n");
+			return 0;
+		}
+
+		if (x != _width) {
+			fprintf(stderr, "decode_rle(): Scanline length mismatch, %u != %u\n", x, _width);
+			return 0;
+		}
+	}
+
+	return 1;
 }
 
+// Frame type 0x7
+unsigned VVFStream::decode_delta(SeekableReadStream &stream) {
+	unsigned offset, pos, x, y = 0, skiplines = _height;
+	int i, size;
+	uint8_t pix1, pix2;
 
+	skiplines -= stream.readUint16LE();
+	size = stream.readSint16LE();
 
+	if (size < 0) {
+		y = -size - 1;
+	}
 
-static void svga_DrawFrame(TMutationHeader *Mut, void *Buffer, int FromY, int ToY)
-{
-    int delta = ToY - FromY + 1;
-    byte *b = (byte*) Buffer + FromY * 320;
-    
-    LFB_Lock();
+	for (; y < _height; y++) {
+		x = 0;
 
-    _asm {
-        push esi
-        push edi
-        push eax
-        push edx
-        push ecx
-        mov  esi, b
+		while (1) {
+			offset = stream.readUint8();
+			size = stream.readSint8();
 
-        mov  edi, VideoLFB
-        add  edi, 38400 // 640 * 60
-        mov  eax, FromY
-        mov  edx, 1280 // 2 * 640
-        mul  edx
-        add  edi, eax
+			if (stream.eos() || !size) {
+				break;
+			}
 
-        mov  edx, delta
-        mov  ecx, 320
-    rep_lab:
-        lodsb
-        mov  ah, al
-        stosw
-        loop rep_lab
+			if (size == -1 && skiplines >= 256 - offset) {
+				offset = 256 - offset;
+				y += offset;
+				skiplines -= offset;
+				x = 0;
+				continue;
+			}
 
-        mov  ecx, 320
-        sub  esi, 320
-    rep_lab2:
-        lodsb
-        mov  ah, al
-        stosw
-        loop rep_lab2
+			if (y >= _height) {
+				fprintf(stderr, "decode_delta(): Video height overflow\n");
+				return 0;
+			}
 
-    
-        mov  ecx, 320
-        dec  edx        
-        jnz  rep_lab
+			x += offset;
+			pos = y * _width + x;
 
-        pop  ecx
-        pop  edx
-        pop  eax
-        pop  edi
-        pop  esi
-    }
-    
-    if (titles_ptr) draw_titles();
-    LFB_Unlock();
+			if (pos + 2 * abs(size) > _width * _height) {
+				fprintf(stderr, "decode_delta(): Video buffer overflow\n");
+				return 0;
+			}
+
+			if (size > 0) {
+				stream.read(_videobuf + pos, 2 * size);
+			} else {
+				size = -size;
+				pix1 = stream.readUint8();
+				pix2 = stream.readUint8();
+
+				for (i = 0; i < size; i++) {
+					_videobuf[pos++] = pix1;
+					_videobuf[pos++] = pix2;
+				}
+			}
+
+			x += 2 * size;
+		}
+	}
+
+	return 1;
 }
 
+// Chunk type 0x1 (uncompressed) or 0xd (compressed)
+unsigned VVFStream::decode_video(SeekableReadStream &stream) {
+	unsigned segments, i, tmp, size, type, frames = 0;
+	int palchange = 0, ret = 0;
 
+	stream.readUint32LE();
+	tmp = stream.readUint16LE();
+	segments = stream.readUint16LE();
 
-static void svga_InterlaceDrawFrame(TMutationHeader *Mut, void *Buffer, int FromY, int ToY)
-{
-    int delta = ToY - FromY + 1;
-    byte *b = (byte*) Buffer + FromY * 320;
-    
-    LFB_Lock();
+	if (stream.eos() || tmp != 0xf1fa) {
+		fprintf(stderr, "decode_video(): Invalid video chunk format\n");
+		return 0;
+	}
 
-    _asm {
-        push esi
-        push edi
-        push eax
-        push edx
-        push ecx
-        mov  esi, b
+	stream.seek(8, SEEK_CUR);
 
-        mov  edi, VideoLFB
-        add  edi, 38400 // 640 * 60
-        mov  eax, FromY
-        mov  edx, 1280 // 2 * 640
-        mul  edx
-        add  edi, eax
+	for (i = 0; i < segments; i++) {
+		size = stream.readUint32LE();
+		type = stream.readUint16LE();
 
-        mov  edx, delta
-        mov  ecx, 320
-    rep_lab:
-        lodsb
-        mov  ah, al
-        stosw
-        loop rep_lab
-    
-        mov  ecx, 320
-        add  edi, 640
-        dec  edx        
-        jnz  rep_lab
+		if (stream.eos()) {
+			fprintf(stderr, "decode_video(): Premature end of video chunk\n");
+			return 0;
+		}
 
-        pop  ecx
-        pop  edx
-        pop  eax
-        pop  edi
-        pop  esi
-    }
-    
-    if (titles_ptr) draw_titles();
-    LFB_Unlock();
+		switch (type) {
+		case 0x4:
+			if (size > 768 + 10) {
+				fprintf(stderr, "decode_video(): Palette too big\n");
+				return 0;
+			}
+
+			stream.readUint32LE();
+			stream.read(_palette, size - 10);
+			palchange = 1;
+			break;
+
+		case 0x7:
+			frames++;
+			ret = decode_delta(stream);
+			break;
+
+		case 0xf:
+			frames++;
+			ret = decode_rle(stream);
+			break;
+
+		case 0x10:
+			frames++;
+			ret = decode_raw(stream);
+			break;
+
+		// TODO: Find out what this segment actually is
+		case 0x12:
+			stream.seek(size - 6, SEEK_CUR);
+			break;
+
+		default:
+			fprintf(stderr, "decode_video(): Unknown video segment type %u\n",
+				type);
+			return 0;
+		}
+	}
+
+	if (!frames) {
+		fprintf(stderr, "decode_video(): No frame data in video chunk\n");
+		return 0;
+	} else if (frames > 1) {
+		fprintf(stderr, "decode_video(): Multiple frame segments in video chunk\n");
+		return 0;
+	}
+
+	if (!ret) {
+		return 0;
+	}
+
+	return VVF_VIDEO | (palchange ? VVF_PALETTE : 0);
 }
 
+// Chunk type 0xe
+unsigned VVFStream::decode_audio(SeekableReadStream &stream) {
+	size_t size;
+	unsigned format;
 
+	format = stream.readUint8();
 
+	if (format) {
+		fprintf(stderr, "decode_audio(): Unknown audio format %u\n",
+			format);
+		return 0;
+	}
 
+	_audiofreq = stream.readUint32LE();
+	format = stream.readUint8();
+	_audiochans = stream.readUint8() + 1;
+	size = stream.readUint32LE();
 
+	if (stream.eos()) {
+		fprintf(stderr, "decode_audio(): Premature end of audio chunk\n");
+		return 0;
+	}
 
+	delete[] _audiobuf;
+	_audiosize = size;
+	_audiobuf = new uint8_t[_audiosize];
+	size = stream.read(_audiobuf, _audiosize);
 
-void svga_SetPalette(void *pal)
-{
-    SetPalette((char*)pal);
+	if (size != _audiosize) {
+		fprintf(stderr, "decode_audio(): Premature end of audio chunk %lu != %u\n", size ,_audiosize);
+		delete[] _audiobuf;
+		_audiobuf = NULL;
+		_audiosize = 0;
+		return 0;
+	}
+
+	return VVF_AUDIO;
 }
 
-
-
-int my_TI()
-{
-    TEvent e;
-
-    do {
-        GetEvent(&e);
-        if ((e.What == evKeyDown) || (e.What == evMouseDown)) {
-            return 1;
-        }
-    } while (e.What != evNothing);
-    return 0;
+void VVFStream::clear(void) {
+	delete[] _palette;
+	delete[] _videobuf;
+	delete[] _audiobuf;
+	delete[] _frame_map;
+	delete[] _block_chunks;
+	delete[] _block_sizes;
 }
 
+unsigned VVFStream::next_frame(void) {
+	MemoryReadStream *stream;
+	size_t size;
+	unsigned tmp, ctype, ret = 0;
 
-///////////////
+	if (!_file) {
+		return 0;
+	}
 
-int PlayAnimation(char *name)
-{
-    FILE *animf;
-    int rt;
-    TEvent e;
+	// End of block, initialize the next one
+	if (_curframe >= _block_frames) {
+		for (; _curchunk < _block_chunks[_curstream]; _curchunk++) {
+			_file->readUint8();
+			size = _file->readUint32LE();
+			_file->seek(size, SEEK_CUR);
+		}
 
-    // shozeni Signusu - uvolni to potrebnou pamet:
-    MouseHide();
-    DoneInteract();
-    StopMusic();
-    CloseChannels();
+		_curstream++;
 
-    ClearScr();
-    if (iniResolution != SVGA_640x480) SwitchDisplayMode(SVGA_640x480);
-    MouseSetRect(639, 479, 640, 480);
-    MouseSetPos(640, 480);
-    
-    // pripraveni prehravace:
-    VVF_SelectMutation = sig_SelectMutation;
-    VVF_PlayDirect = TRUE;
-    VVF_InterpolateFrames = FALSE;
-    VVF_free = free;
-    VVF_malloc = malloc;
-    VVF_DrawFrame = (iniInterpolateAnims) ? svga_InterlaceDrawFrame : svga_DrawFrame;
-    VVF_StartPlaying = svga_StartPlaying;
-    VVF_StopPlaying = svga_StopPlaying;
-    VVF_CanSetPalette = TRUE;
-    VVF_ExtendedChunk = sig_Subtitles;
-    VVF_TestInterrupt = my_TI;
-    VVF_SetPalette = svga_SetPalette;
-    
-    // prehrani animace:
-    animf = GetAnimFile(name);
-#ifdef DEBUG
-    if (animf == NULL) return 0;
-#endif
-    do {GetEvent(&e);} while (e.What != evNothing);
-    DoneTimer();
-    rt = PlayVVF(animf);
-    InitTimer();
-    do {GetEvent(&e);} while (e.What != evNothing);
-    fclose(animf);
-    VVF_ExtendedChunk = NULL;    
-    
-    // reinicializace:
-    // (test uspechu uz se neprovadi, provedl se pri startu Signsus)
-    {
-        LFB_Lock();
-        for (int i = 0; i < 480; i++)
-            memset(VideoLFB + LFB_Pitch * i, 0, 640);
-        LFB_Unlock();
-    }
-    if (iniResolution != SVGA_640x480) SwitchDisplayMode(iniResolution);
-    ClearScr();
-    SetPalette(Palette);
-    OpenChannels(MUSIC_CHANNELS, EFFECT_CHANNELS);
-    InitInteract();
-    MouseSetRect(0, 0, RES_X-1, RES_Y-1);
-    MouseSetPos(RES_X / 2, RES_Y / 2);
-    MouseShow();
-    return rt;
+		for (; _curstream < (int)_stream_count; _curstream++) {
+			_file->seek(_block_sizes[_curstream], SEEK_CUR);
+		}
+
+		// End of file
+		if (++_curblock >= _block_count) {
+			return 0;
+		}
+
+		if (!init_block()) {
+			_file = NULL;
+			return 0;
+		}
+	}
+
+	// Handle the audio stream in the first frame
+	if (!_curframe && _curstream <= _audio_stream) {
+		for (; _curstream < _audio_stream; _curstream++) {
+			_file->seek(_block_sizes[_curstream], SEEK_CUR);
+		}
+
+		_curchunk = 0;
+
+		for (; _curchunk < _block_chunks[_curstream]; _curchunk++) {
+			ctype = _file->readUint8();
+			size = _file->readUint32LE();
+
+			if (_file->eos()) {
+				_file = NULL;
+				fprintf(stderr, "next_frame(): Premature end of file\n");
+				return 0;
+			}
+
+			// FIXME: Handle chunk type 3. It's a MIDI-like music
+			// track assembled from short instrument samples that
+			// plays at the same time as the main audio track
+			// (chunk type 14)
+			if (ctype != 14) {
+				_file->seek(size, SEEK_CUR);
+				continue;
+			}
+
+			stream = _file->readStream(size);
+
+			if (_file->eos()) {
+				delete stream;
+				_file = NULL;
+				fprintf(stderr, "next_frame(): Premature end of file\n");
+				return 0;
+			}
+
+			ret = decode_audio(*stream);
+			delete stream;
+
+			if (!ret) {
+				_file = NULL;
+				return 0;
+			}
+		}
+
+		_curstream++;
+		_curchunk = 0;
+	}
+
+	for (; _curstream < _video_stream; _curstream++) {
+		_file->seek(_block_sizes[_curstream], SEEK_CUR);
+	}
+
+	if (!_frame_map[_curframe++]) {
+		return ret | VVF_VIDEO;
+	}
+
+	if (_curchunk >= _block_chunks[_curstream]) {
+		_file = NULL;
+		fprintf(stderr, "next_frame(): Chunk past end of video stream\n");
+		return 0;
+	}
+
+	ctype = _file->readUint8();
+	size = _file->readUint32LE();
+
+	if (_file->eos()) {
+		_file = NULL;
+		fprintf(stderr, "next_frame(): Premature end of file\n");
+		return 0;
+	}
+
+	if (ctype == 13) {
+		MemoryReadStream *srcstream = _file->readStream(size);
+
+		if (_file->eos()) {
+			delete srcstream;
+			_file = NULL;
+			fprintf(stderr, "next_frame(): Premature end of file\n");
+			return 0;
+		}
+
+		stream = decompress(*srcstream);
+		delete srcstream;
+
+		if (!stream) {
+			_file = NULL;
+			return 0;
+		}
+	} else if (ctype == 1) {
+		stream = _file->readStream(size);
+	} else {
+		_file = NULL;
+		fprintf(stderr, "next_frame(): Unknown chunk type %u\n", ctype);
+		return 0;
+	}
+
+	if (_file->eos()) {
+		delete stream;
+		_file = NULL;
+		fprintf(stderr, "next_frame(): Premature end of file\n");
+		return 0;
+	}
+
+	tmp = decode_video(*stream);
+	delete stream;
+
+	if (!tmp) {
+		_file = NULL;
+		return 0;
+	}
+
+	_curchunk++;
+	return tmp | ret;
 }
 
-#endif
+const uint8_t *VVFStream::palette(void) const {
+	return _palette;
+}
+
+const uint8_t *VVFStream::videobuf(void) const {
+	return _videobuf;
+}
+
+unsigned VVFStream::video_width(void) const {
+	return _width;
+}
+
+unsigned VVFStream::video_height(void) const {
+	return _height;
+}
+
+unsigned VVFStream::frame_time(void) const {
+	return _frametime;
+}
+
+const uint8_t *VVFStream::audiobuf(void) const {
+	return _audiobuf;
+}
+
+unsigned VVFStream::audio_freq(void) const {
+	return _audiofreq;
+}
+
+unsigned VVFStream::audio_channels(void) const {
+	return _audiochans;
+}
+
+unsigned VVFStream::audio_size(void) const {
+	return _audiosize;
+}
+
+bool VVFStream::error(void) const {
+	return !_file;
+}
+
+void VVFStream::reset(void) {
+	if (!_file) {
+		return;
+	}
+
+	_file->seek(_startpos, SEEK_SET);
+	_curblock = 0;
+
+	if (!init_block()) {
+		_file = NULL;
+	}
+}
+
+int open_anim_file(File &file, const char *name) {
+	int num;
+
+	if (!AnimsDF) {
+		return 0;
+	}
+
+	num = AnimsDF->lookfor(name, 0, AnimsDF->getcount() - 1);
+
+	if (num < 0) {
+		return 0;
+	}
+
+	if (!file.open(AnimsDF->filename(), File::READ)) {
+		return 0;
+	}
+
+	file.seek(AnimsDF->getinfo(num)->offset, SEEK_SET);
+	return 1;
+}
+
+int check_skip_event(void) {
+	TEvent e;
+
+	do {
+		GetEvent(&e);
+
+		if ((e.What == evKeyDown) || (e.What == evMouseDown)) {
+			return 1;
+		}
+	} while (e.What != evNothing);
+
+	return 0;
+}
+
+int PlayAnimation(const char *name) {
+	File stream;
+	TEvent e;
+	unsigned frame, width, height, timer, curtime;
+	MIDASsample audio = INVALID_SAMPLE;
+
+	if (!open_anim_file(stream, name)) {
+		return 0;
+	}
+
+	VVFStream anim(&stream);
+
+	MouseHide();
+	StopMusic();
+	ClearScr();
+	DoneTimer();
+
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing);
+
+	width = anim.video_width();
+	height = anim.video_height();
+	timer = SDL_GetTicks();
+
+	while ((frame = anim.next_frame())) {
+		if (frame & VVFStream::VVF_AUDIO) {
+			if (audio != INVALID_SAMPLE) {
+				StopSample(audio);
+				FreeSample(audio);
+			}
+
+			audio = ConvertSample(anim.audiobuf(),
+				anim.audio_size(), anim.audio_freq(), -16,
+				anim.audio_channels(), 0);
+			PlaySample(audio, 0, SpeechVolume, 128);
+		}
+
+		if (frame & VVFStream::VVF_PALETTE) {
+			SetRawPalette(anim.palette());
+		}
+
+		if (frame & VVFStream::VVF_VIDEO) {
+			DrawVideoFrame(anim.videobuf(), width, height);
+		}
+
+		if (check_skip_event()) {
+			break;
+		}
+
+		timer += anim.frame_time();
+		curtime = SDL_GetTicks();
+
+		if (timer > curtime) {
+			SDL_Delay(timer - curtime);
+		}
+	}
+
+	if (audio != INVALID_SAMPLE) {
+		StopSample(audio);
+		FreeSample(audio);
+	}
+
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing);
+
+	InitTimer();
+	ClearScr();
+	SetPalette(Palette);
+	MouseShow();
+	return !anim.error();
+}

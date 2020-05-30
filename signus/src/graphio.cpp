@@ -347,7 +347,17 @@ void SetPalettePart(char *paldat, int palofs, int palsize)
     SDL_SetColors(screen, palette+palofs, palofs, palsize);
 }
 
+void SetRawPalette(const uint8_t *pal) {
+	int i;
 
+	for (i = 0; i < 256; i++) {
+		palette[i].r = *pal++;
+		palette[i].g = *pal++;
+		palette[i].b = *pal++;
+	}
+
+	SDL_SetColors(screen, palette, 0, 256);
+}
 
 
 
@@ -407,7 +417,46 @@ void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
     SDL_UpdateRect(screen, x, y, sx, sy);
 }
 
+void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
+	uint8_t *screenbuf, *dst;
+	const uint8_t *src;
+	unsigned x, y, pitch = width;
+	int basex, basey;
 
+	if (SomeoneDrawing()) {
+		return;
+	}
+
+	EnterTCS();
+	screenbuf = (uint8_t*)LFB_Lock();
+	basex = (RES_X - 2 * (int)width) / 2;
+	basey = (RES_Y - 2 * (int)height) / 2;
+	width = (RES_X < 2 * width) ? RES_X : 2 * width;
+	height = (RES_Y < 2 * height) ? RES_Y : 2 * height;
+
+	if (basex < 0) {
+		frame -= basex >> 1;
+		basex = 0;
+	}
+
+	if (basey < 0) {
+		frame -= pitch * (basey >> 1);
+		basey = 0;
+	}
+
+	for (y = 0; y < height; y++) {
+		src = frame + pitch * (y >> 1);
+		dst = screenbuf + LFB_Pitch * (basey + y);
+
+		for (x = 0; x < width; x++) {
+			dst[basex + x] = src[x >> 1];
+		}
+	}
+
+	LFB_Unlock();
+	LeaveTCS();
+	SDL_UpdateRect(screen, basex, basey, width, height);
+}
 
 
 

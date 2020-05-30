@@ -148,6 +148,9 @@ extern TDataFile *GraphicsDF, *GraphicsI18nDF;
 // Datovy soubor s texty:
 extern TDataFile *TextsDF;
 
+// Cutscene data file
+extern TDataFile *AnimsDF;
+
 // Oba textove fonty:
 extern TFont *NormalFont;
 extern TFont *HugeFont;

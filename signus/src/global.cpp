@@ -289,7 +289,7 @@ void ApplyINI()
 
 
 
-TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF;
+TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF, *AnimsDF;
 
 TFont *NormalFont;
 TFont *HugeFont;
@@ -329,12 +329,15 @@ int RollDice()
 
 // Zkontroluje pritomnost souboru:
 
-int CheckFile(const char *name) {
+int test_file_exists(const char *name) {
 	File tmp;
 
 	multipath_fopen(tmp, name, File::READ);
+	return tmp.isOpen();
+}
 
-	if (!tmp.isOpen()) {
+int CheckFile(const char *name) {
+	if (!test_file_exists(name)) {
 		fprintf(stderr, "Cannot find data file '%s'!\n", name);
 		return FALSE;
 	}
@@ -360,73 +363,92 @@ int DoMemoryCheck()
 
 
 
-int InitGlobal()
-{
+int InitGlobal() {
 #ifdef DEBUG
-    dbgOutput = fopen("debug.nfo", "wt");
-    {   
-        TDPMIInfo i;
-        
-        dpmiinfo(&i);
-        fprintf(dbgOutput, "DPMI %i.%i\nVirtual memory: %i\n",
-                i.VersionMajor, i.VersionMinor, i.Flags & VMM_Present);
-    }
-    fprintf(dbgOutput, 
-            "Free memory (on start): %ikB\n",   GetFreeMem() / 1024);
+	dbgOutput = fopen("debug.nfo", "wt");
+
+	{
+		TDPMIInfo i;
+
+		dpmiinfo(&i);
+		fprintf(dbgOutput, "DPMI %i.%i\nVirtual memory: %i\n",
+			i.VersionMajor, i.VersionMinor, i.Flags & VMM_Present);
+	}
+
+	fprintf(dbgOutput, "Free memory (on start): %ikB\n", GetFreeMem()/1024);
 #endif
-   
-    if (!LoadINI()) return FALSE;
 
-    if (!CheckFiles()) return FALSE;
-    if (!DoMemoryCheck()) return FALSE;
+	if (!LoadINI()) {
+		return FALSE;
+	}
 
-    TextsDF = new TDataFile("texts.dat", dfOpenRead);
+	if (!CheckFiles()) {
+		return FALSE;
+	}
 
-    GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
-    GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
+	if (!DoMemoryCheck()) {
+		return FALSE;
+	}
 
-    char fontfile[1024];
-    char fontfileTiny[1024];
-    snprintf(fontfile, 1024, "%s/nolang/FreeSans.ttf", getSignusDataDir());
-    snprintf(fontfileTiny, 1024, "%s/nolang/nimbus_sans.pfb", getSignusDataDir());
-    TTF_Init();
-    NormalFont = TTF_OpenFont(fontfile, 12);
-    TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
-    HugeFont = TTF_OpenFont(fontfile, 20);
-    TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
-    TinyFont = TTF_OpenFont(fontfileTiny, 10);
-    TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
-    
-    if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) return 0;
-    
-    MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
-    lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
-    {
-        char bu[20];
-        sprintf(bu, "%imseg%%i", iniResolution - 0x100);
-        LoadArray(MessageFrames, 3, GraphicsDF, bu);
-    }
-    TimerWatchBkg = GraphicsDF->get("timerbkg");
-    TimerWatchBuf = memalloc(50*14);
-    ProgressBuf = (byte*) memalloc(PROGRESS_SX * PROGRESS_SY);
-    
-    {
-        void *p;
-        p = (byte*)GraphicsDF->get("paletted");
-        memcpy(DarkingTable, p, 256);
-        memfree(p);
-        p = (byte*)GraphicsDF->get("paletteg");
-        memcpy(GrayingTable, p, 256);
-        memfree(p);
-    }
+	TextsDF = new TDataFile("texts.dat", dfOpenRead);
 
-    LoadArray((void**)SigText, TXT_COUNT, TextsDF, "txt%i");    
-    LoadArray((void**)MsgText, MSG_COUNT, TextsDF, "msg%i");    
-    
+	GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
+	GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
+
+	if (test_file_exists("anims.dat")) {
+		AnimsDF = new TDataFile("anims.dat", dfOpenRead);
+	} else if (test_file_exists("ANIMS.DAT")) {
+		AnimsDF = new TDataFile("ANIMS.DAT", dfOpenRead);
+	}
+
+	char fontfile[PATH_MAX];
+	char fontfileTiny[PATH_MAX];
+	snprintf(fontfile, PATH_MAX, "%s/nolang/FreeSans.ttf",
+		getSignusDataDir());
+	snprintf(fontfileTiny, PATH_MAX, "%s/nolang/nimbus_sans.pfb",
+		getSignusDataDir());
+	TTF_Init();
+	NormalFont = TTF_OpenFont(fontfile, 12);
+	TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
+	HugeFont = TTF_OpenFont(fontfile, 20);
+	TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
+	TinyFont = TTF_OpenFont(fontfileTiny, 10);
+	TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
+
+	if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) {
+		return 0;
+	}
+
+	MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
+	lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
+
+	{
+		char bu[20];
+		sprintf(bu, "%imseg%%i", iniResolution - 0x100);
+		LoadArray(MessageFrames, 3, GraphicsDF, bu);
+	}
+
+	TimerWatchBkg = GraphicsDF->get("timerbkg");
+	TimerWatchBuf = memalloc(50*14);
+	ProgressBuf = (byte*) memalloc(PROGRESS_SX * PROGRESS_SY);
+
+	{
+		void *p;
+		p = (byte*)GraphicsDF->get("paletted");
+		memcpy(DarkingTable, p, 256);
+		memfree(p);
+		p = (byte*)GraphicsDF->get("paletteg");
+		memcpy(GrayingTable, p, 256);
+		memfree(p);
+	}
+
+	LoadArray((void**)SigText, TXT_COUNT, TextsDF, "txt%i");
+	LoadArray((void**)MsgText, MSG_COUNT, TextsDF, "msg%i");
+
 #ifdef DEBUG
-    //memset(MessageFrames[2], 0, MSGBUF_SX * MSGBUF_SY);
+	//memset(MessageFrames[2], 0, MSGBUF_SX * MSGBUF_SY);
 #endif
-    return 1;
+	return 1;
 }
 
 

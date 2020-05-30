@@ -60,6 +60,7 @@ extern void SetPalette(char *paldat);
 // nastavi barevnou paletu z bufferu
 extern void SetPalettePart(char *paldat, int palofs, int palsize);
 // nastavi cast palety
+void SetRawPalette(const uint8_t *pal);
 
 extern SDL_Surface *GetScreenSurface();
 
@@ -113,6 +114,7 @@ extern void PutBitmapNZ(int x, int y, void *data, int w, int h);
 #define     PutBitmap32(x, y, data, w, h)                           PutBitmap(x, y, data, w, h)
 extern void GetBitmap(int x, int y, void *data, int w, int h);
 #define     GetBitmap32(x, y, data, w, h)                           GetBitmap(x, y, data, w, h)
+void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height);
 
 
 

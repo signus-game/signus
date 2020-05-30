@@ -88,6 +88,7 @@ public:
 	int getcount() { return count; }
 	TDataIndex *getinfo(int pos) { return &(index[pos]); }
 	void sortindex(int bywhat);
+	const char *filename(void) const;
 	~TDataFile();
 };
 

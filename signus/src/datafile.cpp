@@ -225,7 +225,9 @@ void TDataFile::sortindex(int bywhat)
 		qsort(index, count, sizeof(TDataIndex), compare_by_offset);	
 }
 
-
+const char *TDataFile::filename(void) const {
+	return resf.getName();
+}
 
 TDataFile::~TDataFile() {
 	// DAT file contents have changed, write new item index
