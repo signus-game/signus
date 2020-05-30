@@ -229,10 +229,13 @@ double ReadStream::readDoubleX86(void) {
 }
 
 MemoryReadStream *ReadStream::readStream(size_t size) {
+	MemoryReadStream *ret;
 	unsigned char *ptr = new unsigned char[size];
 
 	size = read(ptr, size);
-	return new MemoryReadStream(ptr, size);
+	ret = new MemoryReadStream(ptr, size);
+	delete[] ptr;
+	return ret;
 }
 
 MemoryReadStream::MemoryReadStream(const void *ptr, size_t len) : _data(NULL),
