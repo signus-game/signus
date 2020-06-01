@@ -98,7 +98,7 @@ extern void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int f
 
 
 // Kopirovani bmp do bmp:
-extern void CopyBmp(void *tar, int tarwidth, int x, int y, void *src, int w, int h);
+extern void CopyBmp(void *tar, int tarwidth, int x, int y, const void *src, int w, int h);
 extern void CopyBmpNZ(void *tar, int tarwidth, int x, int y, void *src, int w, int h);
 extern void CopyFromBmp(void *src, int srcwidth, int x, int y, void *tar, int w, int h);
 // Kresleni do bitmapy:
@@ -109,7 +109,7 @@ extern void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte cl
 
 
 // Vykresli obecnou bitmapu:
-extern void PutBitmap(int x, int y, void *data, int w, int h);
+extern void PutBitmap(int x, int y, const void *data, int w, int h);
 extern void PutBitmapNZ(int x, int y, void *data, int w, int h);
 #define     PutBitmap32(x, y, data, w, h)                           PutBitmap(x, y, data, w, h)
 extern void GetBitmap(int x, int y, void *data, int w, int h);

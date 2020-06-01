@@ -257,10 +257,10 @@ void DrawLitMap()
 
 ///////// Putbitmap:
 
-void PutBitmap(int x, int y, void *data, int w, int h)
+void PutBitmap(int x, int y, const void *data, int w, int h)
 {
     register int ay;
-    register byte *aptr = (byte*) data;
+    register const byte *aptr = (const byte*) data;
     register byte *vid;
 
     if (SomeoneDrawing()) return;
@@ -479,11 +479,11 @@ void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
 // KoPirovani mezi bitmapami - to ani nema cenu psat v ASM, stejne se to
 // skoro nepouziva...
 
-void CopyBmp(void *tar, int tarwidth, int x, int y, void *src, int w, int h)
+void CopyBmp(void *tar, int tarwidth, int x, int y, const void *src, int w, int h)
 {
     int i, j;
     byte *tp = ((byte *)tar) + x + y * tarwidth;
-    byte *sp = (byte *)src;
+    const byte *sp = (const byte *)src;
     int dif = tarwidth - w;
 
     for (i = 0; i < h; i++) {

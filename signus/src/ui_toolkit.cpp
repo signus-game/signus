@@ -494,8 +494,6 @@ void TDialog::Insert(TView *v)
     v->Owner = (void*)this;
 }
 
-
-
 int TDialog::SpecialHandle(TEvent *e, int Cmd)
 {
     if (Cmd > 0) return FALSE;
@@ -510,54 +508,83 @@ int TDialog::SpecialHandle(TEvent *e, int Cmd)
     }
 }
 
+int TDialog::HandleEvent(TEvent *e) {
+	int i, tmp, ret = -1;
+	TView *v;
+
+	if (e->What == evNothing) {
+		return -1;
+	}
+
+	DrwViewBf = DrwBuf;
+	DrwViewBfSzX = w;
+	e->Mouse.Where.x -= x;
+	e->Mouse.Where.y -= y;
+
+	for (i = 0; i < SubviewsCnt; i++) {
+		v = Subviews[i];
+		tmp = -1;
+
+		if (((e->What & evMouse) == 0) || IsInRect(e->Mouse.Where.x,
+			e->Mouse.Where.y, v->x, v->y, v->x + v->w - 1,
+			v->y + v->h - 1)) {
+
+			e->Mouse.Where.x -= v->x;
+			e->Mouse.Where.y -= v->y;
+			tmp = v->HandleEvent(e);
+			e->Mouse.Where.x += v->x;
+			e->Mouse.Where.y += v->y;
+
+			if (tmp) {
+				ret = tmp;
+				break;
+			}
+		}
+	}
+
+	tmp = SpecialHandle(e, ret);
+
+	if (tmp) {
+		ret = tmp;
+	}
+
+	return ret;
+}
 
 
-int TDialog::Exec()
-{
-    int i, dummy, rtn = -1;
-    int OldTimer = -1;
-    TEvent e;
-    TView *v;
 
-    MouseSetCursor(mcurArrow);
-    Draw();
-    FadeDlg(TRUE);
-    MouseSetRect(x, y, x+w-1, y+h-1);
+int TDialog::Exec() {
+	int rtn = -1;
+	int OldTimer = -1;
+	TEvent e;
 
-  while (rtn == -1) {
-    GetEvent(&e);
-    if (e.What == evNothing) {
-        if (OldTimer != TimerValue) {
-            e.What = evTimer;
-            OldTimer = TimerValue;
-        }
-            if (TimerValue % (20 * 5) == 0) { // jukebox
-                if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-            }
-    }
-    if (e.What != evNothing) {
-            DrwViewBf = DrwBuf;
-            DrwViewBfSzX = w;
-        e.Mouse.Where.x -= x, e.Mouse.Where.y -= y;
-        for (i = 0; i < SubviewsCnt; i++) {
-            v = Subviews[i];
-            dummy = -1;
-                if (((e.What & evMouse) == 0) || IsInRect(e.Mouse.Where.x, e.Mouse.Where.y,
-              v->x, v->y, v->x + v->w - 1, v->y + v->h - 1)) {
-            e.Mouse.Where.x -= v->x, e.Mouse.Where.y -= v-> y;
-            dummy = v->HandleEvent(&e);
-            e.Mouse.Where.x += v->x, e.Mouse.Where.y += v-> y;
-            if (dummy) {rtn = dummy; break;}
-          }
-        }
-            dummy = SpecialHandle(&e, rtn);
-            if (dummy != 0) rtn = dummy;
-    }
-  }
-    MouseSetRect(0, 0, RES_X-1, RES_Y-1);
-  FadeDlg(FALSE);
-    
-    return rtn;
+	MouseSetCursor(mcurArrow);
+	Draw();
+	FadeDlg(TRUE);
+	MouseSetRect(x, y, x+w-1, y+h-1);
+
+	while (rtn == -1) {
+		GetEvent(&e);
+
+		if (e.What == evNothing) {
+			if (OldTimer != TimerValue) {
+				e.What = evTimer;
+				OldTimer = TimerValue;
+			}
+
+			if (TimerValue % (20 * 5) == 0) { // jukebox
+				if (MusicOn && (!IsMusicPlaying())) {
+					JukeboxNext();
+				}
+			}
+		}
+
+		rtn = HandleEvent(&e);
+	}
+
+	MouseSetRect(0, 0, RES_X-1, RES_Y-1);
+	FadeDlg(FALSE);
+	return rtn;
 }
 
 
