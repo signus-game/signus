@@ -276,10 +276,10 @@ int TJukeboxDlg::SpecialHandle(TEvent *e, int Cmd)
 			break;
 			
 		case cmRemoveMod:
-			if ((PlayCount <= 0) || (LB_Play->Current < 0)) return -1;
+			if ((LB_Play->Current < 0) || (LB_Play->Current >= PlayCount)) return -1;
 			memfree(PlayList[LB_Play->Current]);
 			memmove(PlayList + LB_Play->Current, PlayList + (LB_Play->Current+1),
-			        sizeof(char*) * (PlayCount - LB_Play->Current));			
+			        sizeof(char*) * (PlayCount - LB_Play->Current - 1));
 			PlayList = (char**) memrealloc(PlayList, --PlayCount * sizeof(char*));
 			LB_Play->Data = PlayList;
 			LB_Play->Cnt = PlayCount;
