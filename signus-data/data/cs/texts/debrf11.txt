@@ -1,11 +1,11 @@
-#> Podle rozkazu Signus za£to‡il na severolebrukonsk  leti¨tˆ
- dr‘en  Konzorciem. Posl‚ze jsme zah jili £tok na nep© telsk‚
- pozice v˜chodn¡ho Lebrukonu, kter‚ jsou nyn¡ kompletnˆ
- zlikvidov ny.
-#> þ
+#> Podle rozkazu Signus zaÃºtoÄil na severolebrukonskÃ¡ letiÅ¡tÄ›
+ drÅ¾enÃ¡ Konzorciem. PoslÃ©ze jsme zahÃ¡jili Ãºtok na nepÅ™Ã¡telskÃ©
+ pozice vÃ½chodnÃ­ho Lebrukonu, kterÃ© jsou nynÃ­ kompletnÄ›
+ zlikvidovÃ¡ny.
+#> 
 #> F. Lambert.
-#> þ
-#> V le‡n‚#001 zpr vy#001
+#> 
+#> VÃ¡leÄnÃ©#001 zprÃ¡vy#001
 #e
 #l b11_001#
 #e

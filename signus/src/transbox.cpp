@@ -89,64 +89,89 @@ void TTransBox::Hide(int fast)
 
 
 
-void TTransBox::DrawUnits()
-{
+void TTransBox::DrawUnits() {
 	int i, ux, uy, clr;
-	
+
 	for (i = 0; i < Cnt; i++) {
 		ux = 8 + 57 * (i % (w / 57));
 		uy = 8 + 57 * (i / (w / 57));
-		CopyBmp(Buf, w, ux, uy, UnitsTransIcons[Units[lunits[i]]->Type], 56, 56);
-		if (Units[lunits[i]]->HitPoints < 0.3 * Units[lunits[i]]->MaxHitPoints) clr = 10; /*red*/ else clr = 59; /*light green*/
-		PercentBar(Buf, w, ux+1, uy+51, 54, 4, clr, 72,
-		           ((double)Units[lunits[i]]->HitPoints)/Units[lunits[i]]->MaxHitPoints, "");
+		CopyBmp(Buf, w, ux, uy, UnitsTransIcons[Units[lunits[i]]->Type],
+			56, 56);
+
+		if (Units[lunits[i]]->HitPoints < 0.3 * Units[lunits[i]]->MaxHitPoints) {
+			clr = 10; /*red*/
+		} else {
+			clr = 59; /*light green*/
+		}
+
+		PercentBar(Buf, w, h, ux+1, uy+51, 54, 4, clr, 72,
+			((double)Units[lunits[i]]->HitPoints)/Units[lunits[i]]->MaxHitPoints, "");
 	}
+
 	Draw(0);
 }
 
 
 
-int TTransBox::Handle()
-{
+int TTransBox::Handle() {
 	TEvent e;
 	int lastun = -1, un;
-	
+
 	DrawUnits();
+
 	while (TRUE) {
 		GetEvent(&e);
+
 		if (e.What == evMouseDown) {
-			if (e.Mouse.Buttons == mbRightButton) return -1;
-			else {
-				if (!IsInRect(e.Mouse.Where.x-x, e.Mouse.Where.y-y, 0, 0, w-1, h-1)) return -1;
-				e.Mouse.Where.x -= x+8, e.Mouse.Where.y -= y+8;
-				un = (e.Mouse.Where.x / 57) + (e.Mouse.Where.y / 57) * ((w-8) / 57);
-				if ((un >= Cnt) || (un < 0)) un = -1;
-				return un;
+			if (e.Mouse.Buttons == mbRightButton) {
+				return -1;
 			}
-		}
-		else if (e.What == evMouseMove) {
-			e.Mouse.Where.x -= x+8, e.Mouse.Where.y -= y+8;
+
+			if (!IsInRect(e.Mouse.Where.x-x, e.Mouse.Where.y-y, 0, 0, w-1, h-1)) {
+				return -1;
+			}
+
+			e.Mouse.Where.x -= x+8;
+			e.Mouse.Where.y -= y+8;
+			un = (e.Mouse.Where.x / 57) + (e.Mouse.Where.y / 57) * ((w-8) / 57);
+			if ((un >= Cnt) || (un < 0)) {
+				un = -1;
+			}
+
+			return un;
+		} else if (e.What == evMouseMove) {
+			e.Mouse.Where.x -= x+8;
+			e.Mouse.Where.y -= y+8;
 			un = (e.Mouse.Where.x / 57) + (e.Mouse.Where.y / 57) * (w-8) / 57;
-			if (!IsInRect(e.Mouse.Where.x+8, e.Mouse.Where.y+8, 0, 0, w-1, h-1) ||
-			    (un >= Cnt) || (un < 0)) {
+
+			if (!IsInRect(e.Mouse.Where.x+8, e.Mouse.Where.y+8, 0, 0, w-1, h-1) || (un >= Cnt) || (un < 0)) {
 				memcpy(Buf + 180*w, Templ+180*w, 18*w);
 				PutBitmap32(x, y+180, Buf+180*w, w, 18);
 				lastun = -1;
 				continue;
 			}
-			
-			if (un == lastun) continue;
+
+			if (un == lastun) {
+				continue;
+			}
+
 			lastun = un;
-			
+
 			// vykresli info o jednotce:
 			memcpy(Buf + 180*w, Templ+180*w, 18*w);
-			PutStr(Buf, w, 30+8, 181, Units[lunits[un]]->GetName(), NormalFont, clrWhite, clrBlack);
-			CopyBmpNZ(Buf, w, 1+8, 181, LevelBmps[((TUnit*)Units[lunits[un]])->Level], 29, 16);
+			PutStr(Buf, w, h, 30+8, 181,
+				Units[lunits[un]]->GetName(), NormalFont,
+				clrWhite, clrBlack);
+			CopyBmpNZ(Buf, w, 1+8, 181,
+				LevelBmps[((TUnit*)Units[lunits[un]])->Level],
+				29, 16);
 			PutBitmap32(x, y+180, Buf+180*w, w, 18);
-		}
-		else if (e.What == evKeyDown) {
-			if (e.Key.KeyCode == kbEnter) return lastun;
-			else return -1;
+		} else if (e.What == evKeyDown) {
+			if (e.Key.KeyCode == kbEnter) {
+				return lastun;
+			} else {
+				return -1;
+			}
 		}
 	}
 }

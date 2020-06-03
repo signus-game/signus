@@ -1,19 +1,19 @@
-#> Neptun je transportn¡ vzn ¨edlo. Bylo
- vytvo©eno podle technologie Arko¤ansk‚
- civilizace. Nem  ‘ dn‚ zbra¤ov‚ syst‚my.
-#> Nejvˆt¨¡ v˜hodou tˆchto stroj– je jejich
- schopnost p©epravovat jednotky p©es ter‚ny,
- p©es kter‚ by se pozemn¡ jednotky dost valy
- jen s velik˜mi obt¡‘emi nebo jen za pomoci
- ‘enijn¡ch stroj– M‚de¡. Slabinou Neptunu
- je jeho mal  odolnost, ocitne-li se pod
- palbou, co‘ znemo‘¤uje nasazen¡ tˆchto jednotek
- bez podpory dalekonosn˜ch zbran¡.
-#> "Tyto jednotky by mˆly b˜t po v¡tˆzn‚m
- ukon‡en¡ konfliktu p©evedeny
- na civiln¡ sektor, kde nahrad¡
- transportn¡ lodˆ. Tak by se mˆl zlep¨it
- postoj ve©ejnosti k arm dˆ." - v˜¤atek
- zpr vy Obrann‚ divize Nejvy¨¨¡mu Prezidiu.
+#> Neptun je transportnÃ­ vznÃ¡Å¡edlo. Bylo
+ vytvoÅ™eno podle technologie ArkoÅˆanskÃ©
+ civilizace. NemÃ¡ Å¾Ã¡dnÃ© zbraÅˆovÃ© systÃ©my.
+#> NejvÄ›tÅ¡Ã­ vÃ½hodou tÄ›chto strojÅ¯ je jejich
+ schopnost pÅ™epravovat jednotky pÅ™es terÃ©ny,
+ pÅ™es kterÃ© by se pozemnÃ­ jednotky dostÃ¡valy
+ jen s velikÃ½mi obtÃ­Å¾emi nebo jen za pomoci
+ Å¾enijnÃ­ch strojÅ¯ MÃ©deÃ­. Slabinou Neptunu
+ je jeho malÃ¡ odolnost, ocitne-li se pod
+ palbou, coÅ¾ znemoÅ¾Åˆuje nasazenÃ­ tÄ›chto jednotek
+ bez podpory dalekonosnÃ½ch zbranÃ­.
+#> "Tyto jednotky by mÄ›ly bÃ½t po vÃ­tÄ›znÃ©m
+ ukonÄenÃ­ konfliktu pÅ™evedeny
+ na civilnÃ­ sektor, kde nahradÃ­
+ transportnÃ­ lodÄ›. Tak by se mÄ›l zlepÅ¡it
+ postoj veÅ™ejnosti k armÃ¡dÄ›." - vÃ½Åˆatek
+ zprÃ¡vy ObrannÃ© divize NejvyÅ¡Å¡Ã­mu Prezidiu.
 #e
 #e

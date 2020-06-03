@@ -182,65 +182,85 @@ int DoMainMenu()
 //////// credits:
 
 
-void ShowCredits()
-{
-    char *buf;
-    char line[200];
-    void *ptr, *ptr2;
-    char *c;
-    int i, curln, lastchar;
-    int oldvol = MusicVolume;
-    
-    TEvent e;
+void ShowCredits() {
+	char *buf;
+	char line[200];
+	void *ptr, *ptr2;
+	char *c;
+	int i, curln, lastchar;
+	int oldvol = MusicVolume;
 
-    SetVolume(EffectsVolume, SpeechVolume, 64);
-    MouseHide();
-    ClearScr();
-    PlayMusic("solution.s3m");
+	TEvent e;
 
+	SetVolume(EffectsVolume, SpeechVolume, 64);
+	MouseHide();
+	ClearScr();
+	PlayMusic("solution.s3m");
 
-    do {GetEvent(&e);} while (e.What != evNothing);
-    e.What = evNothing;
- 
-    ptr = memalloc(RES_X * RES_Y);
-    memset(ptr, 0, 800*600);
-    ptr2 = GraphicsDF->get("mmnulogo");
-    memcpy(ptr, ptr2, 800 * 140);
-    memfree(ptr2);
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing);
 
-    buf = (char*) TextsDF->get("credits");
-    ptr2 = memalloc(RES_X * RES_Y);
-    memcpy(ptr2, ptr, RES_X * RES_Y);
-    DrawPicture(ptr);
+	ptr = memalloc(RES_X * RES_Y);
+	memset(ptr, 0, 800*600);
+	ptr2 = GraphicsDF->get("mmnulogo");
+	memcpy(ptr, ptr2, 800 * 140);
+	memfree(ptr2);
 
-    for (curln = 520; TRUE; curln -= 1) {
-        i = 0; line[0] = 0; lastchar = 0;
-        for (c = buf; *c != 0; c++) {
-            if (*c == '\n') {
-                line[lastchar] = 0;
-                if (strcmp(line, "END") == 0) break;
-                i++;
-                if (strlen(line) == 0) continue;
-                if ((curln + 20 * i > 60) && (curln + 20 * i < 540)) 
-                    PutStr(ptr, 800, 400 - GetStrWidth(line+1, NormalFont)/2,
-                           curln + 20 * i, line+1, NormalFont, 
-                           (line[0] == '*') ? 9/*red*/ : 2/*white*/, 0);
-                line[0] = 0; lastchar = 0;
-            }
-            else line[lastchar++] = *c;                
-        }
-        PutBitmap(0, 220, ((char*)ptr) + 220 * 800, 800, 300);
-        memcpy(ptr, ptr2, 800*600);
-        SDL_Delay(20);
+	buf = (char*) TextsDF->get("credits");
+	ptr2 = memalloc(RES_X * RES_Y);
+	memcpy(ptr2, ptr, RES_X * RES_Y);
+	DrawPicture(ptr);
 
-        GetEvent(&e);
-        if ((e.What == evKeyDown) || (e.What == evMouseDown)) break;
-    }
+	for (curln = 520; TRUE; curln -= 1) {
+		i = 0;
+		line[0] = 0;
+		lastchar = 0;
 
-    memfree(ptr);
-    memfree(ptr2);
-    memfree(buf);
-    MouseShow();
-    ClearScr();
-    SetVolume(EffectsVolume, SpeechVolume, oldvol);
+		for (c = buf; *c != 0; c++) {
+			if (*c != '\n') {
+				line[lastchar++] = *c;
+				continue;
+			}
+
+			line[lastchar] = 0;
+
+			if (strcmp(line, "END") == 0) {
+				break;
+			}
+
+			i++;
+
+			if (strlen(line) == 0) {
+				continue;
+			}
+
+			if ((curln + 20 * i > 60) && (curln + 20 * i < 540)) {
+				PutStr(ptr, RES_X, RES_Y,
+					400 - GetStrWidth(line+1, NormalFont)/2,
+					curln + 20 * i, line+1, NormalFont,
+					(line[0] == '*') ? 9/*red*/:2/*white*/,
+					0);
+			}
+
+			line[0] = 0; lastchar = 0;
+		}
+
+		PutBitmap(0, 220, ((char*)ptr) + 220 * 800, 800, 300);
+		memcpy(ptr, ptr2, 800*600);
+		SDL_Delay(20);
+
+		GetEvent(&e);
+
+		if ((e.What == evKeyDown) || (e.What == evMouseDown)) {
+			break;
+		}
+	}
+
+	memfree(ptr);
+	memfree(ptr2);
+	memfree(buf);
+	MouseShow();
+	ClearScr();
+	SetVolume(EffectsVolume, SpeechVolume, oldvol);
 }

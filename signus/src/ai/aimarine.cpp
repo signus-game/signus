@@ -54,7 +54,7 @@ TMarine::TMarine () : TArmy ()
 
 
 
-TMarine::TMarine (FILE *f) : TArmy (f)
+TMarine::TMarine (ReadStream &stream) : TArmy (stream)
 {
             
 }

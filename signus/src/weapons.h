@@ -68,8 +68,8 @@ class TWeapon {
             virtual int Shoot(void *shooter, int fromx, int fromy, int x, int y);
                   // vystreli na dane policko (+anim)
                   // return -1 kdyz nejsou naboje
-            virtual void Read(FILE *f);
-            virtual void Write(FILE *f);
+            virtual void Read(ReadStream &stream);
+            virtual void Write(WriteStream &stream);
                     // cteni a zapis aktualniho stavu zbrane
             virtual int GetType() {return -1;};
             virtual int AnimGetHeight(int fromx, int fromy, int tox, int toy, 
@@ -125,8 +125,8 @@ class TBomb : public TWeapon {
             void AnimStart(int fromx, int fromy, int tox, int toy);
             void AnimStop(int fromx, int fromy, int tox, int toy);
             int GetType() {return wpnExplos;};
-            void Read(FILE *f);
-            void Write(FILE *f);
+            void Read(ReadStream &stream);
+            void Write(WriteStream &stream);
             int ShootResult(int x, int y);
             void IncAN(int delta);
             void AnimProcess(int fromx, int fromy, int tox, int toy,
@@ -216,8 +216,8 @@ class TBalisticWeapon : public TProjectilWeapon {
             virtual int GetAmplitude(int path_length);
             int AnimFlyFrom(int length) {return length / 3;};
             TSprite *AnimGetSprite();
-            void Read(FILE *f);
-            void Write(FILE *f);
+            void Read(ReadStream &stream);
+            void Write(WriteStream &stream);
             int GetType() {return wpnExplos;};
             virtual int ShootResult(int x, int y);
             void IncAN(int delta);

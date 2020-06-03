@@ -62,8 +62,7 @@ TGroundArmy::TGroundArmy () : TArmy ()
 
 
 
-TGroundArmy::TGroundArmy (FILE *f) : TArmy (f)
-{
+TGroundArmy::TGroundArmy (ReadStream &stream) : TArmy (stream) {
                         
 }
 

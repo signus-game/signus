@@ -34,6 +34,7 @@ toho druheho
 #define _AUTOFIRE_H
 
 #include "units.h"
+#include "stream.h"
 
 
 
@@ -54,8 +55,8 @@ extern void DoAutofire(TUnit *unit);
 extern void RemoveFromAutofire(int ID);
 		// vyjme znicenou jednotku
 
-extern void LoadAutofire(FILE *f);
-extern void SaveAutofire(FILE *f);
+extern void LoadAutofire(ReadStream &stream);
+extern void SaveAutofire(WriteStream &stream);
 		// I/O nad autofirem
 
 #endif

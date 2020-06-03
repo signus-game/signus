@@ -1,31 +1,31 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Jedna z posledn°ch vòznamàj®°ch oblast°, kterÇ dosud
- nepodlÇhaj° kontrole Toriconu, je ostrov Penytras. Zvl†®tnost°
- tohoto ostrova je fakt, ëe p©es pomàrnà p©°jemnÇ klimatickÇ
- podm°nky nen° obòv†n civiln°m obyvatelstvem. Konzorcium zde
- soust©ed° vòzkum artefaktovòch technologi°, testov†n° novà
- vyv°jenòch zbran°, a vòcvik svòch £dernòch jednotek.
-#> Z°sk†n° Penytrasu by pro Toricon bylo obrovskòm p©°nosem
- Zvl†®tà velkou pozornost vànuje laserovòm tankñm, jejichë
- testov†n° zde v souáasnosti prob°h†, a r†d by je co nejd©°ve
- p©iálenil k vybaven° svòch pozemn°ch jednotek. Vzhledem ke
- skuteánosti, ëe Konzorcium mus° áelit n†porñm v oblastech
- jihovòchodn° Eutanie#001, se p©edpokl†d†, ëe vàt®inu vojenskòch
- sil soust©ed° mimo ostrov. Spoleánost se rozhodla vyuë°t
- p©°leëitosti a z°skat Penytras pod svou kontrolu.
+#> 
+ #p.toricon.282.183. 
+#> Jedna z posledn√≠ch v√Ωznamƒõj≈°√≠ch oblast√≠, kter√© dosud
+ nepodl√©haj√≠ kontrole Toriconu, je ostrov Penytras. Zvl√°≈°tnost√≠
+ tohoto ostrova je fakt, ≈æe p≈ôes pomƒõrnƒõ p≈ô√≠jemn√© klimatick√©
+ podm√≠nky nen√≠ ob√Ωv√°n civiln√≠m obyvatelstvem. Konzorcium zde
+ soust≈ôed√≠ v√Ωzkum artefaktov√Ωch technologi√≠, testov√°n√≠ novƒõ
+ vyv√≠jen√Ωch zbran√≠, a v√Ωcvik sv√Ωch √∫dern√Ωch jednotek.
+#> Z√≠sk√°n√≠ Penytrasu by pro Toricon bylo obrovsk√Ωm p≈ô√≠nosem
+ Zvl√°≈°tƒõ velkou pozornost vƒõnuje laserov√Ωm tank≈Øm, jejich≈æ
+ testov√°n√≠ zde v souƒçasnosti prob√≠h√°, a r√°d by je co nejd≈ô√≠ve
+ p≈ôiƒçlenil k vybaven√≠ sv√Ωch pozemn√≠ch jednotek. Vzhledem ke
+ skuteƒçnosti, ≈æe Konzorcium mus√≠ ƒçelit n√°por≈Øm v oblastech
+ jihov√Ωchodn√≠ Eutanie#001, se p≈ôedpokl√°d√°, ≈æe vƒõt≈°inu vojensk√Ωch
+ sil soust≈ôed√≠ mimo ostrov. Spoleƒçnost se rozhodla vyu≈æ√≠t
+ p≈ô√≠le≈æitosti a z√≠skat Penytras pod svou kontrolu.
  #p.tactisit.352.280.
-#> Od na®eho álovàka v Konzorciu ostrova jsme z°skali podrobnou
- mapu rozm°stàn° palebnòch vàë° a dal®°ch kritickòch m°st. Je
- t©eba ji podrobnà prostudovat, neboü p©esnÇ informace usp°®°
- prñbàh akce. K ostrovu v†s doprav° lodà vybavenÇ
- antidetekán°m ®t°tem, takëe Penytras bude m°t ®anci p©ivolat
- posily z mo©e aë v okamëiku, kdy n†s zamà©° pob©eën° radary.
-#> Äas, kterò tak z°sk†me by n†m màl postaáit k proveden° akce.
-#> ˛
+#> Od na≈°eho ƒçlovƒõka v Konzorciu ostrova jsme z√≠skali podrobnou
+ mapu rozm√≠stƒõn√≠ palebn√Ωch vƒõ≈æ√≠ a dal≈°√≠ch kritick√Ωch m√≠st. Je
+ t≈ôeba ji podrobnƒõ prostudovat, nebo≈• p≈ôesn√© informace usp√≠≈°√≠
+ pr≈Øbƒõh akce. K ostrovu v√°s doprav√≠ lodƒõ vybaven√©
+ antidetekƒçn√≠m ≈°t√≠tem, tak≈æe Penytras bude m√≠t ≈°anci p≈ôivolat
+ posily z mo≈ôe a≈æ v okam≈æiku, kdy n√°s zamƒõ≈ô√≠ pob≈ôe≈æn√≠ radary.
+#> ƒåas, kter√Ω tak z√≠sk√°me by n√°m mƒõl postaƒçit k proveden√≠ akce.
+#> 
 #> Paul Winters
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: dobòt a obsadit ostrov Penytras
+#> PRIM√ÅRN√ç C√çL: dob√Ωt a obsadit ostrov Penytras
 #e
 #l b15_001#
 #e

@@ -1,8 +1,8 @@
 #> We have encountered with the enemy in the general battle. The casualties were huge on
  both sides, but Toricon has yet succeeded to win and to move towards the Trufat fort.
-#> þ
+#> 
 #> T. Roy
-#> þ
+#> 
 #> War#001 News#001
 #e
 #l b17_001#

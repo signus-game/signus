@@ -1,7 +1,7 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> 
+ #p.toricon.282.183. 
 #> Port Luton, western Sotona
-#> þ
+#> 
 #> Probably the most important mission of this war conflict and of your whole life is near you.
 #> Toricon is about to realize an offence, which could change the final course of the war. After
  several failures, Toricon has finally succeeded to defeat Consortium and to open the access
@@ -15,7 +15,7 @@
  soon as the liquidation of the coastal towers will be done, your task is to break through the
  defence and to move inland. There is a minor zone of military bases several miles from the
  coast. We need to occupy these bases as well, because we count on their use next time.
-#> þ
+#> 
 #> Tim Coony
  #p.anamorf.320.184.
 #> PRIMARY AIM: Occupy the coastal zone of north-western Lystonia.

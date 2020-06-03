@@ -1,23 +1,23 @@
-#> Ka‘d‚ leti¨tˆ sest v  z radarov‚ vˆ‘e,
- hang r– a vzletov‚ a p©ist vac¡ dr hy.
- Radarov  vˆ‘ je z rove¤ i vel¡c¡m centrem.
- S¡dl¡ zde leti¨tn¡ d–stojn¡k, p©¡mo pod©¡zen˜
- kapit novy a navig to©i, kte©¡ pomoc¡
- vys¡la‡– pos¡laj¡ sv‚ informace
- bojov˜m stroj–m ve vzduchu. Av¨ak ka‘d  z
- tˆchto b z¡ je plnˆ automatick  a m–‘e pracovat
- i bez lidsk‚ho veden¡ (co‘ se i nez©¡dka
- st v  je-li leti¨tˆ obsazeno).
- Hang ry jsou podobnˆ jako radarov‚ vˆ‘e
- plnˆ automatizovn‚ a mohou pracovat i bez
- lidsk˜ch pokyn–. Ka‘d˜ z nich je vybaven
- servisn¡ jednotkou, kter  jim umo‘¤uje
- ‡ ste‡nˆ opravit po¨kozen‚ stroje.
- P©ist vac¡ dr hy jednotek Signus maj¡
- ve v˜bavˆ automatick˜ naviga‡n¡ syst‚m,
- kter˜ zaji¨tuje vysunut¡ podvozku a
- n jezd jednotky p©esnˆ na ur‡enou dr hu
- co‘ umo‘¤uje p©ist n¡ nˆkolika stroj–
- z rove¤.
+#> KaÅ¾dÃ© letiÅ¡tÄ› sestÃ¡vÃ¡ z radarovÃ© vÄ›Å¾e,
+ hangÃ¡rÅ¯ a vzletovÃ© a pÅ™istÃ¡vacÃ­ drÃ¡hy.
+ RadarovÃ¡ vÄ›Å¾ je zÃ¡roveÅˆ i velÃ­cÃ­m centrem.
+ SÃ­dlÃ­ zde letiÅ¡tnÃ­ dÅ¯stojnÃ­k, pÅ™Ã­mo podÅ™Ã­zenÃ½
+ kapitÃ¡novy a navigÃ¡toÅ™i, kteÅ™Ã­ pomocÃ­
+ vysÃ­laÄÅ¯ posÃ­lajÃ­ svÃ© informace
+ bojovÃ½m strojÅ¯m ve vzduchu. AvÅ¡ak kaÅ¾dÃ¡ z
+ tÄ›chto bÃ¡zÃ­ je plnÄ› automatickÃ¡ a mÅ¯Å¾e pracovat
+ i bez lidskÃ©ho vedenÃ­ (coÅ¾ se i nezÅ™Ã­dka
+ stÃ¡vÃ¡ je-li letiÅ¡tÄ› obsazeno).
+ HangÃ¡ry jsou podobnÄ› jako radarovÃ© vÄ›Å¾e
+ plnÄ› automatizovnÃ© a mohou pracovat i bez
+ lidskÃ½ch pokynÅ¯. KaÅ¾dÃ½ z nich je vybaven
+ servisnÃ­ jednotkou, kterÃ¡ jim umoÅ¾Åˆuje
+ ÄÃ¡steÄnÄ› opravit poÅ¡kozenÃ© stroje.
+ PÅ™istÃ¡vacÃ­ drÃ¡hy jednotek Signus majÃ­
+ ve vÃ½bavÄ› automatickÃ½ navigaÄnÃ­ systÃ©m,
+ kterÃ½ zajiÅ¡tuje vysunutÃ­ podvozku a
+ nÃ¡jezd jednotky pÅ™esnÄ› na urÄenou drÃ¡hu
+ coÅ¾ umoÅ¾Åˆuje pÅ™istÃ¡nÃ­ nÄ›kolika strojÅ¯
+ zÃ¡roveÅˆ.
 #e
 #e

@@ -6,6 +6,9 @@ AM_LDFLAGS = -fsanitize=address -fstack-protector -fsanitize=undefined
 
 ENGINE_FILES = \
            etables.cpp \
+           etab_ai.cpp \
+           etab_drw.cpp \
+           etab_mov.cpp \
            memmng.cpp \
            anims.cpp \
            autofire.cpp \
@@ -14,6 +17,7 @@ ENGINE_FILES = \
            showrngs.cpp \
            datafile.cpp \
            engine.cpp \
+           eng800.cpp \
            explode.cpp \
            fields.cpp \
            fonts.cpp \
@@ -44,9 +48,8 @@ ENGINE_FILES = \
            graphio.cpp \
            main.cpp \
            mission_screen.cpp \
-           graydark_g.c \
-           engdraw_g_1.cpp \
-           engdraw_g_2.cpp
+	   stream.cpp \
+           graydark_g.c
 
 AI_FILES = \
            ai/ai.cpp \
@@ -75,12 +78,19 @@ AI_FILES = \
            ai/ai18.cpp \
            ai/ai19.cpp
 
+header_files = ai/aiair.h ai/aiglobal.h ai/aiground.h ai/ai.h ai/aimarine.h \
+	ai/aitowers.h anims.h autofire.h briefing.h building.h consts.h \
+	datafile.h eng800.h engine.h engtimer.h etables.h events.h explode.h \
+	fields.h fonts.h global.h graphio.h iounreg.h jukebox.h keycodes.h \
+	loadsave.h mainmenu.h memmng.h mission_screen.h mouse.h moveunit.h \
+	resource.h samples.h shortcut.h showrngs.h sound.h stream.h system.h \
+	transbox.h uaircraf.h uamphi.h uground.h ui_toolkit.h unit_id.h \
+	units.h unmodif.h untables.h uships.h utowers.h utrains.h utrans.h \
+	visiblty.h weapons.h
+
 bin_PROGRAMS = signus
-signus_SOURCES = $(ENGINE_FILES) $(AI_FILES)
+signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
 signus_LDADD = $(SDL_LIBS) \
                -lSDL_mixer \
                -L../iniparser -liniparser \
                -L../sdlimage -lminiSDLimage -ljpeg
-
-.asm.o:
-	$(NASM) $(NASMFLAGS) -I$(srcdir)/ -o $@ $<

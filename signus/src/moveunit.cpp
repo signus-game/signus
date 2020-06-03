@@ -42,9 +42,10 @@ MIDASsamplePlayHandle     SampleMoving;
 static void UpdateMovingSample(MIDASsample sample, int visib, int x, int y)
 {
     if (SampleMoving == INVALID_SAMPLE_HANDLE) {                 // new sound
-        if (visib == 2)
+        if (visib == 2) {
             SampleMoving = PlaySample(sample, 6, EffectsVolume, GetFieldPanning(x, y));
             FadeInSample(SampleMoving, EffectsVolume);
+	}
     }
     else {                                      // update panning
         if (visib != 2) {

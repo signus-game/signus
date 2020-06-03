@@ -1,23 +1,23 @@
-#> Herkules je tàëkò raketomet vyzbrojenò
- nosiáem raket Pluton. Pluton unese aë ®est
- raket, kterÇ je schopen odpalovat aë do
- vzd†lenosti 2 mil.
-#> Urychlenò vòvoj tÇto zbranà podn°tila aë
- áetn† hl†®en° vy®®°ch dñstojn°kñ, jejichë
- jednotky se st©etly s dalekonosnòmi vàëemi
- nep©°tele - Minotaury. A tak vznikla zbra§
- s dost©elem vàt®°m neë m† tato vàë. Av®ak
- stejnà jako u õkorpi¢nñ jde o zbra§ m†lo
- obrnànou a s malòm poátem raket, coë umoë§uje
- jej° nasazen° pouze z tòlu a za podpory Gn¢mñ.
- Velkou vòhodou Herkula jsou jeho t©°®tivÇ rakety,
- kterÇ umoë§uj° z†sah vàt®°ho pole jedinòm
- vòst©elem.
-#> Zpr†va pro tisk: "Dalekonosnò
+#> Herkules je tƒõ≈æk√Ω raketomet vyzbrojen√Ω
+ nosiƒçem raket Pluton. Pluton unese a≈æ ≈°est
+ raket, kter√© je schopen odpalovat a≈æ do
+ vzd√°lenosti 2 mil.
+#> Urychlen√Ω v√Ωvoj t√©to zbranƒõ podn√≠tila a≈æ
+ ƒçetn√° hl√°≈°en√≠ vy≈°≈°√≠ch d≈Østojn√≠k≈Ø, jejich≈æ
+ jednotky se st≈ôetly s dalekonosn√Ωmi vƒõ≈æemi
+ nep≈ô√≠tele - Minotaury. A tak vznikla zbra≈à
+ s dost≈ôelem vƒõt≈°√≠m ne≈æ m√° tato vƒõ≈æ. Av≈°ak
+ stejnƒõ jako u ≈†korpi√≥n≈Ø jde o zbra≈à m√°lo
+ obrnƒõnou a s mal√Ωm poƒçtem raket, co≈æ umo≈æ≈àuje
+ jej√≠ nasazen√≠ pouze z t√Ωlu a za podpory Gn√≥m≈Ø.
+ Velkou v√Ωhodou Herkula jsou jeho t≈ô√≠≈°tiv√© rakety,
+ kter√© umo≈æ≈àuj√≠ z√°sah vƒõt≈°√≠ho pole jedin√Ωm
+ v√Ωst≈ôelem.
+#> Zpr√°va pro tisk: "Dalekonosn√Ω
  raketomet Herkules byl podle
- na©°zen° vrchn°ho velitele testov†n v kamenitÇ
- pou®ti Hibog, kter† je zcela NEOSãDLENA!
- JakÇkoliv jinÇ zpr†vy mÇdi° jsou podvrh a maj°
- slouëit Konzorciu.
+ na≈ô√≠zen√≠ vrchn√≠ho velitele testov√°n v kamenit√©
+ pou≈°ti Hibog, kter√° je zcela NEOS√çDLENA!
+ Jak√©koliv jin√© zpr√°vy m√©di√≠ jsou podvrh a maj√≠
+ slou≈æit Konzorciu.
 #e
 #e

@@ -290,8 +290,10 @@ void GenerateShootRng(int x, int y, int minrng, int maxrng)
 	int u, l, r, d;
 	int x1 = x - maxrng, y1 = y - maxrng, 
 	    x2 = x + maxrng, y2 = y + maxrng;
-	if (x1 < 0) x1 = 0; if (y1 < 0) y1 = 0;
-	if (x2 > MapSizeX-1) x2 = MapSizeX-1; if (y2 > MapSizeY-1) y2 = MapSizeY-1;
+	if (x1 < 0) x1 = 0;
+	if (y1 < 0) y1 = 0;
+	if (x2 > MapSizeX-1) x2 = MapSizeX-1;
+	if (y2 > MapSizeY-1) y2 = MapSizeY-1;
 	
 	rngMapClear();
 	for (i = x1; i <= x2; i++)
@@ -364,8 +366,10 @@ void GenerateVisibRng(int x, int y, int maxrng)
 	int u, l, r, d;
 	int x1 = x - maxrng, y1 = y - maxrng, 
 	    x2 = x + maxrng, y2 = y + maxrng;
-	if (x1 < 0) x1 = 0; if (y1 < 0) y1 = 0;
-	if (x2 > MapSizeX-1) x2 = MapSizeX-1; if (y2 > MapSizeY-1) y2 = MapSizeY-1;
+	if (x1 < 0) x1 = 0;
+	if (y1 < 0) y1 = 0;
+	if (x2 > MapSizeX-1) x2 = MapSizeX-1;
+	if (y2 > MapSizeY-1) y2 = MapSizeY-1;
 	
 	rngMapClear();
 	for (i = x1; i <= x2; i++)

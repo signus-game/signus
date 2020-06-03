@@ -35,39 +35,47 @@
 /////////////// TTower - obecny predek
 
 
-void TTower::GetUnitInfo()
-{
-    char cbuf[30];
-    int clr;
+void TTower::GetUnitInfo() {
+	char cbuf[30];
+	int clr;
 
-    TObject::GetUnitInfo(); 
-    CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
-    PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
+	TObject::GetUnitInfo();
+	CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
+		clrLightBlue, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
+		NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 42, SigText[TXT_TIME],
+		NormalFont, clrWhite, clrBlack);
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 26, SigText[TXT_STATE], NormalFont, clrWhite, clrBlack);
-    PutStr(UInfoBuf, UINFO_SX, 2, 42, SigText[TXT_TIME], NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
+	clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 28, 52, 13, clr,
+		clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 44, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
 
-    sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
-    clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 28, 52, 13, clr, clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	// zbrane:
+	for (int i = 0; i < WeaponsCnt; i++) {
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
+			((i == CurWpn) && (WeaponsCnt != 1)) ?
+			WpnInfoBkg[1] : WpnInfoBkg[0], 102, 23);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 5, 86 + i * 26,
+			Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
+		sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 60, 88 + i * 26, 41,
+			13, clrLightBlue2, clrSeaBlue,
+			(double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
+	}
 
-    sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
-    PercentBar(UInfoBuf, UINFO_SX, 54, 44, 52, 13, clrLightBlue2, clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
-
-    // zbrane:
-    for (int i = 0; i < WeaponsCnt; i++) {
-        CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
-                ((i == CurWpn) && (WeaponsCnt != 1)) ? WpnInfoBkg[1] : WpnInfoBkg[0], 
-                102, 23);
-        PutStr(UInfoBuf, UINFO_SX, 5, 86 + i * 26, Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
-        sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
-        PercentBar(UInfoBuf, UINFO_SX, 60, 88 + i * 26, 41, 13, clrLightBlue2, clrSeaBlue, (double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
-    }
-    if (CurWpn != -1) {
-        CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188, BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-        sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-        PutStr(UInfoBuf, UINFO_SX, 35, 188, cbuf, NormalFont, clrWhite, clrBlack);     
-    }
+	if (CurWpn != -1) {
+		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188,
+			BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
+		sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 188, cbuf, NormalFont,
+			clrWhite, clrBlack);
+	}
 }
 
 
@@ -181,55 +189,58 @@ void TThor::IncLevel(int alevel)
 
 
 
-void TThor::Init(int x, int y, int party, FILE *f)
-{
-    TTower::Init(x, y, party, f);
-    if (!IsOverground) ActualSprite = 8;
-    if (IconThorOut == NULL) {
-        IconThorOut = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthora%i", 13);
-        IconThorIn = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthorb%i", 13);
-    }
+void TThor::Init(int x, int y, int party, ReadStream *stream) {
+	TTower::Init(x, y, party, stream);
+
+	if (!IsOverground) {
+		ActualSprite = 8;
+	}
+
+	if (IconThorOut == NULL) {
+		IconThorOut = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthora%i", 13);
+		IconThorIn = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icthorb%i", 13);
+	}
 }
 
 
 
-void TThor::Read(FILE *f)
-{
-    TTower::Read(f);
-    
-    fread(&IsOverground, 4, 1, f);
-    fread(&TotalRockets, 4, 1, f);
+void TThor::Read(ReadStream &stream) {
+	TTower::Read(stream);
+	IsOverground = stream.readSint32LE();
+	TotalRockets = stream.readSint32LE();
 }
 
-void TThor::Write(FILE *f)
-{
-    TTower::Write(f);
-    
-    fwrite(&IsOverground, 4, 1, f);
-    fwrite(&TotalRockets, 4, 1, f);
+void TThor::Write(WriteStream &stream) {
+	TTower::Write(stream);
+	stream.writeSint32LE(IsOverground);
+	stream.writeSint32LE(TotalRockets);
 }
 
 
 
-void TThor::GetUnitInfo()
-{
-    char cbuf[40];
-    
-    TTower::GetUnitInfo();
+void TThor::GetUnitInfo() {
+	char cbuf[40];
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 58, SigText[TXT_ROCKETS_LEFT], NormalFont, clrWhite, clrBlack);
+	TTower::GetUnitInfo();
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_ROCKETS_LEFT],
+		NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i / 100", TotalRockets);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 60, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)TotalRockets / 100, cbuf);
 
-    sprintf(cbuf, "%i / 100", TotalRockets);
-    PercentBar(UInfoBuf, UINFO_SX, 54, 60, 52, 13, clrLightBlue2, clrSeaBlue, (double)TotalRockets / 100, cbuf);
+	if (IsOverground) {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorIn->IconPic[0], 59,
+			59);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorOut->IconPic[0],
+			59, 59);
+	}
 
-    if (IsOverground)
-        CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorIn->IconPic[0], 59, 59);
-    else
-        CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorOut->IconPic[0], 59, 59);
-
-    CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129, BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-    sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-    PutStr(UInfoBuf, UINFO_SX, 35, 129, cbuf, NormalFont, clrWhite, clrBlack);     
+	CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129,
+		BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
+	sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 129, cbuf, NormalFont,
+		clrWhite, clrBlack);
 }
 
 

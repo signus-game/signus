@@ -1,5 +1,5 @@
 
-         ����������������������������������������������������������Ŀ
-         �    An error occurs while initializing sound card.        �
-         ������������������������������������������������������������
+         ┌──────────────────────────────────────────────────────────┐
+         │    An error occurs while initializing sound card.        │
+         └──────────────────────────────────────────────────────────┘
 

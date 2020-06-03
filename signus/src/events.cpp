@@ -26,6 +26,7 @@
 
 
 #include <SDL.h>
+#include <cctype>
 #include "events.h"
 #include "graphio.h"
 #include "system.h"
@@ -78,6 +79,82 @@ static TEvent null_event;
 int IgnoreEvent = FALSE;
 
 static bool needsMouseRedraw = false;
+
+char key2ascii(const SDL_keysym &key) {
+	int caps = 0, ascii = key.sym;
+
+	if (key.mod & (KMOD_CTRL | KMOD_ALT | KMOD_MODE)) {
+		return 0;
+	}
+
+	if (key.mod & KMOD_CAPS) {
+		caps = 1;
+	}
+
+	if (key.mod & KMOD_SHIFT) {
+		caps = !caps;
+	}
+
+	if (caps && islower(ascii)) {
+		ascii = toupper(ascii);
+	}
+
+	if (key.mod & KMOD_NUM) {
+		switch (ascii) {
+		case SDLK_KP0:
+			ascii = '0';
+			break;
+		case SDLK_KP1:
+			ascii = '1';
+			break;
+		case SDLK_KP2:
+			ascii = '2';
+			break;
+		case SDLK_KP3:
+			ascii = '3';
+			break;
+		case SDLK_KP4:
+			ascii = '4';
+			break;
+		case SDLK_KP5:
+			ascii = '5';
+			break;
+		case SDLK_KP6:
+			ascii = '6';
+			break;
+		case SDLK_KP7:
+			ascii = '7';
+			break;
+		case SDLK_KP8:
+			ascii = '8';
+			break;
+		case SDLK_KP9:
+			ascii = '9';
+			break;
+		}
+	}
+
+	switch (ascii) {
+	case SDLK_KP_DIVIDE:
+		ascii = '/';
+		break;
+	case SDLK_KP_MULTIPLY:
+		ascii = '*';
+		break;
+	case SDLK_KP_MINUS:
+		ascii = '-';
+		break;
+	case SDLK_KP_PLUS:
+		ascii = '+';
+		break;
+	}
+
+	if (ascii >= ' ' && ascii <= 127) {
+		return ascii;
+	}
+
+	return 0;
+}
 
 void GetEvent(TEvent *e)
 {
@@ -140,7 +217,7 @@ void GetEvent(TEvent *e)
                     case SDL_KEYDOWN:
                             e->What = evKeyDown;
                             e->Key.KeyCode = event.key.keysym.sym;
-                            e->Key.CharCode = event.key.keysym.sym;
+                            e->Key.CharCode = key2ascii(event.key.keysym);
                                         // FIXME -- use Unicode for CharCode !!!
 
                             // Special handling:

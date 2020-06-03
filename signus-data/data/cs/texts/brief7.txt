@@ -1,25 +1,25 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Z†kladna Kytan
-#> ˛
-#> Prim†rn°m c°lem tÇto mise je likvidace nep©†telskÇ z†kladny
- Setrix, leë°c° jihoz†padnà od n†s.
-#> P©i tÇto akci se poá°t† s vyuëit°m dosud existuj°c°ho spojen°
- mezi pevnostmi - ëeleznián° tratà.
-#> Traü proch†z° lebaranskou oblast° a nach†z° se v perfektn°m
- stavu, takëe z tohoto hlediska by nemàlo doj°t k ë†dnòm
- komplikac°m. Vlaky pr†và dokonáuj° konstruktÇ©i v na®ich
- d°ln†ch. Jedn† se o novÇ modely vojenskÇho vlaku Mohyk†n.
-#> Podle do®lòch zpr†v jednotky Konzorcia postupuj° bleskovou
- rychlost° a likvidace Setrixu skòt† p©°leëitost zarazit
- £toán°ky v prñniku do dal®°ch toriconskòch oblast°.
-#> Alespo§ na uráitò áas...
-#> ˛
+#> 
+ #p.toricon.282.183. 
+#> Z√°kladna Kytan
+#> 
+#> Prim√°rn√≠m c√≠lem t√©to mise je likvidace nep≈ô√°telsk√© z√°kladny
+ Setrix, le≈æ√≠c√≠ jihoz√°padnƒõ od n√°s.
+#> P≈ôi t√©to akci se poƒç√≠t√° s vyu≈æit√≠m dosud existuj√≠c√≠ho spojen√≠
+ mezi pevnostmi - ≈æelezniƒçn√≠ tratƒõ.
+#> Tra≈• proch√°z√≠ lebaranskou oblast√≠ a nach√°z√≠ se v perfektn√≠m
+ stavu, tak≈æe z tohoto hlediska by nemƒõlo doj√≠t k ≈æ√°dn√Ωm
+ komplikac√≠m. Vlaky pr√°vƒõ dokonƒçuj√≠ konstrukt√©≈ôi v na≈°ich
+ d√≠ln√°ch. Jedn√° se o nov√© modely vojensk√©ho vlaku Mohyk√°n.
+#> Podle do≈°l√Ωch zpr√°v jednotky Konzorcia postupuj√≠ bleskovou
+ rychlost√≠ a likvidace Setrixu sk√Ωt√° p≈ô√≠le≈æitost zarazit
+ √∫toƒçn√≠ky v pr≈Øniku do dal≈°√≠ch toriconsk√Ωch oblast√≠.
+#> Alespo≈à na urƒçit√Ω ƒças...
+#> 
 #> Kirk Ljubenir
-#> ˛
-#> Zpr†vy#001 o#001 vòvoji#001 vojenskÇ#001 situace#001
+#> 
+#> Zpr√°vy#001 o#001 v√Ωvoji#001 vojensk√©#001 situace#001
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Likvidace z†kladny Setrix
+#> PRIM√ÅRN√ç C√çL: Likvidace z√°kladny Setrix
 #e
 #l br7_001#
 #e

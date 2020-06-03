@@ -1,21 +1,21 @@
-#> Rex je bojov˜ vrtuln¡k. Je vyzbrojen
- odpalova‡em raket Vzduch-Zemˆ. A tˆ‘k˜m
- protiletadlov˜m kulometem. Poh nˆn je
- velk˜m rotorem.
-#> Hlavn¡m £kolem tˆchto jednotek je ni‡en¡
- pozemn¡ch c¡l–, k ‡emu‘ jsou vyzbrojeny
- t©¡¨tiv˜mi raketami. P©i vzdu¨n˜ch souboj˜ch
- se Rex mus¡ spolehnout na protileteckou
- obranu pozemn¡ch jednotek nebo na sv‚ kolegy -
- st¡ha‡e. Jedn  se o stroj ur‡en˜ spole‡nˆ s
- tanky a obrann˜mi vˆ‘emi k boji v prvn¡ linii.
- Zde m  paralizovat nep© telsk‚ pozemn¡ bojov‚
- stroje a pak (v p©¡padˆ p©¡li¨ siln‚ flakov‚
- obrany, ‡i £toku nep© telsk˜ch st¡ha‡–) se
- st hnout za ochranou clonu vlastn¡ch zbran¡.
-#> "Tento vrtuln¡k je prvn¡ leteckou jednotkou
- nasazenou v £tvarech Signus, o jeho kvalit ch
- n s v minulosti p©esvˆd‡ily arm dn¡ skupiny
- Konzorcia." - Vojensk˜ vˆ¨tn¡k 92
+#> Rex je bojovÃ½ vrtulnÃ­k. Je vyzbrojen
+ odpalovaÄem raket Vzduch-ZemÄ›. A tÄ›Å¾kÃ½m
+ protiletadlovÃ½m kulometem. PohÃ¡nÄ›n je
+ velkÃ½m rotorem.
+#> HlavnÃ­m Ãºkolem tÄ›chto jednotek je niÄenÃ­
+ pozemnÃ­ch cÃ­lÅ¯, k ÄemuÅ¾ jsou vyzbrojeny
+ tÅ™Ã­Å¡tivÃ½mi raketami. PÅ™i vzduÅ¡nÃ½ch soubojÃ½ch
+ se Rex musÃ­ spolehnout na protileteckou
+ obranu pozemnÃ­ch jednotek nebo na svÃ© kolegy -
+ stÃ­haÄe. JednÃ¡ se o stroj urÄenÃ½ spoleÄnÄ› s
+ tanky a obrannÃ½mi vÄ›Å¾emi k boji v prvnÃ­ linii.
+ Zde mÃ¡ paralizovat nepÅ™Ã¡telskÃ© pozemnÃ­ bojovÃ©
+ stroje a pak (v pÅ™Ã­padÄ› pÅ™Ã­liÅ¡ silnÃ© flakovÃ©
+ obrany, Äi Ãºtoku nepÅ™Ã¡telskÃ½ch stÃ­haÄÅ¯) se
+ stÃ¡hnout za ochranou clonu vlastnÃ­ch zbranÃ­.
+#> "Tento vrtulnÃ­k je prvnÃ­ leteckou jednotkou
+ nasazenou v Ãºtvarech Signus, o jeho kvalitÃ¡ch
+ nÃ¡s v minulosti pÅ™esvÄ›dÄily armÃ¡dnÃ­ skupiny
+ Konzorcia." - VojenskÃ½ vÄ›Å¡tnÃ­k 92
 #e
 #e

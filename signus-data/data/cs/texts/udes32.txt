@@ -1,22 +1,22 @@
-#> Viking je torpÇdoborec. Je vyzbrojen
- st©ednà tàëkòm kan¢nem Ghecker, lehkòm
- protiletadlovòm kan¢nem a hlubinnòmi
+#> Viking je torp√©doborec. Je vyzbrojen
+ st≈ôednƒõ tƒõ≈æk√Ωm kan√≥nem Ghecker, lehk√Ωm
+ protiletadlov√Ωm kan√≥nem a hlubinn√Ωmi
  minami Aglovian.
-#> Nasazen° tàchto jednotek v bojovòch
- akc°ch se p©edpokl†d† pouze ve vàt®°ch
- formac°ch a pouze za podpory tàë®°ch
- bitevn°ch lod° ái k©iën°kñ. Jako
- nezbytnost se tÇë uk†zalo je nasazovat
- v konvoj°ch jako doprovodnÇ lodà
- letadlovòch lod° Lagun, kde pln° funkci
- protileteckÇho flaku. Dal®° velkou p©ednost°
- tàchto lod° je jejich radarovò systÇm,
- kterò jim umoë§uje zahlÇdnout nep©†telskÇ
+#> Nasazen√≠ tƒõchto jednotek v bojov√Ωch
+ akc√≠ch se p≈ôedpokl√°d√° pouze ve vƒõt≈°√≠ch
+ formac√≠ch a pouze za podpory tƒõ≈æ≈°√≠ch
+ bitevn√≠ch lod√≠ ƒçi k≈ôi≈æn√≠k≈Ø. Jako
+ nezbytnost se t√©≈æ uk√°zalo je nasazovat
+ v konvoj√≠ch jako doprovodn√© lodƒõ
+ letadlov√Ωch lod√≠ Lagun, kde pln√≠ funkci
+ protileteck√©ho flaku. Dal≈°√≠ velkou p≈ôednost√≠
+ tƒõchto lod√≠ je jejich radarov√Ω syst√©m,
+ kter√Ω jim umo≈æ≈àuje zahl√©dnout nep≈ô√°telsk√©
  ponorky a miny.
-#> "P©es slabost Vikinga jako jednotlivce
- je nezbytnòm pomocn°kem a nejednou i
- rozhoduj°c°m áinitelem v n†mo©n°ch
- bitv†ch" - vyj†d©en° v°ceadmir†la
+#> "P≈ôes slabost Vikinga jako jednotlivce
+ je nezbytn√Ωm pomocn√≠kem a nejednou i
+ rozhoduj√≠c√≠m ƒçinitelem v n√°mo≈ôn√≠ch
+ bitv√°ch" - vyj√°d≈ôen√≠ v√≠ceadmir√°la
  Gretzskiho.
 #e
 #e

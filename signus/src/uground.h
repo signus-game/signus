@@ -165,8 +165,8 @@ class TGnom : public TGroundSupportUnit {
 			void Setup();
 			int GetWeight() {return WGT_HEAVY;};
 			void AfterSetup();
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			void SupportUnit(TUnit *Unit);
 			int WillSupport(TUnit *Unit);
 			void GetUnitInfo();
@@ -215,7 +215,7 @@ class TSatan : public TGroundUnit {
 			int DestruAtN1, DestruBoN1, DestruAtN2, DestruBoN2; // utok autodestrukci
 		
 			TSatan() : TGroundUnit() {};
-			void Init(int x, int y, int party, FILE *f = NULL);
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
 			int GetType() {return unSatan;};
 			void GetTerrMove(int **terr, int **terr2) {*terr = TabTerrMoveAmphi; *terr2 = TabTerr2MoveAmphi;};
 			void MakeTrack() {};
@@ -226,8 +226,8 @@ class TSatan : public TGroundUnit {
 			int InfoEvent(TEvent *e);
 			TSprite *GetSprite();
 			void Explode();
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			
 			void GlobalDestruction();
 					// tahle fce ho vybouchne				
@@ -256,7 +256,7 @@ class TXenon : public TGroundUnit {
 			int Mines;
 		
 			TXenon() : TGroundUnit() {};
-			void Init(int x, int y, int party, FILE *f = NULL);
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
 			int GetType() {return unXenon;};
 			void Setup();
 			void IncLevel(int alevel);
@@ -265,8 +265,8 @@ class TXenon : public TGroundUnit {
 			int InfoEvent(TEvent *e);
 			void GoOnMine();
 			void PrepareFieldTime(int x, int y);
-			void Write(FILE *f);
-			void Read(FILE *f);
+			void Write(WriteStream &stream);
+			void Read(ReadStream &stream);
 			
 			int PlaceMine();
 					// polozi minu

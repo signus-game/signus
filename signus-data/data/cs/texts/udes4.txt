@@ -1,23 +1,23 @@
-#> Dirrac je sonick˜ tank vyvinut˜ pomoc¡
- technologie p–vodn¡, Arko¤ansk‚ civilizace.
- Je vyzbrojen sonick˜m dˆlem vyu‘¡vaj¡c¡
- princip ultrazvuku a m  siln‚ panc‚©ov n¡.
-#> Jedn  se v podstatˆ o lehk˜ tank ‡emu‘ odpov¡d 
- jeho vysok  mobilita, kter  spole‡nˆ s jeho velkou
- £dernost¡ umo‘¤uje nasazen¡ t‚to zbranˆ proti
- dalekonosn˜m zbran¡m nep©¡tele v hloubi vlastn¡ho
- t˜lu. Dal¨¡m kladem t‚to zbranˆ je jej¡
- masivn¡ ‡eln¡ panc¡©, kter˜ j¡ umo‘¤uje b˜t
- vyrovnan˜m protivn¡kem o mnoho vˆt¨¡ch tank–
- Perseus Gama. Naproti tomu jej¡ nejvˆt¨¡
- slabinou je nedostate‡n‚ panc‚©ov n¡ na horn¡
- ‡ sti trupu, kter‚ jej ‡in¡ velmi zraniteln˜m
- raketov˜mi zbranˆmi.
-#> Tato zbra¤ m  d¡ky ne zcela pochopen‚ technologii
- ur‡it˜ vliv na psychiku pos dky, a tak jsou
- na m¡sta pilot– vyb¡r n¡ jen ti psychicky
- nejodolnˆj¨¡ a po n ro‡n‚m v˜cviku. Proto lze
- os dku Dirrac– poznat dle lehce na‘loutl˜ch
+#> Dirrac je sonickÃ½ tank vyvinutÃ½ pomocÃ­
+ technologie pÅ¯vodnÃ­, ArkoÅˆanskÃ© civilizace.
+ Je vyzbrojen sonickÃ½m dÄ›lem vyuÅ¾Ã­vajÃ­cÃ­
+ princip ultrazvuku a mÃ¡ silnÃ© pancÃ©Å™ovÃ¡nÃ­.
+#> JednÃ¡ se v podstatÄ› o lehkÃ½ tank ÄemuÅ¾ odpovÃ­dÃ¡
+ jeho vysokÃ¡ mobilita, kterÃ¡ spoleÄnÄ› s jeho velkou
+ ÃºdernostÃ­ umoÅ¾Åˆuje nasazenÃ­ tÃ©to zbranÄ› proti
+ dalekonosnÃ½m zbranÃ­m nepÅ™Ã­tele v hloubi vlastnÃ­ho
+ tÃ½lu. DalÅ¡Ã­m kladem tÃ©to zbranÄ› je jejÃ­
+ masivnÃ­ ÄelnÃ­ pancÃ­Å™, kterÃ½ jÃ­ umoÅ¾Åˆuje bÃ½t
+ vyrovnanÃ½m protivnÃ­kem o mnoho vÄ›tÅ¡Ã­ch tankÅ¯
+ Perseus Gama. Naproti tomu jejÃ­ nejvÄ›tÅ¡Ã­
+ slabinou je nedostateÄnÃ© pancÃ©Å™ovÃ¡nÃ­ na hornÃ­
+ ÄÃ¡sti trupu, kterÃ© jej ÄinÃ­ velmi zranitelnÃ½m
+ raketovÃ½mi zbranÄ›mi.
+#> Tato zbraÅˆ mÃ¡ dÃ­ky ne zcela pochopenÃ© technologii
+ urÄitÃ½ vliv na psychiku posÃ¡dky, a tak jsou
+ na mÃ­sta pilotÅ¯ vybÃ­rÃ¡nÃ­ jen ti psychicky
+ nejodolnÄ›jÅ¡Ã­ a po nÃ¡roÄnÃ©m vÃ½cviku. Proto lze
+ osÃ¡dku DirracÅ¯ poznat dle lehce naÅ¾loutlÃ½ch
  duhovek.
 #e
 #e

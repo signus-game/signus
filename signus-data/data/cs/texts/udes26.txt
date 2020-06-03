@@ -1,21 +1,21 @@
-#> Helios je bitevn° vzn†®edlo vyzbrojenÇ
- st©ednà tàëkòm kan¢nem Beta 3 a tàëkòm
- protiletadlovòm kulometem podobnÇho
- konstrukán°ho typu jakÇ pouë°vaj° tanky
+#> Helios je bitevn√≠ vzn√°≈°edlo vyzbrojen√©
+ st≈ôednƒõ tƒõ≈æk√Ωm kan√≥nem Beta 3 a tƒõ≈æk√Ωm
+ protiletadlov√Ωm kulometem podobn√©ho
+ konstrukƒçn√≠ho typu jak√© pou≈æ√≠vaj√≠ tanky
  Perseus Gama.
-#> Tato jednotka je vlastnà obdobou st©ednà
- tàëkÇho tanku Perseus Beta. Nejvàt®° vòhodou
- Helia je jeho pohyblivost, kter† umoë§uje
- nasazen° tÇto jednotky i v terÇnech, kam by
- se tanky jen velice tàëko dost†valy. Dal®°m
- velkòm kladem tohoto vzn†®edla jsou jeho
- protiletadlovÇ zbranà, kterÇ umoë§uj°
- vyuë°t ho i jako jednu z jednotek protileteckÇho
+#> Tato jednotka je vlastnƒõ obdobou st≈ôednƒõ
+ tƒõ≈æk√©ho tanku Perseus Beta. Nejvƒõt≈°√≠ v√Ωhodou
+ Helia je jeho pohyblivost, kter√° umo≈æ≈àuje
+ nasazen√≠ t√©to jednotky i v ter√©nech, kam by
+ se tanky jen velice tƒõ≈æko dost√°valy. Dal≈°√≠m
+ velk√Ωm kladem tohoto vzn√°≈°edla jsou jeho
+ protiletadlov√© zbranƒõ, kter√© umo≈æ≈àuj√≠
+ vyu≈æ√≠t ho i jako jednu z jednotek protileteck√©ho
  flaku.
-#> Tento bojovò stroj se kr†tce po svÇm
- vzniku dostal do znaku Zimbowanskòch
- legi° (elitn° EutanieskÇ jednotky),
- jejichë voj†ci tvo©° 1/3 v®ech
- bojovn°kñ jednotek Signus.
+#> Tento bojov√Ω stroj se kr√°tce po sv√©m
+ vzniku dostal do znaku Zimbowansk√Ωch
+ legi√≠ (elitn√≠ Eutaniesk√© jednotky),
+ jejich≈æ voj√°ci tvo≈ô√≠ 1/3 v≈°ech
+ bojovn√≠k≈Ø jednotek Signus.
 #e
 #e

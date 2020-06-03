@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> 
+ #p.toricon.282.183. 
 #> The last centre of resistance of Consortium is the central fort on the south of Lystonia -
  Trufat. It is up to you to overcome the last obstacle to enthrone the peace. The result
  depends on the energy of your resolve and on your abilities. In the last couple of weeks the
@@ -11,9 +11,9 @@
  even#001 considered#001 missing#001.
 #> Fortunately Consortium is not supposed to change its position considerably. Toricon is only
  interested in time - in the time that is dividing Arconis from the final peace...
-#> þ
+#> 
 #> T. Roy
-#> þ
+#> 
  #p.anamorf.320.184.
 #> PRIMARY AIM: Capture Trufat and the HQ of Consortium.
 #e

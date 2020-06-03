@@ -7,49 +7,55 @@
 
 #include "fonts.h"
 
-void *FontDataRead(FILE *f)
-{
-	TFont *p = (TFont *) malloc(sizeof(TFont));
+void *FontDataRead(ReadStream &stream) {
+	TFont *ret = (TFont*)malloc(sizeof(TFont));
 	int i;
-	byte *dummy;
-	
-	fread(&(p->TotalSize), sizeof(p->TotalSize), 1, f);
-	p->CharBuf = malloc(p->TotalSize);
-	dummy = (byte *) p->CharBuf;
-	fread(&(p->Height), sizeof(p->Height), 1, f);
+	size_t size;
+	byte *ptr;
+
+	ret->TotalSize = stream.readSint32LE();
+	ret->CharBuf = malloc(ret->TotalSize);
+	ptr = (byte*)ret->CharBuf;
+	ret->Height = stream.readSint8();
+
 	for (i = 0; i < 256; i++) {
-		fread(&(p->Chars[i].Width), sizeof(p->Chars[i].Width), 1, f);
-		if (p->Chars[i].Width == 0) p->Chars[i].Data = NULL;
-		else {
-			p->Chars[i].Data = (byte *) dummy;
-			dummy += p->Height * p->Chars[i].Width;
-			fread(p->Chars[i].Data, p->Height * p->Chars[i].Width, 1, f);
+		ret->Chars[i].Width = stream.readSint8();
+
+		if (ret->Chars[i].Width) {
+			size = ret->Height * ret->Chars[i].Width;
+			stream.read(ptr, size);
+			ret->Chars[i].Data = ptr;
+			ptr += size;
+		} else {
+			ret->Chars[i].Data = NULL;
 		}
 	}
-	return (void *)p;
+
+	return ret;
 }
 
-
-
-unsigned FontDataWrite(FILE *f, void *ptr, size_t size)
-{
+unsigned FontDataWrite(WriteStream &stream, void *ptr, size_t size) {
 	int i;
-	unsigned cnt = 0;
-	TFont *p = (TFont *) ptr;
-	
-	fwrite(&(p->TotalSize), sizeof(p->TotalSize), 1, f); cnt += sizeof(p->TotalSize);
-	fwrite(&(p->Height), sizeof(p->Height), 1, f); cnt += sizeof(p->Height);
+	unsigned tmp, ret = 0;
+	TFont *p = (TFont*)ptr;
+
+	stream.writeSint32LE(p->TotalSize);
+	stream.writeSint8(p->Height);
+	ret = 5;
+
 	for (i = 0; i < 256; i++) {
-		fwrite(&(p->Chars[i].Width), sizeof(p->Chars[i].Width), 1, f); cnt += sizeof(p->Chars[i].Width);
-		if (p->Chars[i].Width != 0) {
-			fwrite(p->Chars[i].Data, p->Height * p->Chars[i].Width, 1, f);
-			cnt += p->Height * p->Chars[i].Width;
+		stream.writeSint8(p->Chars[i].Width);
+		ret++;
+
+		if (p->Chars[i].Width) {
+			tmp = p->Height * p->Chars[i].Width;
+			stream.write(p->Chars[i].Data, tmp);
+			ret += tmp;
 		}
 	}
-	return cnt;
+
+	return ret;
 }
-
-
 
 void freefont(TFont *font)
 {	

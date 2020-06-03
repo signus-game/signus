@@ -1,20 +1,20 @@
-#> Mesi†® je dalekonosnÇ dàlo na vlakovÇm
- podvozku. Je podobnÇho konstrukán°ho
- typu jako Goli†®, ale nevyuë°v† artefaktovÇ
+#> Mesi√°≈° je dalekonosn√© dƒõlo na vlakov√©m
+ podvozku. Je podobn√©ho konstrukƒçn√≠ho
+ typu jako Goli√°≈°, ale nevyu≈æ√≠v√° artefaktov√©
  technologie.
-#> Vòhodou tàchto zbran° je jejich
- velkò dost©el a niáivost, kter† p©edá°
- dokonce i Goli†®e. Nejvàt®° slabinou
- jsou pak jeho omezen° vyplòvaj°c° z
- hmotnosti, kter† umoë§uje jeho p©evoz
- pouze na vlakovÇm podvozku, coë omezuje
- jeho pohyblovost pouze na vlakovÇ tratà.
- Dal®° velkou slabinou Mesi†®ñ je jejich
- slabò panc°©, kterò neumoë§uje nasazen°
- tàchto strojñ do prvn° linie.
-#> "... Ve znamen° Mesi†®e krev bude prolÇv†na
- a ve znamen° jeho budou se ©°tit trñny kr†lñ
- a kn°ëat". - "Proroctv° Sibylino" - nalezeno
- v datab†z°ch osidlovac°ch lod°.
+#> V√Ωhodou tƒõchto zbran√≠ je jejich
+ velk√Ω dost≈ôel a niƒçivost, kter√° p≈ôedƒç√≠
+ dokonce i Goli√°≈°e. Nejvƒõt≈°√≠ slabinou
+ jsou pak jeho omezen√≠ vypl√Ωvaj√≠c√≠ z
+ hmotnosti, kter√° umo≈æ≈àuje jeho p≈ôevoz
+ pouze na vlakov√©m podvozku, co≈æ omezuje
+ jeho pohyblovost pouze na vlakov√© tratƒõ.
+ Dal≈°√≠ velkou slabinou Mesi√°≈°≈Ø je jejich
+ slab√Ω panc√≠≈ô, kter√Ω neumo≈æ≈àuje nasazen√≠
+ tƒõchto stroj≈Ø do prvn√≠ linie.
+#> "... Ve znamen√≠ Mesi√°≈°e krev bude prol√©v√°na
+ a ve znamen√≠ jeho budou se ≈ô√≠tit tr≈Øny kr√°l≈Ø
+ a kn√≠≈æat". - "Proroctv√≠ Sibylino" - nalezeno
+ v datab√°z√≠ch osidlovac√≠ch lod√≠.
 #e
 #e

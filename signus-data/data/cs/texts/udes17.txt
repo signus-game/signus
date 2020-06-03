@@ -1,18 +1,18 @@
-#> Transport‚r paliva Ceres je vybaven velk˜mi
- n dr‘emi s univerz ln¡m palivem, ze kter˜ch
- dopl¤uje pohonn‚ hmoty spojeneck˜m vojensk˜m
- jednotk m. Nen¡ nijak vyzbrojen a m 
- jen to nejleh‡¡ panc‚©ov n¡.
-#> Tato jednotka byla vyvinuta pot‚, co se
- uk zalo naprosto ne£nosn˜m pos¡lat bojov‚
- stroje po ka‘d‚ misi zp tky do z kladen, tak‘e
- nep©¡tel zat¡m mˆl ‡as dob˜t zpˆt sv‚ ztracen‚
- pozice. Chvat, se kter˜m byla jednotka
- navr‘ena a sestrojena, se podepsal i na jej¡ odolnosti,
- a tak mus¡ operovat v t˜lu a pod ochranou spojeneck˜ch
- arm d. Nebezpe‡n‚ je tak‚ setrv vat jin˜mi jednotkami
- v tˆsn‚ bl¡zkosti Cerese, neboŸ p©i jeho
- zni‡en¡ (a n sledn‚ explozi) m–‘e doj¡t k jejich
- v ‘n‚mu po¨kozen¡.
+#> TransportÃ©r paliva Ceres je vybaven velkÃ½mi
+ nÃ¡drÅ¾emi s univerzÃ¡lnÃ­m palivem, ze kterÃ½ch
+ doplÅˆuje pohonnÃ© hmoty spojeneckÃ½m vojenskÃ½m
+ jednotkÃ¡m. NenÃ­ nijak vyzbrojen a mÃ¡
+ jen to nejlehÄÃ­ pancÃ©Å™ovÃ¡nÃ­.
+#> Tato jednotka byla vyvinuta potÃ©, co se
+ ukÃ¡zalo naprosto neÃºnosnÃ½m posÃ­lat bojovÃ©
+ stroje po kaÅ¾dÃ© misi zpÃ¡tky do zÃ¡kladen, takÅ¾e
+ nepÅ™Ã­tel zatÃ­m mÄ›l Äas dobÃ½t zpÄ›t svÃ© ztracenÃ©
+ pozice. Chvat, se kterÃ½m byla jednotka
+ navrÅ¾ena a sestrojena, se podepsal i na jejÃ­ odolnosti,
+ a tak musÃ­ operovat v tÃ½lu a pod ochranou spojeneckÃ½ch
+ armÃ¡d. NebezpeÄnÃ© je takÃ© setrvÃ¡vat jinÃ½mi jednotkami
+ v tÄ›snÃ© blÃ­zkosti Cerese, neboÅ¥ pÅ™i jeho
+ zniÄenÃ­ (a nÃ¡slednÃ© explozi) mÅ¯Å¾e dojÃ­t k jejich
+ vÃ¡Å¾nÃ©mu poÅ¡kozenÃ­.
 #e
 #e

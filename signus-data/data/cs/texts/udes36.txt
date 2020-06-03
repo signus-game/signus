@@ -1,18 +1,18 @@
-#> Laguna je letadlov  loƒ. Je vyzbrojen 
- protiletadlov˜m kulometem. ’ dn‚ jin‚ zbrojn¡
- syst‚my nem . Je jen slabˆ
- panc‚©ovan , ale je pomˆrnˆ odoln .
-#> Nejsilnˆj¨¡ zbran¡ tˆchto lod¡ jsou
- jejich letadla. Laguna je schopn 
- pojmout a‘ 5 tˆ‘k˜ch bombard‚r– Saturn–
- nebo 12 st¡hac¡ch Ikaros–. Nejvˆt¨¡
- slabinou tˆchto lod¡ je nedostate‡n‚
- vybaven¡ zbranˆmi, kter‚ umo‘¤uje
- jejich nasazen¡ pouze z t˜lu a s
- podporou doprovodn˜ch torp‚doborc–.
-#> "Nasazen¡ tˆchto plovouc¡ch leti¨Ÿ se
- uk zalo velice v˜hodn˜m zvl ¨tˆ pak
- v boj¡ch s bitevn¡mi lodˆmi - Krakeny"
- - vojensk˜ vˆ¨tn¡k ‡. 138
+#> Laguna je letadlovÃ¡ loÄ. Je vyzbrojenÃ¡
+ protiletadlovÃ½m kulometem. Å½Ã¡dnÃ© jinÃ© zbrojnÃ­
+ systÃ©my nemÃ¡. Je jen slabÄ›
+ pancÃ©Å™ovanÃ¡, ale je pomÄ›rnÄ› odolnÃ¡.
+#> NejsilnÄ›jÅ¡Ã­ zbranÃ­ tÄ›chto lodÃ­ jsou
+ jejich letadla. Laguna je schopnÃ¡
+ pojmout aÅ¾ 5 tÄ›Å¾kÃ½ch bombardÃ©rÅ¯ SaturnÅ¯
+ nebo 12 stÃ­hacÃ­ch IkarosÅ¯. NejvÄ›tÅ¡Ã­
+ slabinou tÄ›chto lodÃ­ je nedostateÄnÃ©
+ vybavenÃ­ zbranÄ›mi, kterÃ© umoÅ¾Åˆuje
+ jejich nasazenÃ­ pouze z tÃ½lu a s
+ podporou doprovodnÃ½ch torpÃ©doborcÅ¯.
+#> "NasazenÃ­ tÄ›chto plovoucÃ­ch letiÅ¡Å¥ se
+ ukÃ¡zalo velice vÃ½hodnÃ½m zvlÃ¡Å¡tÄ› pak
+ v bojÃ­ch s bitevnÃ­mi lodÄ›mi - Krakeny"
+ - vojenskÃ½ vÄ›Å¡tnÃ­k Ä. 138
 #e
 #e

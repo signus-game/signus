@@ -39,7 +39,7 @@
 class TGroundArmy : public TArmy {
 	public:
 		TGroundArmy ();	
-		TGroundArmy (FILE *f);
+		TGroundArmy (ReadStream &stream);
 		
 		virtual void InsertUnits ();		
 		virtual int ProblemJednotky (int Unit);

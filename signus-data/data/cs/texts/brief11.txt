@@ -1,27 +1,27 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Letadlov† loÉ Imperi, 15 mil od lebrukonskÇho pob©eë°
-#> K Toriconu dolehly zpr†vy, podle kteròch Konzorcium mobilizuje
- s°ly v oblastech vòchodn°ho Lebrukonu za £áelem obsazen°
- zak†zanÇ z¢ny lebaranskÇho £zem°. Podle na®ich z†kladen Kytanu
- a Setrixu se nep©°tel zat°m obranu prolomit nepokusil, ale co
- nen°, mñëe bòt. Z bezpeánostn°ch dñvodñ Toricon rozhodl
- zlikvidovat ve®kerÇ z†kladny Konzorcia, kterÇ se ve zm°nànòch
- oblastech nalÇzaj°. Vzhledem k p©edpokl†danÇmu rozsahu
- niáivòch dñsledkñ likvidaán° akce je t©eba se ujistit
- o pravosti zm°nànòch zpr†v. Tak dlouho v®ak Toricon áekat
- nemñëe. Letadlovòch lod° je v souáasnosti t©eba u pob©eë°
- Losaba, kde se toriconskÇ n†mo©nictvo pokou®° prolomit
- kontinent†ln° blok†du trvaj°c° jië nàkolik tòdnñ.
-#> Va®°m posl†n°m je v prvÇ ©adà z°skat pod svou kontrolu nàkolik
- leti®ü pob©eën°ho p†su, kam by se mohly p©esunout na®e
- bombardÇry, a jakmile bude potvrzena hrozba nep©†telskÇ
- expanze do toriconskòch oblast°, zah†j°te z vydobytòch leti®ü
- £tok na z†kladny nach†zej°c° se na £zem° vòchodn°ho Lebrukonu.
-#> ˛
+#> 
+ #p.toricon.282.183. 
+#> Letadlov√° loƒè Imperi, 15 mil od lebrukonsk√©ho pob≈ôe≈æ√≠
+#> K Toriconu dolehly zpr√°vy, podle kter√Ωch Konzorcium mobilizuje
+ s√≠ly v oblastech v√Ωchodn√≠ho Lebrukonu za √∫ƒçelem obsazen√≠
+ zak√°zan√© z√≥ny lebaransk√©ho √∫zem√≠. Podle na≈°ich z√°kladen Kytanu
+ a Setrixu se nep≈ô√≠tel zat√≠m obranu prolomit nepokusil, ale co
+ nen√≠, m≈Ø≈æe b√Ωt. Z bezpeƒçnostn√≠ch d≈Øvod≈Ø Toricon rozhodl
+ zlikvidovat ve≈°ker√© z√°kladny Konzorcia, kter√© se ve zm√≠nƒõn√Ωch
+ oblastech nal√©zaj√≠. Vzhledem k p≈ôedpokl√°dan√©mu rozsahu
+ niƒçiv√Ωch d≈Øsledk≈Ø likvidaƒçn√≠ akce je t≈ôeba se ujistit
+ o pravosti zm√≠nƒõn√Ωch zpr√°v. Tak dlouho v≈°ak Toricon ƒçekat
+ nem≈Ø≈æe. Letadlov√Ωch lod√≠ je v souƒçasnosti t≈ôeba u pob≈ôe≈æ√≠
+ Losaba, kde se toriconsk√© n√°mo≈ônictvo pokou≈°√≠ prolomit
+ kontinent√°ln√≠ blok√°du trvaj√≠c√≠ ji≈æ nƒõkolik t√Ωdn≈Ø.
+#> Va≈°√≠m posl√°n√≠m je v prv√© ≈ôadƒõ z√≠skat pod svou kontrolu nƒõkolik
+ leti≈°≈• pob≈ôe≈æn√≠ho p√°su, kam by se mohly p≈ôesunout na≈°e
+ bombard√©ry, a jakmile bude potvrzena hrozba nep≈ô√°telsk√©
+ expanze do toriconsk√Ωch oblast√≠, zah√°j√≠te z vydobyt√Ωch leti≈°≈•
+ √∫tok na z√°kladny nach√°zej√≠c√≠ se na √∫zem√≠ v√Ωchodn√≠ho Lebrukonu.
+#> 
 #> F. Lambert
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: dobòt pob©eën° leti®tà a zah†jit £tok na
- nep©†telskÇ pozice ve vòchodn°m Lebaranu
+#> PRIM√ÅRN√ç C√çL: dob√Ωt pob≈ôe≈æn√≠ leti≈°tƒõ a zah√°jit √∫tok na
+ nep≈ô√°telsk√© pozice ve v√Ωchodn√≠m Lebaranu
 #e
 #e

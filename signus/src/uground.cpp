@@ -541,38 +541,40 @@ void TGnom::AfterSetup()
 
 
 
-void TGnom::Read(FILE *f)
-{
-    TGroundSupportUnit::Read(f);
-    for (int i = 0; i < 4; i++) {
-        fread(&Ammo[i], 4, 1, f);
-        fread(&MaxAmmo[i], 4, 1, f);
-    }
+void TGnom::Read(ReadStream &stream) {
+	TGroundSupportUnit::Read(stream);
+
+	for (int i = 0; i < 4; i++) {
+		Ammo[i] = stream.readSint32LE();
+		MaxAmmo[i] = stream.readSint32LE();
+	}
 }
 
-void TGnom::Write(FILE *f)
-{
-    TGroundSupportUnit::Write(f);
-    for (int i = 0; i < 4; i++) {
-        fwrite(&Ammo[i], 4, 1, f);
-        fwrite(&MaxAmmo[i], 4, 1, f);
-    }
+void TGnom::Write(WriteStream &stream) {
+	TGroundSupportUnit::Write(stream);
+
+	for (int i = 0; i < 4; i++) {
+		stream.writeSint32LE(Ammo[i]);
+		stream.writeSint32LE(MaxAmmo[i]);
+	}
 }
 
 
 
-void TGnom::GetUnitInfo()
-{
-    char cbuf[30];
-    int i;
+void TGnom::GetUnitInfo() {
+	char cbuf[30];
+	int i;
 
-    TGroundSupportUnit::GetUnitInfo();  
+	TGroundSupportUnit::GetUnitInfo();
 
-    for (i = 0; i <4; i++) {
-        sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);
-        PercentBar(UInfoBuf, UINFO_SX, 34, 80+i*20, 72, 13, clrLightBlue2, clrSeaBlue, (double)Ammo[i] / MaxAmmo[i], cbuf);
-        CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 80+i*20, BmpAmmoIcons[i], 30, 13);
-    }
+	for (i = 0; i <4; i++) {
+		sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 34, 80+i*20, 72, 13,
+			clrLightBlue2, clrSeaBlue,
+			(double)Ammo[i] / MaxAmmo[i], cbuf);
+		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 80+i*20, BmpAmmoIcons[i], 30,
+			13);
+	}
 }
 
 
@@ -674,11 +676,12 @@ int TIris::WillSupport(TUnit *Unit)
 
 // Satan:
 
-void TSatan::Init(int x, int y, int party, FILE *f)
-{
-    TGroundUnit::Init(x, y, party, f);
-    if (IconSatan == NULL) 
-        IconSatan = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icsatan%i", 13);
+void TSatan::Init(int x, int y, int party, ReadStream *stream) {
+	TGroundUnit::Init(x, y, party, stream);
+
+	if (IconSatan == NULL) {
+		IconSatan = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icsatan%i", 13);
+	}
 }
 
 
@@ -725,16 +728,16 @@ TSprite *TSatan::GetSprite()
 
 
 
-void TSatan::GetUnitInfo()
-{
-    char cbuf[30];
-    
-    TGroundUnit::GetUnitInfo();
-    CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconSatan->IconPic[0], 59, 59);
+void TSatan::GetUnitInfo() {
+	char cbuf[30];
 
-    CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129, BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-    sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-    PutStr(UInfoBuf, UINFO_SX, 35, 129, cbuf, NormalFont, clrWhite, clrBlack);     
+	TGroundUnit::GetUnitInfo();
+	CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconSatan->IconPic[0], 59, 59);
+	CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129,
+		BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
+	sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 129, cbuf, NormalFont,
+		clrWhite, clrBlack);
 }
 
 
@@ -776,7 +779,7 @@ void TSatan::Explode()
             for (i = X - 3; i <= X + 3; i++) 
                 for (j = Y - 3; j <= Y + 3; j++) 
                     AddExplode3x3(i, j, 0, 
-                        20 - 40 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX, TRUE);
+                        20 - 40 * frand(), 20 - 40 * frand(), TRUE);
             IncExplodeTime(+2);
         }
     }
@@ -800,24 +803,22 @@ void TSatan::Explode()
 
 
 
-void TSatan::Read(FILE *f)
-{
-    TGroundUnit::Read(f);
+void TSatan::Read(ReadStream &stream) {
+	TGroundUnit::Read(stream);
 
-    fread(&DestruAtN1, 4, 1, f);
-    fread(&DestruBoN1, 4, 1, f);
-    fread(&DestruAtN2, 4, 1, f);
-    fread(&DestruBoN2, 4, 1, f);
+	DestruAtN1 = stream.readSint32LE();
+	DestruBoN1 = stream.readSint32LE();
+	DestruAtN2 = stream.readSint32LE();
+	DestruBoN1 = stream.readSint32LE();
 }
 
-void TSatan::Write(FILE *f)
-{
-    TGroundUnit::Write(f);
+void TSatan::Write(WriteStream &stream) {
+	TGroundUnit::Write(stream);
 
-    fwrite(&DestruAtN1, 4, 1, f);
-    fwrite(&DestruBoN1, 4, 1, f);
-    fwrite(&DestruAtN2, 4, 1, f);
-    fwrite(&DestruBoN2, 4, 1, f);
+	stream.writeSint32LE(DestruAtN1);
+	stream.writeSint32LE(DestruBoN1);
+	stream.writeSint32LE(DestruAtN2);
+	stream.writeSint32LE(DestruBoN2);
 }
 
 
@@ -855,10 +856,10 @@ void TGargantua::IncLevel(int alevel)
 
 
 
-void TGargantua::GetUnitInfo()
-{
-    TGroundUnit::GetUnitInfo();
-    PutStr(UInfoBuf, UINFO_SX, 5, 100, SigText[TXT_ARTIFACT_TRANS], NormalFont, clrWhite, clrBlack);
+void TGargantua::GetUnitInfo() {
+	TGroundUnit::GetUnitInfo();
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 5, 100,
+		SigText[TXT_ARTIFACT_TRANS], NormalFont, clrWhite, clrBlack);
 }
 
 
@@ -875,7 +876,7 @@ void TGargantua::Explode()
         for (i = X - 5; i <= X + 5; i++) 
             for (j = Y - 5; j <= Y + 5; j++) 
                     AddExplode3x3(i, j, 0, 
-                        20 - 40 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX, TRUE);
+                        20 - 40 * frand(), 20 - 40 * frand(), TRUE);
     }
     IncExplodeTime(+3);
     MegaDestruction = TRUE;
@@ -898,13 +899,13 @@ void TGargantua::Explode()
 
 // Xenon - miner
 
-void TXenon::Init(int x, int y, int party, FILE *f)
-{
-    TGroundUnit::Init(x, y, party, f);
-    if (IconXenon == NULL) {
-        IconXenon = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenon%i", 13);
-        IconXenon2 = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenob%i", 13);
-    }
+void TXenon::Init(int x, int y, int party, ReadStream *stream) {
+	TGroundUnit::Init(x, y, party, stream);
+
+	if (IconXenon == NULL) {
+		IconXenon = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenon%i", 13);
+		IconXenon2 = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icxenob%i", 13);
+	}
 }
 
 
@@ -931,19 +932,23 @@ void TXenon::IncLevel(int alevel)
 
 
 
-void TXenon::GetUnitInfo()
-{
-    char cbuf[80];
+void TXenon::GetUnitInfo() {
+	char cbuf[80];
 
-    TGroundUnit::GetUnitInfo();
-    PutStr(UInfoBuf, UINFO_SX, 2, 78, SigText[TXT_MINES_LEFT], NormalFont, clrWhite, clrBlack);
+	TGroundUnit::GetUnitInfo();
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 78, SigText[TXT_MINES_LEFT],
+		NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i / %i", Mines, utXE_MINES);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 80, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)Mines / utXE_MINES, cbuf);
 
-    sprintf(cbuf, "%i / %i", Mines, utXE_MINES);
-    PercentBar(UInfoBuf, UINFO_SX, 54, 80, 52, 13, clrLightBlue2, clrSeaBlue, (double)Mines / utXE_MINES, cbuf);
-    if (GetMineAt(X, Y) == -1)
-        CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon->IconPic[0], 59, 59);
-    else
-        CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon2->IconPic[0], 59, 59);
+	if (GetMineAt(X, Y) == -1) {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon->IconPic[0], 59,
+			59);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon2->IconPic[0], 59,
+			59);
+	}
 }
 
 
@@ -1006,16 +1011,14 @@ void TXenon::GoOnMine()
 
 
 
-void TXenon::Read(FILE *f)
-{
-    TGroundUnit::Read(f);
-    fread(&Mines, 4, 1, f);
+void TXenon::Read(ReadStream &stream) {
+	TGroundUnit::Read(stream);
+	Mines = stream.readSint32LE();
 }
 
-void TXenon::Write(FILE *f)
-{
-    TGroundUnit::Write(f);
-    fwrite(&Mines, 4, 1, f);
+void TXenon::Write(WriteStream &stream) {
+	TGroundUnit::Write(stream);
+	stream.writeSint32LE(Mines);
 }
 
 

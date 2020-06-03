@@ -38,36 +38,57 @@ static int AF_Reseted = FALSE;
 
 #ifdef DEBUG
     
-void ShowAutofireDebug(int x, int y, int drawx, int drawy)
-{
-    char b[20];
-    if (!AF_Reseted) return;
-    if (!AF_Map[x + MapSizeX * y]) return;
-    sprintf(b, "%i", AF_Map[x + MapSizeX * y]);
-    PutStr(MapBuf, VIEW_PIXSZ_X, drawx+20, drawy+5, b, NormalFont, 2, 1);
+void ShowAutofireDebug(int x, int y, int drawx, int drawy) {
+	char b[20];
+
+	if (!AF_Reseted) {
+		return;
+	}
+
+	if (!AF_Map[x + MapSizeX * y]) {
+		return;
+	}
+
+	sprintf(b, "%i", AF_Map[x + MapSizeX * y]);
+	PutStr(MapBuf, VIEW_PIXSZ_X, VIEW_PIXSZ_Y, drawx+20, drawy+5, b,
+		NormalFont, 2, 1);
 }
-    
+
 #endif
 
 
 
 
-void SaveAutofire(FILE *f)
-{
-    fwrite(&AF_Reseted, 4, 1, f);
-    fwrite(&AF_from, 4, 1, f);
-    fwrite(&AF_to, 4, 1, f);
-    fwrite(AF_Map, MapSizeX * MapSizeY * sizeof(word), 1, f);
-    fwrite(AF_Units, UNITS_TOP * 4, 1, f);
+void SaveAutofire(WriteStream &stream) {
+	int i;
+
+	stream.writeSint32LE(AF_Reseted);
+	stream.writeSint32LE(AF_from);
+	stream.writeSint32LE(AF_to);
+
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		stream.writeUint16LE(AF_Map[i]);
+	}
+
+	for (i = 0; i < UNITS_TOP; i++) {
+		stream.writeSint32LE(AF_Units[i]);
+	}
 }
 
-void LoadAutofire(FILE *f)
-{
-    fread(&AF_Reseted, 4, 1, f);
-    fread(&AF_from, 4, 1, f);
-    fread(&AF_to, 4, 1, f);
-    fread(AF_Map, MapSizeX * MapSizeY * sizeof(word), 1, f);
-    fread(AF_Units, UNITS_TOP * 4, 1, f);
+void LoadAutofire(ReadStream &stream) {
+	int i;
+
+	AF_Reseted = stream.readSint32LE();
+	AF_from = stream.readSint32LE();
+	AF_to = stream.readSint32LE();
+
+	for (i = 0; i < MapSizeX * MapSizeY; i++) {
+		AF_Map[i] = stream.readUint16LE();
+	}
+
+	for (i = 0; i < UNITS_TOP; i++) {
+		AF_Units[i] = stream.readSint32LE();
+	}
 }
 
 
@@ -845,8 +866,8 @@ static TPoint GetRozptyl(int x, int y, TUnit *u)
     TPoint p;
     int i, cs;
     
-    if ((100 * rand() / RAND_MAX) > RozptylTable[u->Level]) {
-        cs = 1 + 8 * rand() / RAND_MAX;
+    if ((100 * frand()) > RozptylTable[u->Level]) {
+        cs = 1 + rand() % 8;
         p = CartezianSnail(cs);
         if (!u->Weapons[u->CurWpn]->IsInRange(u, u->X, u->Y, x+p.x, y+p.y)) {
             p.x = p.y = 0;

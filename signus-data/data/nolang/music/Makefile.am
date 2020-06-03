@@ -1,7 +1,7 @@
 
 musdir = $(datadir)/signus/$(VERSION)/nolang/music
 
-mus_DATA = artephact_war.s3m \
+dist_mus_DATA = artephact_war.s3m \
            belligerent_bacteria.s3m \
            cophhee_has_chilled_out.s3m \
            dont_phall_asleep.s3m \

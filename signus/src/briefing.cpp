@@ -655,85 +655,99 @@ void BriefHandleEvent(int What)
 }
 
 
-void DrawOnScreen(int DrawBackground)
-{
-    int i;
-    int WordLineCnt;
-    int LocalWordCnt = 0;
-    int LocalPicCnt = 0;
-    int PixColCnt = 0;
-    int ArtCnt = -1; // Citac odstavcu
-    
-    double PixLineCnt;
-    
-    if (DrawBackground != 0) {
-    void *ptr;
-    char buf[20];
-    sprintf(buf, "%ibriefbk", iniResolution - 0x0100);
-    ptr = GraphicsDF->get(buf);
-    MouseHide();
-    DrawPicture(ptr);
-    MouseShow();
-    memfree(ptr);
-  }
-  
-  for (i = 0; i <= NumOfLines; i++) {
-    WordLineCnt = -1;
-    PixLineCnt = 0;
-    
-    do {
-      WordLineCnt++;
-        LocalWordCnt++;
-        
-      if (WordsTypes[LocalWordCnt] == 1) {
-            if (LocalWordCnt != 1) i++;
-            ArtCnt++;
-        PixLineCnt = GetStrWidth("  ", NormalFont);
-        if (LocalWordCnt != 1) PixColCnt += ArticleSpace*2;
-        WordLineCnt = 0;
-        }
-      if (Links[LocalWordCnt] == 0) 
-        PutStr (BigDrawBuffer, LinePixels, PixLineCnt, PixColCnt,
-                Words[LocalWordCnt], NormalFont, clrWhite, clrBlack);
-      else {
-        PutStr (BigDrawBuffer, LinePixels, PixLineCnt, PixColCnt,
-                Words[LocalWordCnt], NormalFont, clrRed, clrBlack);    
-        LastLink++;
-        LinksXY[LastLink].x1 = PixLineCnt;
-        LinksXY[LastLink].x2 = PixLineCnt+GetStrWidth(Words[LocalWordCnt],NormalFont);
-        LinksXY[LastLink].y1 = PixColCnt;
-        LinksXY[LastLink].y2 = PixColCnt + 16;
-        Links2[LastLink] = Links[LocalWordCnt];
-      }
-      
-      if (WordsTypes[LocalWordCnt] == 4) {
-        // Obrazky (jee...)
-        LocalPicCnt++;
-        
-        void *ptr;
-        ptr = GraphicsDF->get(PicFiles[LocalPicCnt]);
-        PixColCnt += 32;
-        CopyBmpNZ(BigDrawBuffer, LinePixels, (LinePixels-PicSize[LocalPicCnt].x)/2, 
-                  PixColCnt, ptr, PicSize[LocalPicCnt].x, PicSize[LocalPicCnt].y);
-        PixColCnt += (PicSize[LocalPicCnt].y-16);
-        
-        memfree(ptr);
-      }
-            
-        PixLineCnt += (double)GetStrWidth(Words[LocalWordCnt], NormalFont);
-        PixLineCnt += LineSpace[i];
-        
-        if (WordsTypes[LocalWordCnt] == 3) goto LastWord;
-                
-    } while (WordsTypes[LocalWordCnt] != 2);
-    PixColCnt += 16;
-    
-  }
+void DrawOnScreen(int DrawBackground) {
+	int i;
+	int WordLineCnt;
+	int LocalWordCnt = 0;
+	int LocalPicCnt = 0;
+	int PixColCnt = 0;
+	int ArtCnt = -1; // Citac odstavcu
+	double PixLineCnt;
 
-  LastWord:
-  
-  BriefRedrawScr();
-  
+	if (DrawBackground != 0) {
+		void *ptr;
+		char buf[20];
+
+		sprintf(buf, "%ibriefbk", iniResolution - 0x0100);
+		ptr = GraphicsDF->get(buf);
+		MouseHide();
+		DrawPicture(ptr);
+		MouseShow();
+		memfree(ptr);
+	}
+
+	for (i = 0; i <= NumOfLines; i++) {
+		WordLineCnt = -1;
+		PixLineCnt = 0;
+
+		do {
+			WordLineCnt++;
+			LocalWordCnt++;
+
+			if (WordsTypes[LocalWordCnt] == 1) {
+				if (LocalWordCnt != 1) {
+					i++;
+				}
+
+				ArtCnt++;
+				PixLineCnt = GetStrWidth("  ", NormalFont);
+
+				if (LocalWordCnt != 1) {
+					PixColCnt += ArticleSpace*2;
+				}
+
+				WordLineCnt = 0;
+			}
+
+			if (Links[LocalWordCnt] == 0) {
+				PutStr (BigDrawBuffer, LinePixels, BigBufLines,
+					PixLineCnt, PixColCnt,
+					Words[LocalWordCnt], NormalFont,
+					clrWhite, clrBlack);
+			} else {
+				PutStr (BigDrawBuffer, LinePixels, BigBufLines,
+					PixLineCnt, PixColCnt,
+					Words[LocalWordCnt], NormalFont,
+					clrRed, clrBlack);
+				LastLink++;
+				LinksXY[LastLink].x1 = PixLineCnt;
+				LinksXY[LastLink].x2 = PixLineCnt +
+					GetStrWidth(Words[LocalWordCnt],
+					NormalFont);
+				LinksXY[LastLink].y1 = PixColCnt;
+				LinksXY[LastLink].y2 = PixColCnt + 16;
+				Links2[LastLink] = Links[LocalWordCnt];
+			}
+
+			if (WordsTypes[LocalWordCnt] == 4) {
+				void *ptr;
+
+				// Obrazky (jee...)
+				LocalPicCnt++;
+				ptr = GraphicsDF->get(PicFiles[LocalPicCnt]);
+				PixColCnt += 32;
+				CopyBmpNZ(BigDrawBuffer, LinePixels,
+					(LinePixels-PicSize[LocalPicCnt].x)/2,
+					PixColCnt, ptr, PicSize[LocalPicCnt].x,
+					PicSize[LocalPicCnt].y);
+				PixColCnt += (PicSize[LocalPicCnt].y-16);
+				memfree(ptr);
+			}
+
+			PixLineCnt += (double)GetStrWidth(Words[LocalWordCnt],
+				NormalFont);
+			PixLineCnt += LineSpace[i];
+
+			if (WordsTypes[LocalWordCnt] == 3) {
+				goto LastWord;
+			}
+		} while (WordsTypes[LocalWordCnt] != 2);
+
+		PixColCnt += 16;
+	}
+
+LastWord:
+	BriefRedrawScr();
 }
 
 

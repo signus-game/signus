@@ -1,20 +1,20 @@
-#> Barracuda je ponorka vytvo©en  pomoc¡
- artefaktov‚ technologie. Je vyzbrojena
- speci ln¡m torp‚dometem.
-#> Jednou z nejvˆt¨¡ch v˜hod tˆchto
- ponorek je jejich monitorovac¡
- syst‚m, kter˜ jim umo‘¤uje zahl‚dnout
- jakoukoliv nep© telskou jednotku.
- Nev˜hodou tˆchto zbran¡ je jejich
- snadn  zjistitelnost torp‚doborci
- Vikingy. Barracudy mohou sv  dˆla
- vyu‘¡t pouze v p©¡padˆ vyno©en¡ nad
- hladinu co‘ je v¨ak ‡in¡ velice
- zraniteln˜mi.
-#> P©i v˜voji tˆchto ponorek se vyskytl
- drobn˜ probl‚m s p©etlakov˜mi komorami;
- na¨tˆst¡ se n m ho poda©ilo odstranit
- d©¡ve, ne‘ do¨lo k nˆjak˜m v˜raznˆj¨¡m
- ztr t m na ‘ivotech.
+#> Barracuda je ponorka vytvoÅ™enÃ¡ pomocÃ­
+ artefaktovÃ© technologie. Je vyzbrojena
+ speciÃ¡lnÃ­m torpÃ©dometem.
+#> Jednou z nejvÄ›tÅ¡Ã­ch vÃ½hod tÄ›chto
+ ponorek je jejich monitorovacÃ­
+ systÃ©m, kterÃ½ jim umoÅ¾Åˆuje zahlÃ©dnout
+ jakoukoliv nepÅ™Ã¡telskou jednotku.
+ NevÃ½hodou tÄ›chto zbranÃ­ je jejich
+ snadnÃ¡ zjistitelnost torpÃ©doborci
+ Vikingy. Barracudy mohou svÃ¡ dÄ›la
+ vyuÅ¾Ã­t pouze v pÅ™Ã­padÄ› vynoÅ™enÃ­ nad
+ hladinu coÅ¾ je vÅ¡ak ÄinÃ­ velice
+ zranitelnÃ½mi.
+#> PÅ™i vÃ½voji tÄ›chto ponorek se vyskytl
+ drobnÃ½ problÃ©m s pÅ™etlakovÃ½mi komorami;
+ naÅ¡tÄ›stÃ­ se nÃ¡m ho podaÅ™ilo odstranit
+ dÅ™Ã­ve, neÅ¾ doÅ¡lo k nÄ›jakÃ½m vÃ½raznÄ›jÅ¡Ã­m
+ ztrÃ¡tÃ¡m na Å¾ivotech.
 #e
 #e

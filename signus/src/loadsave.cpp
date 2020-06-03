@@ -46,135 +46,164 @@
 #define STAMP_SZ  ((504 / 2) * (420 / 2))
 
 typedef struct {
-            char     Magic[12];           // == "SIGNUS SAVE"0
+            char     Magic[12];           // == "SIGNUS GPL0"0
             char     Name[64];
             time_t   Time;
+	    int      format;
     }   TSavegameHdr;
 
-
+static const char *magic_list[] = {
+	"SIGNUS SAVE",
+	"SIGNUS GPL0",
+	NULL
+};
 
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
 
-int SaveGameState(FILE *f)
-{
-    int dummy;
+int SaveGameState(WriteStream &stream) {
+	int i;
     
-    WaitCursor(TRUE);
-    LockDraw(); LockDraw(); LockDraw(); LockDraw();
-    StoreMap(f);
+	WaitCursor(TRUE);
+
+	for (i = 0; i < 4; i++) {
+		LockDraw();
+	}
+
+	StoreMap(stream);
     
-    // engine.h:
-    fwrite(&MapPos, sizeof(MapPos), 1, f);
-    fwrite(&TurnTime, sizeof(TurnTime), 1, f);
-    fwrite(&MissionTime, sizeof(MissionTime), 1, f);
-    fwrite(&ActualMission, sizeof(ActualMission), 1, f);
-    fwrite(&ActualDifficulty, sizeof(ActualDifficulty), 1, f);
-    // visiblty.h:
-    fwrite(&AllowedBadlife, sizeof(AllowedBadlife), 1, f);
-    if (BadlifeVisib != NULL) {
-        dummy = TRUE; fwrite(&dummy, 4, 1, f);
-        fwrite(BadlifeVisib, MapSizeX * MapSizeY, 1, f);
-    }
-    else {dummy = FALSE; fwrite(&dummy, 4, 1, f);}
-    // units.h:
-    fwrite(SelectionHistory, sizeof(SelectionHistory), 1, f);
-    fwrite(&GoodlifeDeads, sizeof(GoodlifeDeads), 1, f);
-    fwrite(&BadlifeDeads, sizeof(BadlifeDeads), 1, f);
-    fwrite(&TimeReserve, 4, 1, f);
-    // fields.h:
-    fwrite(&MinesCnt, sizeof(MinesCnt), 1, f);
-    fwrite(MinesList, sizeof(TMineRecord) * MinesCnt, 1, f);
-    // building.h:
-    fwrite(&MoneyGoodlife, 4, 1, f);
-    fwrite(&MoneyBadlife, 4, 1, f);
-    // autofire.h:
-    SaveAutofire(f);
+	// engine.h:
+	stream.writeSint32LE(MapPos.x);
+	stream.writeSint32LE(MapPos.y);
+	stream.writeSint32LE(TurnTime);
+	stream.writeSint32LE(MissionTime);
+	stream.writeSint32LE(ActualMission);
+	stream.writeSint8(ActualDifficulty);
 
-    // loadsave.h:
+	// visiblty.h:
+	stream.writeSint32LE(AllowedBadlife);
 
-    // NB: this used to save SavesRemaining value, but we no longer have
-    //     such stupid misfeature in the code. We still write out 4bytes
-    //     of worthless data, though, to keep compatibility with original
-    //     Signus saved game states:
-    int SavesRemainingFakeValue = 100;
-    fwrite(&SavesRemainingFakeValue, 4, 1, f);
-       
-    SaveArtificialIntelligence(f);
+	if (BadlifeVisib) {
+		stream.writeSint32LE(1);
+		stream.write(BadlifeVisib, MapSizeX * MapSizeY);
+	} else {
+		stream.writeSint32LE(0);
+	}
 
-    UnlockDraw(); UnlockDraw(); UnlockDraw(); UnlockDraw(); 
-    WaitCursor(FALSE);
-    return TRUE;
+	// units.h:
+	for (i = 0; i < GOODLIFE_TOP; i++) {
+		stream.writeSint32LE(SelectionHistory[i]);
+	}
+
+	stream.writeSint32LE(GoodlifeDeads);
+	stream.writeSint32LE(BadlifeDeads);
+	stream.writeSint32LE(TimeReserve);
+
+	// fields.h:
+	stream.writeSint32LE(MinesCnt);
+
+	for (i = 0; i < MinesCnt; i++) {
+		stream.writeSint32LE(MinesList[i].x);
+		stream.writeSint32LE(MinesList[i].y);
+		stream.writeSint32LE(MinesList[i].party);
+	}
+
+	// building.h:
+	stream.writeSint32LE(MoneyGoodlife);
+	stream.writeSint32LE(MoneyBadlife);
+
+	// autofire.h:
+	SaveAutofire(stream);
+
+	// Intentional compatibility break. The first commercial release had
+	// a limited number of saves per game. The number of remaining saves
+	// was stored here.
+	//stream.writeSint32LE(1U << 31);
+
+	SaveArtificialIntelligence(stream);
+
+	for (i = 0; i < 4; i++) {
+		UnlockDraw();
+	}
+
+	WaitCursor(FALSE);
+	return TRUE;
 }
 
+int LoadGameState(ReadStream &stream, int format) {
+	int i, dummy;
+	TPoint pz;
 
+	MinesCnt = 0;
+	WaitCursor(TRUE);
+	InitEngine(0, &stream);
 
+	// engine.h:
+	pz.x = stream.readSint32LE();
+	pz.y = stream.readSint32LE();
+	TurnTime = stream.readSint32LE();
+	MissionTime = stream.readSint32LE();
+	ActualMission = stream.readSint32LE();
+	ActualDifficulty = stream.readSint8();
+	ScrollTo(pz.x, pz.y);
+	HideHelpers();
 
+	// visiblty.h:
+	AllowedBadlife = stream.readSint32LE();
+	dummy = stream.readSint32LE();
 
-int LoadGameState(FILE *f)
-{
-    int dummy;
-    TPoint pz;
+	if (BadlifeVisib) {
+		memfree(BadlifeVisib);
+	}
 
-    MinesCnt = 0;
-    WaitCursor(TRUE);
-    InitEngine(0, f);
+	if (dummy) {
+		BadlifeVisib = (byte*)memalloc(MapSizeX * MapSizeY);
+		stream.read(BadlifeVisib, MapSizeX * MapSizeY);
+	}
 
-    // engine.h:
-    fread(&pz, sizeof(pz), 1, f);
-    fread(&TurnTime, sizeof(TurnTime), 1, f);
-    fread(&MissionTime, sizeof(MissionTime), 1, f);
-    fread(&ActualMission, sizeof(ActualMission), 1, f);
-    fread(&ActualDifficulty, sizeof(ActualDifficulty), 1, f);
-    ScrollTo(pz.x, pz.y);
-    HideHelpers();
-    // visiblty.h:
-    fread(&AllowedBadlife, sizeof(AllowedBadlife), 1, f);
-    fread(&dummy, 4, 1, f);
-    if (dummy) {
-        if (BadlifeVisib != NULL) memfree(BadlifeVisib);
-        BadlifeVisib = (byte*) memalloc(MapSizeX * MapSizeY);
-        fread(BadlifeVisib, MapSizeX * MapSizeY, 1, f);
-    }
-    // units.h:
-    fread(SelectionHistory, sizeof(SelectionHistory), 1, f);
-    fread(&GoodlifeDeads, sizeof(GoodlifeDeads), 1, f);
-    fread(&BadlifeDeads, sizeof(BadlifeDeads), 1, f);
-    fread(&TimeReserve, 4, 1, f);
-    // fields.h:
-    fread(&MinesCnt, sizeof(MinesCnt), 1, f);
-    fread(MinesList, sizeof(TMineRecord) * MinesCnt, 1, f);
-    // building.h:
-    fread(&MoneyGoodlife, 4, 1, f);
-    fread(&MoneyBadlife, 4, 1, f);
-    // autofire.h:
-    LoadAutofire(f);
-    
-    // loadsave.h:
-    // NB: this used to save SavesRemaining value, but we no longer have
-    //     such stupid misfeature in the code. We still write out 4bytes
-    //     of worthless data, though, to keep compatibility with original
-    //     Signus saved game states:
-    int SavesRemainingFakeValue;
-    fread(&SavesRemainingFakeValue, 4, 1, f);
+	// units.h:
+	for (i = 0; i < GOODLIFE_TOP; i++) {
+		SelectionHistory[i] = stream.readSint32LE();
+	}
 
-    LoadArtificialIntelligence(f);
-    
-    WaitCursor(FALSE);
-    RedrawMap();
-    ShowHelpers();
-    PulsarProcess = TRUE;
-    SetPalette(Palette);
-    return TRUE;
+	GoodlifeDeads = stream.readSint32LE();
+	BadlifeDeads = stream.readSint32LE();
+	TimeReserve = stream.readSint32LE();
+
+	// fields.h:
+	MinesCnt = stream.readSint32LE();
+
+	for (i = 0; i < MinesCnt; i++) {
+		MinesList[i].x = stream.readSint32LE();
+		MinesList[i].y = stream.readSint32LE();
+		MinesList[i].party = stream.readSint32LE();
+	}
+
+	// building.h:
+	MoneyGoodlife = stream.readSint32LE();
+	MoneyBadlife = stream.readSint32LE();
+
+	// autofire.h:
+	LoadAutofire(stream);
+
+	// loadsave.h:
+	// The first commercial release had a limited number of saves per game.
+	// The number of remaining saves was stored here.
+	if (format < 1) {
+		stream.readSint32LE();
+	}
+
+	LoadArtificialIntelligence(stream, format);
+
+	WaitCursor(FALSE);
+	RedrawMap();
+	ShowHelpers();
+	PulsarProcess = TRUE;
+	SetPalette(Palette);
+	return TRUE;
 }
-
-
-
-
-
-
 
 
 
@@ -258,69 +287,126 @@ TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2
 extern bool dirExists(const char *filename);
 static const char *getSavesDir()
 {
-    static char savesDir[1024] = "";
-    strncpy(savesDir, getSignusConfigDir(), 1024);
-    strncat(savesDir, "/saved_games", 1024);
+    static char savesDir[PATH_MAX - 256] = "";
+    strncpy(savesDir, getSignusConfigDir(), sizeof(savesDir));
+    savesDir[sizeof(savesDir) - 1] = '\0';
+    strncat(savesDir, "/saved_games", sizeof(savesDir) - strlen(savesDir) - 1);
+    savesDir[sizeof(savesDir) - 1] = '\0';
     if (!dirExists(savesDir))
         mkdir(savesDir, 0700);
     return savesDir;
 }
 
-void TLoadSaveDialog::SearchFiles()
-{
-    DIR *dir;
-    struct dirent *fi;
-    int i, j;
-    TSavegameHdr hdr;
-    FILE *f;
-    char buf[1024];
-    
-    SCount = IsSave; /*0,1*/
-    for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
+int detectFormat(const char *magic) {
+	for (int i = 0; magic_list[i]; i++) {
+		if (!strcmp(magic, magic_list[i])) {
+			return i;
+		}
+	}
 
-    const char *dirname = getSavesDir();
-    // searching for savefiles...:
-    dir = opendir(dirname);
+	return -1;
+}
 
-    fi = readdir(dir);
-    while (fi) {
-        if (strncmp(fi->d_name, "savegame", 8) == 0)
-        {
-            snprintf(buf, 1024, "%s/%s", dirname, fi->d_name);
-            if ((f = fopen(buf, "rb")) != NULL)
-            {
-                fread(&hdr, sizeof(hdr), 1, f);
-                if (strcmp(hdr.Magic, "SIGNUS SAVE") == 0) {
-                    SNames[SCount] = strdup(hdr.Name);
-                    SFiles[SCount] = strdup(buf);
-                    STimes[SCount] = 0xFFFFFFFF - hdr.Time;
-                    SCount++;
-                }
-                fclose(f);
-            }
-        }
-        fi = readdir(dir);
-    }
-    closedir(dir);
+void readSavegameHeader(ReadStream &stream, TSavegameHdr &header) {
+	stream.read(header.Magic, 12);
+	header.format = detectFormat(header.Magic);
 
-    if (IsSave) { // udela jmeno pro new save:
-        int rc;    
-        for (i = 0; i < 1000; i++) {
-            sprintf(buf, "%s/savegame.%03i", dirname, i);
-            rc = TRUE;
-            for (j = 1; j < SCount; j++)
-                if (strcmp(buf, SFiles[j]) == 0) {rc = FALSE; break;}
-            if (rc) {
-                SFiles[0] = (char*) strdup(buf);
-                SNames[0] = (char*) memalloc(strlen(SigText[TXT_NEW]) + 1);
-                strcpy(SNames[0], SigText[TXT_NEW]);
-                STimes[0] = 0;
-                break;
-            }
-        }
-    }
-    
-    SortFiles(0, SCount-1);
+	if (header.format < 0) {
+		return;
+	}
+
+	stream.read(header.Name, 64);
+
+	// Original save format had 32-bit timestamp.
+	if (header.format < 1) {
+		header.Time = stream.readSint32LE();
+	} else {
+		header.Time = stream.readSint64LE();
+	}
+}
+
+void writeSavegameHeader(WriteStream &stream, const char *name) {
+	TSavegameHdr header;
+
+	strcpy(header.Magic, magic_list[DEFAULT_SAVEGAME_FORMAT]);
+	strncpy(header.Name, name, 63);
+	header.Name[63] = '\0';
+	header.Time = time(NULL);
+	stream.write(header.Magic, 12);
+	stream.write(header.Name, 64);
+	// Intentional compatibility break. Original save format would contain
+	// 32-bit timestamp.
+	//stream.writeSint32LE(header.Time);
+	stream.writeSint64LE(header.Time);
+}
+
+void TLoadSaveDialog::SearchFiles() {
+	DIR *dir;
+	struct dirent *fi;
+	int i, j;
+	TSavegameHdr hdr;
+	char buf[PATH_MAX];
+	File f;
+
+	SCount = IsSave; /*0,1*/
+	for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
+
+	const char *dirname = getSavesDir();
+	// searching for savefiles...:
+	dir = opendir(dirname);
+
+	for (fi = readdir(dir); fi; fi = readdir(dir)) {
+		if (strncmp(fi->d_name, "savegame", 8)) {
+			continue;
+		}
+
+		snprintf(buf, PATH_MAX, "%s/%s", dirname, fi->d_name);
+		f.open(buf);
+
+		if (f.isOpen()) {
+			readSavegameHeader(f, hdr);
+
+			if (hdr.format < 0) {
+				f.close();
+				continue;
+			}
+
+			SNames[SCount] = strdup(hdr.Name);
+			SFiles[SCount] = strdup(buf);
+			// FIXME: just reverse sort order and skip placeholder?
+			STimes[SCount] = -hdr.Time;
+			SCount++;
+			f.close();
+		}
+	}
+
+	closedir(dir);
+
+	if (IsSave) { // udela jmeno pro new save:
+		int rc;
+
+		for (i = 0; i < 1000; i++) {
+			snprintf(buf, PATH_MAX, "%s/savegame.%03i", dirname, i);
+			rc = TRUE;
+
+			for (j = 1; j < SCount; j++) {
+				if (!strcmp(buf, SFiles[j])) {
+					rc = FALSE;
+					break;
+				}
+			}
+
+			if (rc) {
+				SFiles[0] = (char*)strdup(buf);
+				SNames[0] = (char*)memalloc(strlen(SigText[TXT_NEW]) + 1);
+				strcpy(SNames[0], SigText[TXT_NEW]);
+				STimes[0] = 0;
+				break;
+			}
+		}
+	}
+
+	SortFiles(0, SCount-1);
 }
 
 
@@ -355,22 +441,25 @@ void TLoadSaveDialog::SortFiles(int l, int r)
 
 
 
-void TLoadSaveDialog::GetStamp(int num)
-{
+void TLoadSaveDialog::GetStamp(int num) {
+	TSavegameHdr tmp;
 
-    if (!IsSave || (num != 0)) {
-        FILE *f = fopen(SFiles[num], "rb");
-	if (f != NULL) {
-		fseek(f, sizeof(TSavegameHdr), SEEK_SET);
-		fread(Stamp, STAMP_SZ, 1, f);
-		fclose(f);
-		return;
+	if (!IsSave || (num != 0)) {
+		File f(SFiles[num]);
+
+		if (f.isOpen()) {
+			readSavegameHeader(f, tmp);
+
+			if (tmp.format >= 0) {
+				f.read(Stamp, STAMP_SZ);
+				return;
+			}
+		}
 	}
-    }
-    
-    void *buf = GraphicsDF->get("newsave");
-    memcpy(Stamp, buf, STAMP_SZ);
-    memfree(buf);
+
+	void *buf = GraphicsDF->get("newsave");
+	memcpy(Stamp, buf, STAMP_SZ);
+	memfree(buf);
 }
 
 
@@ -438,109 +527,117 @@ TLoadSaveDialog::~TLoadSaveDialog()
 
 //////////////////////////   LOADING & SAVING ///////////////////////////////
 
-int LoadGame()
-{
-    TLoadSaveDialog *dlg;
-    FILE *f;
-    int rtn = FALSE;    
+void validate_load_status(SeekableReadStream &stream, const char *filename) {
+	if (stream.eos() || stream.pos() != stream.size()) {
+		fprintf(stderr, "WARNING: Savegame size mismatch. Some game"
+			" state data may be invalid.\n");
 
-    dlg = new TLoadSaveDialog(FALSE/*is NOT save*/);
-
-    if (dlg->Exec() == cmOk) {
-        if ((f = fopen(dlg->GetSelectedFile(), "rb")) != NULL) {
-            if (ActualMission != -1) DoneEngine();
-            fseek(f, sizeof(TSavegameHdr) + STAMP_SZ, SEEK_SET);
-            LoadGameState(f);
-            fclose(f);
-            rtn = TRUE;
-        }
-    }
-
-    delete dlg;
-    {
-        TEvent e;
-        do {GetEvent(&e);} while (e.What != evNothing);
-    }
-    return rtn;
+		if (filename) {
+			fprintf(stderr, "Please send the savegame file %s to"
+				" game developers\n", filename);
+		}
+	}
 }
 
+int LoadGame() {
+	TLoadSaveDialog *dlg;
+	int rtn = FALSE;
 
+	dlg = new TLoadSaveDialog(FALSE/*is NOT save*/);
 
+	if (dlg->Exec() == cmOk) {
+		File f(dlg->GetSelectedFile());
 
+		if (f.isOpen()) {
+			TSavegameHdr tmp;
+			readSavegameHeader(f, tmp);
 
-void SG_PutStamp(FILE *f)
-{
-    byte *buf = (byte*) memalloc(STAMP_SZ);
-    byte *b = buf;
-    int i, j;
-    
-    for (j = 0; j < 420; j += 2)
-        for (i = 0; i < 504; i += 2) 
-            *(b++) = ((byte*)FullBuf)[(VIEW_SX * i / 504) + VIEW_OFS_X + ((VIEW_SY * j / 420) + VIEW_OFS_Y) * VIEW_PIXSZ_X];
-    fwrite(buf, STAMP_SZ, 1, f);
-    memfree(buf);
+			if (tmp.format >= 0) {
+				if (ActualMission != -1) {
+					DoneEngine();
+				}
+
+				f.seek(STAMP_SZ, SEEK_CUR);
+				LoadGameState(f, tmp.format);
+				validate_load_status(f, dlg->GetSelectedFile());
+				rtn = TRUE;
+			}
+		}
+	}
+
+	delete dlg;
+	{
+		TEvent e;
+		do {GetEvent(&e);} while (e.What != evNothing);
+	}
+	return rtn;
 }
 
+void SG_PutStamp(WriteStream &stream) {
+	byte *buf = (byte*)memalloc(STAMP_SZ);
+	byte *b = buf;
+	int i, j;
 
+	for (j = 0; j < 420; j += 2) {
+		for (i = 0; i < 504; i += 2) {
+			*(b++) = ((byte*)FullBuf)[(VIEW_SX * i / 504) + VIEW_OFS_X + ((VIEW_SY * j / 420) + VIEW_OFS_Y) * VIEW_PIXSZ_X];
+		}
+	}
 
-int SaveGame()
-{
-    TLoadSaveDialog *dlg;
-    TSavegameHdr hdr;
-    FILE *f;
-    int rtn = FALSE;    
-
-    dlg = new TLoadSaveDialog(TRUE/*is save*/);
-
-    if (dlg->Exec() == cmOk) {
-        strcpy(hdr.Magic, "SIGNUS SAVE");
-        strcpy(hdr.Name, dlg->GetSelectedName());
-        hdr.Time = time(NULL);
-        if ((f = fopen(dlg->GetSelectedFile(), "wb")) != NULL) {
-            fwrite(&hdr, sizeof(hdr), 1, f);
-            MsgBox(SigText[TXT_SAVING]);
-            SG_PutStamp(f);
-            SaveGameState(f);
-            MsgBox(NULL);
-            fclose(f);
-            rtn = TRUE;
-        }
-    }
-
-    delete dlg;
-    {
-        TEvent e;
-        do {GetEvent(&e);} while (e.What != evNothing);
-    }
-    return rtn;
+	stream.write(buf, STAMP_SZ);
+	memfree(buf);
 }
 
+int SaveGame() {
+	TLoadSaveDialog *dlg;
+	int rtn = FALSE;
 
+	dlg = new TLoadSaveDialog(TRUE/*is save*/);
+
+	if (dlg->Exec() == cmOk) {
+		File f(dlg->GetSelectedFile(), File::WRITE | File::TRUNCATE);
+
+		if (f.isOpen()) {
+			writeSavegameHeader(f, dlg->GetSelectedName());
+			MsgBox(SigText[TXT_SAVING]);
+			SG_PutStamp(f);
+			SaveGameState(f);
+			MsgBox(NULL);
+			rtn = TRUE;
+		}
+	}
+
+	delete dlg;
+	{
+		TEvent e;
+		do {
+			GetEvent(&e);
+		} while (e.What != evNothing);
+	}
+	return rtn;
+}
 
 #ifdef DEBUG
 
-int SaveGameDebug() // na auto-ukladani po kazdem kole
-{
-    TLoadSaveDialog *dlg;
-    TSavegameHdr hdr;
-    FILE *f;
-    int rtn = FALSE;    
-    char fil[13];
+// autosave after each turn
+int SaveGameDebug() {
+	TLoadSaveDialog *dlg;
+	int rtn = FALSE;
+	char buf[64];
 
-    dlg = new TLoadSaveDialog(TRUE/*is save*/);
-    strcpy(hdr.Magic, "SIGNUS SAVE");
-    sprintf(hdr.Name, "Betatest save: turn %i", ActualTurn);
-    hdr.Time = time(NULL);
-    if ((f = fopen(dlg->SFiles[0], "wb")) != NULL) {
-        fwrite(&hdr, sizeof(hdr), 1, f);
-        SG_PutStamp(f);
-        SaveGameState(f);
-        fclose(f);
-        rtn = TRUE;
-    }
+	dlg = new TLoadSaveDialog(TRUE/*is save*/);
+	WriteFile f(dlg->SFiles[0]);
+	sprintf(buf, "Betatest save: turn %i", ActualTurn);
 
-    delete dlg;
-    return rtn;
+	if (f.isOpen()) {
+		writeSavegameHeader(f, buf);
+		SG_PutStamp(stream);
+		SaveGameState(stream);
+		rtn = TRUE;
+	}
+
+	delete dlg;
+	return rtn;
 }
 
 #endif

@@ -1,21 +1,21 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Na®°m nynàj®°m c°lem je otestov†n° novà vyvinutÇ zbranà
- s kryc°m n†zvem Goli†®.
-#> Jedn† se o dàlo s abnorm†ln°m dost©elem i niáivost°, vytvo©enÇ
- na z†kladà studia artefaktovòch technologi°.
-#> K testu byla vybr†na vesnice#001 Amenur#001 s poátem obyvatel 856
- rozkl†daj°c° se v pou®tn° oblasti Rotenalie - konkrÇtnà na
- severu tohoto £zem°.
-#> Dal®°m dñleëitòm poëadavkem Toriconu je proveden° tÇto akce
- v naprostÇ tajnosti - tzn. p©°padn† likvidace svàdkñ apod.
- Pokud by se dñsledky pouëit° Goli†®e dostaly k ve©ejnosti,
- znamenaly by pro Toricon velkÇ nep©°jemnosti.
-#> ˛
+#> 
+ #p.toricon.282.183. 
+#> Na≈°√≠m nynƒõj≈°√≠m c√≠lem je otestov√°n√≠ novƒõ vyvinut√© zbranƒõ
+ s kryc√≠m n√°zvem Goli√°≈°.
+#> Jedn√° se o dƒõlo s abnorm√°ln√≠m dost≈ôelem i niƒçivost√≠, vytvo≈ôen√©
+ na z√°kladƒõ studia artefaktov√Ωch technologi√≠.
+#> K testu byla vybr√°na vesnice#001 Amenur#001 s poƒçtem obyvatel 856
+ rozkl√°daj√≠c√≠ se v pou≈°tn√≠ oblasti Rotenalie - konkr√©tnƒõ na
+ severu tohoto √∫zem√≠.
+#> Dal≈°√≠m d≈Øle≈æit√Ωm po≈æadavkem Toriconu je proveden√≠ t√©to akce
+ v naprost√© tajnosti - tzn. p≈ô√≠padn√° likvidace svƒõdk≈Ø apod.
+ Pokud by se d≈Øsledky pou≈æit√≠ Goli√°≈°e dostaly k ve≈ôejnosti,
+ znamenaly by pro Toricon velk√© nep≈ô√≠jemnosti.
+#> 
 #> Kleon Nemotard
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Otestovat dàlo Goli†®
-#> SEKUNDèRNã CãL: Likvidace vesnice Amenur
+#> PRIM√ÅRN√ç C√çL: Otestovat dƒõlo Goli√°≈°
+#> SEKUND√ÅRN√ç C√çL: Likvidace vesnice Amenur
 #e
 #l br6_001#
 #e

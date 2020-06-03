@@ -1,21 +1,21 @@
-#> Caesar je transportn° letadlo. Je poh†nàno
- dvàma motory. Nem† ë†dnÇ zbranà a m†
- st©ednà silnò panc°©. M† dva sklopnÇ motory,
- kterÇ mu umoë§uj° vertik†ln° start.
-#> Pñvodnà byl Caesar navrëen jako tàëkò bombardÇr,
- ale po p©°chodu Saturnñ uë nebylo ë†dnÇho
- dal®°ho tàëkÇho bombardovac°ho stroje pot©eba.
- Proto byla tato letadla p©estavàna a dnes slouë°
- vòsadkovòm jednotk†m £tvarñ Signus. Vyuëit° Ceasarñ
- v p©°mòch bojovòch akc°ch je ponàkud omezeno jejich
- malou odolnost°, z tohoto dñvodu se doporuáuje
- jejich nasazen° pouze pod ochranou st°hac°ch
- strojñ - Ikarosñ a Mystikñ.
-#> V®echny letadla typu Caesar pat©° pod taktickÇ
- velen° n†mo©n° pàchoty, a proto se vyskytly
- problÇmy p©i jejich nasazen° v akc°ch strategickÇho
- letectva. Nyn° v®ak mñëeme s klidem konstatovat,
- ëe k ë†dnòm dal®°m rozbrojñm uvnit© na®ich jednotek
- nedoch†z°. - Zpr†va ObrannÇ divize Nejvy®®°mu prezidiu.
+#> Caesar je transportn√≠ letadlo. Je poh√°nƒõno
+ dvƒõma motory. Nem√° ≈æ√°dn√© zbranƒõ a m√°
+ st≈ôednƒõ siln√Ω panc√≠≈ô. M√° dva sklopn√© motory,
+ kter√© mu umo≈æ≈àuj√≠ vertik√°ln√≠ start.
+#> P≈Øvodnƒõ byl Caesar navr≈æen jako tƒõ≈æk√Ω bombard√©r,
+ ale po p≈ô√≠chodu Saturn≈Ø u≈æ nebylo ≈æ√°dn√©ho
+ dal≈°√≠ho tƒõ≈æk√©ho bombardovac√≠ho stroje pot≈ôeba.
+ Proto byla tato letadla p≈ôestavƒõna a dnes slou≈æ√≠
+ v√Ωsadkov√Ωm jednotk√°m √∫tvar≈Ø Signus. Vyu≈æit√≠ Ceasar≈Ø
+ v p≈ô√≠m√Ωch bojov√Ωch akc√≠ch je ponƒõkud omezeno jejich
+ malou odolnost√≠, z tohoto d≈Øvodu se doporuƒçuje
+ jejich nasazen√≠ pouze pod ochranou st√≠hac√≠ch
+ stroj≈Ø - Ikaros≈Ø a Mystik≈Ø.
+#> V≈°echny letadla typu Caesar pat≈ô√≠ pod taktick√©
+ velen√≠ n√°mo≈ôn√≠ pƒõchoty, a proto se vyskytly
+ probl√©my p≈ôi jejich nasazen√≠ v akc√≠ch strategick√©ho
+ letectva. Nyn√≠ v≈°ak m≈Ø≈æeme s klidem konstatovat,
+ ≈æe k ≈æ√°dn√Ωm dal≈°√≠m rozbroj≈Øm uvnit≈ô na≈°ich jednotek
+ nedoch√°z√≠. - Zpr√°va Obrann√© divize Nejvy≈°≈°√≠mu prezidiu.
 #e
 #e

@@ -42,10 +42,10 @@ class TBuilding : public TObject {
 					// opravovana (v kazdem kole 50 HP)
 			
 			TBuilding() : TObject() {}
-			void Init(int x, int y, int party, FILE *f = NULL);
-			void WriteInitReq(FILE *f);
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
+			void WriteInitReq(WriteStream &stream);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 		  void PlaceGround(int place);
 			void Draw();
 			TSprite *GetStatusBar();
@@ -75,8 +75,8 @@ class TMutableBuilding : public TBuilding {
 			int Mutation;
 			
 			TMutableBuilding() : TBuilding() {};
-			void Init(int x, int y, int party, FILE *f = NULL);
-			void WriteInitReq(FILE *f);			
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
+			void WriteInitReq(WriteStream &stream);
 			TSprite *GetSprite();	
 	};
 
@@ -161,12 +161,12 @@ class TBase : public TBuilding {
 					// vraci, jestli chce/umi nalozit tuhle jednotku
 		
 			TBase() : TBuilding() {};
-			void Init(int x, int y, int party, FILE *f);
+			void Init(int x, int y, int party, ReadStream *stream);
 			int GetType() {return unBase;}
 			void Setup();
 			unsigned GetAvailableActions();
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			void RemoveFromWorld();
 			int InfoEvent(TEvent *e);
 			void Action(int x, int y);
@@ -243,8 +243,8 @@ class TFactory : public TBuilding {
 			void TurnReset();
 			void Action(int x, int y);
 			void Select();
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			
 			void DoProducing(); // dialog...
 			int ProduceUnit(int untype);
@@ -281,8 +281,8 @@ class TDocks : public TBase {
 			int Orient;
 		
 			TDocks() : TBase() {};
-			void Init(int x, int y, int party, FILE *f = NULL);
-			void WriteInitReq(FILE *f);			
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
+			void WriteInitReq(WriteStream &stream);
 			int GetType() {return unDocks;}
 			void Setup();
 			int WantToLoad(TUnit *u);

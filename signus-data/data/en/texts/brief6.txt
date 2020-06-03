@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> 
+ #p.toricon.282.183. 
 #> Out task in this mission is to test newly developed weapon with a code-name Goliath.
 #> It is a gun with an extreme range of fire and a big destructive power.  It's form is based on the studies of artifact
  technologies.
@@ -7,7 +7,7 @@
  area Rotenalie - specifically in the north part.
 #> Toricon demands us to perform the action in absolute secrecy (to eliminate all witnesses and so on...)
 #> If any consequent information get to the public it will cause big problems to Toricon.
-#> þ
+#> 
 #> Kleon Nemotard
  #p.anamorf.320.184.
 #> PRIMARY AIM: Test new weapon Goliath

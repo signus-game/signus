@@ -36,6 +36,7 @@
 #include "system.h"
 #include "graphio.h"
 #include "events.h"
+#include "stream.h"
 
 
 
@@ -150,7 +151,7 @@ extern int TerrOfssBeg[1024], TerrOfssEnd[1024];
 extern int PulsarValue, PulsarDirection;
 
 // Inicializace enginu a jeho casti:
-extern int InitEngine(int mission, FILE *fptr = NULL);
+extern int InitEngine(int mission, ReadStream *stream = NULL);
    // ma varianty: bud z DF podle misname nebo ze souboru
 extern int DoneEngine();
 extern void InitBitmaps(int MaskL1[], int MaskL2[]);
@@ -215,11 +216,11 @@ extern int AirCursorOn;
 ////////////////// Manipulace s mapou:
 
 // Nacte/zapise mapu mise:
-extern void InitMap(char *misname, FILE *fptr);
-extern void StoreMap(FILE *fptr);
+void InitMap(char *misname, ReadStream *stream);
+void StoreMap(WriteStream &stream);
 // Fce pro cteni a zapis misi do dataku:
-extern unsigned MissionWrite(FILE *fi, void *ptr, size_t size);
-extern void *MissionRead(FILE *fi);
+unsigned MissionWrite(WriteStream &stream, void *ptr, size_t size);
+void *MissionRead(ReadStream &stream);
 
 
 
@@ -293,58 +294,6 @@ extern void *BmpTerr2D[1024];
 
 // Bitmapy cerveneho ramovani vybraneho terenu:
 extern void *BmpSel[13], *BmpSelBold[13];
-
-
-
-extern "C" {
-
-// Fce vykreslujici policka terenu:
-extern void DrawTerrA(int x, int y, void *bmp);
-extern void DrawTerrB(int x, int y, void *bmp);
-extern void DrawTerrC(int x, int y, void *bmp);
-extern void DrawTerrD(int x, int y, void *bmp);
-extern void DrawTerrE(int x, int y, void *bmp);
-extern void DrawTerrF(int x, int y, void *bmp);
-extern void DrawTerrG(int x, int y, void *bmp);
-extern void DrawTerrH(int x, int y, void *bmp);
-extern void DrawTerrI(int x, int y, void *bmp);
-extern void DrawTerrJ(int x, int y, void *bmp);
-extern void DrawTerrK(int x, int y, void *bmp);
-extern void DrawTerrL(int x, int y, void *bmp);
-extern void DrawTerrM(int x, int y, void *bmp);
-
-extern void DrawUpTerrA(int x, int y, void *bmp);
-extern void DrawUpTerrB(int x, int y, void *bmp);
-extern void DrawUpTerrC(int x, int y, void *bmp);
-extern void DrawUpTerrD(int x, int y, void *bmp);
-extern void DrawUpTerrE(int x, int y, void *bmp);
-extern void DrawUpTerrF(int x, int y, void *bmp);
-extern void DrawUpTerrG(int x, int y, void *bmp);
-extern void DrawUpTerrH(int x, int y, void *bmp);
-extern void DrawUpTerrI(int x, int y, void *bmp);
-extern void DrawUpTerrJ(int x, int y, void *bmp);
-extern void DrawUpTerrK(int x, int y, void *bmp);
-extern void DrawUpTerrL(int x, int y, void *bmp);
-extern void DrawUpTerrM(int x, int y, void *bmp);
-
-
-
-// Kresleni do lokal. buf.:
-extern void DrawLocalA(void *LocBuf, int x, int y, int color);
-extern void DrawLocalB(void *LocBuf, int x, int y, int color);
-extern void DrawLocalC(void *LocBuf, int x, int y, int color);
-extern void DrawLocalD(void *LocBuf, int x, int y, int color);
-extern void DrawLocalE(void *LocBuf, int x, int y, int color);
-extern void DrawLocalF(void *LocBuf, int x, int y, int color);
-extern void DrawLocalG(void *LocBuf, int x, int y, int color);
-extern void DrawLocalH(void *LocBuf, int x, int y, int color);
-extern void DrawLocalI(void *LocBuf, int x, int y, int color);
-extern void DrawLocalJ(void *LocBuf, int x, int y, int color);
-extern void DrawLocalK(void *LocBuf, int x, int y, int color);
-extern void DrawLocalL(void *LocBuf, int x, int y, int color);
-extern void DrawLocalM(void *LocBuf, int x, int y, int color);
-}
-
 
 
 

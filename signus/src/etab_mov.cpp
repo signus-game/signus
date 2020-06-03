@@ -19,6 +19,7 @@
  *
  */
 
+#include "etables.h"
 
 // Tabulky pro pohyb jednotek:
 

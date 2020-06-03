@@ -1,11 +1,11 @@
-#> —tok probˆhl dle rozkazu. Pot‚, co jsme obsadili okrajovou
- ‡ st p©¡stavu, se odd¡l speci ln¡ho komanda probil p©¡stupovou
- cestou k jedn‚ z lod¡. Poda©ilo se n m zabr nit odp len¡
- zbrojn¡ tov rny, co‘ m–‘e b˜t Toriconu nem lo prospˆ¨n‚.
-#> Mise probˆhla £spˆ¨nˆ.
-#> ş
-#> Zpr vy#001 o#001
- v le‡n‚#001 situaci#001
+#> Ãštok probÄ›hl dle rozkazu. PotÃ©, co jsme obsadili okrajovou
+ ÄÃ¡st pÅ™Ã­stavu, se oddÃ­l speciÃ¡lnÃ­ho komanda probil pÅ™Ã­stupovou
+ cestou k jednÃ© z lodÃ­. PodaÅ™ilo se nÃ¡m zabrÃ¡nit odpÃ¡lenÃ­
+ zbrojnÃ­ tovÃ¡rny, coÅ¾ mÅ¯Å¾e bÃ½t Toriconu nemÃ¡lo prospÄ›Å¡nÃ©.
+#> Mise probÄ›hla ÃºspÄ›Å¡nÄ›.
+#> 
+#> ZprÃ¡vy#001 o#001
+ vÃ¡leÄnÃ©#001 situaci#001
 #e
 #l br8_001#
 #e

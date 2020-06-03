@@ -1,8 +1,8 @@
-#> Podle rozkazu jsme se  vylodili na nep© telsk‚ £zem¡ a
- zah jili postup do vnitrozem¡. S jist˜mi ztr tami se n m
- poda©ilo dob˜t nˆkolik men¨¡ch pevnost¡. V sou‡asn‚ dobˆ
- prob¡h  p©esun toriconsk˜ch jednotek na z¡skan‚ £zem¡ a
- pl nov n¡ dal¨¡ho postupu smˆrem k Trufatu#001.
+#> Podle rozkazu jsme se  vylodili na nepÅ™Ã¡telskÃ© ÃºzemÃ­ a
+ zahÃ¡jili postup do vnitrozemÃ­. S jistÃ½mi ztrÃ¡tami se nÃ¡m
+ podaÅ™ilo dobÃ½t nÄ›kolik menÅ¡Ã­ch pevnostÃ­. V souÄasnÃ© dobÄ›
+ probÃ­hÃ¡ pÅ™esun toriconskÃ½ch jednotek na zÃ­skanÃ© ÃºzemÃ­ a
+ plÃ¡novÃ¡nÃ­ dalÅ¡Ã­ho postupu smÄ›rem k Trufatu#001.
 #e
 #l b17_001#
 #e

@@ -1,20 +1,20 @@
-#> Kraken je bitevn° loÉ. Je vyzbrojen
- tàëkòm kan¢nem podobnÇho konstrukán°ho
- typu jako Goli†®, av®ak s mnohem vàt®°
- £áinnost°. D†le pak k jeho vòzbroji
- pat©° torpÇda a tàëkò protiletadlovò
- kan¢n.
-#> Tento tàëce obrnànò kolos je nejniáivàj®°
- jednotkou v £tvarech Signus vñbec. Jeho
- nejvàt®° slabinou je slabò flak, kterò
- umoë§uje £áinnou protileteckou obranu
- pouze za pomoci podpñrnòch torpÇdoborcñ.
- Druhou velkou slabinou Krakena je ®patnò
- monitorovac° systÇm, kterò mu neumoë§uje
- "zahlÇdnout" nep©†telskÇ ponorky.
-#> "Jsou jenom dva zpñsoby jak sundat
- Krakena ten prvn° je ho sest©elit, a
- ten druhò jsou ty ostatn°." -
- citace nejmenovanÇho technika.
+#> Kraken je bitevn√≠ loƒè. Je vyzbrojen
+ tƒõ≈æk√Ωm kan√≥nem podobn√©ho konstrukƒçn√≠ho
+ typu jako Goli√°≈°, av≈°ak s mnohem vƒõt≈°√≠
+ √∫ƒçinnost√≠. D√°le pak k jeho v√Ωzbroji
+ pat≈ô√≠ torp√©da a tƒõ≈æk√Ω protiletadlov√Ω
+ kan√≥n.
+#> Tento tƒõ≈æce obrnƒõn√Ω kolos je nejniƒçivƒõj≈°√≠
+ jednotkou v √∫tvarech Signus v≈Øbec. Jeho
+ nejvƒõt≈°√≠ slabinou je slab√Ω flak, kter√Ω
+ umo≈æ≈àuje √∫ƒçinnou protileteckou obranu
+ pouze za pomoci podp≈Ørn√Ωch torp√©doborc≈Ø.
+ Druhou velkou slabinou Krakena je ≈°patn√Ω
+ monitorovac√≠ syst√©m, kter√Ω mu neumo≈æ≈àuje
+ "zahl√©dnout" nep≈ô√°telsk√© ponorky.
+#> "Jsou jenom dva zp≈Øsoby jak sundat
+ Krakena ten prvn√≠ je ho sest≈ôelit, a
+ ten druh√Ω jsou ty ostatn√≠." -
+ citace nejmenovan√©ho technika.
 #e
 #e

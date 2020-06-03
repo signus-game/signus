@@ -1,31 +1,31 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Z†kladna Rufion
-#> Koneánà jsme z°skali zpr†vy o poh©e®ovanÇ p©epravn° lodi
+#> 
+ #p.toricon.282.183. 
+#> Z√°kladna Rufion
+#> Koneƒçnƒõ jsme z√≠skali zpr√°vy o poh≈ôe≈°ovan√© p≈ôepravn√≠ lodi
  Queen#001.
-#> LoÉ, kterou oáek†v†me uë pñl druhÇho dne byla zajata
- Konzorciem 15 mil od RetanskÇho z†livu a kr†tce potÇ
- i s nep©†telskòm plavidlem potopena.
-#> Torikon jië na na®i ë†dost vyslal pro artefakty, uloëenÇ
- v Rufionu, loÉ n†hradn°, nicmÇnà, vzhledem k urag†nu ©†d°c°mu
- na mo©i se ned† uráit, za jak dlouho Artemis doraz°.
-#> Situace je o to hor®°, ëe tàsnà po zm°nànÇm konfliktu rozjelo
- Konzorcium akci p©i vòchodn°m pob©eë° KonerskÇho z†livu...
-#> V souáasnosti se k n†m bl°ë° nàkolik poáetnòch vojenskòch
- odd°lñ. C°lem jejich £toku je pravdàpodobnà z°skat artefakty
- do svòch rukou.
-#> Rufion vyslal nouzovò sign†l okoln°m z†kladn†m - zat°m n†m
- odpovàÉ odeslal jen Ardenor, kterò n†m sl°bil pomoc. Na
- nàkolik okamëikñ se n†m poda©ilo spojit s veden°m Toriconu,
- podle nàj se m†me pokusit o nemoënÇ - ©eáeno p©esnàji: dostali
- jsme rozkaz vyákat do p©°chodu posil a potÇ se s artefakty
- p©esunout k p©°stavu, kde pro n†s bude p©ipravena loÉ.
-#> Uráità nemus°m p©ipom°nat, ëe bez pomocnòch jednotek, kterÇ
- n†m budou kròt z†da moc ®anc° nem†me, takëe doufejme, ëe
- p©ijdou váas...
+#> Loƒè, kterou oƒçek√°v√°me u≈æ p≈Øl druh√©ho dne byla zajata
+ Konzorciem 15 mil od Retansk√©ho z√°livu a kr√°tce pot√©
+ i s nep≈ô√°telsk√Ωm plavidlem potopena.
+#> Torikon ji≈æ na na≈°i ≈æ√°dost vyslal pro artefakty, ulo≈æen√©
+ v Rufionu, loƒè n√°hradn√≠, nicm√©nƒõ, vzhledem k urag√°nu ≈ô√°d√≠c√≠mu
+ na mo≈ôi se ned√° urƒçit, za jak dlouho Artemis doraz√≠.
+#> Situace je o to hor≈°√≠, ≈æe tƒõsnƒõ po zm√≠nƒõn√©m konfliktu rozjelo
+ Konzorcium akci p≈ôi v√Ωchodn√≠m pob≈ôe≈æ√≠ Konersk√©ho z√°livu...
+#> V souƒçasnosti se k n√°m bl√≠≈æ√≠ nƒõkolik poƒçetn√Ωch vojensk√Ωch
+ odd√≠l≈Ø. C√≠lem jejich √∫toku je pravdƒõpodobnƒõ z√≠skat artefakty
+ do sv√Ωch rukou.
+#> Rufion vyslal nouzov√Ω sign√°l okoln√≠m z√°kladn√°m - zat√≠m n√°m
+ odpovƒõƒè odeslal jen Ardenor, kter√Ω n√°m sl√≠bil pomoc. Na
+ nƒõkolik okam≈æik≈Ø se n√°m poda≈ôilo spojit s veden√≠m Toriconu,
+ podle nƒõj se m√°me pokusit o nemo≈æn√© - ≈ôeƒçeno p≈ôesnƒõji: dostali
+ jsme rozkaz vyƒçkat do p≈ô√≠chodu posil a pot√© se s artefakty
+ p≈ôesunout k p≈ô√≠stavu, kde pro n√°s bude p≈ôipravena loƒè.
+#> Urƒçitƒõ nemus√≠m p≈ôipom√≠nat, ≈æe bez pomocn√Ωch jednotek, kter√©
+ n√°m budou kr√Ωt z√°da moc ≈°anc√≠ nem√°me, tak≈æe doufejme, ≈æe
+ p≈ôijdou vƒças...
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: udrëet z†kladnu do p©°chodu posil a potÇ provÇst
- transfer artefaktñ ke kotv°c° lodi.
+#> PRIM√ÅRN√ç C√çL: udr≈æet z√°kladnu do p≈ô√≠chodu posil a pot√© prov√©st
+ transfer artefakt≈Ø ke kotv√≠c√≠ lodi.
 #e
 #l b12_001#
 #e

@@ -1,27 +1,27 @@
 #> Komando Signus
  #p.anamorf.320.184.
-#> Tento projekt navrhl Ian Zening - prezident ObrannÇ divize.
- Podporu veden° z°skal kr†tce po prvn°m diplomatickÇm st©etu
- mezi Toriconem a Konzorciem. Po zji®tàn° skuteánosti, ëe
- Konzorcium podnik† vòzkumnÇ vòpravy do zak†zanòch Z¢n
- spadaj°c°ch do sfÇry toriconskÇho z†jmu, se stala existence
- tohoto projektu nutnost°.
-#> Jedn† se o vytvo©en° sloëky elitn°ch jednotek - komanda
- Signus. Jeho £áelem je obsazovat oblasti zak†zanòch z¢n, kde
- Toricon pl†nuje prov†dàt vòzkum artefaktñ, testovat novà
- vyvinutÇ zbranà, omezovat vliv Konzorcia ve zm°nànòch
- oblastech - speci†ln°mi p©epadovòmi akce, p©°padnà likvidac°
- neë†douc°ch svàdkñ.
-#> P©°slu®n°ci komanda jsou nuceni podstoupit vstupn° testy:
- psychickÇ, kondián°, atd. D†le proch†z° ®kolen°m o zach†zen°
- s nejrñznàj®°m  arzen†lem - podle specializace doporuáenÇ na
- z†kladà vòsledkñ vstupn°ch testñ, zvl†®tn°m vojenskòm
- trÇninkem, apod.
-#> Na n†vrh z†stupce prezidenta Zeninga je kaëdÇmu p©°slu®n°ku
- Signusu pod kñëi inplantav†n vyhled†vac° k¢d. Samoz©ejmà
- s jejich souhlasem, neboü pro nà je k¢d cosi jako odznak
- jejich álenstv° v elità nejlep®°ch...
-#> Toricon si od tohoto projektu hodnà slibuje, je totië prvn°
- a zat°m jedinò svÇho druhu.
+#> Tento projekt navrhl Ian Zening - prezident Obrann√© divize.
+ Podporu veden√≠ z√≠skal kr√°tce po prvn√≠m diplomatick√©m st≈ôetu
+ mezi Toriconem a Konzorciem. Po zji≈°tƒõn√≠ skuteƒçnosti, ≈æe
+ Konzorcium podnik√° v√Ωzkumn√© v√Ωpravy do zak√°zan√Ωch Z√≥n
+ spadaj√≠c√≠ch do sf√©ry toriconsk√©ho z√°jmu, se stala existence
+ tohoto projektu nutnost√≠.
+#> Jedn√° se o vytvo≈ôen√≠ slo≈æky elitn√≠ch jednotek - komanda
+ Signus. Jeho √∫ƒçelem je obsazovat oblasti zak√°zan√Ωch z√≥n, kde
+ Toricon pl√°nuje prov√°dƒõt v√Ωzkum artefakt≈Ø, testovat novƒõ
+ vyvinut√© zbranƒõ, omezovat vliv Konzorcia ve zm√≠nƒõn√Ωch
+ oblastech - speci√°ln√≠mi p≈ôepadov√Ωmi akce, p≈ô√≠padnƒõ likvidac√≠
+ ne≈æ√°douc√≠ch svƒõdk≈Ø.
+#> P≈ô√≠slu≈°n√≠ci komanda jsou nuceni podstoupit vstupn√≠ testy:
+ psychick√©, kondiƒçn√≠, atd. D√°le proch√°z√≠ ≈°kolen√≠m o zach√°zen√≠
+ s nejr≈Øznƒõj≈°√≠m  arzen√°lem - podle specializace doporuƒçen√© na
+ z√°kladƒõ v√Ωsledk≈Ø vstupn√≠ch test≈Ø, zvl√°≈°tn√≠m vojensk√Ωm
+ tr√©ninkem, apod.
+#> Na n√°vrh z√°stupce prezidenta Zeninga je ka≈æd√©mu p≈ô√≠slu≈°n√≠ku
+ Signusu pod k≈Ø≈æi inplantav√°n vyhled√°vac√≠ k√≥d. Samoz≈ôejmƒõ
+ s jejich souhlasem, nebo≈• pro nƒõ je k√≥d cosi jako odznak
+ jejich ƒçlenstv√≠ v elitƒõ nejlep≈°√≠ch...
+#> Toricon si od tohoto projektu hodnƒõ slibuje, je toti≈æ prvn√≠
+ a zat√≠m jedin√Ω sv√©ho druhu.
 #e
 #e

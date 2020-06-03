@@ -1,25 +1,25 @@
-#> ˛˛
- #p.toricon.282.183. ˛˛
-#> Z†kladna Trix
-#> Pr†và se n†m poda©ilo zachytit nouzovò sign†l vyslanò
- toriconskou z†kladnou Oberun.
-#> Podle v®eho váera p©epadovÇ jednotky Konzorcia podnikly
- bleskovou akci, p©i n°ë se jim poda©ilo obsadit jedinou
- p©°stupovou cestu k Oberunu - Torvillskò prñsmyk. PotÇ, co
- prñsmyk dostaly pod svou kontrolu, p©evedly p©es nàj dal®°
- vojenskÇ odd°ly. Zachycenò sign†l byl velmi slabò, d† se
- p©edpokl†dat, ëe z†kladna mñëe bòt dobyta kaëdou vte©inou...
-#> Podle p©°sahy je pomoc sesterskÇ z†kladnà na®° povinnost°,
- proto vyd†v†m rozkaz k £toku na Torvill.
-#> Je t©eba se prob°t prñsmykem, odl†kat tak á†st nep©†telskòch
- jednotek od z†kladny a spoleánòmi silami oblÇhatele
- zlikvidovat. M† to v®ak jeden h†áek: budou na n†s p©ipraveni.
- Prñmyk je velmi dob©e vybaven proti vojenskÇmu  £toku.
-#> Poá°tejte s p©°tomnost° min, palebnòch vàë°?, apod...
-#> ˛
+#> 
+ #p.toricon.282.183. 
+#> Z√°kladna Trix
+#> Pr√°vƒõ se n√°m poda≈ôilo zachytit nouzov√Ω sign√°l vyslan√Ω
+ toriconskou z√°kladnou Oberun.
+#> Podle v≈°eho vƒçera p≈ôepadov√© jednotky Konzorcia podnikly
+ bleskovou akci, p≈ôi n√≠≈æ se jim poda≈ôilo obsadit jedinou
+ p≈ô√≠stupovou cestu k Oberunu - Torvillsk√Ω pr≈Øsmyk. Pot√©, co
+ pr≈Øsmyk dostaly pod svou kontrolu, p≈ôevedly p≈ôes nƒõj dal≈°√≠
+ vojensk√© odd√≠ly. Zachycen√Ω sign√°l byl velmi slab√Ω, d√° se
+ p≈ôedpokl√°dat, ≈æe z√°kladna m≈Ø≈æe b√Ωt dobyta ka≈ædou vte≈ôinou...
+#> Podle p≈ô√≠sahy je pomoc sestersk√© z√°kladnƒõ na≈°√≠ povinnost√≠,
+ proto vyd√°v√°m rozkaz k √∫toku na Torvill.
+#> Je t≈ôeba se prob√≠t pr≈Øsmykem, odl√°kat tak ƒç√°st nep≈ô√°telsk√Ωch
+ jednotek od z√°kladny a spoleƒçn√Ωmi silami obl√©hatele
+ zlikvidovat. M√° to v≈°ak jeden h√°ƒçek: budou na n√°s p≈ôipraveni.
+ Pr≈Ømyk je velmi dob≈ôe vybaven proti vojensk√©mu  √∫toku.
+#> Poƒç√≠tejte s p≈ô√≠tomnost√≠ min, palebn√Ωch vƒõ≈æ√≠?, apod...
+#> 
 #> P. Dextr
  #p.anamorf.320.184.
-#> PRIMèRNã CãL: Obsazen° TorvillskÇho prñsmyku
-#> SEKUNDèRNã CãL: Likvidace nep©†telskòch vojsk
+#> PRIM√ÅRN√ç C√çL: Obsazen√≠ Torvillsk√©ho pr≈Øsmyku
+#> SEKUND√ÅRN√ç C√çL: Likvidace nep≈ô√°telsk√Ωch vojsk
 #e
 #e

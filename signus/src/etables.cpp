@@ -25,14 +25,6 @@
 #include "etables.h"
 
 
-
-
-#include "etab_ai.cpp"
-#include "etab_drw.cpp"
-#include "etab_mov.cpp"
-
-
-
 byte L1TerrainType[1024] = {
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,

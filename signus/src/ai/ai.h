@@ -38,6 +38,7 @@
 #include <math.h>
 #include "units.h"
 #include "fields.h"
+#include "stream.h"
 
 
 #define pi 3.141592654
@@ -198,9 +199,9 @@ class TArmy {
             
       TArmy ();
       
-      TArmy (FILE *f);
+      TArmy (ReadStream &stream);
       
-      virtual void Save (FILE *f);
+      virtual void Save (WriteStream &stream);
       
       virtual void Insert(int Unit);       
         // Vlozi jednotku do armady
@@ -270,9 +271,9 @@ extern void InitArtificialIntelligence (int mission);
 
 extern void (*InitAI) ();
 
-extern void LoadArtificialIntelligence (FILE *f);
+extern void LoadArtificialIntelligence (ReadStream &stream, int format);
 
-extern void (*SaveArtificialIntelligence) (FILE *f);
+extern void (*SaveArtificialIntelligence) (WriteStream &stream);
 
 extern int  (*ArtificialIntelligence) ();
 
@@ -288,152 +289,152 @@ extern void InitAI1 ();
 extern int  ArtificialIntelligence1 ();
 extern int  AssignResult1 ();
 extern int *GetManufacturableUnits1 (int FactoryID);
-extern void LoadArtificialIntelligence1 (FILE *f);
-extern void SaveArtificialIntelligence1 (FILE *f);
+extern void LoadArtificialIntelligence1 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence1 (WriteStream &stream);
 extern void	DoneArtificialIntelligence1 (); 
 
 extern void InitAI2 ();
 extern int  ArtificialIntelligence2 ();
 extern int  AssignResult2 ();
 extern int *GetManufacturableUnits2 (int FactoryID);
-extern void LoadArtificialIntelligence2 (FILE *f);
-extern void SaveArtificialIntelligence2 (FILE *f);
+extern void LoadArtificialIntelligence2 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence2 (WriteStream &stream);
 extern void	DoneArtificialIntelligence2 (); 
 
 extern void InitAI3 ();
 extern int  ArtificialIntelligence3 ();
 extern int  AssignResult3 ();
 extern int *GetManufacturableUnits3 (int FactoryID);
-extern void LoadArtificialIntelligence3 (FILE *f);
-extern void SaveArtificialIntelligence3 (FILE *f);
+extern void LoadArtificialIntelligence3 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence3 (WriteStream &stream);
 extern void	DoneArtificialIntelligence3 (); 
 
 extern void InitAI4 ();
 extern int  ArtificialIntelligence4 ();
 extern int  AssignResult4 ();
 extern int *GetManufacturableUnits4 (int FactoryID);
-extern void LoadArtificialIntelligence4 (FILE *f);
-extern void SaveArtificialIntelligence4 (FILE *f);
+extern void LoadArtificialIntelligence4 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence4 (WriteStream &stream);
 extern void	DoneArtificialIntelligence4 (); 
 
 extern void InitAI5 ();
 extern int  ArtificialIntelligence5 ();
 extern int  AssignResult5 ();
 extern int *GetManufacturableUnits5 (int FactoryID);
-extern void LoadArtificialIntelligence5 (FILE *f);
-extern void SaveArtificialIntelligence5 (FILE *f);
+extern void LoadArtificialIntelligence5 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence5 (WriteStream &stream);
 extern void	DoneArtificialIntelligence5 (); 
 
 extern void InitAI6 ();
 extern int  ArtificialIntelligence6 ();
 extern int  AssignResult6 ();
 extern int *GetManufacturableUnits6 (int FactoryID);
-extern void LoadArtificialIntelligence6 (FILE *f);
-extern void SaveArtificialIntelligence6 (FILE *f);
+extern void LoadArtificialIntelligence6 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence6 (WriteStream &stream);
 extern void	DoneArtificialIntelligence6 (); 
 
 extern void InitAI7 ();
 extern int  ArtificialIntelligence7 ();
 extern int  AssignResult7 ();
 extern int *GetManufacturableUnits7 (int FactoryID);
-extern void LoadArtificialIntelligence7 (FILE *f);
-extern void SaveArtificialIntelligence7 (FILE *f);
+extern void LoadArtificialIntelligence7 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence7 (WriteStream &stream);
 extern void	DoneArtificialIntelligence7 (); 
 
 extern void InitAI8 ();
 extern int  ArtificialIntelligence8 ();
 extern int  AssignResult8 ();
 extern int *GetManufacturableUnits8 (int FactoryID);
-extern void LoadArtificialIntelligence8 (FILE *f);
-extern void SaveArtificialIntelligence8 (FILE *f);
+extern void LoadArtificialIntelligence8 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence8 (WriteStream &stream);
 extern void	DoneArtificialIntelligence8 (); 
 
 extern void InitAI9 ();
 extern int  ArtificialIntelligence9 ();
 extern int  AssignResult9 ();
 extern int *GetManufacturableUnits9 (int FactoryID);
-extern void LoadArtificialIntelligence9 (FILE *f);
-extern void SaveArtificialIntelligence9 (FILE *f);
+extern void LoadArtificialIntelligence9 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence9 (WriteStream &stream);
 extern void	DoneArtificialIntelligence9 (); 
 
 extern void InitAI10 ();
 extern int  ArtificialIntelligence10 ();
 extern int  AssignResult10 ();
 extern int *GetManufacturableUnits10 (int FactoryID);
-extern void LoadArtificialIntelligence10 (FILE *f);
-extern void SaveArtificialIntelligence10 (FILE *f);
+extern void LoadArtificialIntelligence10 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence10 (WriteStream &stream);
 extern void	DoneArtificialIntelligence10 (); 
  
 extern void InitAI11 ();
 extern int  ArtificialIntelligence11 ();
 extern int  AssignResult11 ();
 extern int *GetManufacturableUnits11 (int FactoryID);
-extern void LoadArtificialIntelligence11 (FILE *f);
-extern void SaveArtificialIntelligence11 (FILE *f);
+extern void LoadArtificialIntelligence11 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence11 (WriteStream &stream);
 extern void	DoneArtificialIntelligence11 (); 
 
 extern void InitAI12 ();
 extern int  ArtificialIntelligence12 ();
 extern int  AssignResult12 ();
 extern int *GetManufacturableUnits12 (int FactoryID);
-extern void LoadArtificialIntelligence12 (FILE *f);
-extern void SaveArtificialIntelligence12 (FILE *f);
+extern void LoadArtificialIntelligence12 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence12 (WriteStream &stream);
 extern void	DoneArtificialIntelligence12 (); 
 
 extern void InitAI13 ();
 extern int  ArtificialIntelligence13 ();
 extern int  AssignResult13 ();
 extern int *GetManufacturableUnits13 (int FactoryID);
-extern void LoadArtificialIntelligence13 (FILE *f);
-extern void SaveArtificialIntelligence13 (FILE *f);
+extern void LoadArtificialIntelligence13 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence13 (WriteStream &stream);
 extern void	DoneArtificialIntelligence13 (); 
 
 extern void InitAI14 ();
 extern int  ArtificialIntelligence14 ();
 extern int  AssignResult14 ();
 extern int *GetManufacturableUnits14 (int FactoryID);
-extern void LoadArtificialIntelligence14 (FILE *f);
-extern void SaveArtificialIntelligence14 (FILE *f);
+extern void LoadArtificialIntelligence14 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence14 (WriteStream &stream);
 extern void	DoneArtificialIntelligence14 (); 
 
 extern void InitAI15 ();
 extern int  ArtificialIntelligence15 ();
 extern int  AssignResult15 ();
 extern int *GetManufacturableUnits15 (int FactoryID);
-extern void LoadArtificialIntelligence15 (FILE *f);
-extern void SaveArtificialIntelligence15 (FILE *f);
+extern void LoadArtificialIntelligence15 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence15 (WriteStream &stream);
 extern void	DoneArtificialIntelligence15 (); 
 
 extern void InitAI16 ();
 extern int  ArtificialIntelligence16 ();
 extern int  AssignResult16 ();
 extern int *GetManufacturableUnits16 (int FactoryID);
-extern void LoadArtificialIntelligence16 (FILE *f);
-extern void SaveArtificialIntelligence16 (FILE *f);
+extern void LoadArtificialIntelligence16 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence16 (WriteStream &stream);
 extern void	DoneArtificialIntelligence16 (); 
 
 extern void InitAI17 ();
 extern int  ArtificialIntelligence17 ();
 extern int  AssignResult17 ();
 extern int *GetManufacturableUnits17 (int FactoryID);
-extern void LoadArtificialIntelligence17 (FILE *f);
-extern void SaveArtificialIntelligence17 (FILE *f);
+extern void LoadArtificialIntelligence17 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence17 (WriteStream &stream);
 extern void	DoneArtificialIntelligence17 (); 
 
 extern void InitAI18 ();
 extern int  ArtificialIntelligence18 ();
 extern int  AssignResult18 ();
 extern int *GetManufacturableUnits18 (int FactoryID);
-extern void LoadArtificialIntelligence18 (FILE *f);
-extern void SaveArtificialIntelligence18 (FILE *f);
+extern void LoadArtificialIntelligence18 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence18 (WriteStream &stream);
 extern void	DoneArtificialIntelligence18 (); 
 
 extern void InitAI19 ();
 extern int  ArtificialIntelligence19 ();
 extern int  AssignResult19 ();
 extern int *GetManufacturableUnits19 (int FactoryID);
-extern void LoadArtificialIntelligence19 (FILE *f);
-extern void SaveArtificialIntelligence19 (FILE *f);
+extern void LoadArtificialIntelligence19 (ReadStream &stream, int format);
+extern void SaveArtificialIntelligence19 (WriteStream &stream);
 extern void	DoneArtificialIntelligence19 (); 
 
 

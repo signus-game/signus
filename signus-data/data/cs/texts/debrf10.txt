@@ -1,10 +1,10 @@
-#> Mise probˆhla podle pl nu. Pr–smyk byl obsazen a nep©¡tel
- zlikvidov n. P©i n vratu do Trixu n s zastihlo zemˆt©esen¡#001
- a ze zemˆ vystoupily oblaky p ry. Zprvu jsme se domn¡vali, ‘e
- jde o nˆjakou novˆ vyvinutou technologii Konzorcia nebo nˆco
- podobn‚ho, ale unikl‚ plyny  ‘ dn‚ £jmy na zdrav¡ nezp–sobily.
-#> Zbytek cesty probˆhl bez obt¡‘¡.
-#> þ
+#> Mise probÄ›hla podle plÃ¡nu. PrÅ¯smyk byl obsazen a nepÅ™Ã­tel
+ zlikvidovÃ¡n. PÅ™i nÃ¡vratu do Trixu nÃ¡s zastihlo zemÄ›tÅ™esenÃ­#001
+ a ze zemÄ› vystoupily oblaky pÃ¡ry. Zprvu jsme se domnÃ­vali, Å¾e
+ jde o nÄ›jakou novÄ› vyvinutou technologii Konzorcia nebo nÄ›co
+ podobnÃ©ho, ale uniklÃ© plyny  Å¾Ã¡dnÃ© Ãºjmy na zdravÃ­ nezpÅ¯sobily.
+#> Zbytek cesty probÄ›hl bez obtÃ­Å¾Ã­.
+#> 
 #> P.Dextr
 #e
 #l b10_001#

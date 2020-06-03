@@ -518,80 +518,71 @@ void InitAI11 ()
 
 
 
-void LoadArtificialIntelligence11 (FILE *f)
-{
+void LoadArtificialIntelligence11(ReadStream &stream, int format) {
+	DoneArtificialIntelligence11();
 
-    DoneArtificialIntelligence11 ();
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = NULL;    
-    DeniedPlaces = NULL;
+	Laguna1 = stream.readSint32LE();
+	Laguna2 = stream.readSint32LE();
+	Laguna3 = stream.readSint32LE();
+	Oasa1 = stream.readSint32LE();
+	Oasa2 = stream.readSint32LE();
+	Oasa3 = stream.readSint32LE();
+	Oasa4 = stream.readSint32LE();
+	Oasa5 = stream.readSint32LE();
+	Oasa6 = stream.readSint32LE();
+	Oasa7 = stream.readSint32LE();
 
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-    
-    fread (&Laguna1, sizeof (int), 1, f);
-    fread (&Laguna2, sizeof (int), 1, f);
-    fread (&Laguna3, sizeof (int), 1, f);
-    fread (&Oasa1, sizeof (int), 1, f);
-    fread (&Oasa2, sizeof (int), 1, f);
-    fread (&Oasa3, sizeof (int), 1, f);
-    fread (&Oasa4, sizeof (int), 1, f);
-    fread (&Oasa5, sizeof (int), 1, f);
-    fread (&Oasa6, sizeof (int), 1, f);
-    fread (&Oasa7, sizeof (int), 1, f);
-
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    Marine1 = new TMarine (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    AirArmy4 = new TAirArmy (f);    
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
-    Army7 = new TGroundArmy (f);
-    Army8 = new TGroundArmy (f);
-    Army9 = new TGroundArmy (f);
-    Army10 = new TGroundArmy (f);
-    fread (&MS1Done, sizeof (int), 1, f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	Marine1 = new TMarine(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	AirArmy4 = new TAirArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
+	Army7 = new TGroundArmy(stream);
+	Army8 = new TGroundArmy(stream);
+	Army9 = new TGroundArmy(stream);
+	Army10 = new TGroundArmy(stream);
+	MS1Done = stream.readSint32LE();
 }
 
+void SaveArtificialIntelligence11(WriteStream &stream) {
+	saveAttackedFields(stream);
 
+	stream.writeSint32LE(Laguna1);
+	stream.writeSint32LE(Laguna2);
+	stream.writeSint32LE(Laguna3);
+	stream.writeSint32LE(Oasa1);
+	stream.writeSint32LE(Oasa2);
+	stream.writeSint32LE(Oasa3);
+	stream.writeSint32LE(Oasa4);
+	stream.writeSint32LE(Oasa5);
+	stream.writeSint32LE(Oasa6);
+	stream.writeSint32LE(Oasa7);
 
-void SaveArtificialIntelligence11 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    fwrite (&Laguna1, sizeof (int), 1, f);
-    fwrite (&Laguna2, sizeof (int), 1, f);
-    fwrite (&Laguna3, sizeof (int), 1, f);
-    fwrite (&Oasa1, sizeof (int), 1, f);
-    fwrite (&Oasa2, sizeof (int), 1, f);
-    fwrite (&Oasa3, sizeof (int), 1, f);
-    fwrite (&Oasa4, sizeof (int), 1, f);
-    fwrite (&Oasa5, sizeof (int), 1, f);
-    fwrite (&Oasa6, sizeof (int), 1, f);
-    fwrite (&Oasa7, sizeof (int), 1, f);
-    
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    Marine1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    AirArmy4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    Army7 -> Save (f);
-    Army8 -> Save (f);
-    Army9 -> Save (f);
-    Army10 -> Save (f);
-    DUPos = 0;
-    fwrite (&MS1Done, sizeof (int), 1, f);
+	Towers->Save(stream);
+	Army1->Save(stream);
+	Marine1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	AirArmy4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	Army7->Save(stream);
+	Army8->Save(stream);
+	Army9->Save(stream);
+	Army10->Save(stream);
+	DUPos = 0;
+	stream.writeSint32LE(MS1Done);
 }
-
 
 int ArtificialIntelligence11 ()
 {

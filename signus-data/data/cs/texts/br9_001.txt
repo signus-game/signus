@@ -1,22 +1,22 @@
 #> Projekt LORD
  #p.anamorf.320.184.
-#> P©ed t©emi mˆs¡ci v˜zkumn  skupina pod veden¡m prof. G.
- Londowna objevila v ji‘n¡ ‡ sti sotonsk‚ zak zan‚ Z¢ny
- netypick˜ artefakt. Zprvu nikdo z n s ani netu¨il, jak se
- dostat k jeho j dru, ve¨ker‚ testy a jin‚ pokusy odhalit
- specifick‚ zvl ¨tnosti ztroskotaly. Odlo‘ili jsme tedy n ¨
- zd nlivˆ bezcenn˜ objev do postrann¡ ‡ sti laborato©e
- a vr tili se k prob¡haj¡c¡mu v˜zkumu star¨¡ho artefaktu typu
- Pegas. Aktivita artefaktu v¨ak nebyla zaznamen na. Vliv na
- gravitaci jako by vymizel. To sam‚ jsme zjistili u dal¨¡ch
- artefakt– p©inesen˜ch do laborato©e. Jen d¡lem n hody jsme
- odhalili skute‡nost, ‘e p©est vaj¡ fungovat v p©¡tomnosti
- onoho tajemn‚ho artefaktu prof. Londowna.
-#> Bohu‘el v¨ak nem me dostate‡nˆ vybavenou laborato© na v˜zkum
- takov‚ho druhu. Veden¡ v˜zkumn‚ sekce Konzoria vydalo rozkaz
- k transferu Lordu do pevnosti Trufat, kter  je z rove¤ na¨¡
- vˆdeckou z kladnou.
-#> þ
+#> PÅ™ed tÅ™emi mÄ›sÃ­ci vÃ½zkumnÃ¡ skupina pod vedenÃ­m prof. G.
+ Londowna objevila v jiÅ¾nÃ­ ÄÃ¡sti sotonskÃ© zakÃ¡zanÃ© ZÃ³ny
+ netypickÃ½ artefakt. Zprvu nikdo z nÃ¡s ani netuÅ¡il, jak se
+ dostat k jeho jÃ¡dru, veÅ¡kerÃ© testy a jinÃ© pokusy odhalit
+ specifickÃ© zvlÃ¡Å¡tnosti ztroskotaly. OdloÅ¾ili jsme tedy nÃ¡Å¡
+ zdÃ¡nlivÄ› bezcennÃ½ objev do postrannÃ­ ÄÃ¡sti laboratoÅ™e
+ a vrÃ¡tili se k probÃ­hajÃ­cÃ­mu vÃ½zkumu starÅ¡Ã­ho artefaktu typu
+ Pegas. Aktivita artefaktu vÅ¡ak nebyla zaznamenÃ¡na. Vliv na
+ gravitaci jako by vymizel. To samÃ© jsme zjistili u dalÅ¡Ã­ch
+ artefaktÅ¯ pÅ™inesenÃ½ch do laboratoÅ™e. Jen dÃ­lem nÃ¡hody jsme
+ odhalili skuteÄnost, Å¾e pÅ™estÃ¡vajÃ­ fungovat v pÅ™Ã­tomnosti
+ onoho tajemnÃ©ho artefaktu prof. Londowna.
+#> BohuÅ¾el vÅ¡ak nemÃ¡me dostateÄnÄ› vybavenou laboratoÅ™ na vÃ½zkum
+ takovÃ©ho druhu. VedenÃ­ vÃ½zkumnÃ© sekce Konzoria vydalo rozkaz
+ k transferu Lordu do pevnosti Trufat, kterÃ¡ je zÃ¡roveÅˆ naÅ¡Ã­
+ vÄ›deckou zÃ¡kladnou.
+#> 
 #> Profesor L. Borfin
 #e
 #e

@@ -42,18 +42,21 @@ Trasportni jednotky - Uran, Gargantua, Oasa, ...
 //////////////// obecne
 
 
-void TTransporter::Init(int x, int y, int party, FILE *f)
+void TTransporter::Init(int x, int y, int party, ReadStream *stream)
 {
-	TUnit::Init(x, y, party, f);
-	if (IconTransport == NULL) 
+	TUnit::Init(x, y, party, stream);
+
+	if (IconTransport == NULL) {
 		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-		
-	if ((Capacity == TCAPACITY_BIG) && (BmpBigInventory == NULL))
+	}
+
+	if ((Capacity == TCAPACITY_BIG) && !BmpBigInventory) {
 		BmpBigInventory = GraphicsDF->get("tranbox0");
-	else if ((Capacity == TCAPACITY_SMALL) && (BmpSmallInventory == NULL))
+	} else if ((Capacity == TCAPACITY_SMALL) && !BmpSmallInventory) {
 		BmpSmallInventory = GraphicsDF->get("tranbox1");
-	else if ((Capacity == TCAPACITY_MEDIUM) && (BmpMediumInventory == NULL))
+	} else if ((Capacity == TCAPACITY_MEDIUM) && !BmpMediumInventory) {
 		BmpMediumInventory = GraphicsDF->get("tranbox2");
+	}
 }
 
 
@@ -243,34 +246,31 @@ void TTransporter::Action(int x, int y)
 
 
 
-void TTransporter::GetUnitInfo()
-{
+void TTransporter::GetUnitInfo() {
 	TUnit::GetUnitInfo();
 	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
-	PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-	           ((double)GetTotalWeight() / Capacity), "");
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)GetTotalWeight() / Capacity), "");
 }
 
 
 
-void TTransporter::Read(FILE *f)
-{
-	int id;
-	
-	TUnit::Read(f);
-	fread(&LoadedUnits, 4, 1, f);
+void TTransporter::Read(ReadStream &stream) {
+	TUnit::Read(stream);
+	LoadedUnits = stream.readSint32LE();
+
 	for (int i = 0; i < LoadedUnits; i++) {
-		id = 0; fread(&id, 4, 1, f);
-		Inventory[i] = id;
+		Inventory[i] = stream.readSint32LE();
 	}
 }
 
-void TTransporter::Write(FILE *f)
-{
-	TUnit::Write(f);
-	fwrite(&LoadedUnits, 4, 1, f);
-	for (int i = 0; i < LoadedUnits; i++)
-		fwrite(&(Inventory[i]), 4, 1, f);
+void TTransporter::Write(WriteStream &stream) {
+	TUnit::Write(stream);
+	stream.writeSint32LE(LoadedUnits);
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		stream.writeSint32LE(Inventory[i]);
+	}
 }
 
 
@@ -405,18 +405,14 @@ void TOlymp::IncLevel(int alevel)
 
 
 
-void TOlymp::Write(FILE *f)
-{
-	TTransporter::Write(f);
-	fwrite(&SpriteOrient, 4, 1, f);
+void TOlymp::Write(WriteStream &stream) {
+	TTransporter::Write(stream);
+	stream.writeSint32LE(SpriteOrient);
 }
 
-
-
-void TOlymp::Read(FILE *f)
-{
-	TTransporter::Read(f);
-	fread(&SpriteOrient, 4, 1, f);
+void TOlymp::Read(ReadStream &stream) {
+	TTransporter::Read(stream);
+	SpriteOrient = stream.readSint32LE();
 }
 
 

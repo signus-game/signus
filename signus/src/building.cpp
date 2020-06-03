@@ -44,43 +44,34 @@ int MoneyGoodlife = 0, MoneyBadlife = 0;
 //////////////////////////// TBuilding /////////////////////////////////////
 
 
-void TBuilding::Init(int x, int y, int party, FILE *f)
-{
-    TObject::Init(x, y, party, f);
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
+void TBuilding::Init(int x, int y, int party, ReadStream *stream) {
+	TObject::Init(x, y, party, stream);
+	RepairingNow = FALSE;
+
+	if (stream) {
+		int moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
 }
 
-
-
-void TBuilding::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&moreinfo, 4, 1, f);
+void TBuilding::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(TRUE);
 }
 
-
-
-void TBuilding::Read(FILE *f)
-{
-    TObject::Read(f);
-    fread(&RepairingNow, 4, 1, f);
-    fread(&MoneyIndex, 4, 1, f);
+void TBuilding::Read(ReadStream &stream) {
+	TObject::Read(stream);
+	RepairingNow = stream.readSint32LE();
+	MoneyIndex = stream.readSint32LE();
 }
 
-void TBuilding::Write(FILE *f)
-{
-    TObject::Write(f);
-    fwrite(&RepairingNow, 4, 1, f);
-    fwrite(&MoneyIndex, 4, 1, f);
+void TBuilding::Write(WriteStream &stream) {
+	TObject::Write(stream);
+	stream.writeSint32LE(RepairingNow);
+	stream.writeSint32LE(MoneyIndex);
 }
-
-
 
 void TBuilding::PlaceGround(int place)
 {
@@ -180,27 +171,34 @@ TSprite *TBuilding::GetStatusBar()
 
 
 
-void TBuilding::GetUnitInfo()
-{
-    char cbuf[30];
-    int clr;
+void TBuilding::GetUnitInfo() {
+	char cbuf[30];
+	int clr;
 
-    TObject::GetUnitInfo(); 
-    PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
+	TObject::GetUnitInfo();
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
+		clrLightBlue, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
+		NormalFont, clrWhite, clrBlack);
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 26, SigText[TXT_STATE], NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
+	clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 28, 52, 13, clr,
+		clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
 
-    sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
-    clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 28, 52, 13, clr, clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
-    
-    sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
-    PutStr(UInfoBuf, UINFO_SX, 2, 60, cbuf, NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 60, cbuf, NormalFont, clrWhite,
+		clrBlack);
 
-    if (HitPoints < MaxHitPoints) {
-        if (RepairingNow) CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[1], 16, 52);    
-        else CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[0], 16, 52); 
-    }       
+	if (HitPoints < MaxHitPoints) {
+		if (RepairingNow) {
+			CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[1], 16,
+				52);
+		} else {
+			CopyBmp(UInfoBuf, UINFO_SX, 90, 46, BmpRepair[0], 16,
+				52);
+		}
+	}
 }
 
 
@@ -281,7 +279,7 @@ void TBuilding::Explode()
                 GetField(X+i, Y+j)->Unit = ID;
                 for (k = 0; k < 2; k++)
                     AddExplode1x1(X+i, Y+j, 0, 
-                            10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+                            10 - 20 * frand(), 10 - 20 * frand());
             }
     }
     else this->RemoveFromWorld();
@@ -298,37 +296,31 @@ void TBuilding::Explode()
 
 //////// TMutableBuilding:
 
-void TMutableBuilding::Init(int x, int y, int party, FILE *f)
-{
-    Mutation = 0;
-    TObject::Init(x, y, party, f); // schvalne!!!
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&Mutation, 4, 1, f);
-        PlaceGround(FALSE);
-        Setup(); // znovu - update!!!
-        AfterSetup();
-        PlaceGround(TRUE);
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
-    else {
-        Mutation = 0;
-    }
+void TMutableBuilding::Init(int x, int y, int party, ReadStream *stream) {
+	Mutation = 0;
+	TObject::Init(x, y, party, stream); // Intentional!!!
+	RepairingNow = FALSE;
+
+	if (stream) {
+		int moreinfo;
+
+		Mutation = stream->readSint32LE();
+		PlaceGround(FALSE);
+		Setup(); // once more - update!!!
+		AfterSetup();
+		PlaceGround(TRUE);
+		moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
 }
 
-
-
-void TMutableBuilding::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&Mutation, 4, 1, f);
-    fwrite(&moreinfo, 4, 1, f);
+void TMutableBuilding::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(Mutation);
+	stream.writeSint32LE(TRUE);
 }
-
-
 
 TSprite *TMutableBuilding::GetSprite()
 {
@@ -574,17 +566,20 @@ void TBase::Setup()
 
 
 
-void TBase::Init(int x, int y, int party, FILE *f)
-{
-    TBuilding::Init(x, y, party, f);
-    if (IconTransport == NULL) 
-        IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-    if ((Capacity == TCAPACITY_BIG) && (BmpBigInventory == NULL))
-        BmpBigInventory = GraphicsDF->get("tranbox0");
-    else if ((Capacity == TCAPACITY_SMALL) && (BmpSmallInventory == NULL))
-        BmpSmallInventory = GraphicsDF->get("tranbox1");
-    else if ((Capacity == TCAPACITY_MEDIUM) && (BmpMediumInventory == NULL))
-        BmpMediumInventory = GraphicsDF->get("tranbox2");
+void TBase::Init(int x, int y, int party, ReadStream *stream) {
+	TBuilding::Init(x, y, party, stream);
+
+	if (IconTransport == NULL) {
+		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
+	}
+
+	if ((Capacity == TCAPACITY_BIG) && !BmpBigInventory) {
+		BmpBigInventory = GraphicsDF->get("tranbox0");
+	} else if ((Capacity == TCAPACITY_SMALL) && !BmpSmallInventory) {
+		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	} else if ((Capacity == TCAPACITY_MEDIUM) && !BmpMediumInventory) {
+		BmpMediumInventory = GraphicsDF->get("tranbox2");
+	}
 }
 
 
@@ -746,41 +741,32 @@ void TBase::Action(int x, int y)
 
 
 
-void TBase::GetUnitInfo()
-{
-    TBuilding::GetUnitInfo();
-    CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);  
-    PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-               ((double)LoadedUnits / Capacity), "");
+void TBase::GetUnitInfo() {
+	TBuilding::GetUnitInfo();
+	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)LoadedUnits / Capacity), "");
 }
 
 
 
-void TBase::Read(FILE *f)
-{
-    int id;
-    
-    TBuilding::Read(f);
-    fread(&LoadedUnits, 4, 1, f);
-    for (int i = 0; i < LoadedUnits; i++) {
-        id = 0; fread(&id, 4, 1, f);
-        Inventory[i] = id;
-    }
+void TBase::Read(ReadStream &stream) {
+	TBuilding::Read(stream);
+	LoadedUnits = stream.readSint32LE();
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		Inventory[i] = stream.readSint32LE();
+	}
 }
 
-void TBase::Write(FILE *f)
-{
-    int id;
-    
-    TBuilding::Write(f);
-    fwrite(&LoadedUnits, 4, 1, f);
-    for (int i = 0; i < LoadedUnits; i++) {
-        id = 0; id = Inventory[i];
-        fwrite(&id, 4, 1, f);
-    }
+void TBase::Write(WriteStream &stream) {
+	TBuilding::Write(stream);
+	stream.writeSint32LE(LoadedUnits);
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		stream.writeSint32LE(Inventory[i]);
+	}
 }
-
-
 
 void TBase::ChangeParty()
 {
@@ -930,84 +916,132 @@ void TFactory::Action(int x, int y)
 
 extern void *ListBoxSprite[6]; // z InterActu :-) ...
 
-void TFactory::DoProducing()
-{
-    char b[40];
-    void *bmp = NULL;
-    void *bmp2 = memalloc(296 * 431);
-    TEvent e;
-    int i, top, cnt, scrsz;
-    int px, py;
-    int *list = GetManufacturableUnits(ID);
-    
-    for (cnt = 0; list[cnt] != 0; cnt++) {}
-    top = 0;
-    scrsz = (cnt < 8) ? cnt : 7;
-    
-    px = RES_X-421, py = RES_Y-453-8;
-    if (iniResolution == SVGA_640x480) py += 8;
-    GetBitmap32(px, py, bmp2, 296, 431);
+void TFactory::DoProducing() {
+	char b[40];
+	void *bmp = NULL;
+	void *bmp2 = memalloc(296 * 431);
+	TEvent e;
+	int i, top, cnt, scrsz;
+	int px, py;
+	int *list = GetManufacturableUnits(ID);
+
+	for (cnt = 0; list[cnt]; cnt++);
+
+	top = 0;
+	scrsz = (cnt < 8) ? cnt : 7;
+
+	px = RES_X-421;
+	py = RES_Y-453-8;
+
+	if (iniResolution == SVGA_640x480) {
+		py += 8;
+	}
+
+	GetBitmap32(px, py, bmp2, 296, 431);
+
 draw_it_now:
-    if (bmp) memfree(bmp);
-    bmp = GraphicsDF->get("factory");
-    PutStr(bmp, 296, 74, 8, SigText[TXT_FACTORY_TYPE], NormalFont, clrWhite, clrBlack);
-    PutStr(bmp, 296, 180, 8, SigText[TXT_FACTORY_COST], NormalFont, clrWhite, clrBlack);
-    PutStr(bmp, 296, 240, 8, SigText[TXT_FACTORY_TURNS], NormalFont, clrWhite, clrBlack);
-    for (i = 0; i < scrsz; i++) {
-        CopyBmp(bmp, 296, 12, 20 + i * 58, UnitsTransIcons[list[top+i]], 56, 56);   
-        PutStr(bmp, 296, 74, 40 + i * 58, UnitsNames[list[top+i]], NormalFont, clrWhite, clrBlack);
-        sprintf(b, SigText[TXT_CREDITS], TabUnitsCost[list[top+i]]);
-        if (MoneyGoodlife < TabUnitsCost[list[top+i]])
-            PutStr(bmp, 296, 180, 40 + i * 58, b, NormalFont, clrRed, clrBlack);
-        else
-            PutStr(bmp, 296, 180, 40 + i * 58, b, NormalFont, clrWhite, clrBlack);
-        sprintf(b, "%i", TabUnitsProducTime[list[top+i]]);
-        PutStr(bmp, 296, 260, 40 + i * 58, b, NormalFont, clrWhite, clrBlack);
-    }
-    if (top != 0)
-        CopyBmp(bmp, 296, 140, 10, ListBoxSprite[0], 18, 18);
-    if (top < cnt-7)
-        CopyBmp(bmp, 296, 140, 405, ListBoxSprite[2], 18, 18);
-    PutBitmap32(px, py, bmp, 296, 431);
+	if (bmp) {
+		memfree(bmp);
+	}
 
-    for (;;) {
-        GetEvent(&e);
-        if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbRightButton)) break;
-        if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbLeftButton)) {
-            e.Mouse.Where.x -= px, e.Mouse.Where.y -= py;
-            if (!IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 0, 0, 296, 431)) break;
-            if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 10, 140+18, 10+18)) {
-                if (top > 0) {top--; goto draw_it_now;}
-            }
-            if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 405, 140+18, 405+18)) {
-                if (top < cnt-7) {top++; goto draw_it_now;}
-            }
-            i = top + (e.Mouse.Where.y - 20) / 58;
-            ProduceUnit(list[i]);
-            break;
-        }
-    }
+	bmp = GraphicsDF->get("factory");
+	PutStr(bmp, 296, 431, 74, 8, SigText[TXT_FACTORY_TYPE], NormalFont,
+		clrWhite, clrBlack);
+	PutStr(bmp, 296, 431, 180, 8, SigText[TXT_FACTORY_COST], NormalFont,
+		clrWhite, clrBlack);
+	PutStr(bmp, 296, 431, 240, 8, SigText[TXT_FACTORY_TURNS], NormalFont,
+		clrWhite, clrBlack);
 
-    PutBitmap32(px, py, bmp2, 296, 431);
-    memfree(bmp); memfree(bmp2);
-    this->Select();
+	for (i = 0; i < scrsz; i++) {
+		CopyBmp(bmp, 296, 12, 20 + i * 58, UnitsTransIcons[list[top+i]],
+			56, 56);
+		PutStr(bmp, 296, 431, 74, 40 + i * 58, UnitsNames[list[top+i]],
+			NormalFont, clrWhite, clrBlack);
+		sprintf(b, SigText[TXT_CREDITS], TabUnitsCost[list[top+i]]);
+
+		if (MoneyGoodlife < TabUnitsCost[list[top+i]]) {
+			PutStr(bmp, 296, 431, 180, 40 + i * 58, b, NormalFont,
+				clrRed, clrBlack);
+		} else {
+			PutStr(bmp, 296, 431, 180, 40 + i * 58, b, NormalFont,
+				clrWhite, clrBlack);
+		}
+
+		sprintf(b, "%i", TabUnitsProducTime[list[top+i]]);
+		PutStr(bmp, 296, 431, 260, 40 + i * 58, b, NormalFont,
+			clrWhite, clrBlack);
+	}
+
+	if (top != 0) {
+		CopyBmp(bmp, 296, 140, 10, ListBoxSprite[0], 18, 18);
+	}
+
+	if (top < cnt-7) {
+		CopyBmp(bmp, 296, 140, 405, ListBoxSprite[2], 18, 18);
+	}
+
+	PutBitmap32(px, py, bmp, 296, 431);
+
+	for (;;) {
+		GetEvent(&e);
+
+		if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbRightButton)) {
+			break;
+		}
+
+		if ((e.What == evMouseDown) && (e.Mouse.Buttons == mbLeftButton)) {
+			e.Mouse.Where.x -= px;
+			e.Mouse.Where.y -= py;
+
+			if (!IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 0, 0, 296, 431)) {
+				break;
+			}
+
+			if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 10, 140+18, 10+18)) {
+				if (top > 0) {
+					top--;
+					goto draw_it_now;
+				}
+			}
+
+			if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, 140, 405, 140+18, 405+18)) {
+				if (top < cnt-7) {
+					top++;
+					goto draw_it_now;
+				}
+			}
+
+			i = top + (e.Mouse.Where.y - 20) / 58;
+			ProduceUnit(list[i]);
+			break;
+		}
+	}
+
+	PutBitmap32(px, py, bmp2, 296, 431);
+	memfree(bmp);
+	memfree(bmp2);
+	this->Select();
 }
 
 
 
-void TFactory::GetUnitInfo()
-{
-    char cbuf[80];
-    
-    TBuilding::GetUnitInfo();
-    CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);  
-    sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
-    PutStr(UInfoBuf, UINFO_SX, 2, 60, cbuf, NormalFont, clrWhite, clrBlack);
-    if (CurrentJob != 0) {
-        CopyBmp(UInfoBuf, UINFO_SX, 3, 140, UnitsTransIcons[CurrentJob], 56, 56);
-        sprintf(cbuf, "%i %%", 100 * CurrentPhase / CurrentNeed);
-        PercentBar(UInfoBuf, UINFO_SX, 62, 140, 45, 12, clrLightBlue2, clrSeaBlue, ((double)CurrentPhase) / CurrentNeed, cbuf);
-    }
+void TFactory::GetUnitInfo() {
+	char cbuf[80];
+
+	TBuilding::GetUnitInfo();
+	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+	sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 60, cbuf, NormalFont, clrWhite,
+		clrBlack);
+
+	if (CurrentJob != 0) {
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 140, UnitsTransIcons[CurrentJob],
+			56, 56);
+		sprintf(cbuf, "%i %%", 100 * CurrentPhase / CurrentNeed);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 62, 140, 45, 12,
+			clrLightBlue2, clrSeaBlue,
+			((double)CurrentPhase) / CurrentNeed, cbuf);
+	}
 }
 
 
@@ -1068,20 +1102,18 @@ int TFactory::ProduceUnit(int untype)
 
 
 
-void TFactory::Read(FILE *f)
-{
-    TBuilding::Read(f);
-    fread(&CurrentJob, 4, 1, f);
-    fread(&CurrentPhase, 4, 1, f);
-    fread(&CurrentNeed, 4, 1, f);
+void TFactory::Read(ReadStream &stream) {
+	TBuilding::Read(stream);
+	CurrentJob = stream.readSint32LE();
+	CurrentPhase = stream.readSint32LE();
+	CurrentNeed = stream.readSint32LE();
 }
 
-void TFactory::Write(FILE *f)
-{
-    TBuilding::Write(f);
-    fwrite(&CurrentJob, 4, 1, f);
-    fwrite(&CurrentPhase, 4, 1, f);
-    fwrite(&CurrentNeed, 4, 1, f);
+void TFactory::Write(WriteStream &stream) {
+	TBuilding::Write(stream);
+	stream.writeSint32LE(CurrentJob);
+	stream.writeSint32LE(CurrentPhase);
+	stream.writeSint32LE(CurrentNeed);
 }
 
 
@@ -1175,12 +1207,18 @@ int TAirport::UnloadUnit(TUnit *u)
             ((a->ID >= BADLIFE) && (ID < BADLIFE))) return -1;
         HideHelpers();
         a->Select();
-                     a->Move(X-2, Y+2  ); a = GetAircraftAt(X-1, Y+2);
-        if (a != NULL) a->Move(X-3, Y+2  ); a = GetAircraftAt(X-1, Y+2);
-        if (a != NULL) a->Move(X-4, Y+2  ); a = GetAircraftAt(X-1, Y+2);
+        a->Move(X-2, Y+2  );
+	a = GetAircraftAt(X-1, Y+2);
+        if (a != NULL)
+		a->Move(X-3, Y+2);
+	a = GetAircraftAt(X-1, Y+2);
+        if (a != NULL)
+		a->Move(X-4, Y+2);
+	a = GetAircraftAt(X-1, Y+2);
         this->Select();
         ShowHelpers();
-        if (a != NULL) return -1;
+        if (a != NULL)
+		return -1;
     }
 
     u->X = X-1, u->Y = Y+2;
@@ -1317,12 +1355,18 @@ int THeliport::UnloadUnit(TUnit *u)
             ((a->ID >= BADLIFE) && (ID < BADLIFE))) return -1;
         HideHelpers();
         a->Select();
-                     a->Move(X+3, Y+0  ); a = GetAircraftAt(X+3, Y+1);
-        if (a != NULL) a->Move(X+3, Y-1  ); a = GetAircraftAt(X+3, Y+1);
-        if (a != NULL) a->Move(X+3, Y+2  ); a = GetAircraftAt(X+3, Y+1);
+        a->Move(X+3, Y+0);
+	a = GetAircraftAt(X+3, Y+1);
+        if (a != NULL)
+		a->Move(X+3, Y-1);
+	a = GetAircraftAt(X+3, Y+1);
+        if (a != NULL)
+		a->Move(X+3, Y+2);
+	a = GetAircraftAt(X+3, Y+1);
         this->Select();
         ShowHelpers();
-        if (a != NULL) return -1;
+        if (a != NULL)
+		return -1;
     }
 
     u->X = X+3, u->Y = Y+1;
@@ -1639,40 +1683,39 @@ int TDocks::UnloadUnit(TUnit *u)
 
 
 
-void TDocks::Init(int x, int y, int party, FILE *f)
-{
-    TObject::Init(x, y, party, f); // schvalne!!!
-    RepairingNow = FALSE;
-    if (f != NULL) {
-        int moreinfo;
-        
-        fread(&Orient, 4, 1, f);
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   Read(f);
-    }
-    else {
-        Orient = 1;
-    }
-    if (IconTransport == NULL) 
-        IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-    if ((Capacity == TCAPACITY_BIG) && (BmpBigInventory == NULL))
-        BmpBigInventory = GraphicsDF->get("tranbox0");
-    else if ((Capacity == TCAPACITY_SMALL) && (BmpSmallInventory == NULL))
-        BmpSmallInventory = GraphicsDF->get("tranbox1");
-    else if ((Capacity == TCAPACITY_MEDIUM) && (BmpMediumInventory == NULL))
-        BmpMediumInventory = GraphicsDF->get("tranbox2");
+void TDocks::Init(int x, int y, int party, ReadStream *stream) {
+	TObject::Init(x, y, party, stream); // Intentional!!!
+	RepairingNow = FALSE;
+	Orient = 1;
+
+	if (stream) {
+		int moreinfo;
+
+		Orient = stream->readSint32LE();
+		moreinfo = stream->readSint32LE();
+
+		if (moreinfo) {
+			Read(*stream);
+		}
+	}
+
+	if (IconTransport == NULL) {
+		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
+	}
+
+	if ((Capacity == TCAPACITY_BIG) && !BmpBigInventory) {
+		BmpBigInventory = GraphicsDF->get("tranbox0");
+	} else if ((Capacity == TCAPACITY_SMALL) && !BmpSmallInventory) {
+		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	} else if ((Capacity == TCAPACITY_MEDIUM) && !BmpMediumInventory) {
+		BmpMediumInventory = GraphicsDF->get("tranbox2");
+	}
 }
 
-
-
-void TDocks::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&Orient, 4, 1, f);
-    fwrite(&moreinfo, 4, 1, f);
+void TDocks::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(Orient);
+	stream.writeSint32LE(TRUE);
 }
-
-
 
 TSprite *TDocks::GetSprite()
 {

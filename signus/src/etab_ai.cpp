@@ -19,7 +19,7 @@
  *
  */
 
-
+#include "etables.h"
 
 
 // Postupove tabulky zkusenosti:

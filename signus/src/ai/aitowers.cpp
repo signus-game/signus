@@ -43,7 +43,7 @@ TTowers::TTowers () : TArmy ()
 
 
 
-TTowers::TTowers (FILE *f) : TArmy (f)
+TTowers::TTowers (ReadStream &stream) : TArmy (stream)
 {
 
 }
@@ -124,7 +124,7 @@ int TTowers::MakeTurn ()
 
 int TTowers::ProblemJednotky (int Unit)
 {
-        int i, weapon;
+        int i, weapon, target, oldHP, damage;
         double hmax;
 
         if (Unit < 0 || Unit >= UNITS_TOP) {
@@ -149,6 +149,7 @@ int TTowers::ProblemJednotky (int Unit)
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
                         hmax = 0;
+			target = -1;
 
                         for (i = 0; i < nofGoodLife; i++) { // Pro vsechny GL
                                 ProcessMapAnim ();
@@ -159,19 +160,23 @@ int TTowers::ProblemJednotky (int Unit)
                                 IsInRange (Units [Unit], Units [Unit]   -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
+					target = i;
                                 }
                         }
 
                         if (hmax > 0) {  // Nasel jsem cil a de se strilet
                                 Units [Unit] -> Select ();
+				oldHP = Units[GL[target]]->HitPoints;
+				((TUnit*)Units[Unit])->CurWpn = ChooseWeapon(Unit, GL[target]);
+				damage = Units[Unit]->Attack(Units[GL[target]]->X, Units[GL[target]]->Y);
                                 if (DeleteKilled () == FALSE) {
                                         RedrawMap ();
                                         LockDraw (); // Konec hry
                                         return FALSE;
                                 }
-                                if (Units [Unit] == NULL) {
+                                if (damage >= oldHP || Units [Unit] == NULL) {
                                         RedrawMap ();
-                                        LockDraw (); // vez znicena
+                                        LockDraw (); // vez nebo cil znicen
                                         return TRUE;
                                 }
                         }
@@ -189,6 +194,7 @@ int TTowers::ProblemJednotky (int Unit)
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
                         hmax = 0;
+			target = -1;
 
                         for (i = 0; i < nofGoodLife; i++) { // pro vsechny GL
                                 ProcessMapAnim ();
@@ -199,6 +205,7 @@ int TTowers::ProblemJednotky (int Unit)
                                 , Units [Unit] -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
+					target = i;
                                 }
                         }
 
@@ -212,11 +219,19 @@ int TTowers::ProblemJednotky (int Unit)
 
                         if (hmax > 0) { // Tady se bude strilet!!!
                                 if (((TThor *)Units [Unit]) -> IsOverground) {  // je-li venku - pal!
-                                Units [Unit] -> Select ();
+					Units [Unit] -> Select ();
+					oldHP = Units[GL[target]]->HitPoints;
+					((TUnit*)Units[Unit])->CurWpn = ChooseWeapon(Unit, GL[target]);
+					damage = Units[Unit]->Attack(Units[GL[target]]->X, Units[GL[target]]->Y);
                                         if (DeleteKilled () == FALSE) {
                                                 LockDraw ();
                                                 return FALSE;
                                         }
+					if (damage >= oldHP || Units [Unit] == NULL) {
+						RedrawMap ();
+						LockDraw ();
+						return TRUE;
+					}
                                 }
                                 else {  //neni-li venku - vyleze
                                         Units [Unit] -> Select ();
@@ -241,6 +256,7 @@ int TTowers::ProblemJednotky (int Unit)
                         if (DeleteKilled () == FALSE) return FALSE;
                         MakeDangerArray ();
                         hmax = 0;
+			target = -1;
 
                         for (i = 0; i < nofGoodLife; i++) { // Pro vsechny GL
                                 ProcessMapAnim ();
@@ -252,17 +268,21 @@ int TTowers::ProblemJednotky (int Unit)
                                 , Units [Unit] -> X, Units [Unit] -> Y
                                 , Units [GL[i]] -> X, Units [GL[i]] -> Y))) {
                                         hmax = AttackStatus (Unit, weapon, GL [i], 1);
+					target = i;
                                 }
                         }
 
                         if (hmax > 0) {  // Nasel jsem cil a de se strilet
                                 Units [Unit] -> Select ();
+				oldHP = Units[GL[target]]->HitPoints;
+				((TUnit*)Units[Unit])->CurWpn = ChooseWeapon(Unit, GL[target]);
+				damage = Units[Unit]->Attack(Units[GL[target]]->X, Units[GL[target]]->Y);
                                 if (DeleteKilled () == FALSE) {
                                         RedrawMap ();
                                         LockDraw ();
                                         return FALSE;
                                 }
-                                if (Units [Unit] == NULL) {
+                                if (damage >= oldHP || Units [Unit] == NULL) {
                                         RedrawMap ();
                                         LockDraw ();
                                         return TRUE;

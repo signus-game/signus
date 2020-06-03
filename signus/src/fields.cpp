@@ -101,23 +101,23 @@ label_1:
         switch (f->Terrain) {
             // trava:
             case 3 : case 12 : case 13 : case 316 : case 317 : case 318 : case 319 :
-                    PlaceL2(x, y, 169 + 4 * rand() / RAND_MAX);
+                    PlaceL2(x, y, 169 + rand() % 4);
                     break;
             // pisek:
             case 1 : case 8 : case 9 : case 320 : case 321 : case 322 : case 323 :
-                    PlaceL2(x, y, 181 + 4 * rand() / RAND_MAX);
+                    PlaceL2(x, y, 181 + rand() % 4);
                     break;
             // hlina:
             case 4 : case 14 : case 15 : case 330 : case 331 : case 332 : case 333 :
-                    PlaceL2(x, y, 173 + 4 * rand() / RAND_MAX);
+                    PlaceL2(x, y, 173 + rand() % 4);
                     break;
             // mars:
             case 2 : case 10 : case 11 : case 326 : case 327 : case 328 : case 329 :
-                    PlaceL2(x, y, 185 + 4 * rand() / RAND_MAX);
+                    PlaceL2(x, y, 185 + rand() % 4);
                     break;
             // snih:
             case 5 : case 16 : case 17 : case 334 : case 335 : case 336 : case 337 :
-                    PlaceL2(x, y, 177 + 4 * rand() / RAND_MAX);
+                    PlaceL2(x, y, 177 + rand() % 4);
                     break;
             default : 
                     if (rand() % 2) PlaceL2(x, y, 393);
@@ -126,7 +126,7 @@ label_1:
         }
     }
     else if (crater_type == cratCrash) {
-        switch (12 * rand() / RAND_MAX) {
+        switch (int(12 * frand())) {
             case 0 : PlaceL2(x, y, 393); break;
             case 1 : PlaceL2(x, y, 391, 1); break;
             case 2 : PlaceL2(x, y, 389, 1); break;
@@ -258,7 +258,7 @@ static int ExplodeBarrel(int X, int Y)
     called++;
 
     AddExplode3x3(X, Y, 0, 
-            10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+            10 - 20 * frand(), 10 - 20 * frand());
     IncExplodeTime(+1);
 
     dmg += WeaponAttack(X - 1, Y - 1, wpnExplos, utBARREL_DESTROY_AN, utBARREL_DESTROY_BN);
@@ -282,8 +282,7 @@ static void DestroyBridge(int x, int y)
 {
     int i, j;
 
-    AddExplode3x3(x, y, 0, 
-            10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+    AddExplode3x3(x, y, 0, 10 - 20 * frand(), 10 - 20 * frand());
     GetField(x, y)->Terrain2 = 0;
     WeaponAttack(x, y, wpnExplos, 9999, 9999);
     
@@ -354,46 +353,54 @@ int AttackField(int x, int y, int WpnType, int AtN, int BoN)
 extern int MisLoads[1024];
 #endif
 
-void PlaceL2(int x, int y, int terrain2, int anim)
-{
-    char b[20];
-    
-    GetField(x, y)->Terrain2 = terrain2;
-    GetField(x, y)->IsAnim = anim;
+void PlaceL2(int x, int y, int terrain2, int anim) {
+	char b[20];
+
+	GetField(x, y)->Terrain2 = terrain2;
+	GetField(x, y)->IsAnim = anim;
+
 #ifdef DEBUG
-    if (MisLoads[terrain2]) {
-        if (BmpTerr2[terrain2]) memfree(BmpTerr2[terrain2]); 
-        if (BmpTerr2D[terrain2]) memfree(BmpTerr2D[terrain2]);
-        MisLoads[terrain2] = FALSE;
-    }
+	if (MisLoads[terrain2]) {
+		if (BmpTerr2[terrain2]) {
+			memfree(BmpTerr2[terrain2]);
+		}
+
+		if (BmpTerr2D[terrain2]) {
+			memfree(BmpTerr2D[terrain2]);
+		}
+
+		MisLoads[terrain2] = FALSE;
+	}
 #endif
 
-    if (BmpTerr2[terrain2] == NULL) {
-        sprintf(b, "tr2n%i", terrain2);
-        BmpTerr2[terrain2] = GraphicsDF->get(b);
-        sprintf(b, "tr2d%i", terrain2);
-        BmpTerr2D[terrain2] = GraphicsDF->get(b);
-    }
+	if (BmpTerr2[terrain2] == NULL) {
+		sprintf(b, "tr2n%i", terrain2);
+		BmpTerr2[terrain2] = GraphicsDF->get(b);
+		sprintf(b, "tr2d%i", terrain2);
+		BmpTerr2D[terrain2] = GraphicsDF->get(b);
+	}
+
 #ifdef DEBUG
-    {
-            int i = terrain2;
-            TSprite *s;
-            char ds[20];
-            
-            if (BmpTerr2[i] == NULL) {
-                MisLoads[i] = FALSE;
-                BmpTerr2[i] = GraphicsDF->get("sprite");
-                BmpTerr2D[i] = GraphicsDF->get("sprite");
-                s = (TSprite*)BmpTerr2[i];
-                sprintf(ds,"%i", i);
-                PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                s = (TSprite*)BmpTerr2D[i];
-                if (s) {
-                    sprintf(ds,"%i", i);
-                    PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                }
-            }
-    }
+	int i = terrain2;
+	TSprite *s;
+	char ds[20];
+
+	if (BmpTerr2[i] == NULL) {
+		MisLoads[i] = FALSE;
+		BmpTerr2[i] = GraphicsDF->get("sprite");
+		BmpTerr2D[i] = GraphicsDF->get("sprite");
+		s = (TSprite*)BmpTerr2[i];
+		sprintf(ds,"%i", i);
+		PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont, clrWhite,
+			clrBlack);
+		s = (TSprite*)BmpTerr2D[i];
+
+		if (s) {
+			sprintf(ds,"%i", i);
+			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,
+				clrWhite, clrBlack);
+		}
+	}
 #endif
 }
 

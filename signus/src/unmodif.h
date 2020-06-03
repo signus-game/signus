@@ -28,6 +28,8 @@
 #ifndef _UNMODIF_H
 #define _UNMODIF_H
 
+#include "stream.h"
+
 
 extern void ModifyUnits();
     // umoRn? hr??i zm?nit si obsazen? pro misi
@@ -39,8 +41,8 @@ extern void MU_AddUnit(int ID);
 
 
 
-extern void MU_SaveList(FILE *f);
-extern void MU_LoadList(FILE *f);
+extern void MU_SaveList(WriteStream &stream);
+extern void MU_LoadList(ReadStream &stream);
     // zajist? L/S seznamu pouRiteln2ch jednotek...
 extern void MU_UpdateList();
     // vygeneruje na konci mise seznam p?eRivU?ch jednotek

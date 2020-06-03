@@ -94,10 +94,10 @@ esac
 GCC_FLAGS="-fno-rtti -fno-exceptions"
 
 
-data_version=`echo $VERSION | sed -e 's,\([[0-9]]*\.[[0-9]]*\)\.[[0-9]]*,\1,g'`
-echo xxx $data_version xxx
+DATA_VERSION=`echo $VERSION | sed -e 's,\([[0-9]]*\.[[0-9]]*\)\.[[0-9]]*,\1,g'`
+echo xxx $DATA_VERSION xxx
 
-CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)/$data_version\\\"\""
+CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)/$DATA_VERSION\\\"\""
 
 
 AC_SUBST(LIBS)
@@ -105,6 +105,7 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
 AC_SUBST(NASMFLAGS)
 AC_SUBST(RESCOMP)
+AC_SUBST(DATA_VERSION)
 
 AM_CONFIG_HEADER([config.h])
 

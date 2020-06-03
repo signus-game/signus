@@ -123,8 +123,7 @@ void ClearLastDraws()
 
 ////////////////////// TObject 
 
-void TObject::Init(int x, int y, int party, FILE *f)
-{
+void TObject::Init(int x, int y, int party, ReadStream *stream) {
     X = x; Y = y; 
     LittleX = 0, LittleY = 0;
     ActualSprite = 0;
@@ -214,51 +213,59 @@ void TObject::AfterSetup()
 
 
 
-void TObject::Read(FILE *f)
-{
-    fread(&MaxHitPoints, 4, 1, f);
-    fread(&MaxTimeUnits, 4, 1, f);
-    fread(&Defense[0], 4, 1, f);
-    fread(&Defense[1], 4, 1, f);
-    fread(&Defense[2], 4, 1, f);
+void TObject::Read(ReadStream &stream) {
+        int tmp;
 
-    fread(&HitPoints, 4, 1, f);
-    fread(&TimeUnits, 4, 1, f);
+	MaxHitPoints = stream.readSint32LE();
+	MaxTimeUnits = stream.readSint32LE();
+	Defense[0] = stream.readSint32LE();
+	Defense[1] = stream.readSint32LE();
+	Defense[2] = stream.readSint32LE();
 
-    fread(&AI_Info, sizeof(TAI_Info), 1, f);    
+	HitPoints = stream.readSint32LE();
+	TimeUnits = stream.readSint32LE();
 
-    fread(&Visib, 4, 1, f);
-    fread(&ActualSprite, 4, 1, f);
-     // tohle je cheat - omylem to tu zustalo, tak jsme byli lini to vyndat
-        int dum;
-        fread(&dum, 4, 1, f);       
+	AI_Info.State = stream.readSint32LE();
+	AI_Info.point.x = stream.readSint32LE();
+	AI_Info.point.y = stream.readSint32LE();
+	AI_Info.Hps = stream.readSint32LE();
+
+	Visib = stream.readSint32LE();
+	ActualSprite = stream.readSint32LE();
+
+	// tohle je cheat - omylem to tu zustalo, tak jsme byli lini to vyndat
+	tmp = stream.readSint32LE();
+
+        if (tmp != ID) {
 #ifdef DEBUG
-        if (dum != ID) PromtBox("unit-ID missread!", cmOk);
+		PromtBox("unit-ID misread!", cmOk);
 #endif
-    fread(&SmokeOn, 4, 1, f);   
+	}
+
+	SmokeOn = stream.readSint32LE();
 }
 
-void TObject::Write(FILE *f)
-{
-    fwrite(&MaxHitPoints, 4, 1, f);
-    fwrite(&MaxTimeUnits, 4, 1, f);
-    fwrite(&Defense[0], 4, 1, f);
-    fwrite(&Defense[1], 4, 1, f);
-    fwrite(&Defense[2], 4, 1, f);
+void TObject::Write(WriteStream &stream) {
+	stream.writeSint32LE(MaxHitPoints);
+	stream.writeSint32LE(MaxTimeUnits);
+	stream.writeSint32LE(Defense[0]);
+	stream.writeSint32LE(Defense[1]);
+	stream.writeSint32LE(Defense[2]);
 
-    fwrite(&HitPoints, 4, 1, f);
-    fwrite(&TimeUnits, 4, 1, f);
+	stream.writeSint32LE(HitPoints);
+	stream.writeSint32LE(TimeUnits);
 
-    fwrite(&AI_Info, sizeof(TAI_Info), 1, f);
+	stream.writeSint32LE(AI_Info.State);
+	stream.writeSint32LE(AI_Info.point.x);
+	stream.writeSint32LE(AI_Info.point.y);
+	stream.writeSint32LE(AI_Info.Hps);
 
-    fwrite(&Visib, 4, 1, f);
-    fwrite(&ActualSprite, 4, 1, f);
-    fwrite(&ID, 4, 1, f);       // cheat na shit...
+	stream.writeSint32LE(Visib);
+	stream.writeSint32LE(ActualSprite);
+	stream.writeSint32LE(ID); // cheat na shit...
 
-    fwrite(&SmokeOn, 4, 1, f);  
+	stream.writeSint32LE(SmokeOn);
 }
-
-
 
 void TObject::PlaceGround(int place)
 {
@@ -747,8 +754,7 @@ void TObject::Explode()
         AddExplode1x1(X, Y);
         if (rand() % 20 == 0) { // bonus - vetsi boom
             for (int i = 0; i < 6; i++)
-                AddExplode1x1(X, Y, 0, 
-                        20 - 40 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+                AddExplode1x1(X, Y, 0, 20 - 40 * frand(), 10 - 20 * frand());
         }
     }
     else this->RemoveFromWorld();
@@ -840,37 +846,34 @@ TObject::~TObject()
 
 /////////////////// TUnit 
 
+void TUnit::Init(int x, int y, int party, ReadStream *stream) {
+	TObject::Init(x, y, party, stream);
 
+	Orient = 0;
+	ActualSprite = 0;
+	Level = 0;
+	Experience = 0;
 
+	if (stream) {
+		int moreinfo;
 
-void TUnit::Init(int x, int y, int party, FILE *f)
-{
-    Orient = 0;
-    TObject::Init(x, y, party, f);
-    if (f != NULL) {
-        int moreinfo;
-        
-        PlaceGround(FALSE);
-        fread(&Orient, 4, 1, f);
-        PlaceGround(TRUE);
-        ActualSprite = Orient;
-        fread(&Level, 4, 1, f);
-        Experience = TabUnitsExperience[Type % BADLIFE][Level];
-        IncLevel(Level);
-        HitPoints = MaxHitPoints; // dela AfterSetup, ale inclevel to mohl zmenit
-        fread(&moreinfo, 4, 1, f);
-        if (moreinfo)   {
-            PlaceGround(FALSE);
-            Read(f);
-            PlaceGround(TRUE);
-        }
-    }
-    else {
-        Orient = 0;
-        ActualSprite = 0;
-        Level = 0;
-        Experience = 0;
-    }
+		PlaceGround(FALSE);
+		Orient = stream->readSint32LE();
+		PlaceGround(TRUE);
+		ActualSprite = Orient;
+		Level = stream->readSint32LE();
+		Experience = TabUnitsExperience[Type % BADLIFE][Level];
+		IncLevel(Level);
+		// done in AfterSetup(), but IncLevel might have changed HP
+		HitPoints = MaxHitPoints;
+		moreinfo = stream->readSint32LE();
+
+		if (moreinfo)   {
+			PlaceGround(FALSE);
+			Read(*stream);
+			PlaceGround(TRUE);
+		}
+	}
 }
 
 
@@ -892,44 +895,46 @@ void TUnit::AfterSetup()
 
 
 
-void TUnit::Read(FILE *f)
-{
-    TObject::Read(f);
+void TUnit::Read(ReadStream &stream) {
+	TObject::Read(stream);
 
-    fread(&MaxFuel, 4, 1, f);
-    
-    fread(&Orient, 4, 1, f);
-    fread(&Fuel, 4, 1, f);
-    fread(&Experience, 4, 1, f);
-    fread(&Level, 4, 1, f);
-    
-    fread(&WeaponsCnt, 4, 1, f);
-    fread(&CurWpn, 4, 1, f);
-    for (int i = 0; i < WeaponsCnt; i++) Weapons[i]->Read(f);
+	MaxFuel = stream.readSint32LE();
+
+	Orient = stream.readSint32LE();
+	Fuel = stream.readSint32LE();
+	Experience = stream.readSint32LE();
+	Level = stream.readSint32LE();
+
+	WeaponsCnt = stream.readSint32LE();
+	CurWpn = stream.readSint32LE();
+
+	for (int i = 0; i < WeaponsCnt; i++) {
+		Weapons[i]->Read(stream);
+	}
 }
 
-void TUnit::Write(FILE *f)
-{
-    TObject::Write(f);
+void TUnit::Write(WriteStream &stream) {
+	TObject::Write(stream);
 
-    fwrite(&MaxFuel, 4, 1, f);
-    
-    fwrite(&Orient, 4, 1, f);
-    fwrite(&Fuel, 4, 1, f);
-    fwrite(&Experience, 4, 1, f);
-    fwrite(&Level, 4, 1, f);
+	stream.writeSint32LE(MaxFuel);
 
-    fwrite(&WeaponsCnt, 4, 1, f);
-    fwrite(&CurWpn, 4, 1, f);
-    for (int i = 0; i < WeaponsCnt; i++) Weapons[i]->Write(f);
+	stream.writeSint32LE(Orient);
+	stream.writeSint32LE(Fuel);
+	stream.writeSint32LE(Experience);
+	stream.writeSint32LE(Level);
+
+	stream.writeSint32LE(WeaponsCnt);
+	stream.writeSint32LE(CurWpn);
+
+	for (int i = 0; i < WeaponsCnt; i++) {
+		Weapons[i]->Write(stream);
+	}
 }
 
-void TUnit::WriteInitReq(FILE *f)
-{
-    int moreinfo = TRUE;
-    fwrite(&Orient, 4, 1, f);
-    fwrite(&Level, 4, 1, f);
-    fwrite(&moreinfo, 4, 1, f);
+void TUnit::WriteInitReq(WriteStream &stream) {
+	stream.writeSint32LE(Orient);
+	stream.writeSint32LE(Level);
+	stream.writeSint32LE(TRUE);
 }
 
 
@@ -1080,44 +1085,57 @@ TSprite *TUnit::GetStatusBar()
 
 
 
-void TUnit::GetUnitInfo()
-{
-    char cbuf[30];
-    int i, clr;
+void TUnit::GetUnitInfo() {
+	char cbuf[30];
+	int i, clr;
 
-    TObject::GetUnitInfo(); 
-    CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
-    PutStr(UInfoBuf, UINFO_SX, 2, 2, GetName(), NormalFont, clrLightBlue, clrBlack);
+	TObject::GetUnitInfo();
+	CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
+		clrLightBlue, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
+		NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 42, SigText[TXT_TIME],
+		NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_FUEL],
+		NormalFont, clrWhite, clrBlack);
 
-    PutStr(UInfoBuf, UINFO_SX, 2, 26, SigText[TXT_STATE], NormalFont, clrWhite, clrBlack);
-    PutStr(UInfoBuf, UINFO_SX, 2, 42, SigText[TXT_TIME], NormalFont, clrWhite, clrBlack);
-    PutStr(UInfoBuf, UINFO_SX, 2, 58, SigText[TXT_FUEL], NormalFont, clrWhite, clrBlack);
+	sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
+	clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 28, 52, 13, clr,
+		clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 44, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
+	sprintf(cbuf, "%i %%", 100 * Fuel / MaxFuel);
+	clr = (100 * Fuel < 20 * MaxFuel) ? clrRed : 157;
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 60, 52, 13, clr, 164,
+		(double)Fuel / MaxFuel, cbuf);
 
-    sprintf(cbuf, "%i %%", 100 * HitPoints / MaxHitPoints);
-    clr = (100 * HitPoints < 20 * MaxHitPoints) ? clrRed : clrLightBlue2;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 28, 52, 13, clr, clrSeaBlue, (double)HitPoints / MaxHitPoints, cbuf);
+	if (clr == clrRed) {
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_FUEL],
+			NormalFont, clrRed, clrBlack);
+	}
 
-    sprintf(cbuf, "%i/%i", TimeUnits, MaxTimeUnits);
-    PercentBar(UInfoBuf, UINFO_SX, 54, 44, 52, 13, clrLightBlue2, clrSeaBlue, (double)TimeUnits / MaxTimeUnits, cbuf);
+	for (i = 0; i < WeaponsCnt; i++) {
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
+			((i == CurWpn) && (WeaponsCnt != 1)) ?
+			WpnInfoBkg[1] : WpnInfoBkg[0], 102, 23);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 5, 86 + i * 26,
+			Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
+		sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
+		PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 60, 88 + i * 26, 41,
+			13, clrLightBlue2, clrSeaBlue,
+			(double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
+	}
 
-    sprintf(cbuf, "%i %%", 100 * Fuel / MaxFuel);
-    clr = (100 * Fuel < 20 * MaxFuel) ? clrRed : 157;
-    PercentBar(UInfoBuf, UINFO_SX, 54, 60, 52, 13, clr, 164, (double)Fuel / MaxFuel, cbuf);
-    if (clr == clrRed) PutStr(UInfoBuf, UINFO_SX, 2, 58, SigText[TXT_FUEL], NormalFont, clrRed, clrBlack);
-
-    for (i = 0; i < WeaponsCnt; i++) {
-        CopyBmp(UInfoBuf, UINFO_SX, 3, 83 + i * 26,
-                ((i == CurWpn) && (WeaponsCnt != 1)) ? WpnInfoBkg[1] : WpnInfoBkg[0], 
-                102, 23);
-        PutStr(UInfoBuf, UINFO_SX, 5, 86 + i * 26, Weapons[i]->Name, NormalFont, clrWhite, clrBlack);
-        sprintf(cbuf, "%i/%i", Weapons[i]->Ammo, Weapons[i]->MaxAmmo);
-        PercentBar(UInfoBuf, UINFO_SX, 60, 88 + i * 26, 41, 13, clrLightBlue2, clrSeaBlue, (double)Weapons[i]->Ammo / Weapons[i]->MaxAmmo, cbuf);
-    }
-    if (CurWpn != -1) {
-        CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188, BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-        sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-        PutStr(UInfoBuf, UINFO_SX, 35, 188, cbuf, NormalFont, clrWhite, clrBlack);     
-    }
+	if (CurWpn != -1) {
+		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188,
+			BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
+		sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY,35, 188, cbuf, NormalFont,
+			clrWhite, clrBlack);
+	}
 }
 
 
@@ -1494,11 +1512,13 @@ TUnit::~TUnit()
 
 //////////////// TToweredUnit:
 
-void TToweredUnit::Init(int x, int y, int party, FILE *f)
-{
-    WpnOrient = -1;
-    TUnit::Init(x, y, party, f);
-    if (WpnOrient == -1) WpnOrient = Orient;
+void TToweredUnit::Init(int x, int y, int party, ReadStream *stream) {
+	WpnOrient = -1;
+	TUnit::Init(x, y, party, stream);
+
+	if (WpnOrient == -1) {
+		WpnOrient = Orient;
+	}
 }
 
 
@@ -1651,16 +1671,14 @@ void TToweredUnit::GetDrawRect(TRect *r)
 
 
 
-void TToweredUnit::Read(FILE *f)
-{
-    TUnit::Read(f);
-    fread(&WpnOrient, 4, 1, f);
+void TToweredUnit::Read(ReadStream &stream) {
+	TUnit::Read(stream);
+	WpnOrient = stream.readSint32LE();
 }
 
-void TToweredUnit::Write(FILE *f)
-{
-    TUnit::Write(f);
-    fwrite(&WpnOrient, 4, 1, f);
+void TToweredUnit::Write(WriteStream &stream) {
+	TUnit::Write(stream);
+	stream.writeSint32LE(WpnOrient);
 }
 
 
@@ -1704,8 +1722,7 @@ void TSupportUnit::Explode()
     
     if (drw) {
         for (i = 0; i < 6; i++)
-            AddExplode1x1(X, Y, 0, 
-                    20 - 40 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+            AddExplode1x1(X, Y, 0, 20 - 40 * frand(), 10 - 20 * frand());
         IncExplodeTime(+2);
         AddExplode1x1(X, Y);
     }
@@ -2062,11 +2079,388 @@ void TObject::PrepareFieldTime(int x, int y)
     }
 }
 
+void TToweredTrainUnit::PrepareFieldTime(int x, int y)
+{
+	word ft, ter;
+	TField *f = GetField(x, y);
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-////////////////////////////////////////////////////////////////////////////
-#include "moveproc.cpp"
-// variace na tema PrepareFieldTime9x, z0...
-///////////////////////////////////////////////////////////////////////////
+	ter = f->Terrain;
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	FieldTimeTbl[8][tbofs] = ft;
+	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+		for (i = 0; i < 9; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1B) ||
+	         (L1TerrainType[ter] == tofsL1D)) {
+		FieldTimeTbl[0][tbofs] = ft;
+		FieldTimeTbl[4][tbofs] = ft;
+		for (i = 1; i < 4; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 5; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1C) ||
+	         (L1TerrainType[ter] == tofsL1E)) {
+		FieldTimeTbl[2][tbofs] = ft;
+		FieldTimeTbl[6][tbofs] = ft;
+		for (i = 3; i < 6; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[1][tbofs] = 0xFF;
+		FieldTimeTbl[7][tbofs] = 0xFF;
+	}
+	else { //terA
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		switch (f->Terrain2) {
+		case 71+1 :
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
+		case 71+2 :
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
+		case 71+16 :
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
+		case 71+19 :
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
+		default:
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
+		}
+	}
+}
+
+
+void TOlymp::PrepareFieldTime(int x, int y)
+{
+	word ft, ter;
+	TField *f = GetField(x, y);
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	ter = f->Terrain;
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	FieldTimeTbl[8][tbofs] = ft;
+	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+		for (i = 0; i < 9; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1B) ||
+	         (L1TerrainType[ter] == tofsL1D)) {
+		FieldTimeTbl[0][tbofs] = ft;
+		FieldTimeTbl[4][tbofs] = ft;
+		for (i = 1; i < 4; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 5; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1C) ||
+	         (L1TerrainType[ter] == tofsL1E)) {
+		FieldTimeTbl[2][tbofs] = ft;
+		FieldTimeTbl[6][tbofs] = ft;
+		for (i = 3; i < 6; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[1][tbofs] = 0xFF;
+		FieldTimeTbl[7][tbofs] = 0xFF;
+	}
+	else { //terA
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		switch (f->Terrain2) {
+		case 71+1 :
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
+		case 71+2 :
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
+		case 71+16 :
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
+		case 71+19 :
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
+		default:
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
+		}
+	}
+}
+
+
+void TTrainSupportUnit::PrepareFieldTime(int x, int y)
+{
+	word ft, ter;
+	TField *f = GetField(x, y);
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	ter = f->Terrain;
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	FieldTimeTbl[8][tbofs] = ft;
+	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
+	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+		for (i = 0; i < 9; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1B) ||
+	         (L1TerrainType[ter] == tofsL1D)) {
+		FieldTimeTbl[0][tbofs] = ft;
+		FieldTimeTbl[4][tbofs] = ft;
+		for (i = 1; i < 4; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 5; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1C) ||
+	         (L1TerrainType[ter] == tofsL1E)) {
+		FieldTimeTbl[2][tbofs] = ft;
+		FieldTimeTbl[6][tbofs] = ft;
+		for (i = 3; i < 6; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[1][tbofs] = 0xFF;
+		FieldTimeTbl[7][tbofs] = 0xFF;
+	}
+	else { //terA
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		switch (f->Terrain2) {
+		case 71+1 :
+			FieldTimeTbl[0][tbofs] = FieldTimeTbl[4][tbofs] = ft;
+			break;
+		case 71+2 :
+			FieldTimeTbl[2][tbofs] = FieldTimeTbl[6][tbofs] = ft;
+			break;
+		case 71+16 :
+			FieldTimeTbl[3][tbofs] = FieldTimeTbl[7][tbofs] = ft;
+			break;
+		case 71+19 :
+			FieldTimeTbl[1][tbofs] = FieldTimeTbl[5][tbofs] = ft;
+			break;
+		default:
+			for (i = 0; i < 8; i++)
+				FieldTimeTbl[i][tbofs] = ft;
+			break;
+		}
+	}
+}
+
+
+
+
+
+void TXenon::PrepareFieldTime(int x, int y)
+{
+	word ft, ter;
+	TField *f = GetField(x, y);
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	ter = f->Terrain;
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	FieldTimeTbl[8][tbofs] = ft;
+	if (((f->Unit != NO_UNIT) && (f->Unit != ID))) {
+		for (i = 0; i < 9; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1B) ||
+	         (L1TerrainType[ter] == tofsL1D)) {
+		FieldTimeTbl[0][tbofs] = ft;
+		FieldTimeTbl[4][tbofs] = ft;
+		for (i = 1; i < 4; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		for (i = 5; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1C) ||
+	         (L1TerrainType[ter] == tofsL1E)) {
+		FieldTimeTbl[2][tbofs] = ft;
+		FieldTimeTbl[6][tbofs] = ft;
+		for (i = 3; i < 6; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[1][tbofs] = 0xFF;
+		FieldTimeTbl[7][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1H) ||
+	         (L1TerrainType[ter] == tofsL1F) ||
+	         (L1TerrainType[ter] == tofsL1L) ||
+	         (L1TerrainType[ter] == tofsL1J)) {
+		FieldTimeTbl[1][tbofs] = ft;
+		FieldTimeTbl[5][tbofs] = ft;
+		for (i = 2; i < 5; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[6][tbofs] = 0xFF;
+		FieldTimeTbl[7][tbofs] = 0xFF;
+	}
+	else if ((L1TerrainType[ter] == tofsL1I) ||
+	         (L1TerrainType[ter] == tofsL1G) ||
+	         (L1TerrainType[ter] == tofsL1K) ||
+	         (L1TerrainType[ter] == tofsL1M)) {
+		FieldTimeTbl[3][tbofs] = ft;
+		FieldTimeTbl[7][tbofs] = ft;
+		for (i = 4; i < 7; i++)
+			FieldTimeTbl[i][tbofs] = 0xFF;
+		FieldTimeTbl[0][tbofs] = 0xFF;
+		FieldTimeTbl[1][tbofs] = 0xFF;
+		FieldTimeTbl[2][tbofs] = 0xFF;
+	}
+	else {
+		for (i = 0; i < 8; i++)
+			FieldTimeTbl[i][tbofs] = ft;
+	}
+}
+
+
+
+void TAircraft::PrepareFieldTime(int x, int y)
+{
+	word ft;
+	TField *f = GetField(x, y);
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	if (((x != X) || (y != Y)) && (GetAircraftAt(x, y) != NULL)) ft = 0xFF;
+	for (i = 0; i < 9; i++)	FieldTimeTbl[i][tbofs] = ft;
+}
+
+
+
+
+
+
+
+
+
+
+//// lode:
+
+static word ShipFieldTime(int x, int y, int ID, int Ctr = FALSE)
+{
+	word ft, ter;
+	TField *f = GetField(x, y);
+//	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	if ((x < 0) || (y < 0) || (x >= MapSizeX) || (y >= MapSizeY)) return 0xFF;
+	ter = f->Terrain;
+	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	if (((f->Unit != NO_UNIT) && (f->Unit != ID))) return 0xFF;
+	if ((Ctr) && (ter != 18 /*hluboka voda*/)) return 0xFF;
+	else return ft;
+}
+
+
+static int ship_Xdir[8] = {  0, -1, -1, -1,  0,  1,  1,  1};
+static int ship_Ydir[8] = { -1, -1,  0,  1,  1,  1,  0, -1};
+
+static word Ship3_FT(int x, int y, int ID, int Orient)
+{
+	int ft1;
+
+	ft1 = ShipFieldTime(x, y, ID, TRUE);
+	if (ft1 == 0xFF) return 0xFF;
+	if (ShipFieldTime(x + ship_Xdir[Orient], y + ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (ShipFieldTime(x - ship_Xdir[Orient], y - ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (Orient % 2 == 1) {
+		if (ShipFieldTime(x-1, y, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x+1, y, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x, y-1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x, y+1, ID) == 0xFF) return 0xFF;
+	}
+	return ft1;
+}
+
+
+
+void TPoseidon::PrepareFieldTime(int x, int y)
+{
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	for (i = 0; i < 9; i++)	{
+		FieldTimeTbl[i][tbofs] = Ship3_FT(x, y, this->ID, i);
+//	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
+//			FieldTimeTbl[i][tbofs] = Ship3_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
+	}
+}
+
+
+
+
+static word Ship5_FT(int x, int y, int ID, int Orient)
+{
+	int ft1, xX, yY;
+
+	ft1 = ShipFieldTime(x, y, ID, TRUE);
+	if (ft1 == 0xFF) return 0xFF;
+	if (ShipFieldTime(x + ship_Xdir[Orient], y + ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (ShipFieldTime(x - ship_Xdir[Orient], y - ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (ShipFieldTime(x + 2*ship_Xdir[Orient], y + 2*ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (ShipFieldTime(x - 2*ship_Xdir[Orient], y - 2*ship_Ydir[Orient], ID) == 0xFF) return 0xFF;
+	if (Orient % 2 == 1) {
+		if (ShipFieldTime(x-1, y, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x+1, y, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x, y-1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(x, y+1, ID) == 0xFF) return 0xFF;
+
+		xX = x + ship_Xdir[Orient],	yY = y + ship_Ydir[Orient];
+		if (ShipFieldTime(xX-2, yY-1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX+2, yY+1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX-1, yY-2, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX+1, yY+2, ID) == 0xFF) return 0xFF;
+		xX = x - ship_Xdir[Orient],	yY = y - ship_Ydir[Orient];
+		if (ShipFieldTime(xX-2, yY-1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX+2, yY+1, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX-1, yY-2, ID) == 0xFF) return 0xFF;
+		if (ShipFieldTime(xX+1, yY+2, ID) == 0xFF) return 0xFF;
+	}
+	return ft1;
+}
+
+
+
+
+void TKraken::PrepareFieldTime(int x, int y)
+{
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	for (i = 0; i < 9; i++)	{
+		FieldTimeTbl[i][tbofs] = Ship5_FT(x, y, this->ID, i);
+//	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
+//			FieldTimeTbl[i][tbofs] = Ship5_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
+	}
+}
+
+
+
+
+void TLaguna::PrepareFieldTime(int x, int y)
+{
+	int i;
+	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
+
+	for (i = 0; i < 9; i++)	{
+		FieldTimeTbl[i][tbofs] = Ship5_FT(x, y, this->ID, i);
+//	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
+//			FieldTimeTbl[i][tbofs] = Ship5_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
+	}
+}
 
 
 void ApplyNoAccess()
@@ -2454,55 +2848,64 @@ ending_label: // ja vim, prasarna
 ///////////////////////// INIT & DONE ROUTINES //////////////////////////////
 
 
-int InitUnits()
-{
-    {
-        FILE *f = fopensafe("unitsnd.idx", "rb");       
-        int un, snd;
-        
-        for (un = 0; un < UNITS_COUNT; un++)
-            for (snd = 0; snd < 16; snd++)
-                fread(UnitsSoundIndex[un][snd], 9, 1, f);
-        fclose(f);
-    }
-    LoadArray(BmpSelected, 13, GraphicsDF, "terpul%i");
+int InitUnits() {
+	File sndfile;
+	int un, snd;
+
+	multipath_fopen(sndfile, "unitsnd.idx", File::READ);
+
+	for (un = 0; un < UNITS_COUNT; un++) {
+		for (snd = 0; snd < 16; snd++) {
+			sndfile.read(UnitsSoundIndex[un][snd], 9);
+			UnitsSoundIndex[un][snd][8] = '\0';
+		}
+	}
+
+	sndfile.close();
+
+	LoadArray(BmpSelected, 13, GraphicsDF, "terpul%i");
 #ifdef DEBUG
-    SpriteUniversal = (TSprite *) GraphicsDF->get("sprite");
-    SpriteUniversalBad = (TSprite *) GraphicsDF->get("sprite2");
+	SpriteUniversal = (TSprite *) GraphicsDF->get("sprite");
+	SpriteUniversalBad = (TSprite *) GraphicsDF->get("sprite2");
 #endif
-    GoodlifeDeads = BadlifeDeads = 0;
-    UInfoBuf = memalloc(UINFO_SX * UINFO_SY);
-    UInfoBkgr = GraphicsDF->get("infobk");
-    LoadArray(LevelBmps, 10, GraphicsDF, "level%i");
-    LoadArray((void**)WpnNames, WPNNM_COUNT, TextsDF, "wpnnm%i");
-    LoadArray((void**)WpnInfoBkg, 2, GraphicsDF, "wpninfo%i");
-    LoadArray((void**)BmpAmmoIcons, 4, GraphicsDF, "bmpammo%i");
-    InfoIcon = new TIcon(RES_X-56, UINFO_Y+186, 44, 20, "icon10_%i", SHORTCUT_INFO);
-    SelectSnd = LoadSample("select", FALSE);
-    WpnSelectSnd = LoadSample("wpnclick", FALSE);
-    ZavoraSnd = LoadSample("zavora", FALSE);
-    IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-    LoadArray((void**)UnitsNames, GOODLIFE_TOP, TextsDF, "unam%i");
-    LoadArray((void**)UnitsTransIcons, GOODLIFE_TOP, GraphicsDF, "un%iicn");
-    LoadArray((void**)BmpRepair, 2, GraphicsI18nDF, "repair%i");
-    LoadArray((void**)BmpBombing, 2, GraphicsDF, "icbomb%i");
-    LoadArray((void**)Smokes, 32, GraphicsDF, "dym0_%i");
-    {
-        LoadArray((void**)SpriteLocators, UNITS_TOP, GraphicsDF, "sprlc%i");
-        // NB: "sprlc%i.mem" files from signus-data were created in such way that
-        //     locators for enemy units has numbers starting from 128. This dates
-        //     back to when BADLIFE was 128. Since BADLIFE is now 1024, we have to
-        //     move the data to higher offset in the array.
-        // (FIXME?)
-        for (int i = 128; i < 256; i++) 
-        {
-            SpriteLocators[i - 128 + BADLIFE] = SpriteLocators[i];
-            SpriteLocators[i] = NULL;
-        }
-    }
-    if (!InitWeapons()) return FALSE;
-    for (int i = 0; i < GOODLIFE_TOP; i++) SelectionHistory[i] = i;
-    return InitExplode();
+	GoodlifeDeads = BadlifeDeads = 0;
+	UInfoBuf = memalloc(UINFO_SX * UINFO_SY);
+	UInfoBkgr = GraphicsDF->get("infobk");
+	LoadArray(LevelBmps, 10, GraphicsDF, "level%i");
+	LoadArray((void**)WpnNames, WPNNM_COUNT, TextsDF, "wpnnm%i");
+	LoadArray((void**)WpnInfoBkg, 2, GraphicsDF, "wpninfo%i");
+	LoadArray((void**)BmpAmmoIcons, 4, GraphicsDF, "bmpammo%i");
+	InfoIcon = new TIcon(RES_X-56, UINFO_Y+186, 44, 20, "icon10_%i", SHORTCUT_INFO);
+	SelectSnd = LoadSample("select", FALSE);
+	WpnSelectSnd = LoadSample("wpnclick", FALSE);
+	ZavoraSnd = LoadSample("zavora", FALSE);
+	IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
+	LoadArray((void**)UnitsNames, GOODLIFE_TOP, TextsDF, "unam%i");
+	LoadArray((void**)UnitsTransIcons, GOODLIFE_TOP, GraphicsDF, "un%iicn");
+	LoadArray((void**)BmpRepair, 2, GraphicsI18nDF, "repair%i");
+	LoadArray((void**)BmpBombing, 2, GraphicsDF, "icbomb%i");
+	LoadArray((void**)Smokes, 32, GraphicsDF, "dym0_%i");
+
+	LoadArray((void**)SpriteLocators, UNITS_TOP, GraphicsDF, "sprlc%i");
+	// NB: "sprlc%i.mem" files from signus-data were created in such way that
+	//     locators for enemy units has numbers starting from 128. This dates
+	//     back to when BADLIFE was 128. Since BADLIFE is now 1024, we have to
+	//     move the data to higher offset in the array.
+	// (FIXME?)
+	for (int i = 128; i < 256; i++) {
+		SpriteLocators[i - 128 + BADLIFE] = SpriteLocators[i];
+		SpriteLocators[i] = NULL;
+	}
+
+	if (!InitWeapons()) {
+		return FALSE;
+	}
+
+	for (int i = 0; i < GOODLIFE_TOP; i++) {
+		SelectionHistory[i] = i;
+	}
+
+	return InitExplode();
 }
 
 
@@ -2570,89 +2973,100 @@ int DoneUnits()
 
 ////////////////////////// READ & WRITE FUNCS ////////////////////
 
-void ReadUnits(FILE *f)
-{
-    int dummy;
-    int typ, x, y, party = 0, i;
-    TObject *obj;
-    
-    fread(&typ, 4, 1, f);
-    while (typ != 0) {
-        if (typ != -1) {
-            UpdateLoading();
-            fread(&party, 4, 1, f);
-            fread(&x, 4, 1, f);
-            fread(&y, 4, 1, f);
+TObject *createUnit(int type) {
+	TObject *obj = NULL;
 
-            obj = NULL;
-            switch (typ) {
+	switch (type) {
+// FIXME: copy-paste iounreg.h contents here and delete the file
 #include "iounreg.h"
 #ifdef DEBUG
-                default : PromtBox("ERROR READING UNITS", cmOk); break;
+	default:
+		PromtBox("ERROR READING UNITS", cmOk);
+		break;
 #endif
-            }
-            if (obj) obj->Init(x, y, party, f);
-        }
-        else {
-            for (i = party; i < UNITS_TOP; i++)
-                if (Units[i] == NULL) { Units[i] = (TObject*) 0xFFFFFFFF; break;}
-        }
-        
-        fread(&typ, 4, 1, f);
-    }
-    for (i = 0; i < UNITS_TOP; i++) 
-        if (Units[i] == (TObject*) 0xFFFFFFFF) Units[i] = NULL;
-    
-    fread(&dummy, 4, 1, f);
-    SelectedUnit = Units[dummy];
-    
-    ComputeVisib();
-    InitAutofire();
+	}
+
+	return obj;
 }
 
+void ReadUnits(ReadStream &stream) {
+	int dummy;
+	int typ, x, y, party = 0, i;
+	TObject *obj;
+	// Create just the memory space, real TObject instance would call
+	// destructor at the end of this function and crash the game
+	char fakeunit[sizeof(TObject)] = {0};
 
+	while ((typ = stream.readSint32LE())) {
+		if (typ == -1) {
+			// Dead unit. Just fill the first empty slot with
+			// a fake unit to preserve IDs and move on.
+			// Note that this will break if Units[BADLIFE] gets
+			// destroyed.
+			for (i = party; i < UNITS_TOP && Units[i]; i++);
 
+			if (i < UNITS_TOP) {
+				Units[i] = (TObject*)fakeunit;
+			}
 
+			continue;
+		}
 
-void WriteUnits(FILE *f)
-{
-    int i, dummy;
-    TObject *o;
-        
-    // zapsani jednotek:
-    for (i = 0; i < UNITS_TOP; i++)
-        if (Units[i] != NULL) {
-            o = Units[i];
-            if (o->ID < BADLIFE) {
-                dummy = o->Type;
-                fwrite(&dummy, 4, 1, f);                
-                dummy = GOODLIFE;
-                fwrite(&dummy, 4, 1, f);
-            }
-            else {
-                dummy = o->Type - BADLIFE;
-                fwrite(&dummy, 4, 1, f);
-                dummy = BADLIFE;
-                fwrite(&dummy, 4, 1, f);
-            }
-            fwrite(&o->X, 4, 1, f);
-            fwrite(&o->Y, 4, 1, f);
-            o->WriteInitReq(f);
-            o->Write(f);
-        }
-        else {
-            dummy = -1;
-            fwrite(&dummy, 4, 1, f);
-        }
-    dummy = 0;
-    fwrite(&dummy, 4, 1, f);
-    fwrite(&SelectedUnit->ID, 4, 1, f);
+		UpdateLoading();
+		party = stream.readSint32LE();
+		x = stream.readSint32LE();
+		y = stream.readSint32LE();
+		obj = createUnit(typ);
+
+		if (obj) {
+			obj->Init(x, y, party, &stream);
+		}
+	}
+
+	// Remove fake units from unit list
+	for (i = 0; i < UNITS_TOP; i++) {
+	        if (Units[i] == (TObject*)fakeunit) {
+			Units[i] = NULL;
+		}
+	}
+
+	dummy = stream.readSint32LE();
+	SelectedUnit = Units[dummy];
+
+	ComputeVisib();
+	InitAutofire();
 }
 
+void WriteUnits(WriteStream &stream) {
+	int i;
+	TObject *o;
 
+	// save units to file
+	for (i = 0; i < UNITS_TOP; i++) {
+		if (!Units[i]) {
+			stream.writeSint32LE(-1);
+			continue;
+		}
 
+		o = Units[i];
 
+		if (o->ID < BADLIFE) {
+			stream.writeSint32LE(o->Type);
+			stream.writeSint32LE(GOODLIFE);
+		} else {
+			stream.writeSint32LE(o->Type - BADLIFE);
+			stream.writeSint32LE(BADLIFE);
+		}
 
+		stream.writeSint32LE(o->X);
+		stream.writeSint32LE(o->Y);
+		o->WriteInitReq(stream);
+		o->Write(stream);
+	}
+
+	stream.writeSint32LE(0);
+	stream.writeSint32LE(SelectedUnit->ID);
+}
 
 
 
@@ -2686,74 +3100,105 @@ int GetSpriteTblSize(int un)
     return i;
 }
 
-void UpdateUnitsMem(int UnType)
-{
-    int i = UnType, j;
-    char ds[29];
-    
-        // Uvolneni spritu z pameti pri zmizeni posledni jednotky typu:
-        if ((UnitsCounts[i] == 0) && (UnitsSprites[i] != NULL)) {
-            DisposeArray((void **)UnitsSprites[i], GetSpriteTblSize(i));
-            memfree(UnitsSprites[i]);
-            UnitsSprites[i] = NULL;
-            if (i < BADLIFE)
-                for (j = 0; j < 16; j++) FreeSample(UnitsSoundSamples[i][j]);
-            else
-                for (j = 0; j < 16; j++) FreeSample(UnitsSoundSamples[i-BADLIFE][j]);
-            if (i < BADLIFE) {
-                memfree(UnitsDescripts[i]); UnitsDescripts[i] = NULL;
-                if (UnitsPictures[i] != NULL) {
-                    memfree(UnitsPictures[i]); UnitsPictures[i] = NULL;
-                }
-            }
-        }
+void UpdateUnitsMem(int UnType) {
+	int i = UnType, j;
+	char ds[29];
 
-        // Nacteni nove jednotky - nacte jmena, popisy, alokuje potrebne tabulky
-        else if ((UnitsCounts[i] != 0) && (UnitsSprites[i] == NULL)) {
-            UnitsSprites[i] = (TSprite**) memalloc(256 * sizeof(TSprite*));
-            if (i < BADLIFE) sprintf(ds, "un%i_%%i", i);
-            else sprintf(ds, "un%i_%%i", i - BADLIFE + 128);
-            LoadArray((void**)UnitsSprites[i], 256, GraphicsDF, ds);
+	// Uvolneni spritu z pameti pri zmizeni posledni jednotky typu:
+	if ((UnitsCounts[i] == 0) && (UnitsSprites[i] != NULL)) {
+		DisposeArray((void **)UnitsSprites[i], GetSpriteTblSize(i));
+		memfree(UnitsSprites[i]);
+		UnitsSprites[i] = NULL;
+
+		if (i < BADLIFE) {
+			for (j = 0; j < 16; j++) {
+				FreeSample(UnitsSoundSamples[i][j]);
+			}
+		} else {
+			for (j = 0; j < 16; j++) {
+				FreeSample(UnitsSoundSamples[i-BADLIFE][j]);
+			}
+		}
+
+		if (i < BADLIFE) {
+			memfree(UnitsDescripts[i]);
+			UnitsDescripts[i] = NULL;
+
+			if (UnitsPictures[i] != NULL) {
+				memfree(UnitsPictures[i]);
+				UnitsPictures[i] = NULL;
+			}
+		}
+	// Nacteni nove jednotky - nacte jmena, popisy, alokuje potrebne tabulky
+	} else if ((UnitsCounts[i] != 0) && (UnitsSprites[i] == NULL)) {
+		UnitsSprites[i] = (TSprite**)memalloc(256 * sizeof(TSprite*));
+
+		if (i < BADLIFE) {
+			sprintf(ds, "un%i_%%i", i);
+		} else {
+			sprintf(ds, "un%i_%%i", i - BADLIFE + 128);
+		}
+
+		LoadArray((void**)UnitsSprites[i], 256, GraphicsDF, ds);
+
 #ifdef DEBUG
-            if (UnitsSprites[i][0] == NULL) {
-                UnitsSprites[i][0] = (TSprite*) memalloc(SpriteUniversal->w * SpriteUniversal->h + 16);
-                if (i < BADLIFE)
-                    memcpy(UnitsSprites[i][0], SpriteUniversal, SpriteUniversal->w * SpriteUniversal->h + 16);
-                else
-                    memcpy(UnitsSprites[i][0], SpriteUniversalBad, SpriteUniversalBad->w * SpriteUniversalBad->h + 16);
-                TSprite *s = UnitsSprites[i][0];
-                sprintf(ds,"%i", i);
-                PutStr(s->data, s->w, 0, 0, ds, NormalFont, clrWhite, clrBlack);
-                for (int j = 1; j < 48; j++) {
-                    UnitsSprites[i][j] = (TSprite*) memalloc(s->w * s->h + 16);
-                    memcpy(UnitsSprites[i][j], s, s->w * s->h + 16);
-                    sprintf(ds,"%i", j);
-                    PutStr(UnitsSprites[i][j]->data, UnitsSprites[i][j]->w, 10, 10, ds, NormalFont, clrWhite, clrBlack);
-                }                   
-                PutStr(s->data, s->w, 10, 10, "0", NormalFont, clrWhite, clrBlack);
-            }
+		if (UnitsSprites[i][0] == NULL) {
+			UnitsSprites[i][0] = (TSprite*)memalloc(SpriteUniversal->w * SpriteUniversal->h + 16);
+
+			if (i < BADLIFE) {
+				memcpy(UnitsSprites[i][0], SpriteUniversal, SpriteUniversal->w * SpriteUniversal->h + 16);
+			} else {
+				memcpy(UnitsSprites[i][0], SpriteUniversalBad, SpriteUniversalBad->w * SpriteUniversalBad->h + 16);
+			}
+
+			TSprite *s = UnitsSprites[i][0];
+			sprintf(ds,"%i", i);
+			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,
+				clrWhite, clrBlack);
+
+			for (int j = 1; j < 48; j++) {
+				UnitsSprites[i][j] = (TSprite*)memalloc(s->w * s->h + 16);
+				memcpy(UnitsSprites[i][j], s, s->w * s->h + 16);
+				sprintf(ds,"%i", j);
+				PutStr(UnitsSprites[i][j]->data,
+					UnitsSprites[i][j]->w,
+					UnitsSprites[i][j]->h, 10, 10, ds,
+					NormalFont, clrWhite, clrBlack);
+			}
+
+			PutStr(s->data, s->w, s->h, 10, 10, "0", NormalFont,
+				clrWhite, clrBlack);
+		}
 #endif
-            OptiSpriteTbls(i);
-    
-            if (i < BADLIFE) {
-                for (j = 0; j < 2; j++) 
-                    UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], TRUE);
-                for (j = 2; j < 16; j++) 
-                    UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], FALSE);
-                sprintf(ds, "udes%i", i);
-                UnitsDescripts[i] = (char *) TextsDF->get(ds);
-                if (iniResolution != SVGA_640x480) {
-                    sprintf(ds, "un%ilit", i);
-                    UnitsPictures[i] = (char *) GraphicsDF->get(ds);
-                }
-            }
-            else {
-                for (j = 0; j < 2; j++) 
-                    UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], TRUE);
-                for (j = 2; j < 16; j++) 
-                    UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], FALSE);
-            }
-        }
+
+		OptiSpriteTbls(i);
+
+		if (i < BADLIFE) {
+			for (j = 0; j < 2; j++) {
+				UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], TRUE);
+			}
+
+			for (j = 2; j < 16; j++) {
+				UnitsSoundSamples[i][j] = LoadSample(UnitsSoundIndex[i][j], FALSE);
+			}
+
+			sprintf(ds, "udes%i", i);
+			UnitsDescripts[i] = (char *) TextsDF->get(ds);
+
+			if (iniResolution != SVGA_640x480) {
+				sprintf(ds, "un%ilit", i);
+				UnitsPictures[i] = (char*)GraphicsDF->get(ds);
+			}
+		} else {
+			for (j = 0; j < 2; j++) {
+				UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], TRUE);
+			}
+
+			for (j = 2; j < 16; j++) {
+				UnitsSoundSamples[i-BADLIFE][j] = LoadSample(UnitsSoundIndex[i-BADLIFE][j], FALSE);
+			}
+		}
+	}
 }
 
 

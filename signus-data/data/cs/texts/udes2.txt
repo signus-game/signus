@@ -1,20 +1,20 @@
-#> Perseus Beta je novàj®° a £deryschopnàj®°
- obdobou svÇho men®°ho bratra Alfy.
- Je vybaven st©ednà tàëkòm kan¢nem U66 a
- m† pomàrnà silnÇ pancÇ©ov†n°.
-#> Beta je pro svÇ pancÇ©ov†n°, krat®° dost©el
- a pomàrnà velkou odolnost vyuë°v†na jako bitevn° tank do
- prvn° linie (zvl†®tà v mis°ch, kam nelze
- dopravit tàë®° stroje), ale lze ji velmi
- efektivnà vyuë°t i na niáen° men®°ch ohnisek
- odporu (ost©elovac° vàëe apod.) ái na
- ochranu vlastn°ch za©°zen° (skladñ, z†kladen,
- radarñ).
-#> Zpr†va pro velitele: Zpr†vy o tom, ëe se
- jedn† o tank Konzorcia, jehoë n†kresy byly
- ukradeny na®imi agenty, jsou zcela nepodloëenÇ.
- õi©itelÇ takovòchto informac° jsou povaëov†ni
- za velezr†dce a podle toho maj° bòt
- trest†ni.
+#> Perseus Beta je novƒõj≈°√≠ a √∫deryschopnƒõj≈°√≠
+ obdobou sv√©ho men≈°√≠ho bratra Alfy.
+ Je vybaven st≈ôednƒõ tƒõ≈æk√Ωm kan√≥nem U66 a
+ m√° pomƒõrnƒõ siln√© panc√©≈ôov√°n√≠.
+#> Beta je pro sv√© panc√©≈ôov√°n√≠, krat≈°√≠ dost≈ôel
+ a pomƒõrnƒõ velkou odolnost vyu≈æ√≠v√°na jako bitevn√≠ tank do
+ prvn√≠ linie (zvl√°≈°tƒõ v mis√≠ch, kam nelze
+ dopravit tƒõ≈æ≈°√≠ stroje), ale lze ji velmi
+ efektivnƒõ vyu≈æ√≠t i na niƒçen√≠ men≈°√≠ch ohnisek
+ odporu (ost≈ôelovac√≠ vƒõ≈æe apod.) ƒçi na
+ ochranu vlastn√≠ch za≈ô√≠zen√≠ (sklad≈Ø, z√°kladen,
+ radar≈Ø).
+#> Zpr√°va pro velitele: Zpr√°vy o tom, ≈æe se
+ jedn√° o tank Konzorcia, jeho≈æ n√°kresy byly
+ ukradeny na≈°imi agenty, jsou zcela nepodlo≈æen√©.
+ ≈†i≈ôitel√© takov√Ωchto informac√≠ jsou pova≈æov√°ni
+ za velezr√°dce a podle toho maj√≠ b√Ωt
+ trest√°ni.
 #e
 #e

@@ -1,22 +1,22 @@
-#> ›korpi¢n je lehk˜ raketomet vyzbrojen˜ ‡ty©mi
- raketami na ost©elov n¡ pozemn¡ch c¡l–.
- Je vybaven standardn¡m nosi‡em raket Hackler,
- kter‚ pou‘¡v  i bˆ‘n  arm da.
-#> Jak ji‘ n zev napov¡d , jde o zbra¤ ur‡enou
- k ni‡en¡ nep© telsk˜ch jednotek z hloubi
- vlastn¡ho t˜lu. Tomuto £‡elu bylo p©izp–sobeno
- i jeho panc‚©ov n¡, kter‚ stˆ‘¡ zadr‘¡
- p©¡m˜ z sah tanku, ale umo‘¤uje ›korpi¢novi se
- pomˆrnˆ rychle p©esunout na strategicky v˜hodn‚
- pozice (a tak‚ z dost©elu nep© telsk˜ch jednotek).
- Velkou slabinou t‚to zbranˆ v¨ak je mal˜ po‡et
- raket, kter˜ umo‘¤uje efektivn¡ d‚letrvaj¡c¡
- ost©elov n¡ pouze za podpory transport‚r–
- st©eliva - Gn¢m–.
-#> Je ve©ejn˜m tajemstv¡m, ‘e ›korpi¢n byl vyvinut
- na n klady korporace Trakhal, kter  v˜mˆnou za
- v˜voj t‚to zbranˆ z¡skala od Toriconu
- pr vo koupi ¨estn cti bitevn¡ch vrtuln¡k– Grazij
- pro podnikov‚ £‡ely.
+#> Å korpiÃ³n je lehkÃ½ raketomet vyzbrojenÃ½ ÄtyÅ™mi
+ raketami na ostÅ™elovÃ¡nÃ­ pozemnÃ­ch cÃ­lÅ¯.
+ Je vybaven standardnÃ­m nosiÄem raket Hackler,
+ kterÃ© pouÅ¾Ã­vÃ¡ i bÄ›Å¾nÃ¡ armÃ¡da.
+#> Jak jiÅ¾ nÃ¡zev napovÃ­dÃ¡, jde o zbraÅˆ urÄenou
+ k niÄenÃ­ nepÅ™Ã¡telskÃ½ch jednotek z hloubi
+ vlastnÃ­ho tÃ½lu. Tomuto ÃºÄelu bylo pÅ™izpÅ¯sobeno
+ i jeho pancÃ©Å™ovÃ¡nÃ­, kterÃ© stÄ›Å¾Ã­ zadrÅ¾Ã­
+ pÅ™Ã­mÃ½ zÃ¡sah tanku, ale umoÅ¾Åˆuje Å korpiÃ³novi se
+ pomÄ›rnÄ› rychle pÅ™esunout na strategicky vÃ½hodnÃ©
+ pozice (a takÃ© z dostÅ™elu nepÅ™Ã¡telskÃ½ch jednotek).
+ Velkou slabinou tÃ©to zbranÄ› vÅ¡ak je malÃ½ poÄet
+ raket, kterÃ½ umoÅ¾Åˆuje efektivnÃ­ dÃ©letrvajÃ­cÃ­
+ ostÅ™elovÃ¡nÃ­ pouze za podpory transportÃ©rÅ¯
+ stÅ™eliva - GnÃ³mÅ¯.
+#> Je veÅ™ejnÃ½m tajemstvÃ­m, Å¾e Å korpiÃ³n byl vyvinut
+ na nÃ¡klady korporace Trakhal, kterÃ¡ vÃ½mÄ›nou za
+ vÃ½voj tÃ©to zbranÄ› zÃ­skala od Toriconu
+ prÃ¡vo koupi Å¡estnÃ¡cti bitevnÃ­ch vrtulnÃ­kÅ¯ Grazij
+ pro podnikovÃ© ÃºÄely.
 #e
 #e

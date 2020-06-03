@@ -1,7 +1,8 @@
 
 noinst_LIBRARIES = libsignusdata.a
 
-libsignusdata_a_SOURCES = datafile.cpp datafile.h fonts.cpp fonts.h
+libsignusdata_a_SOURCES = datafile.cpp datafile.h fonts.cpp fonts.h \
+	stream.cpp stream.h system.h
 
 noinst_PROGRAMS = makedat mk_rgb2pal fntmng
 

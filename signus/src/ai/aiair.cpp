@@ -54,8 +54,7 @@ TAirArmy::TAirArmy () : TArmy ()
 
 
 
-TAirArmy::TAirArmy (FILE *f) : TArmy (f)
-{
+TAirArmy::TAirArmy (ReadStream &stream) : TArmy (stream) {
             
 }
 

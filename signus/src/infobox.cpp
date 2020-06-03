@@ -28,91 +28,18 @@ implementace Infoboxu jednotky (TUnit::DetailedInfo()...)
 
 
 
+#include <climits>
 #include "units.h"
 #include "ui_toolkit.h"
 #include "global.h"
 #include "anims.h"
 #include "sound.h"
+#include "mouse.h"
 
 #include "miniSDL_image.h"
 
-    
-
-
-
-////////////////////// flicer - prehrani vvf animace: ///////////////////////
-
-
-#if 0 // FIXME
-int flicer_x, flicer_y;
-
-void flicer_DrawFrame(TMutationHeader *Mut, void *Buffer, int FromY, int ToY)
-{
-    PutBitmap32(flicer_x, flicer_y + FromY, ((byte*)Buffer) + 256 * FromY, 256, (ToY-FromY+1));
-}
-
-int flicer_TestInterrupt()
-{
-    TEvent e;
-
-    do {
-        GetEvent(&e);
-        if ((e.What != evNothing) && (e.What != evMouseMove)) {
-            PutEvent(&e);
-            return 1;
-        }
-    } while (e.What != evNothing);
-    return 0;
-}
-
-int flicer_SelectMutation(TMutationHeader *Muts, int Cnt) {return 0;}
-int flicer_StartPlaying(TMutationHeader *Mut) {return 1;}
-int flicer_StopPlaying(TMutationHeader *Mut) {return 1;}
-#endif
-
 extern void InitPalTimer();
 extern void DonePalTimer();
-
-int flicer_RunAnim(int x, int y, char *name)
-{
-#if 0 // FIXME
-    FILE *animf;
-    int (*ti)();
-    int rt;
-    
-    DonePalTimer();
-    flicer_x = x, flicer_y = y;
-    VVF_SelectMutation = flicer_SelectMutation;
-    VVF_PlayDirect = TRUE;
-    VVF_InterpolateFrames = FALSE;
-    VVF_free = free;
-    VVF_malloc = malloc;
-    VVF_DrawFrame = flicer_DrawFrame;
-    VVF_StartPlaying = flicer_StartPlaying;
-    VVF_StopPlaying = flicer_StopPlaying;
-    VVF_CanSetPalette = FALSE;
-    ti = VVF_TestInterrupt;
-    VVF_TestInterrupt = flicer_TestInterrupt;
-    
-    do {
-        animf = GetAnimFile(name);
-        rt = PlayVVF(animf); 
-        fclose(animf);
-    } while (rt == 1);
-    VVF_TestInterrupt = ti;
-    InitPalTimer();
-#endif
-    
-    return 1;
-}
-
-
-
-
-
-
-
-
 
 ///////////////////////////// info dialog: //////////////////////////////////
 
@@ -160,87 +87,134 @@ int IsUnitAT(TObject *unit)
 #define cmAnim 9999
 
 class TInfoDialog : public TDialog {
-        public:
-            void *pic;
-            int  picnum;
-            TObject *unit;
-            TBitmap *bmp;
-            TBitmap *ArtefaktLogo;
-        
-            TInfoDialog(int ax, int ay, TObject *u);
-            int SpecialHandle(TEvent *e, int Cmd);          
-            int RunAnimation();
-    };
+public:
+	void *pic;
+	int  picnum;
+	TObject *unit;
+	TBitmap *bmp;
+	TBitmap *ArtefaktLogo;
+
+	TInfoDialog(int ax, int ay, TObject *u);
+	int SpecialHandle(TEvent *e, int Cmd);
+	int Exec();
+};
 
 
 
 extern char DLG_backimg[9];
 
-TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) : TDialog(ax, ay, 620, 460, "dlginfo")
-{
-    unit = u;
-    pic = bmp = NULL;
-    
-    Insert(new TButton(15, 409, SigText[TXT_OK], cmOk, TRUE));
-    Insert(new TStaticText(300, 20, 380, 40, unit->GetName(), TRUE));
-    Insert(new TStaticText2(294, 60, 308, 380, unit->GetDescript()));
-    Insert(new TStaticText(20, 287, 100, 20, SigText[TXT_EXPERIENCE]));
-    if (IsUnitAT(unit))
-        Insert(new TBitmap(70, 238, FALSE, GraphicsDF->get("artetech"), 160, 17));
-    PercentBar(DrwBuf, w, 122, 288, 160-29, 16, 55, 51, GetUnitExper(unit), "");
-    if (u->Type < unRadar)
-        Insert(new TBitmap(253, 288, FALSE, LevelBmps[((TUnit*)u)->Level], 29, 16, FALSE));
-    {
-        TEvent e;
-        e.What = evMouseDown;
-        e.Mouse.Buttons = mbBottomButton | mbLeftButton | mbRightButton;
-        PutEvent(&e);
-    }
-    
-    //DLG_backimg[0] = 0; // to disable redrawing
-    
-    char filename[1024];
-    SDL_Surface *image;
-    snprintf(filename, 1024,
-             "%s/nolang/unit-images/unit%i.jpg",
-             getSignusDataDir(), unit->GetType());
-    image = IMG_Load(filename);
-    byte *pall = (byte*)memalloc(256 * 192);
-    paletizeSurface(pall, image, "pal_rgb");
-    SDL_FreeSurface(image);
-    Insert(new TBitmap(22, 22, FALSE, pall, 256, 192));
+TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) :
+	TDialog(ax, ay, 620, 460, "dlginfo") {
+	unit = u;
+	pic = bmp = NULL;
+
+	Insert(new TButton(15, 409, SigText[TXT_OK], cmOk, TRUE));
+	Insert(new TStaticText(300, 20, 380, 40, unit->GetName(), TRUE));
+	Insert(new TStaticText2(294, 60, 308, 380, unit->GetDescript()));
+	Insert(new TStaticText(20, 287, 100, 20, SigText[TXT_EXPERIENCE]));
+
+	if (IsUnitAT(unit)) {
+		Insert(new TBitmap(70, 238, FALSE, GraphicsDF->get("artetech"), 160, 17));
+	}
+
+	PercentBar(DrwBuf, w, h, 122, 288, 160-29, 16, 55, 51,
+		GetUnitExper(unit), "");
+
+	if (u->Type < unRadar) {
+		Insert(new TBitmap(253, 288, FALSE,
+			LevelBmps[((TUnit*)u)->Level], 29, 16, FALSE));
+	}
 }
 
 
 
-int TInfoDialog::SpecialHandle(TEvent *e, int Cmd)
-{
-    if ((e->What == evMouseDown) /* FIXME &&
-        (e->Mouse.Buttons == mbBottomButton | mbLeftButton | mbRightButton)*/) {
-        RunAnimation();
-        return -1;
-    }
-    else if (Cmd == cmNext) {
-        return -1;
-    }
-    else return TDialog::SpecialHandle(e, Cmd);
+int TInfoDialog::SpecialHandle(TEvent *e, int Cmd) {
+	if (Cmd == cmNext) {
+		return -1;
+	}
+
+	return TDialog::SpecialHandle(e, Cmd);
 }
 
 
 
-int TInfoDialog::RunAnimation()
-{
-    char b[20];
-    int rt;
-    
-    sprintf(b, "unit%i", unit->Type);
-    rt = flicer_RunAnim(x + 22, y + 22, b);
-    return rt;
+int TInfoDialog::Exec() {
+	File animfile;
+	VVFStream *anim = NULL;
+	int ret = -1;
+	unsigned awidth = 0, aheight = 0, timer = 0;
+	char filename[PATH_MAX];
+	TEvent e;
+
+	sprintf(filename, "unit%i", unit->Type);
+
+	if (open_anim_file(animfile, filename)) {
+		anim = new VVFStream(&animfile);
+		awidth = anim->video_width();
+		aheight = anim->video_height();
+	} else {
+		SDL_Surface *image;
+		snprintf(filename, PATH_MAX,"%s/nolang/unit-images/unit%i.jpg",
+			getSignusDataDir(), unit->GetType());
+		image = IMG_Load(filename);
+		byte *pall = (byte*)memalloc(256 * 192);
+		paletizeSurface(pall, image, "pal_rgb");
+		SDL_FreeSurface(image);
+		Insert(new TBitmap(22, 22, FALSE, pall, 256, 192));
+	}
+
+	DonePalTimer();
+	MouseSetCursor(mcurArrow);
+	Draw();
+
+	if (anim) {
+		anim->next_frame();
+		CopyBmp(DrwBuf, w, 22, 22, anim->videobuf(), awidth, aheight);
+		timer = anim->frame_time();
+	}
+
+	FadeDlg(TRUE);
+	MouseSetRect(x, y, x+w-1, y+h-1);
+	timer += SDL_GetTicks();
+
+	while (ret == -1) {
+		if (anim && timer <= SDL_GetTicks()) {
+			if (!anim->next_frame()) {
+				anim->reset();
+				anim->next_frame();
+
+				if (anim->error()) {
+					delete anim;
+					anim = NULL;
+					continue;
+				}
+			}
+
+			timer += anim->frame_time();
+			PutBitmap(x+22,y+22, anim->videobuf(), awidth,aheight);
+		}
+
+		if (MusicOn && (!IsMusicPlaying())) {
+			JukeboxNext();
+		}
+
+		do {
+			GetEvent(&e);
+			ret = HandleEvent(&e);
+		} while (ret == -1 && e.What != evNothing);
+	}
+
+	if (anim) {
+		// Show the last anim frame during dialog fade
+		CopyBmp(DrwBuf, w, 22, 22, anim->videobuf(), awidth, aheight);
+		delete anim;
+	}
+
+	MouseSetRect(0, 0, RES_X-1, RES_Y-1);
+	FadeDlg(FALSE);
+	InitPalTimer();
+	return ret;
 }
-
-
-
-
 
 
 

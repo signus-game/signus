@@ -1,11 +1,11 @@
-#> V t‚to budovˆ je mo‘n‚ vyr bˆt bojov‚ jednotky.
- V podzemn¡ch prostor ch jsou rozs hl  skladi¨tˆ n hradn¡ch
- d¡l– a prefabrikovan˜ch komponent, z nich‘ jsou zbra¤ov‚
- syst‚my montov ny.
-#> V z vislosti na technick‚ £rovni jednotek se li¨¡ doba
- (a cena) pot©ebn  k jejich zkompletov n¡.
-#> V p©¡padˆ objeven¡ nep© telsk‚ v˜robny je v¡ce ne‘ v˜hodn‚
- ji okam‘itˆ obsadit a vyu‘¡t jej¡ kapacitu k podpo©e vlastn¡ch
+#> V tÃ©to budovÄ› je moÅ¾nÃ© vyrÃ¡bÄ›t bojovÃ© jednotky.
+ V podzemnÃ­ch prostorÃ¡ch jsou rozsÃ¡hlÃ¡ skladiÅ¡tÄ› nÃ¡hradnÃ­ch
+ dÃ­lÅ¯ a prefabrikovanÃ½ch komponent, z nichÅ¾ jsou zbraÅˆovÃ©
+ systÃ©my montovÃ¡ny.
+#> V zÃ¡vislosti na technickÃ© Ãºrovni jednotek se liÅ¡Ã­ doba
+ (a cena) potÅ™ebnÃ¡ k jejich zkompletovÃ¡nÃ­.
+#> V pÅ™Ã­padÄ› objevenÃ­ nepÅ™Ã¡telskÃ© vÃ½robny je vÃ­ce neÅ¾ vÃ½hodnÃ©
+ ji okamÅ¾itÄ› obsadit a vyuÅ¾Ã­t jejÃ­ kapacitu k podpoÅ™e vlastnÃ­ch
  komand.
 #e
 #e

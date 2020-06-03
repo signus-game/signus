@@ -57,7 +57,7 @@ class TThor : public TTower {
 			int TotalRockets;
 		
 			TThor() : TTower() {};
-			void Init(int x, int y, int party, FILE *f = NULL);
+			void Init(int x, int y, int party, ReadStream *stream = NULL);
 			int GetType() {return unThor;};
 			void Setup();
 			void IncLevel(int alevel);
@@ -66,8 +66,8 @@ class TThor : public TTower {
 			void GoOverground(int over);
 				// vysune/zasune vez
 			int InfoEvent(TEvent *e);
-			void Read(FILE *f);
-			void Write(FILE *f);
+			void Read(ReadStream &stream);
+			void Write(WriteStream &stream);
 			void ShowShootAt(int x, int y, int phase);
 	};
 

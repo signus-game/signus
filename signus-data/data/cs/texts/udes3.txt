@@ -1,22 +1,22 @@
-#> Perseus Gama je bitevn¡ tank ur‡en˜ pro boj
- do prvn¡ linie. Je vyzbrojen tˆ‘k˜m dvojit˜m
- kan¢nem a protiletadlov˜m kulometem Grund.
- Je silnˆ panc‚©ov n.
-#> V boji nach zej¡ tyto jednotky uplatnˆn¡
- p©edev¨¡m pro svou
- velkou ni‡ivou s¡lu a zna‡nou odolnost.
- Dal¨¡ velkou v˜hodou
- t‚to zbranˆ je jej¡ protiletadlov˜ kulomet,
- kter˜ j¡ spole‡nˆ s dal¨¡mi p©ednostmi
- umo‘¤uje operovat i samostatnˆ v t˜lu
- nep©¡tele. Jedinou slabinou tohoto bitevn¡ho
- kolosu je jeho mal  pohyblivost, kter  z
- nˆj dˆl  snadn˜ c¡l pro dalekonostn‚ zbranˆ
- nep©¡tele a jeho vˆ‘e.
-#> "Rozd¡l mezi t¡m, kdy‘ V s sundaj v Gamˆ
- a v Betˆ je v tom, ‘e kdy‘ V s sundaj v
- Gamˆ tak um¡r te s t¡m kr sn˜m pocitem, ‘e
- museli vyplejtvat mnohem v¡c st©eliva."
- - n pis na gar ‘¡ch tank– Perseus Gama.
+#> Perseus Gama je bitevnÃ­ tank urÄenÃ½ pro boj
+ do prvnÃ­ linie. Je vyzbrojen tÄ›Å¾kÃ½m dvojitÃ½m
+ kanÃ³nem a protiletadlovÃ½m kulometem Grund.
+ Je silnÄ› pancÃ©Å™ovÃ¡n.
+#> V boji nachÃ¡zejÃ­ tyto jednotky uplatnÄ›nÃ­
+ pÅ™edevÅ¡Ã­m pro svou
+ velkou niÄivou sÃ­lu a znaÄnou odolnost.
+ DalÅ¡Ã­ velkou vÃ½hodou
+ tÃ©to zbranÄ› je jejÃ­ protiletadlovÃ½ kulomet,
+ kterÃ½ jÃ­ spoleÄnÄ› s dalÅ¡Ã­mi pÅ™ednostmi
+ umoÅ¾Åˆuje operovat i samostatnÄ› v tÃ½lu
+ nepÅ™Ã­tele. Jedinou slabinou tohoto bitevnÃ­ho
+ kolosu je jeho malÃ¡ pohyblivost, kterÃ¡ z
+ nÄ›j dÄ›lÃ¡ snadnÃ½ cÃ­l pro dalekonostnÃ© zbranÄ›
+ nepÅ™Ã­tele a jeho vÄ›Å¾e.
+#> "RozdÃ­l mezi tÃ­m, kdyÅ¾ VÃ¡s sundaj v GamÄ›
+ a v BetÄ› je v tom, Å¾e kdyÅ¾ VÃ¡s sundaj v
+ GamÄ› tak umÃ­rÃ¡te s tÃ­m krÃ¡snÃ½m pocitem, Å¾e
+ museli vyplejtvat mnohem vÃ­c stÅ™eliva."
+ - nÃ¡pis na garÃ¡Å¾Ã­ch tankÅ¯ Perseus Gama.
 #e
 #e

@@ -133,30 +133,32 @@ class TView {
 
 // Dialog:
 class TDialog {
-        public:
-            int x, y, w, h;
-            void *BkgBuf, *DrwBuf;
-            TView *Subviews[MAX_DLGVIEWS];
-            int SubviewsCnt;
-            
-            TDialog(int ax, int ay, int aw, int ah, const char *backimg);
-            void PaintRect(int ay, int ah);
-                    // kresli cast dialogu na obrazovku - volit. meze y1, y2
-            void Draw();
-                    // kresli dialog vcetne subprvku
-            void Insert(TView *v);
-                    // vlozi do dialogu prvek 
-            virtual int SpecialHandle(TEvent *e, int Cmd);
-                    // osetri udalosti ukonceni dlg apod.
-            virtual int Exec();
-                    // spusti dialog a vraci prislusny prikaz.
-            virtual void FadeDlg(int In);
-                    // prvni/posledni vykresleni dialogu;
-                    
-            virtual ~TDialog();
-    };
+public:
+	int x, y, w, h;
+	void *BkgBuf, *DrwBuf;
+	TView *Subviews[MAX_DLGVIEWS];
+	int SubviewsCnt;
+
+	TDialog(int ax, int ay, int aw, int ah, const char *backimg);
+	void PaintRect(int ay, int ah);
+	        // kresli cast dialogu na obrazovku - volit. meze y1, y2
+	void Draw();
+	        // kresli dialog vcetne subprvku
+	void Insert(TView *v);
+	        // vlozi do dialogu prvek
+	virtual int SpecialHandle(TEvent *e, int Cmd);
+	        // osetri udalosti ukonceni dlg apod.
+	virtual int HandleEvent(TEvent *e);
+	virtual int Exec();
+	        // spusti dialog a vraci prislusny prikaz.
+	virtual void FadeDlg(int In);
+	        // prvni/posledni vykresleni dialogu;
+
+	virtual ~TDialog();
+};
     
-extern void *DrwViewBf; extern int DrwViewBfSz;
+extern void *DrwViewBf;
+extern int DrwViewBfSz, DrwViewBfSzY;
     // to je k bufferu na kresleni dialogu, smi to pouzivat jenom
     // potomci TView...
     

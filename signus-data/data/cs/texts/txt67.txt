@@ -1,4 +1,4 @@
 MISE %i, %i. KOLO    Finance: %i cr
 
-Zni‡eno jednotek Toriconu: %i
-Zni‡eno jednotek Konzorcia: %i
+ZniÄeno jednotek Toriconu: %i
+ZniÄeno jednotek Konzorcia: %i

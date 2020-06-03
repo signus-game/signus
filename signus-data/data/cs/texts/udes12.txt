@@ -1,21 +1,21 @@
-#> Skiatron je lehk‚ radarov‚ vozidlo bez
- zbrojn¡ch syst‚m– a se slab˜m panc‚©ov n¡m.
- Pou‘¡v  dek¢dovac¡ radarov‚ syst‚my Atron,
- kter‚ byly vyvinuty speci lnˆ pro jednotky
+#> Skiatron je lehkÃ© radarovÃ© vozidlo bez
+ zbrojnÃ­ch systÃ©mÅ¯ a se slabÃ½m pancÃ©Å™ovÃ¡nÃ­m.
+ PouÅ¾Ã­vÃ¡ dekÃ³dovacÃ­ radarovÃ© systÃ©my Atron,
+ kterÃ© byly vyvinuty speciÃ¡lnÄ› pro jednotky
  Signus.
-#> Jak u‘ n zev napov¡d , nejedn  se o bojov˜ stroj,
- ale o podp–rn‚ vozidlo slou‘¡c¡
- sv˜m velk˜m dohledem p©edev¨¡m dalekonosn˜m
- zbran¡m typu Herkules a Goli ¨, jim‘ umo‘¤uje
- zahl‚dnout nep©¡tele na vzd lenost dost©elu.
- Av¨ak stejnˆ jako tyto jednotky mus¡ i Skiatron
- operovat z t˜lu pod ochranou tank– a
- protiletadlov˜ch zbran¡.
-#> Skiatron byl pojmenov n podle mˆsta Ski-Ata-Rona,
- kde se narodil nejvˆt¨¡ agent v¨ech dob
- James Astrand, autor knih "Nˆm  pravda" a
- "Dvˆ vzne¨en  slova".  Ski-Ata-Rona nyn¡
- poskytuje sv‚ agenty jak Toriconu, tak
+#> Jak uÅ¾ nÃ¡zev napovÃ­dÃ¡, nejednÃ¡ se o bojovÃ½ stroj,
+ ale o podpÅ¯rnÃ© vozidlo slouÅ¾Ã­cÃ­
+ svÃ½m velkÃ½m dohledem pÅ™edevÅ¡Ã­m dalekonosnÃ½m
+ zbranÃ­m typu Herkules a GoliÃ¡Å¡, jimÅ¾ umoÅ¾Åˆuje
+ zahlÃ©dnout nepÅ™Ã­tele na vzdÃ¡lenost dostÅ™elu.
+ AvÅ¡ak stejnÄ› jako tyto jednotky musÃ­ i Skiatron
+ operovat z tÃ½lu pod ochranou tankÅ¯ a
+ protiletadlovÃ½ch zbranÃ­.
+#> Skiatron byl pojmenovÃ¡n podle mÄ›sta Ski-Ata-Rona,
+ kde se narodil nejvÄ›tÅ¡Ã­ agent vÅ¡ech dob
+ James Astrand, autor knih "NÄ›mÃ¡ pravda" a
+ "DvÄ› vzneÅ¡enÃ¡ slova".  Ski-Ata-Rona nynÃ­
+ poskytuje svÃ© agenty jak Toriconu, tak
  Konzorciu.
 #e
 #e

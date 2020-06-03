@@ -1,22 +1,22 @@
-#> Falanga je samohybn‚ protiletadlov‚ dˆlo.
- Je vyzbrojena tˆ‘k˜m kulometem na ni‡en¡
- pozemn¡ch c¡l– a protiletadlov˜m dvojit˜m
- dˆlem. M  pomˆrnˆ slab‚ panc‚©ov n¡.
-#> Falangy byly navr‘eny a sestrojeny jako
- podp–rn‚ mobiln¡ jednotky protiletadlov‚
- obrany. Tomu odpov¡d  jejich pomˆrnˆ mal 
- £‡innost, kter  umo‘¤uje efektivn¡ nasazen¡
- tˆchto zbran¡ pouze ve vˆt¨¡ch svaz¡ch ‡i
- spole‡nˆ s protiletadlov˜mi vˆ‘emi -
- Horizonty. Naproti tomu jsou v¨ak tyto
- stroje mimo© dnˆ pohybliv‚, co‘ jim
- umo‘¤uje se efektivnˆ p©esouvat na m¡sta
- ohro‘en¡. Velkou slabinou tˆchto zbran¡
- je jejich mal  odolnost, kter  z nich ‡in¡
- snadnou ko©ist pro Rexe.
-#> Znakem tˆchto jednotek jsou 4 vzty‡en 
- kop¡, zn zor¤uj¡c¡ defenzivn¡ ochrann˜
- £tvar vyu‘¡vaj¡c¡ sv  dlouh  kop¡ k ochranˆ
- sv‚ a sv˜ch druh–.
+#> Falanga je samohybnÃ© protiletadlovÃ© dÄ›lo.
+ Je vyzbrojena tÄ›Å¾kÃ½m kulometem na niÄenÃ­
+ pozemnÃ­ch cÃ­lÅ¯ a protiletadlovÃ½m dvojitÃ½m
+ dÄ›lem. MÃ¡ pomÄ›rnÄ› slabÃ© pancÃ©Å™ovÃ¡nÃ­.
+#> Falangy byly navrÅ¾eny a sestrojeny jako
+ podpÅ¯rnÃ© mobilnÃ­ jednotky protiletadlovÃ©
+ obrany. Tomu odpovÃ­dÃ¡ jejich pomÄ›rnÄ› malÃ¡
+ ÃºÄinnost, kterÃ¡ umoÅ¾Åˆuje efektivnÃ­ nasazenÃ­
+ tÄ›chto zbranÃ­ pouze ve vÄ›tÅ¡Ã­ch svazÃ­ch Äi
+ spoleÄnÄ› s protiletadlovÃ½mi vÄ›Å¾emi -
+ Horizonty. Naproti tomu jsou vÅ¡ak tyto
+ stroje mimoÅ™Ã¡dnÄ› pohyblivÃ©, coÅ¾ jim
+ umoÅ¾Åˆuje se efektivnÄ› pÅ™esouvat na mÃ­sta
+ ohroÅ¾enÃ­. Velkou slabinou tÄ›chto zbranÃ­
+ je jejich malÃ¡ odolnost, kterÃ¡ z nich ÄinÃ­
+ snadnou koÅ™ist pro Rexe.
+#> Znakem tÄ›chto jednotek jsou 4 vztyÄenÃ¡
+ kopÃ­, znÃ¡zorÅˆujÃ­cÃ­ defenzivnÃ­ ochrannÃ½
+ Ãºtvar vyuÅ¾Ã­vajÃ­cÃ­ svÃ¡ dlouhÃ¡ kopÃ­ k ochranÄ›
+ svÃ© a svÃ½ch druhÅ¯.
 #e
 #e

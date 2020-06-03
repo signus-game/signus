@@ -1,9 +1,9 @@
 #> Commando Signus
  #p.anamorf.320.184.
-#> This project was proposed by Ian Zening - the director of the Triconïs defence division.
+#> This project was proposed by Ian Zening - the director of the TriconÂ´s defence division.
  He gained the support of the headquarters after the first diplomatic conflict between Toricon and
  the Consortium has happened. After finding out the fact that Consortium is undertaking research
- expeditions to those forbidden territories  that are in the sphere of Toriconïs interest, the existence
+ expeditions to those forbidden territories  that are in the sphere of ToriconÂ´s interest, the existence
  of this project became a necessity.
 #> The task is to create the unit of top army units - the Signus commando. Its purpose is to gain the
  forbidden territories, where Toricon plans to work on the research of the artefacts, test recently

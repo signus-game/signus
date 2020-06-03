@@ -1,19 +1,19 @@
-#> Uran je transport‚r bojov˜ch stroj–. M 
- standardn¡ panc‚©ov n¡ a ‘ dn‚ zbranˆ.
-#> Tato jednotka se p–vodnˆ vyvinula ze sv˜ch
- leh‡¡ch koleg– typu Bastien, kter  pou‘¡vaj¡
- jednotky n mo©n¡ pˆchoty a mˆla slou‘it pouze
- jako v˜sadkov‚ vozidlo p©i vˆt¨¡ch ofenzivn¡ch
- akc¡ch, av¨ak s v˜vojem tˆ‘k˜ch dalekonosn˜ch
- zbran¡ jako jsou Goli ¨ nebo Herkules vykrystalizovala
- pot©eba jednotky schopn‚ p©epravit tyto giganty
- do £to‡n˜ch pozic, ‡i naopak schopn‚ je vyv‚zt z
- postaven¡, v nˆm‘ by mohly b˜t napaden‚ nep©¡telem.
- A tak se Bastien p©etransformoval do Uranu. Tento
- kolos je schopen uv‚st a‘ 4 tˆ‘k‚
- raketomety - Herkuly a a‘ 12! lehk˜ch tank– - Perseus Alfa.
-#> Vyj d©en¡ gener la Esenciho: "Uran nen¡ schopen
- sn‚st vˆt¨¡ po¨kozen¡, a proto doporu‡uji u‘¡vat
- pouze na p©evoz jednotek v t˜lu."
+#> Uran je transportÃ©r bojovÃ½ch strojÅ¯. MÃ¡
+ standardnÃ­ pancÃ©Å™ovÃ¡nÃ­ a Å¾Ã¡dnÃ© zbranÄ›.
+#> Tato jednotka se pÅ¯vodnÄ› vyvinula ze svÃ½ch
+ lehÄÃ­ch kolegÅ¯ typu Bastien, kterÃ¡ pouÅ¾Ã­vajÃ­
+ jednotky nÃ¡moÅ™nÃ­ pÄ›choty a mÄ›la slouÅ¾it pouze
+ jako vÃ½sadkovÃ© vozidlo pÅ™i vÄ›tÅ¡Ã­ch ofenzivnÃ­ch
+ akcÃ­ch, avÅ¡ak s vÃ½vojem tÄ›Å¾kÃ½ch dalekonosnÃ½ch
+ zbranÃ­ jako jsou GoliÃ¡Å¡ nebo Herkules vykrystalizovala
+ potÅ™eba jednotky schopnÃ© pÅ™epravit tyto giganty
+ do ÃºtoÄnÃ½ch pozic, Äi naopak schopnÃ© je vyvÃ©zt z
+ postavenÃ­, v nÄ›mÅ¾ by mohly bÃ½t napadenÃ© nepÅ™Ã­telem.
+ A tak se Bastien pÅ™etransformoval do Uranu. Tento
+ kolos je schopen uvÃ©st aÅ¾ 4 tÄ›Å¾kÃ©
+ raketomety - Herkuly a aÅ¾ 12! lehkÃ½ch tankÅ¯ - Perseus Alfa.
+#> VyjÃ¡dÅ™enÃ­ generÃ¡la Esenciho: "Uran nenÃ­ schopen
+ snÃ©st vÄ›tÅ¡Ã­ poÅ¡kozenÃ­, a proto doporuÄuji uÅ¾Ã­vat
+ pouze na pÅ™evoz jednotek v tÃ½lu."
 #e
 #e

@@ -388,78 +388,69 @@ void InitAI5 ()
 
 
 
-void LoadArtificialIntelligence5 (FILE *f)
-{
+void LoadArtificialIntelligence5(ReadStream &stream, int format) {
+	DoneArtificialIntelligence5();
 
-    DoneArtificialIntelligence5 ();
+	MBPlaces = NULL;
+	DeniedPlaces = NULL;
+	DUPos = 0;
+	loadAttackedFields(stream, format);
 
-    MBPlaces = NULL;    
-    DeniedPlaces = NULL;
+	Xenon3 = stream.readSint32LE();
+	Kobra1 = stream.readSint32LE();
+	ActivationTurn1 = stream.readSint32LE();
+	ActivationTurn2 = stream.readSint32LE();
+	ActivationTurn3 = stream.readSint32LE();
+	ActivationTurn4 = stream.readSint32LE();
+	ActivationTurn5 = stream.readSint32LE();
+	ActivationTurn6 = stream.readSint32LE();
+	ActivationTurn7 = stream.readSint32LE();
+	ActivationTurn8 = stream.readSint32LE();
+	Xenon3ActivationTurn = stream.readSint32LE();
+	X3MineCnt = stream.readSint32LE();
 
-    fread (&AttackFieldPos, sizeof (int), 1, f);
-    fread (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-    DUPos = 0;
-
-    fread (&Xenon3, sizeof (int), 1, f);
-    fread (&Kobra1, sizeof (int), 1, f);
-    fread (&ActivationTurn1, sizeof (int), 1, f);
-    fread (&ActivationTurn2, sizeof (int), 1, f);
-    fread (&ActivationTurn3, sizeof (int), 1, f);
-    fread (&ActivationTurn4, sizeof (int), 1, f);
-    fread (&ActivationTurn5, sizeof (int), 1, f);
-    fread (&ActivationTurn6, sizeof (int), 1, f);
-    fread (&ActivationTurn7, sizeof (int), 1, f);
-    fread (&ActivationTurn8, sizeof (int), 1, f);
-    fread (&Xenon3ActivationTurn, sizeof (int), 1, f);
-    fread (&X3MineCnt, sizeof (int), 1, f);
-    
-    Towers = new TTowers (f);
-    Army1 = new TGroundArmy (f);
-    AirArmy1 = new TAirArmy (f);
-    Army2 = new TGroundArmy (f);
-    Army3 = new TGroundArmy (f);
-    Army4 = new TGroundArmy (f);
-    Army5 = new TGroundArmy (f);
-    Army6 = new TGroundArmy (f);
-    Army7 = new TGroundArmy (f);
-    Army8 = new TGroundArmy (f);
-    AirArmy8 = new TAirArmy (f);
+	Towers = new TTowers(stream);
+	Army1 = new TGroundArmy(stream);
+	AirArmy1 = new TAirArmy(stream);
+	Army2 = new TGroundArmy(stream);
+	Army3 = new TGroundArmy(stream);
+	Army4 = new TGroundArmy(stream);
+	Army5 = new TGroundArmy(stream);
+	Army6 = new TGroundArmy(stream);
+	Army7 = new TGroundArmy(stream);
+	Army8 = new TGroundArmy(stream);
+	AirArmy8 = new TAirArmy(stream);
 }
 
+void SaveArtificialIntelligence5(WriteStream &stream) {
+	saveAttackedFields(stream);
 
+	stream.writeSint32LE(Xenon3);
+	stream.writeSint32LE(Kobra1);
+	stream.writeSint32LE(ActivationTurn1);
+	stream.writeSint32LE(ActivationTurn2);
+	stream.writeSint32LE(ActivationTurn3);
+	stream.writeSint32LE(ActivationTurn4);
+	stream.writeSint32LE(ActivationTurn5);
+	stream.writeSint32LE(ActivationTurn6);
+	stream.writeSint32LE(ActivationTurn7);
+	stream.writeSint32LE(ActivationTurn8);
+	stream.writeSint32LE(Xenon3ActivationTurn);
+	stream.writeSint32LE(X3MineCnt);
 
-void SaveArtificialIntelligence5 (FILE *f)
-{
-    fwrite (&AttackFieldPos, sizeof (int), 1, f);
-    fwrite (AttackedField, (AttackFieldPos + 1)*sizeof (TAttackedField), 1, f);
-
-    fwrite (&Xenon3, sizeof (int), 1, f);
-    fwrite (&Kobra1, sizeof (int), 1, f);   
-    fwrite (&ActivationTurn1, sizeof (int), 1, f);
-    fwrite (&ActivationTurn2, sizeof (int), 1, f);
-    fwrite (&ActivationTurn3, sizeof (int), 1, f);
-    fwrite (&ActivationTurn4, sizeof (int), 1, f);
-    fwrite (&ActivationTurn5, sizeof (int), 1, f);
-    fwrite (&ActivationTurn6, sizeof (int), 1, f);
-    fwrite (&ActivationTurn7, sizeof (int), 1, f);
-    fwrite (&ActivationTurn8, sizeof (int), 1, f);
-    fwrite (&Xenon3ActivationTurn, sizeof (int), 1, f);
-    fwrite (&X3MineCnt, sizeof (int), 1, f);
-
-    Towers -> Save (f);
-    Army1 -> Save (f);
-    AirArmy1 -> Save (f);
-    Army2 -> Save (f);
-    Army3 -> Save (f);      
-    Army4 -> Save (f);
-    Army5 -> Save (f);
-    Army6 -> Save (f);
-    Army7 -> Save (f);
-    Army8 -> Save (f);
-    AirArmy8 -> Save (f);
-    DUPos = 0;
+	Towers->Save(stream);
+	Army1->Save(stream);
+	AirArmy1->Save(stream);
+	Army2->Save(stream);
+	Army3->Save(stream);
+	Army4->Save(stream);
+	Army5->Save(stream);
+	Army6->Save(stream);
+	Army7->Save(stream);
+	Army8->Save(stream);
+	AirArmy8->Save(stream);
+	DUPos = 0;
 }
-
 
 int ArtificialIntelligence5 ()
 {

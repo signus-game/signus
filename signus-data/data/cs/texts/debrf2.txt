@@ -1,10 +1,10 @@
-#> Artefakt se poda©ilo £spˆ¨nˆ dopravit do z kladny Tankred.
- Bˆhem transportu nedo¨lo k ‘ dn‚mu po¨kozen¡.
-#> Velitelstv¡ vyj d©ilo spokojenost s profesion ln¡m proveden¡m cel‚
+#> Artefakt se podaÅ™ilo ÃºspÄ›Å¡nÄ› dopravit do zÃ¡kladny Tankred.
+ BÄ›hem transportu nedoÅ¡lo k Å¾Ã¡dnÃ©mu poÅ¡kozenÃ­.
+#> VelitelstvÃ­ vyjÃ¡dÅ™ilo spokojenost s profesionÃ¡lnÃ­m provedenÃ­m celÃ©
  akce.
 #>
-#> Z kladna Ardenor byla bˆhem £stupu obsazena konzorci ln¡mi jednotkami.
- Toricon se rozhodl na tento zjevn˜ akt agrese nereagovat a prozat¡m
- tolerovat okupaci t‚to nep©¡li¨ v˜znamn‚ vˆdeck‚ b ze.
+#> ZÃ¡kladna Ardenor byla bÄ›hem Ãºstupu obsazena konzorciÃ¡lnÃ­mi jednotkami.
+ Toricon se rozhodl na tento zjevnÃ½ akt agrese nereagovat a prozatÃ­m
+ tolerovat okupaci tÃ©to nepÅ™Ã­liÅ¡ vÃ½znamnÃ© vÄ›deckÃ© bÃ¡ze.
 #e
 #e

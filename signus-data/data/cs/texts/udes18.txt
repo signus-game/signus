@@ -1,21 +1,21 @@
-#> Transport‚r st©eliva Gn¢m je mobiln¡ po‡¡ta‡em
- ©¡zen , mimo© dnˆ efektivn¡ chemick 
- laborato©, kter  je schopn  v pr–bˆhu nˆkolika
- m lo minut vyrobit a p©edat bojov‚ jednotce
- st©elivo.
-#> Nutnost vytvo©en¡ mobiln¡ jednotky schopn‚
- dov ‘et rychle st©elivo k jednotk m v bojov˜ch
- akc¡ch vykrystalizovala okam‘itˆ s p©¡chodem
- raketov˜ch zbran¡ do jednotek Signus.
- U Gn¢m–, podobnˆ jako u jejich p©¡buzn˜ch
- Ceres–, v¨ak v z jmu mobility a vzhledem k
- nedostatku ‡asu bylo opomenuto panc‚©ov n¡, a
+#> TransportÃ©r stÅ™eliva GnÃ³m je mobilnÃ­ poÄÃ­taÄem
+ Å™Ã­zenÃ¡, mimoÅ™Ã¡dnÄ› efektivnÃ­ chemickÃ¡
+ laboratoÅ™, kterÃ¡ je schopnÃ¡ v prÅ¯bÄ›hu nÄ›kolika
+ mÃ¡lo minut vyrobit a pÅ™edat bojovÃ© jednotce
+ stÅ™elivo.
+#> Nutnost vytvoÅ™enÃ­ mobilnÃ­ jednotky schopnÃ©
+ dovÃ¡Å¾et rychle stÅ™elivo k jednotkÃ¡m v bojovÃ½ch
+ akcÃ­ch vykrystalizovala okamÅ¾itÄ› s pÅ™Ã­chodem
+ raketovÃ½ch zbranÃ­ do jednotek Signus.
+ U GnÃ³mÅ¯, podobnÄ› jako u jejich pÅ™Ã­buznÃ½ch
+ CeresÅ¯, vÅ¡ak v zÃ¡jmu mobility a vzhledem k
+ nedostatku Äasu bylo opomenuto pancÃ©Å™ovÃ¡nÃ­, a
  tak tyto jednotky mohou operovat pouze ve
- vlastn¡m t˜lu a pod ochranou spojeneck˜ch
- zbran¡.
-#> Zni‡en¡ Gn¢ma m  za n sledek v ‘n‚ po¨kozen¡ v¨ech jednotek v bl¡zkosti.
-#> Zpr va z velitelstv¡: "...jedn  se o
- nejdra‘¨¡ pozemn¡ jednotku ©adov‚ arm dy.
- Poskytovat je prioritnˆ komand–m Signus."
+ vlastnÃ­m tÃ½lu a pod ochranou spojeneckÃ½ch
+ zbranÃ­.
+#> ZniÄenÃ­ GnÃ³ma mÃ¡ za nÃ¡sledek vÃ¡Å¾nÃ© poÅ¡kozenÃ­ vÅ¡ech jednotek v blÃ­zkosti.
+#> ZprÃ¡va z velitelstvÃ­: "...jednÃ¡ se o
+ nejdraÅ¾Å¡Ã­ pozemnÃ­ jednotku Å™adovÃ© armÃ¡dy.
+ Poskytovat je prioritnÄ› komandÅ¯m Signus."
 #e
 #e

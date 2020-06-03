@@ -2,7 +2,7 @@
  the order. With certain casualties we succeeded to capture several minor forts. In the mean
  time, Toricon's units are moving to the captured area and they are planing another move
  towards Trufat.
-#> þ
+#> 
 #> A#001 fragment#001 of#001 Consortium#001 scientist's#001 diary#001
 #e
 #l b17_001#

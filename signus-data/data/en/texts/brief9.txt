@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> 
+ #p.toricon.282.183. 
 #> Volunteers made an offer to carry out the action, that has a life importance to Toricon.
  However, participating means certain death....
 #> The research division has localized the artefact#001 (captured by Consortium). This artefact
@@ -15,7 +15,7 @@
  destroyed. The explosion of this artefact means the end of all the life in several tens of
  meters. That is why it is for your sake to be as successful as possible. If you die in this
  action, remember, it was for a good purpose.
-#> þ
+#> 
 #> P. Creg
  #p.anamorf.320.184.
 #> PRIMARY AIM: Prevent from the transport of artefact in fort Trufat.

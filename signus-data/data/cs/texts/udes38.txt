@@ -1,23 +1,23 @@
-#> Ikaros je st°hac° letadlo. Je vyzbrojen
- nosiáem raket vzduch-vzduch Omega a
- tàëkòm kulometem na bl°zko. Tryskovòm
+#> Ikaros je st√≠hac√≠ letadlo. Je vyzbrojen
+ nosiƒçem raket vzduch-vzduch Omega a
+ tƒõ≈æk√Ωm kulometem na bl√≠zko. Tryskov√Ωm
  pohonem vybavuje tyto jednotky
  korporace Asterkhel.
-#> Nejvàt®° uplatnàn° nach†z° tyto stroje
- ve vzdu®nòch souboj°ch, kde d°ky svÇ rychlosti
- a pomàrnà slu®nÇ £dernosti svòch raket
- nez©°dka v°tàz° i nad jinak mnohem lÇpe
- obrnànòmi a vyzbrojenòmi protivn°ky.
- Velkòm kladem tàchto strojñ je takÇ pomàrnà
- dalekò dolet, kterò je umoë§uje vys°lat i
- do tòlu nep©†tel, kde kryj° bombardÇry.
- Nevòhodou Ikarosñ je jejich mal† odolnost,
- d°ky kterÇ nejsou schopny snÇst vàt®° poáet
- z†sahñ.
-#> "Korporace Asterskhel z°skala pr†vo
- vòroby vlastn°ch st°hac°ch letounñ
- a d† se p©edpokl†dat, ëe to je prvn°
- krok k anarchii jakÇ chtàj° korporace
- dos†hnout." - vò§atek z novin
+#> Nejvƒõt≈°√≠ uplatnƒõn√≠ nach√°z√≠ tyto stroje
+ ve vzdu≈°n√Ωch souboj√≠ch, kde d√≠ky sv√© rychlosti
+ a pomƒõrnƒõ slu≈°n√© √∫dernosti sv√Ωch raket
+ nez≈ô√≠dka v√≠tƒõz√≠ i nad jinak mnohem l√©pe
+ obrnƒõn√Ωmi a vyzbrojen√Ωmi protivn√≠ky.
+ Velk√Ωm kladem tƒõchto stroj≈Ø je tak√© pomƒõrnƒõ
+ dalek√Ω dolet, kter√Ω je umo≈æ≈àuje vys√≠lat i
+ do t√Ωlu nep≈ô√°tel, kde kryj√≠ bombard√©ry.
+ Nev√Ωhodou Ikaros≈Ø je jejich mal√° odolnost,
+ d√≠ky kter√© nejsou schopny sn√©st vƒõt≈°√≠ poƒçet
+ z√°sah≈Ø.
+#> "Korporace Asterskhel z√≠skala pr√°vo
+ v√Ωroby vlastn√≠ch st√≠hac√≠ch letoun≈Ø
+ a d√° se p≈ôedpokl√°dat, ≈æe to je prvn√≠
+ krok k anarchii jak√© chtƒõj√≠ korporace
+ dos√°hnout." - v√Ω≈àatek z novin
 #e
 #e

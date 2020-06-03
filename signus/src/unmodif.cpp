@@ -43,22 +43,33 @@ typedef struct {
 static unit_muinfo *units_info = NULL;
 static int units_cnt = 0;
 
-void MU_SaveList(FILE *f)
-{
-    fwrite(&units_cnt, 4, 1, f);
-    if (units_cnt) fwrite(units_info, sizeof(unit_muinfo) * units_cnt, 1, f);
+void MU_SaveList(WriteStream &stream) {
+	int i;
+
+	stream.writeSint32LE(units_cnt);
+
+	for (i = 0; i < units_cnt; i++) {
+		stream.writeSint32LE(units_info[i].type);
+		stream.writeSint32LE(units_info[i].level);
+		stream.writeSint32LE(units_info[i].experience);
+	}
 }
 
+void MU_LoadList(ReadStream &stream) {
+	int i;
 
+	MU_ClearList();
+	units_cnt = stream.readSint32LE();
 
-void MU_LoadList(FILE *f)
-{
-    MU_ClearList();
-    fread(&units_cnt, 4, 1, f);    
-    if (units_cnt) {
-        units_info = (unit_muinfo*) memalloc(sizeof(unit_muinfo) * units_cnt);
-        fread(units_info, sizeof(unit_muinfo) * units_cnt, 1, f);
-    }
+	if (units_cnt > 0) {
+		units_info = (unit_muinfo*)memalloc(sizeof(unit_muinfo) * units_cnt);
+	}
+
+	for (i = 0; i < units_cnt; i++) {
+		units_info[i].type = stream.readSint32LE();
+		units_info[i].level = stream.readSint32LE();
+		units_info[i].experience = stream.readSint32LE();
+	}
 }
 
 

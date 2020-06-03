@@ -257,10 +257,10 @@ void DrawLitMap()
 
 ///////// Putbitmap:
 
-void PutBitmap(int x, int y, void *data, int w, int h)
+void PutBitmap(int x, int y, const void *data, int w, int h)
 {
     register int ay;
-    register byte *aptr = (byte*) data;
+    register const byte *aptr = (const byte*) data;
     register byte *vid;
 
     if (SomeoneDrawing()) return;
@@ -347,7 +347,17 @@ void SetPalettePart(char *paldat, int palofs, int palsize)
     SDL_SetColors(screen, palette+palofs, palofs, palsize);
 }
 
+void SetRawPalette(const uint8_t *pal) {
+	int i;
 
+	for (i = 0; i < 256; i++) {
+		palette[i].r = *pal++;
+		palette[i].g = *pal++;
+		palette[i].b = *pal++;
+	}
+
+	SDL_SetColors(screen, palette, 0, 256);
+}
 
 
 
@@ -407,7 +417,46 @@ void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
     SDL_UpdateRect(screen, x, y, sx, sy);
 }
 
+void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
+	uint8_t *screenbuf, *dst;
+	const uint8_t *src;
+	unsigned x, y, pitch = width;
+	int basex, basey;
 
+	if (SomeoneDrawing()) {
+		return;
+	}
+
+	EnterTCS();
+	screenbuf = (uint8_t*)LFB_Lock();
+	basex = (RES_X - 2 * (int)width) / 2;
+	basey = (RES_Y - 2 * (int)height) / 2;
+	width = (RES_X < 2 * width) ? RES_X : 2 * width;
+	height = (RES_Y < 2 * height) ? RES_Y : 2 * height;
+
+	if (basex < 0) {
+		frame -= basex >> 1;
+		basex = 0;
+	}
+
+	if (basey < 0) {
+		frame -= pitch * (basey >> 1);
+		basey = 0;
+	}
+
+	for (y = 0; y < height; y++) {
+		src = frame + pitch * (y >> 1);
+		dst = screenbuf + LFB_Pitch * (basey + y);
+
+		for (x = 0; x < width; x++) {
+			dst[basex + x] = src[x >> 1];
+		}
+	}
+
+	LFB_Unlock();
+	LeaveTCS();
+	SDL_UpdateRect(screen, basex, basey, width, height);
+}
 
 
 
@@ -430,11 +479,11 @@ void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
 // KoPirovani mezi bitmapami - to ani nema cenu psat v ASM, stejne se to
 // skoro nepouziva...
 
-void CopyBmp(void *tar, int tarwidth, int x, int y, void *src, int w, int h)
+void CopyBmp(void *tar, int tarwidth, int x, int y, const void *src, int w, int h)
 {
     int i, j;
     byte *tp = ((byte *)tar) + x + y * tarwidth;
-    byte *sp = (byte *)src;
+    const byte *sp = (const byte *)src;
     int dif = tarwidth - w;
 
     for (i = 0; i < h; i++) {
@@ -525,13 +574,14 @@ void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byt
 
 
 
-void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text)
-{
-    int part = (int)((double)w * value);
+void PercentBar(void *tar, int width, int height, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text) {
+	int part = (int)((double)w * value);
 
-    BarBmp(tar, tarwidth, x, y, w, h, clr2);
-    BarBmp(tar, tarwidth, x+1, y+1, part-2, h-2, clr1);
-    PutStr(tar, tarwidth, x+1 + (w - GetStrWidth(text, TinyFont))/2, y + (h - GetStrHeight(text, TinyFont))/2, text, TinyFont, clrWhite, clrBlack);
+	BarBmp(tar, width, x, y, w, h, clr2);
+	BarBmp(tar, width, x+1, y+1, part-2, h-2, clr1);
+	PutStr(tar, width, height, x+1 + (w - GetStrWidth(text, TinyFont))/2,
+		y + (h - GetStrHeight(text, TinyFont))/2, text, TinyFont,
+		clrWhite, clrBlack);
 }
 
 

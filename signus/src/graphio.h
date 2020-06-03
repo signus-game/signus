@@ -60,6 +60,7 @@ extern void SetPalette(char *paldat);
 // nastavi barevnou paletu z bufferu
 extern void SetPalettePart(char *paldat, int palofs, int palsize);
 // nastavi cast palety
+void SetRawPalette(const uint8_t *pal);
 
 extern SDL_Surface *GetScreenSurface();
 
@@ -97,22 +98,23 @@ extern void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int f
 
 
 // Kopirovani bmp do bmp:
-extern void CopyBmp(void *tar, int tarwidth, int x, int y, void *src, int w, int h);
+extern void CopyBmp(void *tar, int tarwidth, int x, int y, const void *src, int w, int h);
 extern void CopyBmpNZ(void *tar, int tarwidth, int x, int y, void *src, int w, int h);
 extern void CopyFromBmp(void *src, int srcwidth, int x, int y, void *tar, int w, int h);
 // Kresleni do bitmapy:
 extern void BarBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr);
 extern void BarBmpSwap(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2);
-extern void PercentBar(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text);
+extern void PercentBar(void *tar, int width, int height, int x, int y, int w, int h, byte clr1, byte clr2, double value, const char *text);
 extern void RectBmp(void *tar, int tarwidth, int x, int y, int w, int h, byte clr1, byte clr2);
 
 
 // Vykresli obecnou bitmapu:
-extern void PutBitmap(int x, int y, void *data, int w, int h);
+extern void PutBitmap(int x, int y, const void *data, int w, int h);
 extern void PutBitmapNZ(int x, int y, void *data, int w, int h);
 #define     PutBitmap32(x, y, data, w, h)                           PutBitmap(x, y, data, w, h)
 extern void GetBitmap(int x, int y, void *data, int w, int h);
 #define     GetBitmap32(x, y, data, w, h)                           GetBitmap(x, y, data, w, h)
+void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height);
 
 
 

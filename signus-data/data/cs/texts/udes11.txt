@@ -1,19 +1,19 @@
-#> Bumerang je lehk‚ pr–zkumn‚ vozidlo s
- vynikaj¡c¡m monitorovac¡m syst‚mem. Jeho nejvˆt¨¡
- zbran¡ je jeho rychlost, nejvˆt¨¡ slabinou pak
- slab‚ panc‚©ov n¡ a mal  odolnost.
-#> Tyto jednotky byli konstrukt‚ry navr‘eny tak,
- aby ve sv˜ch £trob ch mohly skr˜t a‘ pˆti‡lenn 
- komanda, kter  tˆmto "pr–zkumn˜m voz¡tk–m"
- umo‘¤uj¡ zaj¡mat nep© telsk‚ budovy (radary,
- sklady a z kladny). Pr vˆ pro tuto vlastnost se
- Bumerangy staly velice d–le‘it˜mi strategick˜mi
- jednotkami. Dal¨¡ velkou v˜hodou Bumerang– je
- jejich monitorovac¡ syst‚m, jen‘ jim umo‘¤uje
- zahl‚dnout nep©¡tele na pomˆrnˆ zna‡nou
- vzd lenost.
-#> Bumerang byl p–vodnˆ pou‘¡v n jako lehk˜ £to‡n˜
- tank, v sou‡asnosti v¨ak jeho £koly v £to‡n˜ch mis¡ch p©evzal
+#> Bumerang je lehkÃ© prÅ¯zkumnÃ© vozidlo s
+ vynikajÃ­cÃ­m monitorovacÃ­m systÃ©mem. Jeho nejvÄ›tÅ¡Ã­
+ zbranÃ­ je jeho rychlost, nejvÄ›tÅ¡Ã­ slabinou pak
+ slabÃ© pancÃ©Å™ovÃ¡nÃ­ a malÃ¡ odolnost.
+#> Tyto jednotky byli konstruktÃ©ry navrÅ¾eny tak,
+ aby ve svÃ½ch ÃºtrobÃ¡ch mohly skrÃ½t aÅ¾ pÄ›tiÄlennÃ¡
+ komanda, kterÃ¡ tÄ›mto "prÅ¯zkumnÃ½m vozÃ­tkÅ¯m"
+ umoÅ¾ÅˆujÃ­ zajÃ­mat nepÅ™Ã¡telskÃ© budovy (radary,
+ sklady a zÃ¡kladny). PrÃ¡vÄ› pro tuto vlastnost se
+ Bumerangy staly velice dÅ¯leÅ¾itÃ½mi strategickÃ½mi
+ jednotkami. DalÅ¡Ã­ velkou vÃ½hodou BumerangÅ¯ je
+ jejich monitorovacÃ­ systÃ©m, jenÅ¾ jim umoÅ¾Åˆuje
+ zahlÃ©dnout nepÅ™Ã­tele na pomÄ›rnÄ› znaÄnou
+ vzdÃ¡lenost.
+#> Bumerang byl pÅ¯vodnÄ› pouÅ¾Ã­vÃ¡n jako lehkÃ½ ÃºtoÄnÃ½
+ tank, v souÄasnosti vÅ¡ak jeho Ãºkoly v ÃºtoÄnÃ½ch misÃ­ch pÅ™evzal
  Perseus Alfa.
 #e
 #e

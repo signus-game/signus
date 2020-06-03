@@ -1,11 +1,18 @@
+graphics_src = bitmaps/load.png bitmaps/menu0.png bitmaps/menu1.png \
+	bitmaps/menu2.png bitmaps/mmnu0.png bitmaps/mmnu1.png \
+	bitmaps/mmnu2.png bitmaps/mmnu3.png bitmaps/repair0.png \
+	bitmaps/repair1.png bitmaps/vsettr0.png bitmaps/vsettr1.png \
+	bitmaps/vsettr2.png
+
+dist_noinst_DATA = $(graphics_src)
 
 gradir = $(datadir)/signus/$(VERSION)/cs
 
 gra_DATA = graphics.dat
 
-graphics.dat:
+graphics.dat: $(graphics_src)
 	rm -f $@
-	$(MAKEDAT) $@ $(srcdir)/bitmaps/*
+	$(MAKEDAT) $@ $^
 
 clean-local:
 	rm -f graphics.dat
@@ -14,7 +21,7 @@ clean-local:
 
 screendir = $(datadir)/signus/$(VERSION)/cs/screens
 
-screen_DATA =        screens/mis1-name.jpg \
+dist_screen_DATA =   screens/mis1-name.jpg \
                      screens/mis2-name.jpg \
                      screens/mis3-name.jpg \
                      screens/mis4-name.jpg \

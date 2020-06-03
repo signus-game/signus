@@ -1,22 +1,22 @@
-#> Xenon je minÇr. Je vybavenò pokladaáem
- min a radarovòm sn°maáem napojenòm
- na plnà automatickou radlici na áele vozu.
- Je slabà pancÇ©ov†n a nem† ë†dnÇ zbra§ovÇ
- systÇmy.
-#> Nutnost vytvo©en° tÇto zbranà se uk†zala
- p©i defenzivn°ch bojovòch £kolech, kdy p©evaha
- jednotek Konzorcia nedovolovala nasazen°
- vlastn°ch tankovòch jednotek do akce, neboü
- ztr†ty by byly p©°li® vysokÇ. S masovàj®°m
- p©°chodem minÇrñ pak vykrystalizovala i
- nutnost m°t jednotku schopnou nep©†telskÇ
- miny likvidovat. A tak je Xenon, pñvodnà uráenò
- pouze pro defenzivn° operace, áasto nasazov†n
- i v £toánòch mis°ch do prvn° linie.
-#> Zpr†va z velitelstv°: "Jedn† se o jednu z
- jednotek, kterÇ by zat°m Konzorcium nemàlo
- vlastnit, av®ak existuje v†ënÇ podez©en°, ëe
- materi†ly o konstrukci tohoto stroje byly
+#> Xenon je min√©r. Je vybaven√Ω pokladaƒçem
+ min a radarov√Ωm sn√≠maƒçem napojen√Ωm
+ na plnƒõ automatickou radlici na ƒçele vozu.
+ Je slabƒõ panc√©≈ôov√°n a nem√° ≈æ√°dn√© zbra≈àov√©
+ syst√©my.
+#> Nutnost vytvo≈ôen√≠ t√©to zbranƒõ se uk√°zala
+ p≈ôi defenzivn√≠ch bojov√Ωch √∫kolech, kdy p≈ôevaha
+ jednotek Konzorcia nedovolovala nasazen√≠
+ vlastn√≠ch tankov√Ωch jednotek do akce, nebo≈•
+ ztr√°ty by byly p≈ô√≠li≈° vysok√©. S masovƒõj≈°√≠m
+ p≈ô√≠chodem min√©r≈Ø pak vykrystalizovala i
+ nutnost m√≠t jednotku schopnou nep≈ô√°telsk√©
+ miny likvidovat. A tak je Xenon, p≈Øvodnƒõ urƒçen√Ω
+ pouze pro defenzivn√≠ operace, ƒçasto nasazov√°n
+ i v √∫toƒçn√Ωch mis√≠ch do prvn√≠ linie.
+#> Zpr√°va z velitelstv√≠: "Jedn√° se o jednu z
+ jednotek, kter√© by zat√≠m Konzorcium nemƒõlo
+ vlastnit, av≈°ak existuje v√°≈æn√© podez≈ôen√≠, ≈æe
+ materi√°ly o konstrukci tohoto stroje byly
  agenty Konzorcia ukradeny."
 #e
 #e

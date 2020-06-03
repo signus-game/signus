@@ -37,8 +37,8 @@
 typedef TTF_Font TFont;
 
 // Vykresli do TAR text dvema barvami. Funguji i znaky CR, LF
-extern void PutStr(void *tar, int tarwidth, int xpoz, int ypoz,
-                   const char *s, TFont *f, byte clr1, byte clr2);
+extern void PutStr(void *tar, int width, int height, int xpoz, int ypoz,
+	const char *s, TFont *f, byte clr1, byte clr2);
 
 // Get text dimensions:
 #define GetStrDimensions(f,s,w,h) TTF_SizeUTF8(f,s,w,h)

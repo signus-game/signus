@@ -1,28 +1,28 @@
-#> şş
- #p.toricon.282.183. şş
-#> Velitelstv¡ pozemn¡ch sil - deset mil v˜chodnˆ od pevnosti
+#> 
+ #p.toricon.282.183. 
+#> VelitelstvÃ­ pozemnÃ­ch sil - deset mil vÃ½chodnÄ› od pevnosti
  Trufat
-#> P©ed nˆkolika hodinami se Konzorcium pokusilo prolomit
- kontinent ln¡ blok du na severu uchytit se na pob©e‘¡.
- Z tohoto d–vodu k n m nemohou dorazit sl¡ben‚ posily. Z rove¤
- nep©¡tel shrom ‘dil sv‚ pozemn¡ arm dy osm mil p©ed svou
- centr ln¡ pevnost¡ - Trufat. Podle posledn¡ch zpr v se se na
- pomoc Konzorciu bl¡‘¡ po‡etn‚ odd¡ly ze severn¡ Rotenalie se
- z sobami potravin. Pokud se jim poda©¡ spojit s jednotkami
- h j¡c¡mi pevnost, m–‘ou se boje prot hnout minim lnˆ o nˆkolik
- mˆs¡c–. Ve snaze z¡skat ‡as pot©ebn˜ k p©esunu zm¡nˆn˜ch sil
- k Trufatu zvolil nep©¡tel st©etnut¡ arm d na otev©en‚m
- prostranstv¡. Toriconu nezb˜v , ne‘ tuto v˜zvu p©ijmout, neboŸ
- shrom ‘dˆn‚ nep© telsk‚ jednotky n m bezprost©ednˆ br n¡
- v postupu do vnitrozem¡.
-#> Va¨¡m c¡lem je rozhodnout tuto, m–‘eme ©¡ci gener ln¡ bitvu,
- v n ¨ prospˆch. Zabr nit p©¡chodu posil do pevnosti sice
- nedok ‘eme, ale pokud v nadch zej¡c¡ bitvˆ prohrajeme, m–‘e se
- Toricon rozlou‡it s pl ny na obl‚h n¡ Trufatu je¨tˆ na dlouhou
- dobu, ne-li v–bec...
-#> ş
+#> PÅ™ed nÄ›kolika hodinami se Konzorcium pokusilo prolomit
+ kontinentÃ¡lnÃ­ blokÃ¡du na severu uchytit se na pobÅ™eÅ¾Ã­.
+ Z tohoto dÅ¯vodu k nÃ¡m nemohou dorazit slÃ­benÃ© posily. ZÃ¡roveÅˆ
+ nepÅ™Ã­tel shromÃ¡Å¾dil svÃ© pozemnÃ­ armÃ¡dy osm mil pÅ™ed svou
+ centrÃ¡lnÃ­ pevnostÃ­ - Trufat. Podle poslednÃ­ch zprÃ¡v se se na
+ pomoc Konzorciu blÃ­Å¾Ã­ poÄetnÃ© oddÃ­ly ze severnÃ­ Rotenalie se
+ zÃ¡sobami potravin. Pokud se jim podaÅ™Ã­ spojit s jednotkami
+ hÃ¡jÃ­cÃ­mi pevnost, mÅ¯Å¾ou se boje protÃ¡hnout minimÃ¡lnÄ› o nÄ›kolik
+ mÄ›sÃ­cÅ¯. Ve snaze zÃ­skat Äas potÅ™ebnÃ½ k pÅ™esunu zmÃ­nÄ›nÃ½ch sil
+ k Trufatu zvolil nepÅ™Ã­tel stÅ™etnutÃ­ armÃ¡d na otevÅ™enÃ©m
+ prostranstvÃ­. Toriconu nezbÃ½vÃ¡, neÅ¾ tuto vÃ½zvu pÅ™ijmout, neboÅ¥
+ shromÃ¡Å¾dÄ›nÃ© nepÅ™Ã¡telskÃ© jednotky nÃ¡m bezprostÅ™ednÄ› brÃ¡nÃ­
+ v postupu do vnitrozemÃ­.
+#> VaÅ¡Ã­m cÃ­lem je rozhodnout tuto, mÅ¯Å¾eme Å™Ã­ci generÃ¡lnÃ­ bitvu,
+ v nÃ¡Å¡ prospÄ›ch. ZabrÃ¡nit pÅ™Ã­chodu posil do pevnosti sice
+ nedokÃ¡Å¾eme, ale pokud v nadchÃ¡zejÃ­cÃ­ bitvÄ› prohrajeme, mÅ¯Å¾e se
+ Toricon rozlouÄit s plÃ¡ny na oblÃ©hÃ¡nÃ­ Trufatu jeÅ¡tÄ› na dlouhou
+ dobu, ne-li vÅ¯bec...
+#> 
 #> T. Roy
  #p.anamorf.320.184.
-#> PRIMRN‹ C‹L: zlikvidovat nep© telsk‚ jednotky
+#> PRIMÃRNÃ CÃL: zlikvidovat nepÅ™Ã¡telskÃ© jednotky
 #e
 #e

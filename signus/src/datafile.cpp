@@ -24,6 +24,7 @@
 //
 
 #include <cstring>
+#include <stdexcept>
 
 #include "datafile.h"
 #include "system.h"
@@ -32,30 +33,28 @@
 /////////////////////////////// STD funkce i/o /////////////////////////////
 
 
-extern FILE *fopensafe(const char *name, const char *mode);
+void multipath_fopen(File &f, const char *name, unsigned mode);
 // fce obsazena v global.cpp, neni tu inc global.h, protoze to se moc
 // casto meni, tenhle modul chce mit taky chvilku klidu...
 
 
 
-unsigned StdDataWrite(FILE *f, void *ptr, size_t size)
-{
-	fwrite(&size, sizeof(size), 1, f);
-	fwrite(ptr, size, 1, f);
-	return (sizeof(size) + size);
+unsigned StdDataWrite(WriteStream &stream, void *ptr, size_t size) {
+	stream.writeUint32LE(size);
+	stream.write(ptr, size);
+	return size + 4;
 }
 
-
-
-void *StdDataRead(FILE *f)
-{
+void *StdDataRead(ReadStream &stream) {
 	void *ptr;
 	size_t size;
-	
-	fread(&size, sizeof(size), 1, f);
+
+	size = stream.readUint32LE();
 	ptr = memalloc(size);
-	if (ptr != NULL) 
-		fread(ptr, size, 1, f);
+
+	if (ptr) {
+		stream.read(ptr, size);
+	}
 
 	return ptr;
 }
@@ -70,83 +69,101 @@ void *StdDataRead(FILE *f)
 
 
 
-TDataFile::TDataFile(const char *name, int flags, const char *aprefix, char areplac,
-			               TDataWriteFce wfce, TDataReadFce rfce)
-{
+TDataFile::TDataFile(const char *name, int flags, const char *aprefix,
+	char areplac, TDataWriteFce wfce, TDataReadFce rfce) {
 	writefce = wfce;
 	readfce = rfce;
 	changed = 0;
 	readprefix = (aprefix == NULL) ? "" : aprefix;
 	readreplacer = areplac;
+	int mode = 0;
 
-	if (flags & dfCreate) {     // vytvor novy datak
-		resf = fopensafe(name, "wb");
+	if (flags == dfOpenRead) {
+		mode = File::READ;
+	} else if (flags & dfOpenWrite) {
+		mode = File::READ | File::WRITE;
+	} else if (flags & dfCreate) {
+		mode = File::WRITE | File::TRUNCATE;
+	} else {
+		// FIXME: throw exception
+		return;
+	}
+
+	if (flags == dfCreate) {     // create new empty file
 		count = 0;
-		index = NULL;		
-	}
-	
-	if (flags & dfOpenRead) {   // otevre pro cteni a nacte tabulku
+		index = NULL;
+		resf.open(name, mode);
+	} else {
+		// open existing file for reading or writing
 		unsigned tableofs;
-		resf = fopensafe(name, "rb");
-		fread(&tableofs, sizeof(tableofs), 1, resf);
-		fseek(resf, tableofs, SEEK_SET);
-		fread(&count, sizeof(count), 1, resf);
-		index = (TDataIndex *) memalloc(count * sizeof(TDataIndex));
-		fread(index, sizeof(TDataIndex) * count, 1, resf);				
-	}
-	
-	if (flags & dfOpenWrite) {  // otevre por zapis
-		unsigned tableofs;
-		resf = fopensafe(name, "rb+");
-		fread(&tableofs, sizeof(tableofs), 1, resf);
-		fseek(resf, tableofs, SEEK_SET);
-		fread(&count, sizeof(count), 1, resf);
-		index = (TDataIndex *) memalloc(count * sizeof(TDataIndex));
-		fread(index, sizeof(TDataIndex) * count, 1, resf);				
-		sortindex(0);
+
+		multipath_fopen(resf, name, mode);
+		tableofs = resf.readUint32LE();
+		resf.seek(tableofs, SEEK_SET);
+		count = resf.readSint32LE();
+		index = (TDataIndex*)memalloc(count * sizeof(TDataIndex));
+
+		for (int i = 0; i < count; i++) {
+			resf.read(index[i].name, 12);
+			index[i].name[11] = '\0';
+			index[i].offset = resf.readUint32LE();
+			index[i].size = resf.readUint32LE();
+		}
+
+		// Write access needs index sorted by offset
+		if (flags == dfOpenWrite) {
+			sortindex(0);
+		}
 	}
 }
 
 
 
 			
-int TDataFile::put(const char *name, void *ptr, size_t size)
-{
+int TDataFile::put(const char *name, void *ptr, size_t size) {
 	int indx = -1;
 
-	// test existence:
-	for (int i = 0; i < count; i++) 
+	// test of existence:
+	for (int i = 0; i < count; i++) {
 		if (strcmp(name, index[i].name) == 0) {
-			indx = i; break;
+			indx = i;
+			break;
 		}
+	}
 		
-	// nahrazeni stare polozky (musi mit stejnou velikost):
-	if ((indx != -1)) {
+	// replacing an existing item (must have the same size):
+	if (indx != -1) {
 		size_t oldsize = index[indx].size;
 		changed = 1;
-		fseek(resf, index[indx].offset, SEEK_SET);
+		resf.seek(index[indx].offset, SEEK_SET);
 		index[indx].size = writefce(resf, ptr, size);
-		if (oldsize != index[indx].size) {return 0;}
-	}	
 
-  // pridani nove polozky:
-  else {
+		// FIXME: Congratulations, you've just corrupted the DAT file
+		if (oldsize != index[indx].size) {
+			return 0;
+		}
+	} else {
+		// adding a new item:
 		changed = 1;
 		count++;
-		index = (TDataIndex *) realloc(index, sizeof(TDataIndex) * count);
+		index = (TDataIndex*)realloc(index, sizeof(TDataIndex) * count);
 		strcpy(index[count-1].name, name);
-		if (count == 1) 
+
+		if (count == 1) {
 			index[0].offset = 4;
-		else
+		} else {
 			index[count-1].offset = index[count-2].offset + index[count-2].size;
-		fseek(resf, index[count-1].offset, SEEK_SET);
+		}
+
+		resf.seek(index[count-1].offset, SEEK_SET);
 		index[count-1].size = writefce(resf, ptr, size);
 	}
+
 	return 1;
 }
 
 
-
+// FIXME: bisecting doesn't work for R+W access, index will be sorted by offset
 int TDataFile::lookfor(const char *name, int lo, int hi)
 {
 	int pos = (hi + lo) / 2;
@@ -164,18 +181,19 @@ int TDataFile::lookfor(const char *name, int lo, int hi)
 
 
 
-void *TDataFile::get(const char *name)
-{
+void *TDataFile::get(const char *name) {
 	void *ptr = NULL;
-	char nm[9];
+	char nm[32];
 	
-	strcpy(nm, readprefix);
-	strcat(nm, name);
+	strncpy(nm, readprefix, sizeof(nm) - 1);
+	nm[sizeof(nm)-1] = '\0';
+	strncat(nm, name, sizeof(nm) - strlen(nm) - 1);
+	nm[sizeof(nm)-1] = '\0';
 	if (nm[0] == '?') nm[0] = readreplacer;
 	
 	int i = lookfor(nm, 0, count-1);
 	if (i != -1) {
-		fseek(resf, index[i].offset, SEEK_SET);
+		resf.seek(index[i].offset, SEEK_SET);
 		return readfce(resf);
 	}
 	return ptr;
@@ -207,21 +225,32 @@ void TDataFile::sortindex(int bywhat)
 		qsort(index, count, sizeof(TDataIndex), compare_by_offset);	
 }
 
+const char *TDataFile::filename(void) const {
+	return resf.getName();
+}
 
-
-TDataFile::~TDataFile()
-{
-	if (changed) {      // provedeny zmeny v souboru, musi se zapsat tabulka
+TDataFile::~TDataFile() {
+	// DAT file contents have changed, write new item index
+	if (changed) {
 		unsigned tableofs = 4 + index[count-1].offset + index[count-1].size;
-	
-		fseek(resf, 0, SEEK_SET);
-		fwrite(&tableofs, sizeof(tableofs), 1, resf);
-		fseek(resf, tableofs, SEEK_SET);
-		fwrite(&count, sizeof(count), 1, resf);
+
+		resf.seek(0, SEEK_SET);
+		resf.writeUint32LE(tableofs);
+		resf.seek(tableofs, SEEK_SET);
+		resf.writeSint32LE(count);
 		sortindex(1);
-		fwrite(index, sizeof(TDataIndex) * count, 1, resf);
+
+		for (int i = 0; i < count; i++) {
+			resf.write(index[i].name, 12);
+			resf.writeUint32LE(index[i].offset);
+			resf.writeUint32LE(index[i].size);
+		}
 	}
-	fclose(resf);
-	if (count != 0) memfree(index);
+
+	resf.close();
+
+	if (count != 0) {
+		memfree(index);
+	}
 }
 

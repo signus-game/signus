@@ -28,6 +28,7 @@
 //
 
 #include <time.h>
+#include <climits>
 #include <SDL_timer.h>
 
 #include "mission_screen.h"
@@ -143,102 +144,133 @@ void AnimateCursor()
 
 
 // Nic se nedeje => skrolovani citlive na pozici kurzoru:
-void IdleEvent()
-{
-    int ScX = 0, ScY = 0;
-    static int Scrolled;
+void IdleEvent() {
+	int ScX = 0, ScY = 0;
+	static int Scrolled;
 
-    ProcessMapAnim();
+	ProcessMapAnim();
 
-    // Obhospodareni skrolovani:
-    if (Mouse.x < 8) ScX = -1;
-    else if (Mouse.x > RES_X-8) ScX = 1;
-    if (Mouse.y < 8) ScY = -1;
-    else if (Mouse.y > RES_Y-8) ScY = 1;
-    if ((ScX != 0) || (ScY != 0)) {
-        if (GetShiftState()) {
-            ScX *= VIEW_SIZE_X/2, ScY *= VIEW_SIZE_Y/2;
-            ScrollTo(MapPos.x + ScX + ScY, MapPos.y - ScX + ScY);
-            SDL_Delay(iniScrollDelay);
-            Scrolled = FALSE;
-        }
-        else {
-            ScrollRel(ScX, ScY);
-            SDL_Delay(iniScrollDelay);
-            Scrolled = TRUE;
-        }
-    }
-    else if (Scrolled) {
-        Scrolled = FALSE;
-        UpdateLitMap();
-        MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
-        DrawLitMap();
-        MouseUnfreeze();
-    }
-    
+	// Obhospodareni skrolovani:
+	if (Mouse.x < 8) {
+		ScX = -1;
+	} else if (Mouse.x > RES_X-8) {
+		ScX = 1;
+	}
 
-    // Jukebox:
-    if (TimerValue % (20 * 5) == 0) {
-        if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-    }
-    
-    if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
-        AnimateCursor();
-        MainIcons->Update();
-    }
-    
-    // Idle texty u kurzoru mysi:
-    if ((SelPos.x != 0xFF) && (TimerValue - LastEvent >= iniIdleDelay)) {
-        TEvent e;
-        void *buf, *buf2;
-        int bufszx, bufszy;
-        int xp, yp;
-        int OMX, OMY;
-        char itext[100];
-        
-        SelectedUnit->GetFieldInfo(SelPos.x, SelPos.y, itext);
-        if (*itext != 0) {
-            bufszx = GetStrWidth(itext, NormalFont) + 4;
-            bufszy = GetStrHeight(itext, NormalFont);
-            buf = memalloc(bufszx * bufszy);
-            buf2 = memalloc(bufszx * bufszy);
-            xp = 18; yp = Mouse.y - bufszy / 2;
-            if (xp + Mouse.x + bufszx < VIEW_X_POS + VIEW_SX) xp += Mouse.x;
-            else xp = Mouse.x - bufszx - xp;
-            if (Mouse.ActCur == mcurArrow) {
-                yp += 10;
-                if (xp < Mouse.x) xp += 18;
-            }
+	if (Mouse.y < 8) {
+		ScY = -1;
+	} else if (Mouse.y > RES_Y-8) {
+		ScY = 1;
+	}
 
-            GetBitmap(xp, yp, buf, bufszx, bufszy);
-            memcpy(buf2, buf, bufszx * bufszy);
-            DoDarking(buf, bufszx * bufszy);
-            PutStr(buf, bufszx, 2, 0, itext, NormalFont, clrWhite, clrBlack);
-            PutBitmap(xp, yp, buf, bufszx, bufszy);
-            OMX = Mouse.x, OMY = Mouse.y;
-            do {
-                GetEvent(&e);
-                if (TimerValue % (20 * 5) == 0) { // jukebox
-                    if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-                }
-                if (ProcessMapAnim()) PutBitmap(xp, yp, buf, bufszx, bufszy);
-                UpdateWatch();
-                if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) AnimateCursor();
-            } while (
-              (e.What == evNothing) ||
-              ((e.What == evMouseMove) && 
-               IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
-            PutEvent(&e);
-            LastEvent = TimerValue;
-            PutBitmap(xp, yp, buf2, bufszx, bufszy);
-            memfree(buf);
-            memfree(buf2);
-        }
-    }
-    
-    // idle helpy u ikonek:
-    if (TimerValue - LastEvent >= 2*iniIdleDelay)   if (MainIcons->Help()) LastEvent = TimerValue;
-    UpdateWatch();
+	if ((ScX != 0) || (ScY != 0)) {
+		if (GetShiftState()) {
+			ScX *= VIEW_SIZE_X/2, ScY *= VIEW_SIZE_Y/2;
+			ScrollTo(MapPos.x + ScX + ScY, MapPos.y - ScX + ScY);
+			SDL_Delay(iniScrollDelay);
+			Scrolled = FALSE;
+		} else {
+			ScrollRel(ScX, ScY);
+			SDL_Delay(iniScrollDelay);
+			Scrolled = TRUE;
+		}
+	} else if (Scrolled) {
+		Scrolled = FALSE;
+		UpdateLitMap();
+		MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
+		DrawLitMap();
+		MouseUnfreeze();
+	}
+
+	// Jukebox:
+	if (TimerValue % (20 * 5) == 0) {
+		if (MusicOn && (!IsMusicPlaying())) {
+			JukeboxNext();
+		}
+	}
+
+	if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
+		AnimateCursor();
+		MainIcons->Update();
+	}
+
+	// Idle texty u kurzoru mysi:
+	if ((SelPos.x != 0xFF) && (TimerValue - LastEvent >= iniIdleDelay)) {
+		TEvent e;
+		void *buf, *buf2;
+		int bufszx, bufszy;
+		int xp, yp;
+		int OMX, OMY;
+		char itext[100];
+
+		SelectedUnit->GetFieldInfo(SelPos.x, SelPos.y, itext);
+
+		if (*itext != 0) {
+			bufszx = GetStrWidth(itext, NormalFont) + 4;
+			bufszy = GetStrHeight(itext, NormalFont);
+			buf = memalloc(bufszx * bufszy);
+			buf2 = memalloc(bufszx * bufszy);
+			xp = 18; yp = Mouse.y - bufszy / 2;
+
+			if (xp + Mouse.x + bufszx < VIEW_X_POS + VIEW_SX) {
+				xp += Mouse.x;
+			} else {
+				xp = Mouse.x - bufszx - xp;
+			}
+
+			if (Mouse.ActCur == mcurArrow) {
+				yp += 10;
+
+				if (xp < Mouse.x) {
+					xp += 18;
+				}
+			}
+
+			GetBitmap(xp, yp, buf, bufszx, bufszy);
+			memcpy(buf2, buf, bufszx * bufszy);
+			DoDarking(buf, bufszx * bufszy);
+			PutStr(buf, bufszx, bufszy, 2, 0, itext, NormalFont,
+				clrWhite, clrBlack);
+			PutBitmap(xp, yp, buf, bufszx, bufszy);
+			OMX = Mouse.x;
+			OMY = Mouse.y;
+
+			do {
+				GetEvent(&e);
+
+				if (TimerValue % (20 * 5) == 0) { // jukebox
+					if (MusicOn && (!IsMusicPlaying())) {
+						JukeboxNext();
+					}
+				}
+
+				if (ProcessMapAnim()) {
+					PutBitmap(xp, yp, buf, bufszx, bufszy);
+				}
+
+				UpdateWatch();
+
+				if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
+					AnimateCursor();
+				}
+			} while ((e.What == evNothing) ||
+				((e.What == evMouseMove) &&
+				IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
+
+			PutEvent(&e);
+			LastEvent = TimerValue;
+			PutBitmap(xp, yp, buf2, bufszx, bufszy);
+			memfree(buf);
+			memfree(buf2);
+		}
+	}
+
+	// idle helpy u ikonek:
+	if ((TimerValue - LastEvent >= 2*iniIdleDelay) && (MainIcons->Help())) {
+		LastEvent = TimerValue;
+	}
+
+	UpdateWatch();
 }
 
 
@@ -873,28 +905,26 @@ extern int WC_On;
 extern void *WorkingControl[3];
 
 
-void CrashSave()
-{
-    char b[100];
-    FILE *f;
-    
-    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
-    f = fopen(b, "wb");
-    SaveGameState(f);
-    fclose(f);
+void CrashSave() {
+	char b[PATH_MAX];
+	File stream;
+
+	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
+	stream.open(b, File::WRITE | File::TRUNCATE);
+	SaveGameState(stream);
 }
 
-int CrashLoad()
-{
-    char b[100];
-    FILE *f;
-    
-    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
-    f = fopen(b, "rb");
-    if (f == NULL) return FALSE;
-    LoadGameState(f);
-    fclose(f);
-    return TRUE;
+int CrashLoad() {
+	File stream;
+	char b[PATH_MAX];
+
+	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
+	if (!stream.open(b, File::READ)) {
+		return FALSE;
+	}
+
+	LoadGameState(stream);
+	return TRUE;
 }
 
 
@@ -1009,9 +1039,8 @@ int RunSignus(int from_save)
         sprintf(name, "brief%i", ActualMission);
         BriefGo(name);
         sprintf(name, "mis%iin", ActualMission);
-#if 0 // FIXME
         PlayAnimation(name);
-#endif
+        SetPalette(Palette);
         if (!InitEngine(ActualMission)) return FALSE;
         Clear_PSmp();
         HideHelpers();
@@ -1096,11 +1125,11 @@ int RunSignus(int from_save)
         }
         
         if (ActualMission == 6) {   // zacina valka
-            //PlayAnimation("war_on");   FIXME
+            PlayAnimation("war_on");
         }
         
         if (ActualMission == 19) {  // konec hry
-            //PlayAnimation("outro");   FIXME
+            PlayAnimation("outro");
             return FALSE;
         }
         
@@ -1146,62 +1175,69 @@ void DoneSignus()
 // Hlavni procedura:
 
 
-void signus_main()
-{   
-    {
-        int result = 0;
-        int crash = CrashLoad();
-        
-        if (!crash) {
-#if 0 // FIXME
-            PlayAnimation("present2");
-            PlayAnimation("present1");
-            PlayAnimation("present3");
-            PlayAnimation("intro");
-#endif
-        }
-        while (result != 3) {
-            if (crash) result = 666;
-            else result = DoMainMenu();
-            switch (result) {               
-                case 0 : {
-                                 //PlayAnimation("intro2"); FIXME
-                                 ActualMission = 1;
-                                 if (getenv("HELLMASTER"))
-                                   sscanf(getenv("HELLMASTER"), "%i", &ActualMission);
-                                 for (;;) {
-                                    if (!RunSignus(FALSE)) break;
-                                 };
-                                 break;
-                                 }
-                case 1 : ActualMission = -1;
-                                 if (LoadGame()) {
-                                     int fs = TRUE;
-                                     for (;;) {
-                                        if (!RunSignus(fs)) break;
-                                        fs = FALSE;
-                                     }
-                                 }
-                                 break;
-                case 666 :     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
-                                {
-                                TEvent e;
-                                int fs = TRUE;
+void signus_main() {
+	int result = 0;
+	int crash = CrashLoad();
+	int fs = TRUE;
+	TEvent e;
 
-                                crash = FALSE;
-                                e.What = evKeyDown;
-                                e.Key.CharCode = SHORTCUT_ENDTURN; //->causes AI running
-                                PutEvent(&e);
-                                for (;;) {
-                                    if (!RunSignus(fs)) break;
-                                    fs = FALSE;
-                                }
-                                break;
-                                }
-                case 2 : ShowCredits();
-                                 break;
-                case 3 : break;
-            }
-        }
-    }
+	if (!crash) {
+		PlayAnimation("present2");
+		PlayAnimation("present1");
+		PlayAnimation("present3");
+		PlayAnimation("intro");
+	}
+
+	while (result != 3) {
+		if (crash) {
+			result = 666;
+		} else {
+			result = DoMainMenu();
+		}
+
+		switch (result) {
+		case 0:
+			PlayAnimation("intro2");
+			ActualMission = 1;
+			if (getenv("HELLMASTER")) {
+				sscanf(getenv("HELLMASTER"), "%i", &ActualMission);
+			}
+
+			while (RunSignus(FALSE));
+			break;
+
+		case 1: ActualMission = -1;
+			if (!LoadGame()) {
+				break;
+			}
+
+			fs = TRUE;
+
+			while (RunSignus(fs)) {
+				fs = FALSE;
+			}
+
+			break;
+
+		case 666:     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
+			fs = TRUE;
+			crash = FALSE;
+			e.What = evKeyDown;
+			e.Key.CharCode = SHORTCUT_ENDTURN; //->causes AI running
+			PutEvent(&e);
+
+			while (RunSignus(fs)) {
+			    fs = FALSE;
+			}
+
+			break;
+
+		case 2:
+			ShowCredits();
+			break;
+
+		case 3:
+			break;
+		}
+	}
 }

@@ -69,9 +69,9 @@ TAircraft *GetAircraftAt(int x, int y)
 //////////////// P5edek - TAircraft //////////////////////////////////
 
 
-void TAircraft::Init(int x, int y, int party, FILE *f)
+void TAircraft::Init(int x, int y, int party, ReadStream *stream)
 {
-	TUnit::Init(x, y, party, f);
+	TUnit::Init(x, y, party, stream);
 	LittleAlt = 0;
 }
 
@@ -243,16 +243,14 @@ void TAircraft::ShowShootAt(int x, int y, int phase)
 
 
 
-void TAircraft::Read(FILE *f)
-{
-	TUnit::Read(f);
-	fread(&FlyLevel, 4, 1, f);
+void TAircraft::Read(ReadStream &stream) {
+	TUnit::Read(stream);
+	FlyLevel = stream.readSint32LE();
 }
 
-void TAircraft::Write(FILE *f)
-{
-	TUnit::Write(f);
-	fwrite(&FlyLevel, 4, 1, f);
+void TAircraft::Write(WriteStream &stream) {
+	TUnit::Write(stream);
+	stream.writeSint32LE(FlyLevel);
 }
 
 
@@ -372,9 +370,9 @@ void TAircraft::Explode()
 		{
 			for (int i = 0; i < 6; i++) {
 				AddExplode1x1(X, Y, 0, 
-						40 - 80 * rand() / RAND_MAX, 20 - 40 * rand() / RAND_MAX -14 * (Alt-1));
+						40 - 80 * frand(), 20 - 40 * frand() -14 * (Alt-1));
 				AddExplode3x3(X, Y, 0, 
-						60 - 120 * rand() / RAND_MAX, 30 - 60 * rand() / RAND_MAX -14 * (Alt-1));
+						60 - 120 * frand(), 30 - 60 * frand() -14 * (Alt-1));
 			}
 		}
 	}
@@ -468,9 +466,9 @@ unsigned TMystik::GetSupportedActions()
 
 // Rex:
 
-void TRex::Init(int x, int y, int party, FILE *f)
-{
-	TAircraft::Init(x, y, party, f);
+void TRex::Init(int x, int y, int party, ReadStream *stream) {
+	TAircraft::Init(x, y, party, stream);
+
 	if (IconLand == NULL) {
 		IconLand = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icland%i", 13);
 		IconTakeoff = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "ictakof%i", 13);
@@ -688,17 +686,22 @@ int TRex::InfoEvent(TEvent *e)
 
 // Caesar:
 
-void TCaesar::Init(int x, int y, int party, FILE *f)
+void TCaesar::Init(int x, int y, int party, ReadStream *stream)
 {
-	TAircraft::Init(x, y, party, f);
+	TAircraft::Init(x, y, party, stream);
+
 	if (IconLand == NULL) {
 		IconLand = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "icland%i", 13);
 		IconTakeoff = new TIcon(RES_X-116, UINFO_Y+147, 59, 59, "ictakof%i", 13);
 	}
-	if (IconTransport == NULL) 
+
+	if (IconTransport == NULL) {
 		IconTransport = new TIcon(RES_X-115, UINFO_Y+110, 102, 23, "tranbut%i", 13);
-	if (BmpSmallInventory == NULL)
+	}
+
+	if (BmpSmallInventory == NULL) {
 		BmpSmallInventory = GraphicsDF->get("tranbox1");
+	}
 }
 
 
@@ -824,17 +827,21 @@ int TCaesar::TakeOff()
 
 
 
-void TCaesar::GetUnitInfo()
-{
+void TCaesar::GetUnitInfo() {
 	TAircraft::GetUnitInfo();
+
 	if (FlyLevel == 0) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0], 59, 59);
-		CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0],
+			59, 59);
+		CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0],
+			102, 23);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59,
+			59);
 	}
-	else
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59, 59);
-	PercentBar(UInfoBuf, UINFO_SX, 3, 135, 102, 8, clrLightBlue2, clrSeaBlue,
-	           ((double)GetTotalWeight() / Capacity), "");
+
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
+		clrSeaBlue, ((double)GetTotalWeight() / Capacity), "");
 }
 
 
@@ -876,24 +883,22 @@ void TCaesar::Action(int x, int y)
 
 
 
-void TCaesar::Read(FILE *f)
-{
-	int id;
-	
-	TAircraft::Read(f);
-	fread(&LoadedUnits, 4, 1, f);
+void TCaesar::Read(ReadStream &stream) {
+	TAircraft::Read(stream);
+	LoadedUnits = stream.readSint32LE();
+
 	for (int i = 0; i < LoadedUnits; i++) {
-		id = 0; fread(&id, 4, 1, f);
-		Inventory[i] = id;
+		Inventory[i] = stream.readSint32LE();
 	}
 }
 
-void TCaesar::Write(FILE *f)
-{
-	TAircraft::Write(f);
-	fwrite(&LoadedUnits, 4, 1, f);
-	for (int i = 0; i < LoadedUnits; i++)
-		fwrite(&(Inventory[i]), 4, 1, f);
+void TCaesar::Write(WriteStream &stream) {
+	TAircraft::Write(stream);
+	stream.writeSint32LE(LoadedUnits);
+
+	for (int i = 0; i < LoadedUnits; i++) {
+		stream.writeSint32LE(Inventory[i]);
+	}
 }
 
 
@@ -1211,20 +1216,18 @@ unsigned TSaturn::GetSupportedActions()
 
 
 
-void TSaturn::Read(FILE *f)
-{
-	TAircraft::Read(f);
-	fread(&IsBombing, 4, 1, f);
-	fread(&Bombs, 4, 1, f);
-	fread(&BombAN, 4, 1, f);
+void TSaturn::Read(ReadStream &stream) {
+	TAircraft::Read(stream);
+	IsBombing = stream.readSint32LE();
+	Bombs = stream.readSint32LE();
+	BombAN = stream.readSint32LE();
 }
 
-void TSaturn::Write(FILE *f)
-{
-	TAircraft::Write(f);
-	fwrite(&IsBombing, 4, 1, f);
-	fwrite(&Bombs, 4, 1, f);
-	fwrite(&BombAN, 4, 1, f);
+void TSaturn::Write(WriteStream &stream) {
+	TAircraft::Write(stream);
+	stream.writeSint32LE(IsBombing);
+	stream.writeSint32LE(Bombs);
+	stream.writeSint32LE(BombAN);
 }
 
 
@@ -1242,7 +1245,7 @@ void TSaturn::GoOnField()
 			for (i = X-2; i <= X+2; i++)
 				for (j = Y-2; j <= Y+2; j++) {
 					WeaponAttack(i, j, wpnExplos, BombAN, utSA_BANB);
-					AddExplode3x3(i, j, 0, 10 - 20 * rand() / RAND_MAX, 10 - 20 * rand() / RAND_MAX);
+					AddExplode3x3(i, j, 0, 10 - 20 * frand(), 10 - 20 * frand());
 				}
 			IncExplodeTime(+3);
 		}
@@ -1298,17 +1301,22 @@ int TSaturn::EndBombing()
 
 
 
-void TSaturn::GetUnitInfo()
-{
+void TSaturn::GetUnitInfo() {
 	char cbuf[80];
 
 	TAircraft::GetUnitInfo();
-	PutStr(UInfoBuf, UINFO_SX, 2, 78, SigText[TXT_BOMBS_LEFT], NormalFont, clrWhite, clrBlack);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 78, SigText[TXT_BOMBS_LEFT],
+		NormalFont, clrWhite, clrBlack);
 
 	sprintf(cbuf, "%i / %i", Bombs, utSA_BAMMO);
-	PercentBar(UInfoBuf, UINFO_SX, 54, 80, 52, 13, clrLightBlue2, clrSeaBlue, (double)Bombs / utSA_BAMMO, cbuf);
-	if (IsBombing) CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[1], 59, 59);	
-	else CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[0], 59, 59);	
+	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 54, 80, 52, 13, clrLightBlue2,
+		clrSeaBlue, (double)Bombs / utSA_BAMMO, cbuf);
+
+	if (IsBombing) {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[1], 59, 59);
+	} else {
+		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[0], 59, 59);
+	}
 }
 
 

@@ -1,0 +1,145 @@
+
+ ----------------------------------------------------
+*Signus: The Artefact Wars
+ ----------------------------------------------------
+
+ http://signus.sourceforge.net
+ 
+ Designed a vývoj hry
+*Valacirca
+
+ Copyright (C) 1997, 1998, 2002, 2003
+ Václav Slavík, Richard Wünsch, Marek Wünsch, Marek Makal
+
+
+
+
+*P R O G R A M O V Á N Í
+
+ Václav Slavík
+ (herní engine, přehrávač animaci, Unix port)
+
+ Marek Wünsch
+ (editor misí, briefingy, AI misí 7,10 a 14)
+
+ Richard Wünsch
+ (umělá inteligence, AI misí)
+
+
+
+*S Y S T É M   S T R A T E G I E
+
+ Richard Wünsch
+
+
+
+*E D I T A C E   M I S Í
+
+ Marek Wünsch
+
+
+*N Á V R H   S C É N Á Ř Ů
+
+ Marek Wünsch
+
+ Richard Wünsch
+
+
+ 
+*3 D   G R A F I K A
+
+ Marek Makal
+ (hlavní 3D grafika, návrh jednotek, animace)
+ 
+ Petr Král
+ (návrh jednotek) 
+ 
+ Tomáš Roubíček
+ (textury a obrázky, animace)
+ 
+ Václav Slavík
+ (animace)
+
+
+ 
+*2 D   G R A F I K A
+
+ Václav Slavík
+ (terény, sprity, logo "Signus")
+ 
+ Jitka Tučková
+ (logo "Valacirca")
+
+
+
+*T E X T Y
+
+ Hana Balounová
+ (příběh, briefingy k misím)
+ 
+ Stanislav Štygler
+ (popisy jednotek)
+
+
+
+*H U D B A
+ 
+ Ladislav Mravec
+
+
+
+*Z V U K O V É   E F E K T Y
+
+ Ivan Horák
+ 
+ 
+ 
+*O Z V U Č E N Í   A N I M A C Í
+
+ Ivan Horák
+ 
+ 
+ 
+ 
+ 
+*Z V L Á Š T N Í   P O D Ě K O V Á N Í
+
+ Prof. Klasnová & prof. Ženíšek za pomoc s překlady do angličtiny
+ Pavel Bičák
+ Lukáš Jirka
+ Kateřina Makalová
+ 
+
+
+
+ * * *
+
+
+
+ Tento program je svobodný software: můžete jej šířit a upravovat
+ podle ustanovení Obecné veřejné licence GNU (GNU General Public
+ Licence) verze 2, vydané Free Software Foundation.
+
+ Tento program je rozšiřován v naději, že bude užitečný, avšak
+ BEZ JAKÉKOLIV ZÁRUKY. Neposkytují se ani odvozené záruky PRODEJNOSTI
+ anebo VHODNOSTI PRO URČITÝ ÚČEL. Další podrobnosti hledejte v Obecné
+ veřejné licenci GNU.
+
+ Kopii Obecné veřejné licence GNU jste měli obdržet spolu s tímto
+ programem. Pokud se tak nestalo, najdete ji zde:
+ <http://www.gnu.org/licenses/>.
+
+
+ * * *
+
+
+ Tento software je částečně založen na kódu od Independent JPEG Group.
+ 
+ Signus využívá knihovnu Simple DirectMedia Layer
+ http://www.libsdl.org
+ 
+ Zvukový engine využívá Ogg Vorbis
+ http://www.xiph.org
+
+
+END

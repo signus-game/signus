@@ -1,22 +1,22 @@
-#> Gargantua je transport‚r artefakt–. Je vybaven
- £lo‘n˜m prostorem, kter˜ sest v  z vlastn¡
- transportn¡ m¡stnosti (co‘ je vlastnˆ siln‚
- magnetick‚ pole) a mal‚ plnˆ automatizovan‚
- chemick‚ laborato©e. M  slab¨¡ panc‚©ov n¡
- a ‘ dn‚ zbranˆ.
-#> Vyu‘¡t tohoto kolosu jako zbranˆ je naprosto
- nemo‘n‚, ba naopak Gargantua mus¡ b˜t neust le
- dr‘ena mimo dost©el nep© telsk˜ch jednotek neboŸ
- vˆt¨inou sta‡¡ jedna r na i leh‡¡ho dˆla, kter 
- proraz¡ slab˜ panc¡© a chemick‚ slou‡eniny, slou‘¡c¡
- k neutralizaci artefaktu, exploduj¡ a zni‡¡ v¨echny
- jednotky ve sv‚m okol¡. Dal¨¡ velkou slabinou
- t‚to jednotky je jej¡ pomalost. P©es v¨echny sv‚
- nedostatky v¨ak Gargantua z–st v  jedin˜m transport‚rem
- schopn˜m p©epravy artefakt–.
-#> Zpr va z velitelstv¡: "P©i v˜robˆ tohoto transport‚ru
- se z hadnˆ ztratil Dr. Daenne, vedouc¡ t˜mu chemik–.
- M me v ‘n‚ podez©en¡, ‘e byl unesen agenty
+#> Gargantua je transportÃ©r artefaktÅ¯. Je vybaven
+ ÃºloÅ¾nÃ½m prostorem, kterÃ½ sestÃ¡vÃ¡ z vlastnÃ­
+ transportnÃ­ mÃ­stnosti (coÅ¾ je vlastnÄ› silnÃ©
+ magnetickÃ© pole) a malÃ© plnÄ› automatizovanÃ©
+ chemickÃ© laboratoÅ™e. MÃ¡ slabÅ¡Ã­ pancÃ©Å™ovÃ¡nÃ­
+ a Å¾Ã¡dnÃ© zbranÄ›.
+#> VyuÅ¾Ã­t tohoto kolosu jako zbranÄ› je naprosto
+ nemoÅ¾nÃ©, ba naopak Gargantua musÃ­ bÃ½t neustÃ¡le
+ drÅ¾ena mimo dostÅ™el nepÅ™Ã¡telskÃ½ch jednotek neboÅ¥
+ vÄ›tÅ¡inou staÄÃ­ jedna rÃ¡na i lehÄÃ­ho dÄ›la, kterÃ¡
+ prorazÃ­ slabÃ½ pancÃ­Å™ a chemickÃ© slouÄeniny, slouÅ¾Ã­cÃ­
+ k neutralizaci artefaktu, explodujÃ­ a zniÄÃ­ vÅ¡echny
+ jednotky ve svÃ©m okolÃ­. DalÅ¡Ã­ velkou slabinou
+ tÃ©to jednotky je jejÃ­ pomalost. PÅ™es vÅ¡echny svÃ©
+ nedostatky vÅ¡ak Gargantua zÅ¯stÃ¡vÃ¡ jedinÃ½m transportÃ©rem
+ schopnÃ½m pÅ™epravy artefaktÅ¯.
+#> ZprÃ¡va z velitelstvÃ­: "PÅ™i vÃ½robÄ› tohoto transportÃ©ru
+ se zÃ¡hadnÄ› ztratil Dr. Daenne, vedoucÃ­ tÃ½mu chemikÅ¯.
+ MÃ¡me vÃ¡Å¾nÃ© podezÅ™enÃ­, Å¾e byl unesen agenty
  Konzorcia."
 #e
 #e

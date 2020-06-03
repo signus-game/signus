@@ -1,5 +1,5 @@
-#> þþ
- #p.toricon.282.183. þþ
+#> 
+ #p.toricon.282.183. 
 #> One of the important areas that are not under complete control of Toricon yet is island
  Penytras. The curiosity of this island is the fact, that though it has relatively comfortable
  climate, it is not inhabited by civilians. Consortium centres the research of artefact
@@ -19,9 +19,9 @@
  Penytras will not be able to call the reinforcements from the sea before we will be detected
  by the coastal radars. The time we gain this way should be enough for the realization of the
  mission.
-#> þ
+#> 
 #> Paul Winters
-#> þ
+#> 
  #p.anamorf.320.184.
 #> PRIMARY AIM: Capture the island Penytras.
 #e

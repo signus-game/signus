@@ -1,14 +1,14 @@
-#> Pagoda je obrann  vˆ‘ vyzbrojen  rychlopaln˜m
- kan¢nem r ‘e 138mm se st©edn¡m dost©elem. Je
- silnˆ panc‚©ovan  a m  vysokou odolnost, d¡ky
- kter‚ vydr‘¡ i pomˆrnˆ zna‡n‚ po¨kozen¡.
-#> Nejvˆt¨¡ slabinou t‚to zbranˆ je jej¡
- kr tk˜ dost©el, kter˜ ji ‡in¡ bezbrannou proti
- dalekonosn˜m zbran¡m a umo‘¤uje mobiln¡m jednotk m
- ujet z jej¡ho dosahu.
-#> "!...a mili¢ny srdc¡ k Tobˆ polet¡, • Pane! A
- z bran tv˜ch vyjede nebesk‚ vojsko, br nit b¡l˜
- svit, skryt˜ v posv tn‚ pagodˆ..." - ‡ st novodob‚
- s£try proroka Amhala.
+#> Pagoda je obrannÃ¡ vÄ›Å¾ vyzbrojenÃ¡ rychlopalnÃ½m
+ kanÃ³nem rÃ¡Å¾e 138mm se stÅ™ednÃ­m dostÅ™elem. Je
+ silnÄ› pancÃ©Å™ovanÃ¡ a mÃ¡ vysokou odolnost, dÃ­ky
+ kterÃ© vydrÅ¾Ã­ i pomÄ›rnÄ› znaÄnÃ© poÅ¡kozenÃ­.
+#> NejvÄ›tÅ¡Ã­ slabinou tÃ©to zbranÄ› je jejÃ­
+ krÃ¡tkÃ½ dostÅ™el, kterÃ½ ji ÄinÃ­ bezbrannou proti
+ dalekonosnÃ½m zbranÃ­m a umoÅ¾Åˆuje mobilnÃ­m jednotkÃ¡m
+ ujet z jejÃ­ho dosahu.
+#> "!...a miliÃ³ny srdcÃ­ k TobÄ› poletÃ­, Ã“ Pane! A
+ z bran tvÃ½ch vyjede nebeskÃ© vojsko, brÃ¡nit bÃ­lÃ½
+ svit, skrytÃ½ v posvÃ¡tnÃ© pagodÄ›..." - ÄÃ¡st novodobÃ©
+ sÃºtry proroka Amhala.
 #e
 #e

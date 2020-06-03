@@ -24,6 +24,7 @@
 // Globalni definice, deklarace a funkce pro Signus
 
 
+#include <string>
 #include "global.h"
 #include "events.h"
 #include "graphio.h"
@@ -33,12 +34,16 @@
 #include <SDL_timer.h>
 #include <math.h>
 #include <sys/stat.h>
+#include <limits.h>
+#include <cstdlib>
+#include <clocale>
 
 extern "C" {
 #include "iniparser.h"
 }
 
 
+#define DEFAULT_LANG "en"
 #define MIN_MEM_NEEDED     (1024 * 1024 * 12)
         // minim. pamet potrebna pro signus
 
@@ -99,6 +104,57 @@ int iniTitledAnims, iniInterpolateAnims;
 
 
 
+void detect_language(void) {
+	std::string lang, path = getSignusDataDir();
+	const char *env;
+	size_t pos, baselen;
+	File testfile;
+
+	env = setlocale(LC_MESSAGES, NULL);
+
+	if (!env) {
+		strcpy(iniLocale, DEFAULT_LANG);
+		return;
+	}
+
+	if (path[path.length() - 1] != '/') {
+		path += '/';
+	}
+
+	lang = env;
+
+	if (lang.length() >= 200) {
+		lang.erase(200);
+	}
+
+	pos = lang.find('.');
+	baselen = path.length();
+
+	if (pos != std::string::npos) {
+		lang.erase(pos);
+	}
+
+	while (1) {
+		path += lang;
+		path += "/texts.dat";
+
+		if (testfile.open(path.c_str(), File::READ)) {
+			strcpy(iniLocale, lang.c_str());
+			return;
+		}
+
+		path.erase(baselen);
+		pos = lang.rfind('_');
+
+		if (pos == std::string::npos) {
+			break;
+		}
+
+		lang.erase(pos);
+	}
+
+	strcpy(iniLocale, DEFAULT_LANG);
+}
 
 bool dirExists(const char *filename)
 {
@@ -111,67 +167,71 @@ static const char *GetConfigFileName()
     const char *home = getenv("HOME");
     if (!home) home = ".";
 
-    static char inifile[1024] = "";
+    static char inifile[PATH_MAX] = "";
     
     if (*inifile == 0)
     {
-        strncpy(inifile, getSignusConfigDir(), 1024);
-        strncat(inifile, "/signus.ini", 1024);
+        strncpy(inifile, getSignusConfigDir(), PATH_MAX);
+	inifile[PATH_MAX-1] = '\0';
+        strncat(inifile, "/signus.ini", PATH_MAX - strlen(inifile) - 1);
+	inifile[PATH_MAX-1] = '\0';
     }
     
     return inifile;
 }
 
-bool LoadINI()
-{
-    dictionary *dict = NULL;
-    
-    const char *configname = GetConfigFileName();
-    if (fileExists(configname))
-        dict = iniparser_load((char*)configname);
-    if (dict == NULL)
-        dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
-    if (dict == NULL)
-    {
-        fprintf(stderr, "Fatal error: cannot read configuration file.\n"
-                        "Please reinstall Signus.\n");
-        return FALSE;
-    }
-    
-    // FIXME -- use locales!!!
-    strcpy(iniLanguage, "e");
-    
-    //iniResolution = iniparser_getint(dict, "video:resolution", -1);
-    iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
-    
-    iniBrightCorr = iniparser_getint(dict, "video:brightness", -1);
-    iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
-    iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
+bool LoadINI() {
+	dictionary *dict = NULL;
+	const char *configname = GetConfigFileName();
 
-    iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
-    iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
-    iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
-    iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", -1);
-    iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", -1);
-    iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", -1);
-    iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", -1);
+	if (fileExists(configname)) {
+		dict = iniparser_load((char*)configname);
+	}
 
-    iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", -1);
-    iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", -1);
-    iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", -1);
-    iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", -1);
-    iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", -1);
-    iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", -1);
-    iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", -1);
-    iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", -1);
-    iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", -1);
-    iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", -1);
+	if (dict == NULL) {
+		dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
+	}
 
-    iniparser_freedict(dict);
-    
-    strcpy(iniLocale, "en"); // FIXME FIXME FIXME !
-    
-    return true;
+	if (dict == NULL) {
+		fprintf(stderr, "Fatal error: cannot read configuration file.\n"
+			"Please reinstall Signus.\n");
+		return FALSE;
+	}
+
+	//iniResolution = iniparser_getint(dict, "video:resolution", -1);
+	iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
+
+	iniBrightCorr = iniparser_getint(dict, "video:brightness", -1);
+	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
+	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
+
+	iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
+	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
+	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
+	iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", -1);
+	iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", -1);
+	iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", -1);
+	iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", -1);
+
+	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", -1);
+	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", -1);
+	iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", -1);
+	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", -1);
+	iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", -1);
+	iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", -1);
+	iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", -1);
+	iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", -1);
+	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", -1);
+	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", -1);
+
+	iniparser_freedict(dict);
+
+	// FIXME -- delete iniLanguage, only used to decide whether to use
+	// subtitles in (missing) animations
+	strcpy(iniLanguage, "e");
+	detect_language();
+
+	return true;
 }
 
 
@@ -229,7 +289,7 @@ void ApplyINI()
 
 
 
-TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF;
+TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF, *AnimsDF;
 
 TFont *NormalFont;
 TFont *HugeFont;
@@ -256,7 +316,7 @@ SDL_Color PaletteSDL[256];
 
 int RollDice()
 {
-    double r = double(rand ()) / RAND_MAX;
+    double r = frand();
     if (r == 0) {
         r = 1.0 / RAND_MAX;
     }
@@ -269,16 +329,20 @@ int RollDice()
 
 // Zkontroluje pritomnost souboru:
 
-int CheckFile(const char *name)
-{
-    FILE *f = fopensafe(name, "rb");
-    
-    if (f == NULL) {
-        fprintf(stderr, "Cannot find data file '%s'!\n", name);
-        return FALSE;
-    }
-    fclose(f);
-    return TRUE;
+int test_file_exists(const char *name) {
+	File tmp;
+
+	multipath_fopen(tmp, name, File::READ);
+	return tmp.isOpen();
+}
+
+int CheckFile(const char *name) {
+	if (!test_file_exists(name)) {
+		fprintf(stderr, "Cannot find data file '%s'!\n", name);
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 int CheckFiles()
@@ -299,73 +363,92 @@ int DoMemoryCheck()
 
 
 
-int InitGlobal()
-{
+int InitGlobal() {
 #ifdef DEBUG
-    dbgOutput = fopen("debug.nfo", "wt");
-    {   
-        TDPMIInfo i;
-        
-        dpmiinfo(&i);
-        fprintf(dbgOutput, "DPMI %i.%i\nVirtual memory: %i\n",
-                i.VersionMajor, i.VersionMinor, i.Flags & VMM_Present);
-    }
-    fprintf(dbgOutput, 
-            "Free memory (on start): %ikB\n",   GetFreeMem() / 1024);
+	dbgOutput = fopen("debug.nfo", "wt");
+
+	{
+		TDPMIInfo i;
+
+		dpmiinfo(&i);
+		fprintf(dbgOutput, "DPMI %i.%i\nVirtual memory: %i\n",
+			i.VersionMajor, i.VersionMinor, i.Flags & VMM_Present);
+	}
+
+	fprintf(dbgOutput, "Free memory (on start): %ikB\n", GetFreeMem()/1024);
 #endif
-   
-    if (!LoadINI()) return FALSE;
 
-    if (!CheckFiles()) return FALSE;
-    if (!DoMemoryCheck()) return FALSE;
+	if (!LoadINI()) {
+		return FALSE;
+	}
 
-    TextsDF = new TDataFile("texts.dat", dfOpenRead);
+	if (!CheckFiles()) {
+		return FALSE;
+	}
 
-    GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
-    GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
+	if (!DoMemoryCheck()) {
+		return FALSE;
+	}
 
-    char fontfile[1024];
-    char fontfileTiny[1024];
-    snprintf(fontfile, 1024, "%s/nolang/FreeSans.ttf", getSignusDataDir());
-    snprintf(fontfileTiny, 1024, "%s/nolang/nimbus_sans.pfb", getSignusDataDir());
-    TTF_Init();
-    NormalFont = TTF_OpenFont(fontfile, 12);
-    TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
-    HugeFont = TTF_OpenFont(fontfile, 20);
-    TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
-    TinyFont = TTF_OpenFont(fontfileTiny, 10);
-    TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
-    
-    if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) return 0;
-    
-    MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
-    lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
-    {
-        char bu[20];
-        sprintf(bu, "%imseg%%i", iniResolution - 0x100);
-        LoadArray(MessageFrames, 3, GraphicsDF, bu);
-    }
-    TimerWatchBkg = GraphicsDF->get("timerbkg");
-    TimerWatchBuf = memalloc(50*14);
-    ProgressBuf = (byte*) memalloc(PROGRESS_SX * PROGRESS_SY);
-    
-    {
-        void *p;
-        p = (byte*)GraphicsDF->get("paletted");
-        memcpy(DarkingTable, p, 256);
-        memfree(p);
-        p = (byte*)GraphicsDF->get("paletteg");
-        memcpy(GrayingTable, p, 256);
-        memfree(p);
-    }
+	TextsDF = new TDataFile("texts.dat", dfOpenRead);
 
-    LoadArray((void**)SigText, TXT_COUNT, TextsDF, "txt%i");    
-    LoadArray((void**)MsgText, MSG_COUNT, TextsDF, "msg%i");    
-    
+	GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
+	GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
+
+	if (test_file_exists("anims.dat")) {
+		AnimsDF = new TDataFile("anims.dat", dfOpenRead);
+	} else if (test_file_exists("ANIMS.DAT")) {
+		AnimsDF = new TDataFile("ANIMS.DAT", dfOpenRead);
+	}
+
+	char fontfile[PATH_MAX];
+	char fontfileTiny[PATH_MAX];
+	snprintf(fontfile, PATH_MAX, "%s/nolang/FreeSans.ttf",
+		getSignusDataDir());
+	snprintf(fontfileTiny, PATH_MAX, "%s/nolang/nimbus_sans.pfb",
+		getSignusDataDir());
+	TTF_Init();
+	NormalFont = TTF_OpenFont(fontfile, 12);
+	TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
+	HugeFont = TTF_OpenFont(fontfile, 20);
+	TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
+	TinyFont = TTF_OpenFont(fontfileTiny, 10);
+	TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
+
+	if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) {
+		return 0;
+	}
+
+	MessageBuf = memalloc(MSGBUF_SX * MSGBUF_SY);
+	lockmem(MessageBuf, MSGBUF_SX * MSGBUF_SY);
+
+	{
+		char bu[20];
+		sprintf(bu, "%imseg%%i", iniResolution - 0x100);
+		LoadArray(MessageFrames, 3, GraphicsDF, bu);
+	}
+
+	TimerWatchBkg = GraphicsDF->get("timerbkg");
+	TimerWatchBuf = memalloc(50*14);
+	ProgressBuf = (byte*) memalloc(PROGRESS_SX * PROGRESS_SY);
+
+	{
+		void *p;
+		p = (byte*)GraphicsDF->get("paletted");
+		memcpy(DarkingTable, p, 256);
+		memfree(p);
+		p = (byte*)GraphicsDF->get("paletteg");
+		memcpy(GrayingTable, p, 256);
+		memfree(p);
+	}
+
+	LoadArray((void**)SigText, TXT_COUNT, TextsDF, "txt%i");
+	LoadArray((void**)MsgText, MSG_COUNT, TextsDF, "msg%i");
+
 #ifdef DEBUG
-    //memset(MessageFrames[2], 0, MSGBUF_SX * MSGBUF_SY);
+	//memset(MessageFrames[2], 0, MSGBUF_SX * MSGBUF_SY);
 #endif
-    return 1;
+	return 1;
 }
 
 
@@ -459,14 +542,16 @@ const char *getSignusConfigDir()
     const char *home = getenv("HOME");
     if (!home) home = ".";
 
-    static char inidir[1024] = "";
+    static char inidir[PATH_MAX] = "";
     
     if (*inidir == 0)
     {
         const char *home = getenv("HOME");
         if (!home) home = ".";
-        strncpy(inidir, home, 1024);
-        strncat(inidir, "/.signus", 1024);
+        strncpy(inidir, home, PATH_MAX);
+	inidir[PATH_MAX-1] = '\0';
+        strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
+	inidir[PATH_MAX-1] = '\0';
         
         if (!dirExists(inidir))
         {
@@ -477,39 +562,37 @@ const char *getSignusConfigDir()
     return inidir;
 }
 
+void multipath_fopen(File &f, const char *name, unsigned mode) {
+	char *tmp, buf[PATH_MAX + 1] = {0};
 
-FILE *fopensafe(const char *name, const char *mode)
-{
-    FILE *f = NULL;
-    char nm[1024];
+	f.close();
 
-    if (getenv("HOME"))
-    {
-        snprintf(nm, 1024, "%s/.signus/%s", getenv("HOME"), name);
-        f = fopen(nm, mode);
-    }
+	tmp = getenv("HOME");
 
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/nolang/%s", getSignusDataDir(), name);
-        f = fopen(nm, mode);
-    }
-    
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/%s/%s", getSignusDataDir(), iniLocale, name);
-        f = fopen(nm, mode);
-    }
-    
-    if (!f)
-    {
-        snprintf(nm, 1024, "%s/default/%s", getSignusDataDir(), name);
-        f = fopen(nm, mode);
-    }
+	if (tmp) {
+		snprintf(buf, PATH_MAX, "%s/.signus/%s", getenv("HOME"), name);
 
-    return f;
+		if (f.open(buf, mode)) {
+			return;
+		}
+	}
+
+	snprintf(buf, PATH_MAX, "%s/nolang/%s", getSignusDataDir(), name);
+
+	if (f.open(buf, mode)) {
+		return;
+	}
+
+	snprintf(buf, PATH_MAX, "%s/%s/%s", getSignusDataDir(), iniLocale,
+		name);
+
+	if (f.open(buf, mode)) {
+		return;
+	}
+
+	snprintf(buf, PATH_MAX, "%s/default/%s", getSignusDataDir(), name);
+	f.open(buf, mode);
 }
-
 
 bool fileExists(const char *name)
 {
@@ -632,24 +715,27 @@ void ProgressSet(int value)
 void *MessageBuf;
 
 
-void Message(const char *msg)
-{
-    if (*msg == 0) {
-        memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);
-        PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-    }
-    else {
-        memset(MessageBuf, clrWhite, MSGBUF_SX * MSGBUF_SY);
-        PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-        SDL_Delay(50);
+void Message(const char *msg) {
+	if (*msg == 0) {
+		memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);
+		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
+			MSGBUF_SY);
+	} else {
+		memset(MessageBuf, clrWhite, MSGBUF_SX * MSGBUF_SY);
+		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
+			MSGBUF_SY);
+		SDL_Delay(50);
 
-        for (int i = 0; i < 3; i++) {
-            memcpy(MessageBuf, MessageFrames[i], MSGBUF_SX * MSGBUF_SY);
-            PutStr(MessageBuf, MSGBUF_SX, 2, 1, msg, NormalFont, clrWhite, clrBlack);
-            PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX, MSGBUF_SY);
-            SDL_Delay(50);
-        }
-    }
+		for (int i = 0; i < 3; i++) {
+			memcpy(MessageBuf, MessageFrames[i],
+				MSGBUF_SX * MSGBUF_SY);
+			PutStr(MessageBuf, MSGBUF_SX, MSGBUF_SY, 2, 1, msg,
+				NormalFont, clrWhite, clrBlack);
+			PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf,
+				MSGBUF_SX, MSGBUF_SY);
+			SDL_Delay(50);
+		}
+	}
 }
 
 
@@ -677,27 +763,29 @@ void Message(int msg)
 
 void *MsgBoxBuf = NULL;
 
-void MsgBox(char *str)
-{
-    if (str == NULL) {
-        if (MsgBoxBuf == NULL) return;
-        PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX, MSGBOX_SY);
-        memfree(MsgBoxBuf);
-        MsgBoxBuf = NULL;
-    }
-    else {
-        void *dummy;
-    
-        MsgBoxBuf = memalloc(MSGBOX_SX * MSGBOX_SY);
-        GetBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX, MSGBOX_SY);
-        
-        dummy = GraphicsDF->get("msgbox");
-        PutStr(dummy, MSGBOX_SX,
-               (MSGBOX_SX - GetStrWidth(str, HugeFont)) / 2, (MSGBOX_SY - GetStrHeight(str, HugeFont)) / 2,
-               str, HugeFont, clrWhite, clrBlack);
-        PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, dummy, MSGBOX_SX, MSGBOX_SY);   
-        memfree(dummy);
-    }
+void MsgBox(char *str) {
+	if (str == NULL) {
+		if (MsgBoxBuf == NULL) return;
+		PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX,
+			MSGBOX_SY);
+		memfree(MsgBoxBuf);
+		MsgBoxBuf = NULL;
+	} else {
+		void *dummy;
+
+		MsgBoxBuf = memalloc(MSGBOX_SX * MSGBOX_SY);
+		GetBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, MsgBoxBuf, MSGBOX_SX,
+			MSGBOX_SY);
+
+		dummy = GraphicsDF->get("msgbox");
+		PutStr(dummy, MSGBOX_SX, MSGBOX_SY,
+		       (MSGBOX_SX - GetStrWidth(str, HugeFont)) / 2,
+		       (MSGBOX_SY - GetStrHeight(str, HugeFont)) / 2,
+		       str, HugeFont, clrWhite, clrBlack);
+		PutBitmap32(MSGBOX_X_POS, MSGBOX_Y_POS, dummy, MSGBOX_SX,
+			MSGBOX_SY);
+		memfree(dummy);
+	}
 }
 
 
@@ -734,6 +822,7 @@ void StartLoading(char *picname)
 
     ptr = GraphicsI18nDF->get("load");
     PutBitmap32(RES_X/2-240, RES_Y-80, ptr, 400, 50);
+    memfree(ptr);
     LoadPhase = 0;
     UpdateLoading();
 }
@@ -770,19 +859,18 @@ void DoneLoading()
 
 ///////////////////////////// ukazatel casu //////////////////////////////
 
-static void DisplayWatch(int x, int y, int value)
-{
-    int h, m, s;
-    char b[9];
-    
-    s = value % 60; value /= 60;
-    m = value % 60; value /= 60;
-    h = value % 24;
-    sprintf(b, "%02i:%02i:%02i", h, m, s);
-    
-    memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
-    PutStr(TimerWatchBuf, 50, 2, 3, b, TinyFont, clrWhite, clrBlack);
-    PutBitmap(x, y, TimerWatchBuf, 50, 14);
+static void DisplayWatch(int x, int y, int value) {
+	int h, m, s;
+	char b[16];
+
+	s = value % 60; value /= 60;
+	m = value % 60; value /= 60;
+	h = value % 24;
+	sprintf(b, "%02i:%02i:%02i", h, m, s);
+
+	memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
+	PutStr(TimerWatchBuf, 50, 14, 2, 3, b, TinyFont, clrWhite, clrBlack);
+	PutBitmap(x, y, TimerWatchBuf, 50, 14);
 }
 
 
@@ -790,15 +878,14 @@ static void DisplayWatch(int x, int y, int value)
 
 extern TPoint SelPos;
 
-static void DisplayWatchField(int x, int y)
-{
-    char b[9];
-    
-    sprintf(b, "%03i:%03i", SelPos.x, SelPos.y);
-    
-    memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
-    PutStr(TimerWatchBuf, 50, 2, 3, b, TinyFont, clrWhite, clrBlack);
-    PutBitmap(x, y, TimerWatchBuf, 50, 14);
+static void DisplayWatchField(int x, int y) {
+	char b[9];
+
+	sprintf(b, "%03i:%03i", SelPos.x, SelPos.y);
+
+	memcpy(TimerWatchBuf, TimerWatchBkg, 50*14);
+	PutStr(TimerWatchBuf, 50, 14, 2, 3, b, TinyFont, clrWhite, clrBlack);
+	PutBitmap(x, y, TimerWatchBuf, 50, 14);
 }
 
 #endif
@@ -866,8 +953,9 @@ TPoint CartezianSnail (int i)
     return pos;
 }
 
-
-
+double frand(void) {
+	return double(rand()) / RAND_MAX;
+}
 
 
 #ifdef DEBUG
