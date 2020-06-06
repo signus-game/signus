@@ -45,9 +45,6 @@ Vyber v hlavnim menu hry
 static MIDASsample MenuSnd, FlashSnd;
 
 
-extern int SwitchDisplayMode(int mode);
-
-
 static void DrawMN(byte *p1, byte *p2, void *bg, int sel)
 {
     PutBitmap(0, 0, bg, 800, 140);
@@ -60,33 +57,40 @@ static void DrawMN(byte *p1, byte *p2, void *bg, int sel)
 
 
 
-static int FlashPos = 320;
-static int Flash1st = FALSE;
+static void Flash(unsigned x, unsigned y) {
+	File animfile;
+	unsigned width, height, timer, curtime;
+	TEvent e;
 
-#if 0 // FIXME
-static void DrawFlash(TMutationHeader *Mut, void *Buffer, int FromY, int ToY)
-{
-    if (Flash1st) { PlaySample(FlashSnd, 8, 32, 128); Flash1st = FALSE; }
-    PutBitmap(0, FlashPos, Buffer, Mut->ResolutionX, Mut->ResolutionY);
-}
-#endif
+	// FIXME: The menu now uses different palette than the flash animation
+	return;
 
+	if (!open_anim_file(animfile, "flash")) {
+		return;
+	}
 
-static void Flash()
-{
-#if 0               // FIXME
-    FILE *animf;
-    TEvent e;
+	DoneTimer();
+	VVFStream anim(&animfile);
+	width = anim.video_width();
+	height = anim.video_height();
+	PlaySample(FlashSnd, 8, 32, 128);
+	timer = SDL_GetTicks();
 
-    VVF_DrawFrame = DrawFlash;
-    animf = GetAnimFile("flash");
-    do {GetEvent(&e);} while (e.What != evNothing);
-    DoneTimer();
-    PlayVVF(animf);
-    InitTimer();
-    do {GetEvent(&e);} while (e.What != evNothing);
-    fclose(animf);
-#endif
+	while (anim.next_frame()) {
+		PutBitmap(x, y, anim.videobuf(), width, height);
+		timer += anim.frame_time();
+		curtime = SDL_GetTicks();
+
+		if (timer > curtime) {
+			SDL_Delay(timer - curtime);
+		}
+	}
+
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing);
+
+	InitTimer();
 }
 
 
@@ -113,9 +117,7 @@ static int ProcessMenu(const char *mask1, const char *mask2)
             }
         }
         if (e.What == evMouseDown) {
-            FlashPos = 130 + 180 * sel;
-            Flash1st = TRUE;
-            Flash();
+            Flash(80, 250 + 77 * sel);
             break;
         }
         if ((e.What == evKeyDown) && (e.Key.KeyCode == kbEsc)) {sel = 3; break;}
@@ -135,6 +137,7 @@ extern char ActualDifficulty;
 int DoMainMenu()
 {
     int rtval = -1;
+    //char *pa = (char*) GraphicsDF->get("menupal");
     char *pa = (char*) GraphicsDF->get("palette");
 
     PlayMusic("solution.s3m");
