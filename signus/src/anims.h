@@ -45,6 +45,7 @@ private:
 
 protected:
 	unsigned init_block(void);
+	unsigned decode_palette(SeekableReadStream &stream);
 	unsigned decode_raw(SeekableReadStream &stream);
 	unsigned decode_rle(SeekableReadStream &stream);
 	unsigned decode_delta(SeekableReadStream &stream);

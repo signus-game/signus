@@ -388,6 +388,42 @@ unsigned VVFStream::init_block(void) {
 	return 1;
 }
 
+// Frame type 0x4
+unsigned VVFStream::decode_palette(SeekableReadStream &stream) {
+	unsigned i, packets, pos, size;
+
+	packets = stream.readUint16LE();
+
+	for (pos = 0, i = 0; i < packets; i++) {
+		pos += 3 * (unsigned)stream.readUint8();
+		size = 3 * (unsigned)stream.readUint8();
+
+		if (stream.eos()) {
+			fprintf(stderr, "decode_palette(): Premature end of video chunk\n");
+			return 0;
+
+		}
+
+		if (!size) {
+			size = 768;
+		}
+
+		if (pos + size > 768) {
+			fprintf(stderr, "decode_palette(): Buffer overflow\n");
+			return 0;
+		}
+
+		if (stream.read(_palette + pos, size) != size) {
+			fprintf(stderr, "decode_palette(): Read error\n");
+			return 0;
+		}
+
+		pos += size;
+	}
+
+	return 1;
+}
+
 // Frame type 0x10
 unsigned VVFStream::decode_raw(SeekableReadStream &stream) {
 	unsigned size;
@@ -448,38 +484,52 @@ unsigned VVFStream::decode_rle(SeekableReadStream &stream) {
 
 // Frame type 0x7
 unsigned VVFStream::decode_delta(SeekableReadStream &stream) {
-	unsigned offset, pos, x, y = 0, skiplines = _height;
-	int i, size;
+	unsigned opcode, offset, pos, x, y, line, delta_height;
+	int i, j, size;
 	uint8_t pix1, pix2;
 
-	skiplines -= stream.readUint16LE();
-	size = stream.readSint16LE();
+	delta_height = stream.readUint16LE();
 
-	if (size < 0) {
-		y = -size - 1;
-	}
-
-	for (; y < _height; y++) {
+	for (y = 0, line = 0; line < delta_height;) {
 		x = 0;
+		opcode = stream.readUint16LE();
 
-		while (1) {
+		if (stream.eos()) {
+			fprintf(stderr, "decode_delta(): Premature end of video chunk 1\n");
+			return 0;
+		}
+
+		switch (opcode >> 14) {
+		case 3:	// Skip (-opcode) lines
+			y += 0x10000 - opcode;
+			continue;
+
+		case 2:	// change last pixel on current line
+			line++;
+			y++;
+			_videobuf[y * _width - 1] = opcode & 0xff;
+			continue;
+
+		case 0:	// regular delta line, decoded below
+			break;
+
+		default:
+			fprintf(stderr, "decode_delta(): Invalid opcode %x\n",
+				opcode);
+			return 0;
+		}
+
+		if (y >= _height) {
+			fprintf(stderr, "decode_delta(): Video height overflow\n");
+			return 0;
+		}
+
+		for (i = 0; i < (int)opcode; i++) {
 			offset = stream.readUint8();
 			size = stream.readSint8();
 
-			if (stream.eos() || !size) {
-				break;
-			}
-
-			if (size == -1 && skiplines >= 256 - offset) {
-				offset = 256 - offset;
-				y += offset;
-				skiplines -= offset;
-				x = 0;
-				continue;
-			}
-
-			if (y >= _height) {
-				fprintf(stderr, "decode_delta(): Video height overflow\n");
+			if (stream.eos()) {
+				fprintf(stderr, "decode_delta(): Premature end of video chunk 2\n");
 				return 0;
 			}
 
@@ -498,14 +548,22 @@ unsigned VVFStream::decode_delta(SeekableReadStream &stream) {
 				pix1 = stream.readUint8();
 				pix2 = stream.readUint8();
 
-				for (i = 0; i < size; i++) {
+				for (j = 0; j < size; j++) {
 					_videobuf[pos++] = pix1;
 					_videobuf[pos++] = pix2;
 				}
 			}
 
+			if (stream.eos()) {
+				fprintf(stderr, "decode_delta(): Premature end of video chunk 3\n");
+				return 0;
+			}
+
 			x += 2 * size;
 		}
+
+		line++;
+		y++;
 	}
 
 	return 1;
@@ -538,13 +596,10 @@ unsigned VVFStream::decode_video(SeekableReadStream &stream) {
 
 		switch (type) {
 		case 0x4:
-			if (size > 768 + 10) {
-				fprintf(stderr, "decode_video(): Palette too big\n");
+			if (!decode_palette(stream)) {
 				return 0;
 			}
 
-			stream.readUint32LE();
-			stream.read(_palette, size - 10);
 			palchange = 1;
 			break;
 
