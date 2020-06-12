@@ -6088,11 +6088,11 @@ gra_DATA = graphics-common.dat
 graphics-common.dat: scr_rgb.tab pal_rgb.tab $(bitmaps_src) $(palette_src) \
 	$(sprites_src) $(sprites_deps) $(units_src) $(units_deps) $(tiles_src)
 	rm -f $@
-	$(MAKEDAT) $@ scr_rgb.tab pal_rgb.tab $(palette_src)
-	$(MAKEDAT) $@ /mark $(bitmaps_src)
-	$(MAKEDAT) $@ /mark $(tiles_src)
-	$(MAKEDAT) $@ /mark $(sprites_src)
-	$(MAKEDAT) $@ /mark $(units_src)
+	$(MAKEDAT) $@ scr_rgb.tab pal_rgb.tab $(addprefix $(srcdir)/,$(palette_src))
+	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(bitmaps_src))
+	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(tiles_src))
+	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(sprites_src))
+	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(units_src))
 
 scr_rgb.tab: $(srcdir)/scrpal.col
 	$(MK_RGB2PAL) $< $@
