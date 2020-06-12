@@ -21,7 +21,7 @@
 
 // Rozhrani mezi Signusem a MikModem - zvuky a hudba
 
-#include <malloc.h>
+#include <stdlib.h>
 #include <math.h>
 #include "global.h"
 #include "sound.h"

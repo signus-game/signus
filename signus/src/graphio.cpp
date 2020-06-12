@@ -121,10 +121,10 @@ int InitVideo(int mode)
 
     char buf[512];
     sprintf(buf, "SDL initialization failed: %s\n", SDL_GetError());
-#ifdef __unix__
-    fprintf(stderr, buf);
-#else
+#ifdef _WIN32
     MessageBox(hWindow, buf, "ERROR", MB_OK | MB_ICONERROR);
+#else
+    fprintf(stderr, buf);
 #endif
     return FALSE;
 }
