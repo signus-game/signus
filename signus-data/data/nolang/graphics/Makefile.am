@@ -6094,6 +6094,8 @@ graphics-common.dat: scr_rgb.tab pal_rgb.tab $(bitmaps_src) $(palette_src) \
 	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(sprites_src))
 	$(MAKEDAT) $@ /mark $(addprefix $(srcdir)/,$(units_src))
 
+.DELETE_ON_ERROR:
+
 scr_rgb.tab: $(srcdir)/scrpal.col
 	$(MK_RGB2PAL) $< $@
 
