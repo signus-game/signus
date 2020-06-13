@@ -1168,7 +1168,7 @@ void TUnit::GetFieldInfo(int x, int y, char *buf)
                     if (GetAircraftAt(x, y))
                         sprintf(buf, "%s - %s", GetAircraftAt(x, y)->GetName(), SigText[TXT_OUT_OF_WPNRNG]);
                     else
-                        sprintf(buf, SigText[TXT_OUT_OF_WPNRNG]);
+                        strcpy(buf, SigText[TXT_OUT_OF_WPNRNG]);
                 }
                 else if (GetAircraftAt(x, y) != NULL) {
                     sprintf(b, SigText[TXT_TELL_STATE],
@@ -1181,8 +1181,8 @@ void TUnit::GetFieldInfo(int x, int y, char *buf)
                 if ((ttm = TimeToMove(x, y)) >= 0)
                     sprintf(buf, SigText[TXT_TELL_TIME], TimeUnits-ttm);
                 else {
-                    if (ttm == -1) sprintf(buf, SigText[TXT_OUT_OF_RANGE]);
-                    else if (ttm == -2) sprintf(buf, SigText[TXT_NO_ACCESS]);
+                    if (ttm == -1) strcpy(buf, SigText[TXT_OUT_OF_RANGE]);
+                    else if (ttm == -2) strcpy(buf, SigText[TXT_NO_ACCESS]);
                 }
                 break;
     }

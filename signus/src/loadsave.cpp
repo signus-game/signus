@@ -24,6 +24,7 @@
 // Tento modul vytvari dialogy pro load/save a provadi i vlastni akci
 //
 
+#include <limits.h>
 #include <time.h>
 #include <dirent.h>
 #include <sys/stat.h>
