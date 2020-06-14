@@ -1,3 +1,3 @@
 
-SUBDIRS = speech graphics texts
+SUBDIRS = anims speech graphics texts
 
