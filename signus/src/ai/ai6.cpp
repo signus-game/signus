@@ -142,9 +142,7 @@ void InvasionAnimation() {
 	DoneArtificialIntelligence();
 	DoneEngine();
 
-#if 0  // FIXME
 	PlayAnimation("mis6x");
-#endif
 
 	f.open("mission6.tmp", File::READ);
 
