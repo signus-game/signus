@@ -32,16 +32,19 @@ AC_OUTPUT([
          utils/Makefile
          data/Makefile
          data/nolang/Makefile
+         data/nolang/anims/Makefile
          data/nolang/missions/Makefile
          data/nolang/music/Makefile
          data/nolang/sfx/Makefile
          data/nolang/graphics/Makefile
          data/nolang/fonts/Makefile
          data/en/Makefile
+         data/en/anims/Makefile
          data/en/speech/Makefile
          data/en/graphics/Makefile
          data/en/texts/Makefile
          data/cs/Makefile
+         data/cs/anims/Makefile
          data/cs/speech/Makefile
          data/cs/graphics/Makefile
          data/cs/texts/Makefile
