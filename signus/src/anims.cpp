@@ -21,6 +21,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <climits>
 #include <cmath>
 #include <SDL_timer.h>
 #include "global.h"
@@ -897,23 +898,15 @@ void VVFStream::reset(void) {
 }
 
 int open_anim_file(File &file, const char *name) {
-	int num;
+	char fullname[PATH_MAX];
 
-	if (!AnimsDF) {
+	snprintf(fullname, PATH_MAX, "anims/%s.vvf", name);
+	multipath_fopen(file, fullname, File::READ);
+
+	if (!file.isOpen()) {
 		return 0;
 	}
 
-	num = AnimsDF->lookfor(name, 0, AnimsDF->getcount() - 1);
-
-	if (num < 0) {
-		return 0;
-	}
-
-	if (!file.open(AnimsDF->filename(), File::READ)) {
-		return 0;
-	}
-
-	file.seek(AnimsDF->getinfo(num)->offset, SEEK_SET);
 	return 1;
 }
 

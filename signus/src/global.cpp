@@ -289,7 +289,7 @@ void ApplyINI()
 
 
 
-TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF, *AnimsDF;
+TDataFile *GraphicsDF, *GraphicsI18nDF, *TextsDF;
 
 TFont *NormalFont;
 TFont *HugeFont;
@@ -394,12 +394,6 @@ int InitGlobal() {
 
 	GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
 	GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
-
-	if (test_file_exists("anims.dat")) {
-		AnimsDF = new TDataFile("anims.dat", dfOpenRead);
-	} else if (test_file_exists("ANIMS.DAT")) {
-		AnimsDF = new TDataFile("ANIMS.DAT", dfOpenRead);
-	}
 
 	char fontfile[PATH_MAX];
 	char fontfileTiny[PATH_MAX];
