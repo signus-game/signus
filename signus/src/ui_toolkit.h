@@ -138,6 +138,7 @@ public:
 	void *BkgBuf, *DrwBuf;
 	TView *Subviews[MAX_DLGVIEWS];
 	int SubviewsCnt;
+	char bgimage[32];
 
 	TDialog(int ax, int ay, int aw, int ah, const char *backimg);
 	void PaintRect(int ay, int ah);

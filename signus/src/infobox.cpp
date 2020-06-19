@@ -101,8 +101,6 @@ public:
 
 
 
-extern char DLG_backimg[9];
-
 TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) :
 	TDialog(ax, ay, 620, 460, "dlginfo") {
 	unit = u;

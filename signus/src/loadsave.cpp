@@ -465,46 +465,69 @@ void TLoadSaveDialog::GetStamp(int num) {
 
 
 
-int TLoadSaveDialog::SpecialHandle(TEvent *e, int Cmd)
-{
-    int Cur;
-    char buf[64];
-    
-    if (Cmd == cmDelete) {
-        Cur = m_List->Current;
-        if (Cur > 0) {
-            remove(SFiles[Cur]);
-            memfree(SFiles[Cur]);
-            memfree(SNames[Cur]);
-            SCount--;
-            if (Cur < SCount) {
-                memmove(SFiles + Cur, SFiles + (Cur+1), sizeof(char*) * (SCount - Cur));
-                memmove(SNames + Cur, SNames + (Cur+1), sizeof(char*) * (SCount - Cur));
-                memmove(STimes + Cur, STimes + (Cur+1), sizeof(time_t) * (SCount - Cur));
-            }
-            m_List->Cnt--;
-            if (m_List->Current >= m_List->Cnt) m_List->Current = m_List->Cnt - 1;
-            if ((m_List->ScrLn < m_List->Cnt) && (m_List->Delta + m_List->ScrLn > m_List->Cnt)) m_List->Delta--;
-            m_List->Draw(); m_List->Paint();
-        }
-        GetStamp(m_List->Current);    
-        m_Stamp->Draw();
-        m_Stamp->Paint();
-        return -1;
-    }
-    else if ((Cmd == cmOk) && IsSave) {
-        Cur = m_List->Current;
-        if (Cur == 0) strcpy(buf, "");
-        else strcpy(buf, SNames[Cur]);
-        if (InputBox("", buf, 63) == cmOk) {
-            memfree(SNames[Cur]);
-            SNames[Cur] = (char*) memalloc(strlen(buf) + 1);
-            strcpy(SNames[Cur], buf);           
-            return cmOk;
-        }
-        else return -1;
-    }
-    else return TDialog::SpecialHandle(e, Cmd);
+int TLoadSaveDialog::SpecialHandle(TEvent *e, int Cmd) {
+	int Cur;
+	char buf[64];
+
+	if (Cmd == cmDelete) {
+		Cur = m_List->Current;
+
+		if (Cur > 0) {
+			remove(SFiles[Cur]);
+			memfree(SFiles[Cur]);
+			memfree(SNames[Cur]);
+			SCount--;
+
+			if (Cur < SCount) {
+				memmove(SFiles + Cur, SFiles + (Cur+1),
+					sizeof(char*) * (SCount - Cur));
+				memmove(SNames + Cur, SNames + (Cur+1),
+					sizeof(char*) * (SCount - Cur));
+				memmove(STimes + Cur, STimes + (Cur+1),
+					sizeof(time_t) * (SCount - Cur));
+			}
+
+			m_List->Cnt--;
+
+			if (m_List->Current >= m_List->Cnt) {
+				m_List->Current = m_List->Cnt - 1;
+			}
+
+			if ((m_List->ScrLn < m_List->Cnt) &&
+				(m_List->Delta + m_List->ScrLn > m_List->Cnt)) {
+				m_List->Delta--;
+			}
+
+			m_List->Draw();
+			m_List->Paint();
+		}
+
+		GetStamp(m_List->Current);    
+		m_Stamp->Draw();
+		m_Stamp->Paint();
+		return -1;
+	} else if ((Cmd == cmOk) && IsSave) {
+		Cur = m_List->Current;
+
+		if (Cur == 0) {
+			strcpy(buf, "");
+		} else {
+			strcpy(buf, SNames[Cur]);
+		}
+
+		if (InputBox("", buf, 63) == cmOk) {
+		    memfree(SNames[Cur]);
+		    SNames[Cur] = (char*) memalloc(strlen(buf) + 1);
+		    strcpy(SNames[Cur], buf);           
+		    return cmOk;
+		}
+
+		Draw();
+		PaintRect(0, h);
+		return -1;
+	} else {
+		return TDialog::SpecialHandle(e, Cmd);
+	}
 }
 
 

@@ -444,13 +444,12 @@ TMenu::~TMenu()
 
 void *DrwViewBf;
 int DrwViewBfSzX, DrwViewBfSzY;
-char DLG_backimg[9];
     
 TDialog::TDialog(int ax, int ay, int aw, int ah, const char *backimg)
 {
     x = ax, y = ay;
     w = (aw / 4) * 4, h = (ah / 4) * 4;
-    strcpy(DLG_backimg, backimg);
+    strcpy(bgimage, backimg);
     SubviewsCnt = 0;
     BkgBuf = memalloc(w * h);
     if (backimg) DrwBuf = GraphicsDF->get(backimg);
@@ -469,12 +468,12 @@ void TDialog::PaintRect(int ay, int ah)
 
 
 void TDialog::Draw() {
-	if (DLG_backimg[0] != 0) {
+	if (*bgimage) {
 		if (DrwBuf) {
 			memfree(DrwBuf);
 		}
 
-		DrwBuf = GraphicsDF->get(DLG_backimg);
+		DrwBuf = GraphicsDF->get(bgimage);
 	}
 
 	DrwViewBf = DrwBuf;
