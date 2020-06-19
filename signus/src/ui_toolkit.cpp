@@ -1403,34 +1403,44 @@ void TSingleInput::Draw() {
 
 
 
-int TSingleInput::HandleEvent(TEvent *e)
-{
-    int i;
-    
-    if (e->What == evKeyDown) {
-        if (e->Key.KeyCode == kbBack) {
-            i = strlen(Buf);
-            if (i != 0) Buf[i-1] = 0;
-        }
-        else if (e->Key.KeyCode == kbEnter) {}
-        else if ((e->Key.CharCode >= 32) && ((int)strlen(Buf) < MaxChars)) {
-            PlaySample(TypeOnSnd2, 8, EffectsVolume, 128);
-            if (Modified) {
-                i = strlen(Buf);
-                Buf[i] = e->Key.CharCode;
-                Buf[i+1] = 0;
-            }
-            else {
-                Buf[0] = e->Key.CharCode;
-                Buf[1] = 0;
-            }   
-        }
-        if (GetStrWidth(Buf, NormalFont) > MaxPixels) Buf[strlen(Buf)-1] = 0;
-        Modified = TRUE;
-        Draw(); Paint();
-        return FALSE;
-    }
-    else return TView::HandleEvent(e);
+int TSingleInput::HandleEvent(TEvent *e) {
+	int i;
+
+	if (e->What == evKeyDown) {
+		if (e->Key.KeyCode == kbBack) {
+			i = strlen(Buf);
+			// 0x80-0xbff are UTF-8 sequence continuation bytes.
+			// Delete the whole character sequence.
+			while (i > 0 && (Buf[--i] & 0xc0) == 0x80) {
+				Buf[i] = 0;
+			}
+
+			Buf[i] = 0;
+		} else if (e->Key.KeyCode == kbEnter) {
+		} else if ((e->Key.CharCode >= 32) && ((int)strlen(Buf) < MaxChars)) {
+			PlaySample(TypeOnSnd2, 8, EffectsVolume, 128);
+
+			if (Modified) {
+				i = strlen(Buf);
+				Buf[i] = e->Key.CharCode;
+				Buf[i+1] = 0;
+			} else {
+				Buf[0] = e->Key.CharCode;
+				Buf[1] = 0;
+			}
+		}
+
+		if (GetStrWidth(Buf, NormalFont) > MaxPixels) {
+			Buf[strlen(Buf)-1] = 0;
+		}
+
+		Modified = TRUE;
+		Draw();
+		Paint();
+		return FALSE;
+	} else {
+		return TView::HandleEvent(e);
+	}
 }
 
 
