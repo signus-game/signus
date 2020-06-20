@@ -349,7 +349,7 @@ void TLoadSaveDialog::SearchFiles() {
 	char buf[PATH_MAX];
 	File f;
 
-	SCount = IsSave; /*0,1*/
+	SCount = IsSave ? 1 : 0;
 	for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
 
 	const char *dirname = getSavesDir();
@@ -374,7 +374,6 @@ void TLoadSaveDialog::SearchFiles() {
 
 			SNames[SCount] = strdup(hdr.Name);
 			SFiles[SCount] = strdup(buf);
-			// FIXME: just reverse sort order and skip placeholder?
 			STimes[SCount] = -hdr.Time;
 			SCount++;
 			f.close();
@@ -407,7 +406,7 @@ void TLoadSaveDialog::SearchFiles() {
 		}
 	}
 
-	SortFiles(0, SCount-1);
+	SortFiles(IsSave ? 1 : 0, SCount-1);
 }
 
 
