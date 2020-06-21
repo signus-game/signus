@@ -1132,35 +1132,37 @@ int *GetManufacturableUnits13 (int FactoryID)
 
 
 
-void DoneArtificialIntelligence13 ()
-{
-    // Likvidace existujicich tabulek
-    if (UnAnalyse != NULL) {
-        for (int i = 0; i < BADLIFE; i++) {
-            if (Units [i] == NULL) continue;
-            if (UnAnalyse [i].w0 != NULL) memfree (UnAnalyse [i].w0);
-            if (UnAnalyse [i].w1 != NULL) memfree (UnAnalyse [i].w1);
-            if (UnAnalyse [i].w2 != NULL) memfree (UnAnalyse [i].w2);
-            if (UnAnalyse [i].w3 != NULL) memfree (UnAnalyse [i].w3);
-        }
-        memfree (UnAnalyse);
-        UnAnalyse = NULL;
-    }
-    
-    if (Army1 != NULL) {delete Army1; Army1 = NULL; }
-    if (Army2 != NULL) {delete Army2; Army2 = NULL; }
-    if (Army3 != NULL) {delete Army3; Army3 = NULL; }
-    if (Army4 != NULL) {delete Army4; Army4 = NULL; }
-    if (Army5 != NULL) {delete Army5; Army5 = NULL; }
-    if (Army6 != NULL) {delete Army6; Army6 = NULL; }
-    if (Marine1 != NULL) {delete Marine1; Marine1 = NULL; }
-    if (Marine2 != NULL) {delete Marine2; Marine2 = NULL; }
-    if (Marine3 != NULL) {delete Marine3; Marine3 = NULL; }
-    if (Marine4 != NULL) {delete Marine4; Marine4 = NULL; }
-    if (AirArmy5 != NULL) {delete AirArmy5; AirArmy5 = NULL; }
-    if (AirArmy6 != NULL) {delete AirArmy6; AirArmy6 = NULL; }
-    if (AirArmy7 != NULL) {delete AirArmy7; AirArmy7 = NULL; }
-    if (Towers != NULL) {delete Towers; Towers = NULL; }
+void DoneArtificialIntelligence13() {
+	free_landscape_analysis();
+
+	delete Army1;
+	Army1 = NULL;
+	delete Army2;
+	Army2 = NULL;
+	delete Army3;
+	Army3 = NULL;
+	delete Army4;
+	Army4 = NULL;
+	delete Army5;
+	Army5 = NULL;
+	delete Army6;
+	Army6 = NULL;
+	delete Marine1;
+	Marine1 = NULL;
+	delete Marine2;
+	Marine2 = NULL;
+	delete Marine3;
+	Marine3 = NULL;
+	delete Marine4;
+	Marine4 = NULL;
+	delete AirArmy5;
+	AirArmy5 = NULL;
+	delete AirArmy6;
+	AirArmy6 = NULL;
+	delete AirArmy7;
+	AirArmy7 = NULL;
+	delete Towers;
+	Towers = NULL;
 }
 
     

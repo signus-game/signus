@@ -66,7 +66,8 @@ extern void AI_DeleteUnit (int ID);
 
 extern void AIError ();
 
-extern void AnalyseLandscape ();
+void AnalyseLandscape();
+void free_landscape_analysis();
 
 extern void IntegrityTest ();
 

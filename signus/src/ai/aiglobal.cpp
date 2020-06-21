@@ -100,168 +100,169 @@ void IntegrityTest () {
 }
 
 
-void InitArtificialIntelligence (int mission)
-{
-  
-  switch (mission) {
-  	case 1 :
-  		ArtificialIntelligence = ArtificialIntelligence1;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence1;
-  		InitAI = InitAI1;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence1;
-  		AssignResult = AssignResult1;
-  		GetManufacturableUnits = GetManufacturableUnits1;
-  		break;
-  	case 2 :
-  		ArtificialIntelligence = ArtificialIntelligence2;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence2;
-  		InitAI = InitAI2;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence2;
-  		AssignResult = AssignResult2;
-  		GetManufacturableUnits = GetManufacturableUnits2;
-  		break;
-  	case 3 :
-  		ArtificialIntelligence = ArtificialIntelligence3;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence3;
-  		InitAI = InitAI3;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence3;
-  		AssignResult = AssignResult3;
-  		GetManufacturableUnits = GetManufacturableUnits3;
-  		break;
-  	case 4 :
-  		ArtificialIntelligence = ArtificialIntelligence4;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence4;
-  		InitAI = InitAI4;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence4;
-  		AssignResult = AssignResult4;
-  		GetManufacturableUnits = GetManufacturableUnits4;
-  		break;
-  	case 5 :
-  		ArtificialIntelligence = ArtificialIntelligence5;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence5;
-  		InitAI = InitAI5;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence5;
-  		AssignResult = AssignResult5;
-  		GetManufacturableUnits = GetManufacturableUnits5;
-  		break;
-  	case 6 :
-  		ArtificialIntelligence = ArtificialIntelligence6;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence6;
-  		InitAI = InitAI6;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence6;
-  		AssignResult = AssignResult6;
-  		GetManufacturableUnits = GetManufacturableUnits6;
-  		break; 
-  	case 7 :
-  		ArtificialIntelligence = ArtificialIntelligence7;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence7;
-  		InitAI = InitAI7;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence7;
-  		AssignResult = AssignResult7;
-  		GetManufacturableUnits = GetManufacturableUnits7;
-  		break;
-  	case 8 :
-  		ArtificialIntelligence = ArtificialIntelligence8;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence8;
-  		InitAI = InitAI8;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence8;
-  		AssignResult = AssignResult8;
-  		GetManufacturableUnits = GetManufacturableUnits8;
-  		break;
-  	case 9 :
-  		ArtificialIntelligence = ArtificialIntelligence9;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence9;
-  		InitAI = InitAI9;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence9;
-  		AssignResult = AssignResult9;
-  		GetManufacturableUnits = GetManufacturableUnits9;
-  		break;
-  	case 10 :
-  		ArtificialIntelligence = ArtificialIntelligence10;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence10;
-  		InitAI = InitAI10;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence10;
-  		AssignResult = AssignResult10;
-  		GetManufacturableUnits = GetManufacturableUnits10;
-  		break; 
-  	case 11 :
-  		ArtificialIntelligence = ArtificialIntelligence11;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence11;
-  		InitAI = InitAI11;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence11;
-  		AssignResult = AssignResult11;
-  		GetManufacturableUnits = GetManufacturableUnits11;
-  		break;
-  	case 12 :
-  		ArtificialIntelligence = ArtificialIntelligence12;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence12;
-  		InitAI = InitAI12;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence12;
-  		AssignResult = AssignResult12;
-  		GetManufacturableUnits = GetManufacturableUnits12;
-  		break;
-  	case 13 :
-  		ArtificialIntelligence = ArtificialIntelligence13;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence13;
-  		InitAI = InitAI13;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence13;
-  		AssignResult = AssignResult13;
-  		GetManufacturableUnits = GetManufacturableUnits13;
-  		break;
-  	case 14 :
-  		ArtificialIntelligence = ArtificialIntelligence14;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence14;
-  		InitAI = InitAI14;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence14;
-  		AssignResult = AssignResult14;
-  		GetManufacturableUnits = GetManufacturableUnits14;
-  		break;
-  	case 15 :
-  		ArtificialIntelligence = ArtificialIntelligence15;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence15;
-  		InitAI = InitAI15;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence15;
-  		AssignResult = AssignResult15;
-  		GetManufacturableUnits = GetManufacturableUnits15;
-  		break;
-  	case 16 :
-  		ArtificialIntelligence = ArtificialIntelligence16;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence16;
-  		InitAI = InitAI16;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence16;
-  		AssignResult = AssignResult16;
-  		GetManufacturableUnits = GetManufacturableUnits16;
-  		break;
-  	case 17 :
-  		ArtificialIntelligence = ArtificialIntelligence17;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence17;
-  		InitAI = InitAI17;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence17;
-  		AssignResult = AssignResult17;
-  		GetManufacturableUnits = GetManufacturableUnits17;
-  		break;
-  	case 18 :
-  		ArtificialIntelligence = ArtificialIntelligence18;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence18;
-  		InitAI = InitAI18;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence18;
-  		AssignResult = AssignResult18;
-  		GetManufacturableUnits = GetManufacturableUnits18;
-  		break;
-  	case 19 :
-  		ArtificialIntelligence = ArtificialIntelligence19;
-  		SaveArtificialIntelligence = SaveArtificialIntelligence19;
-  		InitAI = InitAI19;
-  		DoneArtificialIntelligence = DoneArtificialIntelligence19;
-  		AssignResult = AssignResult19;
-  		GetManufacturableUnits = GetManufacturableUnits19;
-  		break;
-  		
-  }
-  
-	InitAI ();
-  ScrollTo((MapSizeX - VIEW_SIZE_X) / 2, (MapSizeY - VIEW_SIZE_Y) / 2);
-  SelectedUnit -> Center ();
+void InitArtificialIntelligence(int mission) {
+	if (DoneArtificialIntelligence) {
+		DoneArtificialIntelligence();
+	}
+
+	switch (mission) {
+	case 1:
+		ArtificialIntelligence = ArtificialIntelligence1;
+		SaveArtificialIntelligence = SaveArtificialIntelligence1;
+		InitAI = InitAI1;
+		DoneArtificialIntelligence = DoneArtificialIntelligence1;
+		AssignResult = AssignResult1;
+		GetManufacturableUnits = GetManufacturableUnits1;
+		break;
+	case 2:
+		ArtificialIntelligence = ArtificialIntelligence2;
+		SaveArtificialIntelligence = SaveArtificialIntelligence2;
+		InitAI = InitAI2;
+		DoneArtificialIntelligence = DoneArtificialIntelligence2;
+		AssignResult = AssignResult2;
+		GetManufacturableUnits = GetManufacturableUnits2;
+		break;
+	case 3:
+		ArtificialIntelligence = ArtificialIntelligence3;
+		SaveArtificialIntelligence = SaveArtificialIntelligence3;
+		InitAI = InitAI3;
+		DoneArtificialIntelligence = DoneArtificialIntelligence3;
+		AssignResult = AssignResult3;
+		GetManufacturableUnits = GetManufacturableUnits3;
+		break;
+	case 4:
+		ArtificialIntelligence = ArtificialIntelligence4;
+		SaveArtificialIntelligence = SaveArtificialIntelligence4;
+		InitAI = InitAI4;
+		DoneArtificialIntelligence = DoneArtificialIntelligence4;
+		AssignResult = AssignResult4;
+		GetManufacturableUnits = GetManufacturableUnits4;
+		break;
+	case 5:
+		ArtificialIntelligence = ArtificialIntelligence5;
+		SaveArtificialIntelligence = SaveArtificialIntelligence5;
+		InitAI = InitAI5;
+		DoneArtificialIntelligence = DoneArtificialIntelligence5;
+		AssignResult = AssignResult5;
+		GetManufacturableUnits = GetManufacturableUnits5;
+		break;
+	case 6:
+		ArtificialIntelligence = ArtificialIntelligence6;
+		SaveArtificialIntelligence = SaveArtificialIntelligence6;
+		InitAI = InitAI6;
+		DoneArtificialIntelligence = DoneArtificialIntelligence6;
+		AssignResult = AssignResult6;
+		GetManufacturableUnits = GetManufacturableUnits6;
+		break;
+	case 7:
+		ArtificialIntelligence = ArtificialIntelligence7;
+		SaveArtificialIntelligence = SaveArtificialIntelligence7;
+		InitAI = InitAI7;
+		DoneArtificialIntelligence = DoneArtificialIntelligence7;
+		AssignResult = AssignResult7;
+		GetManufacturableUnits = GetManufacturableUnits7;
+		break;
+	case 8:
+		ArtificialIntelligence = ArtificialIntelligence8;
+		SaveArtificialIntelligence = SaveArtificialIntelligence8;
+		InitAI = InitAI8;
+		DoneArtificialIntelligence = DoneArtificialIntelligence8;
+		AssignResult = AssignResult8;
+		GetManufacturableUnits = GetManufacturableUnits8;
+		break;
+	case 9:
+		ArtificialIntelligence = ArtificialIntelligence9;
+		SaveArtificialIntelligence = SaveArtificialIntelligence9;
+		InitAI = InitAI9;
+		DoneArtificialIntelligence = DoneArtificialIntelligence9;
+		AssignResult = AssignResult9;
+		GetManufacturableUnits = GetManufacturableUnits9;
+		break;
+	case 10:
+		ArtificialIntelligence = ArtificialIntelligence10;
+		SaveArtificialIntelligence = SaveArtificialIntelligence10;
+		InitAI = InitAI10;
+		DoneArtificialIntelligence = DoneArtificialIntelligence10;
+		AssignResult = AssignResult10;
+		GetManufacturableUnits = GetManufacturableUnits10;
+		break; 
+	case 11:
+		ArtificialIntelligence = ArtificialIntelligence11;
+		SaveArtificialIntelligence = SaveArtificialIntelligence11;
+		InitAI = InitAI11;
+		DoneArtificialIntelligence = DoneArtificialIntelligence11;
+		AssignResult = AssignResult11;
+		GetManufacturableUnits = GetManufacturableUnits11;
+		break;
+	case 12:
+		ArtificialIntelligence = ArtificialIntelligence12;
+		SaveArtificialIntelligence = SaveArtificialIntelligence12;
+		InitAI = InitAI12;
+		DoneArtificialIntelligence = DoneArtificialIntelligence12;
+		AssignResult = AssignResult12;
+		GetManufacturableUnits = GetManufacturableUnits12;
+		break;
+	case 13:
+		ArtificialIntelligence = ArtificialIntelligence13;
+		SaveArtificialIntelligence = SaveArtificialIntelligence13;
+		InitAI = InitAI13;
+		DoneArtificialIntelligence = DoneArtificialIntelligence13;
+		AssignResult = AssignResult13;
+		GetManufacturableUnits = GetManufacturableUnits13;
+		break;
+	case 14:
+		ArtificialIntelligence = ArtificialIntelligence14;
+		SaveArtificialIntelligence = SaveArtificialIntelligence14;
+		InitAI = InitAI14;
+		DoneArtificialIntelligence = DoneArtificialIntelligence14;
+		AssignResult = AssignResult14;
+		GetManufacturableUnits = GetManufacturableUnits14;
+		break;
+	case 15:
+		ArtificialIntelligence = ArtificialIntelligence15;
+		SaveArtificialIntelligence = SaveArtificialIntelligence15;
+		InitAI = InitAI15;
+		DoneArtificialIntelligence = DoneArtificialIntelligence15;
+		AssignResult = AssignResult15;
+		GetManufacturableUnits = GetManufacturableUnits15;
+		break;
+	case 16:
+		ArtificialIntelligence = ArtificialIntelligence16;
+		SaveArtificialIntelligence = SaveArtificialIntelligence16;
+		InitAI = InitAI16;
+		DoneArtificialIntelligence = DoneArtificialIntelligence16;
+		AssignResult = AssignResult16;
+		GetManufacturableUnits = GetManufacturableUnits16;
+		break;
+	case 17:
+		ArtificialIntelligence = ArtificialIntelligence17;
+		SaveArtificialIntelligence = SaveArtificialIntelligence17;
+		InitAI = InitAI17;
+		DoneArtificialIntelligence = DoneArtificialIntelligence17;
+		AssignResult = AssignResult17;
+		GetManufacturableUnits = GetManufacturableUnits17;
+		break;
+	case 18:
+		ArtificialIntelligence = ArtificialIntelligence18;
+		SaveArtificialIntelligence = SaveArtificialIntelligence18;
+		InitAI = InitAI18;
+		DoneArtificialIntelligence = DoneArtificialIntelligence18;
+		AssignResult = AssignResult18;
+		GetManufacturableUnits = GetManufacturableUnits18;
+		break;
+	case 19:
+		ArtificialIntelligence = ArtificialIntelligence19;
+		SaveArtificialIntelligence = SaveArtificialIntelligence19;
+		InitAI = InitAI19;
+		DoneArtificialIntelligence = DoneArtificialIntelligence19;
+		AssignResult = AssignResult19;
+		GetManufacturableUnits = GetManufacturableUnits19;
+		break;
+	}
+
+	InitAI();
+	ScrollTo((MapSizeX - VIEW_SIZE_X) / 2, (MapSizeY - VIEW_SIZE_Y) / 2);
+	SelectedUnit -> Center ();
 
 	UpdateLitMap(TRUE);
 	MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
@@ -467,7 +468,7 @@ void AnalyseLandscape ()
 	int mtu, ttm, tta;
 	TUnit *Unit;
 	int VisFactor;
-	
+
 	// Init ProgressBar
 	r = 0;
 	for (i = 0; i < BADLIFE; i++) if (Units [i] != NULL) r++;	
@@ -486,20 +487,11 @@ void AnalyseLandscape ()
 	}
 	
 */
-	
-	
+
+
 	// Likvidace existujicich tabulek
-	if (UnAnalyse != NULL) {
-		for (int i = 0; i < BADLIFE; i++) {
-			if (Units [i] == NULL) continue;
-			if (UnAnalyse [i].w0 != NULL) memfree (UnAnalyse [i].w0);
-			if (UnAnalyse [i].w1 != NULL) memfree (UnAnalyse [i].w1);
-			if (UnAnalyse [i].w2 != NULL) memfree (UnAnalyse [i].w2);
-			if (UnAnalyse [i].w3 != NULL) memfree (UnAnalyse [i].w3);
-		}
-		memfree (UnAnalyse);
-	}
-	
+	free_landscape_analysis();
+
 	// Alokace pole tabulek
 	UnAnalyse = (TUnAnalysePart *)memalloc (BADLIFE * sizeof (TUnAnalysePart));
 	
@@ -1229,6 +1221,21 @@ void AnalyseLandscape ()
 
 	ProgressNull ();	
 	Message ("");
+}
+
+void free_landscape_analysis(void) {
+	if (!UnAnalyse) {
+		return;
+	}
+
+	for (int i = 0; i < BADLIFE; i++) {
+		memfree(UnAnalyse[i].w0);
+		memfree(UnAnalyse[i].w1);
+		memfree(UnAnalyse[i].w2);
+		memfree(UnAnalyse[i].w3);
+	}
+
+	memfree (UnAnalyse);
 }
 
 void loadAttackedFields(ReadStream &stream, int format) {
