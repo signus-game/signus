@@ -76,7 +76,7 @@ int TabUnitsExperience[][10] = {
 
 
 // ceny jednotek:
-int TabUnitsCost[55] = {
+int TabUnitsCost[UNITS_COUNT] = {
 /*Nejednotka  */       1,
 /*PerseusAlfa */       100,
 /*PerseusBeta */       200,
@@ -131,11 +131,15 @@ int TabUnitsCost[55] = {
 /*unBase      */       1,
 /*unHeliport  */       1,
 /*unAirport   */       1,
-/*unWarehouse */       1
+/*unWarehouse */       1,
+/*unPowerplant */      1,
+/*unFactory   */       1,
+/*unRepairBay */       1,
+/*unDocks     */       1
 };
 
 // vyrobni casy jednotek:
-int TabUnitsProducTime[55] = {
+int TabUnitsProducTime[UNITS_COUNT] = {
 /*Nejednotka  */       0,
 /*PerseusAlfa */       1,
 /*PerseusBeta */       1,
@@ -190,7 +194,11 @@ int TabUnitsProducTime[55] = {
 /*unBase      */       1,
 /*unHeliport  */       1,
 /*unAirport   */       1,
-/*unWarehouse */       1
+/*unWarehouse */       1,
+/*unPowerplant */      1,
+/*unFactory   */       1,
+/*unRepairBay */       1,
+/*unDocks     */       1
 };
 
 
@@ -199,7 +207,7 @@ int TabUnitsProducTime[55] = {
 
 
 // Opatrnost jednotek
-double TabCareful[55] = {
+double TabCareful[UNITS_COUNT] = {
 /*Nejednotka  */       0,
 /*PerseusAlfa */       0.6,
 /*PerseusBeta */       0.8,
@@ -254,12 +262,16 @@ double TabCareful[55] = {
 /*unBase      */       0,
 /*unHeliport  */       0,
 /*unAirport   */       0,
-/*unWarehouse */       0
+/*unWarehouse */       0,
+/*unPowerplant */      0,
+/*unFactory   */       0,
+/*unRepairBay */       0,
+/*unDocks     */       0
 
 };
 
 // Nebezpecnost jednotek
-double TabDanger[55] = {
+double TabDanger[UNITS_COUNT] = {
 /*Nejednotka  */       0,
 /*PerseusAlfa */       0.8,
 /*PerseusBeta */       1.3,
@@ -314,7 +326,11 @@ double TabDanger[55] = {
 /*unBase      */       0.5,
 /*unHeliport  */       0.5,
 /*unAirport   */       0.5,
-/*unWarehouse */       0.5
+/*unWarehouse */       0.5,
+/*unPowerplant */      0.5,
+/*unFactory   */       0.5,
+/*unRepairBay */       0.5,
+/*unDocks     */       0.5
 
 };
 

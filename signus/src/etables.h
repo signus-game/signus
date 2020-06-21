@@ -26,6 +26,7 @@
 #define _ETABLES_H
 
 #include "system.h"
+#include "unit_id.h"
 
 
 
@@ -83,9 +84,9 @@ extern int TabUnitsExperience[][10];
 extern int TabUnitsCost[];
 extern int TabUnitsProducTime[];
 
-extern double TabCareful[55];
+extern double TabCareful[UNITS_COUNT];
 
-extern double TabDanger[55];
+extern double TabDanger[UNITS_COUNT];
 
 #endif
 
