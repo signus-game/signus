@@ -1,8 +1,10 @@
-#> Pagoda is a defence tower armed with a machine-gun gauge 138mm with a middle range. It is
- well armoured. Owing to the high resistance it can bear a considerable damage.
-#> The biggest weakness of this weapon is its short range, that makes it defenceless against the
- long-distance shooting weapons and it allows the mobile units to get away form its range.
-#>"! And millions of hearts will fly to You, oh Lord! And Thy gate will send out a heavenly army
- to save the white shine hidden in a sacred pagoda...." - part of a modern sutra of prophet Amhal.
+#> Pagoda is a defense turret armed with medium-range semi-automatic 138mm
+ gun. It is heavily armored which allows it to withstand significant damage.
+#> The biggest weakness of this turret is its limited range which makes it
+ defenseless against long-range weapons and allows highly mobile units to
+ escape from its fire.
+#> "...and millions of hearts shall soar to You, O Lord! And the celestial
+ legion shall ride out of thy gates to protect the white glow hidden in the
+ sacred pagoda..." - excerpt from prophet Amhal's modern sutra.
 #e
 #e

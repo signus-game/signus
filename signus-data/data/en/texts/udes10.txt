@@ -1,13 +1,14 @@
-#> Patriot is a light-weight mobile long-distance shooting gun using the explosive ammunition of
- the same gauge as the middle-weight tanks (Perseus Beta). It has limited armour-plates and no
- short-distance shooting weapons.
-#> This weapon is determined to shell the enemy units from the rear and therefore it is equipped
- with a long-distance shooting cannon placed on the chassis of Patriot 3K. However it has to pay
- with an unsatisfactory resistance for its mobility.
-#> Patriot is one of the few units of Signus, that is also used by the standard army (but they call it
- KH-12C). The best known advocate of the KHs is general Esencki (one of the originators of the
- idea of the Signus units), who was during the tactical training of Toricon able to hold the ford
- across the river Astra only with the aid of the second and fourth armoured regiment of the third
- division mostly made of the KHs against three tank divisions with general Westen in charge.
+#> Patriot is a light self-propelled howitzer using explosive ammunition
+ of the same caliber as medium tanks (Perseus Beta). It has limited armor and
+ no short-range weapons.
+#> This unit is designed for shelling enemy forces from behind the lines using
+ its long-range gun mounted on Patriot 3K chassis. However, the trade-off
+ for Patriot's mobility is its fragility.
+#> Patriot is one of the few Signus units also used by the regular army (under
+ the designation KH-12C). The most famous proponent of the KHs is general
+ Esencki (one of the founders of the Signus forces), who successfully defended
+ a ford across the Astra river during a Toricon military exercise using only
+ the second and fourth artillery regiment of the third division composed
+ mainly of KHs against three tank divisions commanded by general Westen.
 #e
 #e

@@ -1,13 +1,14 @@
-#> Mystic is a fight bomber constructed in virtue of the original Arconis technology. It is
- equipped with a launcher of air-air rockets and with a heavy-weight machine-gun. It is also
- equipped with a launcher of air-earth rockets.
-#> It is probably the most powerful air force ever. The pilots of Mystic relish it for its
- easy controllability and speed that exceeds even the Ikaroses. And that makes it a very
- dangerous antagonist in the air. It is also very effective for the fight against surface units.
- Its rockets are very dangerous and Mystic usually has enough time to get away from the
- range of enemy flak.
-#> Although this machine is not the first that has been developed in virtue of Aroconis
- technology, it is the first one that is considered to be an artefact generation machine
- because of its qualities.
+#> Mystic is a fight-bomber developed using ancient Arkonian technology. It is
+ armed with air-to-air missiles, air-to-ground missiles and a heavy machine
+ gun.
+#> It is possibly the most powerful combat aircraft ever. Pilots appreciate
+ Mystic for its speed and high maneuverability in which it outranks even the
+ Icarus fighters, making it an especially dangerous opponent in aerial
+ battles. It is also very effective in air-to-ground combat. Its missiles are
+ deadly and Mystic itself can quickly retreat out of range of enemy air
+ defense.
+#> Although this is not the first unit developed using ancient Arkonian
+ technology, it is the first one to be called an artefact generation design
+ due to its capabilities.
 #e
 #e

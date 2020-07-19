@@ -1,14 +1,15 @@
-#> Goliath is a heavy-weight mobile long range gun using highly explosive ammunition
- based on the artefact technology. Its undercarriage and gun are made from a special alloy
- to be able to bear up against high temperatures which occur during a shoot. The Goliath
- combat limitations are nearly the same as those of the heavy rocket launcher Hercules. They
- cannot be used in the first line because they must be protected by tanks and air-raid
- protections. A big advantage of Goliath, compared to its older colleague Hercules, is its
- ammunition magazine which allows fire of longer duration without any support of
- ammunition conveyors - Gnomes.
-#> " ... and therefore we would like to express our thanks to our scientists and
- technicians, who have reached through their hard work this outstanding outcome and who
- have created the machine which bounds the majesty of our predecessors on Arconis with
- the inventiveness of human intellect."
+#> Goliath is a heavy mobile long-range artillery unit using high-explosive
+ ammunition based on artefact technology. The chassis and gun are made of
+ special alloy in order withstand the extreme temperatures reached when firing.
+#> Goliath has almost the same combat limitations as the Hercules heavy rocket
+ launcher. It cannot be deployed in the front line and must be protected by
+ tanks and anti-aircraft weapons. Goliath's main advantage over its
+ predecessor Hercules is its ammo storage capacity which allows sustained
+ barrage even without support from Gnome munitions transporters.
+#> "...and so we would like to express our gratitude to our scientists and
+ engineers who have produced outstanding results through their hard work and
+ tenacity and created a machine which combines the majesty of our predecessors
+ on Arkonis with the ingenuity of human intellect." - excerpt from Ian
+ Zening's speech to scientists
 #e
 #e

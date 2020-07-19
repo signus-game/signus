@@ -1,11 +1,14 @@
-#> Uran is a conveyor of the war machines. It has standard armour plates and no weapons.
-#> This unit was originally developed from its lighter colleagues of Bastien type, that are used by the
- navy infantry units and it was supposed to work only as a transport vehicle in larger offensive
- actions. However with the development of heavy-weight long-distance shooting weapons such as
- Goliath or Hercules the unit needed to be able to transport these giants to their attack positions or
- to be able to bring them back from the position where they could be attacked by the enemy. So
- Bastien has transformed into Uran. This colossus is able to carry up to four heavy rocket-launchers - Hercules and up to twelve light-weight tanks Perseus Alfa.
-#> The statement of general Esencki: " Uran is unable to deal with bigger damage and that is why I
- recommend to use it for unit transport in the rear only."
+#> Uran is a transporter of combat vehicles. It has standard armor and no
+ armament.
+#> This unit was originally developed from its lighter Bastien-class
+ predecessor used by the marines and was intended only as an insertion
+ transporter for larger offensive operations. However, the development of
+ heavy artillery units such as Goliath and Hercules created the need for a
+ unit capable of delivering them to firing positions or evacuating them from
+ locations under threat by the enemy. Thus the Bastien was redesigned into
+ Uran. This behemoth can carry up to 4 Hercules heavy rocket launchers and up
+ to 12! Perseus Alpha light tanks.
+#> Note from general Esencki: "Uran cannot withstand heavy damage, therefore I
+ recommend using it for transport only behind the front lines."
 #e
 #e

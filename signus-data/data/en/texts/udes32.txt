@@ -1,11 +1,12 @@
-#> Viking is a destroyer. It is equipped with a mid-weight gun Ghecker, a light anti-
- aircraft gun and abyssal mines Aglovian.
-#> The engagement of these units in actions is supposed only in bigger formations with
- the support of heavy ships or cruisers. It appeared necessary to engage them in convoys as
- supporting ships for the aircraft carriers Lagoons, where they function as an antiaircraft
- flank. Another big advantage of these ships is their radar system which enables us to see the
- enemy submarines and mines.
-#> "Although Viking is rather weak as an individual, it is necessary for marine battles
- and sometimes could be very important." - the opinion of Admiral Gretzsky.
+#> Viking is a destroyer. It is armed with Ghecker medium gun, light
+ anti-aircraft gun and depth charges Aglovian.
+#> Deployment of these units is recommended only in larger fleets with support
+ from heavier battleships or cruisers. It has also proven necessary to deploy
+ them as convoy escort ships to provide air defense for Lagoon aircraft
+ carriers. Another major advantage of these ships is their radar system which
+ allows them to detect enemy submarines and mines.
+#> "Although Viking is rather weak on its own, it is a crucial support unit
+ and sometimes even plays a decisive role in naval battles." - comment from
+ vice admiral Gretzski.
 #e
 #e

@@ -1,11 +1,12 @@
-#> Mohycane is a standard war train. It is armed with a middle-class machine-gun AGON and an
- anti-aircraft machine-gun of a 38mm gauge. It is considerably well armoured and it has a high
- resistance.
-#> The biggest power of this unit is its versatility. It is fast, resistant and able to attack the surface
- targets same as the aircraft unions. It was constructed as a supporting unit to the first line. There it
- fearlessly equalizes to tanks. The only weakness of this train (same as of all other trains) is its
- mobility which is limited by the railway. The biggest enemies of this weapons are the miners that
- are able to paralyse whole unions of Mohycanes with only a couple of mines. Therefore we
- recommend to use these units together with Xenons.
+#> Mohican is a standard battle train. It is armed with AGON medium gun and
+ 38mm anti-aircraft machine gun. It has fairly strong armor with high
+ durability.
+#> The main advantage of this unit is its versatility. It is fast, tough, and
+ able to attack both ground and air targets. It was designed as a front-line
+ support unit more than equal to regular tanks. Its only weakness (which is
+ common to all trains) is its mobility restricted by railroad tracks. The bane
+ of these units are mine layers which can paralyze an entire army of Mohicans
+ with just a few mines. Therefore we recommend using these units in
+ combination with Xenons.
 #e
 #e

@@ -1,13 +1,13 @@
 #> Každé letiště sestává z radarové věže,
  hangárů a vzletové a přistávací dráhy.
  Radarová věž je zároveň i velícím centrem.
- Sídlí zde letištní důstojník, přímo podřízený
- kapitánovy a navigátoři, kteří pomocí
+ Sídlí zde letištní důstojník přímo podřízený
+ kapitánovi a navigátoři, kteří pomocí
  vysílačů posílají své informace
  bojovým strojům ve vzduchu. Avšak každá z
  těchto bází je plně automatická a může pracovat
  i bez lidského vedení (což se i nezřídka
- stává je-li letiště obsazeno).
+ stává, je-li letiště obsazeno).
  Hangáry jsou podobně jako radarové věže
  plně automatizovné a mohou pracovat i bez
  lidských pokynů. Každý z nich je vybaven
@@ -16,7 +16,7 @@
  Přistávací dráhy jednotek Signus mají
  ve výbavě automatický navigační systém,
  který zajištuje vysunutí podvozku a
- nájezd jednotky přesně na určenou dráhu
+ nájezd jednotky přesně na určenou dráhu,
  což umožňuje přistání několika strojů
  zároveň.
 #e

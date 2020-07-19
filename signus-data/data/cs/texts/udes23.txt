@@ -10,10 +10,10 @@
  vzdálenost 1,5 míle. Thor je
  velice ničivá zbraň avšak za svou sílu
  musel zaplatit pancéřováním, a tak není-li
- skryt je velice zranitelný.
+ skryt, je velice zranitelný.
 #> Zpráva z velitelství: "...a proto
  rozkazujeme najít a potrestat vandaly,
  kteří na raketovou věž Thor napsali
- Pštros".
+ Pštros."
 #e
 #e

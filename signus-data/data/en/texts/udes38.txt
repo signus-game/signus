@@ -1,14 +1,14 @@
-#> Ikaros is an interceptor. It is equipped with the launcher of air-air rockets Omega and
- with a short-distance shooting machine-gun.
-#> Asterkhel corporation equips these units with a jet propulsion.
-#> These machines are often used in the air duels where, thanks to their speed and
- relatively good striking power, they often defeat even better armoured and equipped
- antagonists. The big positive of these machines is also their relatively long range of flight,
- that enables to send them to the rear of the enemy where they are protecting our bombers.
- The disadvantage of Ikaroses is their low resistance, due to which they are not able to bear
- larger number of shots.
-#> "Asterkhel corporation has gained the right to produce own interceptors and it is
- considered to be the first step towards the anarchy that corporations are willing to
- achieve." - a newspaper  excerpt.
+#> Icarus is an air superiority fighter. It is armed with Omega air-to-air
+ missiles and a heavy machine gun for short-range combat. The jet engines for
+ these units are manufactured my the Asterkhel corporation.
+#> The main use for these fighters is in aerial battles where they can defeat
+ even much better armed and armored opponents thanks to their speed and fairly
+ decent missile firepower. A major advantage of these planes is their fairly
+ long flight range which allows them to fly deep behind enemy lines to escort
+ bombers. Their weakness is low toughness so they can withstand only a few
+ hits.
+#> "The Asterkhel corporation was granted permission to manufacture its own
+ fighter aircrafts and we can expect that it is the first step toward the
+ anarchy that corporations wish for." - a newspaper excerpt
 #e
 #e

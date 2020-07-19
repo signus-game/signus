@@ -1,10 +1,11 @@
-#> Lagoon is an aircraft carrier. It is equipped with anti-aircraft machine-guns of gauge
- 32mm. It does not have any weapon system and its armour is thin. But it is quite resistant.
- The strongest weapons of this these ships are their aircrafts. Lagoon is able to take on the
- board up to 5 heavy bombers Saturn and 12 interceptors Ikaros. The biggest weakness of
- these ships is insufficient armament. And that enables its engagement to the rear only and
- with support of accompanying destroyers.
-#> "The engagement of these floating airports has appeared to be very advantageous,
- especially  in the duels with war ships Krakens" - the military bulletin.
+#> Lagoon is an aircraft carrier. It is armed with anti-aircraft machine gun
+ but has no other armaments. It has only light armor but it is fairly tough.
+#> The primary weapon of these ships are their aircrafts. Lagoon is able to
+ carry up to 5 Saturn heavy bombers or 12 Icarus fighters. The greatest
+ weakness of these ships is their insufficient armament which means that they
+ can be deployed only in the rear lines with destroyer escorts.
+#> "Deployment of these floating airports has proven to be effective
+ especially in battles against Kraken battleships" - military bulletin, issue
+ 138
 #e
 #e

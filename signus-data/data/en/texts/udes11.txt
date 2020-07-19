@@ -1,12 +1,12 @@
-#> Boomerang is a light-weight vehicle of investigation with an excellent monitoring
- system. Its greatest weapon is its speed. The greatest weakness is the thin armour and low
- resistance.
-#> These units were constructed to be able hold up to five-member commandos inside. These
- commandos enable these vehicles to capture the enemy buildings (radars, stocks and basis). For
- this quality the Boomerangs became very important strategic units. Another big advantage of
- Boomerangs is its monitoring system that enables to see the enemy to relatively considerable
- distance.
-#> Boomerang was originally used as a light-weight war tank. But at present time Perseus Alfa has
- overtaken its tasks in the war missions.
+#> Boomerang is a light reconnaissance vehicle with an excellent sensor array.
+ Its greatest strength is its speed, the greatest weakness is its weak armor
+ and low durability.
+#> These units were designed to carry up to five-person commandos inside which
+ allow these these vehicles to capture enemy buildings (radars, depots and
+ bases). This feature makes Boomerangs highly strategically important. Another
+ major advantage of Boomerangs is their sensor array which allows them to
+ locate enemy forces at considerable distance.
+#> Boomerang was originally used as a light assault tank. But this role is
+ currently served by Perseus Alpha in assault missions.
 #e
 #e

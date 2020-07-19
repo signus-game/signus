@@ -2,9 +2,9 @@
  vzoru standardního armádního vozidla
  Betan 24. Není vyzbrojen a má jen
  nejzákladnější pancéřování.
-#> V misích kde byly bojové stroje nuceny operovat
+#> V misích, kde byly bojové stroje nuceny operovat
  ve velkých vzdálenostech od vlastních
- základen vznikla potřeba vozidla schopného
+ základen, vznikla potřeba vozidla schopného
  opravit poškozené jednotky tak, aby se mohly vrátit
  do hrdinného boje v předních liniích. Při
  tvorbě Irise byly kladeny velké nároky na

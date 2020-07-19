@@ -1,13 +1,14 @@
-#> Rex is a battle helicopter. It is armed with a launcher of air-ground rockets and with a
-heavy anti-aircraft machine-gun. It is driven by a big propeller.
-#> The main task of the Rex unit is the damaging of surface targets for which it is armed
- with shattering rockets. During air-duels, Rex has to rely on own ground air-raid
- protections or on its colleagues - interceptors. This machine is assigned to the first line
- combat together with tanks and defence towers. It should paralyse enemy's ground battle
- machines and (in the case of too strong enemy's ground air-raid protections and in the case
- of an attack of enemy's interceptors) pull back under the umbrella of own arms.
-#> "This helicopter has been the first unit brought into Signus corps and we were
- convinced about its quality in the past by military groups of Consortium." - Military
- bulletin no. 92.
+#> Rex is an attack helicopter. It is armed with air-to-ground missile
+ launcher and heavy anti-aircraft machine gun. It is powered by large
+ six-blade rotor.
+#> The primary purpose of this unit is elimination of ground targets using its
+ fragmentation rockets. In aerial combat, Rex must rely on ground anti-air
+ batteries or fellow fighter aircrafts. It is a unit designed for front-line
+ combat along with tanks and defense turrets. Its role is to paralyze enemy
+ ground forces and then (in case of too strong enemy air defense or fighter
+ squadron counterattack) retreat back to safety behind friendly lines.
+#> "This helicopter was the first unit to serve in the Signus air force.
+ Consortium forces have demonstrated its merits to us in past battles." -
+ military bulletin, issue 92.
 #e
 #e

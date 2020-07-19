@@ -1,12 +1,13 @@
-#> Each Airport consists from a radar tower, hangars and take-off and landing runways.
- The radar tower is also the command centre. Tower is the resident of the airport officer,
- who directly reports to the captain, as well as navigators who communicate with the combat
- aircraft in the air through transmitters. However each of these bases is fully automated and
- can work even without human control (usually when the airport is occupied). Hangars are
- also fully automated, similarly to the radar towers, and can work without human influence.
- Each of them is equipped with a service unit, able of partial repair of damaged machines.
-#> Landing runways of the Signus corps are equipped with automated navigation system,
- which ensures lowering of the landing gears and exact run onto specified course, which
- allows for simultaneous landing of several machines.
+#> Each airport consists of a radar tower, hangars and a runway. The radar
+ tower also serves as the command center. The airport officer reporting
+ directly to the captain is stationed there along with air traffic controllers
+ who transmit flight instructions to pilots in the air. However, all of these
+ air bases are fully automated and they can work without any human operators
+ (which often happens when an airport gets captured). Hangars are also fully
+ automated and work without human intervention just like radar towers. Each of
+ them is equipped with a repair unit which can partially repair damaged
+ aircrafts. Runways used by Signus forces are equipped with an automatic
+ guidance system that controls the aircraft's final approach and landing gear
+ deployment, allowing multiple units to land simultaneously.
 #e
 #e

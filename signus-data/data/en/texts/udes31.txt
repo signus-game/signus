@@ -1,11 +1,11 @@
-#> Flint is a cannon boat. It is equipped with a mid-weight recoil gun similar to the
- Perseus Beta tanks.
-#> It is a unit of supportive shooting, partly able to replace the mid-weight tanks in
- terrain inaccessible for Perseus Beta tanks. They are one of the weakest navy units in
- formations called Signus and that is why their engagement to the marine battles is possible
- only in bigger militant formations and with support of heavy war ships.
-#> These cannon boats were taken over from the navy fleet by Signus units. They got the
- name Signus after the colonel who has perished while, with his boats, guarding a bridge not
- to be crossed by three enemy battalions.
+#> Flint is a gunboat. It is armed with a long-recoil medium gun of a similar
+ design as that used by Perseus Beta tanks.
+#> It is a support fire unit which can partially substitute medium tanks in
+ terrain inaccessible to Perseus Beta tanks. It is one of the weakest navy
+ combat units serving in the Signus forces, thus their deployment in naval
+ battles is possible only in larger fleets with support from heavier warships.
+#> Signus forces have acquired these gunboats from marine squadrons. They are
+ named Flint after a colonel who died while defending a bridge from three
+ enemy tank battalions using his gunboats.
 #e
 #e

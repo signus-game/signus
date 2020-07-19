@@ -1,11 +1,15 @@
-#> Scorpion is a light rocker-launcher armed with four missiles for the bombardment of surface
- targets. It is equipped with a standard rocket holder Hackler which is also used by common army.
-#> As the title hints, it is a gun determined for the destruction of the enemy units from the deep of
- the rear. The armour plates can hardly survive a direct shot from a tank but Scorpion is able to
- move quickly to strategically advantageous positions (and out of the range of the enemy units).
- The great weakness of this weapon is a small amount of rockets which makes bombing effective
- possible only with the support of ammunition conveyor Gnom.
-#> It is a public secret that Scorpion was developed on the costs of Trakhal corporation which has
- gained the right to buy sixteen war helicopters Grazij as a reward for developing this weapon.
+#> Scorpion is a light rocket launcher armed with four missiles for ground
+ target barrage. It is equipped with the standard Hackler launcher system also
+ used by the regular army.
+#> As the name suggests, it is a unit designed for eliminating enemy forces
+ from a safe distance. Its armor is optimized for this purpose and cannot
+ withstand a direct hit from a tank but allows Scorpion to quickly relocate to
+ strategically advantageous positions (and also escape from the range of enemy
+ forces). The biggest weakness of this unit is the low storage capacity for
+ missiles, which means that effective sustained barrage requires frequent
+ resupply from munitions transporters - Gnomes.
+#> It is an open secret that Scorpion development was funded by the Trakhal
+ corporation which gained the right to buy sixteen Graziy attack helicopters
+ from Toricon for business purposes in exchange.
 #e
 #e

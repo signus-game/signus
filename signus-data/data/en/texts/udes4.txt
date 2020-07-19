@@ -1,15 +1,14 @@
-#> Dirrac is a sonic tank developed on the grounding of original Arconian technology. It
- is equipped with a sonic gun, that uses the ultrasonic principle. Dirrac's armour is rather
- thick.
-#> It is actually a light-weight tank. Its high mobility together with the striking power
- enables to use this weapon against enemy long-distance shooting guns from the depth of
- own rear. Another advantage of this weapon is its massive front plate, which equals this
- weapon to much bigger tanks Perseus Gamma. On the contrary, the biggest weakness of
- Dirrac is its insufficient armour on the upper part, which makes it very vulnerable to the
- rocket weapons.
-#> This weapon has, thanks to its not completely understood technology, an influence on
- the crews psychic. That is why the pilots are being chosen from the psychically most
- resistant individuals. Therefore it is possible to recognise a Dirrac pilot easily because of
- yellowish irises.
+#> Dirrac is a sonic tank developed using ancient Arkonian technology. It is
+ equipped with a sonic gun utilizing ultrasonic waves and has strong armor.
+#> In essence, it is a light tank with high mobility, which together with its
+ high firepower makes it effective against long-range weapons located deep
+ behind enemy lines. Another advantage of this unit is its thick front armor
+ which puts it on equal footing with the much heavier Perseus Gamma tanks.
+ However, its biggest weakness is insufficient top armor which makes it
+ vulnerable to missile fire.
+#> Due to incomplete understanding of the technology, this unit has some
+ undesirable effects on its crew's psyche so only the most mentally resilient
+ soldiers can become Dirrac pilots after an arduous training. Thus you can
+ recognize Dirrac crewmembers by their slightly yellowish irises.
 #e
 #e

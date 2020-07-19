@@ -12,11 +12,11 @@
  jejich většími sourozenci Saturny. Ve vzdušných
  soubojích se Kobry musí spolehnout na podporu
  Ikarosů a Mystiků.
-#> Zpráva z velitelství:"Pověsti o tom, že
+#> Zpráva z velitelství: "Pověsti o tom, že
  generál Esencki se zabil, když nezvládl při
  testovacím letu tento stroj, jsou naprosto
  nepodložené a snižují prestiž tohoto velkého
- muže, jež by nám všem měl být příkladem.
+ muže, jenž by nám všem měl být příkladem.
  Šiřitelé takovýchto pomluv se mohou dostat
  před polní soud."
 #e

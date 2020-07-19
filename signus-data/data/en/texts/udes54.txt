@@ -1,7 +1,8 @@
-#> The stock includes enormous amount of ammunition (including materials for its production) and
- fuel used to fill the Cereses, Gnomes and other units. It is a building with the lowest automation
- and it is the only building that does not have any operating center. All the service modules are
- absolutely independent. As a result of it the crew of Boomerang has to change the programs of all
- these centers to capture it.
+#> The depot contains an enormous amount of ammunition (including supplies for
+ its production) and fuel used to resupply the Cereses, Gnomes and other
+ units. It is a structure with the lowest level of automation and the only one
+ that contains no command center. All facilities inside a depot are fully
+ self-contained, thus the Boomerang commandos must capture and reprogram each
+ of them separately.
 #e
 #e

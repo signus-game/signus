@@ -1,11 +1,13 @@
-#> Falanga is a self-propelling anti-aircraft gun. It is armed with a heavy machine gun
- for damaging surface targets and with a double anti-aircraft gun. Its armour is relatively
- thin. Falanga was designed and built as a supporting mobile unit of air-raid protections.
-#> When used together with Horizons falangas are very effective anti-aircraft defensive power.
-#> On the other hand these machines are extraordinarily mobile which allows them to move
- effectively to endangered places. The major weakness of this weapon is its low resistance,
- which makes it an easy prey to Rex. The sign for this unit contains 4 raised lances
- representing a defensive protection formation using its long lances to protect itself and its
- companions.
+#> Phalanx is a self-propelled anti-aircraft gun. It is armed with a heavy
+ machine gun for attacking ground targets and twin anti-aircraft gun. It has
+ rather weak armor.
+#> Phalanx was designed and built as a mobile anti-air support unit. As a
+ result, it has rather low firepower and is effective only when deployed in
+ larger batteries or in conjunction with the Horizon anti-aircraft turrets.
+ On the other hand, these units are exceptionally mobile which allows them to
+ rapidly move to areas under threat. The major weakness of these units is
+ their weak armor which makes them an easy target for the Rex helicopters.
+#> The symbol of these units are 4 raised spears representing a defensive
+ formation using its long spears to protect themselves and their companions.
 #e
 #e

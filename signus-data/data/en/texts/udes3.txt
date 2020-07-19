@@ -1,12 +1,14 @@
-#> Perseus Gamma is a war tank determined for the fight in first line. It is equipped with
- a heavy doubled gun and an anti-aircraft machine-gun Grund. Its armour is very thick.
-#> These units are brought to bear especially for their big destructive power and
- considerable resistance. Another big advantage of this gun is its anti-aircraft machine-gun
- that together with another advantages enables to operate even separately in the rear of the
- enemy. The only weakness of this battle colossus is its small mobility which makes it an easy
- target for the long-distance shooting weapons and towers of enemy.
-#> "The difference between getting tumbled down in Beta or Gamma is that you are
- dying with a wonderful feeling that they had to waste much more ammunition" - writing on
- the Perseus Beta's garages.
+#> Perseus Gamma is a battle tank designed for front-line combat. It is armed
+ with twin heavy main gun and Grund anti-aircraft machine gun. It has heavy
+ armor.
+#> These units are deployed in combat mainly for their great destructive power
+ and considerable toughness. Another major advantage of this unit is its
+ anti-aircraft machine gun which together with other features allows it to
+ operate behind enemy lines even without support. The only weakness of this
+ behemoth is its limited mobility which makes it an easy target for enemy
+ turrets and long-range weapons.
+#> "The difference between getting blasted in a Gamma and in a Beta is that if
+ they blast you in a Gamma, you'll die with the warm fuzzy feeling that they
+ had to dump way more ammo into you." - writing on Perseus Gamma garages.
 #e
 #e

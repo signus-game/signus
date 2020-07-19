@@ -1,11 +1,13 @@
-#> Perseus Beta is an analogue of its smaller brother Alfa. But it is newer and more able to strike. It
- is equipped with a middle-class machine-gun U66 and its armour is rather thick.
-#> Because of the thick armour, shorter range and rather high resistance is Beta able to pass
- through a bigger damage. It is used as a war tank in the first line (especially in the missions where
- heavy-weight machines cannot be transported) but it is also very effective when destroying smaller
- centres of resistance (the bombarding towers etc.) or protecting own buildings (stocks, basis, etc.).
-#> Report for the commanders: "The news that our agents have stolen the tracings of Consortium's
- tank are completely undergrounded. The Propagators of this piece of news will be considered
- traitors and they should be punished according to this fact."
+#> Perseus Beta is a newer and more powerful version of its smaller brother
+ Alpha. It is equipped with U66 medium main gun and fairly strong armor.
+#> Beta is used as a front-line battle tank due to its armor, shorter range
+ and fairly high toughness (especially in missions where deployment of heavier
+ units is not possible) but it can also be used very effectively for
+ eliminating small pockets of resistance (artillery turrets, etc.) or
+ protecting friendly buildings (depots, bases, radars).
+#> Message for commanders: The rumors that our agents have stolen the
+ blueprints for this tank from the Consortium are completely unfounded. Anyone
+ spreading these rumors is considered a traitor and should be punished
+ accordingly.
 #e
 #e

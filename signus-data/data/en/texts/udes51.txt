@@ -1,12 +1,16 @@
-#> All bases used by the Signus units are constructed according to the base Mahakam. Each base
- has its operating center where a commander officer (captain) and his three-member team is. They
- are looking after the run of this fully automated base. The supervision is just sporadic because the
- bases are able to work without any human help.
-#> The body of the whole base is the so called Hangar with fuel pumps for the war machines,
- dosing machines and the service units. All the machines are charged with the solar batteries placed
- on the top of the base.
-#> The basis are equipped with the attachment Seal same as the radars. This equipment
- recognises the enemy units and does not let them inside of the objects. Unfortunately the vehicles
- of investigation Boomerangs are able to break through this Imprint.
+#> All bases used by Signus forces are built with similar layout as base
+ Mahakam. Each base has a control center where the commanding officer - a
+ captain - is stationed with his three-member advisory team which supervises
+ the functioning of the otherwise fully automated base. The supervision is
+ intermittent because bases can operate completely autonomously even without
+ human intervention.
+#> The core of the base is the so-called Hangar which contains fuel pumps for
+ refueling combat vehicles, ammunition loaders and repair units. All of these
+ devices are completely autonomous and do not require any human to operate
+ them. They are powered by solar cells located on the roof of the base.
+#> Bases are equipped with a security system know as "The Seal", just like
+ radars, depots and factories. This system ensures that enemy units will not
+ be allowed to enter the compound. Unfortunately, the Boomerang scout vehicles
+ are able to "break" this seal.
 #e
 #e

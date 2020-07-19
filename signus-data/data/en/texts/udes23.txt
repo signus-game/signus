@@ -1,5 +1,12 @@
-#> Thor is a rocket tower equipped with one rocket-launcher similar to the one that Hercules is equipped with. The constructors have developed a new defensive mechanisms for this weapon, which  enables to slip the whole tower into the underground shield.#> This unit belongs to the most perfect ones, considering technology. It has long range, shoots fast and can see far. Its rockets are able to effectively catch the fights up to 1,5 miles distant. Thor is a very destructive weapon,
- although it had to pay with the thin armour for its power. So in case it is not hidden, it is very vulnerable.
-#> The HQ report: "...so that is why we order to find and to punish the vandals, that have written the word "ostrich" on the rocket tower Thor."
+#> Thor is a missile turret equipped with a single launcher system of similar
+ design as the one used by Hercules heavy rocket launcher. Designers have
+ developed a new defensive mechanism for this turret which allows it to
+ retract underground.
+#> This unit is among the most advanced yet - it has long detection range,
+ long firing range and rapid rate of fire. Its missiles can hit targets up to
+ 1.5 miles away. Thor is a devastating weapon but the price for its firepower
+ is weak armor. It is very vulnerable when not retracted.
+#> HQ reports: "...therefore we issue an order to find and punish the vandals
+ who sprayed 'Ostrich' on the Thor turret."
 #e
 #e

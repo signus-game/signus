@@ -1,10 +1,11 @@
-#> Oasa is a troopship.
-#> It does not have any weapon systems and its armour is not very thick.
-#> It is absolutely impossible to engage this unit to the direct militant actions. On the
- contrary - it has to be constantly under the protection of warships. It is very dangerous to
- remain near Oasa for another, because when Oasa gets hit, the following explosion can
- damage the ships around badly.
-#> The atmosphere in Oasa does not remind us of any calm and quiet mood, that
- someone ignorant of the war atmosphere of Signus units could imagine.
+#> Oasis is a transport ship. It has no armament and only light armor.
+#> The need for this unit arose in prolonged combat missions which required
+ transport of larger regiments. Its deployment in live combat zones is out of
+ the question. Instead, Oasis must be protected by war ships at all times.
+ However, keeping other units too close to Oasis is dangerous because a direct
+ hit may cause explosion that will severely damage all ships in vicinity.
+#> The atmosphere aboard Oasis does not resemble in any way the peace and calm
+ that someone unfamiliar with the combat conditions in Signus forces might
+ imagine.
 #e
 #e

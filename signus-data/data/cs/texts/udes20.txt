@@ -11,13 +11,13 @@
  útok. Nevýhodou Horizontu je jeho poměrně
  malá odolnost a nedostatečné pancéřování
  proti těžším zbraním. Jelikož se jedná
- o jedinou zbraň svého druhu v jednotkách,
- Signus doporučuje se krýt ji těžšími
+ o jedinou zbraň svého druhu v jednotkách
+ Signus, doporučuje se krýt ji těžšími
  dalekonosnými zbraněmi proti útoku pozemních
  jednotek.
 #> Zpráva z velitelství: "Při testování bojeschopnosti
  těchto jednotek v boji s helikoptérami se
- ukázali nedostačujícími, a proto doporučujeme
+ ukázaly nedostačujícími, a proto doporučujeme
  užívat je ve spolupráci s Falangami."
 #e
 #e

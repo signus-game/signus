@@ -11,7 +11,7 @@
  malou odolností, z tohoto důvodu se doporučuje
  jejich nasazení pouze pod ochranou stíhacích
  strojů - Ikarosů a Mystiků.
-#> Všechny letadla typu Caesar patří pod taktické
+#> Všechna letadla typu Caesar patří pod taktické
  velení námořní pěchoty, a proto se vyskytly
  problémy při jejich nasazení v akcích strategického
  letectva. Nyní však můžeme s klidem konstatovat,

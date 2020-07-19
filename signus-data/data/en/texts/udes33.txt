@@ -1,13 +1,14 @@
-#> Poseidon is a heavy cruiser. It is equipped with heavy-weight gun, four torpedoes and
- an anti-aircraft gun. Its armour is rather thick and it has an excellent monitoring system
+#> Poseidon is a heavy cruiser. It is armed with a heavy gun, four torpedoes
+ and an anti-aircraft gun. It has strong armor and an excellent sensor array
  Akai.
-#> These ships are analogical to heavy tanks. Even considering the range, Poseidons are
- beyond controversy much better.  They are one of the most overwhelming units ever and
- together with accompanying unions of Vikings they are creating the spin of Torion´s navy
- forces. Their biggest weakness is the vulnerability to enemy's submarine attacks without
- protection of the destroyers.
-#> Kliatron, the predecessor of Poseidon was originally a light-weight cruiser. Although
- in this form did not respond to the demands that are being put on Signus units. That is why
- the light-weight gun was replaced With much more overriding Drak.
+#> These ships are the equivalent of heavy tanks on sea, although Poseidons
+ have unquestionably longer range and higher firepower. They are some of the
+ most destructive units in existence and together with Viking escort squadrons
+ form the backbone of Toricon navy. Their greatest weakness is that they're
+ defenseless against enemy submarines unless they're escorted by destroyers.
+#> Kliatron, the predecessor of Poseidon, was originally a light cruiser.
+ However, its original configuration did not satisfy the requirements for use
+ in the Signus forces so its light gun was removed and replaced with the much
+ more destructive Drake.
 #e
 #e

@@ -16,7 +16,7 @@
  baterií, umístněných na vrcholu základny.
 #> Základny jsou podobně jako radary, sklady
  a výrobny vybaveny zařízením zvaným Pečeť.
- Toto zařízení kontroluje aby nedocházelo k
+ Toto zařízení kontroluje, aby nedocházelo k
  vpouštění nepřátelských jednotek do objektů,
  bohužel průzkumná vozidla typu Bumerang dokáží
  tuto pečeť "rozlomit".

@@ -2,7 +2,7 @@
  vynikajícím monitorovacím systémem. Jeho největší
  zbraní je jeho rychlost, největší slabinou pak
  slabé pancéřování a malá odolnost.
-#> Tyto jednotky byli konstruktéry navrženy tak,
+#> Tyto jednotky byly konstruktéry navrženy tak,
  aby ve svých útrobách mohly skrýt až pětičlenná
  komanda, která těmto "průzkumným vozítkům"
  umožňují zajímat nepřátelské budovy (radary,

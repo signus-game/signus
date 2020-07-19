@@ -1,11 +1,12 @@
-#> Heliports are airports for aircraft with a vertical way of climb. Thus from the all
- mobile units they serve for the combat helicopters Rex and the fighter-bombers of the
- artefact generation - Mystic. All the Heliports are equipped with a navigation system
- similar to the one of airports, fully automated hangar and with a protection system called
- Seal, with which are equipped all buildings  (the only exception are repair shops). They are
- also equipped with a powerful radar system, which is not much effective than airport radar
- system. But it serves well especially to the mobile units. One of the weaknesses of this
- building is its relatively thin front armour, which is vulnerable to target shooting of longer
- duration.
+#> Heliports are the equivalent of airports for aircrafts with the vertical
+ take-off and landing capability. Thus they are intended to service the Rex
+ attack helicopters and Mystic artefact-generation fighter-bombers. All
+ heliports are equipped with a guidance system of a similar type to the one
+ used by airports, a fully automated hangar and a security system known as
+ "The Seal" which is used in all structures (perhaps with the exception of
+ repair bays). They also have excellent built-in radars which, although not as
+ good as airport radars, still provide vital tactical data especially to
+ combat units. One of the weaknesses of this building is its somewhat weak
+ outer armor which makes it vulnerable to prolonged artillery barrage.
 #e
 #e

@@ -1,13 +1,13 @@
-#> Agni is a light-weight laser tank of a similar design to the sonic tank Dirrac. It is
- armed with a laser gun and similarly to the "sonics" this weapon has relatively thick
- armour.
-#> The application of Agni is nearly the same as of Dirrac. The only more significant
- difference between these two weapons is a little bit higher resistance of Agni. The major
- weakness of this weapon is probably its defencelessness against air-raids, which excludes the
- possibility of its individual engage without any support of air-raid protections.
-#> " ...and the Lord of fire will come and strike Your bodies and souls with flame, He will
- chase You and He will not have any mercy with any of You when You will be weeping tears
- of fire and beg for forgiveness." - the eleventh verse of Klihiána Epic - describing the end of
- the world of the infidels.
+#> Agni is a light laser tank of similar design as the Dirrac sonic tanks. It
+ is armed with a laser gun and similarly to the "sonics", this unit also has
+ fairly strong armor.
+#> Agni is designed for nearly identical combat role as the Dirracs. The only
+ significant difference between these two units is that Agni has slightly
+ stronger armor. Its greatest weakness is the lack of anti-aircraft weapons
+ which precludes stand-alone deployment without anti-air support.
+#> "...and the Lord of fire shall come and smite Your bodies and souls with
+ flame and chase you around and He shall have no mercy with any of You until
+ You weep tears of fire and beg for forgiveness" - the 11th verse of the
+ Klihiana Epic - describing the end of the world of infidels.
 #e
 #e

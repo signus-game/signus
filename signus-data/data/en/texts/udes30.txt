@@ -1,11 +1,12 @@
-#> Ganymedes is a supporting train, some kind of combination of Ceres, Gnome and Iris
- on the tracks. It doesn't have any weapons and its armour is thin.
-#> The constructors of this highly explosive unit warn: If Ganymedes gets destroyed it is
- necessary to rebuild the tracks and that is why we do not recommend to engage these trains
- in direct conflicts. Ganymedes can of course support even the non-train units. It appears to
- be safer to bombard Ganymedeses from the air and that is why we recommend to keep
- these trains under the flak protection of Falangas.
-#> The Defence Division and the Highest Presidium were debating about the necessity of
- these machines for a long time. In the end, Ian Zening had his will.
+#> Ganymedes is a support train, essentially a combination of Ceres, Gnome and
+ Iris on rails. It has no armaments and only thin armor.
+#> The designers of this highly explosive unit warn that if Ganymedes gets
+ destroyed, the tracks will need to be rebuilt. Therefore we recommend against
+ deploying this unit in front-line combat. Ganymedes can of course support
+ non-train units as well. Since air strikes pose the greatest threat to
+ Ganymedes, we recommend keeping it under protection by Phalanges at all
+ times.
+#> The Defense Department had a long dispute with the Board of Directors about
+ the need for these units. However, Ian Zening had his way in the end.
 #e
 #e

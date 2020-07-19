@@ -1,6 +1,12 @@
-#> Medea is an engineering unit. This machine does not have any armament systems and its armour is rather thin. The automated systems of these vehicles are directed from the friendly bases.
-#> The biggest power of these vehicles is in their ability to create and repair bridges and railway tracks. During the creation of this unit, the constructors insisted on the saving of space for material. That is why Medea is (same as Gnome)
- fully automated factory on wheels controlled from the base.  Its general  weakness is the low resistance, which makes it very vulnerable when it gets under fire.
-#> "When we come to kiss the Death, we will say: You are our Mother!" - Motto of Signus units.
+#> Medea is an engineering vehicle. This unit has no armament and only light
+ armor. Its automated systems are controlled remotely from friendly bases.
+#> The main purpose of these remotely controlled vehicles is building and
+ repairing bridges and railroad tracks. One of the important design goals for
+ these units was to save space and production resources. For that reason,
+ Medea is a fully automated factory on wheels controlled from the base
+ similarly to Gnome. Its main weakness is weak armor and low durability which
+ makes it vulnerable to artillery fire.
+#> "When we come, we'll kiss Death and say: You are our Mother!" - The motto
+ of Signus forces.
 #e
 #e

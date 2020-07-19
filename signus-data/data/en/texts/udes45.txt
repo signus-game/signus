@@ -1,11 +1,14 @@
-#> Satan is a self-destructive highly explosive mine, based on the Arkonian technology.
- There are incorporated gravitation sensors in its body, which allow free moving above the
- ground. Its main weapon is its self destruction. It is further armed with a mine-thrower for
- shooting down distant objects.
-#> The major weakness of this artefact weapon is a low resistance which makes it
- vulnerable to any unit attack. On the other hand the biggest advantage of Satan is a
- gigantic explosive charge, which damages everything live and lifeless in the Perseus Beta
- range of shooting. Some high officers have also protested against creation of this weapon,
- however it turned out to be necessary to engage it.
+#> Satan is a self-propelled high-explosive bomb developed using ancient
+ Arkonian technology. Its casing contains an anti-gravity engine which allows
+ it to hover freely above ground. Its main weapon is explosive self-destruct.
+ In addition, it is armed with a mortar for shelling targets at a distance.
+#> The biggest weakness of this artefact-based weapon is its low toughness
+ which makes it vulnerable to all enemy units. On the other hand, Satan's
+ greatest advantage is its incredibly destructive explosive charge which can
+ destroy all life and objects within an area equal to Perseus Beta's firing
+ range.
+#> Even some high-ranking officers objected to development of this weapon.
+ However, its deployment then became a necessity.
+#> Special feature: Satan cannot be targeted by return fire.
 #e
 #e

@@ -1,12 +1,13 @@
-#> Neptune is a conveyer hovercraft. It has been created according to the technology of
- Arconis civilisation. It does not have any weapon systems.
-#> The biggest advantage of these machines is their ability to transport units across
- terrain, that surface units would come over with big problems or only with the help of
- engineering machines Medias. The weakness of Neptune is its low resistance when it gets
- under the fire. This fact unables to engage Neptunes without the support of long-distance
- shooting weapons.
-#> "These units should be transferred to the civil sector after the triumphal ending of this
- conflict and replace the troopships. That should improve the public's attitude to the army."
- - an excerpt from report of the Defence Division to the Highest Presidium.
+#> Neptune is a transport hovercraft. It was developed using ancient Arkonian
+ technology. It has no armament.
+#> The main advantage of these vehicles is their ability to transport units
+ across terrain where normal ground units could move only with great
+ difficulty or with the help of Medea engineering vehicles. Neptune's biggest
+ weakness is its low durability when under fire which precludes its deployment
+ without protection by long-range weapons.
+#> "These units should be transferred to the civilian sector after our victory
+ in this conflict where they will replace transport ships. That should improve
+ the public image of the army." - an excerpt from Defense Department's report
+ to the Board of Directors.
 #e
 #e

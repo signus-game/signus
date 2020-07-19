@@ -2,7 +2,7 @@
  standardní pancéřování a žádné zbraně.
 #> Tato jednotka se původně vyvinula ze svých
  lehčích kolegů typu Bastien, která používají
- jednotky námořní pěchoty a měla sloužit pouze
+ jednotky námořní pěchoty, a měla sloužit pouze
  jako výsadkové vozidlo při větších ofenzivních
  akcích, avšak s vývojem těžkých dalekonosných
  zbraní jako jsou Goliáš nebo Herkules vykrystalizovala
@@ -10,9 +10,9 @@
  do útočných pozic, či naopak schopné je vyvézt z
  postavení, v němž by mohly být napadené nepřítelem.
  A tak se Bastien přetransformoval do Uranu. Tento
- kolos je schopen uvést až 4 těžké
+ kolos je schopen uvézt až 4 těžké
  raketomety - Herkuly a až 12! lehkých tanků - Perseus Alfa.
-#> Vyjádření generála Esenciho: "Uran není schopen
+#> Vyjádření generála Esenckiho: "Uran není schopen
  snést větší poškození, a proto doporučuji užívat
  pouze na převoz jednotek v týlu."
 #e

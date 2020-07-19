@@ -13,10 +13,10 @@
  Toriconu. Jejich největší slabinou je
  bezbrannost proti ponorkovým útokům nepřítele
  bez podpory torpédoborců.
-#> Kliatron, předchůdce Poseidona byl
+#> Kliatron, předchůdce Poseidona, byl
  původně lehký křižník. Avšak v této
- podobě neodpovídal požadavkům jaké
- jsou kladeny na jednotky Signus a tak
+ podobě neodpovídal požadavkům, jaké
+ jsou kladeny na jednotky Signus, a tak
  mu byl vzat jeho lehký kanón, který
  byl nahrazen mnohem drtivějším Drakem.
 #e

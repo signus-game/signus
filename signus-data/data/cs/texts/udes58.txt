@@ -1,6 +1,6 @@
 #> Doky je krycí název pro přístav
  a opravnu lodí zároveň, užívanou námořními
- silami jednotek Signus. Každý z "Doků"
+ silami jednotek Signus. Každý z "doků"
  je vybaven řídící věží, která plní rovnou
  i funkci majáku. Zde sídlí důstojník-velitel,
  který se přímo zodpovídá kapitánovi.
@@ -9,7 +9,7 @@
  umožňuje opravovat i několik lodí zároveň.
  Tyto budovy mají slušný radarový systém,
  kterým mohou zahlédnout nepřátelské
- jednotky na poměrně velkou vzdálenost
+ jednotky na poměrně velkou vzdálenost,
  bohužel jim však neomožňuje pozorování
  nepřátelských ponorek, a proto jsou u
  těchto přístavů často vidět hlídkující
