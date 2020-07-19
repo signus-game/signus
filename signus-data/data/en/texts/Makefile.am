@@ -34,7 +34,8 @@ texts_src = brief1.txt brief10.txt brief11.txt brief12.txt brief13.txt \
 	udes28.txt udes29.txt udes3.txt udes30.txt udes31.txt udes32.txt \
 	udes33.txt udes34.txt udes35.txt udes36.txt udes37.txt udes38.txt \
 	udes39.txt udes4.txt udes40.txt udes41.txt udes42.txt udes43.txt \
-	udes44.txt udes54.txt udes55.txt udes56.txt udes57.txt udes58.txt \
+	udes44.txt udes45.txt udes5.txt udes50.txt udes51.txt udes52.txt \
+	udes53.txt udes54.txt udes55.txt udes56.txt udes57.txt udes58.txt \
 	udes6.txt udes7.txt udes8.txt udes9.txt unam1.txt unam10.txt \
 	unam11.txt unam12.txt unam13.txt unam14.txt unam15.txt unam16.txt \
 	unam17.txt unam18.txt unam19.txt unam2.txt unam20.txt unam21.txt \
