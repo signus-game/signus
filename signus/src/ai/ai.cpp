@@ -214,7 +214,7 @@ void TArmy::Insert (int Unit)
 #ifdef DEBUG
         fprintf (dbgOutput, "Error: Insert Unit %i (=NULL) \n",Unit);
 #endif
-        AIError ();
+        //AIError ();
         return;
     }
 

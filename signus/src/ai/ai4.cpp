@@ -1092,19 +1092,12 @@ int ArtificialIntelligence4 ()
         && Units [Olymp9] -> Type - BADLIFE == unOlymp) {
             Units [Olymp9] -> Select ();
             Units [Olymp9] -> MoveFar (O9DX, O9DY);
-            for (i = 0; i < ((TOlymp *)Units [Olymp9]) -> LoadedUnits; i++) {
-                id = ((TOlymp *) Units [Olymp9]) -> Inventory [i];
-                st = ((TOlymp *) Units [Olymp9]) -> UnloadUnit ((TUnit *)Units [id]);
-                if (st > 0) {
-                    Army9 -> Insert (id);
-                    i--;
-                }
-            }
             RedrawMap ();
         }
         LockDraw ();
     }   
-    if (ActualTurn >= ActivationTurn9 && Units [Olymp9] != NULL) {
+    if (ActualTurn >= ActivationTurn9 && Units [Olymp9] != NULL
+    && Units [Olymp9] -> Type - BADLIFE == unOlymp) {
         UnlockDraw ();
         for (i = 0; i < ((TOlymp *)Units [Olymp9]) -> LoadedUnits; i++) {
             id = ((TOlymp *) Units [Olymp9]) -> Inventory [i];
