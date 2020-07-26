@@ -1914,6 +1914,7 @@ int TObject::MoveFar(int x, int y)
     int rt;
     
     do {
+        attack_done = FALSE;
         rt = MoveFarSUB(x, y);
         if (!Units[oldID]) break;
         if (attack_done) this->Select();
