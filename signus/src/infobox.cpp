@@ -95,6 +95,7 @@ public:
 	TBitmap *ArtefaktLogo;
 
 	TInfoDialog(int ax, int ay, TObject *u);
+	void Draw();
 	int SpecialHandle(TEvent *e, int Cmd);
 	int Exec();
 };
@@ -115,16 +116,17 @@ TInfoDialog::TInfoDialog(int ax, int ay, TObject *u) :
 		Insert(new TBitmap(70, 238, FALSE, GraphicsDF->get("artetech"), 160, 17));
 	}
 
-	PercentBar(DrwBuf, w, h, 122, 288, 160-29, 16, 55, 51,
-		GetUnitExper(unit), "");
-
 	if (u->Type < unRadar) {
 		Insert(new TBitmap(253, 288, FALSE,
 			LevelBmps[((TUnit*)u)->Level], 29, 16, FALSE));
 	}
 }
 
-
+void TInfoDialog::Draw() {
+	TDialog::Draw();
+	PercentBar(DrwBuf, w, h, 122, 288, 160-29, 16, 55, 51,
+		GetUnitExper(unit), "");
+}
 
 int TInfoDialog::SpecialHandle(TEvent *e, int Cmd) {
 	if (Cmd == cmNext) {
