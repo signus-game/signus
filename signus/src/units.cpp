@@ -764,12 +764,12 @@ void TObject::Explode()
 
 void TObject::Destroy()
 {
+    int aID = ID,oldID = ID;
+
     Explode();
     
     if (this == SelectedUnit) { // bezpecne zamer jinou jednotku...
-        int aID = ID,oldID = ID;
-
-        if (ID < BADLIFE) {
+        if (oldID < BADLIFE) {
             while (++aID != oldID) {
                 if (aID >= BADLIFE) aID = 0;
                 if ((Units[aID] != NULL) && (Units[aID]->HitPoints > 0) &&
