@@ -505,9 +505,12 @@ void TCeres::SupportUnit(TUnit *Unit)
 
 
 
-int TCeres::WillSupport(TUnit *Unit)
-{
-    return Unit->Fuel < Unit->MaxFuel;
+int TCeres::WillSupport(TUnit *Unit) {
+	if (Unit->Type % BADLIFE >= unRadar) {
+		return FALSE;
+	}
+
+	return Unit->Fuel < Unit->MaxFuel;
 }
 
 
@@ -607,13 +610,27 @@ void TGnom::SupportUnit(TUnit *Unit)
 
 
 
-int TGnom::WillSupport(TUnit *Unit)
-{
-    if ((Unit->Type == unXenon) && (((TXenon*)Unit)->Mines < utXE_MINES)) return TRUE;
-    if (Unit->WeaponsCnt == 0) return FALSE;
-    for (int i = 0; i < Unit->WeaponsCnt; i++)
-        if (Unit->Weapons[i]->Ammo < Unit->Weapons[i]->MaxAmmo) return TRUE;
-    return FALSE;
+int TGnom::WillSupport(TUnit *Unit) {
+	if (Unit->Type % BADLIFE >= unRadar) {
+		return FALSE;
+	}
+
+	if ((Unit->Type % BADLIFE == unXenon) &&
+		(((TXenon*)Unit)->Mines < utXE_MINES)) {
+		return TRUE;
+	}
+
+	if (Unit->WeaponsCnt == 0) {
+		return FALSE;
+	}
+
+	for (int i = 0; i < Unit->WeaponsCnt; i++) {
+		if (Unit->Weapons[i]->Ammo < Unit->Weapons[i]->MaxAmmo) {
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 
