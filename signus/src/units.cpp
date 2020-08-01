@@ -1715,26 +1715,32 @@ void TToweredUnit::ShowShootAt(int x, int y, int phase)
 
 ///// tsupportunit:
 
-void TSupportUnit::Explode()
-{
-    int i;
-    int drw = Units[ID]->IsPartOnScreen() && (GetField(X, Y)->Visib == 2);
-    
-    if (drw) {
-        for (i = 0; i < 6; i++)
-            AddExplode1x1(X, Y, 0, 20 - 40 * frand(), 10 - 20 * frand());
-        IncExplodeTime(+2);
-        AddExplode1x1(X, Y);
-    }
-    else this->RemoveFromWorld();
-    WeaponAttack(X - 1, Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X + 1, Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X    , Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X - 1, Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X + 1, Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X    , Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X - 1, Y    , wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
-    WeaponAttack(X + 1, Y    , wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+void TSupportUnit::Explode() {
+	int i;
+	int drw = Units[ID]->IsPartOnScreen() && (GetField(X, Y)->Visib == 2);
+
+	if (drw) {
+		for (i = 0; i < 6; i++) {
+			AddExplode1x1(X, Y, 0, 20 - 40 * frand(),
+				10 - 20 * frand());
+		}
+
+		IncExplodeTime(+2);
+		AddExplode1x1(X, Y);
+	}
+
+	WeaponAttack(X - 1, Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X + 1, Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X    , Y - 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X - 1, Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X + 1, Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X    , Y + 1, wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X - 1, Y    , wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+	WeaponAttack(X + 1, Y    , wpnExplos, utSUPPORT_DESTROY_AN, utSUPPORT_DESTROY_BN);
+
+	if (!drw) {
+		this->RemoveFromWorld();
+	}
 }
 
 

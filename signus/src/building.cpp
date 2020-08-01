@@ -282,11 +282,14 @@ void TBuilding::Explode()
                             10 - 20 * frand(), 10 - 20 * frand());
             }
     }
-    else this->RemoveFromWorld();
+
     for (i = X-1; i < X + SizeX+1; i++)
         for (j = Y-1; j < Y + SizeY+1; j++) 
             if (GetField(i, j)->Unit != this->ID)
                 WeaponAttack(i, j, wpnExplos, utBUILDING_BOOM_AN, utBUILDING_BOOM_BN);
+
+    if (!drw)
+        this->RemoveFromWorld();
 }
 
 
