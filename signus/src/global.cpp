@@ -348,8 +348,7 @@ int CheckFile(const char *name) {
 int CheckFiles()
 {   
     return (CheckFile("graphics.dat") && CheckFile("graphics-common.dat") &&
-            CheckFile("missions.dat") && CheckFile("texts.dat") &&
-            CheckFile("unitsnd.idx"));
+            CheckFile("missions.dat") && CheckFile("texts.dat"));
 }
 
 

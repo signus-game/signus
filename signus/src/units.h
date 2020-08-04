@@ -365,6 +365,8 @@ extern void ClearLastDraws();
 // Promnene:
 
 
+#define UNIT_TYPES_COUNT 128
+#define UNIT_VARIANTS_COUNT (2 * UNIT_TYPES_COUNT)
 #define UNITS_TOP      0x800
         // maximalni pocet polozek v seznamu jednotek
 #define GOODLIFE           0

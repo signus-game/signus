@@ -251,37 +251,50 @@ inline int SmpIsPlaying(MIDASsamplePlayHandle x)
 
 
 
-MIDASsample LoadSample(const char *name, int loop)
-{
-    int i, pos;
+MIDASsample LoadSample(const char *name, int loop) {
+	int i, pos;
 
-    if (MIDAS_disabled) return INVALID_SAMPLE;
+	if (MIDAS_disabled || !name) {
+		return INVALID_SAMPLE;
+	}
 
-    for (i = 0; i < MAX_SAMPLES; i++) {
-        if (Samples[i].loaded && (strcmp(name, Samples[i].name) == 0)) {
-            Samples[i].counter++;
-            return i;
-        }
-    }
+	for (i = 0; i < MAX_SAMPLES; i++) {
+		if (Samples[i].loaded && (strcmp(name, Samples[i].name) == 0)) {
+			Samples[i].counter++;
+			return i;
+		}
+	}
 
-    for (pos = 1; pos < MAX_SAMPLES; pos++) {
-        if (!Samples[pos].loaded) break;
-    }
-    if (pos == MAX_SAMPLES) return INVALID_SAMPLE;
+	for (pos = 1; pos < MAX_SAMPLES; pos++) {
+		if (!Samples[pos].loaded) break;
+	}
 
-    char filename[1024];
-    snprintf(filename, 1024, "%s/nolang/sfx/%s.ogg", getSignusDataDir(), name);
-    if (!fileExists(filename))
-       snprintf(filename, 1024, "%s/%s/speech/%s.ogg", getSignusDataDir(), iniLocale, name);
-        // FIXME -- 1) look into ~/.signus, too (not sure yet, maybe...)
-    Samples[pos].sample = Mix_LoadWAV(filename); 
-    if (Samples[pos].sample == NULL) return INVALID_SAMPLE;
-    Samples[pos].loaded = TRUE;
-    Samples[pos].counter = 1;
-    strcpy(Samples[pos].name, name);
-    Samples[pos].flags = (loop) ? PLAY_LOOPING : 0;
-    Samples[pos].buffer = NULL;
-    return pos;
+	if (pos == MAX_SAMPLES) {
+		return INVALID_SAMPLE;
+	}
+
+	char filename[1024];
+	snprintf(filename, 1024, "%s/nolang/sfx/%s.ogg", getSignusDataDir(),
+		name);
+
+	if (!fileExists(filename)) {
+		snprintf(filename, 1024, "%s/%s/speech/%s.ogg",
+			getSignusDataDir(), iniLocale, name);
+	}
+
+	// FIXME -- 1) look into ~/.signus, too (not sure yet, maybe...)
+	Samples[pos].sample = Mix_LoadWAV(filename);
+
+	if (Samples[pos].sample == NULL) {
+		return INVALID_SAMPLE;
+	}
+
+	Samples[pos].loaded = TRUE;
+	Samples[pos].counter = 1;
+	strcpy(Samples[pos].name, name);
+	Samples[pos].flags = (loop) ? PLAY_LOOPING : 0;
+	Samples[pos].buffer = NULL;
+	return pos;
 }
 
 MIDASsample ConvertSample(const void *src, size_t size, int freq, int bits, unsigned chans, int loop) {

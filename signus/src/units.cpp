@@ -93,8 +93,55 @@ int TimeReserve = 0; // priznak vyhrazeni casy na vystrely: 0,1,2,3
 
 
 // seznam zvuku:
-char UnitsSoundIndex[UNITS_COUNT][16][9];
-MIDASsample UnitsSoundSamples[UNITS_COUNT][16];
+MIDASsample UnitsSoundSamples[UNIT_TYPES_COUNT][16];
+const char *UnitsSoundIndex[UNIT_TYPES_COUNT][16] = {
+	{NULL},
+	{"0", "tank_l", "lehkana", NULL, NULL, NULL, "zavora", "0", "0"},
+	{"0", "tank_s", "tezkana"},
+	{"0", "tank", "double", "tezkula", "0", "0"},
+	{"0", "tank_ss", "sonic"},
+	{"0", "tank_sx", "laedel"},
+	{"0", "kolovy1", "raketa_l"},
+	{"0", "tank", "raketa"},
+	{"0", "tank_l", "pletkan", "tezkul"},
+	{"0", "tank", "dalekdel", NULL, NULL, NULL, "0"},
+	{"0", "tank_l", "dalekdel"},
+	{NULL, "jeeeeep", "kulome2", "0"},
+	{NULL, "jeeeeep"},
+	{NULL, "kolovy2"},
+	{NULL, "kolovy3", "lehkan"},
+	{NULL, "kolovy3", NULL, NULL, NULL, NULL, "gargan"},
+	{"0", "kolovy3"},
+	{"0", "kolovy1"},
+	{"0", "kolovy1"},
+	{"0", "kolovy2"},
+	{"0", NULL, "prletkan"},
+	{NULL, NULL, "tezkan"},
+	{"0", NULL, "dalekkan"},
+	{NULL, NULL, "raketa", NULL, NULL, NULL, "vysu", "zasu"},
+	{NULL, NULL, "laedel"},
+	{"0", "vlak1"},
+	{"0", "vlak", "tezkan", "prletkul"},
+	{"0", "vlak3"},
+	{"0", "vznas", "tezkan", "prletkul"},
+	{"0", "vlak2", "dalekdel"},
+	{"0", "vznas2"},
+	{"0", "lod1", "lehkan"},
+	{"0", "lod1", "tezkan", "hlmina", "prletdel"},
+	{"0", "lod7", "tezkan", "torpedo2", "prletdel", "prletdel"},
+	{"0", "lod", "dalekkan", "torpedo2", "prletdel"},
+	{"0", "lod2"},
+	{"0", "lod", "prletkul"},
+	{"0", "ponorka", "torpedo", "0"},
+	{"0", "stiha", "kulome2", "raketa", NULL, NULL, "stihas", "stihap"},
+	{"0", "tebom", "kulome2", "tezkul", NULL, NULL, "teboms", "tebomp"},
+	{"0", "lebom", NULL, NULL, NULL, NULL, "leboms", "lebomp"},
+	{"0", "letadlo", "kulome", "raketa_r", "raketa_r", NULL, "letadlos", "letadlop"},
+	{"0", "letadlo", NULL, NULL, NULL, NULL, "letadlos", "letadlop"},
+	{"0", "lebom", NULL, NULL, NULL, NULL, "leboms", "lebomp"},
+	{"0", "vrtulnik", "raketa_r", "kulome2", NULL, NULL, "vrtulnis", "vrtulnip", "0"},
+	{NULL, "satan", "lehkan", NULL, NULL, NULL, "satan_vy"},
+};
 
 
 
@@ -2856,20 +2903,6 @@ ending_label: // ja vim, prasarna
 
 
 int InitUnits() {
-	File sndfile;
-	int un, snd;
-
-	multipath_fopen(sndfile, "unitsnd.idx", File::READ);
-
-	for (un = 0; un < UNITS_COUNT; un++) {
-		for (snd = 0; snd < 16; snd++) {
-			sndfile.read(UnitsSoundIndex[un][snd], 9);
-			UnitsSoundIndex[un][snd][8] = '\0';
-		}
-	}
-
-	sndfile.close();
-
 	LoadArray(BmpSelected, 13, GraphicsDF, "terpul%i");
 #ifdef DEBUG
 	SpriteUniversal = (TSprite *) GraphicsDF->get("sprite");

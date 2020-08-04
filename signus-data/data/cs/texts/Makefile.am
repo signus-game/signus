@@ -45,9 +45,9 @@ texts_src = brief1.txt brief10.txt brief11.txt brief12.txt brief13.txt \
 	unam39.txt unam4.txt unam40.txt unam41.txt unam42.txt unam43.txt \
 	unam44.txt unam45.txt unam5.txt unam50.txt unam51.txt unam52.txt \
 	unam53.txt unam54.txt unam55.txt unam56.txt unam57.txt unam58.txt \
-	unam6.txt unam7.txt unam8.txt unam9.txt wpnnm0.txt wpnnm1.txt \
-	wpnnm10.txt wpnnm11.txt wpnnm2.txt wpnnm3.txt wpnnm4.txt wpnnm5.txt \
-	wpnnm6.txt wpnnm7.txt wpnnm8.txt wpnnm9.txt
+	unam59.txt unam6.txt unam60.txt unam7.txt unam8.txt unam9.txt \
+	wpnnm0.txt wpnnm1.txt wpnnm10.txt wpnnm11.txt wpnnm2.txt wpnnm3.txt \
+	wpnnm4.txt wpnnm5.txt wpnnm6.txt wpnnm7.txt wpnnm8.txt wpnnm9.txt
 
 dist_noinst_DATA = $(texts_src)
 
