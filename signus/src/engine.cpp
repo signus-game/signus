@@ -171,10 +171,25 @@ void GetSpriteRect(TRect *r, TSprite *s, int x, int y, int lx, int ly)
 
 ////////////////////////////// INICIALIZACE ///////////////////////////////
 
+void draw_mission_bezel(int transparent) {
+	void *ptr;
+	char buf[64];
 
+	sprintf(buf, "%imainscr", iniResolution - 0x100);
+	ptr = GraphicsDF->get(buf);
+	MouseHide();
+
+	if (transparent) {
+		DrawPictureNB(ptr);
+	} else {
+		DrawPicture(ptr);
+	}
+
+	MouseShow();
+	memfree(ptr);
+}
 
 int InitEngine(int mission, ReadStream *stream) {
-	void *ptr;
 	char s[20];
     
 	EngineInited = FALSE;
@@ -207,16 +222,10 @@ int InitEngine(int mission, ReadStream *stream) {
 
 	{
 		char p[768]  = {0};
-		char buf[20];
 
-		sprintf(buf, "%imainscr", iniResolution - 0x100);
-		ptr = GraphicsDF->get(buf);
 		PulsarProcess = FALSE;
 		SetPalette(p);
-		MouseHide();
-		DrawPicture(ptr);
-		MouseShow();
-		memfree(ptr);
+		draw_mission_bezel(0);
 	}
     
 	UpdateLitMap(TRUE);

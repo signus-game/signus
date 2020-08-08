@@ -130,33 +130,19 @@
 #include "anims.h"
 
 void InvasionAnimation() {
-	File f("mission6.tmp", File::WRITE | File::TRUNCATE);
-
-	if (!f.isOpen()) {
-		return;
-	}
-
-	SaveGameState(f);
-	f.close();
-	MouseShow();
-	ShowHelpers();
-	DoneArtificialIntelligence();
-	DoneEngine();
-
 	PlayAnimation("mis6x");
+	draw_mission_bezel(0);
+	RedrawMap();
 
-	f.open("mission6.tmp", File::READ);
+	if (SelectedUnit) {
+		int tmp = UnitInfoLock;
 
-	if (!f.isOpen()) {
-		return;
+		// Force unit info redraw
+		UnitInfoLock = 0;
+		SelectedUnit->Select();
+		UnitInfoLock = tmp;
 	}
 
-	LoadGameState(f);
-	f.close();
-	remove("mission6.tmp");
-
-	MouseHide();
-	HideHelpers();
 	SaySpeech("mis6a", 2005);
 }
 

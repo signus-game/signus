@@ -151,12 +151,12 @@ extern int TerrOfssBeg[1024], TerrOfssEnd[1024];
 extern int PulsarValue, PulsarDirection;
 
 // Inicializace enginu a jeho casti:
+void draw_mission_bezel(int transparent);
 extern int InitEngine(int mission, ReadStream *stream = NULL);
    // ma varianty: bud z DF podle misname nebo ze souboru
 extern int DoneEngine();
 extern void InitBitmaps(int MaskL1[], int MaskL2[]);
 extern void DoneBitmaps();
-
 
 
 // Buffer pro vykreslovani:

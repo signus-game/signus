@@ -510,17 +510,7 @@ void DoBriefingPlus()
         FadeOut(Palette, 0);
         sprintf(name, "brief%i", ActualMission);        
         BriefGo(name);        
-        {
-            char buf[20];
-            void *ptr;
-        
-            sprintf(buf, "%imainscr", iniResolution - 0x100);
-            ptr = GraphicsDF->get(buf);       
-            MouseHide();
-            DrawPicture(ptr); 
-            MouseShow();
-            memfree(ptr);
-        }
+        draw_mission_bezel(0);
         RedrawMap();
         SelectedUnit->Select();
         FadeIn(Palette, 0);
@@ -946,21 +936,12 @@ void TurnEnd()
     HideHelpers(); 
     UpdateWatch();
 
-                    { // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
-                        char buf[20];
-                        void *ptr;
-                        
-                        sprintf(buf, "%imainscr", iniResolution - 0x100);
-                        ptr = GraphicsDF->get(buf);       
-                        MouseHide();
-                        DrawPictureNB(ptr); 
-                        MouseShow();
-                        memfree(ptr);
-                        UpdateLitMap(TRUE);
-                        RedrawMap();
-                        if (SelectedUnit) SelectedUnit->Select();
-                        MainIcons->Draw();
-                    }
+    // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
+    draw_mission_bezel(1);
+    UpdateLitMap(TRUE);
+    RedrawMap();
+    if (SelectedUnit) SelectedUnit->Select();
+    MainIcons->Draw();
 
     UnitInfoLock++;
     for (i = 0; i < MapSizeX; i++)
@@ -1058,22 +1039,13 @@ int RunSignus(int from_save)
 
     PulsarProcess = TRUE;
     SetPalette(Palette);
-                    { // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
-                        char buf[20];
-                        void *ptr;
-                        
-                        SDL_Delay(1000);
-                        sprintf(buf, "%imainscr", iniResolution - 0x100);
-                        ptr = GraphicsDF->get(buf);       
-                        MouseHide();
-                        DrawPictureNB(ptr); 
-                        MouseShow();
-                        memfree(ptr);
-                        UpdateLitMap(TRUE);
-                        RedrawMap();
-                        if (SelectedUnit) SelectedUnit->Select();
-                        MainIcons->Draw();
-                    }
+    // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
+    SDL_Delay(1000);
+    draw_mission_bezel(1);
+    UpdateLitMap(TRUE);
+    RedrawMap();
+    if (SelectedUnit) SelectedUnit->Select();
+    MainIcons->Draw();
 
    // Hlavni smycka:
    for (SignusTerminated = FALSE; SignusTerminated == FALSE;) {
