@@ -203,6 +203,7 @@ int InitEngine(int mission, ReadStream *stream) {
 		ActualMission = 0;
 	}
 
+	MinesCnt = 0;
 	SelPos.x = SelPos.y = 0xFF;
 	MapBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);
 	FullBuf = memalloc(VIEW_PIXSZ_X * VIEW_PIXSZ_Y);

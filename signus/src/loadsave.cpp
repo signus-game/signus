@@ -137,7 +137,6 @@ int LoadGameState(ReadStream &stream, int format) {
 	int i, dummy;
 	TPoint pz;
 
-	MinesCnt = 0;
 	WaitCursor(TRUE);
 	InitEngine(0, &stream);
 
