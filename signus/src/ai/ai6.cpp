@@ -29,6 +29,7 @@
 // Programmed by Richard Wunsch
 //
 
+#include <climits>
 #include "mouse.h"
 #include "ai.h"
 #include "aiglobal.h"
@@ -164,7 +165,7 @@ TPoint MinePlaces6 [] = {65,52, 60,53, 55,48, 53,51, 48,53,
 
 int SaturnState = 0;
 int StartInvasion = MaxInt;
-TPoint S1Start, S2Start;
+TPoint bzone[2];
 
 void InitAI6 ()
 {
@@ -321,10 +322,10 @@ void LoadArtificialIntelligence6(ReadStream &stream, int format) {
 	Caesar5 = stream.readSint32LE();
 
 	SaturnState = stream.readSint32LE();
-	S1Start.x = stream.readSint32LE();
-	S1Start.y = stream.readSint32LE();
-	S2Start.x = stream.readSint32LE();
-	S2Start.y = stream.readSint32LE();
+	bzone[0].x = stream.readSint32LE();
+	bzone[0].y = stream.readSint32LE();
+	bzone[1].x = stream.readSint32LE();
+	bzone[1].y = stream.readSint32LE();
 	StartInvasion = stream.readSint32LE();
 
 	Towers = new TTowers(stream);
@@ -348,10 +349,10 @@ void SaveArtificialIntelligence6(WriteStream &stream) {
 	stream.writeSint32LE(Caesar5);
 
 	stream.writeSint32LE(SaturnState);
-	stream.writeSint32LE(S1Start.x);
-	stream.writeSint32LE(S1Start.y);
-	stream.writeSint32LE(S2Start.x);
-	stream.writeSint32LE(S2Start.y);
+	stream.writeSint32LE(bzone[0].x);
+	stream.writeSint32LE(bzone[0].y);
+	stream.writeSint32LE(bzone[1].x);
+	stream.writeSint32LE(bzone[1].y);
 	stream.writeSint32LE(StartInvasion);
 
 	Towers->Save(stream);
@@ -364,9 +365,195 @@ void SaveArtificialIntelligence6(WriteStream &stream) {
 	DUPos = 0;
 }
 
+static int count_targets(int xpos, int ypos) {
+	int x, y, ret = 0;
+	TField *f;
+
+	for (x = xpos - 5; x <= xpos + 5; x++) {
+		if (x < 0 || x >= MapSizeX) {
+			continue;
+		}
+
+		for (y = ypos - 4; y <= ypos + 5; y++) {
+			if (y < 0 || y >= MapSizeY) {
+				continue;
+			}
+
+			f = GetField(x, y);
+
+			if (f->Unit != NO_UNIT && f->Unit < BADLIFE) {
+				ret += TabDanger[Units[f->Unit]->Type];
+			}
+		}
+	}
+
+	return ret;
+}
+
+void mission6_airstrike(void) {
+	int i, x, y, h, hmax, dmin, done, bomber_count = 0;
+	TSaturn *bombers[2];
+
+	bombers[bomber_count] = (TSaturn*)Units[Saturn1];
+
+	if (bombers[bomber_count]) {
+		bomber_count++;
+	}
+
+	bombers[bomber_count] = (TSaturn*)Units[Saturn2];
+
+	if (bombers[bomber_count]) {
+		bomber_count++;
+	}
+
+	if (SaturnState >= 4 || !bomber_count) {
+		if (ActualTurn < StartInvasion) {
+			StartInvasion = ActualTurn + 1;
+		}
+
+		return;
+	}
+
+	if (SaturnState == 0) {
+		// CHEAT!
+		for (i = 0; i < bomber_count; i++) {
+			bombers[i]->Fuel = bombers[i]->MaxFuel;
+		}
+
+		// Begin airstrike
+		if (Army6->Status == asDestroyed || ActualTurn >= SaturnStart) {
+			SaturnState = 1;
+		}
+	}
+
+	// Find the best area for bombing
+	if (SaturnState == 1) {
+		hmax = 0;
+		dmin = INT_MAX;
+
+		for (i = 0; i < BADLIFE; i++) {
+			if (!Units[i]) {
+				continue;
+			}
+
+			// Find the most valuable group of units
+			if (bombers[0]->Fuel > bombers[0]->MaxFuel / 2) {
+				h = count_targets(Units[i]->X, Units[i]->Y);
+
+				if (h > hmax) {
+					hmax = h;
+					bzone[0].x = Units[i]->X - 5;
+					bzone[0].y = Units[i]->Y - 2;
+					bzone[1].x = Units[i]->X - 5;
+					bzone[1].y = Units[i]->Y + 3;
+
+					if (bomber_count < 2) {
+						bzone[0].y += 2;
+					}
+				}
+			// Fuel running low, just pick the nearest target
+			} else {
+				float danger = TabDanger[Units[i]->Type] + 1;
+
+				x = bombers[0]->X - Units[i]->X + 5;
+				y = bombers[0]->Y - Units[i]->Y + 1;
+				h = ((x*x) + (y*y)) / (danger*danger);
+
+				if (h < dmin) {
+					dmin = h;
+					bzone[0].x = Units[i]->X - 5;
+					bzone[0].y = Units[i]->Y - 2;
+					bzone[1].x = Units[i]->X - 5;
+					bzone[1].y = Units[i]->Y + 3;
+
+					if (bomber_count < 2) {
+						bzone[0].y += 2;
+					}
+				}
+			}
+		}
+	}
+
+	// Finish the bombing run
+	if (SaturnState == 2) {
+		done = TRUE;
+
+		for (i = 0; i < bomber_count; i++) {
+			UnlockDraw();
+			bombers[i]->Select();
+
+			if (bombers[i]->MoveFar(bzone[i].x, bzone[i].y) <= 0 ||
+				bombers[i]->EndBombing() <= 0) {
+				done = FALSE;
+			}
+
+			LockDraw();
+		}
+
+		if (done) {
+			SaturnState = 3;
+			StartInvasion = ActualTurn + 1;
+		}
+	}
+
+	// Bombs away!
+	if (SaturnState == 1) {
+		done = TRUE;
+
+		for (i = 0; i < bomber_count; i++) {
+			UnlockDraw();
+			bombers[i]->Select();
+
+			if (bombers[i]->MoveFar(bzone[i].x, bzone[i].y) <= 0 ||
+				bombers[i]->StartBombing() <= 0) {
+				done = FALSE;
+			}
+
+			LockDraw();
+		}
+
+		if (done) {
+			SaturnState = 2;
+			bzone[0].x += 8;
+			bzone[1].x += 8;
+		// Fuel too low, abort airstrike and start the main invasion
+		} else if (bombers[0]->Fuel < bombers[0]->MaxFuel / 3) {
+			SaturnState = 3;
+			StartInvasion = ActualTurn + 1;
+		}
+	}
+
+	// Return to base
+	if (SaturnState == 3) {
+		done = TRUE;
+
+		for (i = 0; i < bomber_count; i++) {
+			if (bombers[i]->X == -1 && bombers[i]->Y == -1) {
+				continue;
+			}
+
+			UnlockDraw();
+			bombers[i]->Select();
+
+			if (bombers[i]->MoveFar(MapSizeX-1, bzone[i].y) > 0) {
+				bombers[i]->PlaceGround(FALSE);
+				bombers[i]->X = bombers[i]->Y = -1;
+			} else {
+				done = FALSE;
+			}
+
+			LockDraw ();
+		}
+
+		if (done) {
+			SaturnState = 4; // Mission accomplished
+		}
+	}
+}
+
 int ArtificialIntelligence6 ()
 {
-    int i, j, st, x, y, h, hmax;
+    int i, j, st;
     TField *f;
     TPoint p;
 
@@ -517,126 +704,10 @@ int ArtificialIntelligence6 ()
 
 
 //////////////////////////////// AKTIVACE ARMAD
-    
-    // S A T U R N I
-    // CHEAT !
-    if (SaturnState == 0) {
-        if (Units [Saturn1] != NULL) 
-            ((TSaturn *)Units [Saturn1]) -> Fuel = ((TSaturn *)Units [Saturn1]) -> MaxFuel;
-        if (Units [Saturn2] != NULL) 
-            ((TSaturn *)Units [Saturn2]) -> Fuel = ((TSaturn *)Units [Saturn2]) -> MaxFuel;     
-    }
-    
-    // Aktivace
-    if (SaturnState == 0 
-    && (Army6 -> Status == asDestroyed || ActualTurn >= SaturnStart)) {
-        SaturnState = 1;
-    }
 
-    // Vybereme nejlepsi misto na bombeni
-    if (SaturnState == 1) {
-        hmax = 0;
-        for (i = 0; i < BADLIFE; i++) {
-            h = 0;
-            if (Units [i] != NULL) {
-                for (x = Units [i] -> X - 5; x <= Units [i] -> X + 5; x++) {
-                    if (x < 0 || x > MapSizeX) continue;
-                    for (y = Units [i] -> Y - 4; y <= Units [i] -> Y + 5; y++) {
-                        if (y < 0 || y > MapSizeY) continue;
-                        f = GetField (x, y);
-                        if (f -> Unit != NO_UNIT && f -> Unit < BADLIFE) {
-                            h += TabDanger [Units [f -> Unit] -> ID];
-                        }
-                    }
-                }
-            }
-            if (h > hmax) {
-                hmax = h;
-                S1Start.x = Units [i] -> X - 5;
-                S1Start.y = Units [i] -> Y - 2;
-                S2Start.x = Units [i] -> X - 5;
-                S2Start.y = Units [i] -> Y + 3;
-            }
-        }
-    }
-    // Bombi se
-    i = j = FALSE; 
-    if (SaturnState == 2) {
-        if (Units [Saturn1] != NULL) {
-            UnlockDraw ();
-            Units [Saturn1] -> Select ();
-            if (Units [Saturn1] -> MoveFar (S1Start.x, S1Start.y) > 0) {
-                if (((TSaturn *)Units [Saturn1]) -> EndBombing () > 0) i = TRUE;
-            }
-            LockDraw ();
-        }
-        if (Units [Saturn2] != NULL) {
-            UnlockDraw ();
-            Units [Saturn2] -> Select ();
-            if (Units [Saturn2] -> MoveFar (S2Start.x, S2Start.y) > 0) {
-                if (((TSaturn *)Units [Saturn2]) -> EndBombing () > 0) j = TRUE;
-            }
-            LockDraw ();
-        }
-        if (i && j) {
-            SaturnState = 3;    
-            StartInvasion = ActualTurn + 1;
-        }
-    }
-    // De se bombit
-    i = j = FALSE; 
-    if (SaturnState == 1) {
-        if (Units [Saturn1] != NULL) {
-            UnlockDraw ();
-            Units [Saturn1] -> Select ();
-            if (Units [Saturn1] -> MoveFar (S1Start.x, S1Start.y) > 0) {
-                if (((TSaturn *)Units [Saturn1]) -> StartBombing () > 0) i = TRUE;
-            }
-            LockDraw ();
-        }
-        if (Units [Saturn2] != NULL) {
-            UnlockDraw ();
-            Units [Saturn2] -> Select ();
-            if (Units [Saturn2] -> MoveFar (S2Start.x, S2Start.y) > 0) {
-                if (((TSaturn *)Units [Saturn2]) -> StartBombing () > 0) j = TRUE;
-            }
-            LockDraw ();
-        }
-        if (i && j) {
-            SaturnState = 2;    
-            S1Start.x += 8;
-            S2Start.x += 8;
-        }
-    }
-    // Leti se domuuu
-    i = j = FALSE;
-    if (SaturnState == 3) { 
-        if (Units [Saturn1] != NULL) {
-            UnlockDraw ();
-            Units [Saturn1] -> Select ();
-            if (Units [Saturn1] -> MoveFar (MapSizeX - 1, S1Start.y) > 0) {
-                ((TSaturn *)Units [Saturn1]) -> PlaceGround (FALSE);
-                Units [Saturn1] -> X = Units [Saturn1] -> Y = -1;
-                i = TRUE;
-            }
-            LockDraw ();
-        }
-        if (Units [Saturn2] != NULL) {
-            UnlockDraw ();
-            Units [Saturn2] -> Select ();
-            if (Units [Saturn2] -> MoveFar (MapSizeX - 1, S2Start.y) > 0) {
-                ((TSaturn *)Units [Saturn2]) -> PlaceGround (FALSE);
-                Units [Saturn2] -> X = Units [Saturn2] -> Y = -1;
-                j = TRUE;
-            }
-            LockDraw ();
-        }           
-        if (i && j) {
-            SaturnState = 4; // Konec akce  
-        }
-    }
-    
-    
+    // S A T U R N I
+    mission6_airstrike();
+
 
 ///////////////////////////// AKCE ARMAD
 
