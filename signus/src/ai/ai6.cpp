@@ -439,11 +439,11 @@ void mission6_airstrike(void) {
 				}
 			// Fuel running low, just pick the nearest target
 			} else {
-				float danger = TabDanger[Units[i]->Type] + 1;
+				float danger = TabDanger[Units[i]->Type];
 
 				x = bombers[0]->X - Units[i]->X + 5;
 				y = bombers[0]->Y - Units[i]->Y + 1;
-				h = ((x*x) + (y*y)) / (danger*danger);
+				h = ((x*x) + (y*y)) / (1 + danger*danger);
 
 				if (h < dmin) {
 					dmin = h;
