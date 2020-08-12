@@ -1,21 +1,22 @@
-#> Commando Signus
+#> Signus Special Forces
  #p.anamorf.320.184.
-#> This project was proposed by Ian Zening - the director of the Tricon´s defence division.
- He gained the support of the headquarters after the first diplomatic conflict between Toricon and
- the Consortium has happened. After finding out the fact that Consortium is undertaking research
- expeditions to those forbidden territories  that are in the sphere of Toricon´s interest, the existence
- of this project became a necessity.
-#> The task is to create the unit of top army units - the Signus commando. Its purpose is to gain the
- forbidden territories, where Toricon plans to work on the research of the artefacts, test recently
- invented weapons, limit the influence of Consortium in these mentioned areas using assault troops,
- liquidation of relevant witnesses etc.
-#> The members of the commando are forced to undergo the introductory tests: physical, psychical
- etc. Than they have to pass through a training where they are taught to deal with various arsenal -
- depending on the specialisation based on the introductory tests results or a special military
- training.
-#> On the proposal of the supply director Zening every member of Signus has a seeking code
- implanted under the skin. With the soldiers' agreement of course. The code is considered some
- kind of a badge of their membership in the top of the top...
- Toricon hopes well of this project because it is the first one of it's kind.
+#> This project was proposed by Ian Zening - the president of the Defense
+ Department. Top leadership embraced it after the first diplomatic clash
+ between Toricon and the Consortium. The project became a necessity after it
+ was revealed that the Consortium is making exploratory expeditions into
+ forbidden zones within Toricon's sphere of interest.
+#> The goal is to create an elite unit - the Signus Special Forces. Their
+ mission is to secure areas in the forbidden zones where Toricon plans to
+ search for artefacts, test newly developed weapons, and to undermine
+ Consortium influence in the above mentioned areas using surprise attacks and
+ perhaps by eliminating unwanted witnesses.
+#> Signus members are required to pass entrance exams: mental, physical, etc.
+ Then they go through weapons training according to their specialisation
+ recommended by the entrance exam results, special combat training, and so on.
+#> As proposed by president Zening's deputy, every Signus member gets a
+ locator code implanted under the skin. With the soldiers' consent of course,
+ as the code is considered a badge of membership in the highest elite...
+#> Toricon has high expectations for this project, it is the first and so far
+ the only one of its kind.
 #e
 #e

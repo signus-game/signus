@@ -1,5 +1,4 @@
-The primary aim of this mission is
-to eliminate all enemy military forces
-in the area. The secondary aim is to
-capture the Consortium's base and
-Perseus Beta tanks.
+The primary objective of this mission is to eliminate
+all enemy forces in the area. The secondary objective
+is to capture the Consortium base and Perseus Beta
+tanks.

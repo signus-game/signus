@@ -10,7 +10,7 @@
  Signus. Jeho účelem je obsazovat oblasti zakázaných zón, kde
  Toricon plánuje provádět výzkum artefaktů, testovat nově
  vyvinuté zbraně, omezovat vliv Konzorcia ve zmíněných
- oblastech - speciálními přepadovými akce, případně likvidací
+ oblastech - speciálními přepadovými akcemi, případně likvidací
  nežádoucích svědků.
 #> Příslušníci komanda jsou nuceni podstoupit vstupní testy:
  psychické, kondiční, atd. Dále prochází školením o zacházení
@@ -18,7 +18,7 @@
  základě výsledků vstupních testů, zvláštním vojenským
  tréninkem, apod.
 #> Na návrh zástupce prezidenta Zeninga je každému příslušníku
- Signusu pod kůži inplantaván vyhledávací kód. Samozřejmě
+ Signusu pod kůži implantován vyhledávací kód. Samozřejmě
  s jejich souhlasem, neboť pro ně je kód cosi jako odznak
  jejich členství v elitě nejlepších...
 #> Toricon si od tohoto projektu hodně slibuje, je totiž první
