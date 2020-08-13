@@ -1,1 +1,1 @@
-Do you really want to end the game?
+Do you really want to exit the game?

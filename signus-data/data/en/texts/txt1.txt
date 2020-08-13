@@ -1,1 +1,1 @@
-%s is ready to shoot at %s. Process?
+%s is ready to fire at %s. Proceed?

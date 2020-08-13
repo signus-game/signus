@@ -1,2 +1,2 @@
-Finance:
+Money:
   %i cr

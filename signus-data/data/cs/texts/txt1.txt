@@ -1,3 +1,1 @@
-%s je připraven ke střelbě na : %s. Vystřelit?
-
-
+%s je připraven k palbě na: %s. Vystřelit?

@@ -1,1 +1,1 @@
-Units stop when new enemy appears.
+Units stop when new enemy unit spotted

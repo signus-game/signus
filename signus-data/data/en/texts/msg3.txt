@@ -1,1 +1,1 @@
-This kind of terrain is not accessable for the unit.
+The terrain is impassable for this unit.

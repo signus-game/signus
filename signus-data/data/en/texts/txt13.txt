@@ -1,1 +1,1 @@
-Unaccessable terrain
+Impassable terrain

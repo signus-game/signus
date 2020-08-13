@@ -1,1 +1,1 @@
-The target is out of the unit range.
+The target is out of range.

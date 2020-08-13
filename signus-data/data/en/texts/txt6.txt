@@ -1,1 +1,1 @@
-End game
+Exit game
