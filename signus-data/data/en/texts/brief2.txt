@@ -1,19 +1,22 @@
 #> 
  #p.toricon.282.183. 
-#> A movement of the army units of Consortium was registered near our base Ardenor, where the
- research of the artefact Taron is done. This area will be completely isolated in a couple of hours.
-#> (See Dr. Iceberg's report#001 for details)
-#> We were successful to find the cause of the sudden attack of Consortium: one hour ago the guards
- have captured Doctor B. Lex when he was trying to escape to the offensive army. After a
- consequential questioning B. Lex has told us about his connection to the enemy and about his
- research on Taron for Consortium, which is interested in the artefact's influence on the human
- psychic. New circumstances made the Toricon company to draw up an order which says that we
- shall stop the offenders from getting the artefact and perform the prepared shift to make further
- research IMMEDIATELY. It is necessary to loose the Consortium's attention and drift Taron into
- our base Tankred at the North from Ardenor, where our position is stable. Doctor Iceberg will be
- in the charge of the action.
+#> We have detected Consortium military activity near our Ardenor base where
+ the research of the Taron artefact is taking place. The base will be
+ completely surrounded within a few hours.
+#> (See Dr.#001 Iceberg's#001 report#001 for details)
+#> We have found the explanation of Consortium's sudden attack: A patrol has
+ arrested Dr. B. Lex an hour ago in an attempt to defect to the besieging
+ army. After thorough interrogation, Dr. Lex admitted his contact with the
+ enemy and performing research on Taron for the Consortium which is interested
+ in the artefact's effects on human psyche.
+#> This change of situation has led the Toricon company to give us an order to
+ prevent the attackers from capturing the artefact at all costs and perform
+ the planned artefact transport to the new research location IMMEDIATELY. We
+ have to draw away Consortium forces and transport the Taron to our Tankred
+ base north of Ardenor where our position is secure. Doctor Iceberg will be
+ in charge of the entire operation.
  #p.anamorf.320.184.
-#> THE PRIMARY AIM: to move the artefact Taron into the base Tankred.
+#> PRIMARY OBJECTIVE: Deliver the Taron artefact to the base in Tankred
 #e
 #l br2_001#
 #e

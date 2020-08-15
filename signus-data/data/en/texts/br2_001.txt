@@ -1,30 +1,37 @@
-#> The report of Doctor Hans Iceberg
-#> The Ardenor Base (26. 2. 18:38:00)
+#> Report by Dr. Hans Iceberg
+#> Ardenor base (February 26, 6:38:00 PM)
  #p.br_taron.274.204.
-#> Six hours after getting the artefact Taron in a safe place professor Stevens has practised it's
- opening. Eight seconds after he has been stricken with a seizure of rage without any known
- reason. Suddenly he turned against his colleagues J. Barkli and D Johnoson. Although he did not
- have any weapon at that time, one hit in the throat was enough to kill both of them. Right after
- Mr. Stevens  has destroyed the laboratory notes and even some of the machines.
-#> The complete destruction of this lab has happened unbelievably quickly. Nine minutes after the
- beginning of Steven's seizure he was paralysed and moved into isolated room. The investigation of
- the cause or the motivation of Prof. Stevens is still running.
-#> A similar case has happened today during the cleaning of the laboratory. One of the members of
- the cleaning team was removing the broken parts close to Taron. Couple seconds later he
- appeared to be in a very similar state to Prof. Steven's state during the seizure. No one was killed
- because the worker has been putted asleep in time.
-#> In both of these cases the rage has fallen of a couple hours later and after a short state of
- unconsciousness the stricken ones appeared to loose partly their memory. After meeting Doc. B.
- Lex I became convicted that Taron is participating on these events somehow. That is why we have
- closed the entry to the artefact and we are still waiting for another orders.
+#> Six hours after receiving the Taron artefact, professor Stevens unsealed
+ the containment. Eight seconds later, he was overcome by rage for unknown
+ reason in which he turned against his assisting colleagues J. Barkli and D.
+ Johnson. Despite being unarmed, prof. Stevens killed both of them with a
+ single hit to the neck. With nobody else in the room to attack, prof. Stevens
+ then began destroying research notes and lab equipment.
+#> The lab was completely destroyed in an instant. Nine minutes after the
+ outburst began, we managed to subdue the professor and move him to an
+ isolation cell. Investigation of the cause or motive of prof. Stevens'
+ behavior is still ongoing.
+#> A similar incident has happened today during cleanup of the lab. One of the
+ janitors was collecting broken pieces of equipment in the immediate vicinity
+ of Taron. A few seconds later, he was struck by a similar bout of insanity as
+ prof. Stevens. Fortunately, there were no more casualties as the janitor was
+ restrained in time.
+#> In both cases the rage has faded away in a few hours and the subjects have
+ lost memory of the events after a short loss of consciousness. After
+ consulting with Dr. B. Lex I came to the conclusion that Taron is responsible
+ for these incidents. We have temporarily forbidden access to the artefact for
+ this reason and we are awaiting further instructions.
  #p.anamorf.320.184.
-#> Fifteen  hours after the second incident we have accepted the order to remove the artefact to a
- more advanced and safer laboratory in Tankred. The influence of the artefact on people´s physics
- will be investigated here. We suppose that we have met a certain kind of a defensive system from
- the early times of the old civilisation. But we will be able to confirm this supposition after another
- research . The isolation and another preparation for sending the artefact on the way was done
- without any problems, I only have registered a certain nervousness among the soldiers. That was
- probably the result of the recent events. (I suggest to change the drivers every twenty minutes - in
- case the isolation of Taron was not perfect.)
+#> Fifteen  hours after the second incident, we have received orders to
+ transfer the artefact to the better equipped and protected laboratory in
+ Tankred. The research of Taron's effects on human psyche will continue there.
+ According to one hypothesis, we may have discovered some kind of defensive
+ system from early period of the ancient civilisation. However, more research
+ is needed to confirm the hypothesis. Sealing the artefact back into
+ containment and other preparations for transport were uneventful, except for
+ some visible signs of anxiety among the soldiers most likely caused by
+ previous incidents. (For safety, I've recommended changing the transporter
+ driver every twenty minutes in case that Taron containment happens to be
+ insufficient.)
 #e
 #e

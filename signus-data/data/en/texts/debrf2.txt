@@ -1,9 +1,10 @@
-#> We succeeded to transport the artefact to the Tankred base. There were no damages found after
- the transport.
+#> The artefact was successfully delivered to the Tankred base without any
+ damage.
+#> HQ is pleased with the professional execution of this operation.
 #> 
-#> The HQ expressed the satisfaction with the professional performance of this action. During the
- retreat the Ardenor base was occupied by the units of Consortium. Toricon has decided not to
- react to this obvious act of aggression and to tolerate the occupation of this not too successful
- scientific groundwork.
+#> The Ardenor base was captured by Consortium forces during the retreat.
+ Toricon has decided not to respond to this clear act of aggression and to
+ tolerate enemy occupation of this rather unimportant research facility for
+ now.
 #e
 #e
