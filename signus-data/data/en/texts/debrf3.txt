@@ -1,7 +1,8 @@
-#> According to the order we have succeeded to capture Arten and subsequently Sanukor. We are in
- control of these basis and we are expecting next orders.
-#> As to the documents about the found artefacts: In Sanukor we have only found the mentions of
- the transportation to more distant base Tortugal in the west of Eutanie. The artefacts from Arten
- were probably transported to the same place.
+#> We have successfully captured Arten and subsequently Sanukor as ordered.
+ Both are now under our control and we are awaiting further orders.
+#> Regarding documents about discovered artefacts: In Sanukor we have found
+ only mentions of artefacts being transported farther away to Tortugal base in
+ west Eutania. Artefacts from Arten were most likely transported to the same
+ location.
 #e
 #e

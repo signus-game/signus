@@ -1,21 +1,21 @@
 #> 
  #p.toricon.282.183. 
-#> The Kentaur Base
-#> In the present situation any occurrence of enemy basis in the neighbourhood of Kentaur means a
- potential danger for us. Therefore the HQ of the Toricon society has decided that we will be safer
- if we get to control these bases. Especially Arten to the north-east and Sanukor at the west.
- According to our reporters both these basis are held by the units of Consortium, that is why action
- needs to be done with a lightning speed and not to let the reinforcements from the basis nearby
- surprise us.
-#> Arten is the first on the list. It is connected with Sanukor with a railway, which is a plus for us
- because we can use it and apply our recently developed army train Olymp#001. We will construct this
- train from the parts of Arten´s workshops and we will use the Signus commandos to transport the
- needed arsenal as quickly as possible .
-#> It is significant to capture Arten and attack Sanukor before they get to know about our arrival.
+#> Centaur base
+#> The presence of any enemy bases around Centaur poses a potential threat to
+ us in the current situation. Toricon top management has therefore decided
+ that it'll be safer to take over control of those bases.
+#> The targets are Arten to the northeast from here and Sanukor to the west.
+ According to our intelligence department, both bases are under control of
+ Consortium forces so we must finish this operation quickly to avoid getting
+ surprised by reinforcements from other bases in the area.
+#> Arten is the first objective. It is connected to Sanukor by railroad which
+ allows us to make use of the recently developed Olympus#001 transport train.
+ We will assemble the train from parts available in the Arten factory and use
+ it for faster transport of Signus units and ordnance.
+#> It is crucial to capture Arten and attack Sanukor before they can detect
+ our approach.
  #p.anamorf.320.184.
-#> THE PRIMARY AIM : To win the basis Arten and Sanukor
-#> THE SECONDARY AIM : To get the documentation on the possible discoveries and to stow up
- of the artefacts found by Consortium.
+#> PRIMARY OBJECTIVE: Capture the Arten and Sanukor bases
 #e
 #l udes27#
 #e
