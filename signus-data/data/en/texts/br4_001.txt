@@ -1,17 +1,18 @@
-#> I don't like it here. I don't like it at all...
-#> We are trapped in here. The soldiers of Consortium are everywhere and
- they keep narrowing the circle around the base. It feels like there is a rope
- around my neck.
-#> They are moving slowly but self-confidently like they knew the feelings they are bringing on us.
-#> A couple of minutes ago we have lost the advanced fortification by the bridge.
- I have a terrible feeling that George Hastings, my cousin is on duty today. I will
+#> I don't like this place, I really don't like it...
+#> We're trapped in here. Consortium soldiers are all around us and they keep
+ tightening the circle around the base. It feels as if they were tightening a
+ noose around my neck.
+#> They're advancing slowly but surely as if they knew how does it make us
+ feel.
+#> We've lost the fortified outpost by the bridge a few minutes ago. I have a
+ dreadful feeling that my cousin George Hastings was on duty there today. I'll
  probably never see him again. Not alive.
-#> The guys are beginning to be nervous. No wonder, we have never been in such a terrible situation.
-#> If we could at least use the new guns that were tested here by Toricon. Without them  all of us are
- probably going to die.
-#> The last chance for us is the arrival of reinforcements from Toricon. If Bronx hasn't just made
- them up.
+#> The boys are getting nervous. No wonder, we've never been in such dire
+ straits as far as I can remember.
+#> If only we could use the new weapons that Toricon had us test. Without
+ them, we'll probably all kick the bucket here. Our last hope are the
+ reinforcements coming from Tetron, unless Bronx just made them up.
 #> 
-#> (From the diary of dead Nortn McDowel.)
+#> (Excerpt from diary of the fallen Norton McDowel.)
 #e
 #e

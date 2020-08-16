@@ -1,22 +1,24 @@
 #> 
  #p.toricon.282.183. 
-#> The Batix base
-#> Resulting situation: the units of Consortium succeeded to spread their soldiers around Batix and
- we are expecting the attack in any minute. The latest and recently tested weapons are stored in
- Batix. It is also used as a stock of usual ammunition and arsenal for the hit units.
-#> According to the situation we cannot afford capitulation.
-#> Your task is to hold the fortress until the arrival of the reinforcements. If you fail, Consortium
- gains another stronger weapon against Toricon.
-#> Unfortunately, we cannot use these weapons for the defence because Toricon demands absolute
- concealment. If we get defeated the weapons and all the notes about their testing have to be
- destroyed.
-#> There is nothing else I can tell you about this matter. Nobody knows anything, nobody says
- anything.
+#> Batix base
+#> Situation report: Consortium forces have depolyed their units around Batix
+ and we are expecting them to launch the attack at any moment. We have the
+ latest, only recently tested prototype weapons stored here in Batix and we
+ also serve as a standard munitions and ordnance storage for Toricon strike
+ forces.
+#> Surrender is out of the question for these reasons. Your task is to defend
+ the fortress until reinforcements arrive. If you fail, the Consortium will
+ gain new, much stronger weapons against Toricon than it already has.
+#> Unfortunately, we cannot use those weapons for defense because Toricon has
+ ordered us to keep them secret. If we lose, the prototypes must be destroyed
+ together with all testing documents.
+#> That is all I will tell you about this matter. The less you know, the less
+ you can tell...
 #>
 #> Ted Bronx
  #p.anamorf.320.184.
-#> PRIMARY AIM: To hold the Batix base until the arrival of reinforcements.
-#> SECONDARY AIM: To set off the stocks of ammunition in case of direct threat of capturing
- Batix by Consortim.
+#> PRIMARY OBJECTIVE: Hold the Batix base until reinforcements arrive.
+#> SECONDARY OBJECTIVE: In case of imminent threat of Batix being captured by
+ the Consortium, detonate the munitions depots.
 #e
 #e

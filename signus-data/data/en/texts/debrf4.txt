@@ -1,10 +1,10 @@
-#> The reinforcemnts from the Tetron base have arrived during the battle - reacting to a SOS signal
- we sent out to Consortium before the attack started. With their help we succeeded to fend off the
- offensive units. In the mean time we removed the casualties and treated wounded soldiers.
- According to our sentries the same thing was happening on the enemy side who is now returning
- back to Tortugal.
-#> During the return to the base I have found a diary#001 of#001 one#001 of#001 the#001 dead#001 soldiers#001
- There are some things to be understand about the psychic of the garrison.
+#> Reinforcements from the Tetron base where we sent a distress call shortly
+ before the Consortium attack have arrived during the battle for Batix. With
+ their help, we have managed to repel the invasion force and we are currently
+ collecting the dead and treating the wounded. Scouts report that the enemy is
+ doing the same while slowly retreating back to Tortugal where they came from.
+#> On my way back to base I've found a diary#001 of#001 a#001 fallen#001
+ soldier.#001 It provides some insights into the morale of our troops.
 #e
 #l br4_001#
 #e

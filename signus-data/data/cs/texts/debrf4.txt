@@ -6,7 +6,7 @@
  kteří se pomalu obrací k návratu do Tortugalu, odkud
  přišli.
 #> Při návratu do základny jsem našel deník#001 jednoho#001 z#001 padlých.#001
- Dá se z něj lecos vyčíst o psychice mužstva.
+ Dá se z něj leccos vyčíst o psychice mužstva.
 #e
 #l br4_001#
 #e

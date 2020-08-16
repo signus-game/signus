@@ -1,5 +1,4 @@
-We must defend base Batrix and prevent its
-conquest by the enemy. In the case that
-it is no longer possible to resist, detonate
-the ammunition stocks. They must not be
-captured by the enemy.
+We must defend the Batix base and prevent the enemy
+from capturing it. If the situation becomes hopeless,
+detonate the munitions depots. They must not fall
+into enemy hands.
