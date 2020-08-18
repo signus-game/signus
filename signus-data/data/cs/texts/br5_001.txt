@@ -13,10 +13,10 @@
 #> Stejné výsledky jsme získali při testování zbraní těžšího
  kalibru.
 #> Vedení Konzorcia se snaží o využití Pegasu ve vojenských
-akcích jako odstřelování torikonských základen přes veliké
-vzdálenosti.
-#> V tomto smětu jsme však ještě dostatečně nepokročili. Výzkum
-probíhá dál, pod vedením prof. Genersona.
+ akcích jako ostřelování torikonských základen přes veliké
+ vzdálenosti.
+#> V tomto směru jsme však ještě dostatečně nepokročili. Výzkum
+ probíhá dál, pod vedením prof. Genersona.
 #> 
 #> Prof. Jeff Aleckard
 #e

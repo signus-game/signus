@@ -1,16 +1,17 @@
 #> 
  #p.toricon.282.183. 
-#> After successful fending off of the Consortium's units the enemy is withdrawing from the area of
- Batix.
-#> They are returning to Tortugal as they were supposed to.
-#> Toricon is convinced that existence of any base out of the it's influence is inadmissible.
- According to the HQ it is most advantageous to use our superior forces and to attack
- Tortugal.
-#> On the top of it, we found out about artefacts that could bring to Consortium the power to thread
- Toricon's positions.
-#> That is why it is necessary to capture Tortugal and to get all the artefacts including the documents
- about the recent research.
+#> Now that we have successfully repelled the Consortium attack, enemy units
+ are retreating from the area around Batix. They are returning to Tortugal as
+ expected.
+#> Toricon considers the presence of any bases outside Toricon control in the
+ vicinity of Batix to be unacceptable. Top management therefore deems most
+ appropriate to take advantage of the numerical superiority of our forces and
+ attack Tortugal.
+#> In addition, we have learned from one of our sources about artefacts which
+ could give the Consortium power threatening Toricon's strongholds. Thus it is
+ crucial to capture Tortugal and acquire all the artefacts together with
+ documents about latest research.
  #p.anamorf.320.184.
-#> PRIMARY AIM: To capture the Tortugal base.
+#> PRIMARY OBJECTIVE: Capture the Tortugal base.
 #e
 #e

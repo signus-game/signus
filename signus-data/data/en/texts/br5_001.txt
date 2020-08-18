@@ -1,17 +1,20 @@
-#> Artefact PEGAS
+#> The PEGASUS Artefact
  #p.anamorf.320.184.
-#> Yesterday we succeeded in revealing the exceptionality of the artefact that was found several miles
- from Sanukor. We have already had special feelings before. But now we are finally able to use this
- strange phenomenon on higher level.
-#> Professor R. Generson has performed several tests with the ammunition shots under the influence
- of artefact Pegas. After the computation of the aberration from the straight course of the missile
- our supposition was confirmed. No aberration means that Pegas must have an influence on the
- gravity and the inertia of the missile's movement.
-#> We got the same results during the testing of guns with heavier gauge.
- The HQ of the Consortium are trying to use Pegas in military actions - for example for shooting
- on the Toricon bases on longer distance.
+#> Yesterday we have finally managed to determine the special qualities of the
+ artefact found a few miles from Sanukor. Many times in the past we had
+ strange feelings of lightness in the vicinity of Pegasus but only now we are
+ able to use this strange phenomenon to a greater extent.
+#> Professor R. Generson has performed several ballistic experiments with
+ projectiles fired under the influence of Pegasus. Our hypothesis was
+ confirmed by calculating the trajectory deviation from a straight line. Zero
+ deviation, which means that Pegasus has unquestionably some effect on gravity
+ and thus also the projectile trajectory.
+#> Tests with larger caliber weapons have produced the same results.
+#> The Consortium leadership is pushing for military applications of Pegasus
+ such as artillery bombardment of Toricon bases over extreme distances.
+#> However, we haven't made much progress in this direction yet. Research
+ continues under prof. Generson's supervision.
 #> 
-#> But that is still only a theory. The research is still running under control of Prof. Generson.
 #> Prof. Jeff Aleckard
 #e
 #e

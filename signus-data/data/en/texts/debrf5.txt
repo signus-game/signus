@@ -1,13 +1,11 @@
-#> According to the command the Tortugal base
- on the south-east from Batix was captured. In the
- base labs we have found some artefacts with complete
- documentation and subsequently gave them
- to Prof. Iceberg for transport to Tankred base - to
- the artefact research centre.
+#> The Tortugal base southeast of Batix was captured as ordered. In the labs
+ we have found multiple artefacts with full research reports which have been
+ subsequently handed over to professor Iceberg for transport to the Tankred
+ base where our center for ancient civilisation artefact research is located.
 #> 
 #> Ted Bronx
  #p.anamorf.320.184.
-#> The#001 found#001 notes#001 about#001 Pegas#001 arefact#001
+#> Captured#001 reports#001 about#001 the#001 Pegasus#001 artefact#001
 #e
 #l br5_001#
 #e
