@@ -1297,7 +1297,7 @@ int TListBox::HandleEvent(TEvent *e)
     
     TView::HandleEvent(e);
 
-    if ((e->What == evMouseDown) && (e->Mouse.Buttons = mbLeftButton) &&
+    if ((e->What == evMouseDown) && (e->Mouse.Buttons == mbLeftButton) &&
           (e->Mouse.Where.x >= 18)) {
         newCur = Delta + e->Mouse.Where.y / 18;
         if (Current != newCur) {
