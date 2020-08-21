@@ -1,11 +1,14 @@
-#> Testing of Goliash - liquidation of Amenur has happened according to the command. Right after
- explosion Consortium suddenly dropped off the elite units. They probably have a spy in our units.
-#> According to our reporters the attack of Consortium in the territories of Sotona, Lebrukon, Dalia
- and Hedar has happened in the same time. In the mean time there is a direct conflict between
- Consortium's and Toricon's units.
-#> Consortium is trying to get the public on it's side. As a reason to attack Toricon, they are using
- our attack action and liquidation of Amenur where most inhabitants were sympathising with
- Consortium.
+#> We have tested Goliath and destroyed Amenur as ordered. Our departure from
+ the mission area after completing the objectives was interrupted by
+ unexpected landing of elite Consortium forces. They may have a spy in our
+ ranks.
+#> Our intelligence reports that other Consortium attacks took place in the
+ territories of Sotona, Lebrukon, Dalio and Hedar at the same moment. Open
+ battles between Consortium and Toricon forces are currently in progress in
+ all of these areas.
+#> The Consortium is trying to sway public opinion in its favor. They justify
+ these attacks by our destruction of Amenur where Consortium supporters were
+ in the majority.
 #> 
 #> Kleon Nemotard
 #e

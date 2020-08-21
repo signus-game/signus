@@ -2,7 +2,7 @@
  #p.toricon.282.183. 
 #> Naším nynějším cílem je otestování nově vyvinuté zbraně
  s krycím názvem Goliáš.
-#> Jedná se o dělo s abnormálním dostřelem i ničivostí, vytvořené
+#> Jedná se o dělo s abnormálním dostřelem i ničivostí vytvořené
  na základě studia artefaktových technologií.
 #> K testu byla vybrána vesnice#001 Amenur#001 s počtem obyvatel 856
  rozkládající se v pouštní oblasti Rotenalie - konkrétně na

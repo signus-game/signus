@@ -1,17 +1,19 @@
 #> 
  #p.toricon.282.183. 
-#> Out task in this mission is to test newly developed weapon with a code-name Goliath.
-#> It is a gun with an extreme range of fire and a big destructive power.  It's form is based on the studies of artifact
- technologies.
-#> As a target for testing Goliath we chose the village#001 Amenur#001.  It has 856 inhabitants and is situated in the desert
- area Rotenalie - specifically in the north part.
-#> Toricon demands us to perform the action in absolute secrecy (to eliminate all witnesses and so on...)
-#> If any consequent information get to the public it will cause big problems to Toricon.
+#> Our next task is to test the newly developed weapon codenamed Goliath.
+#> It is a howitzer with exceptional range and firepower developed using
+ artefact technology research.
+#> The Amenur#001 village#001 with 856 inhabitants was chosen as the test
+ target. It is situated in the desert area of Rotenalia, specifically in the
+ northern part of the territory.
+#> Toricon also requires absolute secrecy in execution of this operation -
+ i.e. eliminating potential witnesses etc. If the results of Goliath
+ deployment reach the public, it will cause major problems for Toricon.
 #> 
 #> Kleon Nemotard
  #p.anamorf.320.184.
-#> PRIMARY AIM: Test new weapon Goliath
-#> SECONDARY AIM: Liquidate the village Amenur
+#> PRIMARY OBJECTIVE: Test the Goliath howitzer
+#> SECONDARY OBJECTIVE: Wipe out the Amenur village
 #e
 #l br6_001#
 #e
