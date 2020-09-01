@@ -894,12 +894,12 @@ TObject::~TObject()
 /////////////////// TUnit 
 
 void TUnit::Init(int x, int y, int party, ReadStream *stream) {
-	TObject::Init(x, y, party, stream);
-
 	Orient = 0;
 	ActualSprite = 0;
 	Level = 0;
 	Experience = 0;
+
+	TObject::Init(x, y, party, stream);
 
 	if (stream) {
 		int moreinfo;
