@@ -1,9 +1,9 @@
-#> Although we have had some problems, we were still able to fulfil the order to liquidate the
- base Setrix west from Lebaran. We succeeded to unable the access of Consortium's units to
- the Toricon's territories - especially to the forbidden Zone. The connection between Setrix
- and Kytan was destroyed during the fight. The railways were blown up by the
- Consortium's units. We are in the control of the situation.
-#> 
-#> Kirk Ljubenir
+#> Despite minor difficulties, we have successfully accomplished the mission
+ to neutralize the Setrix base in west Lebaran. Thus we have managed to cut
+ off Consortium forces from access to Toricon's Lebaran territories, in
+ particular the forbidden Zone. The connection between Setrix and Kytan was
+ destroyed during the battle, Consortium forces have blown up the tracks. We
+ have the situation fully under control now.
+#> Kirk Lyubenir
 #e
 #e
