@@ -1348,7 +1348,7 @@ int TAirArmy::PJSaturn (int UnID)
                         
                         f = GetField (x, y);
                         if (f -> Unit != NO_UNIT && f -> Unit < BADLIFE) {
-                            h += TabDanger [Units [f -> Unit] -> ID];
+                            h += TabDanger[Units[f->Unit]->Type];
                         }
                     }
                 }
