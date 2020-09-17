@@ -336,41 +336,52 @@ void TGanymedes::GetUnitInfo() {
 
 
 
-void TGanymedes::SupportUnit(TUnit *Unit)
-{
-    int i, delta, typ;
-    
-    if (Unit->Type == unXenon) {
-        TXenon *xu = (TXenon*)Unit;
-        delta = utXE_MINES - xu->Mines;
-        if (delta > Ammo[wpnMine]) delta = Ammo[wpnMine];
-        if (!delta) return;
-        Ammo[wpnMine] -= delta;
-        xu->Mines += delta;
-    }
-    
-    for (i = 0; i < Unit->WeaponsCnt; i++) {
-        typ = Unit->Weapons[i]->GetType();
-        delta = Unit->Weapons[i]->MaxAmmo - Unit->Weapons[i]->Ammo;
-        if (delta > Ammo[typ]) delta = Ammo[typ];
-        if (!delta) return;
-        Ammo[typ] -= delta;
-        Unit->Weapons[i]->Ammo += delta;
-    }
+void TGanymedes::SupportUnit(TUnit *Unit) {
+	int i, delta, typ;
 
-    {
-        int delta = Unit->MaxFuel - Unit->Fuel;
-        if (Unit->Type == unCeres) delta = Unit->MaxFuel / 10 - Unit->Fuel;
-        if (delta > this->Fuel) delta =  this->Fuel;
-        Fuel -= delta;
-        Unit->Fuel += delta;
-    }   
+	if (Unit->Type == unXenon) {
+		TXenon *xu = (TXenon*)Unit;
 
-    {
-        if (Unit->HitPoints < Unit->MaxHitPoints)
-            Unit->HitPoints = Unit->MaxHitPoints;
-        Unit->PaintUnit(FALSE);
-    }
+		delta = utXE_MINES - xu->Mines;
+
+		if (delta > Ammo[wpnMine]) {
+			delta = Ammo[wpnMine];
+		}
+
+		Ammo[wpnMine] -= delta;
+		xu->Mines += delta;
+	}
+
+	for (i = 0; i < Unit->WeaponsCnt; i++) {
+		typ = Unit->Weapons[i]->GetType();
+		delta = Unit->Weapons[i]->MaxAmmo - Unit->Weapons[i]->Ammo;
+
+		if (delta > Ammo[typ]) {
+			delta = Ammo[typ];
+		}
+
+		Ammo[typ] -= delta;
+		Unit->Weapons[i]->Ammo += delta;
+	}
+
+	delta = Unit->MaxFuel - Unit->Fuel;
+
+	if (Unit->Type == unCeres) {
+		delta = Unit->MaxFuel / 10 - Unit->Fuel;
+	}
+
+	if (delta > this->Fuel) {
+		delta = this->Fuel;
+	}
+
+	Fuel -= delta;
+	Unit->Fuel += delta;
+
+	if (Unit->HitPoints < Unit->MaxHitPoints) {
+		Unit->HitPoints = Unit->MaxHitPoints;
+	}
+
+	Unit->PaintUnit(FALSE);
 }
 
 

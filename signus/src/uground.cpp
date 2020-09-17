@@ -582,30 +582,41 @@ void TGnom::GetUnitInfo() {
 
 
 
-void TGnom::SupportUnit(TUnit *Unit)
-{
-    int i, delta, typ;
-    
-    if (Unit->Type == unXenon) {
-        TXenon *xu = (TXenon*)Unit;
-        delta = utXE_MINES - xu->Mines;
-        if (delta > Ammo[wpnMine]) delta = Ammo[wpnMine];
-        if (!delta) return;
-        Ammo[wpnMine] -= delta;
-        xu->Mines += delta;
-        if (ID < BADLIFE) SaySpeech("reammo", 90);
-    }
-    else {
-        if (ID < BADLIFE) SaySpeech("reammo", 90);
-        for (i = 0; i < Unit->WeaponsCnt; i++) {
-            typ = Unit->Weapons[i]->GetType();
-            delta = Unit->Weapons[i]->MaxAmmo - Unit->Weapons[i]->Ammo;
-            if (delta > Ammo[typ]) delta = Ammo[typ];
-            if (!delta) return;
-            Ammo[typ] -= delta;
-            Unit->Weapons[i]->Ammo += delta;
-        }
-    }
+void TGnom::SupportUnit(TUnit *Unit) {
+	int i, delta, typ;
+
+	if (Unit->Type == unXenon) {
+		TXenon *xu = (TXenon*)Unit;
+
+		delta = utXE_MINES - xu->Mines;
+
+		if (delta > Ammo[wpnMine]) {
+			delta = Ammo[wpnMine];
+		}
+
+		if (!delta) {
+			return;
+		}
+
+		Ammo[wpnMine] -= delta;
+		xu->Mines += delta;
+	}
+
+	if (ID < BADLIFE) {
+		SaySpeech("reammo", 90);
+	}
+
+	for (i = 0; i < Unit->WeaponsCnt; i++) {
+		typ = Unit->Weapons[i]->GetType();
+		delta = Unit->Weapons[i]->MaxAmmo - Unit->Weapons[i]->Ammo;
+
+		if (delta > Ammo[typ]) {
+			delta = Ammo[typ];
+		}
+
+		Ammo[typ] -= delta;
+		Unit->Weapons[i]->Ammo += delta;
+	}
 }
 
 
