@@ -309,15 +309,25 @@ byte GetGoodlifeVisib(int x, int y)
     return GetField(x, y)->Visib;
 }
 
-void SetGoodlifeVisib(int x, int y, byte value)
-{
-    if (IsInRect(x, y, 0, 0, MapSizeX-1, MapSizeY-1)) {
-        TField *f = GetField(x, y);
-        if ((f->Visib != 2) && 
-            (f->Unit != NO_UNIT) && (f->Unit >= BADLIFE) &&
-            (Units[f->Unit]->Type % BADLIFE < unRadar)) VisibEnemies++;
-        f->Visib = value;
-    }   
+void SetGoodlifeVisib(int x, int y, byte value) {
+	if (IsInRect(x, y, 0, 0, MapSizeX-1, MapSizeY-1)) {
+		TField *f = GetField(x, y);
+
+		if (f->Visib != 2) {
+			TAircraft *aircraft = GetAircraftAt(x, y);
+
+			if ((f->Unit != NO_UNIT) && (f->Unit >= BADLIFE) &&
+				(Units[f->Unit]->Type % BADLIFE < unRadar)) {
+				VisibEnemies++;
+			}
+
+			if (aircraft && aircraft->ID >= BADLIFE) {
+				VisibEnemies++;
+			}
+		}
+
+		f->Visib = value;
+	}
 }
 
 
