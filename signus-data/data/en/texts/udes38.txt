@@ -7,7 +7,7 @@
  long flight range which allows them to fly deep behind enemy lines to escort
  bombers. Their weakness is low toughness so they can withstand only a few
  hits.
-#> "The Asterkhel corporation was granted permission to manufacture its own
+#> "The Asterskhel corporation was granted permission to manufacture its own
  fighter aircrafts and we can expect that it is the first step toward the
  anarchy that corporations wish for." - a newspaper excerpt
 #e
