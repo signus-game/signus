@@ -2068,6 +2068,14 @@ byte *FieldTimeTbl[9];
 
 const double DirecModif[8] = {1, SQRT2, 1, SQRT2, 1, SQRT2, 1, SQRT2};
 
+word raw_field_time(const TField *f) {
+	if (Terr2Tbl[f->Terrain2]) {
+		return Terr2Tbl[f->Terrain2];
+	}
+
+	return TerrTbl[f->Terrain];
+}
+
 void TObject::PrepareFieldTime(int x, int y)
 {
     word ft, ter;
@@ -2076,8 +2084,7 @@ void TObject::PrepareFieldTime(int x, int y)
     int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
     ter = f->Terrain;
-    if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
-    FieldTimeTbl[8][tbofs] = ft;
+    FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
     if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
         ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
         ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
@@ -2141,8 +2148,7 @@ void TToweredTrainUnit::PrepareFieldTime(int x, int y)
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
 	ter = f->Terrain;
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
-	FieldTimeTbl[8][tbofs] = ft;
+	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
@@ -2201,8 +2207,7 @@ void TOlymp::PrepareFieldTime(int x, int y)
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
 	ter = f->Terrain;
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
-	FieldTimeTbl[8][tbofs] = ft;
+	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
@@ -2261,8 +2266,7 @@ void TTrainSupportUnit::PrepareFieldTime(int x, int y)
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
 	ter = f->Terrain;
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
-	FieldTimeTbl[8][tbofs] = ft;
+	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
 	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
@@ -2324,8 +2328,7 @@ void TXenon::PrepareFieldTime(int x, int y)
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
 	ter = f->Terrain;
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
-	FieldTimeTbl[8][tbofs] = ft;
+	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID))) {
 		for (i = 0; i < 9; i++)
 			FieldTimeTbl[i][tbofs] = 0xFF;
@@ -2384,11 +2387,10 @@ void TXenon::PrepareFieldTime(int x, int y)
 void TAircraft::PrepareFieldTime(int x, int y)
 {
 	word ft;
-	TField *f = GetField(x, y);
 	int i;
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	ft = raw_field_time(GetField(x, y));
 	if (((x != X) || (y != Y)) && (GetAircraftAt(x, y) != NULL)) ft = 0xFF;
 	for (i = 0; i < 9; i++)	FieldTimeTbl[i][tbofs] = ft;
 }
@@ -2412,7 +2414,7 @@ static word ShipFieldTime(int x, int y, int ID, int Ctr = FALSE)
 
 	if ((x < 0) || (y < 0) || (x >= MapSizeX) || (y >= MapSizeY)) return 0xFF;
 	ter = f->Terrain;
-	if ((ft = Terr2Tbl[f->Terrain2]) == 0) ft = TerrTbl[f->Terrain];
+	ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID))) return 0xFF;
 	if ((Ctr) && (ter != 18 /*hluboka voda*/)) return 0xFF;
 	else return ft;
@@ -2441,12 +2443,13 @@ static word Ship3_FT(int x, int y, int ID, int Orient)
 
 
 
-void TPoseidon::PrepareFieldTime(int x, int y)
-{
+void TPoseidon::PrepareFieldTime(int x, int y) {
 	int i;
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-	for (i = 0; i < 9; i++)	{
+	FieldTimeTbl[8][tbofs] = raw_field_time(GetField(x, y));
+
+	for (i = 0; i < 8; i++)	{
 		FieldTimeTbl[i][tbofs] = Ship3_FT(x, y, this->ID, i);
 //	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
 //			FieldTimeTbl[i][tbofs] = Ship3_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
@@ -2489,12 +2492,13 @@ static word Ship5_FT(int x, int y, int ID, int Orient)
 
 
 
-void TKraken::PrepareFieldTime(int x, int y)
-{
+void TKraken::PrepareFieldTime(int x, int y) {
 	int i;
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-	for (i = 0; i < 9; i++)	{
+	FieldTimeTbl[8][tbofs] = raw_field_time(GetField(x, y));
+
+	for (i = 0; i < 8; i++)	{
 		FieldTimeTbl[i][tbofs] = Ship5_FT(x, y, this->ID, i);
 //	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
 //			FieldTimeTbl[i][tbofs] = Ship5_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
@@ -2504,12 +2508,13 @@ void TKraken::PrepareFieldTime(int x, int y)
 
 
 
-void TLaguna::PrepareFieldTime(int x, int y)
-{
+void TLaguna::PrepareFieldTime(int x, int y) {
 	int i;
 	int tbofs = (x - MTofsX) + (y - MTofsY) * MTsizeX;
 
-	for (i = 0; i < 9; i++)	{
+	FieldTimeTbl[8][tbofs] = raw_field_time(GetField(x, y));
+
+	for (i = 0; i < 8; i++)	{
 		FieldTimeTbl[i][tbofs] = Ship5_FT(x, y, this->ID, i);
 //	 	if (FieldTimeTbl[i][tbofs] != 0xFF)
 //			FieldTimeTbl[i][tbofs] = Ship5_FT(x - ship_Xdir[i], y - ship_Ydir[i], ID, i);
