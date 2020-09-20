@@ -1,13 +1,15 @@
-#> Welcome again to the Tridi Vision news.
-#> Shortly after six o'clock the Consortim has registered casualties again after a long time.
-#> Toricon's hit units have undertaken an attack on an important Consortium's military port
- in the western part of Hedar - Sotorat. From our reporters we know that it was actually the
- centre of Sotorat, where Consortium was trying to hide a gigantic factory for the
- production of various weapons.
-#> Except for this factory the Consortium has other sources. For example the business contacts
- with the Artefix company, supplying planes to them. However this information is
- unsupported. In the case of Toricon we were not able to find its sources except for recently
- captured Sotorat.
-#> See you soon with more Tridi Vision news.
+#> Welcome back to Tridi Vision war news.
+#> Shortly after six o'clock today, the Consortim suffered major losses for
+ the first time in a long while.
+#> Toricon's strike force has launched an assault on important Consortium
+ military seaport Sotorat in western part of Hedar. Our correspondents report
+ that the Consortium had a giant secret factory producing all sorts of weapons
+ right in the middle of Sotorat.
+#> Aside from this factory, the Consortium also has other weapon supply lines
+ such as business dealings with the Artefix corporation which provides
+ aircrafts to them. However, this information is as yet unconfirmed. As for
+ Toricon, we have not been able to uncover their supply lines yet except for
+ the recently captured Sotorat.
+#> See you soon with more Tridi Vision news...
 #e
 #e

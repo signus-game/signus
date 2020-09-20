@@ -1,19 +1,21 @@
 #> 
  #p.toricon.282.183. 
-#> According to the tactics the defence division has chosen, the best defence is the attack. It is
- necessary to capture the port Sotorat. Our knowledge about the significance of Sotorat for
- the antagonist is following: not only military ships are harboured here, but also the
- troopships that are importing weapons and ammunition to the coastal area. This fact made
- us to draw a conclusion that there have to be huge reserves in Sotorat or a factory that
- produce these weapons. If we eliminate Sotorat, Consortium looses one of its main sources.
-#> Of course it would be more advantageous for us to gain the control of Sotorat with as little
- damages as possible, but the HQ supposes that in case of the breach of their defence the
- units of Consortium have an order to detonate the whole port and to conduct the fights
- from their ships only.
-#> The only possibility is to attack Sotorat from the continent. Your primary aim is to capture
- the docks, after wining the access to the river. Do not eliminate enemy ships, but capture
- them and use them to fight against the enemy.
+#> The Defense Department has decided that the best defense is offense. We
+ need to strike at one of Consortium's sources of power - capture the Sotorat
+ seaport in Hedar. Our intelligence on the strategic value of Sotorat for the
+ enemy is as follows: Both warships and transport ships which carry weapons,
+ ammunition, etc. to other coastal areas dock there. From this we have
+ concluded that there must be either an enormous munitions depot or a weapons
+ factory nearby. If we eliminate Sotorat, the Consortium will lose one of its
+ main supply points. It would be better to get Sotorat under our control with
+ minimal damage, of course, but HQ expects that Consortium forces have orders
+ to detonate the whole seaport if their defense line gets breached and
+ continue the battle from ships.
+#> The only viable way to attack Sotorat is from land. Your first objective
+ after fighting your way through to the river are the docks. Not destroying
+ them but capturing them and using the ships moored there in battle. Until the
+ defenders fall...
  #p.anamorf.320.184.
-#> PRIMARY AIM: Capture the port Sotorat
+#> PRIMARY OBJECTIVE: Capture the Sotorat seaport
 #e
 #e

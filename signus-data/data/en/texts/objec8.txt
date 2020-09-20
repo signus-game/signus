@@ -1,4 +1,3 @@
-Capture the port of Sotorat and gain control
-of it. The ships produced in the captured
-docks of the Consortium may help considerably
-during the mission.
+Capture the Sotorat seaport and secure it. Ships built
+in captured Consortium docks may prove useful
+in the battle.
