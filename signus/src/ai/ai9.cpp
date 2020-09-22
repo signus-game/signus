@@ -486,7 +486,7 @@ int ArtificialIntelligence9 ()
     }
     
     // Test zaktivovani armady 9
-    if (Army8 -> Status == asSleeping) {
+    if (Army9 -> Status == asSleeping) {
         for (i = 0; i < BADLIFE; i++) {
             if (Units [i] != NULL && Units [i] -> Y > A9AZY) {
                 ActivationTurn9 = ActualTurn;
