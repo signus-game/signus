@@ -2077,7 +2077,9 @@ int TGroundArmy::PJSatan (int UnID)
         
         if (t != 0) {
                 Unit -> GlobalDestruction ();
-        }
+	} else {
+		Unit->AI_Info.State = aistPlaced;
+	}
 
         if (DeleteKilled () == FALSE) {
                 RedrawMap ();
@@ -2087,12 +2089,6 @@ int TGroundArmy::PJSatan (int UnID)
         
         RedrawMap ();
         LockDraw ();
-        Unit -> AI_Info.State = aistPlaced;
-        ProgressInc ();
-        return TRUE;
-
-
-        Units [UnID] -> AI_Info.State = aistPlaced;
         ProgressInc ();
         return TRUE;
 }
