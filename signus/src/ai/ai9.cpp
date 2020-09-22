@@ -73,10 +73,10 @@
 #define A6Y2 162
 
 // Action Radius of Army 7
-#define A7X1  0
-#define A7Y1 142
-#define A7X2 33
-#define A7Y2 179
+#define A7X1 76
+#define A7Y1 89
+#define A7X2 86
+#define A7Y2 97
 
 // Action Radius of Army 8
 #define A8X1 31
@@ -91,10 +91,10 @@
 #define A9Y2 179
 
 // Action Radius of Army 10
-#define A10X1 108
-#define A10Y1 163
-#define A10X2 119
-#define A10Y2 179
+#define A10X1 25
+#define A10Y1 40
+#define A10X2 35
+#define A10Y2 51
 
 // Radar of Army 1
 #define R1X 29
@@ -117,8 +117,8 @@
 #define R6Y 154
 
 // Radar of Army 7
-#define R7X  7
-#define R7Y 151
+#define R7X  67
+#define R7Y 99
 
 // Radar of Army 8
 #define R8X 43
@@ -275,7 +275,7 @@ void InitAI9 ()
     Army9 -> Displace ();
 
     Army10 = new TGroundArmy();
-    Army10 -> SetAR (A9X1, A9Y1, A9X2, A9Y2);
+    Army10 -> SetAR (A10X1, A10Y1, A10X2, A10Y2);
     Army10 -> SetRadar (-1, -1);
     Army10 -> InsertUnits ();
     
