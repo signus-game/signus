@@ -901,22 +901,30 @@ int ArtificialIntelligence9 ()
 
 
 
-int AssignResult9 ()
-{
-    int i, t = 0;
-    
-    for (i = 0; i < BADLIFE; i++)
-        if (Units [i] != NULL) t++;
-    if (t == 0) return -1; // GoodLife prohral  
-    
-    if (Army9 -> IsAtWP ()) return -1; // GoodLife prohral - dojely Gargantuy
+int AssignResult9() {
+	int i, t = 0;
 
-    if ((Units [Gargantua1] == NULL || Units [Gargantua1] -> Type - BADLIFE != unGargantua)
-    && (Units [Gargantua2] == NULL || Units [Gargantua2] -> Type - BADLIFE != unGargantua)
-    && (Units [Gargantua2] == NULL || Units [Gargantua2] -> Type - BADLIFE != unGargantua))
-    return 1; // Gargantuy zniceny, BadLife ptohral
-    
-    return 0; // Zatim se jeste hraje
+	for (i = 0; i < BADLIFE; i++) {
+		if (Units[i] != NULL) {
+			t++;
+		}
+	}
+
+	if (t == 0) {
+		return -1; // GoodLife prohral
+	}
+
+	if (Army9->IsAtWP ()) {
+		return -1; // GoodLife prohral - dojely Gargantuy
+	}
+
+	if ((Units[Gargantua1] == NULL || Units[Gargantua1]->Type - BADLIFE != unGargantua)
+		&& (Units[Gargantua2] == NULL || Units[Gargantua2]->Type - BADLIFE != unGargantua)
+		&& (Units[Gargantua3] == NULL || Units[Gargantua3]->Type - BADLIFE != unGargantua)) {
+		return 1; // Gargantuy zniceny, BadLife ptohral
+	}
+
+	return 0; // Zatim se jeste hraje
 }
 
 
