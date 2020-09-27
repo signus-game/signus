@@ -1,5 +1,4 @@
-At any cost you must prevent the transport
-of the artefact to the Trufat base. Destroy
-the transporter if necessary. If this mission
-fails the Toricon Corporation will be
-completely destroyed.
+Stop the convoy from reaching fort Trufat at all costs.
+Destroy the transporter if necessary. Failing this
+mission means complete destruction of the Toricon
+Corporation.

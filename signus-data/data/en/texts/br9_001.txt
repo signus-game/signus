@@ -1,16 +1,19 @@
 #> Project LORD
  #p.anamorf.320.184.
-#> Three months ago the investigative group with Prof. G. Londown in charge has found an
- extraordinary artefact in the southern part of forbidden area in Sotona. Firstly none of us
- could guess how to get to its essence; all the tests and other experiments to reveal any
- special abilities failed. We have delayed our apparently trifling discovery and returned to
- the running research of an older Pegas type artefact. However no activity of the artefact
- was noticed. It's influence on the gravity seems to disappear. The same problem was also
- detected on other artefacts brought to the lab. Only accidentaly we revealed the fact that
- the artefacts stop working in the presence of Prof. Londown's artefact.
-#> Unfortunately, our lab is not equipped enough to do such kind of research. The HQ of the
- research section have released a command to transport Lord to the fort Trufat, which is, at
- the same time, being our scientific base.
+#> Three months ago, the research team led by Prof. G. Londown had found an
+ unusual artefact in the southern part of Sotona forbidden Zone. At first we
+ had no idea how to get to its core, all tests and other attempts to identify
+ its unique properties failed. Thus we put our seemingly worthless discovery
+ aside to the corner of our laboratory and returned to the ongoing earlier
+ research of the Pegasus artefact. But we could not measure any activity from
+ the artefact anymore. It was as if its effects on gravity just disappeared.
+ We also got the same results with other artefacts brought to the laboratory.
+ We have accidentally found out that they stop working in the vicinity of
+ Prof. Londown's mysterious artefact.
+#> Unfortunately, our lab is not equipped for this kind of research. The
+ Consortium research department directorate has issued an order to transfer
+ the Lord to fort Trufat which also serves as a research base.
 #> 
+#> Professor L. Borfin
 #e
 #e
