@@ -1,10 +1,11 @@
-#> The mission was accomplished according to the plan. The defile was captured and the
- enemy was eliminated. On our way back to Trixon we were outflanked by an earthquake.
- We could see clouds of steam coming out from the ground. First of all we considered it a
- new technology of Consortium or something of this kind. But the outflowing gas did not
- cause us any harm.
-#> There were no more problems on the rest of our way.
+#> The mission went according to plan. The valley is secured and enemy forces
+ eliminated. On our way back to Trix we were caught in an earthquake#001 and
+ clouds of mist started rising out of the ground. At first we thought it was
+ some new technology developed by the Consortium or something like that but
+ the leaking gases caused no harmful effects.
+#> There were no other issues on the way after that.
 #> 
-#> P.Dextr
+#> P. Dextr
 #e
+#l b10_001#
 #e

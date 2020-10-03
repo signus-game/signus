@@ -1,12 +1,12 @@
-#> Welcome to Tridi Vision latest news.
+#> Welcome to the latest Tridi Vision news.
 #> Short earthquakes were felt today in the areas of Escon, Misteral,
  Lebrukon, central Eutania and south Losabo. Misteral suffered the
  most damage, one of the six islands sunk completely. Fortunately,
  there were no casualties in the other impacted areas. The disaster
  was followed by mists of various colors rising out of the earth.
  Scientists from all continents are currently hotly debating the
- cause of this earthquake, which was last recorded in the age when
- humans only started colonizing Arkonis.
+ cause of this earthquake, which was last recorded in the early era
+ of human colonization of Arkonis.
 #> See you soon with more Tridi Vision news...
 #e
 #e

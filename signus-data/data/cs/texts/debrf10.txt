@@ -2,10 +2,10 @@
  zlikvidován. Při návratu do Trixu nás zastihlo zemětřesení#001
  a ze země vystoupily oblaky páry. Zprvu jsme se domnívali, že
  jde o nějakou nově vyvinutou technologii Konzorcia nebo něco
- podobného, ale uniklé plyny  žádné újmy na zdraví nezpůsobily.
+ podobného, ale uniklé plyny žádné újmy na zdraví nezpůsobily.
 #> Zbytek cesty proběhl bez obtíží.
 #> 
-#> P.Dextr
+#> P. Dextr
 #e
 #l b10_001#
 #e
