@@ -127,7 +127,7 @@ class TRex : public TAircraft {
 			TSprite *GetShadowSprite();
 			unsigned GetSupportedActions();
 			unsigned GetAvailableActions();
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			
 			int Land();
@@ -163,7 +163,7 @@ class TCaesar : public TAircraft {
 			void Read(ReadStream &stream);
 			void Write(WriteStream &stream);
 			void RemoveFromWorld();
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			void Action(int x, int y);
 			void ChangeParty();
@@ -235,7 +235,7 @@ class TSaturn : public TAircraft {
 			void GoOnField();
 			int MoveSUB(int x, int y);
 			int MoveFarSUB(int x, int y);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			void Read(ReadStream &stream);
 			void Write(WriteStream &stream);

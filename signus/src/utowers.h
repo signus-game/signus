@@ -35,7 +35,7 @@ class TTower : public TUnit {
 		public:
 			TTower() : TUnit() {};
 			void GetTerrMove(int **terr, int **terr2) {*terr = TabTerrMoveGround; *terr2 = TabTerr2MoveGround;};
-			void GetUnitInfo();			
+			void GetUnitInfo(bool alt_wpinfo = false);
 			unsigned GetSupportedActions();
 			void CreateRangeHelpers();
 			void ShowShootAt(int x, int y, int phase);
@@ -61,7 +61,7 @@ class TThor : public TTower {
 			int GetType() {return unThor;};
 			void Setup();
 			void IncLevel(int alevel);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			unsigned GetSupportedActions();
 			void GoOverground(int over);
 				// vysune/zasune vez

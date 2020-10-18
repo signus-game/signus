@@ -169,7 +169,7 @@ class TGnom : public TGroundSupportUnit {
 			void Read(ReadStream &stream);
 			void SupportUnit(TUnit *Unit);
 			int WillSupport(TUnit *Unit);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 	};
 
 // opravna-servisman:
@@ -222,7 +222,7 @@ class TSatan : public TGroundUnit {
 			void Setup();
 			void IncLevel(int alevel);
 			int GetWeight() {return WGT_LIGHT;};
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			TSprite *GetSprite();
 			void Explode();
@@ -244,7 +244,7 @@ class TGargantua : public TGroundUnit {
 			void Setup();
 			void IncLevel(int alevel);
 			int GetWeight() {return WGT_HEAVY;};
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			void Explode();
 	};
 	
@@ -261,7 +261,7 @@ class TXenon : public TGroundUnit {
 			void Setup();
 			void IncLevel(int alevel);
 			int GetWeight() {return WGT_MEDIUM;};
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			void GoOnMine();
 			void PrepareFieldTime(int x, int y);

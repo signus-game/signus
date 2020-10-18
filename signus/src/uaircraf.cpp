@@ -643,9 +643,9 @@ int TRex::TakeOff()
 
 
 
-void TRex::GetUnitInfo()
+void TRex::GetUnitInfo(bool alt_wpinfo)
 {
-	TAircraft::GetUnitInfo();
+	TAircraft::GetUnitInfo(true);
 	if (FlyLevel == 0)
 		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0], 59, 59);
 	else
@@ -827,8 +827,8 @@ int TCaesar::TakeOff()
 
 
 
-void TCaesar::GetUnitInfo() {
-	TAircraft::GetUnitInfo();
+void TCaesar::GetUnitInfo(bool alt_wpinfo) {
+	TAircraft::GetUnitInfo(true);
 
 	if (FlyLevel == 0) {
 		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0],
@@ -1301,10 +1301,10 @@ int TSaturn::EndBombing()
 
 
 
-void TSaturn::GetUnitInfo() {
+void TSaturn::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[80];
 
-	TAircraft::GetUnitInfo();
+	TAircraft::GetUnitInfo(true);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 78, SigText[TXT_BOMBS_LEFT],
 		NormalFont, clrWhite, clrBlack);
 

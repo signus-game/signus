@@ -564,11 +564,11 @@ void TGnom::Write(WriteStream &stream) {
 
 
 
-void TGnom::GetUnitInfo() {
+void TGnom::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[30];
 	int i;
 
-	TGroundSupportUnit::GetUnitInfo();
+	TGroundSupportUnit::GetUnitInfo(alt_wpinfo);
 
 	for (i = 0; i <4; i++) {
 		sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);
@@ -756,10 +756,10 @@ TSprite *TSatan::GetSprite()
 
 
 
-void TSatan::GetUnitInfo() {
+void TSatan::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[30];
 
-	TGroundUnit::GetUnitInfo();
+	TGroundUnit::GetUnitInfo(true);
 	CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconSatan->IconPic[0], 59, 59);
 	CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129,
 		BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
@@ -884,8 +884,8 @@ void TGargantua::IncLevel(int alevel)
 
 
 
-void TGargantua::GetUnitInfo() {
-	TGroundUnit::GetUnitInfo();
+void TGargantua::GetUnitInfo(bool alt_wpinfo) {
+	TGroundUnit::GetUnitInfo(alt_wpinfo);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 5, 100,
 		SigText[TXT_ARTIFACT_TRANS], NormalFont, clrWhite, clrBlack);
 }
@@ -960,10 +960,10 @@ void TXenon::IncLevel(int alevel)
 
 
 
-void TXenon::GetUnitInfo() {
+void TXenon::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[80];
 
-	TGroundUnit::GetUnitInfo();
+	TGroundUnit::GetUnitInfo(true);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 78, SigText[TXT_MINES_LEFT],
 		NormalFont, clrWhite, clrBlack);
 	sprintf(cbuf, "%i / %i", Mines, utXE_MINES);

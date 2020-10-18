@@ -35,11 +35,11 @@
 /////////////// TTower - obecny predek
 
 
-void TTower::GetUnitInfo() {
+void TTower::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[30];
 	int clr;
 
-	TObject::GetUnitInfo();
+	TObject::GetUnitInfo(alt_wpinfo);
 	CopyBmpNZ(UInfoBuf, UINFO_SX, 77, 1, LevelBmps[Level], 29, 16);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
 		clrLightBlue, clrBlack);
@@ -70,11 +70,13 @@ void TTower::GetUnitInfo() {
 	}
 
 	if (CurWpn != -1) {
-		CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 188,
+		CopyBmpNZ(UInfoBuf, UINFO_SX, alt_wpinfo ? 68 : 2,
+			alt_wpinfo ? 168 : 188,
 			BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
 		sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 188, cbuf, NormalFont,
-			clrWhite, clrBlack);
+		PutStr(UInfoBuf, UINFO_SX, UINFO_SY, alt_wpinfo ? 77 : 35,
+			alt_wpinfo? 148 : 188, cbuf, NormalFont, clrWhite,
+			clrBlack);
 	}
 }
 
@@ -218,10 +220,10 @@ void TThor::Write(WriteStream &stream) {
 
 
 
-void TThor::GetUnitInfo() {
+void TThor::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[40];
 
-	TTower::GetUnitInfo();
+	TTower::GetUnitInfo(true);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 58, SigText[TXT_ROCKETS_LEFT],
 		NormalFont, clrWhite, clrBlack);
 	sprintf(cbuf, "%i / 100", TotalRockets);
@@ -235,12 +237,6 @@ void TThor::GetUnitInfo() {
 		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorOut->IconPic[0],
 			59, 59);
 	}
-
-	CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129,
-		BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-	sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 129, cbuf, NormalFont,
-		clrWhite, clrBlack);
 }
 
 

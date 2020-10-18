@@ -172,7 +172,7 @@ class TObject {
                     // vraci text, ktery se zobrazi u kurzoru pri delsim cekani
             void ShowUnitInfo();
                     // Zobrazi info o jednotce - virt mthd GetUI
-            virtual void GetUnitInfo();
+            virtual void GetUnitInfo(bool alt_wpinfo = false);
                     // Vykresli UI do bufferu UInfoBuf
             virtual TDialog *DetailedInfo();
                     // vraci ukazatel na dialog s podrobnym popisem jednotky vcetne
@@ -263,7 +263,7 @@ class TUnit : public TObject {
             virtual void WpnRotate(int x, int y);
             virtual void MakeTrack() {};
                     // vytvori za jednotkou stopu
-            void GetUnitInfo();
+            void GetUnitInfo(bool alt_wpinfo = false);
             void GetFieldInfo(int x, int y, char *buf);
             TSprite *GetStatusBar();
             void IncExper(int value);

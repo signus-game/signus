@@ -318,11 +318,11 @@ void TGanymedes::Write(WriteStream &stream) {
 
 
 
-void TGanymedes::GetUnitInfo() {
+void TGanymedes::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[30];
 	int i;
 
-	TTrainSupportUnit::GetUnitInfo();
+	TTrainSupportUnit::GetUnitInfo(alt_wpinfo);
 
 	for (i = 0; i <4; i++) {
 		sprintf(cbuf, "%i/%i", Ammo[i], MaxAmmo[i]);

@@ -62,7 +62,7 @@ class TTransporter : public TUnit {
 			void RemoveFromWorld();
 			int InfoEvent(TEvent *e);
 			void Action(int x, int y);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			void ChangeParty();
 			
 			int LoadUnit(TUnit *u);

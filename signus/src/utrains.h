@@ -114,7 +114,7 @@ class TGanymedes : public TTrainSupportUnit {
 			void Read(ReadStream &stream);
 			void SupportUnit(TUnit *Unit);
 			int WillSupport(TUnit *Unit);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 	};
 
 
