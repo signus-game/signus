@@ -900,7 +900,11 @@ void CrashSave() {
 	File stream;
 
 	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
-	stream.open(b, File::WRITE | File::TRUNCATE);
+	if (!stream.open(b, File::WRITE | File::TRUNCATE)) {
+		fprintf(stderr, "Warning: cannot create crash save %s\n", b);
+		return;
+	}
+
 	SaveGameState(stream);
 }
 

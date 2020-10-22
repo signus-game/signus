@@ -235,44 +235,49 @@ bool LoadINI() {
 }
 
 
-void SaveINI()
-{
-    FILE *f = fopen(GetConfigFileName(), "wt");
+void SaveINI() {
+	const char *fname = GetConfigFileName();
+	FILE *f = fopen(fname, "wt");
 
-    fprintf(f, "\n[video]\n"
-               "brightness             = %i ;\n"
-               "anims_titled           = %i ;\n"
-               "anims_interpolated     = %i ;\n",
-               iniBrightCorr, iniTitledAnims, iniInterpolateAnims);
+	if (!f) {
+		fprintf(stderr, "Error: Cannot save INI file %s\n", fname);
+		return;
+	}
 
-    fprintf(f, "\n[audio]\n"
-               "music_volume           = %i ;\n"
-               "sound_volume           = %i ;\n"
-               "speech_volume          = %i ;\n"
-               "jukebox_repeat         = %i ;\n"
-               "jukebox_random_order   = %i ;\n"
-               "jukebox_play_list_size = %i ;\n"
-               "jukebox_save_changes   = %i ;\n",
-               iniMusicVol, iniSoundVol, iniSpeechVol,
-               iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize,
-               iniJukeboxSave);
+	fprintf(f, "\n[video]\n"
+		"brightness             = %i ;\n"
+		"anims_titled           = %i ;\n"
+		"anims_interpolated     = %i ;\n",
+		iniBrightCorr, iniTitledAnims, iniInterpolateAnims);
 
-    fprintf(f, "\n[interface]\n"
-               "anim_delay             = %i ;\n"
-               "anim_delay2            = %i ;\n"
-               "idle_delay             = %i ;\n"
-               "scroll_delay           = %i ;\n"
-               "enable_anim_gui        = %i ;\n"
-               "unit_status_bar        = %i ;\n"
-               "unit_move_rng          = %i ;\n"
-               "unit_shoot_rng         = %i ;\n"
-               "unit_visib_rng         = %i ;\n"
-               "stop_on_new_enemy      = %i ;\n",
-               iniAnimDelay, iniAnimDelay2, iniIdleDelay, iniScrollDelay,
-               iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
-               iniShowVisibRange, iniStopOnNewEnemy);
+	fprintf(f, "\n[audio]\n"
+		"music_volume           = %i ;\n"
+		"sound_volume           = %i ;\n"
+		"speech_volume          = %i ;\n"
+		"jukebox_repeat         = %i ;\n"
+		"jukebox_random_order   = %i ;\n"
+		"jukebox_play_list_size = %i ;\n"
+		"jukebox_save_changes   = %i ;\n",
+		iniMusicVol, iniSoundVol, iniSpeechVol,
+		iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize,
+		iniJukeboxSave);
 
-    fclose(f);
+	fprintf(f, "\n[interface]\n"
+		"anim_delay             = %i ;\n"
+		"anim_delay2            = %i ;\n"
+		"idle_delay             = %i ;\n"
+		"scroll_delay           = %i ;\n"
+		"enable_anim_gui        = %i ;\n"
+		"unit_status_bar        = %i ;\n"
+		"unit_move_rng          = %i ;\n"
+		"unit_shoot_rng         = %i ;\n"
+		"unit_visib_rng         = %i ;\n"
+		"stop_on_new_enemy      = %i ;\n",
+		iniAnimDelay, iniAnimDelay2, iniIdleDelay, iniScrollDelay,
+		iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange,
+		iniShowShootRange, iniShowVisibRange, iniStopOnNewEnemy);
+
+	fclose(f);
 }
 
 
@@ -530,29 +535,30 @@ const char *getSignusDataDir()
         return SIGNUS_DATA_DIR;
 }
 
-const char *getSignusConfigDir()
-{
-    const char *home = getenv("HOME");
-    if (!home) home = ".";
+const char *getSignusConfigDir() {
+	static char inidir[PATH_MAX] = "";
 
-    static char inidir[PATH_MAX] = "";
-    
-    if (*inidir == 0)
-    {
-        const char *home = getenv("HOME");
-        if (!home) home = ".";
-        strncpy(inidir, home, PATH_MAX);
-	inidir[PATH_MAX-1] = '\0';
-        strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
-	inidir[PATH_MAX-1] = '\0';
-        
-        if (!dirExists(inidir))
-        {
-            mkdir(inidir, 0700);
-        }
-    }
+	if (*inidir) {
+		return inidir;
+	}
 
-    return inidir;
+	const char *home = getenv("HOME");
+
+	if (!home) {
+		home = ".";
+	}
+
+	strncpy(inidir, home, PATH_MAX);
+	inidir[PATH_MAX-1] = '\0';
+	strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
+	inidir[PATH_MAX-1] = '\0';
+
+	if (!dirExists(inidir) && mkdir(inidir, 0700)) {
+		fprintf(stderr, "Error: Cannot create config directory %s\n",
+			inidir);
+	}
+
+	return inidir;
 }
 
 void multipath_fopen(File &f, const char *name, unsigned mode) {
