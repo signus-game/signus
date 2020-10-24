@@ -746,11 +746,7 @@ unsigned VVFStream::next_frame(void) {
 				return 0;
 			}
 
-			// FIXME: Handle chunk type 3. It's a MIDI-like music
-			// track assembled from short instrument samples that
-			// plays at the same time as the main audio track
-			// (chunk type 14)
-			if (ctype != 14) {
+			if (ctype != 3 && ctype != 14) {
 				_file->seek(size, SEEK_CUR);
 				continue;
 			}
@@ -764,10 +760,15 @@ unsigned VVFStream::next_frame(void) {
 				return 0;
 			}
 
-			ret = decode_audio(*stream);
+			if (ctype == 14) {
+				ret = decode_audio(*stream);
+			} else {
+				PlayMusicBuffer(stream->dataPtr(), size);
+			}
+
 			delete stream;
 
-			if (!ret) {
+			if (ctype == 14 && !ret) {
 				_file = NULL;
 				return 0;
 			}
@@ -981,6 +982,8 @@ int PlayAnimation(const char *name) {
 			SDL_Delay(timer - curtime);
 		}
 	}
+
+	StopMusic();
 
 	if (audio != INVALID_SAMPLE) {
 		StopSample(audio);

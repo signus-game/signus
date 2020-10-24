@@ -173,7 +173,36 @@ int PlayMusic(const char *name) {
 	return TRUE;
 }
 
+int PlayMusicBuffer(const void *data, int size) {
+	SDL_RWops *rw;
 
+	if (MIDAS_disabled) {
+		return TRUE;
+	}
+
+	if (!MusicOn) {
+		return TRUE;
+	}
+
+	StopMusic();
+	rw = SDL_RWFromConstMem(data, size);
+
+	if (!rw) {
+		return FALSE;
+	}
+
+	PlayedModule = Mix_LoadMUS_RW(rw);
+	SDL_RWclose(rw);
+
+	if (PlayedModule == NULL) {
+		return FALSE;
+	}
+
+	MusicPlaying = TRUE;
+	Mix_PlayMusic(PlayedModule, FALSE/*loop*/);
+	MusicJustStarted = 0;
+	return TRUE;
+}
 
 void StopMusic()
 {

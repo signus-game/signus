@@ -96,6 +96,10 @@ extern void SetVolume(int effects, int speech, int music);
 extern int PlayMusic(const char *name);
         // prehraje hudbu daneho jmena. Nejprve zkousi v music.dat, potom
         // to jmeno jakozto soubor...
+
+// Play music file already loaded into a memory buffer
+int PlayMusicBuffer(const void *data, int size);
+
 extern void StopMusic();
         // vypne hudbu
 extern int IsMusicPlaying();
