@@ -201,28 +201,28 @@ bool LoadINI() {
 	//iniResolution = iniparser_getint(dict, "video:resolution", -1);
 	iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
 
-	iniBrightCorr = iniparser_getint(dict, "video:brightness", -1);
-	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", -1);
-	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", -1);
+	iniBrightCorr = iniparser_getint(dict, "video:brightness", 0);
+	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", 0);
+	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", 0);
 
-	iniMusicVol = iniparser_getint(dict, "audio:music_volume", -1);
-	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", -1);
-	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", -1);
-	iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", -1);
-	iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", -1);
-	iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", -1);
-	iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", -1);
+	iniMusicVol = iniparser_getint(dict, "audio:music_volume", 20);
+	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", 20);
+	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", 20);
+	iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", 1);
+	iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", 1);
+	iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", 0);
+	iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", 0);
 
-	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", -1);
-	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", -1);
-	iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", -1);
-	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", -1);
-	iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", -1);
-	iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", -1);
-	iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", -1);
-	iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", -1);
-	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", -1);
-	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", -1);
+	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", 7);
+	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", 8);
+	iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", 10);
+	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", 10);
+	iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", 1);
+	iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", 1);
+	iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", 1);
+	iniShowShootRange = iniparser_getint(dict, "interface:unit_shoot_rng", 1);
+	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", 0);
+	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", 1);
 
 	iniparser_freedict(dict);
 
