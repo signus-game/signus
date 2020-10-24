@@ -23,6 +23,7 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <climits>
 #include "global.h"
 #include "sound.h"
 
@@ -133,30 +134,43 @@ void SetVolume(int effects, int speech, int music)
 
 static int MusicJustStarted = FALSE;
 
-int PlayMusic(const char *name)
-{
+int PlayMusic(const char *name) {
 	// FIXME
-    char filnm[1024];
-    FILE *f;
+	char filnm[PATH_MAX];
+	SDL_RWops *rw;
 
-    if (MIDAS_disabled) return TRUE;
+	if (MIDAS_disabled) {
+		return TRUE;
+	}
 
-    if (!MusicOn) return TRUE;
-    if (IsMusicPlaying()) StopMusic();
-    WaitCursor(TRUE);
-    
-    snprintf(filnm, 1024, "%s/nolang/music/%s", getSignusDataDir(), name);
-    if ((f = fopen(filnm, "rb")) != NULL) {
-        fclose(f);
-        PlayedModule = Mix_LoadMUS(filnm);
-    }
-    if (PlayedModule == NULL) return FALSE;
-    MusicPlaying = TRUE;
-    Mix_PlayMusic(PlayedModule, FALSE/*loop*/);
-    MusicJustStarted = 0;
-    WaitCursor(FALSE);
+	if (!MusicOn) {
+		return TRUE;
+	}
 
-    return TRUE;
+	StopMusic();
+	WaitCursor(TRUE);
+	snprintf(filnm, PATH_MAX, "%s/nolang/music/foo/%s", getSignusDataDir(),
+		name);
+	rw = SDL_RWFromFile(filnm, "rb");
+
+	if (!rw) {
+		WaitCursor(FALSE);
+		return FALSE;
+	}
+
+	PlayedModule = Mix_LoadMUS_RW(rw);
+	SDL_RWclose(rw);
+
+	if (PlayedModule == NULL) {
+		WaitCursor(FALSE);
+		return FALSE;
+	}
+
+	MusicPlaying = TRUE;
+	Mix_PlayMusic(PlayedModule, FALSE/*loop*/);
+	MusicJustStarted = 0;
+	WaitCursor(FALSE);
+	return TRUE;
 }
 
 
