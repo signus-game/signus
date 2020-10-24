@@ -149,7 +149,7 @@ int PlayMusic(const char *name) {
 
 	StopMusic();
 	WaitCursor(TRUE);
-	snprintf(filnm, PATH_MAX, "%s/nolang/music/foo/%s", getSignusDataDir(),
+	snprintf(filnm, PATH_MAX, "%s/nolang/music/%s", getSignusDataDir(),
 		name);
 	rw = SDL_RWFromFile(filnm, "rb");
 
