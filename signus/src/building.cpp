@@ -171,11 +171,11 @@ TSprite *TBuilding::GetStatusBar()
 
 
 
-void TBuilding::GetUnitInfo() {
+void TBuilding::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[30];
 	int clr;
 
-	TObject::GetUnitInfo();
+	TObject::GetUnitInfo(alt_wpinfo);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 2, GetName(), NormalFont,
 		clrLightBlue, clrBlack);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 26, SigText[TXT_STATE],
@@ -744,8 +744,8 @@ void TBase::Action(int x, int y)
 
 
 
-void TBase::GetUnitInfo() {
-	TBuilding::GetUnitInfo();
+void TBase::GetUnitInfo(bool alt_wpinfo) {
+	TBuilding::GetUnitInfo(alt_wpinfo);
 	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
 	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
 		clrSeaBlue, ((double)LoadedUnits / Capacity), "");
@@ -1028,10 +1028,10 @@ draw_it_now:
 
 
 
-void TFactory::GetUnitInfo() {
+void TFactory::GetUnitInfo(bool alt_wpinfo) {
 	char cbuf[80];
 
-	TBuilding::GetUnitInfo();
+	TBuilding::GetUnitInfo(alt_wpinfo);
 	CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0], 102, 23);
 	sprintf(cbuf, SigText[TXT_FINANCE], MoneyGoodlife);
 	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 2, 60, cbuf, NormalFont, clrWhite,

@@ -49,7 +49,7 @@ class TBuilding : public TObject {
 		  void PlaceGround(int place);
 			void Draw();
 			TSprite *GetStatusBar();
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			int InfoEvent(TEvent *e);
 			TSprite *GetSprite();
 			int GetWeight() {return WGT_ULTRAHEAVY;}
@@ -170,7 +170,7 @@ class TBase : public TBuilding {
 			void RemoveFromWorld();
 			int InfoEvent(TEvent *e);
 			void Action(int x, int y);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			void ChangeParty();
 	};
 
@@ -239,7 +239,7 @@ class TFactory : public TBuilding {
 			int GetType() {return unFactory;}
 			void Setup();
 			int InfoEvent(TEvent *e);
-			void GetUnitInfo();
+			void GetUnitInfo(bool alt_wpinfo = false);
 			void TurnReset();
 			void Action(int x, int y);
 			void Select();
