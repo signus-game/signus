@@ -757,15 +757,8 @@ TSprite *TSatan::GetSprite()
 
 
 void TSatan::GetUnitInfo(bool alt_wpinfo) {
-	char cbuf[30];
-
 	TGroundUnit::GetUnitInfo(true);
 	CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconSatan->IconPic[0], 59, 59);
-	CopyBmpNZ(UInfoBuf, UINFO_SX, 2, 129,
-		BmpAmmoIcons[Weapons[CurWpn]->GetType()], 30, 13);
-	sprintf(cbuf, "%i", Weapons[CurWpn]->TimeLost);
-	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 35, 129, cbuf, NormalFont,
-		clrWhite, clrBlack);
 }
 
 
