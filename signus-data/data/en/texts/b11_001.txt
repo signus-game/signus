@@ -1,20 +1,24 @@
-#> Welcome to the Tridi Vision war news...
+#> Welcome to Tridi Vision war news...
 #> 
-#> Introductory: the actual view of the positions of both sides:
-#> Losabo: after ten weeks the Toricon's navy has finally succeeded to break through the
- continental blockade and to liquidate a main part of the besieging ships. The situation in
- the area of Losaba is under control.
-#> Hedar: even here Toricon is slowly capturing it's original territories. This morning several
- areas by the coast were captured by the Toricon's top units. Only the middle parts of the
- Hedar provenience are left to be captured. It is probably only a question of time when the
- Consortium definitely looses the influence over these areas.
-#> Lebrukon and Dalio: According to our reporter it looks like there was a ruinous hurricane running across these
- proveniences...
-#> The craters from the bombs, fire, burning wrecks, dead soldiers and citizens. One word to
- define: destruction.
-#> The public of the whole world denounces the rough attack of Toricon. Toricon mentions the
- Consortium's alleged invasion to the Lebaran's area as a reason for this act. The civil
- citizens pulled involuntarily into the war or gigantic corporations can only ask: How far are
- they willing to go?
+#> First, an overview of the latest clashes between the warring sides:
+#> Losabo:
+#> - Toricon navy has finally managed to break through the continental
+ blockade after six weeks and sink a large part of the blockading fleet. They
+ have the situation in Losabo fully under control again.
+#> Hedar:
+#> - Toricon is slowly but surely regaining its original territory here as
+ well. Their elite forces have captured several cities near the coast this
+ morning. Only the central part of Hedar province remains under Consortium
+ control and it seems to be only a matter of time before they lose this area
+ completely.
+#> Lebrukon and Dalio:
+#> - These provinces look as if a hurricane has passed through, or at least
+ that's how our reporter describes the situation...
+#> Bomb craters, buildings on fire, burnt corpses of soldiers and civilians...
+ In a word: havoc...
+#> People of the whole world condemn Toricon's brutal attack. Toricon
+ justifies its actions by an alleged Consortium plan to invade Lebaran.
+ Civilians caught in this private war between the two giant corporations can
+ only ask: "How far will they go in this pointless feud...?"
 #e
 #e

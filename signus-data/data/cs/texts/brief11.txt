@@ -3,7 +3,7 @@
 #> Letadlová loď Imperi, 15 mil od lebrukonského pobřeží
 #> K Toriconu dolehly zprávy, podle kterých Konzorcium mobilizuje
  síly v oblastech východního Lebrukonu za účelem obsazení
- zakázané zóny lebaranského území. Podle našich základen Kytanu
+ zakázané Zóny lebaranského území. Podle našich základen Kytanu
  a Setrixu se nepřítel zatím obranu prolomit nepokusil, ale co
  není, může být. Z bezpečnostních důvodů Toricon rozhodl
  zlikvidovat veškeré základny Konzorcia, které se ve zmíněných
@@ -21,7 +21,7 @@
 #> 
 #> F. Lambert
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dobýt pobřežní letiště a zahájit útok na
- nepřátelské pozice ve východním Lebaranu
+#> PRIMÁRNÍ CÍL: Dobýt pobřežní letiště a zahájit útok na
+ nepřátelské pozice ve východním Lebrukonu
 #e
 #e

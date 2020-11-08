@@ -1,8 +1,8 @@
-#> According to the command, Signus has attacked the northern lebrukon airport kept by the
- Consortium. Then we started attacking the enemy positions in eastern Lebrukon, which are
- completely destroyed now.
+#> Signus captured the Consortium airports in northern Lebrukon as ordered.
+ Then we launched the attack on enemy strongholds in eastern Lebrukon and
+ neutralized them.
 #> 
-#> F. Lambert.
+#> F. Lambert
 #> 
 #> War#001 news#001
 #e

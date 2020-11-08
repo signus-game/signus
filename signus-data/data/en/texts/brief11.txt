@@ -1,22 +1,24 @@
 #> 
  #p.toricon.282.183. 
-#> The aircraft carrier Imperi, 15 miles away from the coast of Lebrukon
-#> Toricon  obtained message that Consortium is supposed to mobilize the forces in the areas
- of eastern Lebrukon to capture the forbidden territory of Lebaran. According to our bases
- Kytan and Setrix, the enemy has not tried to penetrate through the defence yet. But he may
- try anytime. For security reasons Toricon decided to eliminate all the bases of Consortium
- that are placed in the mentioned area. Considering the supposed extent of the destructive
- consequences of this mission, it is necessary to make sure that the mentioned reports are
- truthful. But Toricon cannot wait for such a long time. At present time, the aircraft carriers
- are needed along the coast of Losaba, where the Toricon's navy is trying to pierce through
- continental blockade lasting for several weeks already.
-#> Your task is, first of all, to get in control of several airports around our zone, where our
- bombers could land. Immediately after the confirmation of the threat of the enemy
- expansion to the Toricon's areas, we will start to attack from the captured airports. Attack
- the bases in the area of eastern Lebrukon.
+#> Aircraft carrier Imperi, 15 miles off the coast of Lebrukon
+#> Toricon has received warning that the Consortium is mobilizing forces in
+ the area of eastern Lebrukon in order to occupy the forbidden Zones in
+ Lebaran. Our bases Kytan and Setrix report that the enemy has not tried to
+ breach our defenses yet but it could happen soon. For security reasons,
+ Toricon has decided to eliminate all Consortium bases located in those areas.
+ Due to the expected destructive impact of a major invasion, we should
+ verify the accuracy of the warning. However, Toricon cannot wait that long.
+ Aircraft carriers are currently needed at the coast of Losabo where Toricon
+ navy is trying to break the continental blockade that has already lasted
+ several weeks.
+#> Your mission is to first take control over a few airports in the coastal
+ area so that we can move our bombers there. Then, after we verify the threat
+ of enemy incursion into Toricon territory, launch the attack on enemy bases
+ in eastern Lebrukon from the captured airports.
 #> 
-#> F. Lambert.
+#> F. Lambert
  #p.anamorf.320.184.
-#> PRIMARY AIM: Capture the coastal airports and start the attack on the enemy positions in the eastern Lebaran.
+#> PRIMARY OBJECTIVE: Capture the coastal airports and launch the attack on
+ enemy strongholds in eastern Lebrukon
 #e
 #e
