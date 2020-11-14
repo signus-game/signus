@@ -1111,6 +1111,8 @@ void DoneArtificialIntelligence12() {
 	Army9 = NULL;
 	delete Towers;
 	Towers = NULL;
+	delete Marine5;
+	Marine5 = NULL;
 }
 
     
