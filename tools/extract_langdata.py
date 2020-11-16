@@ -64,7 +64,7 @@ def copy_file(src, dst):
 
 def create_dirs(toolsdir):
     bitmap_list = ('mmnu0.png', 'mmnu1.png', 'mmnu2.png', 'mmnu3.png')
-    text_list = ('credits.txt', 'unam59.txt', 'unam60.txt')
+    text_list = ('credits.txt', 'udes55.txt', 'unam59.txt', 'unam60.txt')
     path_list = (
         ('lang', 'anims'), ('lang', 'graphics', 'bitmaps'),
         ('lang', 'graphics', 'screens'), ('lang', 'speech'), ('lang', 'texts')
