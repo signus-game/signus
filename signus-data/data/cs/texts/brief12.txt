@@ -3,11 +3,11 @@
 #> Základna Rufion
 #> Konečně jsme získali zprávy o pohřešované přepravní lodi
  Queen#001.
-#> Loď, kterou očekáváme už půl druhého dne byla zajata
+#> Loď, kterou očekáváme už půl druhého dne, byla zajata
  Konzorciem 15 mil od Retanského zálivu a krátce poté
  i s nepřátelským plavidlem potopena.
-#> Torikon již na naši žádost vyslal pro artefakty, uložené
- v Rufionu, loď náhradní, nicméně, vzhledem k uragánu řádícímu
+#> Torikon již na naši žádost vyslal pro artefakty uložené
+ v Rufionu loď náhradní, nicméně vzhledem k uragánu řádícímu
  na moři se nedá určit, za jak dlouho Artemis dorazí.
 #> Situace je o to horší, že těsně po zmíněném konfliktu rozjelo
  Konzorcium akci při východním pobřeží Konerského zálivu...
@@ -21,11 +21,11 @@
  jsme rozkaz vyčkat do příchodu posil a poté se s artefakty
  přesunout k přístavu, kde pro nás bude připravena loď.
 #> Určitě nemusím připomínat, že bez pomocných jednotek, které
- nám budou krýt záda moc šancí nemáme, takže doufejme, že
+ nám budou krýt záda, moc šancí nemáme, takže doufejme, že
  přijdou včas...
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: udržet základnu do příchodu posil a poté provést
- transfer artefaktů ke kotvící lodi.
+#> PRIMÁRNÍ CÍL: Udržet základnu do příchodu posil, a poté provést
+ transfer artefaktů ke kotvící lodi
 #e
 #l b12_001#
 #e

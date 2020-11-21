@@ -1,15 +1,17 @@
-#> Report from investigators about the situation in the area of Eutania:
-#> The troopship Queen which has been moving to the coast of southern Eutania to transport
- the artefacts kept in Rufion to Tankred, was captured by an enemy ship under the flag of
- Consortium during its sail.
-#> There is a supposition that the enemy has planned to use its prey, which was not even able
- to send an SOS signal, to continue in the determined route and to get the artefact.
- Fortunately the route of both the ships was crossed by one of our submarines, that was
- checking this area. As soon as the captain understood the situation, he has informed his
- superiors. On Toricon's command, both ships were scuttled and a warship Artemis, that
- was harboured on the east from Kentaur base, was sent out for the artefacts.
-#> Shortly after the ship sinked, Consortium has started an attack from the continent. For
- several weeks Consortium has been gathering its units in Koner bay secretly and now used
- the situation.
+#> Intelligence report about enemy activity in Eutania:
+#> Cargo ship Queen en route to the coast of southern Eutania with orders to
+ transport a collection of artefacts from Rufion to Tankred was intercepted
+ and captured by a warship flying the Consortium flag.
+#> We have reasons to believe that the enemy was planning to use the ship,
+ which failed to send a distress signal, to continue on the original route and
+ steal the artefacts through deceit.
+#> Fortunately, both ships were spotted by one of our submarines patrolling
+ the area. When the captain realized what is going on, he alerted his
+ superiors. Toricon ordered both ships to be destroyed and sent warship
+ Artemis anchored near the shore east of Centaur base to transport the
+ artefacts instead.
+#> The Consortium has launched a ground attack shortly after the ships were
+ sunk. They have been secretly gathering forces in Koner Bay for several weeks
+ and now they have taken advantage of the situation.
 #e
 #e

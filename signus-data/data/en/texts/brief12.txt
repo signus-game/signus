@@ -1,27 +1,30 @@
 #> 
  #p.toricon.282.183. 
-#> Rufinon base
-#> We have finally obtained some news about the missing troopship#001 Queen#001.
-#> The ship that we have been expecting for one day and a half already, has been captured 15
- miles from the Retan Bay and shortly after this event it has been scuttled toghether with the
- enemy vessel.
-#> On our request, Toricon has already launched an alternate ship for the artefact kept in
- Rufion. However, considering the hurricane raging in the sea, we cannot determine at what
- time will Artemis arrive.
-#> The situation is even worse. Right after the mentioned conflict, Consortium started an
- action by the eastern coast of Koner bay...
-#> Several numerous detachments are approaching us in the mean time. The aim of their
- attack is probably to get the artefacts.
-#> Rufinon has sent out an SOS signal to thecircumjacent bases. Until now we have only
- received answer from Ardenor - it is offering us help. For several seconds we succeeded to
- contact Toricon's HQ. Accordingly to their command we should try to do the impossible -
- to be exact: we have received a command to wait until the arrival of reinforcements and
- then move - with the artefacts - to the port where a ship will be ready for us.
- I do not think I have to mention that we do not have big chance without the reinforcements
- to cover our back. Let's hope they will be here in time.
+#> Rufion base
+#> We have finally received some news about the missing transport ship
+ Queen#001.
+#> The ship, which was supposed to arrive a day and a half ago, was captured
+ by the Consortium 15 miles from the Retan Bay and then it was sunk together
+ with an enemy warship shortly afterwards.
+#> Upon our request, Toricon has already dispatched another ship for the
+ artefacts stored at Rufion. However, we cannot estimate when it'll arrive due
+ to a hurricane raging at the sea.
+#> What makes the situation even worse, the Consortium has lauched an
+ operation at the eastern shore of Koner Bay right after the above-mentioned
+ incident...
+#> Several regiments are currently heading to our position. Their objective is
+ likely to capture our artefacts.
+#> Rufion has sent a distress signal to nearby bases. Only Ardenor has
+ responded so far, promising reinforcements. We have also managed to contact
+ Toricon HQ for a few moments and they're asking us to do the impossible -
+ specifically: We have received orders to hold our position until
+ reinforcements arrive, then transport the artefacts to the seaport where a
+ ship will be waiting for us.
+#> I don't need to remind you that we don't stand a chance without
+ reinforcements to cover our back so let's hope they will arrive in time...
  #p.anamorf.320.184.
-#> PRIMARY AIM: to keep the base until the arrival of reinforcements and than  perform the
- transport of the artefacts to the harboured ship.
+#> PRIMARY OBJECTIVE: Defend the base until reinforcements arrive, then
+ transport the artefacts to the transport ship
 #e
 #l b12_001#
 #e

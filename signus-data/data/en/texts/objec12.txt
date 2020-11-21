@@ -1,5 +1,4 @@
-Defense your base until the arrival
-of reinforcements and then transport the artefacts
-to the coast, where the troopships will wait
-for you. The transport will probably be possible
-only with adecvate protection from the reinforcements.
+Defend the base until reinforcements arrive, then
+retreat with the artefacts to the coast where transport
+ships will be waiting for you. Retreat is likely possible
+only with fire support from reinforcements.
