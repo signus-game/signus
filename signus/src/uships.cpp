@@ -208,7 +208,7 @@ void TViking::Setup()
     Weapons[0] = new TBalisticWeapon(WpnNames[WPNNM_CANNON], 
                      utVI_AN, utVI_ANB, utVI_AN2, utVI_ANB2, utVI_AT, 
                      utVI_MINR, utVI_MAXR, utVI_AMMO);
-    Weapons[1] = new TGun(WpnNames[WPNNM_MINES],
+    Weapons[1] = new TGun(WpnNames[WPNNM_ANTISUB],
                      utVI_2AN, utVI_2ANB, utVI_AT, utVI_2MAXR, utVI_2AMMO);
     Weapons[2] = new TCannonAntiAir(WpnNames[WPNNM_AIRCANNON], 
                      utVI_3AN, utVI_3ANB, utVI_3AT, utVI_3MAXR, utVI_3AMMO);

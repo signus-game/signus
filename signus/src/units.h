@@ -505,7 +505,7 @@ extern int *SpriteLocators[UNITS_TOP];
 
 
 // Jmena typu zbrani
-#define WPNNM_COUNT     12
+#define WPNNM_COUNT     13
 
 #define WPNNM_CANNON     0
 #define WPNNM_MACHGUN    1
@@ -519,6 +519,7 @@ extern int *SpriteLocators[UNITS_TOP];
 #define WPNNM_TORPEDO    9
 #define WPNNM_LASER     10
 #define WPNNM_SONIC     11
+#define WPNNM_ANTISUB   12
 
 extern char *WpnNames[WPNNM_COUNT];
 
