@@ -8,21 +8,21 @@
  vlivu artefaktu s krycím názvem Silence. Před několika týdny
  se totiž vědci zkoumající tento artefakt dohodli, že jeho
  význam pro potřeby Toriconu je natolik důležitý, že bude
- bezpečnější pokračovt ve výzkumu v laboratoři Tankredu.
- Společnost pro Silence vyslala specielní vrtulník, nicméně,
+ bezpečnější pokračovat ve výzkumu v laboratoři Tankredu.
+ Společnost pro Silence vyslala speciální vrtulník, nicméně
  při tankování na severním pobřeží Lebaranu byl pilot
  i s posádkou zajat a Silence se v současné době nachází na
  základně Satran na jednom ze Wenillských ostrovů - Ternulonu.
  Vaší úkolem je obsazení tohoto ostrova a získání artefaktu
  z rukou nepřátel. Pokud se Konzorcium pokusí využít účinky
  artefaktu proti vám, nemělo by se nic stát. Frekvence vysílané
- Silencem na určité jedince nemají dostatečně silný vliv. aby
- ho mohli jakkoli ovládat.
+ Silencem na určité jedince nemají dostatečně silný vliv, aby
+ ho mohly jakkoli ovládat.
 #> Námořnictvo nám dalo k dispozici křižníky i transportní lodě,
  takže zajištění přístupu k ostrovu záleží jen na nich. Na vás
  vše ostatní...
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dobytí ostrova na němž je základna s artefaktem,ĺ
+#> PRIMÁRNÍ CÍL: Dobytí ostrova, na němž je základna s artefaktem,
  obsazení okolních ostrůvků
 #e
 #e

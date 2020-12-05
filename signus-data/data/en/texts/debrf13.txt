@@ -1,10 +1,12 @@
-#> According to the command we have embarked on the troopship and performed an attack
- on Ternulon. Despite certain casualties we have succeeded to gain control of Ternulon and
- several islands around it. The enemy tried to use the artefact against us, but except for some
- exceptions the crew acted according to the instructions. Base Sataran was captured and the
- artefact is on board of a plane heading towards Tankred.
-#> We are still forced to stay on the islands - the inexplicable earthquakes#001 have raged the sea
- so much that it is more than risky to set sail...
+#> We boarded transport ships and launched the attack on Ternulon island
+ as ordered. Despite some casualties, we have managed to take control over
+ Ternulon and the islands around it. The enemy tried to use the artefact
+ against us but except for a few, our soldiers followed the instructions. Fort
+ Satran has been captured and the artefact is now aboard a plane heading to
+ Tankred.
+#> We are forced to stay on the islands for the time being - the inexplicable
+ earthquakes#001 have stirred up the sea so much that weighing the anchor now
+ is far too risky...
 #e
 #l b13_001#
 #e
