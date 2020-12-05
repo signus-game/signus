@@ -901,6 +901,8 @@ void DoneArtificialIntelligence14() {
 	AirArmy4 = NULL;
 	delete Towers;
 	Towers = NULL;
+	delete Army10;
+	Army10 = NULL;
 }
 
     
