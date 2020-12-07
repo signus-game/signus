@@ -1236,8 +1236,15 @@ static int saturn_counter = 0;
 
 void TSaturn::GoOnField()
 {
-	int i, j;
-	
+	int i, j, oldID = ID;
+
+	TAircraft::GoOnField();
+
+	if (!Units[oldID]) {
+		// Saturn destroyed, cannot drop any more bombs
+		return;
+	}
+
 	if (IsBombing) {
 		if (saturn_counter == 0) { // do bombing
 			if (Bombs == 0) return;
@@ -1255,17 +1262,35 @@ void TSaturn::GoOnField()
 
 
 
-int TSaturn::MoveSUB(int x, int y)
-{
-	int rt = TAircraft::MoveSUB(x, y);
-	if (rt && IsBombing) DoExplosion();
+int TSaturn::MoveSUB(int x, int y) {
+	int rt, oldID = ID;
+
+	rt = TAircraft::MoveSUB(x, y);
+
+	if (!Units[oldID]) {
+		return rt;
+	}
+
+	if (rt && IsBombing) {
+		DoExplosion();
+	}
+
 	return rt;
 }
 
-int TSaturn::MoveFarSUB(int x, int y)
-{
-	int rt = TAircraft::MoveFarSUB(x, y);
-	if (IsBombing) DoExplosion();
+int TSaturn::MoveFarSUB(int x, int y) {
+	int rt, oldID = ID;
+
+	rt = TAircraft::MoveFarSUB(x, y);
+
+	if (!Units[oldID]) {
+		return rt;
+	}
+
+	if (IsBombing) {
+		DoExplosion();
+	}
+
 	return rt;
 }
 
