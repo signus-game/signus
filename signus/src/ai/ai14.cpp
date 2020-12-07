@@ -91,7 +91,7 @@
 #define AA4Y2 80
 
 // Posily
-#define PX1 40
+#define PX1 39
 #define PY1 135
 #define PX2 54
 #define PY2 159
