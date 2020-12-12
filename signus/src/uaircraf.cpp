@@ -361,18 +361,19 @@ void TAircraft::Action(int x, int y)
 
 
 
-void TAircraft::Explode()
-{
-	int drw = Units[ID]->IsPartOnScreen() && (GetField(X, Y)->Visib == 2);
+void TAircraft::Explode() {
+	TField *f = GetField(X, Y);
+	int drw = Units[ID]->IsPartOnScreen() && (f->Visib == 2);
+	int yofs = -14 * (Alt - f->Height);
 	
 	if (drw) {
-		AddExplode1x1(X, Y, 0, 0, -14 * (Alt-1));
+		AddExplode1x1(X, Y, 0, 0, yofs);
 		{
 			for (int i = 0; i < 6; i++) {
 				AddExplode1x1(X, Y, 0, 
-						40 - 80 * frand(), 20 - 40 * frand() -14 * (Alt-1));
+						40 - 80 * frand(), 20 - 40 * frand() + yofs);
 				AddExplode3x3(X, Y, 0, 
-						60 - 120 * frand(), 30 - 60 * frand() -14 * (Alt-1));
+						60 - 120 * frand(), 30 - 60 * frand() + yofs);
 			}
 		}
 	}
