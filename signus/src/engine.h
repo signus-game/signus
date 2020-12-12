@@ -118,7 +118,7 @@ extern void GetSpriteRect(TRect *r, TSprite *s, int x, int y, int lx = 0, int ly
 
 // Rozmery kresliciho buf:
 #define VIEW_PIXSZ_X 728  /* = ((VIEW_SIZE_X + 1) * FIELD_X) */
-#define VIEW_PIXSZ_Y 616  /* = ((VIEW_SIZE_Y + 3) * FIELD_Y) */
+#define VIEW_PIXSZ_Y 644  /* = ((VIEW_SIZE_Y + 4) * FIELD_Y) */
 
 // Pozice kresliciho buf. na obrazovce a skutecne rozmery:
 #define VIEW_X_POS     9
