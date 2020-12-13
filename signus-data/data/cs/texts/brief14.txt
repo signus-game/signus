@@ -2,7 +2,7 @@
  #p.toricon.282.183. 
 #> Už druhý den se pokoušíme dobýt základnu Taluon, ale doposud
  našim útokům úspěšně odolává. Informovali jsme o současné
- situaci Toricon a dohodli se na jediném možném řešní...
+ situaci Toricon a dohodli se na jediném možném řešení...
 #> Tím řešením jsou sonické tanky, které má v držení toriconská
  základna Tulos několik mil odsud.
 #> Nejrychlejší a zároveň jedinou vhodnou cestou pro dopravu
@@ -11,16 +11,16 @@
  předpokládat, že protivník již odhadl náš příští krok a každým
  okamžikem zahájí soustředěný útok s cílem dobýt nebo zničit
  most. Vaším úkolem je udržet taluonské jednotky v dostatečné
- vzdálenosti od mostu a pokud by se snad dostali příliš blízko,
+ vzdálenosti od mostu, a pokud by se snad dostaly příliš blízko,
  znemožnit jakékoliv snahy o vyhození Tubaru do povětří. Most
  musíme udržet pod naší kontrolou za každou cenu, jinak
  přijdeme o možnost využití sonických tanků a tím prolomení
- obraných clon Taluonu. Víme to my, ví to oni.., proto se
+ obraných clon Taluonu. Víme to my, ví to oni... Proto se
  připravte na nejhorší...
 #> 
 #> L. Burton
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: Udržet Tubarský most pod svou kontrolou doĺ
+#> PRIMÁRNÍ CÍL: Udržet Tubarský most pod svou kontrolou do
  příjezdu sonických tanků, dobýt základnu Konzorcia - Taluon
 #e
 #e
