@@ -62,7 +62,7 @@
 
 // Action Radius of Army 5
 #define A5X1 33
-#define A5Y1 50
+#define A5Y1 47
 #define A5X2 46
 #define A5Y2 62
 
