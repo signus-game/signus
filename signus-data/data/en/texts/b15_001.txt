@@ -1,15 +1,17 @@
-#> Welcome to the Tridi Vision war news.
-#> Toricon has hit Consortium considerably.
-#> This morning the gigantic corporation has started an attack on the positions of Consortim
- in southern and south-eastern Eutania. Bases Sanukor and Rufion,  captured by
- Consortium some time ago, are under complete control of the attacking side again. And the
- units of Toricon are moving to the inland successfully. Except this offence another marine
- battle was unleashed 15 miles from the south-western coast of Lystonie, where the fights are
- still raging. Listonia and the northern part of Rotenalia seem to be the only integrated areas
- of Arconis that are under complete control of Consortium. There are some local fights going
- on in the western part of Eutania, Misteral and Dalio.
-#> The deserted soldiers are gathering in organised groups and they are terrorizing the
- citizens. And that appears to be a big problem. The bloodiest fights have taken place in
- Dalio today in the early afternoon. The incident has caused 15 casualties...
+#> Welcome to Tridi Vision war news
+#> Toricon has dealt another major blow to the Consortium.
+#> Early this morning, the giant corporation has launched an offensive on
+ Consortium positions in south and southeast Eutania. Sanukor and Rufion bases
+ which had been captured by the Consortium some time ago are back under
+ control of the attacking side now and Toricon forces are successfully
+ advancing inland. Aside from the land offensive, naval forces have clashed 15
+ miles off the southwest coast of Lystonia and the battle is still ongoing.
+ Lystonia and the northern part of Rotenalia appear to be the only undivided
+ regions of Arkonis where the Consortium is in full control of the situation.
+ Local skirmishes are in progress at the western edge of Eutania, Misterals
+ and Dalio.
+#> A major threat for the civilian population are deserters who gather into
+ organized gangs and terrorize the citizens. The bloodiest incident so far
+ happened early this afternoon in Dalio where a brawl left fifteen dead...
 #e
 #e

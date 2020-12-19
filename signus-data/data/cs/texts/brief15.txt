@@ -5,8 +5,8 @@
  tohoto ostrova je fakt, že přes poměrně příjemné klimatické
  podmínky není obýván civilním obyvatelstvem. Konzorcium zde
  soustředí výzkum artefaktových technologií, testování nově
- vyvíjených zbraní, a výcvik svých úderných jednotek.
-#> Získání Penytrasu by pro Toricon bylo obrovským přínosem
+ vyvíjených zbraní a výcvik svých úderných jednotek.
+#> Získání Penytrasu by pro Toricon bylo obrovským přínosem.
  Zvláště velkou pozornost věnuje laserovým tankům, jejichž
  testování zde v současnosti probíhá, a rád by je co nejdříve
  přičlenil k vybavení svých pozemních jednotek. Vzhledem ke
@@ -21,11 +21,11 @@
  průběh akce. K ostrovu vás dopraví lodě vybavené
  antidetekčním štítem, takže Penytras bude mít šanci přivolat
  posily z moře až v okamžiku, kdy nás zaměří pobřežní radary.
-#> Čas, který tak získáme by nám měl postačit k provedení akce.
+#> Čas, který tak získáme, by nám měl postačit k provedení akce.
 #> 
 #> Paul Winters
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dobýt a obsadit ostrov Penytras
+#> PRIMÁRNÍ CÍL: Dobýt a obsadit ostrov Penytras
 #e
 #l b15_001#
 #e

@@ -1,8 +1,8 @@
-#> We have disembarked along the coast of Penytras accordingly to the order and started the
- attack. During the operation we found out that the suppositions about the military situation
- on the island were false. We have met with their tough defence and now we have to face the
- attack of enemy who became superior. However thanks to the experience and abilities of the
- commando Signus, we succeeded to capture the island. Even though it was done with
- considerable casualties.
+#> We have landed on Penytras shore and launched the attack as ordered. During
+ the operation it turned out that the intel about military presence on the
+ island was wrong. We met strong resistance and then faced mostly
+ counterattacks from enemy forces which unexpectedly outnumbered us. However,
+ thanks to the experience and abilities of the Signus commando, we have
+ managed to capture the island despite heavy casualties.
 #e
 #e

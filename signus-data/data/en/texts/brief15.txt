@@ -1,29 +1,31 @@
 #> 
  #p.toricon.282.183. 
-#> One of the important areas that are not under complete control of Toricon yet is island
- Penytras. The curiosity of this island is the fact, that though it has relatively comfortable
- climate, it is not inhabited by civilians. Consortium centres the research of artefact
- technologies, testing of recently developed weapons and the training of the hit units on this
- island.
-#> Gaining of Penytras would be a great acquisition for Toricon. Special attention is dedicated
- to the laser tanks that are tested here in the present time which Toricon would like to add to
- the equipment of own surface units. Considering the fact that Consortium has to face the
- pressure in the areas of south-eastern Eutania#001, it is supposed that the most of the military
- forces will be centred out of the island. The corporation has decided to use the opportunity
- and to gain the control over Penytras.
+#> One of the last noteworthy areas which remain outside Toricon control is
+ the Penytras island. An unusual fact about the island is that despite its
+ temperate climate, there are no civilian inhabitants. The Consortium uses it
+ as their main artefact research center, new weapons testing grounds and
+ strike force training facility.
+#> Acquiring Penytras would be a major gain for Toricon. The HQ is
+ particularly interested in the laser tanks which are currently being tested
+ there and would like to put them into service among our ground forces soon.
+ Given that the Consortium is under heavy pressure in the area of southeast
+ Eutania#001, we expect that most military units are currently deployed away
+ from the island. The company has decided to use the opportunity and take over
+ control of Penytras.
  #p.tactisit.352.280.
-#> From our spy on the Consortium's island we have received detailed map of the placement of
- the shooting towers and another critical places. It is necessary to study this map carefully,
- because the detail information will speed up the course of the operation. You will be
- transported to the island by ships that are equipped with an antidetection shield, so
- Penytras will not be able to call the reinforcements from the sea before we will be detected
- by the coastal radars. The time we gain this way should be enough for the realization of the
- mission.
+#> We have received a detailed map with the placement of defensive turrets and
+ other important points from our operative inside the Consortium on the
+ island. Study it carefully because having accurate intel will speed up our
+ operation. You will be transported to the island by ships equipped with
+ stealth plating so Penytras won't get a chance to call for reinforcements
+ until we get detected by coastal radars.
+#> The element of surprise should buy us enough time to complete the
+ operation.
 #> 
 #> Paul Winters
 #> 
  #p.anamorf.320.184.
-#> PRIMARY AIM: Capture the island Penytras.
+#> PRIMARY OBJECTIVE: Capture the Penytras island
 #e
 #l b15_001#
 #e
