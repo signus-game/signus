@@ -5,7 +5,7 @@
 #> Před několika hodinami zaznamenala letecká výzvědná služba
  nenadálou aktivitu Konzorcia v oblasti Eutanie. Jde o napadení
  skupiny geologů provádějící pro Toricon vědecký výzkum.
-#> K přepadu došlo na území Středoeutanské zakázané zóny
+#> K přepadu došlo na území Středoeutanské zakázané Zóny
  v místech, kde se skupina vědců pod vedením profesora
  Lottenberta zabývala zkoumáním staroarkoňanského města.
  V současné situaci je toto území plně pod kontrolou Konzorcia.
@@ -23,7 +23,7 @@
 #> 
 #> Robert Scott
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dobýt Město s minimálními škodami
+#> PRIMÁRNÍ CÍL: Dobýt Město s minimálními škodami
 #e
 #l b16_001#
 #e

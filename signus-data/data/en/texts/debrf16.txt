@@ -1,6 +1,5 @@
-#> According to the order, we have started the attack against enemy units and we succeeded,
- with several casualties, to gain the control of the city. Of course we could not keep without
- smaller damages.
-#> In spite of it the mission is considered successful.
+#> We have attacked enemy forces as ordered and managed to gain control over
+ the City despite several casualties. We could not avoid some minor collateral
+ damage but overall the mission can be considered a success.
 #e
 #e
