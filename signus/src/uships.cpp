@@ -35,6 +35,8 @@ USHIPS.CPP - lode a lodicky
 #include "fields.h"
 
 
+static int ship_Xdir[8] = {-1, -1, -1,  0,  1,  1,  1,  0};
+static int ship_Ydir[8] = {-1,  0,  1,  1,  1,  0,  -1, -1};
 
 
 
@@ -137,52 +139,66 @@ void TOasa::IncLevel(int alevel)
 
 
 
-static int oasa_fnd;
-inline int IsShore(int x, int y)
-{
-    if ((GetField(x, y)->Terrain != 6) && (GetField(x, y)->Terrain != 18) &&
-        (GetField(x, y)->Terrain2 == 0)) {
-      oasa_fnd = TRUE;
-      return TRUE;
-  }
-  return FALSE;
+inline int IsShore(int x, int y) {
+	TField *f = GetField(x, y);
+
+	return ((f->Terrain != 6) && (f->Terrain != 18) && (f->Terrain2 == 0));
 }
-inline void RemPonton(int x, int y)
-{
-    if (GetField(x, y)->Terrain2 == 361) 
-        GetField(x, y)->Terrain2 = 0;
+
+void RemPonton(int x, int y) {
+	int i, tx, ty;
+	TField *tf, *f = GetField(x, y);
+
+	if (f->Terrain2 != 361) {
+		return;
+	}
+
+	for (i = 0; i < 8; i++) {
+		tx = x + ship_Xdir[i];
+		ty = y + ship_Ydir[i];
+
+		if (tx < 0 || ty < 0 || tx >= MapSizeX || ty >= MapSizeY) {
+			continue;
+		}
+
+		tf = GetField(tx, ty);
+
+		if (tf->Unit != NO_UNIT &&
+			Units[tf->Unit]->GetType() == unOasa) {
+			return;
+		}
+	}
+
+	f->Terrain2 = 0;
 }
 
 
 extern int EngineInited;
 
-void TOasa::PlaceGround(int place)
-{
-    TShipTransporter::PlaceGround(place);
-    if ((X < 1) || (Y < 1) || (X > MapSizeX-2) || (Y > MapSizeY-2)) return;
-    oasa_fnd = FALSE;
-    if (place) {
-        if (IsShore(X-1, Y)) PlaceL2(X-1, Y, 361);
-        if (IsShore(X+1, Y)) PlaceL2(X+1, Y, 361);
-        if (IsShore(X, Y-1)) PlaceL2(X, Y-1, 361);
-        if (IsShore(X, Y+1)) PlaceL2(X, Y+1, 361);
-        if (IsShore(X-1, Y-1)) PlaceL2(X-1, Y-1, 361);
-        if (IsShore(X+1, Y+1)) PlaceL2(X+1, Y+1, 361);
-        if (IsShore(X-1, Y+1)) PlaceL2(X-1, Y+1, 361);
-        if (IsShore(X+1, Y-1)) PlaceL2(X+1, Y-1, 361);
-        if (oasa_fnd && EngineInited) RedrawMap();
-    }
-    else {
-        RemPonton(X-1, Y);
-        RemPonton(X+1, Y);
-        RemPonton(X, Y-1);
-        RemPonton(X, Y+1);
-        RemPonton(X-1, Y-1);
-        RemPonton(X+1, Y+1);
-        RemPonton(X-1, Y+1);
-        RemPonton(X+1, Y-1);
-        if (oasa_fnd && EngineInited) RedrawMap();
-    }
+void TOasa::PlaceGround(int place) {
+	int i, tx, ty, redraw = 0;
+
+	TShipTransporter::PlaceGround(place);
+
+	for (i = 0; i < 8; i++) {
+		tx = X + ship_Xdir[i];
+		ty = Y + ship_Ydir[i];
+
+		if (tx < 0 || ty < 0 || tx >= MapSizeX || ty >= MapSizeY) {
+			continue;
+		}
+
+		if (!place) {
+			RemPonton(tx, ty);
+		} else if (IsShore(tx, ty)) {
+			PlaceL2(tx, ty, 361);
+			redraw = 1;
+		}
+	}
+
+        if (redraw && EngineInited) {
+		RedrawMap();
+	}
 }
 
 
@@ -412,9 +428,6 @@ void TPoseidon::IncLevel(int alevel)
 
 
 
-
-static int ship_Xdir[8] = {-1, -1, -1,  0,  1,  1,  1,  0};
-static int ship_Ydir[8] = {-1,  0,  1,  1,  1,  0,  -1, -1};
 
 static int PlaceJustCenter = FALSE;
 
