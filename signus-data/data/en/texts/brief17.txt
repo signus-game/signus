@@ -1,23 +1,26 @@
 #> 
  #p.toricon.282.183. 
-#> Port Luton, western Sotona
+#> Luton seaport, west Sotona
 #> 
-#> Probably the most important mission of this war conflict and of your whole life is near you.
-#> Toricon is about to realize an offence, which could change the final course of the war. After
- several failures, Toricon has finally succeeded to defeat Consortium and to open the access
- to the Liston coast for own ships. The mobilization of all the forces is happening right now
- to let Toricon deal a deadly blow to its antagonist. To do this, Toricon needs a territory in
- the enemy area, where it could gather its units for the critical battle. You are expected to
- take care of this problem as soon as possible.
-#> The disembarkment will happen at the north-eastern coast three hours after the
- abandonment of the Luton port. The enemy is probably expecting us already and that is
- why we have to get ready for the intense defence at the beginning of the mission already. As
- soon as the liquidation of the coastal towers will be done, your task is to break through the
- defence and to move inland. There is a minor zone of military bases several miles from the
- coast. We need to occupy these bases as well, because we count on their use next time.
+#> In the next few hours, you will take part in the most important operation
+ of this global conflict and your entire life. Toricon is preparing for an
+ offensive which could decide the final outcome of the war. After several
+ failed attempts, Toricon has managed to defeat the Consortium in a naval
+ battle and thus open a passage to Lystonian shores for its fleet. We are
+ currently mobilizing all forces to deal the final blow to the enemy. But
+ first, we need a beachhead in enemy territory where we could assemble our
+ forces for the decisive battle. We expect you to take care of this little
+ problem as soon as possible.
+#> You will land on the northeast shore three hours after leaving the Luton
+ seaport. The enemy is most likely expecting us by now so prepare for fierce
+ resistance right from the beginning of the operation. Once you eliminate the
+ coastal turrets, your next objective is to break through the defenses and
+ advance further inland. There is a short strip of military bases a few miles
+ away from the shore. You need to capture them as well because we plan to use
+ them later.
 #> 
 #> Tim Coony
  #p.anamorf.320.184.
-#> PRIMARY AIM: Occupy the coastal zone of north-western Lystonia.
+#> PRIMARY OBJECTIVE: Secure the coastal zone of northeast Lystonia
 #e
 #e

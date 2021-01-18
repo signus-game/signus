@@ -7,7 +7,7 @@
  se chystá k ofenzívě, která může rozhodnout konečný průběh
  války. Po několika neúspěšných pokusech se Toriconu podařilo
  v námořní bitvě porazit Konzorcium a uvolnit tak přístup
- k listonskému pobřeží svým lodím. V současnosti probíhá
+ k lystonskému pobřeží svým lodím. V současnosti probíhá
  mobilizace veškerých sil, aby mohl protivníkovi zasadit
  smrtelnou ránu. K tomu je ovšem třeba prostor na nepřátelském
  území, kde by mohl shromáždit své jednotky k rozhodující
@@ -24,6 +24,6 @@
 #> 
 #> Tim Coony
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: obsadit pobřežní pás severozápadní Lystonie
+#> PRIMÁRNÍ CÍL: Obsadit pobřežní pás severovýchodní Lystonie
 #e
 #e

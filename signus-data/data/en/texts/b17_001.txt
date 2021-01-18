@@ -1,15 +1,18 @@
-#> Prof. Dietel's diary, fort Trufat
+#> Excerpt from Prof. Dietel's diary, fort Trufat
 #> 
-#> It seems that the military luck has decided to stay with Toricon for now. The enemy
- attacked this morning and neither the coastal guards nor the system of the basis was able to
- stop him. Consortium is fighting hardly for every tiny part of the remaining area. Both
- sides seem to be equal right now. Toricon is moving towards the base slowly, but surely. If
- our navy succeeded to break through the continental blockade, there would be a chance to
- turn away the impending defeat. For several weeks already no ship importing food and
- provisions was discharged. Unless a miracle is to happen, our food endures maximally for 2
- more months. Everything is kind of absurd. A gigantic corporation with top equipment,
- enormous number of soldiers and with everything else possible, has no choice but to wait.
-#> The units in northern Rotenalia are still a certain hope. If these units succeed to get some
- food from the citizens anyhow, and get to the fort with this food before Toricon invests us...
+#> It appears that fortune has sided with Toricon for now. The enemy has
+ breached our coastal defenses this morning and even the line of fortified
+ outposts could not stop their advance. The Consortium is fighting fiercely
+ for every inch of its remaining territory, and although the forces on both
+ sides appear to be evenly matched, Toricon is slowly but surely getting
+ closer to the fortress. There might still be a chance to avert the impending
+ defeat if our navy could break the continental blockade. No supply ship with
+ food has reached Lystonia for several weeks and supplies in the fortress will
+ last only two months at best unless a miracle happens. In a way, it's all
+ quite absurd. Giant fortress the size of a city, with top-class weaponry,
+ huge garrison of soldiers, simply everything you can think of, and it can do
+ nothing but wait. One last hope are our forces in northern Rotenalia. If they
+ manage to get some food supplies from the civilians by any means and bring
+ them into the fortress before Toricon lays siege to us...
 #e
 #e
