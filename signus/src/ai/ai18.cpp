@@ -82,7 +82,7 @@
 #define A8X1 92
 #define A8Y1 135
 #define A8X2 116
-#define A8Y2 56
+#define A8Y2 156
 
 // Action Radius of Army 9
 #define A9X1 107
