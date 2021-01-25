@@ -1,17 +1,18 @@
-#> Welcome to the Tridi Vision war news.
+#> Welcome to Tridi Vision war news.
 #> 
-#> Several hours ago, the last shots announcing the victory of Toricon in the biggest battle in
- history of Arconis have died out.
-#> Although Consortium was defeated in this battle, we cannot talk about the end of the war
- yet. While there was a fight going on eight miles northward, the units of Rotenalia
- succeeded to slip into Trufat and solve the problem of insufficient provisions which would
- threat in case of siege. The victory of the attacking side thus isn't that clear as it seemed to
- be right after the battle.
-#> In the mean time the burying of the casualties into mass graves and transport of hit units
- towards Trufat is going on. In the probably last military operation we count on the
- engaging of special units with code name Signus. Toricon has been using them mostly for
- the local assault actions and recently developed weapons testing. According to the
- unconfirmed source, Signus was partaking in the Amenur massacre, which became the
- gratest pretence for an open war.
+#> The last gunshots marking the victory of Toricon in the biggest battle in
+ the history of Arkonis have ceased a few hours ago. Although the Consortium
+ has suffered an undeniable defeat in this battle, the war is not yet over.
+ Rotenalian forces have snuck inside Trufat while the deadly battle was raging
+ eight miles to the north and solved the issue of insufficient food supplies
+ that the fortress would face in case of siege. The victory of the attacking
+ side is therefore not as clear as it seemed right after the battle.
+#> The dead are currently being buried in mass graves and combat units are
+ moving towards Trufat. The special forces known under the codename Signus are
+ expected to be deployed in the very likely last battle of the war. Toricon
+ was using them mainly for small-scale surprise attacks, weapon prototypes
+ testing, etc. According to unconfirmed rumors, they played a major role in
+ the so-called Amenur massacre which became the cause for declaration of open
+ war.
 #e
 #e

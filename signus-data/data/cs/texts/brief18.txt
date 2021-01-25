@@ -3,16 +3,16 @@
 #> Velitelství pozemních sil - deset mil východně od pevnosti
  Trufat
 #> Před několika hodinami se Konzorcium pokusilo prolomit
- kontinentální blokádu na severu uchytit se na pobřeží.
+ kontinentální blokádu na severu a uchytit se na pobřeží.
  Z tohoto důvodu k nám nemohou dorazit slíbené posily. Zároveň
  nepřítel shromáždil své pozemní armády osm mil před svou
- centrální pevností - Trufat. Podle posledních zpráv se se na
+ centrální pevností - Trufat. Podle posledních zpráv se na
  pomoc Konzorciu blíží početné oddíly ze severní Rotenalie se
  zásobami potravin. Pokud se jim podaří spojit s jednotkami
  hájícími pevnost, můžou se boje protáhnout minimálně o několik
  měsíců. Ve snaze získat čas potřebný k přesunu zmíněných sil
  k Trufatu zvolil nepřítel střetnutí armád na otevřeném
- prostranství. Toriconu nezbývá, než tuto výzvu přijmout, neboť
+ prostranství. Toriconu nezbývá než tuto výzvu přijmout, neboť
  shromážděné nepřátelské jednotky nám bezprostředně brání
  v postupu do vnitrozemí.
 #> Vaším cílem je rozhodnout tuto, můžeme říci generální bitvu,
@@ -23,6 +23,6 @@
 #> 
 #> T. Roy
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: zlikvidovat nepřátelské jednotky
+#> PRIMÁRNÍ CÍL: Zlikvidovat nepřátelské jednotky
 #e
 #e

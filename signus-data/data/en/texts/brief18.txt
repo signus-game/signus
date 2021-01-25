@@ -1,22 +1,24 @@
 #> 
  #p.toricon.282.183. 
-#> The HQ of the surface units ten miles to the east from the Trufat fort
-#> Several hours ago, Consortium has tried to break through the northern continental
- blockade. That is the reason why the promised reinforcements haven't arrived yet. In the
- mean time, the enemy has gathered its surface units eight miles from its central fort -
- Trufat. According to the latest reports, there are numerous columns with food coming from
- northern Rotenalia to help Consortium. If they succeed to contact the units that are
- defending the base, the fights may last at least for several months. While trying to get the
- time needed to move the mentioned forces towards Trufat, the enemy has chosen conflict of
- armies on an opened field. Toricon doesn't have any other choice but to accept this
- challenge, because the gathered enemy units are intercepting us and we cannot move
- inland.
-#> Your task is to decree this - let's say general - battle on our behalf. We cannot prevent the
- arrival of the reinforcements to the fort, but if we loose in this on-coming battle, Toricon
- can forget about investing Trufat for a long time, or forever...
+#> Ground forces HQ - ten miles east of fort Trufat
+#> A few hours ago, the Consortium has tried to break through the continental
+ blockade in the north and secure a part of the coast. The promised
+ reinforcements cannot arrive because of that. Moreover, the enemy has
+ deployed its ground forces eight miles in front of its central fortress -
+ Trufat. Latest reports warn us that a large army with food supplies is coming
+ from northern Rotenalia to reinforce the Consortium. If they manage to join
+ up with the forces defending the fortress, the siege could stretch out for
+ at least several months. In an attempt to buy the time needed for the
+ aforementioned army to reach Trufat, the enemy has chosen to engage our
+ forces in open field. Toricon has no choice but to accept this challenge
+ because the assembled enemy units are blocking further advance inland.
+#> Your task is to resolve this, we could say pivotal battle, in our favor.
+ We cannot stop the reinforcements from reaching the fortress but if we lose
+ the upcoming battle, Toricon can forget about besieging Trufat in the
+ foreseeable future, if ever...
 #> 
 #> T. Roy
  #p.anamorf.320.184.
-#> PRIMARY AIM: Liquidate the enemy units.
+#> PRIMARY OBJECTIVE: Eliminate enemy forces
 #e
 #e
