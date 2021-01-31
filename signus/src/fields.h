@@ -106,4 +106,7 @@ extern int GetMineAt(int x, int y);
 extern int MineIsSeen(int x, int y, int by_which_side);
 		// zjisti, jestli je dana mina videt Xenonem
 
+// Check for visible mines on given field
+int field_has_visible_mine(int x, int y, int side);
+
 #endif

@@ -578,10 +578,14 @@ unsigned TRex::GetAvailableActions()
 int TRex::CanLand(int x, int y)
 {
 	if ((L1TerrainType[GetField(x, y)->Terrain] != tofsL1A) ||
-	    (TabHghtModif[GetField(x, y)->Terrain2] != 0) ||
-	    (TabTerrMoveGround[GetField(x, y)->Terrain] == 0xFF) ||
-	    (GetField(x, y)->Unit != NO_UNIT)) return FALSE;
-	else return TRUE;
+		(TabHghtModif[GetField(x, y)->Terrain2] != 0) ||
+		(TabTerrMoveGround[GetField(x, y)->Terrain] == 0xFF) ||
+		(GetField(x, y)->Unit != NO_UNIT) ||
+		field_has_visible_mine(x, y, ID & BADLIFE)) {
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 
@@ -759,13 +763,16 @@ unsigned TCaesar::GetAvailableActions()
 
 
 
-int TCaesar::CanLand(int x, int y)
-{
+int TCaesar::CanLand(int x, int y) {
 	if ((L1TerrainType[GetField(x, y)->Terrain] != tofsL1A) ||
-	    (TabHghtModif[GetField(x, y)->Terrain2] != 0) ||
-	    (TabTerrMoveGround[GetField(x, y)->Terrain] == 0xFF) ||
-	    (GetField(x, y)->Unit != NO_UNIT)) return FALSE;
-	else return TRUE;
+		(TabHghtModif[GetField(x, y)->Terrain2] != 0) ||
+		(TabTerrMoveGround[GetField(x, y)->Terrain] == 0xFF) ||
+		(GetField(x, y)->Unit != NO_UNIT) ||
+		field_has_visible_mine(x, y, ID & BADLIFE)) {
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 

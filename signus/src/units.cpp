@@ -986,21 +986,37 @@ void TUnit::WriteInitReq(WriteStream &stream) {
 
 
 
-int TUnit::CanGoOnField(int x, int y)
-{
-    TField *f = GetField(x, y);
-    int *mt1, *mt2;
-    
-    if ((x < 0) || (y < 0) || (x >= MapSizeX) || (y >= MapSizeY)) return FALSE;
-    
-    if (L1TerrainType[f->Terrain] != tofsL1A) return FALSE;
-    if (f->Unit != NO_UNIT) return FALSE;
-    GetTerrMove(&mt1, &mt2);
-    if (mt2[f->Terrain2] == 0xFF) return FALSE;
-    if ((mt1[f->Terrain] == 0xFF) && (mt2[f->Terrain2] == 0)) return FALSE;
-    // FIXME: is this correct?
-    if (GetMineAt(x, y) == ID && BADLIFE) return FALSE;
-    return TRUE;
+int TUnit::CanGoOnField(int x, int y) {
+	TField *f = GetField(x, y);
+	int *mt1, *mt2;
+
+	if ((x < 0) || (y < 0) || (x >= MapSizeX) || (y >= MapSizeY)) {
+		return FALSE;
+	}
+
+	if (L1TerrainType[f->Terrain] != tofsL1A) {
+		return FALSE;
+	}
+
+	if (f->Unit != NO_UNIT) {
+		return FALSE;
+	}
+
+	GetTerrMove(&mt1, &mt2);
+
+	if (mt2[f->Terrain2] == 0xFF) {
+		return FALSE;
+	}
+
+	if ((mt1[f->Terrain] == 0xFF) && (mt2[f->Terrain2] == 0)) {
+		return FALSE;
+	}
+
+	if (field_has_visible_mine(x, y, ID & BADLIFE)) {
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 
@@ -2088,8 +2104,7 @@ void TObject::PrepareFieldTime(int x, int y)
     ter = f->Terrain;
     FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
     if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
-        ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
-        ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+        (field_has_visible_mine(x, y, ID & BADLIFE) && (f->Unit != ID))) {
         for (i = 0; i < 9; i++)
             FieldTimeTbl[i][tbofs] = 0xFF;
     }
@@ -2152,8 +2167,7 @@ void TToweredTrainUnit::PrepareFieldTime(int x, int y)
 	ter = f->Terrain;
 	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+	    (field_has_visible_mine(x, y, ID & BADLIFE) && (f->Unit != ID))) {
 		for (i = 0; i < 9; i++)
 			FieldTimeTbl[i][tbofs] = 0xFF;
 	}
@@ -2211,8 +2225,7 @@ void TOlymp::PrepareFieldTime(int x, int y)
 	ter = f->Terrain;
 	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+	    (field_has_visible_mine(x, y, ID & BADLIFE) && (f->Unit != ID))) {
 		for (i = 0; i < 9; i++)
 			FieldTimeTbl[i][tbofs] = 0xFF;
 	}
@@ -2270,8 +2283,7 @@ void TTrainSupportUnit::PrepareFieldTime(int x, int y)
 	ter = f->Terrain;
 	FieldTimeTbl[8][tbofs] = ft = raw_field_time(f);
 	if (((f->Unit != NO_UNIT) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) == (ID & BADLIFE)) && (f->Unit != ID)) ||
-	    ((GetMineAt(x, y) != -1) && (MineIsSeen(x, y, ID & BADLIFE)) && (f->Unit != ID))) {
+	    (field_has_visible_mine(x, y, ID & BADLIFE) && (f->Unit != ID))) {
 		for (i = 0; i < 9; i++)
 			FieldTimeTbl[i][tbofs] = 0xFF;
 	}

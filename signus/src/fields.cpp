@@ -489,3 +489,18 @@ int MineIsSeen(int x, int y, int by_which_side)
             return TRUE;
     return FALSE;
 }
+
+int field_has_visible_mine(int x, int y, int side) {
+	int mine = GetMineAt(x, y);
+
+	if (mine < 0) {
+		// no mine there
+		return FALSE;
+	} else if (mine == side) {
+		// friendly mine
+		return TRUE;
+	}
+
+	// enemy mine, check whether it's visible
+	return MineIsSeen(x, y, side);
+}
