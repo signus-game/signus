@@ -554,12 +554,10 @@ int BriefGetEvent()
       
       
         }
-    }
-
-    
-
+    } else if (Ev.What == evMouseScroll) {
+		return Ev.Mouse.Scroll > 0 ? -4 : -3;
     // Udalosti z klavesnice:   
-    else if (Ev.What == evKeyDown) {
+    } else if (Ev.What == evKeyDown) {
 /*      HandleIcons(e);
         SelectedUnit->InfoEvent(e);*/
         
