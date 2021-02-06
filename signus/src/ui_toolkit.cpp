@@ -1363,7 +1363,22 @@ int TListBox::HandleEvent(TEvent *e)
         }
         if ((e->Key.KeyCode == kbDown) || (e->Key.KeyCode == kbUp)) e->What = evNothing;
     }
-    
+
+	if (e->What == evMouseScroll) {
+		Delta -= 3 * e->Mouse.Scroll;
+
+		if (Delta + ScrLn > Cnt) {
+			Delta = Cnt - ScrLn;
+		}
+
+		if (Delta < 0) {
+			Delta = 0;
+		}
+
+		Draw();
+		Paint();
+	}
+
     return FALSE;
 }
 
