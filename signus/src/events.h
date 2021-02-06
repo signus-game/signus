@@ -50,6 +50,7 @@
 #define evMouseDown   0x0001
 #define evMouseUp     0x0002
 #define evMouseMove   0x0004
+#define evMouseScroll 0x0008
 #define evKeyDown     0x0010
 #define evTimer       0x0100
 
@@ -69,6 +70,7 @@
 typedef struct {
             byte   Buttons;
             TPoint Where;
+	    int    Scroll;
 } TMouseEvent;
 
 typedef struct {

@@ -239,6 +239,7 @@ void GetEvent(TEvent *e) {
 		e->Mouse.Where.x = event.motion.x;
 		e->Mouse.Where.y = event.motion.y;
 		e->Mouse.Buttons = 0;
+		e->Mouse.Scroll = 0;
 
 		// update global mouse information and repaint it:
 		Mouse.buttons = event.motion.state;
@@ -252,13 +253,32 @@ void GetEvent(TEvent *e) {
 		e->Mouse.Where.x = event.button.x;
 		e->Mouse.Where.y = event.button.y;
 		e->Mouse.Buttons = event.button.button;
+		e->Mouse.Scroll = 0;
+
+		if (event.button.button == SDL_BUTTON_WHEELUP) {
+			e->What = evMouseScroll;
+			e->Mouse.Buttons = 0;
+			e->Mouse.Scroll = 1;
+		} else if (event.button.button == SDL_BUTTON_WHEELDOWN) {
+			e->What = evMouseScroll;
+			e->Mouse.Buttons = 0;
+			e->Mouse.Scroll = -1;
+		}
+
 		break;
 
 	case SDL_MOUSEBUTTONUP:
+		if (event.button.button == SDL_BUTTON_WHEELUP ||
+			event.button.button == SDL_BUTTON_WHEELDOWN) {
+			e->What = evNothing;
+			break;
+		}
+
 		e->What = evMouseUp;
 		e->Mouse.Where.x = event.button.x;
 		e->Mouse.Where.y = event.button.y;
 		e->Mouse.Buttons = event.button.button;
+		e->Mouse.Scroll = 0;
 		break;
 
 	default:
