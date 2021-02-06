@@ -156,114 +156,115 @@ char key2ascii(const SDL_keysym &key) {
 	return 0;
 }
 
-void GetEvent(TEvent *e)
-{
-    if (e && IsPuttedEvent) {
-        *e = PuttedEvent;
-        IsPuttedEvent = FALSE;
-    }
-    else
-    {
-        if (!e) e = &null_event;
+void GetEvent(TEvent *e) {
+	SDL_Event event;
 
-        if (!IgnoreEvent)  // FIXME - what the hell?!
-        {
-            SDL_Event event;
-            if (!SDL_PollEvent(&event))
-            {
-                e->What = evNothing;
-                if (needsMouseRedraw)
-                {
-                if (!Mouse.SuperLocks) MousePaint();
-                needsMouseRedraw = false;
-                }
+	if (e && IsPuttedEvent) {
+		*e = PuttedEvent;
+		IsPuttedEvent = FALSE;
+		return;
+	}
 
-                // Let the kernel switch to other process, so that we don't consume 
-                // nearly 100% of CPU power (this is ideal place for it, since GetEvent
-                // is called often and we do it only if there weren't any new
-                // events in the queue):
-                SDL_Delay(1);
-            }
-            else
-            {
-                switch (event.type)
-                {
+	if (!e) {
+		e = &null_event;
+	}
+
+	if (!SDL_PollEvent(&event)) {
+		e->What = evNothing;
+
+		if (needsMouseRedraw) {
+			if (!Mouse.SuperLocks) {
+				MousePaint();
+			}
+
+			needsMouseRedraw = false;
+		}
+
+		// Let the kernel switch to other process, so that we don't consume 
+		// nearly 100% of CPU power (this is ideal place for it, since GetEvent
+		// is called often and we do it only if there weren't any new
+		// events in the queue):
+		SDL_Delay(1);
+		return;
+	}
+
+	switch (event.type) {
 #if 0
-                    // case SDL_ACTIVEEVENT:       FIXME
-                    if (FullBuf != NULL) { // draw eng.scr.
-                        char buf[20];
-                        void *ptr;
-                        
-                        sprintf(buf, "%imainscr", iniResolution - 0x100);
-                        ptr = GraphicsDF->get(buf);       
-                        MouseHide();
-                        DrawPicture(ptr); 
-                        MouseShow();
-                        memfree(ptr);
-                        UpdateLitMap(TRUE);
-                        RedrawMap();
-                        if (SelectedUnit) SelectedUnit->Select();
-                    }
-                    signus_suspended = FALSE;
-                }
-                else {
-                    signus_suspended = TRUE;
-                }
+	//case SDL_ACTIVEEVENT:       FIXME
+	    if (FullBuf != NULL) { // draw eng.scr.
+	        char buf[20];
+	        void *ptr;
+
+	        sprintf(buf, "%imainscr", iniResolution - 0x100);
+	        ptr = GraphicsDF->get(buf);       
+	        MouseHide();
+	        DrawPicture(ptr); 
+	        MouseShow();
+	        memfree(ptr);
+	        UpdateLitMap(TRUE);
+	        RedrawMap();
+	        if (SelectedUnit) SelectedUnit->Select();
+	    }
+	    signus_suspended = FALSE;
+	}
+	else {
+	    signus_suspended = TRUE;
+	}
 #endif
 
-                    // case SDL_VIDEOEXPOSE:       FIXME
-                    // case SDL_QUIT:              FIXME
+	//case SDL_VIDEOEXPOSE:       FIXME
+	//case SDL_QUIT:              FIXME
 
-                    case SDL_KEYDOWN:
-                            e->What = evKeyDown;
-                            e->Key.KeyCode = event.key.keysym.sym;
-                            e->Key.CharCode = key2ascii(event.key.keysym);
-                                        // FIXME -- use Unicode for CharCode !!!
+	case SDL_KEYDOWN:
+		e->What = evKeyDown;
+		e->Key.KeyCode = event.key.keysym.sym;
+		e->Key.CharCode = key2ascii(event.key.keysym);
+		            // FIXME -- use Unicode for CharCode !!!
 
-                            // Special handling:
-                            if (e->Key.KeyCode == kbF8 && getenv("HELLMASTER") != NULL)
-                                SaveScreenshot();
-                            else if (e->Key.KeyCode == SDLK_f && 
-                                    (event.key.keysym.mod & KMOD_CTRL))
-                                ToggleFullscreen();
-                            break;
+		// Special handling:
+		if (e->Key.KeyCode == kbF8 && getenv("HELLMASTER") != NULL) {
+			SaveScreenshot();
+		} else if (e->Key.KeyCode == SDLK_f &&
+			(event.key.keysym.mod & KMOD_CTRL)) {
+			ToggleFullscreen();
+		}
 
-                    //case SDL_KEYUP:
-                    //        break;
+		break;
 
-                    case SDL_MOUSEMOTION:
-                            e->What = evMouseMove;
-                            e->Mouse.Where.x = event.motion.x;
-                            e->Mouse.Where.y =  event.motion.y;
-                            e->Mouse.Buttons = 0;
+	//case SDL_KEYUP:
+	//        break;
 
-                            // update global mouse information and repaint it:
-                            Mouse.buttons = event.motion.state;
-                            Mouse.x = event.motion.x;
-                            Mouse.y = event.motion.y;
-                            needsMouseRedraw = true;
-                            break;
+	case SDL_MOUSEMOTION:
+		e->What = evMouseMove;
+		e->Mouse.Where.x = event.motion.x;
+		e->Mouse.Where.y = event.motion.y;
+		e->Mouse.Buttons = 0;
 
-                    case SDL_MOUSEBUTTONDOWN:
-                            e->What = evMouseDown;
-                            e->Mouse.Where.x = event.motion.x;
-                            e->Mouse.Where.y =  event.motion.y;
-                            e->Mouse.Buttons = event.button.button;
-                            break;
+		// update global mouse information and repaint it:
+		Mouse.buttons = event.motion.state;
+		Mouse.x = event.motion.x;
+		Mouse.y = event.motion.y;
+		needsMouseRedraw = true;
+		break;
 
-                    case SDL_MOUSEBUTTONUP:
-                            e->What = evMouseUp;
-                            e->Mouse.Where.x = event.motion.x;
-                            e->Mouse.Where.y =  event.motion.y;
-                            e->Mouse.Buttons = event.button.button;
-                            break;
+	case SDL_MOUSEBUTTONDOWN:
+		e->What = evMouseDown;
+		e->Mouse.Where.x = event.button.x;
+		e->Mouse.Where.y = event.button.y;
+		e->Mouse.Buttons = event.button.button;
+		break;
 
-                    default:
-                            e->What = evNothing;
-                }
-            }
-        }
-    }
+	case SDL_MOUSEBUTTONUP:
+		e->What = evMouseUp;
+		e->Mouse.Where.x = event.button.x;
+		e->Mouse.Where.y = event.button.y;
+		e->Mouse.Buttons = event.button.button;
+		break;
+
+	default:
+		e->What = evNothing;
+		break;
+	}
 }
 
 
