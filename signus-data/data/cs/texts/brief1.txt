@@ -21,8 +21,8 @@
 #> Dopravu na místo operace zajistí transportní loďstvo řadové
  armády.
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: eliminovat nepřátelské vojenské síly v oblasti
-#> SEKUNDÁRNÍ CÍL: obsadit konzorciální základnu a zajmout tanky
+#> PRIMÁRNÍ CÍL: Eliminovat nepřátelské vojenské síly v oblasti
+#> SEKUNDÁRNÍ CÍL: Obsadit konzorciální základnu a zajmout tanky
  Perseus Beta
 #e
 #l br1_001#

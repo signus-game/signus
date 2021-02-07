@@ -18,7 +18,7 @@
  na sever od  Ardenoru, kde máme pevnou pozici. Celá akce bude
  probíhat pod vedením doktora Iceberga.
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dopravit artefakt Taron do základny v Tankredu
+#> PRIMÁRNÍ CÍL: Dopravit artefakt Taron do základny v Tankredu
 #e
 #l br2_001#
 #e
