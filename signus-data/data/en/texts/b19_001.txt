@@ -1,17 +1,17 @@
-#> The investigation station Toricon, the forbidden Zone of Eutanie
+#> Toricon research outpost, Eutanian forbidden Zone
 #> 
-#> At about 11.30 P.M. several unprecedented strong vibrations started in the centre of the
- City. During the recognition of damages some surprising events have happened - the
- pyramid started to open  spontaneously and the thunder-like sound was everywhere.
- According to the notation of measuring instruments, it was quite different frequency than
- usual.
-#> Some kind of nebula has appeared and surrounded the whole camp. After the first panic
- has fallen of and the analysis showed that this nebula is not dangerous, we decided to step
- into the pyramid. We had to spend there at least several hours, but after the return none of
- us could recall what was happening in those moments. All of us just suddenly felt that we
- are not alone in the City anymore...
-#> 
-#> (the last notation in diary of Prof. Lottenbert, member of the investigative camp
- accompanied by the Signus unit.)
+#> Late at night, around 11:30 P.M., an unusually strong earthquake occurred
+ in the center of the City. A surprising event then took place during damage
+ assessment - the pyramid started to spontaneously open up and a thunder-like
+ sound filled the area. Recordings from our instruments show that it was a
+ different frequency than the City usually produces.
+#> Some kind of mist spread out from inside the pyramid and engulfed the whole
+ camp. Once the initial panic subsided and analysis of the mist showed that it
+ was harmless, we have ventured to enter the pyramid. We must have spent at
+ least several hours inside but once we have returned back to camp, nobody
+ could remember what happened during that time. We were left only with a vague
+ feeling that we are no longer alone in the City...
+#> (the last entry in the diary of Prof. Lottenbert - member of the research
+ team accompanied by the missing Signus squad)
 #e
 #e

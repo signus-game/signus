@@ -1,21 +1,22 @@
 #> 
  #p.toricon.282.183. 
-#> The last centre of resistance of Consortium is the central fort on the south of Lystonia -
- Trufat. It is up to you to overcome the last obstacle to enthrone the peace. The result
- depends on the energy of your resolve and on your abilities. In the last couple of weeks the
- enemy has gathered his remaining forces, which are not small, in Trufat. Thanks to the
- unexpected circumstances we have lost the advantage of the superiority in numbers -
- relatively big part of military forces was sent to Dalio, Lebrukon and other areas to solve
- the problem of soldiers' bands definitely. Commando Signus that was accompanying the
- team of scientists in the zone of Eutania is not about to arrive either. The mentioned#001 team#001 is#001
- even#001 considered#001 missing#001.
-#> Fortunately Consortium is not supposed to change its position considerably. Toricon is only
- interested in time - in the time that is dividing Arconis from the final peace...
+#> The last pocket of Consortium resistance is the central fortress in south
+ Lystonia - Trufat. The last step towards restoring peace depends on you. On
+ the strength of your resolve, on the power of your will, and of course - on
+ your abilities. In the last couple of weeks, the enemy has gathered its
+ remaining forces, which are quite numerous, in Trufat. Due to unforeseeable
+ events, we have lost the advantage of superior numbers - a significant part
+ of our military forces has been withdrawn to Dalio, Lebrukon and other areas
+ to deal with the issue of mercenary gangs once and for all. The Signus squad
+ assigned to protect the team of scientists in the Eutanian Zone will also not
+ come. The squad is actually reported missing#001.
+#> Fortunately, we do not expect that the Consortium could somehow turn the
+ current situation in its favor. In this operation, Toricon is primarily
+ concerned about time - the time separating Arkonis from the final peace...
 #> 
 #> T. Roy
-#> 
  #p.anamorf.320.184.
-#> PRIMARY AIM: Capture Trufat and the HQ of Consortium.
+#> PRIMARY OBJECTIVE: Capture Trufat and arrest the Consortium leadership
 #e
 #l b19_001#
 #e

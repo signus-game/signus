@@ -1,6 +1,6 @@
-#> Výzkumná stanice Toriconu, eutanská zakázaná zóna
+#> Výzkumná stanice Toriconu, eutanská zakázaná Zóna
 #> 
-#> Pozdě v noci, přibližně v 11.30 došlo k nebývale silným
+#> Pozdě v noci, přibližně v 11:30 došlo k nebývale silným
  otřesům v centru Města. Při zjišťování způsobených škod došlo
  k překvapivé události - pyramida se začala samovolně rozevírat
  a vzduch vyplnil zvuk podobný hromobití. Podle záznamů
@@ -12,7 +12,7 @@
  pyramidy. Museli jsme tam strávit minimálně několik hodin, ale
  po návratu si nikdo z nás nedokázal vzpomenout, co se v
  uplynulých chvílích odehrávalo. Zbyl nám jen neurčitý pocit,
- že ve Mětě už nejsme sami...
+ že ve Městě už nejsme sami...
 #> (poslední záznam v deníku prof. Lottenberta - člena výzkumného
  tábora doprovázeného zmizelou jednotkou Signu)
 #e

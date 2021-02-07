@@ -7,18 +7,18 @@
  zbývající síly, kterých není málo, v Trufatu. Díky
  neočekávatelným okolnostem jsme ztratili výhodu přesily
  - poměrně velká část vojenských jednotek byla narychlo
- odvolána do Dalia, Lebrukonu, a dalších oblastí aby
+ odvolána do Dalia, Lebrukonu a dalších oblastí, aby
  definitivně vyřešila otázku žoldáckých band. Oddíl Signusu
- doprovázející skupinu vědců v eutanské zóně také nedorazí.
+ doprovázející skupinu vědců v eutanské Zóně také nedorazí.
  Zmíněná skupina je dokonce považována za nezvěstnou#001.
 #> Naštěstí se nepředpokládá, že by Konzorcium mohlo nějak
  významně změnit svou dosavadní situaci ve svůj prospěch.
- Toriconu jde v této akci hlavně o čas - čas dělící Arconis od
+ Toriconu jde v této akci hlavně o čas - čas dělící Arkonis od
  konečného míru...
 #> 
 #> T. Roy
  #p.anamorf.320.184.
-#> PRIMÁRNÍ CÍL: dobýt Trufat a zajmout vedení Konzorcia
+#> PRIMÁRNÍ CÍL: Dobýt Trufat a zajmout vedení Konzorcia
 #e
 #l b19_001#
 #e
