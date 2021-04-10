@@ -46,14 +46,15 @@ unsigned StdDataWrite(WriteStream &stream, void *ptr, size_t size) {
 }
 
 void *StdDataRead(ReadStream &stream) {
-	void *ptr;
+	char *ptr;
 	size_t size;
 
 	size = stream.readUint32LE();
-	ptr = memalloc(size);
+	ptr = (char*)memalloc(size + 1);
 
 	if (ptr) {
 		stream.read(ptr, size);
+		ptr[size] = '\0';
 	}
 
 	return ptr;
