@@ -23,16 +23,11 @@
 #ifndef _MENU_H
 #define _MENU_H
 
-
+#include <cstddef>
 
 // consts:
 #define MaxNumOfWords 1500
-#define MaxNumOfCharsInWord 256
 #define MaxNumOfLines 150
-#define MaxNumOfLinks 100
-#define MaxNumOfPics  20
-#define MaxNumOfJumps 500   // Max. pocet skoku mezi Link-fajly (frontovanii)
-
 
 #define ScrollPixels 8
 
@@ -41,10 +36,48 @@
 #define UpSpace         28
 #define DownSpace       28
 #define ArticleSpace    10
+#define PARA_SPACING     4
 
+typedef enum {
+	LAYOUT_SPACE = 0,
+	LAYOUT_TEXT,
+	LAYOUT_LINK,
+	LAYOUT_IMAGE
+} layout_box_t;
 
+struct LayoutBox {
+	layout_box_t type;
+	unsigned x, y, width, height, index;
+	const char *text;
+};
 
+class BriefingPage {
+private:
+	unsigned _width, _height, _curx, _cury;
+	char *_name, *_tokens, **_links;
+	LayoutBox *_layout, **_active_spots;
+	size_t _layout_size, _layout_max, _link_count, _active_count;
 
+	// Do NOT implement
+	BriefingPage(const BriefingPage &other);
+	const BriefingPage &operator=(const BriefingPage &other);
+
+protected:
+	void breakLine(int wordwrap);
+	int addBox(layout_box_t type, const char *text, int newpara,
+		unsigned width = 0, unsigned height = 0);
+	void makeLink(unsigned index);
+
+public:
+	BriefingPage(const char *name, int width);
+	~BriefingPage(void);
+
+	int width(void) const;
+	int height(void) const;
+	const char *name(void) const;
+	const char *get_link(unsigned x, unsigned y) const;
+	void *render(void) const;
+};
 
 
 // fce:

@@ -40,64 +40,26 @@
 
 // Fces:
 void SetConstants();
-void BriefInit(char *FileName);
 int  BriefGetEvent();
 void BriefHandleEvent(int What);
-void BriefScrollUp(int Num);
-void BriefScrollDown(int Num);
+void BriefScrollUp(unsigned Num);
+void BriefScrollDown(unsigned Num);
 void BriefRedrawScr();
-void BriefDone();
-void DrawOnScreen(int DrawBackground);
 
 
+static BriefingPage *curpage = NULL;
+static char **pageStack = NULL;
+static size_t pagecount = 0, stacksize = 0;
 
-// Vars(WARS):
-char *Words[MaxNumOfWords];
+void *BigDrawBuffer = NULL;
 
-//int LineWordsNum[MaxNumOfLines]; // Pocet slov v kazde radce
+unsigned Ofset; // Posunuti scrollingu
 
-double LineSpace[MaxNumOfLines]; // Velikost mezery v kazde radce
-
-int WordsTypes[MaxNumOfWords]; // 1: Prvni slovo v odstavci   
-                               // 2: Posledni slovo na radce
-                               // 3: Konec
-                               // 4: Obrazek
-int Links[MaxNumOfWords]; // Cisla odkazu na Lnk-files
-int Links2[MaxNumOfLinks]; // Cisla odkazu na Lnk-files(tak, jak dou po sobe)
-
-TRect LinksXY[MaxNumOfLinks];
-
-char *LinksFiles[MaxNumOfLinks];
-
-char *PicFiles[MaxNumOfPics];
-TPoint PicSize[MaxNumOfPics];
-
-char *LinksSeq[MaxNumOfJumps];
-
-int LinksSeqCnt = 0;
-
-void *BigDrawBuffer;
-
-int SizeOfBigBuf;
-
-int WordCnt; // Pocet slov
-
-int NumOfLines;
-
-int NumOfArticles;
-
-int Ofset; // Posunuti scrollingu
-
-int LastLink;
-
-int LastPic; // Pocet obrazku
-
-int BigBufLines;
 
 
 // Consts:
 int LinePixels;
-int MinNumOfYPixels;
+size_t minheight;
 int EXIT_X;
 int EXIT_Y;
 int EXIT_W;
@@ -115,7 +77,449 @@ int SCDN_Y;
 int SCDN_W;
 int SCDN_H;
 
+BriefingPage::BriefingPage(const char *name, int width) : _width(width),
+	_height(1), _curx(0), _cury(0), _name(NULL), _tokens(NULL),
+	_links(NULL), _layout(NULL), _active_spots(NULL), _layout_size(0),
+	_layout_max(1024), _link_count(0), _active_count(0) {
 
+	char *tokptr, *text = (char*)TextsDF->get(name);
+	unsigned char *ptr;
+	unsigned i, w, h, link_max = 32;
+	int ret, newpara = 0;
+
+	if (!text) {
+		return;
+	}
+
+	_name = (char*)memalloc(strlen(name) + 1);
+	tokptr = _tokens = (char*)memalloc(strlen(text) + 1);
+	_links = (char**)memalloc(link_max * sizeof(char*));
+	_layout = (LayoutBox*)memalloc(_layout_max * sizeof(LayoutBox));
+
+	if (!_name || !_tokens || !_links || !_layout) {
+		memfree(text);
+		memfree(_name);
+		memfree(_tokens);
+		memfree(_links);
+		memfree(_layout);
+		return;
+	}
+
+	strcpy(_name, name);
+
+	for (ptr = (unsigned char*)text; *ptr; ) {
+		// Skip whitespace
+		for (; *ptr && *ptr <= ' '; ptr++);
+
+		if (!*ptr) {
+			break;
+		// Handle regular word
+		} else if (*ptr != '#') {
+			for (i = 0; ptr[i] > ' ' && ptr[i] != '#'; i++) {
+				tokptr[i] = ptr[i];
+			}
+
+			tokptr[i] = '\0';
+			addBox(LAYOUT_TEXT, tokptr, newpara);
+			newpara = 0;
+			tokptr += i + 1;
+			ptr += i;
+
+			if (*ptr && *ptr <= ' ') {
+				addBox(LAYOUT_SPACE, " ", 0);
+			}
+
+			continue;
+		}
+
+		// Handle markup
+		ptr++;
+
+		// End of main text
+		if (*ptr == 'e') {
+			break;
+		}
+
+		switch (*ptr) {
+		// Start new paragraph
+		case '>':
+			newpara++;
+			ptr++;
+			break;
+
+		// Link number
+		case '0':
+			for (i = 0; i < 3 && isdigit(ptr[i]); i++) {
+				tokptr[i] = ptr[i];
+			}
+
+			tokptr[i] = '\0';
+			// Do not increment tokptr here, the token won't be
+			// needed during rendering
+			ptr += i;
+			makeLink(atoi(tokptr) - 1);
+
+			if (*ptr && *ptr <= ' ') {
+				addBox(LAYOUT_SPACE, " ", 0);
+			}
+
+			break;
+
+		// Picture
+		case 'p':
+			ptr++;
+			ret = sscanf((char*)ptr, ".%[^.].%u.%u.", tokptr, &w,
+				&h);
+
+			if (ret != 3) {
+				break;
+			}
+
+			addBox(LAYOUT_IMAGE, tokptr, 0, w, h);
+			newpara = 0;
+			while (*tokptr++);
+
+			for (i = 0; *ptr && i < 4; ptr++) {
+				if (*ptr == '.') {
+					i++;
+				}
+			}
+
+			break;
+		}
+	}
+
+	// Load link values
+	while (*ptr) {
+		// Find next markup token
+		for (; *ptr && *ptr != '#'; ptr++);
+		ptr++;
+
+		// End of file
+		if (*ptr == 'e') {
+			break;
+		// Some garbage that needs to be skipped
+		} else if (*ptr != 'l') {
+			continue;
+		}
+
+		// Skip whitespace
+		for (ptr++; *ptr && *ptr <= ' '; ptr++);
+
+		// Load link value
+		for (i = 0; ptr[i] && ptr[i] != '#'; i++) {
+			tokptr[i] = ptr[i];
+		}
+
+		tokptr[i++] = '\0';
+		ptr += i;
+
+		if (_link_count >= link_max) {
+			char **ptr;
+
+			link_max *= 2;
+			ptr = (char**)memrealloc(_links,
+				link_max * sizeof(char*));
+
+			if (!ptr) {
+				break;
+			}
+
+			_links = ptr;
+		}
+
+		_links[_link_count++] = tokptr;
+		tokptr += i;
+	}
+
+	memfree(text);
+	_active_spots = (LayoutBox**)memalloc(_active_count*sizeof(LayoutBox*));
+
+	if (!_active_spots) {
+		_active_count = 0;
+		return;
+	}
+
+	// Validate link indices and create lookup table
+	for (i = 0, w = 0; i < _layout_size; i++) {
+		if (_layout[i].type == LAYOUT_LINK) {
+			if (_layout[i].index >= _link_count) {
+				_layout[i].type = LAYOUT_TEXT;
+				_active_count--;
+			} else {
+				_active_spots[w++] = _layout + i;
+			}
+		}
+	}
+}
+
+BriefingPage::~BriefingPage(void) {
+	memfree(_name);
+	memfree(_tokens);
+	memfree(_links);
+	memfree(_layout);
+	memfree(_active_spots);
+}
+
+// Break and justify the last line in layout
+void BriefingPage::breakLine(int wordwrap) {
+	unsigned i, x, y, spaces = 0, adjust = 0, space_left, tmp;
+	unsigned linewidth = _width - 2;
+	size_t lineend, linestart;
+	LayoutBox *ptr;
+
+	if (!_layout_size) {
+		return;
+	}
+
+	// find linebreak point before the last word (unless the line ends
+	// with a space or the caller doesn't want wordwrap)
+	i = _layout_size;
+	ptr = _layout + _layout_size - 1;
+	y = ptr->y;
+	_curx = 0;
+	_cury = ptr->y + ptr->height;
+	for (; wordwrap && i > 0 && ptr->y == y && ptr->type != LAYOUT_SPACE;
+		i--, ptr--);
+	linestart = i;
+	for (; i > 0 && ptr->type == LAYOUT_SPACE; i--, ptr--);
+	lineend = i;
+
+	// no spaces on the last line, cannot break
+	if (!i || ptr->y != y) {
+		return;
+	}
+
+	if (lineend >= _layout_size) {
+		x = ptr->x + ptr->width;
+	} else {
+		x = _layout[lineend].x;
+	}
+
+	// line ends with a space, drop dangling spaces
+	if (linestart == _layout_size) {
+		_layout_size = lineend;
+	}
+
+	space_left = linewidth - x;
+
+	for (i = lineend; i > 0 && _layout[i-1].y == y; i--) {
+		if (_layout[i-1].type == LAYOUT_SPACE) {
+			spaces++;
+		}
+	}
+
+	// Divide remaining width among space boxes
+	for (ptr = _layout + i; i < lineend; i++, ptr++) {
+		ptr->x += adjust;
+
+		if (ptr->type == LAYOUT_SPACE) {
+			tmp = space_left / spaces;
+			ptr->width += tmp;
+			adjust += tmp;
+			space_left -= tmp;
+			spaces--;
+		}
+	}
+
+	if (space_left > 0) {
+		_layout[lineend - 1].width += space_left;
+	}
+
+	if (linestart >= _layout_size) {
+		return;
+	}
+
+	// wrap remaining boxes to the next line and drop spaces from beginning
+	// of line
+	ptr = _layout + lineend;
+	_cury = _layout[linestart].y + _layout[linestart].height;
+
+	for (i = linestart; i < _layout_size; i++, ptr++, lineend++) {
+		*ptr = _layout[i];
+		ptr->x = _curx;
+		ptr->y = _cury;
+		_curx += ptr->width;
+	}
+
+	_layout_size = lineend;
+}
+
+int BriefingPage::addBox(layout_box_t type, const char *text, int newpara,
+	unsigned width, unsigned height) {
+	unsigned i, x = 0, y = 0, linewidth = _width - 2;
+	LayoutBox *ptr = NULL;
+
+	x = _curx;
+	y = _cury;
+
+	// Drop spaces from end of line
+	if (newpara || type == LAYOUT_IMAGE) {
+		i = _layout_size;
+
+		for (; i > 0 && _layout[i-1].type == LAYOUT_SPACE; i--) {
+			_layout_size--;
+		}
+
+		if (_curx > 0 && _layout_size) {
+			ptr = _layout + _layout_size - 1;
+			x = 0;
+			y = ptr->y + ptr->height;
+		}
+	}
+
+	if (_layout_size >= _layout_max) {
+		size_t size = 2 * _layout_max;
+		LayoutBox *ptr = (LayoutBox*)memrealloc(_layout,
+			size * sizeof(LayoutBox));
+
+		if (!ptr) {
+			return 0;
+		}
+
+		_layout = ptr;
+		_layout_max = size;
+	}
+
+	// Add image
+	if (type == LAYOUT_IMAGE) {
+		ptr = _layout + _layout_size;
+		ptr->type = type;
+		ptr->x = (_width - width) / 2;
+		ptr->y = y + 16;
+		ptr->width = width;
+		ptr->height = height;
+		ptr->index = 0;
+		ptr->text = text;
+		_layout_size++;
+		_curx = 0;
+		_cury = ptr->y + ptr->height;
+		_height = _cury + 16;
+		return 1;
+	}
+
+	if (!width) {
+		width = GetStrWidth(text, NormalFont);
+	}
+
+	if (!height) {
+		height = GetStrHeight(text, NormalFont);
+	}
+
+	// start new paragraph
+	if (newpara) {
+		x = GetStrWidth("MM", NormalFont);
+		y += PARA_SPACING + (newpara - 1) * height;
+	// line overflow, justify text and continue on next line
+	} else if (_layout_size > 0 && x > 0 && x + width > linewidth) {
+		breakLine(type != LAYOUT_SPACE);
+		x = _curx;
+		y = _cury;
+
+		// Don't add space immediately after linebreak
+		if (type == LAYOUT_SPACE) {
+			return 1;
+		}
+	}
+
+	// Add text box
+	ptr = _layout + _layout_size;
+	ptr->type = type;
+	ptr->x = x;
+	ptr->y = y;
+	ptr->width = width;
+	ptr->height = height;
+	ptr->index = 0;
+	ptr->text = text;
+	_layout_size++;
+	_curx = ptr->x + ptr->width;
+	_cury = ptr->y;
+	_height = ptr->y + 2 * ptr->height;
+
+	if (type == LAYOUT_LINK) {
+		_active_count++;
+	}
+
+	return 1;
+}
+
+void BriefingPage::makeLink(unsigned index) {
+	size_t i = _layout_size;
+
+	if (!i || _layout[--i].type != LAYOUT_TEXT) {
+		return;
+	}
+
+	_layout[i].index = index;
+	_layout[i].type = LAYOUT_LINK;
+	_active_count++;
+}
+
+int BriefingPage::width(void) const {
+	return _width;
+}
+
+int BriefingPage::height(void) const {
+	return _height;
+}
+
+const char *BriefingPage::name(void) const {
+	return _name;
+}
+
+const char *BriefingPage::get_link(unsigned x, unsigned y) const {
+	size_t i;
+	LayoutBox **ptr;
+
+	for (i = 0, ptr = _active_spots; i < _active_count; i++, ptr++) {
+		if (x >= (*ptr)->x && x < (*ptr)->x + (*ptr)->width &&
+			y >= (*ptr)->y && y < (*ptr)->y + (*ptr)->height) {
+			return _links[(*ptr)->index];
+		}
+	}
+
+	return NULL;
+}
+
+void *BriefingPage::render(void) const {
+	size_t i, size;
+	LayoutBox *ptr;
+	void *img, *ret;
+
+	size = _width * (_height <= minheight ? minheight + 1 : _height);
+	ret = memalloc(size);
+	memset(ret, 0, size);
+
+	for (i = 0, ptr = _layout; i < _layout_size; i++, ptr++) {
+		switch (ptr->type) {
+		case LAYOUT_TEXT:
+			PutStr(ret, _width, _height, ptr->x, ptr->y, ptr->text,
+				NormalFont, clrWhite, clrBlack);
+			break;
+
+		case LAYOUT_LINK:
+			PutStr(ret, _width, _height, ptr->x, ptr->y, ptr->text,
+				NormalFont, clrRed, clrBlack);
+			break;
+
+		case LAYOUT_IMAGE:
+			img = GraphicsDF->get(ptr->text);
+
+			if (img) {
+				CopyBmpNZ(ret, _width, ptr->x, ptr->y, img,
+					ptr->width, ptr->height);
+				memfree(img);
+			}
+
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	return ret;
+}
 
 // Fces:
 void SetConstants()
@@ -127,7 +531,7 @@ void SetConstants()
     if (iniResolution-0x0100 == 3) IR = 120;
     if (iniResolution-0x0100 == 5) IR = 288;
     
-  MinNumOfYPixels = RES_Y - UpSpace - DownSpace;//544
+  minheight = RES_Y - UpSpace - DownSpace;//544
   
   EXIT_X = 15;
   EXIT_Y = 152 + IR;
@@ -154,315 +558,127 @@ void SetConstants()
 }
 
 
+void drawGUI(void) {
+	void *ptr;
+	char buf[20];
 
-void BriefGo(char *MissionName)
-{
-    SetConstants();
-    LinksSeq[0] = (char*)memalloc(8);
-    
-    strcpy(LinksSeq[0], MissionName);
-    
-    BriefInit(LinksSeq[0]);
+	sprintf(buf, "%ibriefbk", iniResolution - 0x0100);
+	ptr = GraphicsDF->get(buf);
+	MouseHide();
+	DrawPicture(ptr);
+	MouseShow();
+	memfree(ptr);
+}
 
-  DrawOnScreen(1);
-  FadeIn(Palette, 0);
-  
-  int BriefEvent; 
-    // -7: Exit, -4: Up, -3: Down, -2: PgUp, -1: PgDown, 1..n: Odkazy HT
-    do {
-      BriefEvent = BriefGetEvent();
-      BriefHandleEvent(BriefEvent);
-  } while (BriefEvent != -7);
-  
-    BriefDone();
-    FadeOut(Palette, 0);
-    {
+int changePage(const char *pagename) {
+	BriefingPage *page = new BriefingPage(pagename, LinePixels);
+
+	if (!page->name()) {
+		delete page;
+		return 0;
+	}
+
+	delete curpage;
+	curpage = page;
+	memfree(BigDrawBuffer);
+	BigDrawBuffer = curpage->render();
+	Ofset = 0;
+	BriefRedrawScr();
+	return 1;
+}
+
+void pushPage(const char *pagename) {
+	size_t size;
+	char *stackname = (char*)memalloc(strlen(pagename) + 1);
+
+	if (stackname) {
+		strcpy(stackname, pagename);
+	}
+
+	if (!changePage(pagename)) {
+		memfree(stackname);
+		return;
+	}
+
+	if (!stackname) {
+		return;
+	}
+
+	if (pagecount >= stacksize) {
+		char **ptr;
+
+		size = stacksize ? 2 * stacksize : 32;
+		ptr = (char**)memrealloc(pageStack, size * sizeof(char*));
+
+		if (!ptr) {
+			return;
+		}
+
+		pageStack = ptr;
+		stacksize = size;
+	}
+
+	pageStack[pagecount++] = stackname;
+}
+
+void popPage(void) {
+	if (pagecount < 2) {
+		return;
+	}
+
+	pagecount--;
+	memfree(pageStack[pagecount]);
+	changePage(pageStack[pagecount - 1]);
+}
+
+void firstPage(void) {
+	size_t i;
+
+	for (i = 1; i < pagecount; i++) {
+		memfree(pageStack[i]);
+	}
+
+	pagecount = 1;
+	changePage(pageStack[0]);
+}
+
+void freeStack(void) {
+	size_t i;
+
+	for (i = 0; i < pagecount; i++) {
+		memfree(pageStack[i]);
+	}
+
+	memfree(pageStack);
+	pagecount = 0;
+	stacksize = 0;
+}
+
+void BriefGo(char *MissionName) {
+	int BriefEvent;
         TEvent e;
-        do {GetEvent(&e);} while (e.What != evNothing);
-    }
+
+	SetConstants();
+	drawGUI();
+	pushPage(MissionName);
+	FadeIn(Palette, 0);
+
+	// -7: Exit, -4: Up, -3: Down, -2: PgUp, -1: PgDown
+	do {
+		BriefEvent = BriefGetEvent();
+		BriefHandleEvent(BriefEvent);
+	} while (BriefEvent != -7);
+
+	delete curpage;
+	curpage = NULL;
+	memfree(BigDrawBuffer);
+	freeStack();
+	FadeOut(Palette, 0);
+
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing);
 }
-
-
-
-
-void BriefInit(char *FileName)
-{
-  // Vars:  
-    int Exit = 0;
-    int CharCnt = 0;
-    int WordCharCnt = 0;
-    int i;
-    int Type = 0;
-    int LinkNum = 0;
-    int LinkCnt;
-    
-    char Character;
-    char Word[MaxNumOfCharsInWord];
-    char *Brief;
-    char StrLinkNum[4];
-    
-    Ofset = 0;
-    LastLink = 0;
-    WordCnt = 0;
-    LastPic = 0;
-
-    //nacte briefing ze souboru
-    Brief = (char*) TextsDF->get(FileName);
-        //vynuluje Links & WordsTypes
-    for (i = 0; i < MaxNumOfWords; i++) { Links[i] = 0; WordsTypes[i] = 0;}
-    for (i = 0; i < MaxNumOfLines; i++) LineSpace[i] = 0;
-    
-    
-    
-    // vytvori seznam slov (priradi zacatky odstavcu a odkazy)
-    do {
-    Character = Brief[CharCnt]; CharCnt++;
-
-        // eliminuje ENTER
-        while (Character == 10 || Character == 13) { 
-          Character = Brief[CharCnt]; CharCnt++;
-        }
-        
-        // zjisti specialni znak
-        if (Character == '#') {            
-      Character = Brief[CharCnt]; CharCnt++;
-      
-          if (Character == '>') {  // new article
-        Character = Brief[CharCnt]; CharCnt++;
-          Type = 1;
-          } else
-          
-          
-          if (Character == 'e') {  // end of text
-        Character = Brief[CharCnt]; CharCnt++;
-            Exit = 1;
-          } else
-          
-          if (Character == '0') {  // link file
-        Character = Brief[CharCnt]; CharCnt++;
-          if (Character == '0') {
-           Character = Brief[CharCnt]; CharCnt++;
-               StrLinkNum[0] = Character;
-               StrLinkNum[1] = '\0';
-          } else {
-             StrLinkNum[0] = Character;
-           Character = Brief[CharCnt]; CharCnt++;
-               StrLinkNum[1] = Character;
-               StrLinkNum[2] = '\0';
-          }
-            LinkNum = (int)atol(StrLinkNum);
-            
-            
-            Links[WordCnt] = (int)LinkNum;
-          
-        Character = Brief[CharCnt]; CharCnt++;
-          }
-        }
-        
-        // dalsi slovo
-        if ((Character == ' ') || (Exit != 0)) {
-          // ulozeni jednoho slova
-          Word[WordCharCnt] = ' ';
-          Word[WordCharCnt+1] = '\0';
-          Words[WordCnt] = (char*)memalloc(strlen(Word)+1);
-          strcpy(Words[WordCnt], Word);
-          WordCharCnt = 0;
-//        Links[WordCnt] = LinkNum; LinkNum = 0;
-          WordsTypes[WordCnt+1] = Type; Type = 0;
-          
-            WordCnt++;
-            assert( WordCnt <= MaxNumOfWords );
-      Character = Brief[CharCnt]; CharCnt++;
-        }
-//      NEXTWORD:
-        
-        // nacpe dalsi znak do aktualniho slova
-        Word[WordCharCnt] = Character;
-        WordCharCnt++;
-        assert( WordCharCnt <= MaxNumOfCharsInWord );
-        
-  } while (Exit == 0);
-  
-  // WordCnt ... Pocet slov
-  
-  // WordsTypes::    1: First in article, 
-  //                 2: Last in line(number of w. in line)
-  //                 3: End
-  //                 3: Picture
-  
-
-  ///////////////////////////////////////////////////////////////
-  // Nacte jmena Link-fajluu
-  
-  WordCharCnt = 0;
-  LinkCnt = 1;
-  Exit = 0;
-
-  CharCnt--;
-    do {
-    Character = Brief[CharCnt]; CharCnt++;
-
-        // eliminuje ENTER
-        while (Character == 10 || Character == 13)  {
-          Character = Brief[CharCnt]; CharCnt++;
-        }
-        
-        // zjisti specialni znak
-        if (Character == '#') {            
-      Character = Brief[CharCnt]; CharCnt++;
-      
-          if (Character == 'e') {
-        Character = Brief[CharCnt]; CharCnt++;
-            Exit = 1;
-            
-          } else
-          if (Character == 'l') {
-        Character = Brief[CharCnt]; CharCnt++; // nacetl mezeru
-        do {
-            Character = Brief[CharCnt]; CharCnt++;
-              // nacpe dalsi znak do link-fajl-nejmu
-            Word[WordCharCnt] = Character;
-            WordCharCnt++;
-        } while (Character != '#');
-          // ulozeni jednoho slova
-          Word[WordCharCnt-1] = '\0';
-          LinksFiles[LinkCnt] = (char*)memalloc(strlen(Word)+1);
-          strcpy(LinksFiles[LinkCnt], Word);
-          WordCharCnt = 0;
-          
-            LinkCnt++;
-          } 
-        }
-        
-  } while (Exit == 0);
-
-  /////////////////////////////////////////////////
-  // Detekuje obrazky
-  int WordsChCnt = 1;
-  int AllPicsSizeY = 0;
-  WordCharCnt = 0;
-  
-  
-  for (i = 0; i < WordCnt; i++) {
-    // Test pochybnejch slov
-    if ((strcmp(Words[i], " ") == 0) || (strcmp(Words[i], "  ") == 0))
-      Words[i][0] = '\0';
-    
-    int dummy = strlen(Words[i])-2;
-    if (dummy >= 0 && Words [i][dummy] == ' ')
-      Words [i] [dummy+1] = '\0';
-      
-    
-    if (Words[i][0] == '#') {
-        WordsChCnt = 1;
-      Character = Words[i][WordsChCnt]; WordsChCnt++;
-    
-        if (Character == 'p') {  // picture
-            LastPic++;
-          
-        Character = Words[i][WordsChCnt]; WordsChCnt++;
-        
-              // ulozeni jmena obrazku
-        do {
-          Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = Character;
-            WordCharCnt++;
-        } while (Character != '.');
-        
-          Word[WordCharCnt-1] = '\0';
-          PicFiles[LastPic] = (char*)memalloc(strlen(Word)+1);
-          strcpy(PicFiles[LastPic], Word);
-          WordCharCnt = 0;
-          
-              // ulozeni rozmeru X
-        do {
-          Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = Character;
-            WordCharCnt++;
-        } while (Character != '.');
-        
-          Word[WordCharCnt-1] = '\0';
-            PicSize[LastPic].x = (int)atol(Word);
-          WordCharCnt = 0;
-              // ulozeni rozmeru Y
-        do {
-          Character = Words[i][WordsChCnt]; WordsChCnt++;
-            Word[WordCharCnt] = Character;
-            WordCharCnt++;
-        } while (Character != '.');
-          Word[WordCharCnt-1] = '\0';
-            PicSize[LastPic].y = (int)atol(Word);
-          WordCharCnt = 0;
-          Words[i][0] = '\0';
-          WordsTypes[i] = 4;
-          
-          AllPicsSizeY += PicSize[LastPic].y + 16;
-          }
-      }
-  }
-
-
-
-
-    
-  ///////////////////////////////////////////////////////////////
-  //  Provede analizu delky slov a zjisti posledni na radkach
-  
-  
-    
-  int LineLength = 0;
-  int LineWordCnt = 0;
-  int LastWordLength;
-  
-  NumOfArticles = 0;
-  NumOfLines = -1;
-  
-  for (i=0; i<WordCnt; i++) {
-    
-    // Dalsi odstavec
-    if (WordsTypes[i] == 1) {
-        NumOfLines++;
-        LineLength = GetStrWidth("  ", NormalFont);
-        LineWordCnt = 0;
-        NumOfArticles++;
-    }
-    
-    LastWordLength = GetStrWidth(Words[i], NormalFont);
-    LineLength += LastWordLength;
-    LineWordCnt++;
-    
-    // Preteceni pres velikost jedne radky
-    if (LineLength >= LinePixels) {
-        LineWordCnt--;
-        i--;
-        LineLength -= LastWordLength;
-        
-        WordsTypes[i] = 2;
-            LineSpace[NumOfLines] = (double)(LinePixels-LineLength)/(double)(LineWordCnt-1);
-        
-        LineLength = 0;
-        LineWordCnt = 0;
-        NumOfLines++;
-    }
-  }
-  
-  
-  if (LineWordCnt > 0) {
-    NumOfLines++;
-  }
-  WordsTypes[WordCnt-1] = 3;
-  
-  
-  BigBufLines = NumOfLines*16+(NumOfArticles-1)*ArticleSpace + AllPicsSizeY;
-  
-  if (BigBufLines < MinNumOfYPixels) BigBufLines = MinNumOfYPixels+2;
-  
-  SizeOfBigBuf = LinePixels*BigBufLines;
-  BigDrawBuffer = memalloc(SizeOfBigBuf);
-  memset(BigDrawBuffer, 0, SizeOfBigBuf);
-  memfree(Brief);
-}
-
 
 // GET EVENT
 
@@ -542,14 +758,12 @@ int BriefGetEvent()
         {
             x = Ev.Mouse.Where.x       -LeftSpace;
             y = Ev.Mouse.Where.y+Ofset-UpSpace;
-            int i;
-            for (i = 1; i <= LastLink; i++) {
-                if ((x>=LinksXY[i].x1) && (y>=LinksXY[i].y1)&&
-                    (x<=LinksXY[i].x2) && (y<=LinksXY[i].y2)) 
-                {
-                  return Links2[i];
-              }
-            }
+		const char *link;
+
+		if ((link = curpage->get_link(x, y))) {
+			pushPage(link);
+			return 0;
+		}
       }
       
       
@@ -563,8 +777,7 @@ int BriefGetEvent()
         
         switch (Ev.Key.KeyCode) {
             case kbEsc : {
-              if (LinksSeqCnt > 0) return -9;
-              if (LinksSeqCnt == 0) return -7;
+		return pagecount > 1 ? -9 : -7;
             }
             case kbEnter : {
               return -7;
@@ -587,9 +800,8 @@ int BriefGetEvent()
 }
 
 void BriefHandleEvent(int What) 
-// -7: Exit, -4: Up, -3: Down, -2: PgUp, -1: PgDown, 1..n: Odkazy HT
+// -7: Exit, -4: Up, -3: Down, -2: PgUp, -1: PgDown
 {
-    int i;
     SDL_Delay(2);
   switch (What) {
     case -7 : break;
@@ -597,196 +809,49 @@ void BriefHandleEvent(int What)
     case -5 : BriefScrollDown(6); break;
     case -4 : BriefScrollUp(32); break;
     case -3 : BriefScrollDown(32); break;
-    case -2 : BriefScrollUp(MinNumOfYPixels); break;
-    case -1 : BriefScrollDown(MinNumOfYPixels);break;
-    case -8 : {
-        if (LinksSeqCnt < 1) return;
-        memfree(LinksSeq[LinksSeqCnt]);
-      LinksSeqCnt--;
-     
-      BriefDone();
-      BriefInit(LinksSeq[LinksSeqCnt]);
-      DrawOnScreen(0);
-      break;
-    }
-    case -9 : {
-        if (LinksSeqCnt < 1) return;
-        for (i = 1; i <= LinksSeqCnt; i++) memfree(LinksSeq[i]);
-      LinksSeqCnt = 0;
-     
-      BriefDone();
-      BriefInit(LinksSeq[LinksSeqCnt]);
-      DrawOnScreen(0);
-      break;
-    }
+    case -2 : BriefScrollUp(minheight); break;
+    case -1 : BriefScrollDown(minheight);break;
+    case -8 : popPage(); break;
+    case -9 : firstPage(); break;
   }
-  
-  if ((What >= 1) && (What <= LastLink)) {
-    // Hyper-textovej odkaz
-    
+}
 
-      if ( (LinksSeqCnt > 0) && (strcmp(LinksSeq[LinksSeqCnt-1], LinksFiles[What]) == 0)) {
-        
-        if (LinksSeqCnt < 1) return;
-        memfree(LinksSeq[LinksSeqCnt]);
-      LinksSeqCnt--;
-     
-      BriefDone();
-      BriefInit(LinksSeq[LinksSeqCnt]);
-      DrawOnScreen(0);
-        
-      } else {
-      LinksSeqCnt++;
-      LinksSeq[LinksSeqCnt] = (char*)memalloc(8);
-      strcpy(LinksSeq[LinksSeqCnt], LinksFiles[What]);
-      if (What > 2) {
-        What--;
-      }
-    }
-
-    
-    BriefDone();
-    BriefInit(LinksSeq[LinksSeqCnt]);
-    DrawOnScreen(0);
-  }
-  
+void BriefRedrawScr() {
+	PutBitmap32(LeftSpace, UpSpace,
+		(char*)BigDrawBuffer+(LinePixels*Ofset), LinePixels, minheight);
 }
 
 
-void DrawOnScreen(int DrawBackground) {
-	int i;
-	int WordLineCnt;
-	int LocalWordCnt = 0;
-	int LocalPicCnt = 0;
-	int PixColCnt = 0;
-	int ArtCnt = -1; // Citac odstavcu
-	double PixLineCnt;
+void BriefScrollUp(unsigned Num) {
+	unsigned OldOfs = Ofset;
 
-	if (DrawBackground != 0) {
-		void *ptr;
-		char buf[20];
+	if (Ofset < Num) {
+		Ofset = 0;
+	} else {
+		Ofset -= Num;
+	}
 
-		sprintf(buf, "%ibriefbk", iniResolution - 0x0100);
-		ptr = GraphicsDF->get(buf);
+	if (OldOfs != Ofset) {
 		MouseHide();
-		DrawPicture(ptr);
+		BriefRedrawScr();
 		MouseShow();
-		memfree(ptr);
 	}
+}
+void BriefScrollDown(unsigned Num) {
+	unsigned OldOfs = Ofset;
+	unsigned height = curpage->height();
 
-	for (i = 0; i <= NumOfLines; i++) {
-		WordLineCnt = -1;
-		PixLineCnt = 0;
-
-		do {
-			WordLineCnt++;
-			LocalWordCnt++;
-
-			if (WordsTypes[LocalWordCnt] == 1) {
-				if (LocalWordCnt != 1) {
-					i++;
-				}
-
-				ArtCnt++;
-				PixLineCnt = GetStrWidth("  ", NormalFont);
-
-				if (LocalWordCnt != 1) {
-					PixColCnt += ArticleSpace*2;
-				}
-
-				WordLineCnt = 0;
-			}
-
-			if (Links[LocalWordCnt] == 0) {
-				PutStr (BigDrawBuffer, LinePixels, BigBufLines,
-					PixLineCnt, PixColCnt,
-					Words[LocalWordCnt], NormalFont,
-					clrWhite, clrBlack);
-			} else {
-				PutStr (BigDrawBuffer, LinePixels, BigBufLines,
-					PixLineCnt, PixColCnt,
-					Words[LocalWordCnt], NormalFont,
-					clrRed, clrBlack);
-				LastLink++;
-				LinksXY[LastLink].x1 = PixLineCnt;
-				LinksXY[LastLink].x2 = PixLineCnt +
-					GetStrWidth(Words[LocalWordCnt],
-					NormalFont);
-				LinksXY[LastLink].y1 = PixColCnt;
-				LinksXY[LastLink].y2 = PixColCnt + 16;
-				Links2[LastLink] = Links[LocalWordCnt];
-			}
-
-			if (WordsTypes[LocalWordCnt] == 4) {
-				void *ptr;
-
-				// Obrazky (jee...)
-				LocalPicCnt++;
-				ptr = GraphicsDF->get(PicFiles[LocalPicCnt]);
-				PixColCnt += 32;
-				CopyBmpNZ(BigDrawBuffer, LinePixels,
-					(LinePixels-PicSize[LocalPicCnt].x)/2,
-					PixColCnt, ptr, PicSize[LocalPicCnt].x,
-					PicSize[LocalPicCnt].y);
-				PixColCnt += (PicSize[LocalPicCnt].y-16);
-				memfree(ptr);
-			}
-
-			PixLineCnt += (double)GetStrWidth(Words[LocalWordCnt],
-				NormalFont);
-			PixLineCnt += LineSpace[i];
-
-			if (WordsTypes[LocalWordCnt] == 3) {
-				goto LastWord;
-			}
-		} while (WordsTypes[LocalWordCnt] != 2);
-
-		PixColCnt += 16;
+	if (height <= minheight) {
+		Ofset = 0;
+	} else if (Ofset + Num > height - minheight) {
+		Ofset = height - minheight;
+	} else {
+		Ofset += Num;
 	}
-
-LastWord:
-	BriefRedrawScr();
-}
-
-
-void BriefRedrawScr()
-{
-    PutBitmap32(LeftSpace, UpSpace, (void*)((long)BigDrawBuffer+(LinePixels*Ofset)), LinePixels, MinNumOfYPixels);
     
-}
-
-
-void BriefScrollUp(int Num)
-{
-    int OldOfs = Ofset;
-  if (Ofset-Num < 0) Ofset = 0;
-  else Ofset -= Num;
-    if (OldOfs != Ofset) {
-    MouseHide();
-    BriefRedrawScr();
-    MouseShow();
-  }
-}
-void BriefScrollDown(int Num)
-{
-    int OldOfs = Ofset;
-  if (Ofset+Num > BigBufLines-MinNumOfYPixels) Ofset = BigBufLines-MinNumOfYPixels;
-  else Ofset += Num;
-    
-    if (OldOfs != Ofset) {
-    MouseHide();
-    BriefRedrawScr();
-    MouseShow();
-  }
-}
-
-
-
-
-
-
-void BriefDone()
-{
-  memfree(BigDrawBuffer);
-    for (int i = 0; i < WordCnt; i++) memfree(Words[i]);
+	if (OldOfs != Ofset) {
+		MouseHide();
+		BriefRedrawScr();
+		MouseShow();
+	}
 }
