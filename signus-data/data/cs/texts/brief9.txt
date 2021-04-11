@@ -16,7 +16,7 @@
 #> Podle vyslaných hlídek je kolona velmi dobře ozbrojená, ale
  naše šance získat artefakt jsou nesrovnatelně větší než
  před hradbami Trufatu.
-#> Vaším jediným úkolem je dostat artefakt z nepřítelových rukou
+#> Vaším jediným úkolem je dostat artefakt z nepřítelových rukou,
  a to i za cenu jeho zničení. Výbuch artefaktu znamená konec
  veškerého života v okruhu několika desítek metrů, proto je
  i ve vašem zájmu provést akci co nejúspěšněji.
