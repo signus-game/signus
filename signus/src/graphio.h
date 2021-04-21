@@ -84,16 +84,6 @@ extern void DrawPictureNB(void *src);
 // Vykresli mapicku vpravo nahore:
 extern void DrawLitMap();
 
-extern void DrawCursor(void *src, int x, int y, int sx, int sy, int fromx, int fromy);
-    // Vykresli kurzor mysi s rozmery 24x24 pixelu:
-extern void GetCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy);
-    // Sejme pozadi pod kurzorem:
-extern void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy);
-    // Zabrazi drive sejmute pozadi:
-
-
-
-
 
 // Kopirovani bmp do bmp:
 extern void CopyBmp(void *tar, int tarwidth, int x, int y, const void *src, int w, int h);

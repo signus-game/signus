@@ -410,63 +410,6 @@ void SetRawPalette(const uint8_t *pal) {
 }
 
 
-
-//////// mouse cursor:
-
-void DrawCursor(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
-{
-    register byte *vid, *s;
-    register int ay, ax;
-
-    if (SomeoneDrawing()) return;
-    LFB_Lock();
-    vid = ((byte*)VideoLFB) + x + y * LFB_Pitch;
-    s = ((byte*)src) + fromx + 32 * fromy;
-    for (ay = sy; ay != 0; ay--, vid += (LFB_Pitch - sx), s += (32-sx)) {
-        for (ax = sx; ax != 0; ax--, vid++, s++)
-            if (*s) *vid = *s;
-    }
-    LFB_Unlock();
-    UpdateScreen();
-}
-
-
-
-void GetCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
-{
-    register byte *vid, *s;
-    register int ay;
-
-    if (SomeoneDrawing()) return;
-    LFB_Lock();
-    vid = ((byte*)VideoLFB) + x + y * LFB_Pitch;
-    s = ((byte*)src);// + fromx + 32 * fromy;
-    for (ay = sy; ay != 0; ay--) {
-        memcpy(s, vid, sx);
-        vid += LFB_Pitch, s += 32;
-    }
-    LFB_Unlock();
-}
-
-
-
-void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
-{
-    register byte *vid, *s;
-    register int ay;
-
-    if (SomeoneDrawing()) return;
-    LFB_Lock();
-    vid = ((byte*)VideoLFB) + x + y * LFB_Pitch;
-    s = ((byte*)src);// + fromx + 32 * fromy;
-    for (ay = sy; ay != 0; ay--) {
-        memcpy(vid, s, sx);
-        vid += LFB_Pitch, s += 32;
-    }
-    LFB_Unlock();
-    UpdateScreen();
-}
-
 void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
 	uint8_t *screenbuf, *dst;
 	const uint8_t *src;

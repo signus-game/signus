@@ -71,8 +71,6 @@ static bool doInit()
         goto badtimes_label;
     SDL_inited = TRUE;
     
-    SDL_ShowCursor(0);
-
     if (InitSignus()) {
         signus_inited = TRUE;
         allow_mouse = TRUE;

@@ -29,12 +29,6 @@
 #ifndef _MOUSE_H
 #define _MOUSE_H
 
-#include "global.h"
-#include "system.h"
-#include "graphio.h"
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Funkce pro spolupraci s mysi:
 //
@@ -56,32 +50,16 @@
 
 // Struktura prenasenych dat (i vsech ostatnich):
 typedef struct {
-        // Pole kurzoru mysi:
-        void *MouseCurs[mcurCnt];
         int ActCur;
-        int xrpt, yrpt;
         
         // Pocet zamku na kresleni/na volani kresleni:
-        int Locks, SuperLocks, FreezeHided;
+        int Locks, SuperLocks;
         
         // Aktualni stav:
         unsigned short code;
         unsigned short buttons;
         unsigned short x;
         unsigned short y;
-
-        // Promnene pro praci s pozadim za kurzorem:
-//        int bx, by, sx, sy, fx, fy;
-//        int bx2, by2, sx2, sy2, fx2, fy2;
-//        int back;
-//        void *backbuf;
-        // Buffer pro pripad castecneho prekryti kurzoru:
-//        void *cachebuf;
-	
-	int back_x, back_y;
-	
-	void *back_buf;
-	
 } TMouseCBD;
 
 extern TMouseCBD Mouse;

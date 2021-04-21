@@ -25,41 +25,67 @@
 //
 
 
+#include <SDL.h>
+#include <SDL_mouse.h>
 #include "mouse.h"
 #include "graphio.h"
 #include "system.h"
 #include "global.h"
 #include <time.h>
-#include <SDL_mouse.h>
 
 
 //////////////////////////////// MYS /////////////////////////////////////
 
-static int mouse_painting = FALSE;
-
 TMouseCBD Mouse = {0};
 // pomocna promnena - obsahuje vsechny data pouzivana behem INT handleru
 
+static SDL_Cursor *MouseCurs[mcurCnt] = {NULL};
 
+SDL_Cursor *load_cursor(const char *name, int hot_x, int hot_y) {
+	SDL_Surface *surf;
+	SDL_Cursor *ret;
+	void *bitmap;
 
+	bitmap = GraphicsDF->get(name);
+
+	if (!bitmap) {
+		return NULL;
+	}
+
+	surf = SDL_CreateRGBSurfaceWithFormatFrom(bitmap, 32, 32, 8, 32,
+		SDL_PIXELFORMAT_INDEX8);
+
+	if (!surf) {
+		memfree(bitmap);
+		return NULL;
+	}
+
+	SDL_SetPaletteColors(surf->format->palette, PaletteSDL, 0, 256);
+	SDL_SetColorKey(surf, SDL_TRUE, 0);
+	ret = SDL_CreateColorCursor(surf, hot_x, hot_y);
+	SDL_FreeSurface(surf);
+	memfree(bitmap);
+	return ret;
+}
 
 int MouseInit()
 {
-	Mouse.MouseCurs[mcurArrow] = GraphicsDF->get("curarrow");
-	Mouse.MouseCurs[mcurWait] = GraphicsDF->get("curwait");
-	Mouse.MouseCurs[mcurSelect] = GraphicsDF->get("cursel");
-	Mouse.MouseCurs[mcurSelectBig] = GraphicsDF->get("curselb");
-	Mouse.MouseCurs[mcurSelectSmall] = GraphicsDF->get("cursels");
-	Mouse.MouseCurs[mcurTarget] = GraphicsDF->get("curtar");
-	Mouse.MouseCurs[mcurTargetBig] = GraphicsDF->get("curtarb");
-	Mouse.MouseCurs[mcurTargetSmall] = GraphicsDF->get("curtars");
-	Mouse.MouseCurs[mcurSupport] = GraphicsDF->get("cursupp");
-	Mouse.MouseCurs[mcurLoadIn] = GraphicsDF->get("curload");
-	Mouse.MouseCurs[mcurBuild] = GraphicsDF->get("curbuild");
-	
-	Mouse.back_buf = memalloc(32 * 32);
-//	Mouse.cachebuf = memalloc(2*32 * 2*32);
-//	Mouse.back = 0;
+	MouseCurs[mcurArrow] = load_cursor("curarrow", 0, 0);
+
+	if (!MouseCurs[mcurArrow]) {
+		return 0;
+	}
+
+	MouseCurs[mcurWait] = load_cursor("curwait", 16, 16);
+	MouseCurs[mcurSelect] = load_cursor("cursel", 16, 16);
+	MouseCurs[mcurSelectBig] = load_cursor("curselb", 16, 16);
+	MouseCurs[mcurSelectSmall] = load_cursor("cursels", 16, 16);
+	MouseCurs[mcurTarget] = load_cursor("curtar", 16, 16);
+	MouseCurs[mcurTargetBig] = load_cursor("curtarb", 16, 16);
+	MouseCurs[mcurTargetSmall] = load_cursor("curtars", 16, 16);
+	MouseCurs[mcurSupport] = load_cursor("cursupp", 0, 0);
+	MouseCurs[mcurLoadIn] = load_cursor("curload", 16, 16);
+	MouseCurs[mcurBuild] = load_cursor("curbuild", 16, 16);
 	
 	Mouse.Locks = 1;
 	MouseSetCursor(mcurArrow);
@@ -68,49 +94,50 @@ int MouseInit()
 	MouseSetPos(320, 240);
 	
 	MouseShow();
-	return Mouse.back_buf != NULL;
+	return 1;
 }
 
 
 
-void MouseDone()
-{
-	//MouseHide();
-}
+void MouseDone() {
+	int i;
+	SDL_Cursor *cur = SDL_GetDefaultCursor();
 
-
-
-
-void MouseSetCursor(int cnum)
-{
-	if (Mouse.ActCur == cnum) return;
-	Mouse.SuperLocks++;
-	MouseHide();
-	Mouse.ActCur = cnum;
-	switch (cnum) {
-		case mcurSupport :
-		case mcurArrow : Mouse.xrpt = 0; Mouse.yrpt = 0; break;
-		case mcurWait : Mouse.xrpt = 16; Mouse.yrpt = 16; break;
-		case mcurBuild :
-		case mcurLoadIn :
-		case mcurSelect : 
-		case mcurSelectBig : 
-		case mcurSelectSmall : 
-		case mcurTarget :
-		case mcurTargetBig :                
-		case mcurTargetSmall : Mouse.xrpt = 16; Mouse.yrpt = 16; break;
+	if (cur) {
+		SDL_SetCursor(cur);
 	}
-	MouseShow();
+
+	for (i = 0; i < mcurCnt; i++) {
+		if (MouseCurs[i]) {
+			SDL_FreeCursor(MouseCurs[i]);
+		}
+	}
+}
+
+
+
+
+void MouseSetCursor(int cnum) {
+	if (Mouse.ActCur == cnum) {
+		return;
+	}
+
+	if (cnum < 0 || cnum >= mcurCnt || !MouseCurs[cnum]) {
+		return;
+	}
+
+	Mouse.SuperLocks++;
+	SDL_SetCursor(MouseCurs[cnum]);
+	Mouse.ActCur = cnum;
 	Mouse.SuperLocks--;
 }
 
 
 
-void MouseHide()
-{
+void MouseHide() {
 	Mouse.SuperLocks++;
 	Mouse.Locks++;
-	MousePaint();
+	SDL_ShowCursor(SDL_DISABLE);
 	Mouse.SuperLocks--;
 }
 
@@ -119,48 +146,23 @@ void MouseHide()
 void MouseShow()
 {    
 	Mouse.SuperLocks++;
-	Mouse.Locks--;
-	MousePaint();
+
+	if (!--Mouse.Locks) {
+		SDL_ShowCursor(SDL_ENABLE);
+	}
+
 	Mouse.SuperLocks--;
 }
 
 
 
 // Zakaze kurzor v dane oblasti:
-void MouseFreeze(int x, int y, int w, int h)
-{
-	if (mouse_painting) return;
-	if (Mouse.FreezeHided) {
-		Mouse.FreezeHided++, Mouse.SuperLocks++; 
-		return;
-	}
-	
-	int x1 = x - (32 - Mouse.xrpt);
-	int y1 = y - (32 - Mouse.yrpt); 
-	int x2 = x + w + Mouse.xrpt;
-	int y2 = y + h + Mouse.yrpt;
-	
-	int mx = Mouse.x;
-	int my = Mouse.y;
-	int bx = (Mouse.back_x < 0) ? mx : Mouse.back_x;
-	int by = (Mouse.back_y < 0) ? my : Mouse.back_y;
-	
-	Mouse.SuperLocks++;
-	if (((mx >= x1 && mx <= x2) && (my >= y1 && my <= y2)) || ((bx >= x1 && bx <= x2) && (by >= y1 && by <= y2))) {
-		Mouse.FreezeHided++;
-		MouseHide();
-	}
+void MouseFreeze(int x, int y, int w, int h) {
 }
 
 
 
-void MouseUnfreeze()
-{
-	if (mouse_painting) return;
-	if (Mouse.FreezeHided) {
-		if (!(--Mouse.FreezeHided)) MouseShow();
-	}
-	Mouse.SuperLocks--;
+void MouseUnfreeze() {
 }
 
 
@@ -194,70 +196,7 @@ int IsIntersect(int ax, int ay, int bx, int by, int rax, int ray, int rbx, int r
 	(max(ay, ray) <= min(by, rby)));    
 }
 
-static void RestoreMouseBackground()
-{
-	if (Mouse.back_x >= 0) {
-		int back_sx = min(RES_X - Mouse.back_x, 32);
-		int back_sy = min(RES_Y - Mouse.back_y, 32);
-		int x = Mouse.back_x;
-		if (x < 0) {
-			back_sx += x;
-			x = 0;
-		}
-		int y = Mouse.back_y;
-		if (y < 0) {
-			back_sy += y;
-			y = 0;
-		}
-	
-		PutCurBack(Mouse.back_buf, x, y, back_sx, back_sy, 0, 0);
-	}
-	
-	Mouse.back_x = -1;
-	Mouse.back_y = -1;
-}
-
-static void StoreMouseBackground()
-{
-	Mouse.back_x = Mouse.x - Mouse.xrpt;
-	Mouse.back_y = Mouse.y - Mouse.yrpt;
-	
-	int back_sx = min(RES_X - Mouse.back_x, 32);
-	int back_sy = min(RES_Y - Mouse.back_y, 32);
-	int x = Mouse.back_x;
-	if (x < 0) {
-		back_sx += x;
-		x = 0;
-	}
-	int y = Mouse.back_y;
-	if (y < 0) {
-		back_sy += y;
-		y = 0;
-	}
-	
-	GetCurBack(Mouse.back_buf, x, y, back_sx, back_sy, 0, 0);
-}
-
-void MousePaint()
-{
-	RestoreMouseBackground();
-	
-	if (Mouse.Locks) {
-		return;
-	}
-	
-	mouse_painting = TRUE;
-	
-	StoreMouseBackground();
-	
-	int fx = max(0, -Mouse.back_x);
-	int fy = max(0, -Mouse.back_y);
-	int sx = min(RES_X - Mouse.back_x, 32) - fx;
-	int sy = min(RES_Y - Mouse.back_y, 32) - fy;
-	
-	DrawCursor(Mouse.MouseCurs[Mouse.ActCur], max(Mouse.back_x, 0), max(Mouse.back_y, 0), sx, sy, fx, fy);
-	
-	mouse_painting = FALSE;
+void MousePaint() {
 }
 
 
