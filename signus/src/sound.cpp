@@ -34,6 +34,7 @@ int MIDAS_disabled = FALSE; // FIXME
 int EffectsVolume, SpeechVolume, MusicVolume;
 
 int MusicOn;
+int audio_formats = 0;
 
 
 
@@ -57,29 +58,42 @@ int          MusicPlaying = FALSE;   // prehrava se vubec?
 void InitSamplesLoader();
 
 
-int InitSound()
-{
-    speech_handle_used = 0;
+int InitSound() {
+	speech_handle_used = 0;
 
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
-        return FALSE;
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
+		return FALSE;
+	}
 
-    OpenChannels(MUSIC_CHANNELS, EFFECT_CHANNELS);
-    InitSamplesLoader();
+	audio_formats = Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD);
 
-    InitJukebox();
-    SetVolume(iniSoundVol, iniSpeechVol, iniMusicVol);
-    return TRUE;
+	if (!(audio_formats & MIX_INIT_OGG)) {
+		fprintf(stderr, "SDL_mixer does not support Ogg Vorbis\n");
+	}
+
+	if (!(audio_formats & MIX_INIT_MOD)) {
+		fprintf(stderr, "SDL_mixer does not support MOD music\n");
+		MusicOn = 0;
+	}
+
+	OpenChannels(MUSIC_CHANNELS, EFFECT_CHANNELS);
+	InitSamplesLoader();
+	InitJukebox();
+	SetVolume(iniSoundVol, iniSpeechVol, iniMusicVol);
+	return TRUE;
 }
 
 
 
-int DoneSound()
-{
-    if (MusicPlaying) StopMusic();
-    CloseChannels();
-    DoneJukebox();
-    return TRUE;
+int DoneSound() {
+	if (MusicPlaying) {
+		StopMusic();
+	}
+
+	Mix_Quit();
+	CloseChannels();
+	DoneJukebox();
+	return TRUE;
 }
 
 
@@ -109,18 +123,26 @@ void CloseChannels()
 
 
 
-void SetVolume(int effects, int speech, int music)
-{
-    if (MIDAS_disabled) return;
+void SetVolume(int effects, int speech, int music) {
+	if (MIDAS_disabled) {
+		return;
+	}
 
-    EffectsVolume = effects;
-    SpeechVolume = speech;
-    MusicVolume = music;
-    Mix_VolumeMusic(MusicVolume * MIX_MAX_VOLUME / 64);
-    if (MusicOn && (music == 0)) StopMusic();
-    MusicOn = MusicVolume > 0;
-     // FIXME __ update music channel volume here
-     //          update ALL channels information1!!
+	EffectsVolume = effects;
+	SpeechVolume = speech;
+	MusicVolume = music;
+	Mix_VolumeMusic(MusicVolume * MIX_MAX_VOLUME / 64);
+
+	if (MusicOn && (music == 0)) {
+		StopMusic();
+	}
+
+	if (audio_formats & MIX_INIT_MOD) {
+		MusicOn = MusicVolume > 0;
+	}
+
+	// FIXME __ update music channel volume here
+	//          update ALL channels information1!!
 }
 
 
