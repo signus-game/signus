@@ -217,7 +217,6 @@ void GetEvent(TEvent *e) {
 	}
 #endif
 
-	//case SDL_VIDEOEXPOSE:       FIXME
 	//case SDL_QUIT:              FIXME
 
 	case SDL_KEYDOWN:
@@ -292,6 +291,14 @@ void GetEvent(TEvent *e) {
 			e->Mouse.Scroll *= -1;
 		}
 
+		break;
+
+	case SDL_WINDOWEVENT:
+		if (event.window.event == SDL_WINDOWEVENT_EXPOSED) {
+			redraw_screen();
+		}
+
+		e->What = evNothing;
 		break;
 
 	default:

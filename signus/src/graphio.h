@@ -62,6 +62,9 @@ extern SDL_Surface *GetScreenSurface();
 // toggles fullscreen mode
 extern void ToggleFullscreen();
 
+// Fast main window redraw (without updating framebuffer)
+void redraw_screen(void);
+
 ///////////////////////////////////////////////////////
 // Funkce vkladajici na obrazovky ruzne vyrezy: 
 //

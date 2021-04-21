@@ -179,6 +179,13 @@ void ToggleFullscreen() {
 	SDL_SetWindowFullscreen(window, flags);
 }
 
+void redraw_screen(void) {
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, framebuffer, NULL, NULL);
+	SDL_RenderPresent(renderer);
+	SDL_UpdateWindowSurface(window);
+}
+
 void UpdateScreen(void) {
 	SDL_Surface *target;
 	SDL_Rect dstpos = {0, 0, RES_X, RES_Y};
@@ -189,10 +196,7 @@ void UpdateScreen(void) {
 
 	SDL_BlitSurface(drawbuffer, NULL, target, &dstpos);
 	SDL_UnlockTexture(framebuffer);
-	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, framebuffer, NULL, NULL);
-	SDL_RenderPresent(renderer);
-	SDL_UpdateWindowSurface(window);
+	redraw_screen();
 }
 
 ///////// DrawPicture
