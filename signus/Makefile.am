@@ -1,5 +1,5 @@
 
-SUBDIRS = iniparser sdlimage src
+SUBDIRS = iniparser src
 
 EXTRA_DIST = signus.spec etc/default_signus.ini
 

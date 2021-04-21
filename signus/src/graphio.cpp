@@ -36,18 +36,7 @@
 #include <SDL_timer.h>
 #include <SDL.h>
 
-
-
-void ClearScr()
-{
-    // pameti je na to dost, protoze Signus je NENAHOZENEJ tak proc ne...
-    void *me = memalloc(RES_X * RES_Y);
-    memset(me, 0, RES_X * RES_Y);
-    DrawPicture(me);
-    memfree(me);
-}
-
-
+#define WINDOW_TITLE "Signus: The Artefact Wars"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,38 +45,33 @@ void ClearScr()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 byte *VideoLFB = NULL;
-unsigned LFB_Pitch = 0;
+unsigned LFB_Pitch = RES_X;
 
-SDL_Surface *screen;
+SDL_Window *window = NULL;
+SDL_Renderer *renderer = NULL;
+SDL_Texture *framebuffer = NULL;
+SDL_Surface *drawbuffer = NULL;
 SDL_Color    palette[256];
-
+uint8_t *pixbuffer = NULL;
+int fullscreen = 0;
 
 ////////////////////////////// rozhrani k frame-bufferu:
 
-inline int SomeoneDrawing() {return (VideoLFB != NULL);}
-
-void *LFB_Lock()
-{
-    SDL_LockSurface(screen);
-    VideoLFB = (byte*)screen->pixels;
-    LFB_Pitch = screen->pitch;
-
-    return VideoLFB;
+inline int SomeoneDrawing() {
+	return (VideoLFB != NULL);
 }
 
-
-
-void LFB_Unlock()
-{
-    SDL_UnlockSurface(screen);
-    VideoLFB = NULL;
+void *LFB_Lock() {
+	VideoLFB = (byte*)drawbuffer->pixels;
+	return VideoLFB;
 }
 
+void LFB_Unlock() {
+	VideoLFB = NULL;
+}
 
-
-SDL_Surface *GetScreenSurface()
-{
-    return screen;
+SDL_Surface *GetScreenSurface() {
+	return drawbuffer;
 }
 
 
@@ -95,28 +79,86 @@ SDL_Surface *GetScreenSurface()
 
 #include "system.h"
 
-bool SwitchDisplayMode(int mode)
-{
-    assert(mode == SVGA_800x600 || mode == SVGA_640x480);
-    
-    if (mode == SVGA_800x600)
-        screen = SDL_SetVideoMode(800, 600, 8, SDL_SWSURFACE);
-    else if (mode == SVGA_640x480)
-        screen = SDL_SetVideoMode(640, 480, 8, SDL_SWSURFACE);
-    if (screen == NULL) return FALSE;
-    
-    memset(palette, 0, sizeof(palette));
-    SDL_SetColors(screen, palette, 0, 256);
-    
-    ClearScr();
-    return TRUE;
+void ClearScr() {
+	memset(pixbuffer, 0, RES_X * RES_Y);
 }
 
+int DoneVideo(void) {
+	if (drawbuffer) {
+		SDL_FreeSurface(drawbuffer);
+		drawbuffer = NULL;
+	}
 
+	if (pixbuffer) {
+		memfree(pixbuffer);
+		pixbuffer = NULL;
+	}
 
-int InitVideo(int mode)
+	if (framebuffer) {
+		SDL_DestroyTexture(framebuffer);
+		framebuffer = NULL;
+	}
+
+	if (renderer) {
+		SDL_DestroyRenderer(renderer);
+		renderer = NULL;
+	}
+
+	if (window) {
+		SDL_DestroyWindow(window);
+		window = NULL;
+	}
+
+	return TRUE;
+}
+
+int create_window(void) {
+	if (SDL_CreateWindowAndRenderer(RES_X, RES_Y,
+		SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &window, &renderer)) {
+		return 0;
+	}
+
+	if (SDL_RenderSetLogicalSize(renderer, RES_X, RES_Y)) {
+		DoneVideo();
+		return 0;
+	}
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+	SDL_SetWindowTitle(window, WINDOW_TITLE);
+
+	framebuffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24,
+		SDL_TEXTUREACCESS_STREAMING, RES_X, RES_Y);
+
+	if (!framebuffer) {
+		DoneVideo();
+		return 0;
+	}
+
+	pixbuffer = (uint8_t*)memalloc(RES_X * RES_Y * sizeof(uint8_t));
+
+	if (!pixbuffer) {
+		DoneVideo();
+		return 0;
+	}
+
+	drawbuffer = SDL_CreateRGBSurfaceWithFormatFrom(pixbuffer, RES_X,
+		RES_Y, 8, RES_X, SDL_PIXELFORMAT_INDEX8);
+
+	if (!pixbuffer) {
+		DoneVideo();
+		return 0;
+	}
+
+	memset(palette, 0, sizeof(palette));
+	SDL_SetPaletteColors(drawbuffer->format->palette, palette, 0, 256);
+	ClearScr();
+	return 1;
+}
+
+int InitVideo(void)
 {
-    if (SwitchDisplayMode(mode))
+    if (create_window())
         return TRUE;
 
     char buf[512];
@@ -129,23 +171,29 @@ int InitVideo(int mode)
     return FALSE;
 }
 
+void ToggleFullscreen() {
+	unsigned flags;
 
-
-
-int DoneVideo()
-{
-    SDL_FreeSurface(screen);
-    screen = NULL;
-    return TRUE;
+	fullscreen = !fullscreen;
+	flags = fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+	SDL_SetWindowFullscreen(window, flags);
 }
 
+void UpdateScreen(void) {
+	SDL_Surface *target;
+	SDL_Rect dstpos = {0, 0, RES_X, RES_Y};
 
+	if (SDL_LockTextureToSurface(framebuffer, NULL, &target)) {
+		return;
+	}
 
-void ToggleFullscreen()
-{
-    SDL_WM_ToggleFullScreen(screen);
+	SDL_BlitSurface(drawbuffer, NULL, target, &dstpos);
+	SDL_UnlockTexture(framebuffer);
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, framebuffer, NULL, NULL);
+	SDL_RenderPresent(renderer);
+	SDL_UpdateWindowSurface(window);
 }
-
 
 ///////// DrawPicture
 
@@ -164,7 +212,7 @@ void DrawPicture(void *src)
     }
     LFB_Unlock();
     LeaveTCS();
-    SDL_UpdateRect(screen, 0, 0, RES_X, RES_Y);
+    UpdateScreen();
 }
 
 
@@ -187,7 +235,7 @@ void DrawPictureNB(void *src)
     }
     LFB_Unlock();
     LeaveTCS();
-    SDL_UpdateRect(screen, 0, 0, RES_X, RES_Y);
+    UpdateScreen();
 }
 
 
@@ -210,7 +258,7 @@ void DrawMapBuf()
     }
     LFB_Unlock();
     LeaveTCS();
-    SDL_UpdateRect(screen, VIEW_X_POS, VIEW_Y_POS, VIEW_SX, VIEW_SY);
+    UpdateScreen();
 }
 
 
@@ -231,7 +279,7 @@ void DrawMapBufP(int x, int y, int sx, int sy)
     }
     LFB_Unlock();
     LeaveTCS();
-    SDL_UpdateRect(screen, VIEW_X_POS+x, VIEW_Y_POS+y, sx, sy);
+    UpdateScreen();
 }
 
 
@@ -251,7 +299,7 @@ void DrawLitMap()
     }
     LFB_Unlock();
     LeaveTCS();
-    SDL_UpdateRect(screen, LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
+    UpdateScreen();
 }
 
 
@@ -273,7 +321,7 @@ void PutBitmap(int x, int y, const void *data, int w, int h)
     }
     LFB_Unlock();
     MouseUnfreeze();
-    SDL_UpdateRect(screen, x, y, w, h);
+    UpdateScreen();
     LeaveTCS();
 }
 
@@ -295,7 +343,7 @@ void PutBitmapNZ(int x, int y, void *data, int w, int h)
     }
     LFB_Unlock();
     MouseUnfreeze();
-    SDL_UpdateRect(screen, x, y, w, h);
+    UpdateScreen();
     LeaveTCS();
 }
 
@@ -327,24 +375,22 @@ void GetBitmap(int x, int y, void *data, int w, int h)
 
 ///////// palette:
 
-void SetPalette(char *paldat)
-{
-    SetPalettePart(paldat, 0, 256);
+void SetPalette(const uint8_t *paldat) {
+	SetPalettePart(paldat, 0, 256);
 }
 
 
 
-void SetPalettePart(char *paldat, int palofs, int palsize)
-{
-    int i;
-    char *px = paldat;
+void SetPalettePart(const uint8_t *px, int palofs, int palsize) {
+	int i;
 
-    for (i = 0; i < palsize; i++) {
-        palette[palofs+i].r = (*(px++)) << 2;
-        palette[palofs+i].g = (*(px++)) << 2;
-        palette[palofs+i].b = (*(px++)) << 2;
-    }
-    SDL_SetColors(screen, palette+palofs, palofs, palsize);
+	for (i = 0; i < palsize; i++) {
+		palette[palofs+i].r = (*(px++)) << 2;
+		palette[palofs+i].g = (*(px++)) << 2;
+		palette[palofs+i].b = (*(px++)) << 2;
+	}
+
+	SDL_SetPaletteColors(drawbuffer->format->palette, palette, 0, 256);
 }
 
 void SetRawPalette(const uint8_t *pal) {
@@ -356,7 +402,7 @@ void SetRawPalette(const uint8_t *pal) {
 		palette[i].b = *pal++;
 	}
 
-	SDL_SetColors(screen, palette, 0, 256);
+	SDL_SetPaletteColors(drawbuffer->format->palette, palette, 0, 256);
 }
 
 
@@ -377,7 +423,7 @@ void DrawCursor(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
             if (*s) *vid = *s;
     }
     LFB_Unlock();
-    SDL_UpdateRect(screen, x, y, sx, sy);
+    UpdateScreen();
 }
 
 
@@ -414,7 +460,7 @@ void PutCurBack(void *src, int x, int y, int sx, int sy, int fromx, int fromy)
         vid += LFB_Pitch, s += 32;
     }
     LFB_Unlock();
-    SDL_UpdateRect(screen, x, y, sx, sy);
+    UpdateScreen();
 }
 
 void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
@@ -455,7 +501,7 @@ void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
 
 	LFB_Unlock();
 	LeaveTCS();
-	SDL_UpdateRect(screen, basex, basey, width, height);
+	UpdateScreen();
 }
 
 
@@ -596,36 +642,48 @@ void PercentBar(void *tar, int width, int height, int x, int y, int w, int h, by
 
 extern volatile int signus_suspended;
 
-void FadeIn(char *paldat, int dlay)
-{
-    byte p2[768];
-    int i, j;
+void FadeIn(const uint8_t *paldat, int dlay) {
+	uint8_t p2[768];
+	int i, j;
 
-    signus_suspended = TRUE;
-    for (i = 0; i < 100; i+=2) {
-        for (j = 0; j < 768; j++) p2[j] = paldat[j] * i / 100;
-        SetPalette((char*)p2);
-        SDL_Delay(1);
-    }
-    SetPalette(paldat);
-    signus_suspended = FALSE;
+	signus_suspended = TRUE;
+
+	for (i = 0; i < 100; i+=2) {
+		for (j = 0; j < 768; j++) {
+			p2[j] = paldat[j] * i / 100;
+		}
+
+		SetPalette(p2);
+		UpdateScreen();
+		SDL_Delay(1);
+	}
+
+	SetPalette(paldat);
+	UpdateScreen();
+	signus_suspended = FALSE;
 }
 
 
-void FadeOut(char *paldat, int dlay)
-{
-    byte p2[768];
-    int i, j;
+void FadeOut(const uint8_t *paldat, int dlay) {
+	uint8_t p2[768];
+	int i, j;
 
-    signus_suspended = TRUE;
-    for (i = 0; i < 100; i+=2) {
-        for (j = 0; j < 768; j++) p2[j] = paldat[j] * (100-i) / 100;
-        SetPalette((char*)p2);
-        SDL_Delay(1);
-    }
-    memset(p2, 0, 768);
-    SetPalette((char*)p2);
-    signus_suspended = FALSE;
+	signus_suspended = TRUE;
+
+	for (i = 0; i < 100; i+=2) {
+		for (j = 0; j < 768; j++) {
+			p2[j] = paldat[j] * (100-i) / 100;
+		}
+
+		SetPalette(p2);
+		UpdateScreen();
+		SDL_Delay(1);
+	}
+
+	memset(p2, 0, 768);
+	SetPalette(p2);
+	UpdateScreen();
+	signus_suspended = FALSE;
 }
 
 
@@ -657,4 +715,11 @@ void paletizeSurface(byte *output, SDL_Surface *surf, const char *tableName)
     }
     
     free(table);
+}
+
+void MouseSetPos(int x, int y) {
+	Mouse.x = x;
+	Mouse.y = y;
+	MousePaint();
+	SDL_WarpMouseInWindow(window, Mouse.x, Mouse.y);
 }

@@ -33,7 +33,7 @@
 #include <stdio.h>
 #include "system.h"
 
-#include <SDL/SDL_ttf.h>
+#include <SDL_ttf.h>
 typedef TTF_Font TFont;
 
 // Vykresli do TAR text dvema barvami. Funguji i znaky CR, LF

@@ -1,6 +1,6 @@
 
 AM_CPPFLAGS = -ansi -pedantic -Wall -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
-		   -I$(top_srcdir)/sdlimage -fsanitize=address -fstack-protector -fsanitize=undefined
+		   -fsanitize=address -fstack-protector -fsanitize=undefined
 
 AM_LDFLAGS = -fsanitize=address -fstack-protector -fsanitize=undefined
 
@@ -90,7 +90,5 @@ header_files = ai/aiair.h ai/aiglobal.h ai/aiground.h ai/ai.h ai/aimarine.h \
 
 bin_PROGRAMS = signus
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
-signus_LDADD = $(SDL_LIBS) \
-               -lSDL_mixer \
-               -L../iniparser -liniparser \
-               -L../sdlimage -lminiSDLimage -ljpeg
+signus_LDADD = $(SDL2_LIBS) $(libvorbis_LIBS) $(libjpeg_LIBS) \
+               -L../iniparser -liniparser

@@ -74,8 +74,8 @@ typedef struct {
 } TMouseEvent;
 
 typedef struct {
-            SDLKey  KeyCode;
-            char    CharCode;
+            SDL_Keycode KeyCode;
+            char CharCode;
 } TKeyEvent;
 
 typedef struct {

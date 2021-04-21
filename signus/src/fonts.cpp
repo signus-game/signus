@@ -53,7 +53,7 @@ void PutStr(void *tar, int width, int height, int xpoz, int ypoz,
 	line = buf;
 	dest = SDL_CreateRGBSurfaceFrom(tar, width, height, 8/*depth*/,
 		width /*pitch*/, 0, 0, 0, 0);
-	SDL_SetColors(dest, PaletteSDL, 0, 256);
+	SDL_SetPaletteColors(dest->format->palette, PaletteSDL, 0, 256);
 
 	for (line = buf, i = 0; *line; line += i) {
 		for (i = 0; line[i] && line[i] != '\n'; i++) {
@@ -82,7 +82,7 @@ void PutStr(void *tar, int width, int height, int xpoz, int ypoz,
 			return;
 		}
 
-		SDL_SetColorKey(text, SDL_SRCCOLORKEY, 0);
+		SDL_SetColorKey(text, SDL_TRUE, 0);
 		SDL_BlitSurface(text, NULL, dest, &dest_rect);
 		SDL_FreeSurface(text);
 		dest_rect.y += lineheight;

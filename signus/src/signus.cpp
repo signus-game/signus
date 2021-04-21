@@ -852,10 +852,10 @@ int InitSignus()
         return FALSE;
     }*/       // --- this is done in WINMAIN()
     {
-        if (!InitVideo(iniResolution)) {
+        if (!InitVideo()) {
             return FALSE;
         }
-        Palette = (char *) GraphicsDF->get("palette");
+        Palette = (uint8_t*) GraphicsDF->get("palette");
         memset(PaletteSDL, 0, sizeof(PaletteSDL));
         for (unsigned i = 0; i < 256; i++) {
             PaletteSDL[i].r = Palette[i*3+0] << 2;

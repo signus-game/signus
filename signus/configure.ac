@@ -40,45 +40,9 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
 
-AM_PATH_SDL(1.2.0, [], [AC_MSG_ERROR([SDL is required by Signus.])])
-
-XIPH_PATH_OGG([], [AC_MSG_ERROR([Ogg Vorbis is required by Signus.])])
-AC_MSG_CHECKING(for Vorbis)
-  AC_TRY_COMPILE([
-  #include <vorbis/vorbisfile.h>
-  ], [], 
-  [AC_MSG_RESULT([yes])],
-  [
-    AC_MSG_RESULT([no])
-    AC_MSG_ERROR([Ogg Vorbis is required by Signus.])
-  ])
-
-AC_CHECK_LIB(jpeg, jpeg_set_colorspace, [], 
-      [AC_MSG_ERROR([libjpeg is required by Signus.])])
-
-AC_MSG_CHECKING([for SDL_mixer >= 1.2.5])
-  AC_TRY_COMPILE([
-  #include <SDL/SDL_mixer.h>
-  #if !( \
-       (MIX_MAJOR_VERSION > 1) || \
-       (MIX_MAJOR_VERSION == 1 && MIX_MINOR_VERSION > 2) || \
-       (MIX_MAJOR_VERSION == 1 && MIX_MINOR_VERSION == 2 && \
-          MIX_PATCHLEVEL >= 5))
-      #error "SDL_mixer too old!"
-  #endif
-  ], [], 
-  [AC_MSG_RESULT([yes])],
-  [
-    AC_MSG_RESULT([no])
-    AC_MSG_ERROR([SDL_mixer >= 1.2.5 is required by Signus.])
-  ])
-
-AC_CHECK_HEADER([SDL/SDL_ttf.h],[],
-                [AC_MSG_ERROR([SDL_ttf is required by Signus.])])
-
-AC_CHECK_LIB(SDL_ttf, TTF_RenderUTF8_Shaded, [], 
-      [AC_MSG_ERROR([SDL_ttf is required by Signus.])])
-
+PKG_CHECK_MODULES([SDL2], [sdl2 >= 2.0.12 SDL2_mixer SDL2_ttf SDL2_image])
+PKG_CHECK_MODULES([libvorbis], [vorbis])
+PKG_CHECK_MODULES([libjpeg], [libjpeg])
 
 dnl FIXME - make it possible to compile signus w/o NASM
 dnl FIXME - check for version-data file and contained version
@@ -97,7 +61,7 @@ GCC_FLAGS="-fno-rtti -fno-exceptions"
 DATA_VERSION=`echo $VERSION | sed -e 's,\([[0-9]]*\.[[0-9]]*\)\.[[0-9]]*,\1,g'`
 echo xxx $DATA_VERSION xxx
 
-CXXFLAGS="$SDL_CFLAGS $CXXFLAGS $SDL_CFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)/$DATA_VERSION\\\"\""
+CXXFLAGS="$SDL2_CFLAGS $libvorbis_CFLAGS $libjpeg_CFLAGS $CXXFLAGS $GCC_FLAGS $DEBUG_FLAGS \"-DSIGNUS_DATA_DIR=\\\"\$(pkgdatadir)/$DATA_VERSION\\\"\""
 
 
 AC_SUBST(LIBS)
@@ -113,6 +77,5 @@ AC_OUTPUT([
          Makefile
          src/Makefile
          iniparser/Makefile
-         sdlimage/Makefile
          ])
 

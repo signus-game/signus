@@ -33,7 +33,7 @@
 
 
 #include "system.h"
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 
 
@@ -46,19 +46,14 @@
 
 
 
-extern int InitVideoCard(int mode);
-extern int DoneVideoCard();
-
-
-
-extern int InitVideo(int mode);
+int InitVideo(void);
 // inicializace videa
-extern int DoneVideo();
+int DoneVideo(void);
 // vypnuti videa a obnoveni puvodniho rezimu
 
-extern void SetPalette(char *paldat);
+void SetPalette(const uint8_t *paldat);
 // nastavi barevnou paletu z bufferu
-extern void SetPalettePart(char *paldat, int palofs, int palsize);
+void SetPalettePart(const uint8_t *paldat, int palofs, int palsize);
 // nastavi cast palety
 void SetRawPalette(const uint8_t *pal);
 
@@ -119,8 +114,8 @@ void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height);
 
 
 // Zatmeni a rozsviceni palety:
-extern void FadeOut(char *paldat, int dlay);
-extern void FadeIn(char *paldat, int dlay);
+void FadeOut(const uint8_t *paldat, int dlay);
+void FadeIn(const uint8_t *paldat, int dlay);
 
 
 // converts RGB SDL surface into 8bit palettized image array

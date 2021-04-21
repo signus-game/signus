@@ -30,11 +30,6 @@
 
 #include <unistd.h>
 
-
-#define CAPTION "Signus: The Artefact Wars"
-
-
-
 static int SDL_inited          = FALSE;
 static int signus_inited       = FALSE;
 volatile int signus_suspended  = FALSE;
@@ -76,7 +71,6 @@ static bool doInit()
         goto badtimes_label;
     SDL_inited = TRUE;
     
-    SDL_WM_SetCaption(CAPTION, NULL/*FIXME*/);
     SDL_ShowCursor(0);
 
     if (InitSignus()) {

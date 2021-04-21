@@ -176,18 +176,6 @@ SDL_WM_GrabInput(SDL_GRAB_ON);
 	#endif
 }
 
-
-
-void MouseSetPos(int x, int y)
-{
-	Mouse.x = x;
-	Mouse.y = y;
-	MousePaint();
-	SDL_WarpMouse(Mouse.x, Mouse.y);
-}
-
-
-
 void MouseSetRatio(int rx, int ry)
 {
 }

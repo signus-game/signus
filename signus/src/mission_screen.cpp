@@ -21,14 +21,12 @@
 
 
 #include <string.h>
+#include <SDL_image.h>
 #include "global.h"
 #include "mouse.h"
 #include "graphio.h"
 #include "events.h"
 #include "mission_screen.h"
-
-#include "miniSDL_image.h"
-
 
 static void drawPicture(int mission, byte *pal)
 {
@@ -72,12 +70,12 @@ static void drawPicture(int mission, byte *pal)
 
 void ShowMissionIntroScreen(int mission)
 {
-    char *pal2;
+    uint8_t *pal2;
     TEvent e;
     
     FadeOut(Palette, 0);
     MouseHide();
-    pal2 = (char*) GraphicsDF->get("scrpal");
+    pal2 = (uint8_t*) GraphicsDF->get("scrpal");
 
     drawPicture(mission, (byte*)pal2);
 

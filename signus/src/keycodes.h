@@ -22,7 +22,7 @@
 #ifndef _TKEYS_H
 #define _TKEYS_H
 
-#include <SDL_keysym.h>
+#include <SDL_events.h>
 
 #define kbEsc           SDLK_ESCAPE
 #define kbTab           SDLK_TAB

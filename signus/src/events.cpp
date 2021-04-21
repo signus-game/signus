@@ -56,7 +56,7 @@ void SaveScreenshot()
         fclose(f);
     }
 
-    SDL_SaveBMP(SDL_GetVideoSurface(), jm);
+    SDL_SaveBMP(GetScreenSurface(), jm);
 }
 
 
@@ -80,7 +80,7 @@ int IgnoreEvent = FALSE;
 
 static bool needsMouseRedraw = false;
 
-char key2ascii(const SDL_keysym &key) {
+char key2ascii(const SDL_Keysym &key) {
 	int caps = 0, ascii = key.sym;
 
 	if (key.mod & (KMOD_CTRL | KMOD_ALT | KMOD_MODE)) {
@@ -95,40 +95,36 @@ char key2ascii(const SDL_keysym &key) {
 		caps = !caps;
 	}
 
-	if (caps && islower(ascii)) {
-		ascii = toupper(ascii);
-	}
-
 	if (key.mod & KMOD_NUM) {
 		switch (ascii) {
-		case SDLK_KP0:
+		case SDLK_KP_0:
 			ascii = '0';
 			break;
-		case SDLK_KP1:
+		case SDLK_KP_1:
 			ascii = '1';
 			break;
-		case SDLK_KP2:
+		case SDLK_KP_2:
 			ascii = '2';
 			break;
-		case SDLK_KP3:
+		case SDLK_KP_3:
 			ascii = '3';
 			break;
-		case SDLK_KP4:
+		case SDLK_KP_4:
 			ascii = '4';
 			break;
-		case SDLK_KP5:
+		case SDLK_KP_5:
 			ascii = '5';
 			break;
-		case SDLK_KP6:
+		case SDLK_KP_6:
 			ascii = '6';
 			break;
-		case SDLK_KP7:
+		case SDLK_KP_7:
 			ascii = '7';
 			break;
-		case SDLK_KP8:
+		case SDLK_KP_8:
 			ascii = '8';
 			break;
-		case SDLK_KP9:
+		case SDLK_KP_9:
 			ascii = '9';
 			break;
 		}
@@ -150,10 +146,19 @@ char key2ascii(const SDL_keysym &key) {
 	}
 
 	if (ascii >= ' ' && ascii <= 127) {
+		if (caps && islower(ascii)) {
+			ascii = toupper(ascii);
+		}
+
 		return ascii;
 	}
 
 	return 0;
+}
+
+int clamp(int value, int min, int max) {
+	value = value > min ? value : min;
+	return value < max ? value : max;
 }
 
 void GetEvent(TEvent *e) {
@@ -236,40 +241,35 @@ void GetEvent(TEvent *e) {
 
 	case SDL_MOUSEMOTION:
 		e->What = evMouseMove;
-		e->Mouse.Where.x = event.motion.x;
-		e->Mouse.Where.y = event.motion.y;
+		e->Mouse.Where.x = clamp(event.motion.x, 0, RES_X);
+		e->Mouse.Where.y = clamp(event.motion.y, 0, RES_Y);
 		e->Mouse.Buttons = 0;
 		e->Mouse.Scroll = 0;
 
 		// update global mouse information and repaint it:
 		Mouse.buttons = event.motion.state;
-		Mouse.x = event.motion.x;
-		Mouse.y = event.motion.y;
+		Mouse.x = e->Mouse.Where.x;
+		Mouse.y = e->Mouse.Where.y;
 		needsMouseRedraw = true;
 		break;
 
 	case SDL_MOUSEBUTTONDOWN:
+		if (!IsInRect(event.button.x, event.button.y, 0, 0, RES_X - 1,
+			RES_Y - 1)) {
+			e->What = evNothing;
+			break;
+		}
+
 		e->What = evMouseDown;
 		e->Mouse.Where.x = event.button.x;
 		e->Mouse.Where.y = event.button.y;
 		e->Mouse.Buttons = event.button.button;
 		e->Mouse.Scroll = 0;
-
-		if (event.button.button == SDL_BUTTON_WHEELUP) {
-			e->What = evMouseScroll;
-			e->Mouse.Buttons = 0;
-			e->Mouse.Scroll = 1;
-		} else if (event.button.button == SDL_BUTTON_WHEELDOWN) {
-			e->What = evMouseScroll;
-			e->Mouse.Buttons = 0;
-			e->Mouse.Scroll = -1;
-		}
-
 		break;
 
 	case SDL_MOUSEBUTTONUP:
-		if (event.button.button == SDL_BUTTON_WHEELUP ||
-			event.button.button == SDL_BUTTON_WHEELDOWN) {
+		if (!IsInRect(event.button.x, event.button.y, 0, 0, RES_X - 1,
+			RES_Y - 1)) {
 			e->What = evNothing;
 			break;
 		}
@@ -279,6 +279,19 @@ void GetEvent(TEvent *e) {
 		e->Mouse.Where.y = event.button.y;
 		e->Mouse.Buttons = event.button.button;
 		e->Mouse.Scroll = 0;
+		break;
+
+	case SDL_MOUSEWHEEL:
+		e->What = evMouseScroll;
+		e->Mouse.Where.x = Mouse.x;
+		e->Mouse.Where.y = Mouse.y;
+		e->Mouse.Buttons = 0;
+		e->Mouse.Scroll = event.wheel.y;
+
+		if (event.wheel.direction == SDL_MOUSEWHEEL_FLIPPED) {
+			e->Mouse.Scroll *= -1;
+		}
+
 		break;
 
 	default:

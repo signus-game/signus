@@ -29,14 +29,13 @@ implementace Infoboxu jednotky (TUnit::DetailedInfo()...)
 
 
 #include <climits>
+#include <SDL_image.h>
 #include "units.h"
 #include "ui_toolkit.h"
 #include "global.h"
 #include "anims.h"
 #include "sound.h"
 #include "mouse.h"
-
-#include "miniSDL_image.h"
 
 extern void InitPalTimer();
 extern void DonePalTimer();

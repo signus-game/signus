@@ -138,7 +138,7 @@ int DoMainMenu()
 {
     int rtval = -1;
     //char *pa = (char*) GraphicsDF->get("menupal");
-    char *pa = (char*) GraphicsDF->get("palette");
+    uint8_t *pa = (uint8_t*) GraphicsDF->get("palette");
 
     PlayMusic("solution.s3m");
     

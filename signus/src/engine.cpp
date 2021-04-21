@@ -222,7 +222,7 @@ int InitEngine(int mission, ReadStream *stream) {
 	InitMap(s, stream);
 
 	{
-		char p[768]  = {0};
+		uint8_t p[768]  = {0};
 
 		PulsarProcess = FALSE;
 		SetPalette(p);

@@ -158,7 +158,7 @@ int PlayMusic(const char *name) {
 		return FALSE;
 	}
 
-	PlayedModule = Mix_LoadMUS_RW(rw);
+	PlayedModule = Mix_LoadMUS_RW(rw, 0);
 	SDL_RWclose(rw);
 
 	if (PlayedModule == NULL) {
@@ -191,7 +191,7 @@ int PlayMusicBuffer(const void *data, int size) {
 		return FALSE;
 	}
 
-	PlayedModule = Mix_LoadMUS_RW(rw);
+	PlayedModule = Mix_LoadMUS_RW(rw, 0);
 	SDL_RWclose(rw);
 
 	if (PlayedModule == NULL) {

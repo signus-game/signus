@@ -161,7 +161,7 @@ extern char *MsgText[MSG_COUNT];
 #define TICKS_PER_SEC  1000 / 55
 extern volatile int TimerValue;
 
-extern char *Palette;     // current color palette
+extern uint8_t *Palette;     // current color palette
 extern SDL_Color PaletteSDL[256]; // same thing, another representation
 
 
