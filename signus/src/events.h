@@ -53,6 +53,7 @@
 #define evMouseScroll 0x0008
 #define evKeyDown     0x0010
 #define evTimer       0x0100
+#define evOther       0x0200
 
 // ------------ Masky udalosti:
 #define evNothing     0x0000

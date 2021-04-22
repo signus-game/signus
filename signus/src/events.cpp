@@ -255,7 +255,7 @@ void GetEvent(TEvent *e) {
 	case SDL_MOUSEBUTTONDOWN:
 		if (!IsInRect(event.button.x, event.button.y, 0, 0, RES_X - 1,
 			RES_Y - 1)) {
-			e->What = evNothing;
+			e->What = evOther;
 			break;
 		}
 
@@ -269,7 +269,7 @@ void GetEvent(TEvent *e) {
 	case SDL_MOUSEBUTTONUP:
 		if (!IsInRect(event.button.x, event.button.y, 0, 0, RES_X - 1,
 			RES_Y - 1)) {
-			e->What = evNothing;
+			e->What = evOther;
 			break;
 		}
 
@@ -298,11 +298,11 @@ void GetEvent(TEvent *e) {
 			redraw_screen();
 		}
 
-		e->What = evNothing;
+		e->What = evOther;
 		break;
 
 	default:
-		e->What = evNothing;
+		e->What = evOther;
 		break;
 	}
 }
