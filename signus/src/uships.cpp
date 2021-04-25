@@ -493,6 +493,7 @@ void TPoseidon::RotateRel(int ra)
     PlaceGround(TRUE);
     if (GetField(X, Y)->Visib == 2) {     
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);
     }
 }
@@ -650,6 +651,7 @@ void TKraken::RotateRel(int ra)
     PlaceGround(TRUE);
     if (GetField(X, Y)->Visib == 2) {     
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);
     }
 }
@@ -790,6 +792,7 @@ void TLaguna::RotateRel(int ra)
     PlaceGround(TRUE);
     if (GetField(X, Y)->Visib == 2) {     
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);
     }
 }

@@ -969,6 +969,7 @@ int PlayAnimation(const char *name) {
 
 		if (frame & VVFStream::VVF_VIDEO) {
 			DrawVideoFrame(anim.videobuf(), width, height);
+			UpdateScreen();
 		}
 
 		if (check_skip_event()) {

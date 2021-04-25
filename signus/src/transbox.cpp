@@ -71,6 +71,7 @@ void TTransBox::Draw(int phase)
 		}
 	}
 	PutBitmap32(x, y, Buf, w, h);
+	UpdateScreen();
 }
 
 
@@ -82,6 +83,7 @@ void TTransBox::Hide(int fast)
 		for (int i = 0; i < w; i += w/OPEN_STEP) {Draw(i); SDL_Delay(15);}
 	PutBitmap32(x, y, Bkg, w, h);
 	MouseShow();
+	UpdateScreen();
 	unlockmem(Buf, w * h); unlockmem(Bkg, w * h);
 	memfree(Bkg);
 	memfree(Buf);

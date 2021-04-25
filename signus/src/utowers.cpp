@@ -111,15 +111,19 @@ void TTower::ShowShootAt(int x, int y, int phase)
         WpnRotate(x, y);
         ActualSprite = 1*8 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite = 2*8 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite = 1*8 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite = 0*8 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ShowHelpers();
     }
@@ -270,6 +274,7 @@ void TThor::GoOverground(int over)
         for (i = 9; i < 16; i++) {
             ActualSprite = i;
             PaintUnit();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay2);
         }
         Orient = 3; ActualSprite = 3;
@@ -286,6 +291,7 @@ void TThor::GoOverground(int over)
         for (i = 15; i > 8; i--) {
             ActualSprite = i;
             PaintUnit();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay2);
         }
         ActualSprite = 8;
@@ -295,6 +301,7 @@ void TThor::GoOverground(int over)
     }
     ShowHelpers();
     PaintUnit();
+    UpdateScreen();
 }
 
 

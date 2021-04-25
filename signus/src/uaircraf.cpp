@@ -602,6 +602,7 @@ int TRex::Land()
 			LittleAlt = -i * 4;
 			ProcessMapAnim();
 			PaintUnit(FALSE);
+			UpdateScreen();
 			SDL_Delay(iniAnimDelay);
 		}
 	}		
@@ -614,6 +615,7 @@ int TRex::Land()
 	if (this == SelectedUnit) Select();
 	ShowHelpers();
 	if (GetMineAt(X, Y) != -1) {MineExplode(X, Y); DoExplosion();}
+	UpdateScreen();
 	return TRUE;
 }
 
@@ -636,6 +638,7 @@ int TRex::TakeOff()
 			LittleAlt = -i * 4;
 			ProcessMapAnim();
 			PaintUnit(FALSE);
+			UpdateScreen();
 			SDL_Delay(iniAnimDelay);
 		}
 		LittleAlt = 0;
@@ -643,6 +646,7 @@ int TRex::TakeOff()
 
 	if (this == SelectedUnit) Select();
 	ShowHelpers();
+	UpdateScreen();
 	return TRUE;
 }
 
@@ -789,6 +793,7 @@ int TCaesar::Land()
 			LittleAlt = -i * 4;
 			ProcessMapAnim();
 			PaintUnit(FALSE);
+			UpdateScreen();
 			SDL_Delay(iniAnimDelay);
 		}
 	}		
@@ -801,6 +806,7 @@ int TCaesar::Land()
 	if (this == SelectedUnit) Select();
 	ShowHelpers();
 	if (GetMineAt(X, Y) != -1) {MineExplode(X, Y); DoExplosion();}
+	UpdateScreen();
 	return TRUE;
 }
 
@@ -823,6 +829,7 @@ int TCaesar::TakeOff()
 			LittleAlt = -i * 4;
 			ProcessMapAnim();
 			PaintUnit(FALSE);
+			UpdateScreen();
 			SDL_Delay(iniAnimDelay);
 		}
 		LittleAlt = 0;
@@ -830,6 +837,7 @@ int TCaesar::TakeOff()
 
 	if (this == SelectedUnit) Select();
 	ShowHelpers();
+	UpdateScreen();
 	return TRUE;
 }
 

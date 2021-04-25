@@ -302,6 +302,7 @@ void DoExplosion()
             }
         }
         EndDraw();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);
         GetEvent(NULL);
     }
@@ -310,6 +311,7 @@ void DoExplosion()
               DrawingArea.x2-DrawingArea.x1+1, DrawingArea.y2-DrawingArea.y1+1);
     PaintUnits();
     EndDraw();
+    UpdateScreen();
 
     BoomBufPos = 0;
     BoomBufSize = 0;

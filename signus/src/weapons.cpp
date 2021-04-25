@@ -242,6 +242,7 @@ void TWeapon::AnimProcess(int fromx, int fromy, int tox, int toy,
             PanSample(ShootSound, GetFieldPanning(x / 28, y / 28));
             ProcessMapAnim();
             AnimDraw(x, y, h);
+	    UpdateScreen();
             GetEvent(NULL);
             SDL_Delay(AnimGetDelay());
         }
@@ -622,6 +623,7 @@ void TLaser::AnimProcess(int fromx, int fromy, int tox, int toy,
         
         if (draw && (actstep >= anistar)) {
             AnimDraw(x, y, h);
+            UpdateScreen();
         }
     }
     ProcessingShoot = FALSE;

@@ -321,12 +321,15 @@ void TSkorpion::ShowShootAt(int x, int y, int phase)
         oldwo = WpnOrient;
         WpnOrient = oldwo - 16;    /*odkaz na jiny sprite- hlaven v zakluzu*/
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo - 8;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo - 16;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo;
         ShowHelpers();
@@ -334,6 +337,7 @@ void TSkorpion::ShowShootAt(int x, int y, int phase)
     else {
         HideHelpers();
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ShowHelpers();
     }
@@ -677,6 +681,7 @@ void TIris::SupportUnit(TUnit *Unit)
     else 
         Unit->HitPoints = Unit->MaxHitPoints;
     Unit->PaintUnit(FALSE);
+    UpdateScreen();
     if (ID < BADLIFE) SaySpeech("repair", 90);
 }
 

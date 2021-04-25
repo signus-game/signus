@@ -53,6 +53,7 @@ static void DrawMN(byte *p1, byte *p2, void *bg, int sel)
     PutBitmap(80, 324, ((sel == 1) ? p2 : p1) + 640 * 224, 640, 80);
     PutBitmap(80, 404, ((sel == 2) ? p2 : p1) + 640 * 304, 640, 76);
     PutBitmap(80, 480, ((sel == 3) ? p2 : p1) + 640 * 380, 640, 100);
+    UpdateScreen();
 }
 
 
@@ -78,6 +79,7 @@ static void Flash(unsigned x, unsigned y) {
 
 	while (anim.next_frame()) {
 		PutBitmap(x, y, anim.videobuf(), width, height);
+		UpdateScreen();
 		timer += anim.frame_time();
 		curtime = SDL_GetTicks();
 
@@ -250,6 +252,7 @@ void ShowCredits() {
 		}
 
 		PutBitmap(0, 220, ((char*)ptr) + 220 * 800, 800, 300);
+		UpdateScreen();
 		memcpy(ptr, ptr2, 800*600);
 		SDL_Delay(20);
 

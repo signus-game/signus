@@ -984,6 +984,7 @@ draw_it_now:
 	}
 
 	PutBitmap32(px, py, bmp, 296, 431);
+	UpdateScreen();
 
 	for (;;) {
 		GetEvent(&e);
@@ -1180,6 +1181,7 @@ int TAirport::LoadUnit(TUnit *u)
             ((TAircraft*)u)->LittleAlt = -i * altd / 56;
             u->PaintUnit(TRUE);
             ProcessMapAnim();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay);
         }
     }
@@ -1195,6 +1197,7 @@ int TAirport::LoadUnit(TUnit *u)
     Inventory[LoadedUnits++] = u->ID;
     this->Select();
     ShowHelpers();
+    UpdateScreen();
     return TRUE;
 }
 
@@ -1251,12 +1254,14 @@ int TAirport::UnloadUnit(TUnit *u)
             ((TAircraft*)u)->LittleAlt = -i * altd / 56;
             u->PaintUnit(TRUE);
             ProcessMapAnim();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay);
         }
         ShowHelpers();
     }
 
     this->Select();
+    UpdateScreen();
     return TRUE;
 }
 
@@ -1327,6 +1332,7 @@ int THeliport::LoadUnit(TUnit *u)
             ((TAircraft*)u)->LittleAlt = -i;
             u->PaintUnit(TRUE);
             ProcessMapAnim();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay);
         }
     }
@@ -1343,6 +1349,7 @@ int THeliport::LoadUnit(TUnit *u)
     Inventory[LoadedUnits++] = u->ID;
     this->Select();
     ShowHelpers();
+    UpdateScreen();
     return TRUE;
 }
 
@@ -1391,6 +1398,7 @@ int THeliport::UnloadUnit(TUnit *u)
             ((TAircraft*)u)->LittleAlt = -i;
             u->PaintUnit(TRUE);
             ProcessMapAnim();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay);
         }
         u->LittleY = ((TAircraft*)u)->LittleAlt = 0;
@@ -1398,6 +1406,7 @@ int THeliport::UnloadUnit(TUnit *u)
     }
 
     this->Select();
+    UpdateScreen();
     return TRUE;
 }
 

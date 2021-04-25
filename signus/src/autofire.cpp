@@ -800,8 +800,8 @@ void ResetAutofire(int party)
         if (!AF_Units[k]) continue;
         u = (TUnit*)Units[k];
         AF_AddUnit(u);
-        ProgressInc();
         ProcessMapAnim();
+        ProgressInc();
     }
     ProgressNull();
 }

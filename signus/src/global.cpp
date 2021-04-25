@@ -670,6 +670,7 @@ void ProgressUpdate()
     MouseFreeze(PROGRESS_X_POS, PROGRESS_Y_POS, PROGRESS_SX, PROGRESS_SY);
     PutBitmap(PROGRESS_X_POS, PROGRESS_Y_POS, ProgressBuf, PROGRESS_SX, PROGRESS_SY);
     MouseUnfreeze();
+    UpdateScreen();
 }
 
 
@@ -719,10 +720,12 @@ void Message(const char *msg) {
 		memcpy(MessageBuf, MessageFrames[2], MSGBUF_SX * MSGBUF_SY);
 		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
 			MSGBUF_SY);
+		UpdateScreen();
 	} else {
 		memset(MessageBuf, clrWhite, MSGBUF_SX * MSGBUF_SY);
 		PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf, MSGBUF_SX,
 			MSGBUF_SY);
+		UpdateScreen();
 		SDL_Delay(50);
 
 		for (int i = 0; i < 3; i++) {
@@ -732,6 +735,7 @@ void Message(const char *msg) {
 				NormalFont, clrWhite, clrBlack);
 			PutBitmap32(MSGBUF_X_POS, MSGBUF_Y_POS, MessageBuf,
 				MSGBUF_SX, MSGBUF_SY);
+			UpdateScreen();
 			SDL_Delay(50);
 		}
 	}
@@ -785,6 +789,8 @@ void MsgBox(char *str) {
 			MSGBOX_SY);
 		memfree(dummy);
 	}
+
+	UpdateScreen();
 }
 
 
@@ -837,6 +843,7 @@ void UpdateLoading()
     if (LoadPhase == 16) LoadPhase = 0;
     buf = LoadBuf[LoadPhase];
     PutBitmap(RES_X/2+180, RES_Y-80, buf, 60, 50);
+    UpdateScreen();
 }
 
 

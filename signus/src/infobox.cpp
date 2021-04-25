@@ -191,6 +191,7 @@ int TInfoDialog::Exec() {
 
 			timer += anim->frame_time();
 			PutBitmap(x+22,y+22, anim->videobuf(), awidth,aheight);
+			UpdateScreen();
 		}
 
 		if (MusicOn && (!IsMusicPlaying())) {

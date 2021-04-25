@@ -238,6 +238,7 @@ int TObject::PaintUnitInMove(int bx, int by)
     if (GetField(X, Y)->Visib == 2) {
         PaintUnit(TRUE);
         ProcessMapAnim();
+	UpdateScreen();
         return TRUE;
     }
     else return FALSE;
@@ -679,6 +680,7 @@ int TObject::Damage(int WpnType, int AttackN, int BonusN)
         }
         PlaceGround(FALSE); PlaceGround(TRUE); //aby se nastavilo isanim podle dymu
         PaintUnit();
+	UpdateScreen();
         if (HitPoints <= 0) {HitPoints = 0; Destroy();}
         return UC - OC;
     }
@@ -846,6 +848,7 @@ void TObject::RemoveFromWorld()
     MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
     DrawLitMap();
     MouseUnfreeze();
+    UpdateScreen();
 }
 
 
@@ -1434,6 +1437,7 @@ void TUnit::Rotate(int angle)
         ActualSprite = Orient;
         if (GetField(X, Y)->Visib == 2) {
             PaintUnit();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay2);
         }
     }
@@ -1476,6 +1480,7 @@ void TUnit::RotateRel(int ra)
     ActualSprite = Orient;
     if (GetField(X, Y)->Visib == 2) {
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);
     }
 }
@@ -1504,6 +1509,7 @@ void TUnit::WpnRotate(int x, int y)
     if ((abs(angle - Orient) == 1) || (abs(angle - Orient) == 7)) {
         Orient = ActualSprite = angle;
         PaintUnit();
+	UpdateScreen();
     }
     else
         Rotate(angle);
@@ -1519,15 +1525,19 @@ void TUnit::ShowShootAt(int x, int y, int phase)
         WpnRotate(x, y);
         ActualSprite = 24 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite = 32 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite = 24 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ActualSprite =  0 + Orient;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ShowHelpers();
     }
@@ -1603,6 +1613,7 @@ void TToweredUnit::Rotate(int angle)
         ActualSprite = Orient;
         if (GetField(X, Y)->Visib == 2) {
             PaintUnit();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay2);
         }
     }
@@ -1618,6 +1629,7 @@ void TToweredUnit::WpnRot(int ang)
             WpnRotRel(RottTbl[WpnOrient][ang]);
             if (GetField(X, Y)->Visib == 2) {
                 PaintUnit();
+		UpdateScreen();
                 SDL_Delay(iniAnimDelay2);
             }
         }
@@ -1626,6 +1638,7 @@ void TToweredUnit::WpnRot(int ang)
         WpnOrient = ang;
         if (GetField(X, Y)->Visib == 2) {
             PaintUnit();
+	    UpdateScreen();
             SDL_Delay(iniAnimDelay2);
         }
     }
@@ -1664,6 +1677,7 @@ void TToweredUnit::WpnRotate(int x, int y)
     if ((abs(angle - WpnOrient) == 1) || (abs(angle - WpnOrient) == 7)) {
         WpnOrient = angle;
         PaintUnit();
+	UpdateScreen();
     }
     else
         WpnRot(angle);
@@ -1759,15 +1773,19 @@ void TToweredUnit::ShowShootAt(int x, int y, int phase)
         oldwo = WpnOrient;
         WpnOrient = oldwo - 16;    /*odkaz na jiny sprite- hlaven v zakluzu*/
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo - 8;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo - 16;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         WpnOrient = oldwo;
         PaintUnit();
+	UpdateScreen();
         SDL_Delay(iniAnimDelay2);   
         ShowHelpers();
     }
@@ -2063,6 +2081,7 @@ int TUnit::MoveSUB(int x, int y)
     MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
     DrawLitMap();
     MouseUnfreeze();
+    UpdateScreen();
     return (!attack_done);
 }
 
@@ -2904,7 +2923,7 @@ ending_label: // ja vim, prasarna
     MouseFreeze(LITMAP_X, LITMAP_Y, LITMAP_SIZE, LITMAP_SIZE);
     DrawLitMap();
     MouseUnfreeze();
-
+    UpdateScreen();
     return ReturnValue;
 }
 

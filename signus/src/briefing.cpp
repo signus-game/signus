@@ -819,6 +819,7 @@ void BriefHandleEvent(int What)
 void BriefRedrawScr() {
 	PutBitmap32(LeftSpace, UpSpace,
 		(char*)BigDrawBuffer+(LinePixels*Ofset), LinePixels, minheight);
+	UpdateScreen();
 }
 
 

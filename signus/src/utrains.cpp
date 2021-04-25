@@ -382,6 +382,7 @@ void TGanymedes::SupportUnit(TUnit *Unit) {
 	}
 
 	Unit->PaintUnit(FALSE);
+	UpdateScreen();
 }
 
 

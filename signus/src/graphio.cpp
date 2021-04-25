@@ -216,7 +216,6 @@ void DrawPicture(void *src)
     }
     LFB_Unlock();
     LeaveTCS();
-    UpdateScreen();
 }
 
 
@@ -239,7 +238,6 @@ void DrawPictureNB(void *src)
     }
     LFB_Unlock();
     LeaveTCS();
-    UpdateScreen();
 }
 
 
@@ -262,7 +260,6 @@ void DrawMapBuf()
     }
     LFB_Unlock();
     LeaveTCS();
-    UpdateScreen();
 }
 
 
@@ -283,7 +280,6 @@ void DrawMapBufP(int x, int y, int sx, int sy)
     }
     LFB_Unlock();
     LeaveTCS();
-    UpdateScreen();
 }
 
 
@@ -303,7 +299,6 @@ void DrawLitMap()
     }
     LFB_Unlock();
     LeaveTCS();
-    UpdateScreen();
 }
 
 
@@ -325,7 +320,6 @@ void PutBitmap(int x, int y, const void *data, int w, int h)
     }
     LFB_Unlock();
     MouseUnfreeze();
-    UpdateScreen();
     LeaveTCS();
 }
 
@@ -347,7 +341,6 @@ void PutBitmapNZ(int x, int y, void *data, int w, int h)
     }
     LFB_Unlock();
     MouseUnfreeze();
-    UpdateScreen();
     LeaveTCS();
 }
 
@@ -448,7 +441,6 @@ void DrawVideoFrame(const uint8_t *frame, unsigned width, unsigned height) {
 
 	LFB_Unlock();
 	LeaveTCS();
-	UpdateScreen();
 }
 
 

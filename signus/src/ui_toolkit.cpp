@@ -268,6 +268,7 @@ int TIconPanel::Help() {
 	PutStr(buf, bufszx, bufszy, 2, 0, itext, NormalFont, clrWhite,
 		clrBlack);
 	PutBitmap(xp, yp, buf, bufszx, bufszy);
+	UpdateScreen();
 	OMX = Mouse.x, OMY = Mouse.y;
 
 	do {
@@ -281,12 +282,14 @@ int TIconPanel::Help() {
 
 		if (ProcessMapAnim()) {
 			PutBitmap(xp, yp, buf, bufszx, bufszy);
+			UpdateScreen();
 		}
 	} while ((e.What == evNothing) || ((e.What == evMouseMove) &&
 		IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
 
 	PutEvent(&e);
 	PutBitmap(xp, yp, buf2, bufszx, bufszy);
+	UpdateScreen();
 	memfree(buf);
 	memfree(buf2);
 	return TRUE;
@@ -357,6 +360,7 @@ void TMenu::Draw(int phase)
         }
     }
     PutBitmap32(MENU_X, MENU_Y, Buf, MENU_SX, MENU_SY);
+    UpdateScreen();
 }
 
 
@@ -460,9 +464,9 @@ TDialog::TDialog(int ax, int ay, int aw, int ah, const char *backimg)
 
 
 
-void TDialog::PaintRect(int ay, int ah)
-{
-    PutBitmap32(x, y + ay, ((byte*)DrwBuf) + ay * w, w, ah);
+void TDialog::PaintRect(int ay, int ah) {
+	PutBitmap32(x, y + ay, ((byte*)DrwBuf) + ay * w, w, ah);
+	UpdateScreen();
 }
 
 
@@ -610,6 +614,7 @@ void TDialog::FadeDlg(int In)
                 x1 -= 8, x2 += 8;
                 if (x1 < 0) x1 = 0;
 		if (x2 > w - 8) x2 = w - 8;
+                UpdateScreen();
                 GetEvent(NULL);
                 SDL_Delay(4);
             }
@@ -620,6 +625,7 @@ void TDialog::FadeDlg(int In)
                 PutBitmap32(x, y + y1+8, ((byte*)DrwBuf) + w * (y1+8), w, 8);
                 PutBitmap32(x, y + y2-8, ((byte*)DrwBuf) + w * (y2-8), w, 8);
                 y1 -= 8, y2 += 8;
+                UpdateScreen();
                 GetEvent(NULL);
                 SDL_Delay(10);                
             }
@@ -635,15 +641,18 @@ void TDialog::FadeDlg(int In)
                 for (j = 0;j < h; j += 4)
                     ((byte*)DrwBuf)[j * w + i] = ((byte*)BkgBuf)[j * w + i];
             PutBitmap32(x, y, DrwBuf, w, h);
+            UpdateScreen();
             SDL_Delay(40);
             for (i = 0; i < w; i += 2)
                 for (j = 0;j < h; j += 2)
                     ((byte*)DrwBuf)[j * w + i] = ((byte*)BkgBuf)[j * w + i];
             PutBitmap32(x, y, DrwBuf, w, h);
+            UpdateScreen();
             SDL_Delay(40);
         }
 
         PutBitmap32(x, y, BkgBuf, w, h);
+        UpdateScreen();
         unlockmem(DrwBuf, w * h);
         unlockmem(BkgBuf, w * h);
     }

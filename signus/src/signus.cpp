@@ -200,7 +200,7 @@ void IdleEvent() {
 		void *buf, *buf2;
 		int bufszx, bufszy;
 		int xp, yp;
-		int OMX, OMY;
+		int OMX, OMY, oldtv = TimerValue - 1;
 		char itext[100];
 
 		SelectedUnit->GetFieldInfo(SelPos.x, SelPos.y, itext);
@@ -253,6 +253,11 @@ void IdleEvent() {
 				if ((TimerValue % ANIM_CUR_SPD == 0) && (TimerValue > AnimCurOldTimer)) {
 					AnimateCursor();
 				}
+
+				if (TimerValue != oldtv) {
+					UpdateScreen();
+					oldtv = TimerValue;
+				}
 			} while ((e.What == evNothing) ||
 				((e.What == evMouseMove) &&
 				IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, OMX - 10, OMY - 10, OMX + 10, OMY + 10)));
@@ -271,6 +276,7 @@ void IdleEvent() {
 	}
 
 	UpdateWatch();
+	UpdateScreen();
 }
 
 
@@ -558,6 +564,7 @@ void DoVisSetup()
         for (y = 0; y < 15; y++)
             memcpy(Drw + 54 * (i * 15 + 1 + y), dum + 54 * (i * 15 + 1 + y), 54);
         PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
+	UpdateScreen();
         SDL_Delay(100);
     }   
     while (TRUE) {
@@ -573,12 +580,14 @@ void DoVisSetup()
                 memcpy(Drw + 54 * (i * 15 + 1 + y), dum + 54 * (i * 15 + 1 + y), 54);
             PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
             RedrawMap();
+	    UpdateScreen();
         }
         else break;
     }
     
         
     PutBitmap(VIS_SET_X, 252, Back, 54, h); 
+    UpdateScreen();
     memfree(Back);
     memfree(Drw); memfree(DOn); memfree(DOff);
 }
@@ -818,6 +827,8 @@ void HandleEvent(TEvent *e)
                 }
         }       
     }
+
+    UpdateScreen();
 }
 
 
@@ -946,6 +957,7 @@ void TurnEnd()
     RedrawMap();
     if (SelectedUnit) SelectedUnit->Select();
     MainIcons->Draw();
+    UpdateScreen();
 
     UnitInfoLock++;
     for (i = 0; i < MapSizeX; i++)
@@ -997,6 +1009,7 @@ void TurnEnd()
     TurnTime = 0;
     UpdateWatch();
     MouseShow();
+    UpdateScreen();
     {
         TEvent e;
         do {GetEvent(&e);} while (e.What != evNothing);
@@ -1086,7 +1099,6 @@ int RunSignus(int from_save)
   } 
   else if (TerminationStatus == 1) { // uspech
         char name[20];
-        void *b;
 
         SaySpeech("success", 9000);
         sprintf(name, "debrf%i", ActualMission);
@@ -1094,10 +1106,8 @@ int RunSignus(int from_save)
             MouseSetCursor(mcurArrow);
             FadeOut(Palette, 0);
             BriefGo(name);
-            b = memalloc(RES_X * RES_Y);
-            memset(b, 0, RES_X * RES_Y);
-            DrawPicture(b);
-            memfree(b);
+	    ClearScr();
+	    UpdateScreen();
         }
         
         if (ActualMission == 6) {   // zacina valka

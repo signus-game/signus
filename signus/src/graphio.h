@@ -65,6 +65,9 @@ extern void ToggleFullscreen();
 // Fast main window redraw (without updating framebuffer)
 void redraw_screen(void);
 
+// Full main window redraw (with framebuffer update from drawbuffer)
+void UpdateScreen(void);
+
 ///////////////////////////////////////////////////////
 // Funkce vkladajici na obrazovky ruzne vyrezy: 
 //
