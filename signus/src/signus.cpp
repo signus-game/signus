@@ -112,7 +112,7 @@ void UpdateWatch()
 // animovane kurzory mysi:
 
 static int AnimCurOldTimer = 0;
-#define ANIM_CUR_SPD  2
+#define ANIM_CUR_SPD  10
 
 void AnimateCursor()
 {
@@ -125,14 +125,14 @@ void AnimateCursor()
     cur = basecur[Mouse.ActCur];
     if (cur == mcurSelect) {
         Mouse.SuperLocks++;
-        Mouse.ActCur = selmorph[phase++];
+	MouseSetCursor(selmorph[phase++]);
         if (phase == 4) phase = 0;
         MousePaint();
         Mouse.SuperLocks--;
     }
     else if (cur == mcurTarget) {
         Mouse.SuperLocks++;
-        Mouse.ActCur = tarmorph[phase++];
+	MouseSetCursor(tarmorph[phase++]);
         if (phase == 4) phase = 0;
         MousePaint();
         Mouse.SuperLocks--;
