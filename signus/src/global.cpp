@@ -817,7 +817,6 @@ void StartLoading(char *picname)
     sprintf(buf, "%imis1", iniResolution - 0x100);
     LoadArray(LoadBuf, 16, GraphicsDF, "load%i");
 
-    SDL_Delay(1000);
     MouseHide();
     ptr = GraphicsDF->get(buf);
     if (ptr) {
@@ -852,7 +851,6 @@ void DoneLoading()
 {
     DisposeArray(LoadBuf, 16);
     MouseShow();
-    SDL_Delay(1000);
 }
 
 

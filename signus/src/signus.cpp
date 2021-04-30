@@ -1057,7 +1057,6 @@ int RunSignus(int from_save)
     PulsarProcess = TRUE;
     SetPalette(Palette);
     // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
-    SDL_Delay(1000);
     draw_mission_bezel(1);
     UpdateLitMap(TRUE);
     RedrawMap();
