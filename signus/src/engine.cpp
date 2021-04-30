@@ -178,7 +178,6 @@ void draw_mission_bezel(int transparent) {
 
 	sprintf(buf, "%imainscr", iniResolution - 0x100);
 	ptr = GraphicsDF->get(buf);
-	MouseHide();
 
 	if (transparent) {
 		DrawPictureNB(ptr);
@@ -186,7 +185,6 @@ void draw_mission_bezel(int transparent) {
 		DrawPicture(ptr);
 	}
 
-	MouseShow();
 	memfree(ptr);
 }
 

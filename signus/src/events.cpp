@@ -202,9 +202,7 @@ void GetEvent(TEvent *e) {
 
 	        sprintf(buf, "%imainscr", iniResolution - 0x100);
 	        ptr = GraphicsDF->get(buf);       
-	        MouseHide();
 	        DrawPicture(ptr); 
-	        MouseShow();
 	        memfree(ptr);
 	        UpdateLitMap(TRUE);
 	        RedrawMap();

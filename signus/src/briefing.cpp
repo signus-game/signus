@@ -564,9 +564,7 @@ void drawGUI(void) {
 
 	sprintf(buf, "%ibriefbk", iniResolution - 0x0100);
 	ptr = GraphicsDF->get(buf);
-	MouseHide();
 	DrawPicture(ptr);
-	MouseShow();
 	memfree(ptr);
 }
 
@@ -833,9 +831,7 @@ void BriefScrollUp(unsigned Num) {
 	}
 
 	if (OldOfs != Ofset) {
-		MouseHide();
 		BriefRedrawScr();
-		MouseShow();
 	}
 }
 void BriefScrollDown(unsigned Num) {
@@ -851,8 +847,6 @@ void BriefScrollDown(unsigned Num) {
 	}
     
 	if (OldOfs != Ofset) {
-		MouseHide();
 		BriefRedrawScr();
-		MouseShow();
 	}
 }

@@ -338,9 +338,7 @@ TModifyDialog::~TModifyDialog()
 
 void ModifyUnits()
 {
-    MouseHide();
     ClearScr();
-    MouseShow();
 
     TModifyDialog *dlg = new TModifyDialog();
 
