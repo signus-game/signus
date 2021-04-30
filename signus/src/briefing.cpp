@@ -35,7 +35,7 @@
 #include "fonts.h"
 #include "mouse.h"
 
-#include <cassert>
+#include <cctype>
 #include <SDL_timer.h>
 
 // Fces:

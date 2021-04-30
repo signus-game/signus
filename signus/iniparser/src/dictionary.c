@@ -198,7 +198,7 @@ const char * dictionary_get(dictionary * d, const char * key)
 /*--------------------------------------------------------------------------*/
 char dictionary_getchar(dictionary * d, const char * key, char def)
 {
-	char * v ;
+	const char * v ;
 
 	if ((v=dictionary_get(d,key))==NULL) {
 		return def ;

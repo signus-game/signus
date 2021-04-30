@@ -24,6 +24,7 @@
 // Implementace proporcialnich textovych fontu 
 //
 
+#include <cstring>
 
 #include "graphio.h"
 #include "global.h"

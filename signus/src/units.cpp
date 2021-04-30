@@ -27,7 +27,8 @@
 
 #include <SDL_timer.h>
 
-#include <math.h>
+#include <cstring>
+#include <cmath>
 #include "units.h"
 #include "events.h"
 #include "graphio.h"

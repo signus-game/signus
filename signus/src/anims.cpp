@@ -33,7 +33,7 @@
 #include "engtimer.h"
 
 MemoryReadStream *decompress(ReadStream &stream) {
-	size_t bufsize, pos, size;
+	unsigned long bufsize, pos, size;
 	uint8_t *buf;
 	unsigned tmp, bitmask, i, j;
 	int offset;
@@ -83,13 +83,13 @@ MemoryReadStream *decompress(ReadStream &stream) {
 				return NULL;
 			}
 
-			if ((size_t)offset >= pos) {
+			if ((unsigned)offset >= pos) {
 				offset -= 0x1000;
 			}
 
 			// Negative offset stands for a block of 0x20
 			if (offset < 0) {
-				tmp = min(size, (size_t)-offset);
+				tmp = min(size, (unsigned long)-offset);
 				memset(buf + pos, 0x20, tmp);
 				offset = 0;
 				size -= tmp;
@@ -648,7 +648,7 @@ unsigned VVFStream::decode_video(SeekableReadStream &stream) {
 
 // Chunk type 0xe
 unsigned VVFStream::decode_audio(SeekableReadStream &stream) {
-	size_t size;
+	unsigned long size;
 	unsigned format;
 
 	format = stream.readUint8();
@@ -675,7 +675,7 @@ unsigned VVFStream::decode_audio(SeekableReadStream &stream) {
 	size = stream.read(_audiobuf, _audiosize);
 
 	if (size != _audiosize) {
-		fprintf(stderr, "decode_audio(): Premature end of audio chunk %lu != %u\n", size ,_audiosize);
+		fprintf(stderr, "decode_audio(): Premature end of audio chunk %lu != %u\n", size, _audiosize);
 		delete[] _audiobuf;
 		_audiobuf = NULL;
 		_audiosize = 0;

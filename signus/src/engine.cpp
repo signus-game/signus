@@ -22,6 +22,7 @@
 
 // Graficky IZO-3D engine
 
+#include <cstring>
 
 #include "engine.h"
 #include "graphio.h"
