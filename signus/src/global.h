@@ -93,6 +93,11 @@ extern int RollDice();
 // zapnuti a vypnuti ukazatele zanebrazdnenosti (hodiny):
 extern void WaitCursor(int turn_on);
 
+char *format_string(const char *fmt, va_list args);
+char *format_string(const char *fmt, ...);
+void print_error(const char *fmt, ...);
+
+int create_dir(const char *path);
 
 ////////////////////////////////////////////
 // Inicializacni hodnoty a sprazene fce:

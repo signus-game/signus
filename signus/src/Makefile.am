@@ -88,6 +88,14 @@ header_files = ai/aiair.h ai/aiglobal.h ai/aiground.h ai/ai.h ai/aimarine.h \
 	units.h unmodif.h untables.h uships.h utowers.h utrains.h utrans.h \
 	visiblty.h weapons.h
 
+if SYSTEM_UNIX
+ENGINE_FILES += unix.cpp
+endif
+if SYSTEM_WINDOWS
+ENGINE_FILES += windows.cpp
+endif
+
+
 bin_PROGRAMS = signus
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
 signus_LDADD = $(SDL2_LIBS) $(libvorbis_LIBS) $(libjpeg_LIBS) \

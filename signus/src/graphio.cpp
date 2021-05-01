@@ -35,6 +35,7 @@
 #include <time.h>
 #include <SDL_timer.h>
 #include <SDL.h>
+#include <SDL_syswm.h>
 
 #define WINDOW_TITLE "Signus: The Artefact Wars"
 
@@ -156,19 +157,21 @@ int create_window(void) {
 	return 1;
 }
 
-int InitVideo(void)
-{
-    if (create_window())
-        return TRUE;
+int InitVideo(void) {
+	if (create_window()) {
+		return TRUE;
+	}
 
-    char buf[512];
-    sprintf(buf, "SDL initialization failed: %s\n", SDL_GetError());
-#ifdef _WIN32
-    MessageBox(hWindow, buf, "ERROR", MB_OK | MB_ICONERROR);
-#else
-    fprintf(stderr, buf);
-#endif
-    return FALSE;
+	print_error("SDL initialization failed: %s\n", SDL_GetError());
+	return FALSE;
+}
+
+int window_info(SDL_SysWMinfo *info) {
+	if (!window) {
+		return 0;
+	}
+
+	return SDL_GetWindowWMInfo(window, info);
 }
 
 void ToggleFullscreen() {

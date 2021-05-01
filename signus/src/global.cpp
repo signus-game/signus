@@ -103,6 +103,43 @@ int iniBrightCorr;
 int iniTitledAnims, iniInterpolateAnims;
 
 
+char *format_string(const char *fmt, va_list args) {
+	char *buf;
+	int ret, size = 1024;
+
+	buf = (char*)memalloc(size);
+
+	if (!buf) {
+		return NULL;
+	}
+
+	ret = vsnprintf(buf, size, fmt, args);
+
+	if (ret >= size) {
+		size = ret + 1;
+		memfree(buf);
+		buf = (char*)memalloc(size);
+
+		if (!buf) {
+			return NULL;
+		}
+
+		vsnprintf(buf, size, fmt, args);
+	}
+
+	buf[size - 1] = '\0';
+	return buf;
+}
+
+char *format_string(const char *fmt, ...) {
+	char *ret;
+	va_list args;
+
+	va_start(args, fmt);
+	ret = format_string(fmt, args);
+	va_end(args);
+	return ret;
+}
 
 void detect_language(void) {
 	std::string lang, path = getSignusDataDir();
@@ -553,7 +590,7 @@ const char *getSignusConfigDir() {
 	strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
 	inidir[PATH_MAX-1] = '\0';
 
-	if (!dirExists(inidir) && mkdir(inidir, 0700)) {
+	if (!dirExists(inidir) && create_dir(inidir)) {
 		fprintf(stderr, "Error: Cannot create config directory %s\n",
 			inidir);
 	}

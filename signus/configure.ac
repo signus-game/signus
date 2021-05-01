@@ -8,7 +8,17 @@ AC_INIT([signus], [1.96.0], [zarevucky.jiri@gmail.com])
 AC_CONFIG_SRCDIR([signus.spec])
 AC_CONFIG_AUX_DIR([admin])
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
+
+case "${host_os}" in
+linux*|darwin*)
+	signus_system=unix ;;
+cygwin*|mingw*)
+	signus_system=windows ;;
+*)
+	AC_MSG_ERROR(["$host_os is not supported (yet)"])
+esac
 
 dnl cross-compiling support: we're cross compiling if the build system is
 dnl different from the target one (assume host and target be always the same)
@@ -27,6 +37,9 @@ fi
 AM_INIT_AUTOMAKE([subdir-objects])
 
 AM_MAINTAINER_MODE
+
+AM_CONDITIONAL([SYSTEM_UNIX], [test "x$signus_system" = "xunix"])
+AM_CONDITIONAL([SYSTEM_WINDOWS], [test "x$signus_system" = "xwindows"])
 
 AC_ARG_ENABLE(debug, [  --enable-debug          Enable debugging information],
               USE_DEBUG="$enableval", USE_DEBUG="no")

@@ -293,7 +293,7 @@ static const char *getSavesDir()
     strncat(savesDir, "/saved_games", sizeof(savesDir) - strlen(savesDir) - 1);
     savesDir[sizeof(savesDir) - 1] = '\0';
     if (!dirExists(savesDir))
-        mkdir(savesDir, 0700);
+        create_dir(savesDir);
     return savesDir;
 }
 
