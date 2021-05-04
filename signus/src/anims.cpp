@@ -961,6 +961,17 @@ int PlayAnimation(const char *name) {
 				anim.audio_size(), anim.audio_freq(), -16,
 				anim.audio_channels(), 0);
 			PlaySample(audio, 0, SpeechVolume, 128);
+
+			// Fix audio conversion delay
+			timer = SDL_GetTicks();
+
+			if (!(frame & VVFStream::VVF_VIDEO)) {
+				if (timer > anim.frame_time()) {
+					timer -= anim.frame_time();
+				} else {
+					timer = 0;
+				}
+			}
 		}
 
 		if (frame & VVFStream::VVF_PALETTE) {
