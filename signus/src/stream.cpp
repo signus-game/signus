@@ -516,7 +516,9 @@ File::~File(void) {
 }
 
 int File::open(const char *filename, unsigned mode) {
-	static const char *modelist[] = {NULL, "r", "a", "r+", NULL, "w", "w+"};
+	static const char *modelist[] = {
+		NULL, "rb", "ab", "rb+", NULL, "wb", "wb+"
+	};
 	const char *modestr = NULL;
 
 	close();
