@@ -285,16 +285,14 @@ TLoadSaveDialog::TLoadSaveDialog(int aSv) : TDialog(VIEW_X_POS + (VIEW_SX-500)/2
 
 
 extern bool dirExists(const char *filename);
-static const char *getSavesDir()
-{
-    static char savesDir[PATH_MAX - 256] = "";
-    strncpy(savesDir, getSignusConfigDir(), sizeof(savesDir));
-    savesDir[sizeof(savesDir) - 1] = '\0';
-    strncat(savesDir, "/saved_games", sizeof(savesDir) - strlen(savesDir) - 1);
-    savesDir[sizeof(savesDir) - 1] = '\0';
-    if (!dirExists(savesDir))
-        create_dir(savesDir);
-    return savesDir;
+
+char *signus_save_path(const char *path) {
+	char *tmp, *ret;
+
+	tmp = signus_config_path("saved_games");
+	ret = concat_path(tmp, path);
+	memfree(tmp);
+	return ret;
 }
 
 int detectFormat(const char *magic) {
@@ -345,13 +343,13 @@ void TLoadSaveDialog::SearchFiles() {
 	struct dirent *fi;
 	int i, j;
 	TSavegameHdr hdr;
-	char buf[PATH_MAX];
+	char *dirname, *filename;
 	File f;
 
 	SCount = IsSave ? 1 : 0;
 	for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
 
-	const char *dirname = getSavesDir();
+	dirname = signus_save_path();
 	// searching for savefiles...:
 	dir = opendir(dirname);
 
@@ -360,47 +358,64 @@ void TLoadSaveDialog::SearchFiles() {
 			continue;
 		}
 
-		snprintf(buf, PATH_MAX, "%s/%s", dirname, fi->d_name);
-		f.open(buf);
+		filename = concat_path(dirname, fi->d_name);
+
+		if (!filename) {
+			continue;
+		}
+
+		f.open(filename);
 
 		if (f.isOpen()) {
 			readSavegameHeader(f, hdr);
 
 			if (hdr.format < 0) {
 				f.close();
+				memfree(filename);
 				continue;
 			}
 
 			SNames[SCount] = strdup(hdr.Name);
-			SFiles[SCount] = strdup(buf);
+			SFiles[SCount] = filename;
 			STimes[SCount] = -hdr.Time;
 			SCount++;
 			f.close();
+		} else {
+			memfree(filename);
 		}
 	}
 
 	closedir(dir);
+	memfree(dirname);
 
 	if (IsSave) { // udela jmeno pro new save:
+		char buf[32];
 		int rc;
 
 		for (i = 0; i < 1000; i++) {
-			snprintf(buf, PATH_MAX, "%s/savegame.%03i", dirname, i);
+			sprintf(buf, "savegame.%03i", i);
+			filename = signus_save_path(buf);
 			rc = TRUE;
 
+			if (!filename) {
+				continue;
+			}
+
 			for (j = 1; j < SCount; j++) {
-				if (!strcmp(buf, SFiles[j])) {
+				if (!strcasecmp(filename, SFiles[j])) {
 					rc = FALSE;
 					break;
 				}
 			}
 
 			if (rc) {
-				SFiles[0] = (char*)strdup(buf);
+				SFiles[0] = filename;
 				SNames[0] = (char*)memalloc(strlen(SigText[TXT_NEW]) + 1);
 				strcpy(SNames[0], SigText[TXT_NEW]);
 				STimes[0] = 0;
 				break;
+			} else {
+				memfree(filename);
 			}
 		}
 	}

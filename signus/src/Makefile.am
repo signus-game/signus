@@ -1,8 +1,6 @@
 
-AM_CPPFLAGS = -ansi -pedantic -Wall -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src \
-		   -fsanitize=address -fstack-protector -fsanitize=undefined
+AM_CPPFLAGS = -ansi -pedantic -Wall -I. -I$(srcdir)/ai -I$(top_srcdir)/iniparser/src
 
-AM_LDFLAGS = -fsanitize=address -fstack-protector -fsanitize=undefined
 
 ENGINE_FILES = \
            etables.cpp \
@@ -91,6 +89,7 @@ header_files = ai/aiair.h ai/aiglobal.h ai/aiground.h ai/ai.h ai/aimarine.h \
 if SYSTEM_UNIX
 ENGINE_FILES += unix.cpp
 endif
+
 if SYSTEM_WINDOWS
 ENGINE_FILES += windows.cpp
 endif

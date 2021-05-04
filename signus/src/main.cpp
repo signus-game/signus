@@ -46,20 +46,22 @@ extern void DoneSignus();
 
 
 
-static void finiObjects()
-{
-    char b[100];
+static void finiObjects() {
+	char *path;
 
-    allow_mouse = FALSE;
-    if (signus_inited) DoneSignus();
-    signus_inited = FALSE;
-    sprintf(b, "%s/crashguard_saved_state", getSignusConfigDir());
-    remove(b);
-    
-    if (SDL_inited)
-    {
-        SDL_Quit();
-    }
+	allow_mouse = FALSE;
+	if (signus_inited) DoneSignus();
+	signus_inited = FALSE;
+	path = signus_config_path("crashguard_saved_state");
+
+	if (path) {
+		remove(path);
+		memfree(path);
+	}
+
+	if (SDL_inited) {
+		SDL_Quit();
+	}
 }
 
 // Initializer:
@@ -130,13 +132,23 @@ int main(int argc, char *argv[]) {
     }
 #endif
 
-	if (!InitGlobal()) return FALSE;
+	if (!init_datadir(argv[0])) {
+		return FALSE;
+	}
 
-	if (!doInit()) return FALSE;
+	if (!InitGlobal()) {
+		cleanup_datadir();
+		return FALSE;
+	}
+
+	if (!doInit()) {
+		cleanup_datadir();
+		return FALSE;
+	}
 
 	signus_thread_is_running = TRUE;
 	signus_thread(NULL);
-
+	cleanup_datadir();
 	return 0;
 }
 

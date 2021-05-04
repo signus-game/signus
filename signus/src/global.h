@@ -80,11 +80,15 @@ void multipath_fopen(File &f, const char *name, unsigned mode);
 
 extern bool fileExists(const char *name);
 
-// Returns directory with Signus data:
-extern const char *getSignusDataDir();
+int init_datadir(const char *exepath);
+void cleanup_datadir(void);
 
-// Returns directory with Signus configuration
-extern const char *getSignusConfigDir();
+char *concat_path(const char *root, const char *path);
+char *signus_data_path(const char *path = NULL);
+char *signus_nolang_path(const char *path = NULL);
+char *signus_locale_path(const char *path = NULL);
+char *signus_config_path(const char *path = NULL);
+char *signus_save_path(const char *path = NULL);
 
 // hazeni kostkou:
 extern int RollDice();
@@ -98,6 +102,7 @@ char *format_string(const char *fmt, ...);
 void print_error(const char *fmt, ...);
 
 int create_dir(const char *path);
+char *get_locale(void);
 
 ////////////////////////////////////////////
 // Inicializacni hodnoty a sprazene fce:

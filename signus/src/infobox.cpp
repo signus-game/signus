@@ -142,7 +142,7 @@ int TInfoDialog::Exec() {
 	VVFStream *anim = NULL;
 	int ret = -1;
 	unsigned awidth = 0, aheight = 0, timer = 0;
-	char filename[PATH_MAX];
+	char filename[64], *path;
 	TEvent e;
 
 	sprintf(filename, "unit%i", unit->Type);
@@ -153,9 +153,11 @@ int TInfoDialog::Exec() {
 		aheight = anim->video_height();
 	} else {
 		SDL_Surface *image;
-		snprintf(filename, PATH_MAX,"%s/nolang/unit-images/unit%i.jpg",
-			getSignusDataDir(), unit->GetType());
-		image = IMG_Load(filename);
+		snprintf(filename, 64,"unit-images/unit%i.jpg",
+			unit->GetType());
+		path = signus_nolang_path(filename);
+		image = IMG_Load(path);
+		memfree(path);
 		byte *pall = (byte*)memalloc(256 * 192);
 		paletizeSurface(pall, image, "pal_rgb");
 		SDL_FreeSurface(image);

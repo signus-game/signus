@@ -36,7 +36,6 @@
 #include <sys/stat.h>
 #include <limits.h>
 #include <cstdlib>
-#include <clocale>
 
 extern "C" {
 #include "iniparser.h"
@@ -142,54 +141,60 @@ char *format_string(const char *fmt, ...) {
 }
 
 void detect_language(void) {
-	std::string lang, path = getSignusDataDir();
-	const char *env;
-	size_t pos, baselen;
+	char *syslocale, *basepath, *path, *found;
+	size_t len;
 	File testfile;
 
-	env = setlocale(LC_MESSAGES, NULL);
+	syslocale = get_locale();
 
-	if (!env) {
+	if (!syslocale) {
 		strcpy(iniLocale, DEFAULT_LANG);
 		return;
 	}
 
-	if (path[path.length() - 1] != '/') {
-		path += '/';
+	// make sure the value fits into iniLocale
+	if (strlen(syslocale) >= 200) {
+		syslocale[200] = '\0';
 	}
 
-	lang = env;
+	found = strchr(syslocale, '.');
 
-	if (lang.length() >= 200) {
-		lang.erase(200);
+	if (found) {
+		*found = '\0';
 	}
 
-	pos = lang.find('.');
-	baselen = path.length();
+	len = strlen(syslocale);
+	basepath = signus_data_path(syslocale);
+	memfree(syslocale);
 
-	if (pos != std::string::npos) {
-		lang.erase(pos);
+	if (!basepath) {
+		strcpy(iniLocale, DEFAULT_LANG);
+		return;
 	}
+
+	syslocale = basepath + strlen(basepath) - len;
 
 	while (1) {
-		path += lang;
-		path += "/texts.dat";
+		path = concat_path(basepath, "texts.dat");
 
-		if (testfile.open(path.c_str(), File::READ)) {
-			strcpy(iniLocale, lang.c_str());
+		if (testfile.open(path, File::READ)) {
+			strcpy(iniLocale, syslocale);
+			memfree(path);
+			memfree(basepath);
 			return;
 		}
 
-		path.erase(baselen);
-		pos = lang.rfind('_');
+		memfree(path);
+		found = strrchr(syslocale, '_');
 
-		if (pos == std::string::npos) {
+		if (!found) {
 			break;
 		}
 
-		lang.erase(pos);
+		*found = '\0';
 	}
 
+	memfree(basepath);
 	strcpy(iniLocale, DEFAULT_LANG);
 }
 
@@ -199,34 +204,27 @@ bool dirExists(const char *filename)
     return stat(filename, &st) == 0 && S_ISDIR(st.st_mode);
 }
 
-static const char *GetConfigFileName()
-{
-    const char *home = getenv("HOME");
-    if (!home) home = ".";
-
-    static char inifile[PATH_MAX] = "";
-    
-    if (*inifile == 0)
-    {
-        strncpy(inifile, getSignusConfigDir(), PATH_MAX);
-	inifile[PATH_MAX-1] = '\0';
-        strncat(inifile, "/signus.ini", PATH_MAX - strlen(inifile) - 1);
-	inifile[PATH_MAX-1] = '\0';
-    }
-    
-    return inifile;
+static char *GetConfigFileName() {
+	return signus_config_path("signus.ini");
 }
 
 bool LoadINI() {
 	dictionary *dict = NULL;
-	const char *configname = GetConfigFileName();
+	char *configname = GetConfigFileName();
 
-	if (fileExists(configname)) {
-		dict = iniparser_load((char*)configname);
+	if (configname && fileExists(configname)) {
+		dict = iniparser_load(configname);
 	}
 
+	memfree(configname);
+
 	if (dict == NULL) {
-		dict = iniparser_load(SIGNUS_DATA_DIR "/default_signus.ini");
+		configname = signus_data_path("default_signus.ini");
+
+		if (configname) {
+			dict = iniparser_load(configname);
+			memfree(configname);
+		}
 	}
 
 	if (dict == NULL) {
@@ -273,14 +271,16 @@ bool LoadINI() {
 
 
 void SaveINI() {
-	const char *fname = GetConfigFileName();
+	char *fname = GetConfigFileName();
 	FILE *f = fopen(fname, "wt");
 
 	if (!f) {
 		fprintf(stderr, "Error: Cannot save INI file %s\n", fname);
+		memfree(fname);
 		return;
 	}
 
+	memfree(fname);
 	fprintf(f, "\n[video]\n"
 		"brightness             = %i ;\n"
 		"anims_titled           = %i ;\n"
@@ -403,8 +403,25 @@ int DoMemoryCheck()
 
 
 
+static int create_config_path(const char *path = NULL) {
+	char *fullpath = signus_config_path(path);
+
+	if (!fullpath) {
+		print_error("Cannot allocate memory");
+		return 0;
+	} else if (!dirExists(fullpath) && create_dir(fullpath)) {
+		print_error("Cannot create config directory");
+		memfree(fullpath);
+		return 0;
+	}
+
+	memfree(fullpath);
+	return 1;
+}
 
 int InitGlobal() {
+	char *path;
+
 #ifdef DEBUG
 	dbgOutput = fopen("debug.nfo", "wt");
 
@@ -418,6 +435,10 @@ int InitGlobal() {
 
 	fprintf(dbgOutput, "Free memory (on start): %ikB\n", GetFreeMem()/1024);
 #endif
+
+	if (!create_config_path() || !create_config_path("saved_games")) {
+		return FALSE;
+	}
 
 	if (!LoadINI()) {
 		return FALSE;
@@ -436,19 +457,17 @@ int InitGlobal() {
 	GraphicsDF = new TDataFile("graphics-common.dat", dfOpenRead, NULL);
 	GraphicsI18nDF = new TDataFile("graphics.dat", dfOpenRead, NULL);
 
-	char fontfile[PATH_MAX];
-	char fontfileTiny[PATH_MAX];
-	snprintf(fontfile, PATH_MAX, "%s/nolang/FreeSans.ttf",
-		getSignusDataDir());
-	snprintf(fontfileTiny, PATH_MAX, "%s/nolang/nimbus_sans.pfb",
-		getSignusDataDir());
 	TTF_Init();
-	NormalFont = TTF_OpenFont(fontfile, 12);
+	path = signus_nolang_path("FreeSans.ttf");
+	NormalFont = TTF_OpenFont(path, 12);
 	TTF_SetFontStyle(NormalFont, TTF_STYLE_BOLD);
-	HugeFont = TTF_OpenFont(fontfile, 20);
+	HugeFont = TTF_OpenFont(path, 20);
 	TTF_SetFontStyle(HugeFont, TTF_STYLE_BOLD);
-	TinyFont = TTF_OpenFont(fontfileTiny, 10);
+	memfree(path);
+	path = signus_nolang_path("nimbus_sans.pfb");
+	TinyFont = TTF_OpenFont(path, 10);
 	TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
+	memfree(path);
 
 	if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) {
 		return 0;
@@ -563,71 +582,65 @@ void Union2(int *x1, int *y1, int *w1, int *h1, int x2, int y2, int w2, int h2)
 
 
 
-const char *getSignusDataDir()
-{
-    const char *datdir = getenv("SIGNUS_DATA_DIR");
-    if (datdir && strlen(datdir) > 0)
-        return datdir;
-    else
-        return SIGNUS_DATA_DIR;
+char *signus_nolang_path(const char *path) {
+	char *tmp, *ret;
+
+	tmp = signus_data_path("nolang");
+	ret = concat_path(tmp, path);
+	memfree(tmp);
+	return ret;
 }
 
-const char *getSignusConfigDir() {
-	static char inidir[PATH_MAX] = "";
+char *signus_locale_path(const char *path) {
+	char *tmp, *ret;
 
-	if (*inidir) {
-		return inidir;
-	}
-
-	const char *home = getenv("HOME");
-
-	if (!home) {
-		home = ".";
-	}
-
-	strncpy(inidir, home, PATH_MAX);
-	inidir[PATH_MAX-1] = '\0';
-	strncat(inidir, "/.signus", PATH_MAX - strlen(inidir) - 1);
-	inidir[PATH_MAX-1] = '\0';
-
-	if (!dirExists(inidir) && create_dir(inidir)) {
-		fprintf(stderr, "Error: Cannot create config directory %s\n",
-			inidir);
-	}
-
-	return inidir;
+	tmp = signus_data_path(iniLocale);
+	ret = concat_path(tmp, path);
+	memfree(tmp);
+	return ret;
 }
 
 void multipath_fopen(File &f, const char *name, unsigned mode) {
-	char *tmp, buf[PATH_MAX + 1] = {0};
+	char *path;
 
 	f.close();
+	path = signus_config_path(name);
 
-	tmp = getenv("HOME");
-
-	if (tmp) {
-		snprintf(buf, PATH_MAX, "%s/.signus/%s", getenv("HOME"), name);
-
-		if (f.open(buf, mode)) {
-			return;
-		}
-	}
-
-	snprintf(buf, PATH_MAX, "%s/nolang/%s", getSignusDataDir(), name);
-
-	if (f.open(buf, mode)) {
+	if (!path) {
+		print_error("Cannot allocate memory");
 		return;
 	}
 
-	snprintf(buf, PATH_MAX, "%s/%s/%s", getSignusDataDir(), iniLocale,
-		name);
+	f.open(path, mode);
+	memfree(path);
 
-	if (f.open(buf, mode)) {
+	if (f.isOpen()) {
 		return;
 	}
 
-	snprintf(buf, PATH_MAX, "%s/default/%s", getSignusDataDir(), name);
-	f.open(buf, mode);
+	path = signus_nolang_path(name);
+
+	if (!path) {
+		print_error("Cannot allocate memory");
+		return;
+	}
+
+	f.open(path, mode);
+	memfree(path);
+
+	if (f.isOpen()) {
+		return;
+	}
+
+	path = signus_locale_path(name);
+
+	if (!path) {
+		print_error("Cannot allocate memory");
+		return;
+	}
+
+	f.open(path, mode);
+	memfree(path);
 }
 
 bool fileExists(const char *name)

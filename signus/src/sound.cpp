@@ -157,9 +157,8 @@ void SetVolume(int effects, int speech, int music) {
 static int MusicJustStarted = FALSE;
 
 int PlayMusic(const char *name) {
-	// FIXME
-	char filnm[PATH_MAX];
-	SDL_RWops *rw;
+	char *dir, *path;
+	SDL_RWops *rw = NULL;
 
 	if (MIDAS_disabled) {
 		return TRUE;
@@ -171,9 +170,14 @@ int PlayMusic(const char *name) {
 
 	StopMusic();
 	WaitCursor(TRUE);
-	snprintf(filnm, PATH_MAX, "%s/nolang/music/%s", getSignusDataDir(),
-		name);
-	rw = SDL_RWFromFile(filnm, "rb");
+	dir = signus_nolang_path("music");
+	path = concat_path(dir, name);
+	memfree(dir);
+
+	if (path) {
+		rw = SDL_RWFromFile(path, "rb");
+		memfree(path);
+	}
 
 	if (!rw) {
 		WaitCursor(FALSE);
@@ -317,6 +321,7 @@ inline int SmpIsPlaying(MIDASsamplePlayHandle x)
 
 
 MIDASsample LoadSample(const char *name, int loop) {
+	char *dir, *path, *filename;
 	int i, pos;
 
 	if (MIDAS_disabled || !name) {
@@ -338,17 +343,39 @@ MIDASsample LoadSample(const char *name, int loop) {
 		return INVALID_SAMPLE;
 	}
 
-	char filename[1024];
-	snprintf(filename, 1024, "%s/nolang/sfx/%s.ogg", getSignusDataDir(),
-		name);
+	filename = (char*)memalloc(strlen(name) + 5);
 
-	if (!fileExists(filename)) {
-		snprintf(filename, 1024, "%s/%s/speech/%s.ogg",
-			getSignusDataDir(), iniLocale, name);
+	if (!filename) {
+		return INVALID_SAMPLE;
+	}
+
+	strcpy(filename, name);
+	strcat(filename, ".ogg");
+	dir = signus_nolang_path("sfx");
+	path = concat_path(dir, filename);
+	memfree(dir);
+
+	if (!path) {
+		memfree(filename);
+		return INVALID_SAMPLE;
+	}
+
+	if (!fileExists(path)) {
+		memfree(path);
+		dir = signus_locale_path("speech");
+		path = concat_path(dir, filename);
+		memfree(dir);
+
+		if (!path) {
+			memfree(filename);
+			return INVALID_SAMPLE;
+		}
 	}
 
 	// FIXME -- 1) look into ~/.signus, too (not sure yet, maybe...)
-	Samples[pos].sample = Mix_LoadWAV(filename);
+	Samples[pos].sample = Mix_LoadWAV(path);
+	memfree(path);
+	memfree(filename);
 
 	if (Samples[pos].sample == NULL) {
 		return INVALID_SAMPLE;

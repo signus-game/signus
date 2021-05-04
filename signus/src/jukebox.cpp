@@ -40,14 +40,8 @@ int JukeboxOn = FALSE, PlayingSuspended = FALSE;
 
 
 
-static const char *getJukeboxInifile()
-{
-    static char name[1024] = "";
-    if (name[0] == 0)
-    {
-        snprintf(name, 1024, "%s/jukebox.ini", getSignusConfigDir());
-    }
-    return name;
+static char *getJukeboxInifile() {
+	return signus_config_path("jukebox.ini");
 }
 
 
@@ -86,17 +80,25 @@ void doGatherFiles(const char *dirname, char ***List, int *Count)
 	*List = l;
 }
 
-char **GatherFiles(int *Count)
-{
+char **GatherFiles(int *Count) {
 	*Count = 0;
-	char **l = NULL;
+	char **l = NULL, *path;
 
-    doGatherFiles(SIGNUS_DATA_DIR "/nolang/music", &l, Count);
-    char dirname[1024];
-    snprintf(dirname, 1024, "%s/music", getSignusConfigDir());
-    doGatherFiles(dirname, &l, Count);
+	path = signus_nolang_path("music");
 
-    qsort(l, *Count, sizeof(char *), str_compare);
+	if (path) {
+		doGatherFiles(path, &l, Count);
+		memfree(path);
+	}
+
+	path = signus_config_path("music");
+
+	if (path) {
+		doGatherFiles(path, &l, Count);
+		memfree(path);
+	}
+
+	qsort(l, *Count, sizeof(char *), str_compare);
 	return l;
 }
 
@@ -107,15 +109,23 @@ char **GatherFiles(int *Count)
 
 void LoadPlayList() {
 	File stream;
-	char buffer[1024];
+	char buffer[1024], *path;
 
 	if (iniJukeboxListSize == 0) {
 		PlayList = GatherFiles(&PlayCount);
 	} else {
-		if (!stream.open(getJukeboxInifile(), File::READ)) {
+		path = getJukeboxInifile();
+
+		if (path) {
+			stream.open(path, File::READ);
+			memfree(path);
+		}
+
+		if (!stream.isOpen()) {
 			PlayList = GatherFiles(&PlayCount);
 			iniJukeboxListSize = 0;
 			SaveINI();
+			return;
 		}
 
 		PlayCount = iniJukeboxListSize;
@@ -136,9 +146,17 @@ void LoadPlayList() {
 }
 
 void SavePlayList() {
+	char *path;
 	File stream;
-	
-	if (!stream.open(getJukeboxInifile(), File::WRITE | File::TRUNCATE)) {
+
+	path = getJukeboxInifile();
+
+	if (path) {
+		stream.open(path, File::WRITE | File::TRUNCATE);
+		memfree(path);
+	}
+
+	if (!stream.isOpen()) {
 		return;
 	}
 
@@ -331,13 +349,23 @@ TJukeboxDlg::~TJukeboxDlg()
 
 
 
-void JukeboxSetup()
-{
+void JukeboxSetup() {
+	char *path;
 	TDialog *dlg = new TJukeboxDlg();
 
 	dlg->Exec();
-	if (iniJukeboxSave) SavePlayList();
-	else remove(getJukeboxInifile());
+
+	if (iniJukeboxSave) {
+		SavePlayList();
+	} else {
+		path = getJukeboxInifile();
+
+		if (path) {
+			remove(path);
+			memfree(path);
+		}
+	}
+
 	SaveINI();
 	delete dlg;
 	PlayingSuspended = FALSE;

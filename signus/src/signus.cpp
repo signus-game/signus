@@ -907,12 +907,18 @@ extern void *WorkingControl[3];
 
 
 void CrashSave() {
-	char b[PATH_MAX];
 	File stream;
+	char *path;
 
-	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
-	if (!stream.open(b, File::WRITE | File::TRUNCATE)) {
-		fprintf(stderr, "Warning: cannot create crash save %s\n", b);
+	path = signus_config_path("crashguard_saved_state");
+
+	if (path) {
+		stream.open(path, File::WRITE | File::TRUNCATE);
+		memfree(path);
+	}
+
+	if (!stream.isOpen()) {
+		fprintf(stderr, "Warning: cannot create crash save %s\n", path);
 		return;
 	}
 
@@ -921,10 +927,16 @@ void CrashSave() {
 
 int CrashLoad() {
 	File stream;
-	char b[PATH_MAX];
+	char *path;
 
-	snprintf(b, PATH_MAX, "%s/crashguard_saved_state", getSignusConfigDir());
-	if (!stream.open(b, File::READ)) {
+	path = signus_config_path("crashguard_saved_state");
+
+	if (path) {
+		stream.open(path, File::READ);
+		memfree(path);
+	}
+
+	if (!stream.isOpen()) {
 		return FALSE;
 	}
 
