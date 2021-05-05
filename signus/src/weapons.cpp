@@ -52,14 +52,13 @@ int ProcessingShoot = FALSE;
         // priznak pro kreslici rutiny, aby poznaly ze leti naboj
 
 
-int InitWeapons()
-{
-    SpriteProjectil = (TSprite *) GraphicsDF->get("prjectil");
-    SpriteGrenade = (TSprite *) GraphicsDF->get("grenade");
-    SpriteLaser = (TSprite *) GraphicsDF->get("laser");
-    SpriteTorpedo = (TSprite *) GraphicsDF->get("torpedo");
-    LoadArray((void**)SpriteRocket, 11, GraphicsDF, "rocket%i");
-    return TRUE;
+int InitWeapons() {
+	SpriteProjectil = load_sprite(GraphicsDF, "prjectil");
+	SpriteGrenade = load_sprite(GraphicsDF, "grenade");
+	SpriteLaser = load_sprite(GraphicsDF, "laser");
+	SpriteTorpedo = load_sprite(GraphicsDF, "torpedo");
+	LoadSpriteArray(SpriteRocket, 11, GraphicsDF, "rocket%i");
+	return TRUE;
 }
 
 

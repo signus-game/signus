@@ -72,6 +72,11 @@ typedef struct {
 } TSprite;
 #pragma pack()
 
+TSprite *load_sprite(const void *data);
+TSprite *load_sprite(TDataFile *df, const char *name);
+void LoadSpriteArray(TSprite *array[], int count, TDataFile *df,
+	const char *nametpl, byte *mask = NULL);
+
 extern void GetSpriteRect(TRect *r, TSprite *s, int x, int y, int lx = 0, int ly = 0);
 	// zjisti, jakou oblast by zabiral sprite pri kresleni na policku x, y
 	// s relativnim posunem lx, ly

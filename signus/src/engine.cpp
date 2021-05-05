@@ -274,15 +274,35 @@ int MisLoads[1024];
 #endif
 
 void InitBitmaps(byte MaskL1[], byte MaskL2[]) {
+	int i;
+	void *ptr;
+
 	LoadArray(BmpTerr1, 1024, GraphicsDF, "tr1n%i", MaskL1);
 	LoadArray(BmpTerr2, 1024, GraphicsDF, "tr2n%i", MaskL2);
 	LoadArray(BmpTerr1D, 1024, GraphicsDF, "tr1d%i", MaskL1);
 	LoadArray(BmpTerr2D, 1024, GraphicsDF, "tr2d%i", MaskL2);
 	LoadArray(BmpSel, 13, GraphicsDF, "tersel%i");
 	LoadArray(BmpSelBold, 13, GraphicsDF, "terslb%i");
-	LoadArray((void**) AirCursors, 2, GraphicsDF, "airsel%i");
+	LoadSpriteArray(AirCursors, 2, GraphicsDF, "airsel%i");
 	LoadArray(WorkingControl, 3, GraphicsDF, "working%i");
-	MineSprite = (TSprite*) GraphicsDF->get("sprmine");
+	MineSprite = load_sprite(GraphicsDF, "sprmine");
+
+	// BmpTerr2 and BmpTerr2D contain two different item types:
+	// i < tofsL2Spec: raw pixels without header
+	// i >= tofsL2Spec: sprites with header, need endian conversion
+	for (i = tofsL2Spec; i < 1024; i++) {
+		if (BmpTerr2[i]) {
+			ptr = BmpTerr2[i];
+			BmpTerr2[i] = load_sprite(ptr);
+			memfree(ptr);
+		}
+
+		if (BmpTerr2D[i]) {
+			ptr = BmpTerr2D[i];
+			BmpTerr2D[i] = load_sprite(ptr);
+			memfree(ptr);
+		}
+	}
 
 #ifdef DEBUG
 	char ds[50];
@@ -295,8 +315,8 @@ void InitBitmaps(byte MaskL1[], byte MaskL2[]) {
 	for (i = 0; i < 1024; i++) {
 		if (BmpTerr2[i] == NULL) {
 			MisLoads[i] = TRUE;
-			BmpTerr2[i] = GraphicsDF->get("sprite");
-			BmpTerr2D[i] = GraphicsDF->get("sprite");
+			BmpTerr2[i] = load_sprite(GraphicsDF, "sprite");
+			BmpTerr2D[i] = load_sprite(GraphicsDF, "sprite");
 			s = (TSprite*)BmpTerr2[i];
 			sprintf(ds,"%i", i);
 			PutStr(s->data, s->w, s->h, 0, 0, ds, NormalFont,

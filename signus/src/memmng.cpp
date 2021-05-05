@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include "global.h"
 #include "system.h"
-
+#include "engine.h"
 
 
 ////////////////////////////// ALOKACE POLI //////////////////////////////
@@ -37,6 +37,41 @@
 #include "datafile.h"
 
 // Fce pro nacteni pole z .DAT a jeho uvolneni z pameti:
+
+TSprite *load_sprite(const void *data) {
+	int x, y, width, height;
+	MemoryReadStream *stream;
+	TSprite *ret;
+
+	stream = new MemoryReadStream(data, 16);
+	x = stream->readSint32LE();
+	y = stream->readSint32LE();
+	width = stream->readSint32LE();
+	height = stream->readSint32LE();
+	delete stream;
+
+	ret = (TSprite*)memalloc(width * height + offsetof(TSprite, data));
+	ret->dx = x;
+	ret->dy = y;
+	ret->w = width;
+	ret->h = height;
+	memcpy(ret->data, ((char*)data) + 16, width * height);
+	return ret;
+}
+
+TSprite *load_sprite(TDataFile *df, const char *name) {
+	void *data;
+	TSprite *ret = NULL;
+
+	data = (char*)df->get(name);
+
+	if (data) {
+		ret = load_sprite(data);
+		memfree(data);
+	}
+
+	return ret;
+}
 
 void LoadArray(void *array[], int count, TDataFile *df, const char *index, byte mask[])
 {
@@ -57,7 +92,24 @@ void LoadArray(void *array[], int count, TDataFile *df, const char *index, byte 
 	}
 }
 
+void LoadSpriteArray(TSprite *array[], int count, TDataFile *df,
+	const char *nametpl, byte *mask) {
+	int i;
+	char *assetname;
 
+	assetname = (char*)memalloc(strlen(nametpl) + 10);
+
+	for (i = 0; i < count; i++) {
+		if (mask && !mask[i]) {
+			continue;
+		}
+
+		sprintf(assetname, nametpl, i);
+		array[i] = load_sprite(df, assetname);
+	}
+
+	memfree(assetname);
+}
 
 void DisposeArray(void *array[], int count)
 {

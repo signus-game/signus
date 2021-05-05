@@ -66,13 +66,13 @@ int InitExplode()
     
     for (i = 0; i < EXPL_1x1_CNT; i++) {
         sprintf(s, "expa%i_%%i", i);
-        LoadArray((void**)(Explosions1x1[i]), EXPL_PHASES, GraphicsDF, s);
+        LoadSpriteArray(Explosions1x1[i], EXPL_PHASES, GraphicsDF, s);
         sprintf(s, "expl_a%i", i);
         ExplosionA_Sound[i] = LoadSample(s, FALSE);
     }
     for (i = 0; i < EXPL_3x3_CNT; i++) {
         sprintf(s, "expb%i_%%i", i);
-        LoadArray((void**)(Explosions3x3[i]), EXPL_PHASES, GraphicsDF, s);
+        LoadSpriteArray(Explosions3x3[i], EXPL_PHASES, GraphicsDF, s);
         sprintf(s, "expl_b%i", i);
         ExplosionB_Sound[i] = LoadSample(s, FALSE);
     }

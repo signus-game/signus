@@ -2940,12 +2940,34 @@ ending_label: // ja vim, prasarna
 
 ///////////////////////// INIT & DONE ROUTINES //////////////////////////////
 
+int *load_sprite_locator(TDataFile *df, const char *name) {
+	void *data;
+	int i, *ret = NULL;
+
+	data = df->get(name);
+
+	if (data) {
+		MemoryReadStream stream(data, 64);
+
+		ret = (int*)memalloc(16 * sizeof(int));
+
+		for (i = 0; i < 16; i++) {
+			ret[i] = stream.readSint32LE();
+		}
+
+		memfree(data);
+	}
+
+	return ret;
+}
 
 int InitUnits() {
+	char name[32];
+
 	LoadArray(BmpSelected, 13, GraphicsDF, "terpul%i");
 #ifdef DEBUG
-	SpriteUniversal = (TSprite *) GraphicsDF->get("sprite");
-	SpriteUniversalBad = (TSprite *) GraphicsDF->get("sprite2");
+	SpriteUniversal = load_sprite(GraphicsDF, "sprite");
+	SpriteUniversalBad = load_sprite(GraphicsDF, "sprite2");
 #endif
 	GoodlifeDeads = BadlifeDeads = 0;
 	UInfoBuf = memalloc(UINFO_SX * UINFO_SY);
@@ -2963,17 +2985,21 @@ int InitUnits() {
 	LoadArray((void**)UnitsTransIcons, GOODLIFE_TOP, GraphicsDF, "un%iicn");
 	LoadArray((void**)BmpRepair, 2, GraphicsI18nDF, "repair%i");
 	LoadArray((void**)BmpBombing, 2, GraphicsDF, "icbomb%i");
-	LoadArray((void**)Smokes, 32, GraphicsDF, "dym0_%i");
+	LoadSpriteArray(Smokes, 32, GraphicsDF, "dym0_%i");
 
-	LoadArray((void**)SpriteLocators, UNITS_TOP, GraphicsDF, "sprlc%i");
 	// NB: "sprlc%i.mem" files from signus-data were created in such way that
 	//     locators for enemy units has numbers starting from 128. This dates
 	//     back to when BADLIFE was 128. Since BADLIFE is now 1024, we have to
 	//     move the data to higher offset in the array.
 	// (FIXME?)
-	for (int i = 128; i < 256; i++) {
-		SpriteLocators[i - 128 + BADLIFE] = SpriteLocators[i];
-		SpriteLocators[i] = NULL;
+	memset(SpriteLocators, 0, sizeof(SpriteLocators));
+
+	for (int i = 0; i < 128; i++) {
+		sprintf(name, "sprlc%i", i);
+		SpriteLocators[i] = load_sprite_locator(GraphicsDF, name);
+		sprintf(name, "sprlc%i", i + 128);
+		SpriteLocators[i + BADLIFE] = load_sprite_locator(GraphicsDF,
+			name);
 	}
 
 	if (!InitWeapons()) {
@@ -3218,7 +3244,7 @@ void UpdateUnitsMem(int UnType) {
 			sprintf(ds, "un%i_%%i", i - BADLIFE + 128);
 		}
 
-		LoadArray((void**)UnitsSprites[i], 256, GraphicsDF, ds);
+		LoadSpriteArray(UnitsSprites[i], 256, GraphicsDF, ds);
 
 #ifdef DEBUG
 		if (UnitsSprites[i][0] == NULL) {
