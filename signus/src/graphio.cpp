@@ -202,6 +202,35 @@ void UpdateScreen(void) {
 	redraw_screen();
 }
 
+void set_window_icon(void) {
+	TSprite *icon;
+	SDL_Surface *surf;
+
+	icon = load_sprite(GraphicsDF, "un10_3");
+
+	if (!icon) {
+		return;
+	}
+
+	// Expand icon from rectangle to square to prevent stretching
+	surf = SDL_CreateRGBSurfaceWithFormat(0, max(icon->w, icon->h),
+		max(icon->w, icon->h), 8, SDL_PIXELFORMAT_INDEX8);
+
+	if (!surf) {
+		memfree(icon);
+		return;
+	}
+
+	memset(surf->pixels, 0, surf->pitch * surf->h);
+	CopyBmp(surf->pixels, surf->pitch, (surf->w - icon->w) / 2,
+		(surf->h - icon->h) / 2, icon->data, icon->w, icon->h);
+	SDL_SetPaletteColors(surf->format->palette, palette, 0, 256);
+	SDL_SetColorKey(surf, SDL_TRUE, 0);
+	SDL_SetWindowIcon(window, surf);
+	SDL_FreeSurface(surf);
+	memfree(icon);
+}
+
 ///////// DrawPicture
 
 void DrawPicture(void *src)

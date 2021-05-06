@@ -68,6 +68,8 @@ void redraw_screen(void);
 // Full main window redraw (with framebuffer update from drawbuffer)
 void UpdateScreen(void);
 
+void set_window_icon(void);
+
 ///////////////////////////////////////////////////////
 // Funkce vkladajici na obrazovky ruzne vyrezy: 
 //

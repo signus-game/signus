@@ -877,6 +877,7 @@ int InitSignus()
         SetPalette(Palette);
     }
 
+    set_window_icon();
     MouseInit();
     if (!InitSound()) {
         DoneVideo();
