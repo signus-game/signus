@@ -292,8 +292,20 @@ void GetEvent(TEvent *e) {
 		break;
 
 	case SDL_WINDOWEVENT:
-		if (event.window.event == SDL_WINDOWEVENT_EXPOSED) {
+		switch (event.window.event) {
+		case SDL_WINDOWEVENT_MAXIMIZED:
+			iniMaximize = 1;
+			SaveINI();
+			break;
+
+		case SDL_WINDOWEVENT_RESTORED:
+			iniMaximize = 0;
+			SaveINI();
+			break;
+
+		case SDL_WINDOWEVENT_EXPOSED:
 			redraw_screen();
+			break;
 		}
 
 		e->What = evOther;

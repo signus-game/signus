@@ -96,6 +96,8 @@ int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
 int iniJukeboxRandom, iniJukeboxRepeat, iniJukeboxListSize, iniJukeboxSave;
 
 int iniResolution;
+int iniMaximize;
+int iniFullscreen;
 
 int iniBrightCorr;
 
@@ -236,6 +238,8 @@ bool LoadINI() {
 	//iniResolution = iniparser_getint(dict, "video:resolution", -1);
 	iniResolution = SVGA_800x600; // FIXME -- get rid of iniResolution !!
 
+	iniFullscreen = iniparser_getint(dict, "video:fullscreen", 0);
+	iniMaximize = iniparser_getint(dict, "video:maximized", 0);
 	iniBrightCorr = iniparser_getint(dict, "video:brightness", 0);
 	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", 0);
 	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", 0);
@@ -282,10 +286,13 @@ void SaveINI() {
 
 	memfree(fname);
 	fprintf(f, "\n[video]\n"
+		"fullscreen             = %i ;\n"
+		"maximized              = %i ;\n"
 		"brightness             = %i ;\n"
 		"anims_titled           = %i ;\n"
 		"anims_interpolated     = %i ;\n",
-		iniBrightCorr, iniTitledAnims, iniInterpolateAnims);
+		iniFullscreen, iniMaximize, iniBrightCorr, iniTitledAnims,
+		iniInterpolateAnims);
 
 	fprintf(f, "\n[audio]\n"
 		"music_volume           = %i ;\n"

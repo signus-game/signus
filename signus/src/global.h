@@ -123,6 +123,8 @@ extern int iniResolution;
 #define SVGA_800x600   0x103
 #define SVGA_1024x768  0x105
 
+extern int iniFullscreen;
+extern int iniMaximize;
 extern int iniBrightCorr;
 
 extern int iniMusicVol, iniSoundVol, iniSpeechVol;

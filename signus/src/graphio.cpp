@@ -54,7 +54,6 @@ SDL_Texture *framebuffer = NULL;
 SDL_Surface *drawbuffer = NULL;
 SDL_Color    palette[256];
 uint8_t *pixbuffer = NULL;
-int fullscreen = 0;
 
 ////////////////////////////// rozhrani k frame-bufferu:
 
@@ -114,8 +113,14 @@ int DoneVideo(void) {
 }
 
 int create_window(void) {
-	if (SDL_CreateWindowAndRenderer(RES_X, RES_Y,
-		SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &window, &renderer)) {
+	unsigned flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
+
+	if (iniMaximize) {
+		flags |= SDL_WINDOW_MAXIMIZED;
+	}
+
+	if (SDL_CreateWindowAndRenderer(RES_X, RES_Y, flags, &window,
+		&renderer)) {
 		return 0;
 	}
 
@@ -154,6 +159,13 @@ int create_window(void) {
 	memset(palette, 0, sizeof(palette));
 	SDL_SetPaletteColors(drawbuffer->format->palette, palette, 0, 256);
 	ClearScr();
+
+	// Setting fullscreen flag during window creation would force
+	// window to always maximize when user switches back to windowed mode
+	if (iniFullscreen) {
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+
 	return 1;
 }
 
@@ -177,8 +189,9 @@ int window_info(SDL_SysWMinfo *info) {
 void ToggleFullscreen() {
 	unsigned flags;
 
-	fullscreen = !fullscreen;
-	flags = fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+	iniFullscreen = !iniFullscreen;
+	SaveINI();
+	flags = iniFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
 	SDL_SetWindowFullscreen(window, flags);
 }
 
