@@ -226,8 +226,8 @@ void GetEvent(TEvent *e) {
 		// Special handling:
 		if (e->Key.KeyCode == kbF8 && getenv("HELLMASTER") != NULL) {
 			SaveScreenshot();
-		} else if (e->Key.KeyCode == SDLK_f &&
-			(event.key.keysym.mod & KMOD_CTRL)) {
+		} else if (e->Key.KeyCode == SDLK_RETURN &&
+			(event.key.keysym.mod & KMOD_ALT)) {
 			ToggleFullscreen();
 		}
 
