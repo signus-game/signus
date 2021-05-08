@@ -1421,7 +1421,7 @@ void TSingleInput::Draw() {
 		NormalFont, clrWhite, clrBlack);
 	PutStr(DrwViewBf, DrwViewBfSzX, DrwViewBfSzY,
 		x+5+GetStrWidth(Buf, NormalFont), y+5, "-",
-		NormalFont, clrLightBlue, clrWhite);
+		NormalFont, clrLightBlue, clrWhite, 0);
 }
 
 
