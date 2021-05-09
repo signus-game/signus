@@ -108,11 +108,6 @@ char *get_locale(void);
 // Inicializacni hodnoty a sprazene fce:
 //
 
-extern int iniVMM, VMMPhyMem;
-
-extern int iniMouseRatioX, iniMouseRatioY;
-
-extern char iniLanguage[2];
 extern char iniLocale[200];
 
 extern int iniIdleDelay;
@@ -125,7 +120,6 @@ extern int iniResolution;
 
 extern int iniFullscreen;
 extern int iniMaximize;
-extern int iniBrightCorr;
 
 extern int iniMusicVol, iniSoundVol, iniSpeechVol;
 
@@ -133,8 +127,6 @@ extern int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRan
                  iniShowVisibRange, iniStopOnNewEnemy;
 
 extern int iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize, iniJukeboxSave;
-
-extern int iniTitledAnims, iniInterpolateAnims;
 
 extern bool LoadINI();
 extern void SaveINI();

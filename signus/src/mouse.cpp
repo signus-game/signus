@@ -90,7 +90,6 @@ int MouseInit()
 	Mouse.Locks = 1;
 	MouseSetCursor(mcurArrow);
 	MouseSetRect(0, 0, RES_X-1, RES_Y-1);
-	MouseSetRatio(iniMouseRatioX, iniMouseRatioY);
 	MouseSetPos(320, 240);
 	
 	MouseShow();
@@ -177,18 +176,6 @@ void MouseSetRect(int x1, int y1, int x2, int y2)
 SDL_WM_GrabInput(SDL_GRAB_ON);
 	#endif
 }
-
-void MouseSetRatio(int rx, int ry)
-{
-}
-
-
-
-
-
-
-
-
 
 int IsIntersect(int ax, int ay, int bx, int by, int rax, int ray, int rbx, int rby)
 {

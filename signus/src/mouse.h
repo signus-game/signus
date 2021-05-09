@@ -73,7 +73,6 @@ extern void MouseFreeze(int x, int y, int w, int h);
 extern void MouseUnfreeze();
 extern void MouseSetRect(int x1, int y1, int x2, int y2);
 extern void MouseSetPos(int x, int y);
-extern void MouseSetRatio(int rx, int ry);
 
 extern void MousePaint();
 #endif

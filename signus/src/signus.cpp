@@ -388,20 +388,6 @@ void SetSoundVolume()
     FreeSample(ssvSnd);
 }
 
-
-
-
-#if 0
-static void soUpdateGaugePal(int *Value, int Release)
-{
-    int oldi = iniBrightCorr;
-    iniBrightCorr = *Value;
-    SetPalette(Palette);
-    iniBrightCorr = oldi;   
-}
-#endif
-
-
 void SetOptions()
 {
     TDialog *dlg;
@@ -410,12 +396,9 @@ void SetOptions()
         _IdleD = 60 - iniIdleDelay,
         _ScrollD = 200 - iniScrollDelay,
         _AnimD = 200 - iniAnimDelay,
-        _AnimD2 = 200 - iniAnimDelay2,
-        _Brigh = iniBrightCorr;
+        _AnimD2 = 200 - iniAnimDelay2;
 
     dlg = new TDialog(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
-//    dlg->Insert(new TStaticText(10, 36, 150, 16, SigText[TXT_BRIGHTNESS]));
-//    dlg->Insert(new TBarGauge(10, 52, 310, 20, &_Brigh, 128, soUpdateGaugePal));
     dlg->Insert(new TStaticText(10, 80, 150, 16, SigText[TXT_SCROLL_DELAY]));
     dlg->Insert(new TBarGauge(10, 96, 310, 20, &_ScrollD, 200));
     dlg->Insert(new TStaticText(10, 120, 150, 16, SigText[TXT_IDLE_DELAY]));
@@ -436,7 +419,6 @@ void SetOptions()
         iniScrollDelay = 200 - _ScrollD;
         iniAnimDelay = 200 - _AnimD;
         iniAnimDelay2 = 200 - _AnimD2;
-        iniBrightCorr = _Brigh;
       ApplyINI();
       SaveINI();
     }

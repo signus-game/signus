@@ -78,11 +78,6 @@ void dbgReport()
 
 /////////////////////// INI
 
-int iniVMM, iniVMMPhyMem;
-
-int iniMouseRatioX, iniMouseRatioY;
-
-char iniLanguage[2];
 char iniLocale[200];
 
 int iniIdleDelay;
@@ -98,11 +93,6 @@ int iniJukeboxRandom, iniJukeboxRepeat, iniJukeboxListSize, iniJukeboxSave;
 int iniResolution;
 int iniMaximize;
 int iniFullscreen;
-
-int iniBrightCorr;
-
-int iniTitledAnims, iniInterpolateAnims;
-
 
 char *format_string(const char *fmt, va_list args) {
 	char *buf;
@@ -240,9 +230,6 @@ bool LoadINI() {
 
 	iniFullscreen = iniparser_getint(dict, "video:fullscreen", 0);
 	iniMaximize = iniparser_getint(dict, "video:maximized", 0);
-	iniBrightCorr = iniparser_getint(dict, "video:brightness", 0);
-	iniTitledAnims = iniparser_getint(dict, "video:anims_titled", 0);
-	iniInterpolateAnims = iniparser_getint(dict, "video:anims_interpolated", 0);
 
 	iniMusicVol = iniparser_getint(dict, "audio:music_volume", 20);
 	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", 20);
@@ -264,12 +251,7 @@ bool LoadINI() {
 	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", 1);
 
 	iniparser_freedict(dict);
-
-	// FIXME -- delete iniLanguage, only used to decide whether to use
-	// subtitles in (missing) animations
-	strcpy(iniLanguage, "e");
 	detect_language();
-
 	return true;
 }
 
@@ -287,12 +269,8 @@ void SaveINI() {
 	memfree(fname);
 	fprintf(f, "\n[video]\n"
 		"fullscreen             = %i ;\n"
-		"maximized              = %i ;\n"
-		"brightness             = %i ;\n"
-		"anims_titled           = %i ;\n"
-		"anims_interpolated     = %i ;\n",
-		iniFullscreen, iniMaximize, iniBrightCorr, iniTitledAnims,
-		iniInterpolateAnims);
+		"maximized              = %i ;\n",
+		iniFullscreen, iniMaximize);
 
 	fprintf(f, "\n[audio]\n"
 		"music_volume           = %i ;\n"
@@ -325,9 +303,8 @@ void SaveINI() {
 }
 
 
-void ApplyINI()
-{
-    MouseSetRatio(iniMouseRatioX, iniMouseRatioY);
+void ApplyINI() {
+
 }
 
 
