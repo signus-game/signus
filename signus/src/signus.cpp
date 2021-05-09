@@ -889,7 +889,7 @@ int InitSignus()
     MouseInit();
     if (!InitSound()) {
         DoneVideo();
-        fprintf(stderr, "Error: Sound initialization failed.\n");
+        print_error("Error: Sound initialization failed.");
         return FALSE;
     }
     InitInteract();

@@ -220,8 +220,8 @@ bool LoadINI() {
 	}
 
 	if (dict == NULL) {
-		fprintf(stderr, "Fatal error: cannot read configuration file.\n"
-			"Please reinstall Signus.\n");
+		print_error("Fatal error: cannot read configuration file.\n"
+			"Please reinstall Signus.");
 		return FALSE;
 	}
 
@@ -261,7 +261,7 @@ void SaveINI() {
 	FILE *f = fopen(fname, "wt");
 
 	if (!f) {
-		fprintf(stderr, "Error: Cannot save INI file %s\n", fname);
+		print_error("Error: Cannot save INI file %s", fname);
 		memfree(fname);
 		return;
 	}
@@ -364,7 +364,7 @@ int test_file_exists(const char *name) {
 
 int CheckFile(const char *name) {
 	if (!test_file_exists(name)) {
-		fprintf(stderr, "Cannot find data file '%s'!\n", name);
+		print_error("Cannot find data file '%s'!", name);
 		return FALSE;
 	}
 

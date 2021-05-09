@@ -174,7 +174,7 @@ int InitVideo(void) {
 		return TRUE;
 	}
 
-	print_error("SDL initialization failed: %s\n", SDL_GetError());
+	print_error("SDL initialization failed: %s", SDL_GetError());
 	return FALSE;
 }
 
