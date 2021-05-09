@@ -53,7 +53,8 @@
 #define evMouseScroll 0x0008
 #define evKeyDown     0x0010
 #define evTimer       0x0100
-#define evOther       0x0200
+#define evQuit        0x0200
+#define evOther       0x0400
 
 // ------------ Masky udalosti:
 #define evNothing     0x0000
@@ -90,6 +91,7 @@ typedef struct {
 extern void PutEvent(TEvent *e);
 extern void GetEvent(TEvent *e);
 extern void ClearEvent();
+void clear_nonquit_events(void);
 
 // Stav shift klaves:
 inline byte GetShiftState() {return (SDL_GetModState() & KMOD_SHIFT);}

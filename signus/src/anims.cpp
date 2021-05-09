@@ -917,6 +917,11 @@ int check_skip_event(void) {
 	do {
 		GetEvent(&e);
 
+		if (e.What == evQuit) {
+			PutEvent(&e);
+			return 1;
+		}
+
 		if ((e.What == evKeyDown) || (e.What == evMouseDown)) {
 			return 1;
 		}
@@ -927,7 +932,6 @@ int check_skip_event(void) {
 
 int PlayAnimation(const char *name) {
 	File stream;
-	TEvent e;
 	unsigned frame, width, height, timer, curtime;
 	MIDASsample audio = INVALID_SAMPLE;
 
@@ -941,13 +945,9 @@ int PlayAnimation(const char *name) {
 	StopMusic();
 	ClearScr();
 	DoneTimer();
-
-	do {
-		GetEvent(&e);
-	} while (e.What != evNothing);
-
 	width = anim.video_width();
 	height = anim.video_height();
+	clear_nonquit_events();
 	timer = SDL_GetTicks();
 
 	while ((frame = anim.next_frame())) {
@@ -1002,10 +1002,7 @@ int PlayAnimation(const char *name) {
 		FreeSample(audio);
 	}
 
-	do {
-		GetEvent(&e);
-	} while (e.What != evNothing);
-
+	clear_nonquit_events();
 	InitTimer();
 	ClearScr();
 	SetPalette(Palette);

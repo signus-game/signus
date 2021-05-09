@@ -457,6 +457,21 @@ void SetOptions()
 #define mnQuit     5
 #define mnAbort    6
 
+int quit_mission(void) {
+	if (PromtBox(SigText[TXT_CONFIRM_QUIT], cmYes | cmNo) != cmYes)  {
+		return 0;
+	}
+
+	SignusTerminated = TRUE;
+	TerminationStatus = 666;
+
+	if (PromtBox(SigText[TXT_SAVEMISSION], cmYes | cmNo) == cmYes) {
+		SaveGame();
+	}
+
+	return 1;
+}
+
 void DoMenu()
 {   
     int rtn = 0;
@@ -466,12 +481,7 @@ void DoMenu()
         MainMenu->Hide();
         switch (rtn) {
             case mnQuit : 
-                if (PromtBox(SigText[TXT_CONFIRM_QUIT], cmYes | cmNo) == cmYes)  {
-                    SignusTerminated = TRUE, TerminationStatus = 666;
-                    if (PromtBox(SigText[TXT_SAVEMISSION], cmYes | cmNo) == cmYes) {                    
-                        SaveGame();
-                    }
-                }
+                quit_mission();
                 break;
             case mnVolume :
                 SetSoundVolume();
@@ -540,56 +550,73 @@ void DoBriefingPlus()
 #define VIS_SET_ITEMS      4
 #define VIS_SET_X        (RES_X-64)
 
-void DoVisSetup()
-{
-    static int *ItemRels[VIS_SET_ITEMS] = 
-      {&iniShowStatusbar, &iniShowShootRange, &iniShowMoveRange,
-       &iniShowVisibRange};
+void DoVisSetup() {
+	static int *ItemRels[VIS_SET_ITEMS] = {&iniShowStatusbar,
+		&iniShowShootRange, &iniShowMoveRange, &iniShowVisibRange};
+
+	void *Back;
+	byte *Drw, *DOn, *DOff, *dum;
+	int h = (3 + VIS_SET_ITEMS * 15);
+	int i, y;
+	TEvent e;
     
-    void *Back;
-    byte *Drw, *DOn, *DOff, *dum;
-    int h = (3 + VIS_SET_ITEMS * 15);
-    int i, y;
-    TEvent e;
+	Back = memalloc(54 * h);
+	GetBitmap(VIS_SET_X, 252, Back, 54, h);
+	Drw = (byte*) GraphicsI18nDF->get("vsettr0");
+	PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
+	DOn = (byte *) GraphicsI18nDF->get("vsettr2");
+	DOff = (byte*) GraphicsI18nDF->get("vsettr1");
     
-    Back = memalloc(54 * h);
-    GetBitmap(VIS_SET_X, 252, Back, 54, h);
-    Drw = (byte*) GraphicsI18nDF->get("vsettr0");
-    PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
-    DOn = (byte *) GraphicsI18nDF->get("vsettr2");
-    DOff = (byte*) GraphicsI18nDF->get("vsettr1");
-    
-    for (i = 0; i < VIS_SET_ITEMS; i++) {
-        dum = *(ItemRels[i]) ? DOn : DOff;
-        for (y = 0; y < 15; y++)
-            memcpy(Drw + 54 * (i * 15 + 1 + y), dum + 54 * (i * 15 + 1 + y), 54);
-        PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
+	for (i = 0; i < VIS_SET_ITEMS; i++) {
+		dum = *(ItemRels[i]) ? DOn : DOff;
+
+		for (y = 0; y < 15; y++) {
+			memcpy(Drw + 54 * (i * 15 + 1 + y),
+				dum + 54 * (i * 15 + 1 + y), 54);
+		}
+
+		PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
+		UpdateScreen();
+		SDL_Delay(100);
+	}   
+
+	while (TRUE) {
+		GetEvent(&e);
+
+		if (e.What == evMouseUp) {
+			LastEvent = TimerValue;
+
+			if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y,
+				VIS_SET_X, 252, VIS_SET_X+54, 252+h)) {
+
+				i = (e.Mouse.Where.y - 253) / 15;
+				*(ItemRels[i]) = !(*(ItemRels[i]));
+				dum = *(ItemRels[i]) ? DOn : DOff;
+
+				for (y = 0; y < 15; y++) {
+					memcpy(Drw + 54 * (i * 15 + 1 + y),
+						dum + 54 * (i * 15 + 1 + y),
+						54);
+				}
+
+				PutBitmap(VIS_SET_X, 252, Drw, 54, h);
+				RedrawMap();
+				UpdateScreen();
+			} else {
+				break;
+			}
+		} else if (e.What == evQuit) {
+			PutEvent(&e);
+			break;
+		}
+	}
+
+	PutBitmap(VIS_SET_X, 252, Back, 54, h); 
 	UpdateScreen();
-        SDL_Delay(100);
-    }   
-    while (TRUE) {
-        do {
-            GetEvent(&e);
-        } while ((e.What != evMouseUp));    
-        LastEvent = TimerValue;
-        if (IsInRect(e.Mouse.Where.x, e.Mouse.Where.y, VIS_SET_X, 252, VIS_SET_X+54, 252+h)) {
-            i = (e.Mouse.Where.y - 253) / 15;
-            *(ItemRels[i]) = !(*(ItemRels[i]));
-            dum = *(ItemRels[i]) ? DOn : DOff;
-            for (y = 0; y < 15; y++)
-                memcpy(Drw + 54 * (i * 15 + 1 + y), dum + 54 * (i * 15 + 1 + y), 54);
-            PutBitmap(VIS_SET_X, 252, Drw, 54, h);  
-            RedrawMap();
-	    UpdateScreen();
-        }
-        else break;
-    }
-    
-        
-    PutBitmap(VIS_SET_X, 252, Back, 54, h); 
-    UpdateScreen();
-    memfree(Back);
-    memfree(Drw); memfree(DOn); memfree(DOff);
+	memfree(Back);
+	memfree(Drw);
+	memfree(DOn);
+	memfree(DOff);
 }
 
 
@@ -790,12 +817,7 @@ void HandleEvent(TEvent *e)
                 do {GetEvent(e);} while (e->What != evNothing);
                 break;
             case SHORTCUT_QUIT : 
-                if (PromtBox(SigText[TXT_CONFIRM_QUIT], cmYes | cmNo) == cmYes) {                    
-                    SignusTerminated = TRUE, TerminationStatus = 666;
-                    if (PromtBox(SigText[TXT_SAVEMISSION], cmYes | cmNo) == cmYes) {                    
-                        SaveGame();
-                    }
-                }
+                quit_mission();
                 break;
         
             default :
@@ -826,6 +848,10 @@ void HandleEvent(TEvent *e)
                         break;
                 }
         }       
+    } else if (e->What == evQuit) {
+	if (quit_mission()) {
+		PutEvent(e);
+	}
     }
 
     UpdateScreen();

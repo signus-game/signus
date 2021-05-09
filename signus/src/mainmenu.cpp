@@ -96,40 +96,58 @@ static void Flash(unsigned x, unsigned y) {
 }
 
 
-static int ProcessMenu(const char *mask1, const char *mask2)
-{
-    void *bg = GraphicsDF->get("mmnulogo");
-    byte *pt1 = (byte*) GraphicsI18nDF->get(mask1);
-    byte *pt2 = (byte*) GraphicsI18nDF->get(mask2);
-    int oldsel, sel = 0;
-    TEvent e;
+static int ProcessMenu(const char *mask1, const char *mask2) {
+	void *bg = GraphicsDF->get("mmnulogo");
+	byte *pt1 = (byte*) GraphicsI18nDF->get(mask1);
+	byte *pt2 = (byte*) GraphicsI18nDF->get(mask2);
+	int oldsel, sel = 0;
+	TEvent e;
 
+	DrawMN(pt1, pt2, bg, sel);
 
-    DrawMN(pt1, pt2, bg, sel);
-    while (TRUE) {
-        GetEvent(&e);
-        if (e.What == evMouseMove) {
-            oldsel = sel;
-            sel = (e.Mouse.Where.y - 290) / 60;
-            if (sel < 0) sel = 0;
-            if (sel > 3) sel = 3;
-            if (sel != oldsel) {
-                PlaySample(MenuSnd, 8, 32, 128);
-                DrawMN(pt1, pt2, bg, sel);
-            }
-        }
-        if (e.What == evMouseDown) {
-            Flash(80, 250 + 77 * sel);
-            break;
-        }
-        if ((e.What == evKeyDown) && (e.Key.KeyCode == kbEsc)) {sel = 3; break;}
-    }
-    
-    memfree(pt1);
-    memfree(pt2);
-    memfree(bg);
-    ClearScr();
-    return sel;
+	while (TRUE) {
+		GetEvent(&e);
+
+		if (e.What == evMouseMove) {
+			oldsel = sel;
+			sel = (e.Mouse.Where.y - 290) / 60;
+
+			if (sel < 0) {
+				sel = 0;
+			}
+
+			if (sel > 3) {
+				sel = 3;
+			}
+
+			if (sel != oldsel) {
+				PlaySample(MenuSnd, 8, 32, 128);
+				DrawMN(pt1, pt2, bg, sel);
+			}
+		}
+
+		if (e.What == evMouseDown) {
+			Flash(80, 250 + 77 * sel);
+			break;
+		}
+
+		if ((e.What == evKeyDown) && (e.Key.KeyCode == kbEsc)) {
+			sel = 3;
+			break;
+		}
+
+		if (e.What == evQuit) {
+			PutEvent(&e);
+			sel = 3;
+			break;
+		}
+	}
+
+	memfree(pt1);
+	memfree(pt2);
+	memfree(bg);
+	ClearScr();
+	return sel;
 }
 
 

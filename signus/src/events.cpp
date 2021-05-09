@@ -292,7 +292,13 @@ void GetEvent(TEvent *e) {
 		break;
 
 	case SDL_WINDOWEVENT:
+		e->What = evOther;
+
 		switch (event.window.event) {
+		case SDL_WINDOWEVENT_CLOSE:
+			e->What = evQuit;
+			break;
+
 		case SDL_WINDOWEVENT_MAXIMIZED:
 			iniMaximize = 1;
 			SaveINI();
@@ -308,7 +314,6 @@ void GetEvent(TEvent *e) {
 			break;
 		}
 
-		e->What = evOther;
 		break;
 
 	default:
@@ -329,8 +334,17 @@ void ClearEvent()
     }
 }
 
+void clear_nonquit_events(void) {
+	TEvent e;
 
+	do {
+		GetEvent(&e);
+	} while (e.What != evNothing && e.What != evQuit);
 
+	if (e.What == evQuit) {
+		PutEvent(&e);
+	}
+}
 
 
 volatile byte ShiftState = FALSE;

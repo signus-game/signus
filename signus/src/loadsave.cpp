@@ -603,10 +603,7 @@ int LoadGame() {
 	}
 
 	delete dlg;
-	{
-		TEvent e;
-		do {GetEvent(&e);} while (e.What != evNothing);
-	}
+	clear_nonquit_events();
 	return rtn;
 }
 
@@ -645,12 +642,7 @@ int SaveGame() {
 	}
 
 	delete dlg;
-	{
-		TEvent e;
-		do {
-			GetEvent(&e);
-		} while (e.What != evNothing);
-	}
+	clear_nonquit_events();
 	return rtn;
 }
 

@@ -380,32 +380,44 @@ void TMenu::Hide()
 
 
 
-int TMenu::Exec()
-{
-    TEvent e;
-    
-    Selected = -1; Select(0, 0);
-  while (TRUE) {
-        UpdatePalette();
-    GetEvent(&e);
-    e.Mouse.Where.x -= MENU_X; e.Mouse.Where.y -= MENU_Y; 
-    if (e.What == evNothing) {
-            if (TimerValue % (20 * 5) == 0) { // jukebox
-                if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
-            }
-    }
-    else if (e.What == evMouseDown) {
-        if (e.Mouse.Buttons == mbRightButton) return 0;
-        else if (e.Mouse.Buttons == mbLeftButton) {
-        if (Selected != 0) PlaySample(IconClickSnd2, 8, EffectsVolume, 128);
-            return Selected;
-        }
-    }
-    else if (e.What == evMouseMove) {
-        Select(e.Mouse.Where.x, e.Mouse.Where.y);
-        }
-        else if (e.What == evKeyDown) return 0;
-  }
+int TMenu::Exec() {
+	TEvent e;
+
+	Selected = -1;
+	Select(0, 0);
+
+	while (TRUE) {
+		UpdatePalette();
+		GetEvent(&e);
+		e.Mouse.Where.x -= MENU_X;
+		e.Mouse.Where.y -= MENU_Y;
+
+		if (e.What == evNothing) {
+			if (TimerValue % (20 * 5) == 0) { // jukebox
+				if (MusicOn && (!IsMusicPlaying())) {
+					JukeboxNext();
+				}
+			}
+		} else if (e.What == evMouseDown) {
+			if (e.Mouse.Buttons == mbRightButton) {
+				return 0;
+			} else if (e.Mouse.Buttons == mbLeftButton) {
+				if (Selected != 0) {
+					PlaySample(IconClickSnd2, 8,
+						EffectsVolume, 128);
+				}
+
+				return Selected;
+			}
+		} else if (e.What == evMouseMove) {
+			Select(e.Mouse.Where.x, e.Mouse.Where.y);
+		} else if (e.What == evKeyDown) {
+			return 0;
+		} else if (e.What == evQuit) {
+			PutEvent(&e);
+			return 0;
+		}
+	}
 }
 
 
@@ -497,18 +509,25 @@ void TDialog::Insert(TView *v)
     v->Owner = (void*)this;
 }
 
-int TDialog::SpecialHandle(TEvent *e, int Cmd)
-{
-    if (Cmd > 0) return FALSE;
-    else { 
-        if (e->What == evKeyDown) {
-            if (e->Key.KeyCode == kbEsc) return cmCancel;     
-        }
-        else if (e->What == evMouseDown) {
-            if (e->Mouse.Buttons == mbRightButton) return cmCancel;
-        }
-        return FALSE;
-    }
+int TDialog::SpecialHandle(TEvent *e, int Cmd) {
+	if (Cmd > 0) {
+		return FALSE;
+	}
+
+	if (e->What == evKeyDown) {
+		if (e->Key.KeyCode == kbEsc) {
+			return cmCancel;
+		}
+	} else if (e->What == evMouseDown) {
+		if (e->Mouse.Buttons == mbRightButton) {
+			return cmCancel;
+		}
+	} else if (e->What == evQuit) {
+		PutEvent(e);
+		return cmCancel;
+	}
+
+	return FALSE;
 }
 
 int TDialog::HandleEvent(TEvent *e) {

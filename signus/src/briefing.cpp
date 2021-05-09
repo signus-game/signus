@@ -654,7 +654,6 @@ void freeStack(void) {
 
 void BriefGo(char *MissionName) {
 	int BriefEvent;
-        TEvent e;
 
 	SetConstants();
 	drawGUI();
@@ -672,10 +671,7 @@ void BriefGo(char *MissionName) {
 	memfree(BigDrawBuffer);
 	freeStack();
 	FadeOut(Palette, 0);
-
-	do {
-		GetEvent(&e);
-	} while (e.What != evNothing);
+	clear_nonquit_events();
 }
 
 // GET EVENT
@@ -793,7 +789,11 @@ int BriefGetEvent()
 	    default:
 		return 0;
     }
+    } else if (Ev.What == evQuit) {
+	PutEvent(&Ev);
+	return -7;
     }
+
     return 0;
 }
 

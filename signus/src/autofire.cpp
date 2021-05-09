@@ -914,6 +914,7 @@ int ConfirmAF(TUnit *u, TUnit *t)
     MouseShow();
     ShowHelpers();
     ShowHelpers();
+    ClearEvent();
     cm = PromtBox(b, cmYes | cmNo | cmAlways);
     HideHelpers();
     HideHelpers();
