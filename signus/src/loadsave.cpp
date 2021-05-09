@@ -341,19 +341,19 @@ void writeSavegameHeader(WriteStream &stream, const char *name) {
 void TLoadSaveDialog::SearchFiles() {
 	DIR *dir;
 	struct dirent *fi;
-	int i, j;
+	int i, j, first;
 	TSavegameHdr hdr;
 	char *dirname, *filename;
 	File f;
 
-	SCount = IsSave ? 1 : 0;
+	first = SCount = IsSave ? 1 : 0;
 	for (i = 0; i < 1000; i++) SNames[i] = SFiles[i] = NULL;
 
 	dirname = signus_save_path();
 	// searching for savefiles...:
 	dir = opendir(dirname);
 
-	for (fi = readdir(dir); fi; fi = readdir(dir)) {
+	for (fi = readdir(dir); SCount < 1000 && fi; fi = readdir(dir)) {
 		if (strncmp(fi->d_name, "savegame", 8)) {
 			continue;
 		}
@@ -418,9 +418,18 @@ void TLoadSaveDialog::SearchFiles() {
 				memfree(filename);
 			}
 		}
+
+		// All save slots are full...
+		if (!SFiles[0]) {
+			SCount--;
+			SFiles[0] = SFiles[SCount];
+			SNames[0] = SNames[SCount];
+			STimes[0] = STimes[SCount];
+			first = 0;
+		}
 	}
 
-	SortFiles(IsSave ? 1 : 0, SCount-1);
+	SortFiles(first, SCount-1);
 }
 
 
