@@ -1,8 +1,8 @@
 #> Icarus is an air superiority fighter. It is armed with Omega air-to-air
  missiles and a heavy machine gun for short-range combat. The jet engines for
- these units are manufactured my the Asterkhel corporation.
+ these units are manufactured by the Asterkhel corporation.
 #> The main use for these fighters is in aerial battles where they can defeat
- even much better armed and armored opponents thanks to their speed and fairly
+ even much better armed and armored opponents thanks to their speed and quite
  decent missile firepower. A major advantage of these planes is their fairly
  long flight range which allows them to fly deep behind enemy lines to escort
  bombers. Their weakness is low toughness so they can withstand only a few

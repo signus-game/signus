@@ -5,14 +5,14 @@
  vykrystalizovala při delších bojových
  akcích, které vyžadovaly transport větších
  svazů. Její nasazení do
- přímích bojových akcí je naprosto
+ přímých bojových akcí je naprosto
  nemožné, naopak Oasa musí být neustále
  pod ochranou válečných lodí. Je však velice
  nebezpečné setrvávat s jinými jednotkami
- příliš dlouho v blízkosti Oasy naboť při
+ příliš dlouho v blízkosti Oasy, neboť při
  zásahu a následné explozi může dojít k
  vážnému poškození okolních lodí.
-#> Prostředí na Oaze v ničem nepřípomíná
+#> Prostředí na Oase v ničem nepřípomíná
  klid a pohodu, kterou by si mohl
  člověk neznalý bojového prostředí
  jednotek Signus představit.

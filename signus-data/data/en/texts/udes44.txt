@@ -3,7 +3,7 @@
  six-blade rotor.
 #> The primary purpose of this unit is elimination of ground targets using its
  fragmentation rockets. In aerial combat, Rex must rely on ground anti-air
- batteries or fellow fighter aircrafts. It is a unit designed for front-line
+ batteries or fighter pilot colleagues. It is a unit designed for front-line
  combat along with tanks and defense turrets. Its role is to paralyze enemy
  ground forces and then (in case of too strong enemy air defense or fighter
  squadron counterattack) retreat back to safety behind friendly lines.

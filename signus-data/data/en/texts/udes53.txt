@@ -6,7 +6,7 @@
  (which often happens when an airport gets captured). Hangars are also fully
  automated and work without human intervention just like radar towers. Each of
  them is equipped with a repair unit which can partially repair damaged
- aircrafts. Runways used by Signus forces are equipped with an automatic
+ aircrafts. Runways used by Signus forces are equipped with automatic
  guidance system that controls the aircraft's final approach and landing gear
  deployment, allowing multiple units to land simultaneously.
 #e

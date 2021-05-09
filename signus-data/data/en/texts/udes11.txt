@@ -2,10 +2,10 @@
  Its greatest strength is its speed, the greatest weakness is its weak armor
  and low durability.
 #> These units were designed to carry up to five-person commandos inside which
- allow these these vehicles to capture enemy buildings (radars, depots and
- bases). This feature makes Boomerangs highly strategically important. Another
- major advantage of Boomerangs is their sensor array which allows them to
- locate enemy forces at considerable distance.
+ allow these vehicles to capture enemy buildings (radars, depots and bases).
+ This feature makes Boomerangs highly strategically important. Another major
+ advantage of Boomerangs is their sensor array which allows them to locate
+ enemy forces at considerable distance.
 #> Boomerang was originally used as a light assault tank. But this role is
  currently served by Perseus Alpha in assault missions.
 #e

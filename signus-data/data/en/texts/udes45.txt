@@ -9,6 +9,6 @@
  range.
 #> Even some high-ranking officers objected to development of this weapon.
  However, its deployment then became a necessity.
-#> Special feature: Satan cannot be targeted by return fire.
+#> Special feature: Satan cannot be targeted by reaction fire.
 #e
 #e

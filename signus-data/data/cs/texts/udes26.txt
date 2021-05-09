@@ -1,7 +1,7 @@
 #> Helios je bitevní vznášedlo vyzbrojené
  středně těžkým kanónem Beta 3 a těžkým
  protiletadlovým kulometem podobného
- konstrukčního typu jaké používají tanky
+ konstrukčního typu, jaké používají tanky
  Perseus Gama.
 #> Tato jednotka je vlastně obdobou středně
  těžkého tanku Perseus Beta. Největší výhodou
@@ -14,7 +14,7 @@
  flaku.
 #> Tento bojový stroj se krátce po svém
  vzniku dostal do znaku Zimbowanských
- legií (elitní Eutanieské jednotky),
+ legií (elitní Eutanijské jednotky),
  jejichž vojáci tvoří 1/3 všech
  bojovníků jednotek Signus.
 #e
