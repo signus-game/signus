@@ -356,6 +356,7 @@ utocna, obranna cisla, paliva, dohledy, dojezdy...
 #define utTH_INC_DN                  1/3
 #define utTH_INC_AN                  2/3
 
+#define utTH_HIDE                     30
 
 
 

@@ -763,7 +763,7 @@ TSprite *TSatan::GetSprite()
 
 void TSatan::GetUnitInfo(bool alt_wpinfo) {
 	TGroundUnit::GetUnitInfo(true);
-	CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconSatan->IconPic[0], 59, 59);
+	draw_special_button(IconSatan->IconPic[0], 59, 59, 0);
 }
 
 
@@ -969,11 +969,9 @@ void TXenon::GetUnitInfo(bool alt_wpinfo) {
 		clrSeaBlue, (double)Mines / utXE_MINES, cbuf);
 
 	if (GetMineAt(X, Y) == -1) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon->IconPic[0], 59,
-			59);
+		draw_special_button(IconXenon->IconPic[0], 59, 59, utXE_TL);
 	} else {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconXenon2->IconPic[0], 59,
-			59);
+		draw_special_button(IconXenon2->IconPic[0], 59, 59, 0);
 	}
 }
 
@@ -1001,24 +999,21 @@ int TXenon::PlaceMine()
 
 
 
-int TXenon::InfoEvent(TEvent *e)
-{
-    int rt = TGroundUnit::InfoEvent(e);
+int TXenon::InfoEvent(TEvent *e) {
+	int rt = TGroundUnit::InfoEvent(e);
     
-    if (GetMineAt(X, Y) == -1) {
-        if (!rt && IconXenon->Handle(e)) {
-            PlaceMine();
-            return TRUE;
-        }
-    }
-    else {
-        if (!rt && IconXenon2->Handle(e)) {
-            UnplaceMine();
-            ShowUnitInfo();
-            return TRUE;
-        }
-    }
-    return rt;
+	if (GetMineAt(X, Y) == -1) {
+		if (!rt && IconXenon->Handle(e)) {
+			PlaceMine();
+			rt = TRUE;
+		}
+	} else if (!rt && IconXenon2->Handle(e)) {
+		UnplaceMine();
+		rt = TRUE;
+	}
+
+	ShowUnitInfo();
+	return rt;
 }
 
 

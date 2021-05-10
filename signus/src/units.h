@@ -223,6 +223,12 @@ class TObject {
 
 
 class TUnit : public TObject {
+protected:
+	// Special action button in the unit info box
+	// e.g. take off/land button for Rex and Caesar
+	void draw_special_button(const void *bitmap, unsigned width,
+		unsigned height, int apcost);
+
         public:
             int MaxFuel;                                                  // max. paliva
             

@@ -235,11 +235,9 @@ void TThor::GetUnitInfo(bool alt_wpinfo) {
 		clrSeaBlue, (double)TotalRockets / 100, cbuf);
 
 	if (IsOverground) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorIn->IconPic[0], 59,
-			59);
+		draw_special_button(IconThorIn->IconPic[0], 59, 59, utTH_HIDE);
 	} else {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconThorOut->IconPic[0],
-			59, 59);
+		draw_special_button(IconThorOut->IconPic[0], 59, 59, utTH_HIDE);
 	}
 }
 
@@ -259,11 +257,11 @@ void TThor::GoOverground(int over)
 
     if (over == IsOverground) return;
 
-    if (TimeUnits < 30) {
+    if (TimeUnits < utTH_HIDE) {
         if (ID < BADLIFE) Message(MSG_OUT_OF_TIME);
         return;
     }
-    TimeUnits -= 30;
+    TimeUnits -= utTH_HIDE;
     IsOverground = over;
     HideHelpers();
     if (GetField(X, Y)->Visib == 2) {

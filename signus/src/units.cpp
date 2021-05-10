@@ -988,7 +988,16 @@ void TUnit::WriteInitReq(WriteStream &stream) {
 	stream.writeSint32LE(TRUE);
 }
 
+void TUnit::draw_special_button(const void *bitmap, unsigned width,
+	unsigned height, int apcost) {
+	char buf[16];
 
+	sprintf(buf, "%u", apcost);
+	CopyBmp(UInfoBuf, UINFO_SX, 2, UINFO_SY - height - 2, bitmap, width,
+		height);
+	PutStr(UInfoBuf, UINFO_SX, UINFO_SY, 6, UINFO_SY - height, buf,
+		NormalFont, clrWhite, clrBlack);
+}
 
 int TUnit::CanGoOnField(int x, int y) {
 	TField *f = GetField(x, y);

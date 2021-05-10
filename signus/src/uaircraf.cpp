@@ -652,13 +652,14 @@ int TRex::TakeOff()
 
 
 
-void TRex::GetUnitInfo(bool alt_wpinfo)
-{
+void TRex::GetUnitInfo(bool alt_wpinfo) {
 	TAircraft::GetUnitInfo(true);
-	if (FlyLevel == 0)
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0], 59, 59);
-	else
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59, 59);
+
+	if (FlyLevel == 0) {
+		draw_special_button(IconTakeoff->IconPic[0], 59, 59, utRX_LAND);
+	} else {
+		draw_special_button(IconLand->IconPic[0], 59, 59, utRX_LAND);
+	}
 }
 
 
@@ -669,19 +670,24 @@ int TRex::InfoEvent(TEvent *e)
 	
 	if (FlyLevel == 0) {
 		if (!rt && IconTakeoff->Handle(e)) {
-			if (!TakeOff()) Message(MSG_OUT_OF_TIME);
-			return TRUE;
+			if (!TakeOff()) {
+				Message(MSG_OUT_OF_TIME);
+			}
+
+			rt = TRUE;
 		}
+	} else if (!rt && IconLand->Handle(e)) {
+		if (!Land()) {
+			if (TimeUnits < utRX_LAND) {
+				Message(MSG_OUT_OF_TIME);
+			} else {
+				Message(MSG_CANNOT_LAND);
+			}
+		}				
+		rt = TRUE;
 	}
-	else {
-		if (!rt && IconLand->Handle(e)) {
-			if (!Land()) {
-				if (TimeUnits < utRX_LAND) Message(MSG_OUT_OF_TIME);
-				else Message(MSG_CANNOT_LAND);
-			}				
-			return TRUE;
-		}
-	}
+
+	ShowUnitInfo();
 	return rt;
 }
 
@@ -847,13 +853,11 @@ void TCaesar::GetUnitInfo(bool alt_wpinfo) {
 	TAircraft::GetUnitInfo(true);
 
 	if (FlyLevel == 0) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconTakeoff->IconPic[0],
-			59, 59);
+		draw_special_button(IconTakeoff->IconPic[0], 59, 59, utRX_LAND);
 		CopyBmp(UInfoBuf, UINFO_SX, 3, 110, IconTransport->IconPic[0],
 			102, 23);
 	} else {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, IconLand->IconPic[0], 59,
-			59);
+		draw_special_button(IconLand->IconPic[0], 59, 59, utRX_LAND);
 	}
 
 	PercentBar(UInfoBuf, UINFO_SX, UINFO_SY, 3, 135, 102, 8, clrLightBlue2,
@@ -868,20 +872,24 @@ int TCaesar::InfoEvent(TEvent *e)
 	
 	if (FlyLevel == 0) {
 		if (!rt && IconTakeoff->Handle(e)) {
-			if (!TakeOff()) Message(MSG_OUT_OF_TIME);
-			return TRUE;
-		}
-		else if (!rt && IconTransport->Handle(e)) {
+			if (!TakeOff()) {
+				Message(MSG_OUT_OF_TIME);
+			}
+
+			rt = TRUE;
+		} else if (!rt && IconTransport->Handle(e)) {
 			DoInventory();
-			return TRUE;
+			rt = TRUE;
 		}
-	}
-	else {
-		if (!rt && IconLand->Handle(e)) {
-			if (!Land()) Message(MSG_CANNOT_LAND);
-			return TRUE;
+	} else if (!rt && IconLand->Handle(e)) {
+		if (!Land()) {
+			Message(MSG_CANNOT_LAND);
 		}
+
+		rt = TRUE;
 	}
+
+	ShowUnitInfo();
 	return rt;
 }
 
@@ -1354,9 +1362,9 @@ void TSaturn::GetUnitInfo(bool alt_wpinfo) {
 		clrSeaBlue, (double)Bombs / utSA_BAMMO, cbuf);
 
 	if (IsBombing) {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[1], 59, 59);
+		draw_special_button(BmpBombing[1], 59, 59, utSA_BAT);
 	} else {
-		CopyBmp(UInfoBuf, UINFO_SX, 2, 147, BmpBombing[0], 59, 59);
+		draw_special_button(BmpBombing[0], 59, 59, utSA_BAT);
 	}
 }
 
