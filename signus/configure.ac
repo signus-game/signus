@@ -57,12 +57,10 @@ PKG_CHECK_MODULES([SDL2], [sdl2 >= 2.0.12 SDL2_mixer SDL2_ttf SDL2_image])
 PKG_CHECK_MODULES([libvorbis], [vorbis])
 PKG_CHECK_MODULES([libjpeg], [libjpeg])
 
-dnl FIXME - make it possible to compile signus w/o NASM
 dnl FIXME - check for version-data file and contained version
 
 case "$USE_DEBUG" in
 yes)	DEBUG_FLAGS="-g -O0 -Wall"
-        NASMFLAGS="$NASMFLAGS -g"
     ;;    
 *)	DEBUG_FLAGS="-O3"
     ;;
@@ -80,7 +78,6 @@ CXXFLAGS="$SDL2_CFLAGS $libvorbis_CFLAGS $libjpeg_CFLAGS $CXXFLAGS $GCC_FLAGS $D
 AC_SUBST(LIBS)
 AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
-AC_SUBST(NASMFLAGS)
 AC_SUBST(RESCOMP)
 AC_SUBST(DATA_VERSION)
 
