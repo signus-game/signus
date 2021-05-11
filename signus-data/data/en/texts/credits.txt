@@ -3,7 +3,7 @@
 *Signus: The Artefact Wars
  ----------------------------------------------------
 
- http://signus.sourceforge.net
+ https://github.com/signus-game
  
  Designed and developed by
 *Valacirca

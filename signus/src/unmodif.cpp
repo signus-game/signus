@@ -1,5 +1,6 @@
 /*
- *  This file is part of Signus: The Artefact Wars (http://signus.sf.net)
+ *  This file is part of Signus: The Artefact Wars
+ *  https://github.com/signus-game
  *
  *  Copyright (C) 1997, 1998, 2002, 2003
  *  Vaclav Slavik, Richard Wunsch, Marek Wunsch
