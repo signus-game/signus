@@ -366,6 +366,7 @@ void readSavegameHeader(ReadStream &stream, TSavegameHdr &header) {
 void writeSavegameHeader(WriteStream &stream, const char *name) {
 	TSavegameHdr header;
 
+	memset(&header, 0, sizeof(header));
 	strcpy(header.Magic, magic_list[DEFAULT_SAVEGAME_FORMAT]);
 	strncpy(header.Name, name, 63);
 	header.Name[63] = '\0';
