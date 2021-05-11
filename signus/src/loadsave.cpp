@@ -59,6 +59,46 @@ static const char *magic_list[] = {
 	NULL
 };
 
+static const char *upper_keybcs2[] = {
+	"Č", "ü", "é", "ď", "ä", "Ď", "Ť", "č", "ě", "Ě", "Ĺ", "Í", "ľ", "ĺ",
+	"Ä", "Á", "É", "ž", "Ž", "ô", "ö", "Ó", "ů", "Ú", "ý", "Ö", "Ü", "Š",
+	"Ľ", "Ý", "Ř", "ť", "á", "í", "ó", "ú", "ň", "Ň", "Ů", "Ô", "š", "ř",
+	"ŕ", "Ŕ", "¼", "§", "«", "»", "░", "▒", "▓", "│", "┤", "╡", "╢", "╖",
+	"╕", "╣", "║", "╗", "╝", "╜", "╛", "┐", "└", "┴", "┬", "├", "─", "┼",
+	"╞", "╟", "╚", "╔", "╩", "╦", "╠", "═", "╬", "╧", "╨", "╤", "╥", "╙",
+	"╘", "╒", "╓", "╫", "╪", "┘", "┌", "█", "▄", "▌", "▐", "▀", "α", "ß",
+	"Γ", "π", "Σ", "σ", "µ", "τ", "Φ", "Θ", "Ω", "δ", "∞", "φ", "ε", "∩",
+	"≡", "±", "≥", "≤", "⌠", "⌡", "÷", "≈", "°", "∙", "·", "√", "ⁿ", "²",
+	"■", " "
+};
+
+char *keybcs2_to_utf8(const char *str) {
+	const unsigned char *ptr = (const unsigned char *)str;
+	char *ret;
+	size_t i, size;
+
+	for (i = 0, size = 1; ptr[i]; i++) {
+		size += ptr[i] < 128 ? 1 : strlen(upper_keybcs2[ptr[i] - 128]);
+	}
+
+	ret = (char*)memalloc(size);
+
+	if (!ret) {
+		return NULL;
+	}
+
+	for (i = 0, size = 0; ptr[i]; i++) {
+		if (ptr[i] < 128) {
+			ret[size++] = ptr[i];
+		} else {
+			strcpy(ret + size, upper_keybcs2[ptr[i] - 128]);
+			size += strlen(upper_keybcs2[ptr[i] - 128]);
+		}
+	}
+
+	ret[size] = '\0';
+	return ret;
+}
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -375,7 +415,13 @@ void TLoadSaveDialog::SearchFiles() {
 				continue;
 			}
 
-			SNames[SCount] = strdup(hdr.Name);
+			if (hdr.format) {
+				SNames[SCount] = strdup(hdr.Name);
+			} else {
+				// Old commercial release savegame
+				SNames[SCount] = keybcs2_to_utf8(hdr.Name);
+			}
+
 			SFiles[SCount] = filename;
 			STimes[SCount] = -hdr.Time;
 			SCount++;
@@ -489,7 +535,7 @@ void TLoadSaveDialog::GetStamp(int num) {
 
 int TLoadSaveDialog::SpecialHandle(TEvent *e, int Cmd) {
 	int Cur;
-	char buf[64];
+	char buf[65];
 
 	if (Cmd == cmDelete) {
 		Cur = m_List->Current;
@@ -534,7 +580,17 @@ int TLoadSaveDialog::SpecialHandle(TEvent *e, int Cmd) {
 		if (Cur == 0) {
 			strcpy(buf, "");
 		} else {
-			strcpy(buf, SNames[Cur]);
+			int pos = 63;
+
+			strncpy(buf, SNames[Cur], 64);
+
+			if (strlen(SNames[Cur]) >= 64) {
+				buf[pos] = SNames[Cur][pos];
+				// Delete the last UTF-8 character over limit
+				while (pos > 0 && (buf[--pos] & 0xc0) == 0x80);
+			}
+
+			buf[pos] = '\0';
 		}
 
 		if (InputBox("", buf, 63) == cmOk) {
