@@ -34,3 +34,29 @@ Clone this repository and build both `signus` and `signus-data` subdirectiories:
     ./configure
     make
     make install
+
+## Controls
+
+- Left mouse button: Select unit, give orders
+- Right mouse button: Change unit action
+
+Note that some actions are only available on certain map fields. For example, you must hover mouse over a unit to select the rearm/refuel action.
+
+- F1: Reserve time units for 1 shot
+- F2: Reserve time units for 2 shots
+- F3: Reserve time units for 3 shots
+- F5: Open load game dialog
+- F6: Open save game dialog
+- F10: Open in-game menu
+- Tab: Switch to next weapon
+- Alt+Enter: Toggle fullscreen mode (scaled to current desktop resolution)
+- C: Center screen on selected unit
+- D: Toggle unit status bars
+- E: End turn
+- I: Open unit description
+- M: Mark current unit as finished until the end of turn and select next unfinished unit
+- N: Select next unit
+- 1: Change action to unit selection
+- 2: Change action to movement
+- 3: Change action to attack
+- 4: Change action to unit special
