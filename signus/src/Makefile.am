@@ -103,3 +103,5 @@ signus_LDADD += resource.o
 endif
 
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
+
+EXTRA_DIST = resource.rc signus.ico
