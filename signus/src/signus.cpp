@@ -724,6 +724,7 @@ void HandleEvent(TEvent *e)
                     TEvent e;
                     SelectedUnit->Action(SelPos.x, SelPos.y);
                     do {GetEvent(&e);} while (e.What != evNothing);
+		    SelectField(Mouse.x, Mouse.y);
                 }
             }
         }

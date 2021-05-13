@@ -236,7 +236,6 @@ void TObject::PaintUnit(int DoCheck)
 
 int TObject::PaintUnitInMove(int bx, int by)
 {
-    GetEvent(NULL);
     if (GetField(X, Y)->Visib == 2) {
         PaintUnit(TRUE);
         ProcessMapAnim();
