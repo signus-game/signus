@@ -12,7 +12,7 @@ AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 
 case "${host_os}" in
-linux*|darwin*)
+linux*|darwin*|freebsd*|netbsd*|openbsd*)
 	signus_system=unix ;;
 cygwin*|mingw*)
 	signus_system=windows ;;
