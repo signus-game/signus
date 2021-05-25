@@ -187,6 +187,21 @@ void detect_language(void) {
 		*found = '\0';
 	}
 
+	// Prefer Czech language as fallback for Slovak locale
+	if (!strcmp(syslocale, "sk")) {
+		strcpy(syslocale, "cs");
+		path = concat_path(basepath, "texts.dat");
+
+		if (testfile.open(path, File::READ)) {
+			strcpy(iniLocale, syslocale);
+			memfree(path);
+			memfree(basepath);
+			return;
+		}
+
+		memfree(path);
+	}
+
 	memfree(basepath);
 	strcpy(iniLocale, DEFAULT_LANG);
 }
