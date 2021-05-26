@@ -19,27 +19,31 @@
 %define        ver_app    1.96.0
 %define        ver_data   1.96
 
-Name:          signus
-Version:       %{ver_app}
+Name:          signus-data
+Version:       %{ver_data}
 Release:       0
-Source0:       %{name}-%{ver_app}.tar.bz2
+BuildArch:     noarch
+Source0:       %{name}-%{ver_data}.tar.bz2
 
-Summary:       Strategy game Signus: The Artefact Wars
 License:       GPL-2.0-only
+Summary:       Data files for Signus
 Group:         Games/Strategy
 URL:           https://github.com/signus-game
 
-BuildRequires: SDL2-devel
-BuildRequires: SDL2_image-devel
-BuildRequires: SDL2_mixer-devel
-BuildRequires: SDL2_ttf-devel
-BuildRequires: libvorbis-devel
-BuildRequires: libjpeg-devel
-
-Requires:      signus-data >= %{ver_data}
+Requires:      signus >= %{ver_app}
 
 %description
-Turn-based strategy wargame
+Common data files for Signus: The Artefact Wars
+
+
+%package l10n-cs
+Summary:       Czech data for Signus
+Group:         Games/Strategy
+Requires:      signus-data = %{ver_data}
+Provides:      locale(signus-data:cs_CZ)
+
+%description l10n-cs
+Czech data files for Signus: The Artefact Wars
 
 
 %prep
@@ -53,7 +57,10 @@ Turn-based strategy wargame
 %make_install
 
 %files
-%doc AUTHORS
-%license COPYING
-%{_bindir}/*
-%{_datadir}/signus/%{ver_data}/default_signus.ini
+%dir %{_datadir}/signus
+%{_datadir}/signus/%{ver_data}/nolang
+%{_datadir}/signus/%{ver_data}/en
+
+%files l10n-cs
+%dir %{_datadir}/signus/%{ver_data}/cs
+%{_datadir}/signus/%{ver_data}/cs
