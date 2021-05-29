@@ -20,10 +20,13 @@ Tento program slou‘¡ k vytv ©en¡ .DAT soubor–
 #include <dirent.h>
 #include <png.h>
 
-using namespace std;
 #define TRUE 1
 #define FALSE 0
 #define NHDF_BLOCKSIZE (256*1024)
+
+using std::cout;
+using std::cerr;
+using std::endl;
 
 time_t ourtime()
 {
