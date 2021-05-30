@@ -92,7 +92,7 @@ extern "C" void PutStr(void *tar, int tarwidth,
                        char *s, TFont *f, 
                        byte clr1, byte clr2)
 {
-    register int i,j;
+    int i,j;
     int w, h = f->Height;
     int x = xpoz, y = ypoz;
     byte *buf = ((byte*)tar) + x + y * tarwidth;
