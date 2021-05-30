@@ -469,7 +469,7 @@ int InitGlobal() {
 	TTF_SetFontStyle(TinyFont, TTF_STYLE_NORMAL);
 	memfree(path);
 
-	if (NormalFont == NULL && HugeFont == NULL && TinyFont == NULL) {
+	if (NormalFont == NULL || HugeFont == NULL || TinyFont == NULL) {
 		return 0;
 	}
 
