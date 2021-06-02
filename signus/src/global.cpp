@@ -247,18 +247,18 @@ bool LoadINI() {
 	iniFullscreen = iniparser_getint(dict, "video:fullscreen", 0);
 	iniMaximize = iniparser_getint(dict, "video:maximized", 0);
 
-	iniMusicVol = iniparser_getint(dict, "audio:music_volume", 20);
-	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", 20);
-	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", 20);
+	iniMusicVol = iniparser_getint(dict, "audio:music_volume", 15);
+	iniSoundVol = iniparser_getint(dict, "audio:sound_volume", 30);
+	iniSpeechVol = iniparser_getint(dict, "audio:speech_volume", 45);
 	iniJukeboxRepeat = iniparser_getint(dict, "audio:jukebox_repeat", 1);
 	iniJukeboxRandom = iniparser_getint(dict, "audio:jukebox_random_order", 1);
 	iniJukeboxListSize = iniparser_getint(dict, "audio:jukebox_play_list_size", 0);
 	iniJukeboxSave = iniparser_getint(dict, "audio:jukebox_save_changes", 0);
 
-	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", 7);
-	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", 8);
+	iniAnimDelay = iniparser_getint(dict, "interface:anim_delay", 50);
+	iniAnimDelay2 = iniparser_getint(dict, "interface:anim_delay2", 50);
 	iniIdleDelay = iniparser_getint(dict, "interface:idle_delay", 10);
-	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", 10);
+	iniScrollDelay = iniparser_getint(dict, "interface:scroll_delay", 50);
 	iniEnhancedGuiOn = iniparser_getint(dict, "interface:enable_anim_gui", 1);
 	iniShowStatusbar = iniparser_getint(dict, "interface:unit_status_bar", 1);
 	iniShowMoveRange = iniparser_getint(dict, "interface:unit_move_rng", 1);
