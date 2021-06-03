@@ -18,6 +18,7 @@ Good luck, commander, Signus is at your command.
 - SDL2\_image
 - libvorbis
 - libjpeg
+- libpng
 
 ## Installation
 

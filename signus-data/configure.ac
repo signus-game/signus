@@ -20,6 +20,8 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
 
+PKG_CHECK_MODULES([libpng], [libpng])
+
 MAKEDAT='MAKEDAT_PALETTE="$(top_srcdir)/data/nolang/graphics/palette.col" $(top_builddir)/utils/makedat'
 AC_SUBST(MAKEDAT)
 MK_RGB2PAL='$(top_builddir)/utils/mk_rgb2pal'

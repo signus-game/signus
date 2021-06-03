@@ -30,6 +30,8 @@ Summary:       Data files for Signus
 Group:         Games/Strategy
 URL:           https://github.com/signus-game
 
+BuildRequires: libpng-devel
+
 Requires:      signus >= %{ver_app}
 
 %description

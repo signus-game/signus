@@ -8,6 +8,7 @@
 - SDL2\_image
 - libvorbis
 - libjpeg
+- libpng
 
 ## Instalace
 
