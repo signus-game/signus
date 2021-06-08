@@ -53,7 +53,7 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
 
-PKG_CHECK_MODULES([SDL2], [sdl2 >= 2.0.12 SDL2_mixer SDL2_ttf SDL2_image])
+PKG_CHECK_MODULES([SDL2], [sdl2 >= 2.0.5 SDL2_mixer SDL2_ttf SDL2_image])
 PKG_CHECK_MODULES([libvorbis], [vorbis])
 PKG_CHECK_MODULES([libjpeg], [libjpeg])
 

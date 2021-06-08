@@ -12,7 +12,7 @@ Good luck, commander, Signus is at your command.
 
 ## Dependencies
 
-- libSDL 2.0.12
+- libSDL 2.0.5
 - SDL2\_mixer (built with libmikmod for music playback)
 - SDL2\_ttf
 - SDL2\_image

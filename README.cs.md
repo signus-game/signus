@@ -2,7 +2,7 @@
 
 ## Potřebné knihovny
 
-- libSDL 2.0.12
+- libSDL 2.0.5
 - SDL2\_mixer (pro přehrávání hudby je navíc potřeba libmikmod)
 - SDL2\_ttf
 - SDL2\_image

@@ -204,14 +204,31 @@ void redraw_screen(void) {
 }
 
 void UpdateScreen(void) {
+	int pitch, access, width, height;
+	uint32_t format;
+	void *pixels;
 	SDL_Surface *target;
 	SDL_Rect dstpos = {0, 0, RES_X, RES_Y};
 
-	if (SDL_LockTextureToSurface(framebuffer, NULL, &target)) {
+	if (SDL_LockTexture(framebuffer, NULL, &pixels, &pitch)) {
+		return;
+	}
+
+	if (SDL_QueryTexture(framebuffer, &format, &access, &width, &height)) {
+		SDL_UnlockTexture(framebuffer);
+		return;
+	}
+
+	target = SDL_CreateRGBSurfaceWithFormatFrom(pixels, width, height,
+		pitch / width, pitch, format);
+
+	if (!target) {
+		SDL_UnlockTexture(framebuffer);
 		return;
 	}
 
 	SDL_BlitSurface(drawbuffer, NULL, target, &dstpos);
+	SDL_FreeSurface(target);
 	SDL_UnlockTexture(framebuffer);
 	redraw_screen();
 }
