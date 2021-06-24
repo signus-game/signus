@@ -27,28 +27,28 @@ texts_src = brief1.txt brief10.txt brief11.txt brief12.txt brief13.txt \
 	txt54.txt txt55.txt txt56.txt txt57.txt txt58.txt txt59.txt txt6.txt \
 	txt60.txt txt61.txt txt62.txt txt63.txt txt64.txt txt65.txt txt66.txt \
 	txt67.txt txt68.txt txt69.txt txt7.txt txt70.txt txt71.txt txt73.txt \
-	txt74.txt txt75.txt txt76.txt txt8.txt txt9.txt udes1.txt udes10.txt \
-	udes11.txt udes12.txt udes13.txt udes14.txt udes15.txt udes16.txt \
-	udes17.txt udes18.txt udes19.txt udes2.txt udes20.txt udes21.txt \
-	udes22.txt udes23.txt udes24.txt udes25.txt udes26.txt udes27.txt \
-	udes28.txt udes29.txt udes3.txt udes30.txt udes31.txt udes32.txt \
-	udes33.txt udes34.txt udes35.txt udes36.txt udes37.txt udes38.txt \
-	udes39.txt udes4.txt udes40.txt udes41.txt udes42.txt udes43.txt \
-	udes44.txt udes45.txt udes5.txt udes50.txt udes51.txt udes52.txt \
-	udes53.txt udes54.txt udes55.txt udes56.txt udes57.txt udes58.txt \
-	udes6.txt udes7.txt udes8.txt udes9.txt unam1.txt unam10.txt \
-	unam11.txt unam12.txt unam13.txt unam14.txt unam15.txt unam16.txt \
-	unam17.txt unam18.txt unam19.txt unam2.txt unam20.txt unam21.txt \
-	unam22.txt unam23.txt unam24.txt unam25.txt unam26.txt unam27.txt \
-	unam28.txt unam29.txt unam3.txt unam30.txt unam31.txt unam32.txt \
-	unam33.txt unam34.txt unam35.txt unam36.txt unam37.txt unam38.txt \
-	unam39.txt unam4.txt unam40.txt unam41.txt unam42.txt unam43.txt \
-	unam44.txt unam45.txt unam5.txt unam50.txt unam51.txt unam52.txt \
-	unam53.txt unam54.txt unam55.txt unam56.txt unam57.txt unam58.txt \
-	unam59.txt unam6.txt unam60.txt unam7.txt unam8.txt unam9.txt \
-	wpnnm0.txt wpnnm1.txt wpnnm10.txt wpnnm11.txt wpnnm12.txt wpnnm2.txt \
-	wpnnm3.txt wpnnm4.txt wpnnm5.txt wpnnm6.txt wpnnm7.txt wpnnm8.txt \
-	wpnnm9.txt
+	txt74.txt txt75.txt txt76.txt txt77.txt txt8.txt txt9.txt udes1.txt \
+	udes10.txt udes11.txt udes12.txt udes13.txt udes14.txt udes15.txt \
+	udes16.txt udes17.txt udes18.txt udes19.txt udes2.txt udes20.txt \
+	udes21.txt udes22.txt udes23.txt udes24.txt udes25.txt udes26.txt \
+	udes27.txt udes28.txt udes29.txt udes3.txt udes30.txt udes31.txt \
+	udes32.txt udes33.txt udes34.txt udes35.txt udes36.txt udes37.txt \
+	udes38.txt udes39.txt udes4.txt udes40.txt udes41.txt udes42.txt \
+	udes43.txt udes44.txt udes45.txt udes5.txt udes50.txt udes51.txt \
+	udes52.txt udes53.txt udes54.txt udes55.txt udes56.txt udes57.txt \
+	udes58.txt udes6.txt udes7.txt udes8.txt udes9.txt unam1.txt \
+	unam10.txt unam11.txt unam12.txt unam13.txt unam14.txt unam15.txt \
+	unam16.txt unam17.txt unam18.txt unam19.txt unam2.txt unam20.txt \
+	unam21.txt unam22.txt unam23.txt unam24.txt unam25.txt unam26.txt \
+	unam27.txt unam28.txt unam29.txt unam3.txt unam30.txt unam31.txt \
+	unam32.txt unam33.txt unam34.txt unam35.txt unam36.txt unam37.txt \
+	unam38.txt unam39.txt unam4.txt unam40.txt unam41.txt unam42.txt \
+	unam43.txt unam44.txt unam45.txt unam5.txt unam50.txt unam51.txt \
+	unam52.txt unam53.txt unam54.txt unam55.txt unam56.txt unam57.txt \
+	unam58.txt unam59.txt unam6.txt unam60.txt unam7.txt unam8.txt \
+	unam9.txt wpnnm0.txt wpnnm1.txt wpnnm10.txt wpnnm11.txt wpnnm12.txt \
+	wpnnm2.txt wpnnm3.txt wpnnm4.txt wpnnm5.txt wpnnm6.txt wpnnm7.txt \
+	wpnnm8.txt wpnnm9.txt
 
 dist_noinst_DATA = $(texts_src)
 

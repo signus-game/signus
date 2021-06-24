@@ -42,7 +42,7 @@
 
 
 // Konstanty textu (tlacitka, menu, hlasky) (pole SigText):
-#define TXT_COUNT            77
+#define TXT_COUNT            78
 
 #define TXT_ALWAYS            0
 #define TXT_READYSHOOT        1
@@ -120,6 +120,7 @@
 #define TXT_UNITSTOMIS       74
 #define TXT_AVAILABLEUNITS   75
 #define TXT_UNITSCOUNT       76
+#define TXT_FULLSCREEN       77
 
 
 

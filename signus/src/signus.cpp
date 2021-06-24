@@ -389,43 +389,52 @@ void SetSoundVolume()
     FreeSample(ssvSnd);
 }
 
-void SetOptions()
-{
-    TDialog *dlg;
-    int _EnhancedGuiOn = iniEnhancedGuiOn,
-        _SOE = iniStopOnNewEnemy,
-        _IdleD = 60 - iniIdleDelay,
-        _ScrollD = 200 - iniScrollDelay,
-        _AnimD = 200 - iniAnimDelay,
-        _AnimD2 = 200 - iniAnimDelay2;
+void SetOptions() {
+	TDialog *dlg;
+	int _EnhancedGuiOn = iniEnhancedGuiOn, _SOE = iniStopOnNewEnemy;
+	int _fullscreen = iniFullscreen, _IdleD = 60 - iniIdleDelay;
+	int _ScrollD = 200 - iniScrollDelay, _AnimD = 200 - iniAnimDelay;
+	int _AnimD2 = 200 - iniAnimDelay2;
 
-    dlg = new TDialog(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
-    dlg->Insert(new TStaticText(10, 80, 150, 16, SigText[TXT_SCROLL_DELAY]));
-    dlg->Insert(new TBarGauge(10, 96, 310, 20, &_ScrollD, 200));
-    dlg->Insert(new TStaticText(10, 120, 150, 16, SigText[TXT_IDLE_DELAY]));
-    dlg->Insert(new TBarGauge(10, 136, 310, 20, &_IdleD, 60));
-    dlg->Insert(new TStaticText(10, 160, 150, 16, SigText[TXT_MOVE_DELAY]));
-    dlg->Insert(new TBarGauge(10, 176, 310, 20, &_AnimD, 200));
-    dlg->Insert(new TStaticText(10, 200, 150, 16, SigText[TXT_ANIM_DELAY]));
-    dlg->Insert(new TBarGauge(10, 216, 310, 20, &_AnimD2, 200));
-    dlg->Insert(new TCheckBox(10, 245, 250, SigText[TXT_ENABLE_GUI], &_EnhancedGuiOn));
-    dlg->Insert(new TCheckBox(10, 265, 250, SigText[TXT_STOP_ON_ENEMY], &_SOE));
-    dlg->Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
-    dlg->Insert(new TButton(340, 60, SigText[TXT_CANCEL], cmCancel));
-        
-    if (dlg->Exec() == cmOk) {
-        iniEnhancedGuiOn = _EnhancedGuiOn;
-        iniStopOnNewEnemy = _SOE;
-        iniIdleDelay = 60 - _IdleD;
-        iniScrollDelay = 200 - _ScrollD;
-        iniAnimDelay = 200 - _AnimD;
-        iniAnimDelay2 = 200 - _AnimD2;
-      ApplyINI();
-      SaveINI();
-    }
-    else {SetPalette(Palette); ApplyINI();}
-    
-    delete dlg;
+	dlg = new TDialog(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300,
+		"dlgopti");
+	dlg->Insert(new TStaticText(10,10, 150,16, SigText[TXT_SCROLL_DELAY]));
+	dlg->Insert(new TBarGauge(10, 26, 310, 20, &_ScrollD, 200));
+	dlg->Insert(new TStaticText(10, 50, 150, 16, SigText[TXT_IDLE_DELAY]));
+	dlg->Insert(new TBarGauge(10, 66, 310, 20, &_IdleD, 60));
+	dlg->Insert(new TStaticText(10, 90, 150, 16, SigText[TXT_MOVE_DELAY]));
+	dlg->Insert(new TBarGauge(10, 106, 310, 20, &_AnimD, 200));
+	dlg->Insert(new TStaticText(10, 130, 150, 16, SigText[TXT_ANIM_DELAY]));
+	dlg->Insert(new TBarGauge(10, 146, 310, 20, &_AnimD2, 200));
+	dlg->Insert(new TCheckBox(10, 175, 250, SigText[TXT_FULLSCREEN],
+		&_fullscreen));
+	dlg->Insert(new TCheckBox(10, 195, 250, SigText[TXT_ENABLE_GUI],
+		&_EnhancedGuiOn));
+	dlg->Insert(new TCheckBox(10, 215, 250, SigText[TXT_STOP_ON_ENEMY],
+		&_SOE));
+	dlg->Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
+	dlg->Insert(new TButton(340, 60, SigText[TXT_CANCEL], cmCancel));
+
+	if (dlg->Exec() == cmOk) {
+		iniEnhancedGuiOn = _EnhancedGuiOn;
+		iniStopOnNewEnemy = _SOE;
+		iniIdleDelay = 60 - _IdleD;
+		iniScrollDelay = 200 - _ScrollD;
+		iniAnimDelay = 200 - _AnimD;
+		iniAnimDelay2 = 200 - _AnimD2;
+
+		if (_fullscreen != iniFullscreen) {
+			ToggleFullscreen();
+		}
+
+		ApplyINI();
+		SaveINI();
+	} else {
+		SetPalette(Palette);
+		ApplyINI();
+	}
+
+	delete dlg;
 }
 
 
