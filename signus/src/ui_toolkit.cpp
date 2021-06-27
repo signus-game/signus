@@ -1132,7 +1132,7 @@ TBarGauge::~TBarGauge()
 ////////////////////// TCheckBox:
 
 TCheckBox::TCheckBox(int ax, int ay, int aw, char *aText, int *aValue) :
-           TView(ax, ay, aw, 16)
+           TView(ax, ay, GetStrWidth(aText, NormalFont) + 20, 16)
 {
     Value = aValue;
     Text = aText;
@@ -1158,7 +1158,7 @@ void TCheckBox::Draw() {
 int TCheckBox::HandleEvent(TEvent *e)
 {
     if ((e->What == evMouseDown) && 
-        (IsInRect(e->Mouse.Where.x, e->Mouse.Where.y, 0, 0, GetStrWidth(Text, NormalFont), 16))) {
+        (IsInRect(e->Mouse.Where.x, e->Mouse.Where.y, 0, 0, GetStrWidth(Text, NormalFont) + 20, 16))) {
         *Value = !(*Value);
         Draw(); Paint();
     }
