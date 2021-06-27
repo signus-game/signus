@@ -322,7 +322,8 @@ void SetGoodlifeVisib(int x, int y, byte value) {
 				VisibEnemies++;
 			}
 
-			if (aircraft && aircraft->ID >= BADLIFE) {
+			if (iniFixUnitStop && aircraft &&
+				aircraft->ID >= BADLIFE) {
 				VisibEnemies++;
 			}
 		}

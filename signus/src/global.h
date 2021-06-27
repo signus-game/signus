@@ -128,6 +128,7 @@ extern int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRan
                  iniShowVisibRange, iniStopOnNewEnemy;
 
 extern int iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize, iniJukeboxSave;
+extern int iniFixAutofireSaturn, iniFixUnitStop;
 
 extern bool LoadINI();
 extern void SaveINI();

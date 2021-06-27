@@ -95,6 +95,8 @@ int iniResolution;
 int iniMaximize;
 int iniFullscreen;
 
+int iniFixAutofireSaturn, iniFixUnitStop;
+
 char *format_string(const char *fmt, va_list args) {
 	char *buf;
 	int ret, size = 1024;
@@ -266,6 +268,9 @@ bool LoadINI() {
 	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", 0);
 	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", 1);
 
+	iniFixAutofireSaturn = iniparser_getint(dict, "game:fix_autofire_saturn", 1);
+	iniFixUnitStop = iniparser_getint(dict, "game:fix_unit_stop", 1);
+
 	iniparser_freedict(dict);
 	detect_language();
 	return true;
@@ -314,6 +319,11 @@ void SaveINI() {
 		iniAnimDelay, iniAnimDelay2, iniIdleDelay, iniScrollDelay,
 		iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange,
 		iniShowShootRange, iniShowVisibRange, iniStopOnNewEnemy);
+
+	fprintf(f, "\n[game]\n"
+		"fix_autofire_saturn    = %i ;\n"
+		"fix_unit_stop          = %i ;\n",
+		iniFixAutofireSaturn, iniFixUnitStop);
 
 	fclose(f);
 }

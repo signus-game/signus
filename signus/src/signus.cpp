@@ -53,6 +53,8 @@
 #include "engtimer.h"
 #include "autofire.h"
 
+#define cmDetails     666
+
 
 
 /////////////////////////////// PROMNENE ////////////////////////////////
@@ -389,12 +391,33 @@ void SetSoundVolume()
     FreeSample(ssvSnd);
 }
 
+void configure_features(void) {
+	int fix_autofire = iniFixAutofireSaturn, fix_ustop = iniFixUnitStop;
+	TDialog dlg(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
+
+	dlg.Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
+	dlg.Insert(new TButton(340, 60, SigText[TXT_CANCEL], cmCancel));
+	dlg.Insert(new TStaticText(10,10, 150,16, SigText[TXT_BUGFIXES]));
+	dlg.Insert(new TCheckBox(10, 36, 250, SigText[TXT_FIX_AUTOFIRE_SAT],
+		&fix_autofire));
+	dlg.Insert(new TCheckBox(10, 56, 250, SigText[TXT_FIX_UNIT_STOP],
+		&fix_ustop));
+
+	if (dlg.Exec() == cmOk) {
+		iniFixAutofireSaturn = fix_autofire;
+		iniFixUnitStop = fix_ustop;
+		ApplyINI();
+		SaveINI();
+	}
+}
+
 void SetOptions() {
 	TDialog *dlg;
 	int _EnhancedGuiOn = iniEnhancedGuiOn, _SOE = iniStopOnNewEnemy;
 	int _fullscreen = iniFullscreen, _IdleD = 60 - iniIdleDelay;
 	int _ScrollD = 200 - iniScrollDelay, _AnimD = 200 - iniAnimDelay;
 	int _AnimD2 = 200 - iniAnimDelay2;
+	int ret;
 
 	dlg = new TDialog(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300,
 		"dlgopti");
@@ -414,8 +437,18 @@ void SetOptions() {
 		&_SOE));
 	dlg->Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
 	dlg->Insert(new TButton(340, 60, SigText[TXT_CANCEL], cmCancel));
+	dlg->Insert(new TButton(340, 245, SigText[TXT_FEATUREBUTTON],
+		cmDetails));
 
-	if (dlg->Exec() == cmOk) {
+	do {
+		ret = dlg->Exec();
+
+		if (ret == cmDetails) {
+			configure_features();
+		}
+	} while (ret == cmDetails);
+
+	if (ret == cmOk) {
 		iniEnhancedGuiOn = _EnhancedGuiOn;
 		iniStopOnNewEnemy = _SOE;
 		iniIdleDelay = 60 - _IdleD;
@@ -498,8 +531,6 @@ void DoMenu()
 
 
 // zobrazi hlavni cile mise plus da moznost jit do briefinu
-
-#define cmDetails     666
 
 void DoBriefingPlus()
 {

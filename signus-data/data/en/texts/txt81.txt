@@ -1,0 +1,1 @@
+Fix units ignoring newly spotted aircrafts

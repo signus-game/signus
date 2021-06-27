@@ -1263,7 +1263,9 @@ void TSaturn::GoOnField()
 {
 	int i, j, oldID = ID;
 
-	TAircraft::GoOnField();
+	if (iniFixAutofireSaturn) {
+		TAircraft::GoOnField();
+	}
 
 	if (!Units[oldID]) {
 		// Saturn destroyed, cannot drop any more bombs
