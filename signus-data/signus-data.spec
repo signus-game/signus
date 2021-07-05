@@ -27,7 +27,7 @@ Source0:       %{name}-%{ver_data}.tar.bz2
 
 License:       GPL-2.0-only
 Summary:       Data files for Signus
-Group:         Games/Strategy
+Group:         Amusements/Games/Strategy/Turn Based
 URL:           https://github.com/signus-game
 
 BuildRequires: libpng-devel
@@ -60,9 +60,9 @@ Czech data files for Signus: The Artefact Wars
 
 %files
 %dir %{_datadir}/signus
-%{_datadir}/signus/%{ver_data}/nolang
+%dir %{_datadir}/signus/%{ver_data}
 %{_datadir}/signus/%{ver_data}/en
+%{_datadir}/signus/%{ver_data}/nolang
 
 %files l10n-cs
-%dir %{_datadir}/signus/%{ver_data}/cs
 %{_datadir}/signus/%{ver_data}/cs

@@ -24,9 +24,9 @@ Version:       %{ver_app}
 Release:       0
 Source0:       %{name}-%{ver_app}.tar.bz2
 
-Summary:       Strategy game Signus: The Artefact Wars
+Summary:       Turn-based strategy game
 License:       GPL-2.0-only
-Group:         Games/Strategy
+Group:         Amusements/Games/Strategy/Turn Based
 URL:           https://github.com/signus-game
 
 BuildRequires: SDL2-devel
@@ -39,7 +39,7 @@ BuildRequires: libjpeg-devel
 Requires:      signus-data >= %{ver_data}
 
 %description
-Turn-based strategy wargame
+Turn-based strategy wargame Signus: The Artefact Wars
 
 
 %prep
@@ -55,5 +55,7 @@ Turn-based strategy wargame
 %files
 %doc AUTHORS
 %license COPYING
+%dir %{_datadir}/signus
+%dir %{_datadir}/signus/%{ver_data}
 %{_bindir}/*
 %{_datadir}/signus/%{ver_data}/default_signus.ini
