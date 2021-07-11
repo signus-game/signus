@@ -96,6 +96,7 @@ int iniMaximize;
 int iniFullscreen;
 
 int iniFixAutofireSaturn, iniFixUnitStop;
+int iniWarnAircraftFuel;
 
 char *format_string(const char *fmt, va_list args) {
 	char *buf;
@@ -270,6 +271,7 @@ bool LoadINI() {
 
 	iniFixAutofireSaturn = iniparser_getint(dict, "game:fix_autofire_saturn", 1);
 	iniFixUnitStop = iniparser_getint(dict, "game:fix_unit_stop", 1);
+	iniWarnAircraftFuel = iniparser_getint(dict, "game:warn_aircraft_fuel", 0);
 
 	iniparser_freedict(dict);
 	detect_language();
@@ -322,8 +324,9 @@ void SaveINI() {
 
 	fprintf(f, "\n[game]\n"
 		"fix_autofire_saturn    = %i ;\n"
-		"fix_unit_stop          = %i ;\n",
-		iniFixAutofireSaturn, iniFixUnitStop);
+		"fix_unit_stop          = %i ;\n"
+		"warn_aircraft_fuel     = %i ;\n",
+		iniFixAutofireSaturn, iniFixUnitStop, iniWarnAircraftFuel);
 
 	fclose(f);
 }

@@ -395,6 +395,7 @@ void SetSoundVolume()
 
 void configure_features(void) {
 	int fix_autofire = iniFixAutofireSaturn, fix_ustop = iniFixUnitStop;
+	int warn_aircraft = iniWarnAircraftFuel;
 	TDialog dlg(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
 
 	dlg.Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
@@ -405,9 +406,14 @@ void configure_features(void) {
 	dlg.Insert(new TCheckBox(10, 56, 250, SigText[TXT_FIX_UNIT_STOP],
 		&fix_ustop));
 
+	dlg.Insert(new TStaticText(10,86, 150,16, SigText[TXT_QOL_FEATURES]));
+	dlg.Insert(new TCheckBox(10, 108, 250, SigText[TXT_FUEL_WARN_CBOX],
+		&warn_aircraft));
+
 	if (dlg.Exec() == cmOk) {
 		iniFixAutofireSaturn = fix_autofire;
 		iniFixUnitStop = fix_ustop;
+		iniWarnAircraftFuel = warn_aircraft;
 		ApplyINI();
 		SaveINI();
 	}
@@ -652,6 +658,24 @@ void DoVisSetup() {
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Zpracovani udalosti: ////////////////////////////
 
+int check_aircraft_fuel(void) {
+	int ret;
+	TObject *oldsel = SelectedUnit;
+	TAircraft *aircraft = find_low_fuel_idle_aircraft();
+
+	if (!aircraft) {
+		return 1;
+	}
+
+	aircraft->Select();
+	ret = PromtBox(SigText[TXT_FUEL_WARN_MSG], cmYes | cmNo);
+
+	if (ret == cmYes) {
+		oldsel->Select();
+	}
+
+	return ret == cmYes;
+}
 
 // Seznam ikon:
 
@@ -670,7 +694,10 @@ void HandleIcons(TEvent *e) {
 		break;
 
 	case 3:
-		TurnEnded = TRUE;
+		if (!iniWarnAircraftFuel || check_aircraft_fuel()) {
+			TurnEnded = TRUE;
+		}
+
 		break;
 
 	case 4:

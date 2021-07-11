@@ -87,7 +87,8 @@ extern int AircraftsCnt;
 extern TAircraft *GetAircraftAt(int x, int y);
 		// vraci letadlo nad tim polickem nebo NULL, kdyz je tam pusto
 	
-
+// Find first aircraft that triggers low fuel warning
+TAircraft *find_low_fuel_idle_aircraft(void);
 
 
 

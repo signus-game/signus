@@ -58,9 +58,19 @@ TAircraft *GetAircraftAt(int x, int y)
 	return NULL;
 }
 
+TAircraft *find_low_fuel_idle_aircraft(void) {
+	for (int i = 0; i < AircraftsCnt; i++) {
+		TAircraft *ptr = Aircrafts[i];
 
+		if ((ptr->ID < BADLIFE) && (ptr->GetType() != unRex) &&
+			(ptr->Fuel <= ptr->MaxFuel / 2) &&
+			(ptr->TimeUnits == ptr->MaxTimeUnits)) {
+			return ptr;
+		}
+	}
 
-
+	return NULL;
+}
 
 
 

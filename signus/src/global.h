@@ -129,6 +129,7 @@ extern int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRan
 
 extern int iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize, iniJukeboxSave;
 extern int iniFixAutofireSaturn, iniFixUnitStop;
+extern int iniWarnAircraftFuel;
 
 extern bool LoadINI();
 extern void SaveINI();
