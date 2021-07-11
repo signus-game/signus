@@ -613,40 +613,60 @@ void DoVisSetup() {
 
 // Seznam ikon:
 
-void HandleIcons(TEvent *e)
-{
-    int rt = MainIcons->Handle(e);
-    if (rt) {
-        MainIcons->LightsOff();
-        switch (rt) {
-            case 1 : SelectNextUnit(FALSE);
-                     break;
-            case 3 : TurnEnded = TRUE;
-                             break;
-            case 4 : SelectedUnit->Center();
-                             break;
-            case 5 : DoBriefingPlus();
-                             break;
-            case 7 : DoMenu();
-                             break;
-            case 8 : JukeboxSetup();
-                             break;
-            case 9 : DoVisSetup();
-                             break;
-            case 6 : if (TimeReserve == 1) TimeReserve = 0; else TimeReserve = 1;
-                             MainIcons->Draw();
-                             SelectedUnit->Select();
-                             break;
-            case 10 : if (TimeReserve == 2) TimeReserve = 0; else TimeReserve = 2;
-                             MainIcons->Draw();
-                             SelectedUnit->Select();
-                             break;
-            case 2 : if (TimeReserve == 3) TimeReserve = 0; else TimeReserve = 3;
-                             MainIcons->Draw();
-                             SelectedUnit->Select();
-                             break;
-        }
-    }
+void HandleIcons(TEvent *e) {
+	int rt = MainIcons->Handle(e);
+
+	if (!rt) {
+		return;
+	}
+
+	MainIcons->LightsOff();
+
+	switch (rt) {
+	case 1:
+		SelectNextUnit(FALSE);
+		break;
+
+	case 3:
+		TurnEnded = TRUE;
+		break;
+
+	case 4:
+		SelectedUnit->Center();
+		break;
+	case 5:
+		DoBriefingPlus();
+		break;
+
+	case 7:
+		DoMenu();
+		break;
+
+	case 8:
+		JukeboxSetup();
+		break;
+	case 9:
+		DoVisSetup();
+		break;
+
+	case 6:
+		TimeReserve = (TimeReserve == 1) ? 0 : 1;
+		MainIcons->Draw();
+		SelectedUnit->Select();
+		break;
+
+	case 10:
+		TimeReserve = (TimeReserve == 2) ? 0 : 2;
+		MainIcons->Draw();
+		SelectedUnit->Select();
+		break;
+
+	case 2:
+		TimeReserve = (TimeReserve == 3) ? 0 : 3;
+		MainIcons->Draw();
+		SelectedUnit->Select();
+		break;
+	}
 }
 
 
