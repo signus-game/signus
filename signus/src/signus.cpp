@@ -55,6 +55,8 @@
 
 #define cmDetails     666
 
+#define LOADED_NORMAL 1
+#define LOADED_CRASH  2
 
 
 /////////////////////////////// PROMNENE ////////////////////////////////
@@ -1160,6 +1162,12 @@ int RunSignus(int from_save) {
 
 	MainIcons->Draw();
 
+	// starting game from crashguard save which is created at the start
+	// of enemy turn
+	if (from_save == LOADED_CRASH) {
+		TurnEnd();
+	}
+
 	// Main loop
 	for (SignusTerminated = FALSE; SignusTerminated == FALSE;) {
 		for (TurnEnded = FALSE; !SignusTerminated && !TurnEnded;) {
@@ -1269,7 +1277,6 @@ void signus_main() {
 	int result = 0;
 	int crash = CrashLoad();
 	int fs = TRUE;
-	TEvent e;
 
 	if (!crash) {
 		PlayAnimation("present2");
@@ -1301,7 +1308,7 @@ void signus_main() {
 				break;
 			}
 
-			fs = TRUE;
+			fs = LOADED_NORMAL;
 
 			while (RunSignus(fs)) {
 				fs = FALSE;
@@ -1310,11 +1317,8 @@ void signus_main() {
 			break;
 
 		case 666:     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
-			fs = TRUE;
+			fs = LOADED_CRASH;
 			crash = FALSE;
-			e.What = evKeyDown;
-			e.Key.CharCode = SHORTCUT_ENDTURN; //->causes AI running
-			PutEvent(&e);
 
 			while (RunSignus(fs)) {
 			    fs = FALSE;
