@@ -951,6 +951,9 @@ int CrashLoad() {
 		return FALSE;
 	}
 
+	// No events have been processed so far, flush them so that video
+	// backend can properly resize the window, etc.
+	ClearEvent();
 	LoadGameState(stream);
 	return TRUE;
 }
