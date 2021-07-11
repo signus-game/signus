@@ -1084,108 +1084,127 @@ void TurnEnd()
 
 extern void Clear_PSmp();
 
-int RunSignus(int from_save)
-                             // param from_save znamena, ze se nemusi init engine, ai
-                             // a nedela se briefing a animacky
-{
-    TEvent Event;
+// from_save means that the engine is already initialized and briefing
+// needs to be skipped
+int RunSignus(int from_save) {
+	TEvent Event;
 
-    MainIcons = new TIconPanel();
-    MainMenu = new TMenu();
+	MainIcons = new TIconPanel();
+	MainMenu = new TMenu();
 
-    if (!from_save) {
-        char name[20];
-        
-        ShowMissionIntroScreen(ActualMission);
-        sprintf(name, "brief%i", ActualMission);
-        BriefGo(name);
-        sprintf(name, "mis%iin", ActualMission);
-        PlayAnimation(name);
-        SetPalette(Palette);
-        if (!InitEngine(ActualMission)) return FALSE;
-        Clear_PSmp();
-        HideHelpers();
-        InitArtificialIntelligence(ActualMission);
-        ShowHelpers();
-        SaySpeech(name, 2000);
-    }
-    MainIcons->Draw();
-    
-    if (MusicOn && (!IsMusicPlaying())) JukeboxNext();
+	if (!from_save) {
+		char name[20];
 
-    LastEvent = LastWatchTimer = TimerValue;
-    UnitActionType = uatNothing;
-    SignusTerminated = FALSE, TerminationStatus = 0;
+		ShowMissionIntroScreen(ActualMission);
+		sprintf(name, "brief%i", ActualMission);
+		BriefGo(name);
+		sprintf(name, "mis%iin", ActualMission);
+		PlayAnimation(name);
+		SetPalette(Palette);
 
-    PulsarProcess = TRUE;
-    SetPalette(Palette);
-    // redraw. mainscrean to ensure there is NO fucking cmaranice na screenu
-    draw_mission_bezel(1);
-    UpdateLitMap(TRUE);
-    RedrawMap();
-    if (SelectedUnit) SelectedUnit->Select();
-    MainIcons->Draw();
+		if (!InitEngine(ActualMission)) {
+			return FALSE;
+		}
 
-   // Hlavni smycka:
-   for (SignusTerminated = FALSE; SignusTerminated == FALSE;) {
-    for (TurnEnded = FALSE;
-        (SignusTerminated == FALSE) && (TurnEnded == FALSE);) {
-      if (SelectedUnit == NULL) {
-        SignusTerminated = TRUE;
-        break;
-      }
-        GetEvent(&Event);
-        if (Event.What == evNothing) 
-            IdleEvent();
-        else {
-            LastEvent = TimerValue;
-            HandleEvent(&Event);
-        }
-    }
-    if (SignusTerminated) break;
-    TurnEnd();
-  }
-    DoneArtificialIntelligence(); 
-    DoneEngine();
+		Clear_PSmp();
+		HideHelpers();
+		InitArtificialIntelligence(ActualMission);
+		ShowHelpers();
+		SaySpeech(name, 2000);
+	}
 
-    delete MainIcons;
-    delete MainMenu;
+	MainIcons->Draw();
 
-  // vyhodnoceni ukonceni:
-  if (TerminationStatus == -1) { // neuspech
-    SaySpeech("failed", 9000);      
-    if (PromtBox(SigText[TXT_UNSUCCESSFULL], cmYes | cmNo) == cmYes) 
-        return TRUE;
-    else 
-        return FALSE;
-  } 
-  else if (TerminationStatus == 1) { // uspech
-        char name[20];
+	if (MusicOn && (!IsMusicPlaying())) {
+		JukeboxNext();
+	}
 
-        SaySpeech("success", 9000);
-        sprintf(name, "debrf%i", ActualMission);
-        if (ActualMission != 19) {
-            MouseSetCursor(mcurArrow);
-            FadeOut(Palette, 0);
-            BriefGo(name);
-	    ClearScr();
-	    UpdateScreen();
-        }
-        
-        if (ActualMission == 6) {   // zacina valka
-            PlayAnimation("war_on");
-        }
-        
-        if (ActualMission == 19) {  // konec hry
-            PlayAnimation("outro");
-            return FALSE;
-        }
-        
-        ActualMission++;
-        return TRUE;
-  }
+	LastEvent = LastWatchTimer = TimerValue;
+	UnitActionType = uatNothing;
+	SignusTerminated = FALSE;
+	TerminationStatus = 0;
 
-    return FALSE;
+	PulsarProcess = TRUE;
+	SetPalette(Palette);
+	// redraw screen bezel to clear any visual artifacts
+	draw_mission_bezel(1);
+	UpdateLitMap(TRUE);
+	RedrawMap();
+
+	if (SelectedUnit) {
+		SelectedUnit->Select();
+	}
+
+	MainIcons->Draw();
+
+	// Main loop
+	for (SignusTerminated = FALSE; SignusTerminated == FALSE;) {
+		for (TurnEnded = FALSE; !SignusTerminated && !TurnEnded;) {
+			if (SelectedUnit == NULL) {
+				SignusTerminated = TRUE;
+				break;
+			}
+
+			GetEvent(&Event);
+
+			if (Event.What == evNothing) {
+				IdleEvent();
+			} else {
+				LastEvent = TimerValue;
+				HandleEvent(&Event);
+			}
+		}
+
+		if (SignusTerminated) {
+			break;
+		}
+
+		TurnEnd();
+	}
+
+	DoneArtificialIntelligence();
+	DoneEngine();
+
+	delete MainIcons;
+	delete MainMenu;
+
+	// handle game termination
+	if (TerminationStatus == -1) { // mission failed
+		SaySpeech("failed", 9000);
+
+		if (PromtBox(SigText[TXT_UNSUCCESSFULL], cmYes|cmNo) == cmYes) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	} else if (TerminationStatus == 1) { // mission successful
+		char name[20];
+
+		SaySpeech("success", 9000);
+		sprintf(name, "debrf%i", ActualMission);
+
+		if (ActualMission != 19) {
+			MouseSetCursor(mcurArrow);
+			FadeOut(Palette, 0);
+			BriefGo(name);
+			ClearScr();
+			UpdateScreen();
+		}
+
+		if (ActualMission == 6) {   // war broke out
+			PlayAnimation("war_on");
+		}
+
+		if (ActualMission == 19) {  // game completed
+			PlayAnimation("outro");
+			return FALSE;
+		}
+
+		ActualMission++;
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 
