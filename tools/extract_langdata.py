@@ -62,6 +62,13 @@ def copy_file(src, dst):
     with open(dst, 'wb') as fw:
         fw.write(data)
 
+def copy_list(datadir, subpath, file_list):
+    for item in file_list:
+        dstpath = os.path.join('lang', *subpath, item)
+        if not os.path.isfile(dstpath):
+            srcpath = os.path.join(datadir, *subpath, item)
+            copy_file(srcpath, dstpath)
+
 def create_dirs(toolsdir):
     bitmap_list = ('mmnu0.png', 'mmnu1.png', 'mmnu2.png', 'mmnu3.png')
     text_list = (
@@ -91,17 +98,9 @@ def create_dirs(toolsdir):
             if os.path.isfile(srcpath) and not os.path.isfile(dstpath):
                 copy_file(srcpath, dstpath)
 
-    for item in bitmap_list:
-        dstpath = os.path.join('lang', 'graphics', 'bitmaps', item)
-        if not os.path.isfile(dstpath):
-            srcpath = os.path.join(datadir, 'graphics', 'bitmaps', item)
-            copy_file(srcpath, dstpath)
-
-    for item in text_list:
-        dstpath = os.path.join('lang', 'texts', item)
-        if not os.path.isfile(dstpath):
-            srcpath = os.path.join(datadir, 'texts', item)
-            copy_file(srcpath, dstpath)
+    copy_list(datadir, ('graphics', 'bitmaps'), bitmap_list)
+    copy_list(datadir, ('texts',), text_list)
+    copy_list(datadir, ('texts',), ('txt%d.txt' % x for x in range(77, 85)))
 
 def write_wav(name, data):
     fw = wave.open(name + '.wav', 'wb')
