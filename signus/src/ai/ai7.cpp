@@ -489,7 +489,7 @@ int ArtificialIntelligence7 ()
     if (Radar2 == NO_UNIT || Units [Radar2] -> Type % BADLIFE != unRadar) 
         Radar2 = NO_UNIT;
     Radar3 = GetField (R3X, R3Y) -> Unit;
-    if (Radar2 == NO_UNIT || Units [Radar3] -> Type % BADLIFE != unRadar) 
+    if (Radar3 == NO_UNIT || Units [Radar3] -> Type % BADLIFE != unRadar)
         Radar3 = NO_UNIT;
     Radar4 = GetField (R4X, R4Y) -> Unit;
     if (Radar4 == NO_UNIT || Units [Radar4] -> Type % BADLIFE != unRadar) 
