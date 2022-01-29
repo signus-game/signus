@@ -106,8 +106,11 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 
 	DrawMN(pt1, pt2, bg, sel);
 
-	while (TRUE) {
+	int run = TRUE;
+
+	while (run) {
 		GetEvent(&e);
+		int action = 0; // 1 - Select, 2 - Flash
 
 		if (e.What == evMouseMove) {
 			oldsel = sel;
@@ -122,25 +125,44 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 			}
 
 			if (sel != oldsel) {
-				PlaySample(MenuSnd, 8, 32, 128);
-				DrawMN(pt1, pt2, bg, sel);
+				action = 1; // Select
 			}
-		}
-
-		if (e.What == evMouseDown) {
-			Flash(80, 250 + 77 * sel);
-			break;
-		}
-
-		if ((e.What == evKeyDown) && (e.Key.KeyCode == kbEsc)) {
-			sel = 3;
-			break;
-		}
-
-		if (e.What == evQuit) {
+		} else if (e.What == evMouseDown) {
+			action = 2; // Flash
+		} else if (e.What == evKeyDown) {
+			switch (e.Key.KeyCode) {
+				// Flash
+				case kbEnter:
+					action = 2;
+					break;
+				// Exit
+				case kbEsc:
+					sel = 3;
+					run = FALSE;
+					break;
+				// Select up
+				case kbUp:
+					sel = sel > 0 ? sel - 1 : 3;
+					action = 1;
+					break;
+				// Select down
+				case kbDown:
+					sel = sel < 3 ? sel + 1 : 0;
+					action = 1;
+					break;
+			}
+		} else if (e.What == evQuit) {
 			PutEvent(&e);
 			sel = 3;
-			break;
+			run = FALSE;
+		}
+
+		if (action == 1) {
+			PlaySample(MenuSnd, 8, 32, 128);
+			DrawMN(pt1, pt2, bg, sel);
+		} else if (action == 2) {
+			Flash(80, 250 + 77 * sel);
+			run = FALSE;
 		}
 	}
 
