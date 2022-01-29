@@ -1312,7 +1312,7 @@ void signus_main() {
 	int crash = CrashLoad();
 	int fs = TRUE;
 
-	if (!crash) {
+	if (!iniSkipIntros && !crash) {
 		PlayAnimation("present2");
 		PlayAnimation("present1");
 		PlayAnimation("present3");

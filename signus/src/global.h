@@ -125,7 +125,8 @@ extern int iniMaximize;
 extern int iniMusicVol, iniSoundVol, iniSpeechVol;
 
 extern int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
-                 iniShowVisibRange, iniStopOnNewEnemy, iniAltEnemyStatusBarColors;
+                 iniShowVisibRange, iniStopOnNewEnemy, iniAltEnemyStatusBarColors,
+                 iniSkipIntros;
 
 extern int iniJukeboxRepeat, iniJukeboxRandom, iniJukeboxListSize, iniJukeboxSave;
 extern int iniFixAutofireSaturn, iniFixUnitStop;
