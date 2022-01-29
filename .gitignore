@@ -1,9 +1,11 @@
 lib*.a
 **/*.o
 signus/src/signus
+signus/autom4te.cache
 signus-data/utils/mk_rgb2pal
 signus-data/utils/makedat
 signus-data/utils/fntmng
+signus-data/autom4te.cache
 
 **/graphics/*_rgb.tab
 **/graphics*.dat
