@@ -480,6 +480,8 @@ void SetOptions() {
 		ApplyINI();
 	}
 
+	RedrawMap();
+
 	delete dlg;
 }
 
