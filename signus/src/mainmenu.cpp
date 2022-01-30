@@ -102,11 +102,12 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 	byte *pt1 = (byte*) GraphicsI18nDF->get(mask1);
 	byte *pt2 = (byte*) GraphicsI18nDF->get(mask2);
 	int oldsel, sel = 0;
+	int run = TRUE;
 	TEvent e;
 
 	DrawMN(pt1, pt2, bg, sel);
 
-	while (TRUE) {
+	while (run) {
 		GetEvent(&e);
 
 		if (e.What == evMouseMove) {
@@ -121,26 +122,44 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 				sel = 3;
 			}
 
+			// Select
 			if (sel != oldsel) {
 				PlaySample(MenuSnd, 8, 32, 128);
 				DrawMN(pt1, pt2, bg, sel);
 			}
-		}
-
-		if (e.What == evMouseDown) {
+		} else if (e.What == evMouseDown) {
+			// Flash
 			Flash(80, 250 + 77 * sel);
-			break;
-		}
-
-		if ((e.What == evKeyDown) && (e.Key.KeyCode == kbEsc)) {
-			sel = 3;
-			break;
-		}
-
-		if (e.What == evQuit) {
+			run = FALSE;
+		} else if (e.What == evKeyDown) {
+			switch (e.Key.KeyCode) {
+			// Flash
+			case kbEnter:
+				Flash(80, 250 + 77 * sel);
+				run = FALSE;
+				break;
+			// Exit
+			case kbEsc:
+				sel = 3;
+				run = FALSE;
+				break;
+			// Select up
+			case kbUp:
+				sel = sel > 0 ? sel - 1 : 3;
+				PlaySample(MenuSnd, 8, 32, 128);
+				DrawMN(pt1, pt2, bg, sel);
+				break;
+			// Select down
+			case kbDown:
+				sel = sel < 3 ? sel + 1 : 0;
+				PlaySample(MenuSnd, 8, 32, 128);
+				DrawMN(pt1, pt2, bg, sel);
+				break;
+			}
+		} else if (e.What == evQuit) {
 			PutEvent(&e);
 			sel = 3;
-			break;
+			run = FALSE;
 		}
 	}
 
