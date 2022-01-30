@@ -42,7 +42,7 @@
 
 
 // Konstanty textu (tlacitka, menu, hlasky) (pole SigText):
-#define TXT_COUNT            85
+#define TXT_COUNT            86
 
 #define TXT_ALWAYS            0
 #define TXT_READYSHOOT        1
@@ -128,7 +128,7 @@
 #define TXT_QOL_FEATURES     82
 #define TXT_FUEL_WARN_CBOX   83
 #define TXT_FUEL_WARN_MSG    84
-
+#define TXT_ALT_ENEMY_COLORS 85
 
 
 

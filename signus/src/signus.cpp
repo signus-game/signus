@@ -31,6 +31,7 @@
 #include <time.h>
 #include <climits>
 #include <SDL_timer.h>
+#include <iostream>
 
 #include "mission_screen.h"
 #include "events.h"
@@ -396,6 +397,7 @@ void SetSoundVolume()
 void configure_features(void) {
 	int fix_autofire = iniFixAutofireSaturn, fix_ustop = iniFixUnitStop;
 	int warn_aircraft = iniWarnAircraftFuel;
+	int altEnemyColors = iniAltEnemyStatusBarColors;
 	TDialog dlg(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
 
 	dlg.Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
@@ -409,11 +411,14 @@ void configure_features(void) {
 	dlg.Insert(new TStaticText(10,86, 150,16, SigText[TXT_QOL_FEATURES]));
 	dlg.Insert(new TCheckBox(10, 108, 250, SigText[TXT_FUEL_WARN_CBOX],
 		&warn_aircraft));
+	dlg.Insert(new TCheckBox(10, 130, 250, SigText[TXT_ALT_ENEMY_COLORS],
+		&altEnemyColors));
 
 	if (dlg.Exec() == cmOk) {
 		iniFixAutofireSaturn = fix_autofire;
 		iniFixUnitStop = fix_ustop;
 		iniWarnAircraftFuel = warn_aircraft;
+		iniAltEnemyStatusBarColors = altEnemyColors;
 		ApplyINI();
 		SaveINI();
 	}
