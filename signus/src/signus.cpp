@@ -57,6 +57,7 @@
 
 #define LOADED_NORMAL 1
 #define LOADED_CRASH  2
+#define CRASH_RECOVERY 666
 
 
 /////////////////////////////// PROMNENE ////////////////////////////////
@@ -1249,13 +1250,13 @@ void signus_main() {
 
 	while (result != 3) {
 		if (crash) {
-			result = 666;
+			result = CRASH_RECOVERY;
 		} else {
 			result = DoMainMenu();
 		}
 
 		switch (result) {
-		case 0:
+		case MAINMENU_NEWGAME:
 			PlayAnimation("intro2");
 			ActualMission = 1;
 			if (getenv("HELLMASTER")) {
@@ -1265,7 +1266,9 @@ void signus_main() {
 			while (RunSignus(FALSE));
 			break;
 
-		case 1: ActualMission = -1;
+		case MAINMENU_LOADGAME:
+			ActualMission = -1;
+
 			if (!LoadGame()) {
 				break;
 			}
@@ -1278,7 +1281,9 @@ void signus_main() {
 
 			break;
 
-		case 666:     // signus nacten v CrashLoad() --> server chce rovnou spustit AI...
+		case CRASH_RECOVERY:
+			// Game loaded from crash autosave => start enemy turn
+			// immediately
 			fs = LOADED_CRASH;
 			crash = FALSE;
 
@@ -1288,11 +1293,11 @@ void signus_main() {
 
 			break;
 
-		case 2:
+		case MAINMENU_CREDITS:
 			ShowCredits();
 			break;
 
-		case 3:
+		case MAINMENU_EXIT:
 			break;
 		}
 	}
