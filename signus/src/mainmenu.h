@@ -31,7 +31,11 @@ MAINMENU : Vstupni menu hry - osetreni
 #ifndef _MAINMENU_H
 #define _MAINMENU_H
 
-
+#define MAINMENU_NEWGAME 0
+#define MAINMENU_LOADGAME 1
+#define MAINMENU_CREDITS 2
+#define MAINMENU_EXIT 3
+#define MAINMENU_MAX 3
 
 extern int DoMainMenu();
     // provadi vyber v menu a vraci prislusne hodnoty

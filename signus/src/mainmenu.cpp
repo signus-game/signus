@@ -118,8 +118,8 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 				sel = 0;
 			}
 
-			if (sel > 3) {
-				sel = 3;
+			if (sel > MAINMENU_MAX) {
+				sel = MAINMENU_MAX;
 			}
 
 			// Select
@@ -140,25 +140,25 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 				break;
 			// Exit
 			case kbEsc:
-				sel = 3;
+				sel = MAINMENU_EXIT;
 				run = FALSE;
 				break;
 			// Select up
 			case kbUp:
-				sel = sel > 0 ? sel - 1 : 3;
+				sel = sel > 0 ? sel - 1 : MAINMENU_MAX;
 				PlaySample(MenuSnd, 8, 32, 128);
 				DrawMN(pt1, pt2, bg, sel);
 				break;
 			// Select down
 			case kbDown:
-				sel = sel < 3 ? sel + 1 : 0;
+				sel = sel < MAINMENU_MAX ? sel + 1 : 0;
 				PlaySample(MenuSnd, 8, 32, 128);
 				DrawMN(pt1, pt2, bg, sel);
 				break;
 			}
 		} else if (e.What == evQuit) {
 			PutEvent(&e);
-			sel = 3;
+			sel = MAINMENU_EXIT;
 			run = FALSE;
 		}
 	}
@@ -174,42 +174,56 @@ static int ProcessMenu(const char *mask1, const char *mask2) {
 
 extern char ActualDifficulty;
 
-int DoMainMenu()
-{
-    int rtval = -1;
-    //char *pa = (char*) GraphicsDF->get("menupal");
-    uint8_t *pa = (uint8_t*) GraphicsDF->get("palette");
+int DoMainMenu() {
+	int rtval = -1;
+	//char *pa = (char*) GraphicsDF->get("menupal");
+	uint8_t *pa = (uint8_t*) GraphicsDF->get("palette");
 
-    PlayMusic("solution.s3m");
-    
-    DoneInteract();
-    ClearScr();
-    SetPalette(pa);
-    MenuSnd = LoadSample("menu", FALSE);
-    FlashSnd = LoadSample("flash", FALSE);
+	PlayMusic("solution.s3m");
 
-    while (rtval == -1) {
-        rtval = ProcessMenu("mmnu0", "mmnu1");
-        if (rtval == 0) /*new game*/ {
-            rtval = ProcessMenu("mmnu2", "mmnu3"); // dificulty
-            if (rtval == 3) {rtval = -1; continue;}
-            switch (rtval) {
-                case 0 : ActualDifficulty = 'e'; break;
-                case 1 : ActualDifficulty = 'n'; break;
-                case 2 : ActualDifficulty = 'h'; break;                
-            }
-            rtval = 0;
-            break;
-        }
-    }
+	DoneInteract();
+	ClearScr();
+	SetPalette(pa);
+	MenuSnd = LoadSample("menu", FALSE);
+	FlashSnd = LoadSample("flash", FALSE);
 
-    FreeSample(MenuSnd);
-    FreeSample(FlashSnd);
-    ClearScr();
-    SetPalette(Palette);
-    InitInteract();
-    memfree(pa);
-    return rtval;
+	while (rtval == -1) {
+		rtval = ProcessMenu("mmnu0", "mmnu1");
+
+		if (rtval == MAINMENU_NEWGAME) {
+			rtval = ProcessMenu("mmnu2", "mmnu3"); // dificulty
+
+			if (rtval == MAINMENU_EXIT) {
+				rtval = -1;
+				continue;
+			}
+
+			switch (rtval) {
+			case 0:
+				ActualDifficulty = 'e';
+				break;
+
+			case 1:
+				ActualDifficulty = 'n';
+				break;
+
+			case 2:
+				ActualDifficulty = 'h';
+				break;
+			}
+
+			rtval = 0;
+			break;
+		}
+	}
+
+	FreeSample(MenuSnd);
+	FreeSample(FlashSnd);
+	ClearScr();
+	SetPalette(Palette);
+	InitInteract();
+	memfree(pa);
+	return rtval;
 }
 
 
