@@ -31,7 +31,6 @@
 #include <time.h>
 #include <climits>
 #include <SDL_timer.h>
-#include <iostream>
 
 #include "mission_screen.h"
 #include "events.h"
