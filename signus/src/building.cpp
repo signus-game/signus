@@ -165,17 +165,9 @@ TSprite *TBuilding::GetStatusBar()
     sz = 42 * HitPoints / MaxHitPoints;
 
     if (iniAltEnemyStatusBarColors && ID >= BADLIFE) {
-        if (sz < 12) {
-            clr = 117; /*purple*/
-        } else {
-            clr = 227; /*biege*/
-        }
+        clr = sz < 12 ? 156 /*orange*/ : 230; /*biege*/
     } else {
-        if (sz < 12) {
-            clr = 10; /*red*/
-        } else {
-            clr = 59; /*light green*/
-        }
+        clr = sz < 12 ? 10 /*red*/ : 59; /*light green*/
     }
 
     for (i = 0; i < sz; i++) 
