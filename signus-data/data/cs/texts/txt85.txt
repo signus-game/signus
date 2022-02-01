@@ -1,1 +1,1 @@
-Alternate enemy status bar colors
+Zobrazit poškození nepřátel jinou barvou
