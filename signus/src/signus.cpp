@@ -398,6 +398,7 @@ void configure_features(void) {
 	int fix_autofire = iniFixAutofireSaturn, fix_ustop = iniFixUnitStop;
 	int warn_aircraft = iniWarnAircraftFuel;
 	int altEnemyColors = iniAltEnemyStatusBarColors;
+	int playIntros = iniPlayIntros;
 	TDialog dlg(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
 
 	dlg.Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
@@ -413,12 +414,16 @@ void configure_features(void) {
 		&warn_aircraft));
 	dlg.Insert(new TCheckBox(10, 130, 250, SigText[TXT_ALT_ENEMY_COLORS],
 		&altEnemyColors));
+	dlg.Insert(new TCheckBox(10, 152, 250, SigText[TXT_PLAY_INTROS],
+		&playIntros));
 
 	if (dlg.Exec() == cmOk) {
 		iniFixAutofireSaturn = fix_autofire;
 		iniFixUnitStop = fix_ustop;
 		iniWarnAircraftFuel = warn_aircraft;
 		iniAltEnemyStatusBarColors = altEnemyColors;
+		iniPlayIntros = playIntros;
+
 		ApplyINI();
 		SaveINI();
 	}
@@ -1312,7 +1317,7 @@ void signus_main() {
 	int crash = CrashLoad();
 	int fs = TRUE;
 
-	if (!iniSkipIntros && !crash) {
+	if (iniPlayIntros && !crash) {
 		PlayAnimation("present2");
 		PlayAnimation("present1");
 		PlayAnimation("present3");

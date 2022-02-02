@@ -87,7 +87,7 @@ int iniScrollDelay, iniAnimDelay, iniAnimDelay2;
 int iniMusicVol, iniSoundVol, iniSpeechVol;
         
 int iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange, iniShowShootRange,
-    iniShowVisibRange, iniStopOnNewEnemy, iniSkipIntros;
+    iniShowVisibRange, iniStopOnNewEnemy, iniPlayIntros;
 
 int iniAltEnemyStatusBarColors;
 
@@ -271,7 +271,7 @@ bool LoadINI() {
 	iniShowVisibRange = iniparser_getint(dict, "interface:unit_visib_rng", 0);
 	iniStopOnNewEnemy = iniparser_getint(dict, "interface:stop_on_new_enemy", 1);
 	iniAltEnemyStatusBarColors = iniparser_getint(dict, "interface:alt_enemy_status_color", 0);
-	iniSkipIntros = iniparser_getint(dict, "interface:skip_intros", 0);
+	iniPlayIntros = iniparser_getint(dict, "interface:play_intros", 1);
 
 	iniFixAutofireSaturn = iniparser_getint(dict, "game:fix_autofire_saturn", 1);
 	iniFixUnitStop = iniparser_getint(dict, "game:fix_unit_stop", 1);
@@ -323,11 +323,11 @@ void SaveINI() {
 		"unit_visib_rng         = %i ;\n"
 		"stop_on_new_enemy      = %i ;\n"
 		"alt_enemy_status_color = %i ;\n"
-		"skip_intros            = %i ;\n",
+		"play_intros            = %i ;\n",
 		iniAnimDelay, iniAnimDelay2, iniIdleDelay, iniScrollDelay,
 		iniEnhancedGuiOn, iniShowStatusbar, iniShowMoveRange,
 		iniShowShootRange, iniShowVisibRange, iniStopOnNewEnemy,
-		iniAltEnemyStatusBarColors, iniSkipIntros);
+		iniAltEnemyStatusBarColors, iniPlayIntros);
 
 	fprintf(f, "\n[game]\n"
 		"fix_autofire_saturn    = %i ;\n"
