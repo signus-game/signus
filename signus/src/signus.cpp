@@ -398,6 +398,7 @@ void configure_features(void) {
 	int fix_autofire = iniFixAutofireSaturn, fix_ustop = iniFixUnitStop;
 	int warn_aircraft = iniWarnAircraftFuel;
 	int altEnemyColors = iniAltEnemyStatusBarColors;
+
 	TDialog dlg(9+(VIEW_SX-490)/2, 36+(VIEW_SY-300)/2, 490, 300, "dlgopti");
 
 	dlg.Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
@@ -419,6 +420,7 @@ void configure_features(void) {
 		iniFixUnitStop = fix_ustop;
 		iniWarnAircraftFuel = warn_aircraft;
 		iniAltEnemyStatusBarColors = altEnemyColors;
+
 		ApplyINI();
 		SaveINI();
 	}
@@ -429,6 +431,7 @@ void SetOptions() {
 	int _EnhancedGuiOn = iniEnhancedGuiOn, _SOE = iniStopOnNewEnemy;
 	int _fullscreen = iniFullscreen, _IdleD = 60 - iniIdleDelay;
 	int _ScrollD = 200 - iniScrollDelay, _AnimD = 200 - iniAnimDelay;
+	int _playIntros = iniPlayIntros;
 	int _AnimD2 = 200 - iniAnimDelay2;
 	int ret;
 
@@ -444,9 +447,11 @@ void SetOptions() {
 	dlg->Insert(new TBarGauge(10, 146, 310, 20, &_AnimD2, 200));
 	dlg->Insert(new TCheckBox(10, 175, 250, SigText[TXT_FULLSCREEN],
 		&_fullscreen));
-	dlg->Insert(new TCheckBox(10, 195, 250, SigText[TXT_ENABLE_GUI],
+	dlg->Insert(new TCheckBox(10, 195, 250, SigText[TXT_PLAY_INTROS],
+		&_playIntros));
+	dlg->Insert(new TCheckBox(10, 215, 250, SigText[TXT_ENABLE_GUI],
 		&_EnhancedGuiOn));
-	dlg->Insert(new TCheckBox(10, 215, 250, SigText[TXT_STOP_ON_ENEMY],
+	dlg->Insert(new TCheckBox(10, 235, 250, SigText[TXT_STOP_ON_ENEMY],
 		&_SOE));
 	dlg->Insert(new TButton(340, 20, SigText[TXT_OK], cmOk, TRUE));
 	dlg->Insert(new TButton(340, 60, SigText[TXT_CANCEL], cmCancel));
@@ -468,6 +473,7 @@ void SetOptions() {
 		iniScrollDelay = 200 - _ScrollD;
 		iniAnimDelay = 200 - _AnimD;
 		iniAnimDelay2 = 200 - _AnimD2;
+		iniPlayIntros = _playIntros;
 
 		if (_fullscreen != iniFullscreen) {
 			ToggleFullscreen();
@@ -1312,7 +1318,7 @@ void signus_main() {
 	int crash = CrashLoad();
 	int fs = TRUE;
 
-	if (!crash) {
+	if (iniPlayIntros && !crash) {
 		PlayAnimation("present2");
 		PlayAnimation("present1");
 		PlayAnimation("present3");
