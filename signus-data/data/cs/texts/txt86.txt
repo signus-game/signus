@@ -1,1 +1,1 @@
-Play intro on startup
+Po spuštění přehrát intro
