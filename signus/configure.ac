@@ -1,9 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)
-AC_PREREQ(2.52)
+AC_PREREQ([2.71])
 
-AC_INIT([signus], [1.96.0], [zarevucky.jiri@gmail.com])
+AC_INIT([signus], [1.96.0], [next_ghost@quick.cz])
 
 AC_CONFIG_SRCDIR([signus.spec])
 AC_CONFIG_AUX_DIR([admin])
@@ -81,11 +81,12 @@ AC_SUBST(CXXFLAGS)
 AC_SUBST(RESCOMP)
 AC_SUBST(DATA_VERSION)
 
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
          Makefile
          src/Makefile
          iniparser/Makefile
          ])
+AC_OUTPUT
 

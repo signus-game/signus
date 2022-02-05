@@ -1,14 +1,14 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)
-AC_PREREQ(2.52)
+AC_PREREQ([2.71])
 
-AC_INIT([signus-data], [1.96], [vslavik@fastmail.fm])
+AC_INIT([signus-data], [1.96], [next_ghost@quick.cz])
 
 AC_CONFIG_SRCDIR([utils/makedat.cpp])
 AC_CONFIG_AUX_DIR([admin])
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_TARGET
 
 AM_INIT_AUTOMAKE
 
@@ -29,7 +29,7 @@ AC_SUBST(MK_RGB2PAL)
 FNTMNG='$(top_builddir)/utils/fntmng'
 AC_SUBST(FNTMNG)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
          Makefile
          utils/Makefile
          data/Makefile
@@ -52,3 +52,4 @@ AC_OUTPUT([
          data/cs/texts/Makefile
          data/version-data
          ])
+AC_OUTPUT
