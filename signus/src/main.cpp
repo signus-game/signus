@@ -48,17 +48,13 @@ extern void DoneSignus();
 
 
 static void finiObjects() {
-	char *path;
-
 	allow_mouse = FALSE;
-	if (signus_inited) DoneSignus();
-	signus_inited = FALSE;
-	path = signus_config_path("crashguard_saved_state");
 
-	if (path) {
-		remove(path);
-		memfree(path);
+	if (signus_inited) {
+		DoneSignus();
 	}
+
+	signus_inited = FALSE;
 
 	if (SDL_inited) {
 		SDL_Quit();

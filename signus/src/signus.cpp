@@ -1018,6 +1018,29 @@ int InitSignus()
 extern int WC_On;
 extern void *WorkingControl[3];
 
+int postcrash_ask(void) {
+	int x, width;
+	TDialog dlg((RES_X-380) / 2, (RES_Y-160) / 2, 380, 160, "dlgprbx");
+
+	width = GetStrWidth(SigText[TXT_POSTCRASH], NormalFont);
+	x = (380 - width) / 2;
+	dlg.Insert(new TStaticText(x, 30, width, 40, SigText[TXT_POSTCRASH]));
+	dlg.Insert(new TButton(50, 60, SigText[TXT_CRASH_LOAD], cmYes, TRUE));
+	dlg.Insert(new TButton(200, 60, SigText[TXT_CRASH_MENU], cmNo));
+	dlg.Insert(new TButton(50, 100, SigText[TXT_END_GAME], cmCancel));
+	return dlg.Exec();
+}
+
+void delete_crashsave(void) {
+	char *path;
+
+	path = signus_config_path("crashguard_saved_state");
+
+	if (path) {
+		remove(path);
+		memfree(path);
+	}
+}
 
 void CrashSave() {
 	File stream;
@@ -1040,6 +1063,7 @@ void CrashSave() {
 
 int CrashLoad() {
 	File stream;
+	int ret;
 	char *path;
 
 	path = signus_config_path("crashguard_saved_state");
@@ -1053,9 +1077,14 @@ int CrashLoad() {
 		return FALSE;
 	}
 
-	// No events have been processed so far, flush them so that video
-	// backend can properly resize the window, etc.
-	ClearEvent();
+	ret = postcrash_ask();
+
+	if (ret == cmNo) {
+		return FALSE;	// Ignore crashsave and go to main menu
+	} else if (ret == cmCancel) {
+		return -1;	// Exit Signus without deleting crashsave
+	}
+
 	LoadGameState(stream);
 	return TRUE;
 }
@@ -1318,6 +1347,12 @@ void signus_main() {
 	int crash = CrashLoad();
 	int fs = TRUE;
 
+	// Game previously crashed, player chose to quit in popup dialog
+	// Do *NOT* delete crashsave here!
+	if (crash < 0) {
+		return;
+	}
+
 	if (iniPlayIntros && !crash) {
 		PlayAnimation("present2");
 		PlayAnimation("present1");
@@ -1378,4 +1413,7 @@ void signus_main() {
 			break;
 		}
 	}
+
+	// Clean exit => remove crashsave
+	delete_crashsave();
 }
