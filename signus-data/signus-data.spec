@@ -65,4 +65,5 @@ Czech data files for Signus: The Artefact Wars
 %{_datadir}/signus/%{ver_data}/nolang
 
 %files l10n-cs
+%doc %{_datadir}/doc/signus/README-cs.txt
 %{_datadir}/signus/%{ver_data}/cs
