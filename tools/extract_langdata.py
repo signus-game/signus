@@ -100,7 +100,7 @@ def create_dirs(toolsdir):
 
     copy_list(datadir, ('graphics', 'bitmaps'), bitmap_list)
     copy_list(datadir, ('texts',), text_list)
-    copy_list(datadir, ('texts',), ('txt%d.txt' % x for x in range(77, 85)))
+    copy_list(datadir, ('texts',), ('txt%d.txt' % x for x in range(77, 90)))
 
 def write_wav(name, data):
     fw = wave.open(name + '.wav', 'wb')
