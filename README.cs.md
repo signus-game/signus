@@ -42,7 +42,7 @@ Nezapomeňte, že některé akce lze vybrat jen pokud myší ukazujete na vhodn�
 - Tab: Přepnout na další zbraň jednotky
 - Alt+Enter: Přepnout na celou obrazovku a zpět (bez změny rozlišení obrazovky)
 - C: Vycentrovat vybranou jednotku
-- D: Zapnout/vypnout ukazatel stovu jednotek
+- D: Zapnout/vypnout ukazatel stavu jednotek
 - E: Ukončit tah
 - I: Otevřít popis jednotky
 - M: Označit aktuální jednotku do konce tahu jako vyřízenou a vybrat další nevyřízenou jednotku

@@ -54,6 +54,7 @@ Turn-based strategy wargame Signus: The Artefact Wars
 
 %files
 %doc AUTHORS
+%doc %{_datadir}/doc/signus/README.txt
 %license COPYING
 %dir %{_datadir}/signus
 %dir %{_datadir}/signus/%{ver_data}
