@@ -1048,16 +1048,20 @@ void CrashSave() {
 
 	path = signus_config_path("crashguard_saved_state");
 
-	if (path) {
-		stream.open(path, File::WRITE | File::TRUNCATE);
-		memfree(path);
-	}
-
-	if (!stream.isOpen()) {
-		fprintf(stderr, "Warning: cannot create crash save %s\n", path);
+	if (!path) {
+		fprintf(stderr, "Warning: cannot create crash save\n");
 		return;
 	}
 
+	stream.open(path, File::WRITE | File::TRUNCATE);
+
+	if (!stream.isOpen()) {
+		fprintf(stderr, "Warning: cannot create crash save %s\n", path);
+		memfree(path);
+		return;
+	}
+
+	memfree(path);
 	SaveGameState(stream);
 }
 
