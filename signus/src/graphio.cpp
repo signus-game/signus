@@ -152,7 +152,7 @@ int create_window(void) {
 	drawbuffer = SDL_CreateRGBSurfaceWithFormatFrom(pixbuffer, RES_X,
 		RES_Y, 8, RES_X, SDL_PIXELFORMAT_INDEX8);
 
-	if (!pixbuffer) {
+	if (!drawbuffer) {
 		DoneVideo();
 		return 0;
 	}
