@@ -237,9 +237,14 @@ int TTowers::ProblemJednotky (int Unit)
                                 else {  //neni-li venku - vyleze
                                         Units [Unit] -> Select ();
                                         ((TThor *)Units [Unit]) -> GoOverground (1);
+
+					// Cannot enter attack mode in this turn
+					if (!((TThor *)Units[Unit])->IsOverground) {
+						break;
+					}
+
                                 }
                         }
-
                 }
 
                 while ((((TThor *)Units [Unit]) -> TimeUnits >=
