@@ -69,10 +69,12 @@ typedef struct {
 #pragma pack(1)
 typedef struct {
 			int32_t dx, dy, w, h;
-			byte data[65536];
+			byte data[1];
 } TSprite;
 #pragma pack()
 
+TSprite *alloc_sprite(int width, int height);
+TSprite *copy_sprite(const TSprite *s);
 TSprite *load_sprite(const void *data);
 TSprite *load_sprite(TDataFile *df, const char *name);
 void LoadSpriteArray(TSprite *array[], int count, TDataFile *df,

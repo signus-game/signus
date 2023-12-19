@@ -1139,11 +1139,10 @@ void TUnit::FieldSelected(int x, int y)
 
 TSprite *TUnit::GetStatusBar()
 {
-    TSprite *s = (TSprite*) memalloc(4 * sizeof(int) + 22 * 6);
+    TSprite *s = alloc_sprite(22, 6);
     int i, sz, clr;
 
-    memset(s, 1, 4 * sizeof(int) + 22 * 6);
-    s->w = 22, s->h = 6;
+    memset(s->data, 1, s->w * s->h);
     s->dx = 11, s->dy = 15;
     
     for (i = 0; i < 20; i++)
@@ -3262,12 +3261,10 @@ void UpdateUnitsMem(int UnType) {
 
 #ifdef DEBUG
 		if (UnitsSprites[i][0] == NULL) {
-			UnitsSprites[i][0] = (TSprite*)memalloc(SpriteUniversal->w * SpriteUniversal->h + 16);
-
 			if (i < BADLIFE) {
-				memcpy(UnitsSprites[i][0], SpriteUniversal, SpriteUniversal->w * SpriteUniversal->h + 16);
+				UnitsSprites[i][0] = copy_sprite(SpriteUniversal);
 			} else {
-				memcpy(UnitsSprites[i][0], SpriteUniversalBad, SpriteUniversalBad->w * SpriteUniversalBad->h + 16);
+				UnitsSprites[i][0] = copy_sprite(SpriteUniversalBad);
 			}
 
 			TSprite *s = UnitsSprites[i][0];
@@ -3276,8 +3273,7 @@ void UpdateUnitsMem(int UnType) {
 				clrWhite, clrBlack);
 
 			for (int j = 1; j < 48; j++) {
-				UnitsSprites[i][j] = (TSprite*)memalloc(s->w * s->h + 16);
-				memcpy(UnitsSprites[i][j], s, s->w * s->h + 16);
+				UnitsSprites[i][j] = copy_sprite(s);
 				sprintf(ds,"%i", j);
 				PutStr(UnitsSprites[i][j]->data,
 					UnitsSprites[i][j]->w,

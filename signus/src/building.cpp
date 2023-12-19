@@ -152,11 +152,10 @@ void TBuilding::Draw()
 
 TSprite *TBuilding::GetStatusBar()
 {
-    TSprite *s = (TSprite*) memalloc(4 * sizeof(int) + 44 * 6);
+    TSprite *s = alloc_sprite(44, 6);
     int i, sz, clr;
 
-    memset(s, 1, 4 * sizeof(int) + 44 * 6);
-    s->w = 44, s->h = 6;
+    memset(s->data, 1, s->w * s->h);
     s->dx = 22, s->dy = 15;
     
     for (i = 0; i < 42; i++) 

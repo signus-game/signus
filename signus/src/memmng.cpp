@@ -37,6 +37,25 @@
 
 #include "datafile.h"
 
+TSprite *alloc_sprite(int width, int height) {
+	TSprite *ret;
+
+	ret = (TSprite*)memalloc(width * height + offsetof(TSprite, data));
+	ret->dx = ret->dy = 0;
+	ret->w = width;
+	ret->h = height;
+	return ret;
+}
+
+TSprite *copy_sprite(const TSprite *s) {
+	TSprite *ret = alloc_sprite(s->w, s->h);
+
+	ret->dx = s->dx;
+	ret->dy = s->dy;
+	memcpy(ret->data, s->data, s->w * s->h);
+	return ret;
+}
+
 // Fce pro nacteni pole z .DAT a jeho uvolneni z pameti:
 
 TSprite *load_sprite(const void *data) {
@@ -51,11 +70,9 @@ TSprite *load_sprite(const void *data) {
 	height = stream->readSint32LE();
 	delete stream;
 
-	ret = (TSprite*)memalloc(width * height + offsetof(TSprite, data));
+	ret = alloc_sprite(width, height);
 	ret->dx = x;
 	ret->dy = y;
-	ret->w = width;
-	ret->h = height;
 	memcpy(ret->data, ((char*)data) + 16, width * height);
 	return ret;
 }
