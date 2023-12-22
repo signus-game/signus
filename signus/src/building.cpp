@@ -828,7 +828,7 @@ unsigned TWarehouse::GetAvailableActions()
 
 int TWarehouse::RefullUnit(TUnit *u)
 {
-    int i, j, ttm, bttm = 9999, bx, by;
+    int i, j, ttm, bttm = 9999, bx = 0, by = 0;
     TGnom *ugn;
     TGanymedes *uga;
     

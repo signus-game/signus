@@ -1292,7 +1292,7 @@ int TGroundArmy::PJUran (int UnID)
 int TGroundArmy::PJRex (int UnID)
 {
         TRex *Unit;
-        int i, j, t, mint, bestCeres;
+        int i, j, t, mint, bestCeres = NO_UNIT;
         double r, minr;
         TPoint bestplace = TPoint();
         

@@ -37,6 +37,8 @@
 
 #include "datafile.h"
 
+#define MAXNAME 32
+
 TSprite *alloc_sprite(int width, int height) {
 	TSprite *ret;
 
@@ -93,18 +95,20 @@ TSprite *load_sprite(TDataFile *df, const char *name) {
 
 void LoadArray(void *array[], int count, TDataFile *df, const char *index, byte mask[])
 {
-	char nm[32];
+	char nm[MAXNAME];
 
 	if (mask == NULL) {
 		for (int i = 0; i < count; i++) {
-			sprintf(nm, index, i);
+			snprintf(nm, MAXNAME, index, i);
+			nm[MAXNAME - 1] = '\0';
 			array[i] = df->get(nm);
 		}
 	}
 	else {
 		for (int i = 0; i < count; i++) {
 			if (!mask[i]) continue;
-			sprintf(nm, index, i);
+			snprintf(nm, MAXNAME, index, i);
+			nm[MAXNAME - 1] = '\0';
 			array[i] = df->get(nm);
 		}
 	}
@@ -113,16 +117,19 @@ void LoadArray(void *array[], int count, TDataFile *df, const char *index, byte 
 void LoadSpriteArray(TSprite *array[], int count, TDataFile *df,
 	const char *nametpl, byte *mask) {
 	int i;
+	size_t size;
 	char *assetname;
 
-	assetname = (char*)memalloc(strlen(nametpl) + 10);
+	size = strlen(nametpl) + 10;
+	assetname = (char*)memalloc(size);
 
 	for (i = 0; i < count; i++) {
 		if (mask && !mask[i]) {
 			continue;
 		}
 
-		sprintf(assetname, nametpl, i);
+		snprintf(assetname, size, nametpl, i);
+		assetname[size - 1] = '\0';
 		array[i] = load_sprite(df, assetname);
 	}
 
