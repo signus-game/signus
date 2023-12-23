@@ -104,4 +104,4 @@ endif
 
 signus_SOURCES = $(ENGINE_FILES) $(AI_FILES) $(header_files)
 
-EXTRA_DIST = resource.rc signus.ico
+EXTRA_DIST = resource.rc signus.ico signus.manifest.in
